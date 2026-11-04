@@ -1556,6 +1556,17 @@ cells fire (weights and thresholds restored). In the 1,600-cell run it caught
 specialising (similarity 0.75 → 0.63) instead of collapsing. Training also
 never checkpoints a collapsed layer now, and marks it so it is not resumed.
 
+## Stage 24: audit and remediation
+
+`AUDIT.md` audits Stages 0–23 against the original roadmap; `METHODS.md`
+records the working rules adopted as a result. Fixed the same day: version
+control (branch `neural-core` of the Human-Brain repository), a test suite
+(`tests/test_synth.py`), human firing-rate reference ranges with a check
+script (which found the non-FS interneuron problem, open problem 0),
+partial-result writing for long runs, honest framing, and a four-network
+re-test of every conclusion that had rested on two networks — all three held
+(`results/areas8_four_network_retest.json`; table in `AUDIT.md` §5).
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

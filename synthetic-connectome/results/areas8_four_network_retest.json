@@ -1,0 +1,97 @@
+{
+ "about": "8-area learner, 150 trials, four networks (9001-9004); re-test of conclusions first drawn on two (AUDIT.md item 3)",
+ "rows": [
+  {
+   "name": "quick x1",
+   "n": 4,
+   "blocks": [
+    60,
+    74,
+    83
+   ],
+   "last50": [
+    82,
+    82,
+    80,
+    88
+   ],
+   "last50_mean": 83.0,
+   "last50_sd": 3.0,
+   "to75": [
+    62,
+    82,
+    54,
+    83
+   ]
+  },
+  {
+   "name": "quick x2",
+   "n": 4,
+   "blocks": [
+    58,
+    77,
+    85
+   ],
+   "last50": [
+    88,
+    76,
+    88,
+    88
+   ],
+   "last50_mean": 85.0,
+   "last50_sd": 5.2,
+   "to75": [
+    54,
+    76,
+    81,
+    73
+   ]
+  },
+  {
+   "name": "old fast",
+   "n": 4,
+   "blocks": [
+    56,
+    64,
+    74
+   ],
+   "last50": [
+    68,
+    72,
+    84,
+    72
+   ],
+   "last50_mean": 74.0,
+   "last50_sd": 6.0,
+   "to75": [
+    83,
+    136,
+    98,
+    147
+   ]
+  },
+  {
+   "name": "old orig",
+   "n": 4,
+   "blocks": [
+    51,
+    68,
+    68
+   ],
+   "last50": [
+    64,
+    74,
+    58,
+    76
+   ],
+   "last50_mean": 68.0,
+   "last50_sd": 7.3,
+   "to75": [
+    null,
+    94,
+    79,
+    50
+   ]
+  }
+ ]
+}

@@ -233,3 +233,33 @@ In priority order, with rough cost on this machine (2 cores, 8 GB).
 * A numerical stand-in before any spiking run longer than an hour.
 * Checkpoint every long run; never checkpoint a failed state.
 * Keep the provenance line; add to it, never around it.
+
+## 5. What was fixed the same day (4 November, afternoon)
+
+| audit item | action | where |
+|---|---|---|
+| 1 no version control | repository created; code pushed to branch `neural-core` of `andrewreynolds421-ui/Human-Brain`; every later fix its own commit | `jobs/sync_repo.sh` |
+| 2 scratch scripts | seven analysis scripts moved into the repository | `scripts/analysis/` |
+| 3 two-network conclusions | re-tested on four networks (below) | `results/areas8_four_network_retest.json` |
+| 4 stand-ins first | made a rule | `METHODS.md` §3 |
+| 5 checkpoint hygiene | learning runs write partial results every 20 trials; sensory training never checkpoints a collapsed layer | `scripts/reward_learning.py`, `scripts/train_letters.py` |
+| 6 validation targets | sourced human (L2/3) and rodent (deep) rate ranges; a check script; 5 of 12 populations found out of range → open problem 0 | `results/rate_targets.json`, `scripts/check_rates.py` |
+| 7 tests | 11 tests for the simulation package (8 fast, 3 slow); all pass | `tests/test_synth.py` |
+| 8 stale README | roadmap table rewritten as a status table; stage log kept as history | `README.md` |
+| 9 framing | "what the object is" paragraphs in the README and `NEURAL_CORE.md` | — |
+| 10 untracked problems | the non-FS interneuron rates are open problem 0 with a sensitivity test | `README.md` *Open problems* |
+
+**Re-test of the two-network conclusions** (eight areas, 150 trials, networks
+9001–9004; accuracy in trials 101–150 per network, mean ± sd; first trial at
+which a 30-trial average reaches 75 %):
+
+| setting | per network | mean ± sd | reaches 75 % | conclusion |
+|---|---|---|---|---|
+| quick rule, current size | 82 / 82 / 80 / 88 | 83 ± 3 | 62 / 82 / 54 / 83 | **holds:** better than the old rule on every network |
+| quick rule, double size (selection scaled) | 88 / 76 / 88 / 88 | 85 ± 5 | 54 / 76 / 81 / 73 | **holds:** +2 points, better on 3 of 4, worse on 1 — not clearly better; `learner8` stays at current size |
+| old rule, fast mode | 68 / 72 / 84 / 72 | 74 ± 6 | 83 / 136 / 98 / 147 | **holds:** fast mode learns at least as well as the original code |
+| old rule, original code | 64 / 74 / 58 / 76 | 68 ± 7 | — / 94 / 79 / 50 | |
+
+So all three decisions stand, now on four networks each. The seed-to-seed
+spread (sd 3–7 points) is the number to keep in mind when reading any
+single-run figure in the stage log.
