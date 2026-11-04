@@ -263,3 +263,16 @@ which a 30-trial average reaches 75 %):
 So all three decisions stand, now on four networks each. The seed-to-seed
 spread (sd 3–7 points) is the number to keep in mind when reading any
 single-run figure in the stage log.
+
+## 6. Follow-up (4 November, evening): the interneuron problem fixed
+
+Stage 25 recalibrated the column (`human_h01_dendritic_v2`): one sample-size
+rule for measured subtype synapses, non-FS external input at the literature
+ratio (×0.1), and the two fitted calibrations refitted. 9 of 12 populations
+are now within their reference ranges (was 7; the misses went from 65–550 %
+past an edge to 5–25 %). Learning on the recalibrated column, four networks
+each: two areas 97 ± 2 % (was 82 ± 7), eight areas 96 ± 5 % (was 83 ± 3),
+75 % reached in 30–63 trials instead of 43–97, and eight-area trials run in
+7 s instead of 15 s. The v1 preset and all earlier results are unchanged;
+RASPUTIN uses v2 by default. Knob count after the fix: 2 fitted, 5 assumed
+(one more than before: the non-FS input ratio, sourced).

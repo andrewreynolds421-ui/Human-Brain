@@ -48,6 +48,8 @@ NEURAL_CORE_QUICK=1         learner models: learn in fewer trials (higher learni
 NEURAL_CORE_LEARNER_SCALE=0.03   learner size: 0.03 = 2x the neurons (default; ~1.4 GB, ~2x slower
                             per trial, learns sooner and better); 0.015 = previous size
 NEURAL_CORE_LEARNER8_SCALE=0.015 learner8 size (2x not yet tested in all eight areas)
+NEURAL_CORE_COLUMN=v2       column calibration: v2 (stage 25: every population at or near its
+                            reference firing rate; learns faster) or v1 (stage 3d, the earlier results)
 NEURAL_CORE_LEAN=1          learner models: same dynamics, ~40% less RAM while running
                             (reset snapshot on disk, unused wiring tables freed)
 NEURAL_CORE_FAST=1          learner models: same dynamics, ~2x faster (merged inputs,
@@ -85,6 +87,8 @@ NEURAL_CORE_SURPRISE = float(os.environ.get("NEURAL_CORE_SURPRISE", "3.0"))     
 NEURAL_CORE_FAST = os.environ.get("NEURAL_CORE_FAST", "1") == "1"                  # learner: faster, same dynamics
 NEURAL_CORE_QUICK = os.environ.get("NEURAL_CORE_QUICK", "1") == "1"                # learner: fewer trials to learn
 NEURAL_CORE_LEAN = os.environ.get("NEURAL_CORE_LEAN", "1") == "1"                  # learner: less RAM, same dynamics
+NEURAL_CORE_COLUMN = os.environ.get("NEURAL_CORE_COLUMN", "v2")                     # column calibration: v2 (stage 25) or v1
+COLUMN_PRESET = {"v1": "human_h01_dendritic", "v2": "human_h01_dendritic_v2"}.get(NEURAL_CORE_COLUMN, "human_h01_dendritic_v2")
 NEURAL_CORE_LEARNER_SCALE = float(os.environ.get("NEURAL_CORE_LEARNER_SCALE", "0.03"))    # learner size (0.015 = previous)
 NEURAL_CORE_LEARNER8_SCALE = float(os.environ.get("NEURAL_CORE_LEARNER8_SCALE", "0.015"))  # learner8 size
 
@@ -96,7 +100,7 @@ MODES = {
                   "8 populations, measured membranes, rodent-scaled synapses (asynchronous)."),
     "full": ("human_h01_synphys", {},
              "8 populations, all measured synapses and short-term plasticity (bursts)."),
-    "dendritic": ("human_h01_dendritic", {"ext_gain": 2.0, "bg_ratio": 2.0},
+    "dendritic": (COLUMN_PRESET, {"bg_ratio": 2.0, **({"ext_gain": 2.0} if COLUMN_PRESET == "human_h01_dendritic" else {})},
                   "12 populations (fast-spiking / other interneurons), two-compartment pyramidal "
                   "cells with inputs placed on soma or dendrite, measured synaptic kinetics, "
                   "in-vivo-like background conductance, calibrated deep-layer input; full connectivity."),
@@ -189,7 +193,8 @@ class NeuralCoreService:
         if self.mode in ("learner", "learner8"):
             from synth.learner import build_learner_network, LearnerColumn, QUICK_SETTINGS, WTA_REF_POOL   # noqa: E402
             n_scale = NEURAL_CORE_LEARNER8_SCALE if self.mode == "learner8" else NEURAL_CORE_LEARNER_SCALE
-            col = build_learner_network(n_scale=n_scale, seed=1, areas="all" if self.mode == "learner8" else None)
+            col = build_learner_network(n_scale=n_scale, seed=1, areas="all" if self.mode == "learner8" else None,
+                                        preset=COLUMN_PRESET)
             self.info = dict(model=col.name, mode=self.mode, neurons=col.N, synapses=col.S, layers=list(LAYERS),
                              modes={k: v[2] for k, v in MODES.items()},
                              description=("Two human-like prefrontal columns (H01 wiring, Allen human physiology) "

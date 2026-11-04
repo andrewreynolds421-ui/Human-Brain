@@ -206,6 +206,13 @@ and after a rule reversal the network was back to 60% in 56–72 trials instead
 of 79–145 (README Stage 13). `status` reports the current `learning_rate_x`.
 `NEURAL_CORE_QUICK=0` restores the previous rule.
 
+Column calibration (`NEURAL_CORE_COLUMN=v2`, default): the Stage 25 column,
+in which every cell population fires at or near its measured reference rate
+(the earlier column had its non-fast-spiking interneurons silent in layer 2/3
+and 2–7× too fast below). On it the learner reaches 96–97 % on the cue task
+(was 82–83 %), gets to 75 % in 30–60 trials, and eight-area trials take about
+half the time. `NEURAL_CORE_COLUMN=v1` restores the previous column.
+
 Lean memory (`NEURAL_CORE_LEAN=1`, default): no reset snapshot is held,
 wiring tables the running learner no longer reads are freed, build
 temporaries are kept small, and build scratch memory is returned to the

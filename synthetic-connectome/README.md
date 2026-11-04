@@ -11,8 +11,8 @@ cortex* — twelve cell populations per column with measured local wiring
 neuron count with full per-neuron in-degree; up to eight areas joined by
 *macaque* long-range wiring; a hand-made action-selection circuit standing
 in for the basal ganglia; reward supplied from outside. It learns cue–action
-tasks (80–92 %), routes real text at 63 % through a self-organising sensory
-layer, and reads printed letters at 76 % in unseen fonts. It is not a brain,
+tasks (96–97 % on the recalibrated column, Stage 25), routes real text at
+63 % through a self-organising sensory layer, and reads printed letters at 76 % in unseen fonts. It is not a brain,
 not full-scale, and not yet validated against human recordings. Status by
 roadmap stage: *Phase plan* below; full audit: `AUDIT.md`; working rules:
 `METHODS.md`.
@@ -101,7 +101,7 @@ and where each stands. Full audit in `AUDIT.md`.
 
 | Stage | Scope | Status (Nov 2026) |
 |---|---|---|
-| **1** | One column in the right state: asynchronous 1–10 Hz, no tuning knobs beyond external drive | **done with caveats** — 12 populations, dendrites, measured membranes/synapses/wiring, asynchronous; but 2 fitted calibrations + 4 assumed constants, and two non-FS populations off-range (Stage 3c–3d) |
+| **1** | One column in the right state: asynchronous 1–10 Hz, no tuning knobs beyond external drive | **done with caveats** — 12 populations, dendrites, measured membranes/synapses/wiring, asynchronous; 9 of 12 populations within reference rate ranges after the Stage 25 recalibration (was 7); still 2 fitted calibrations + 5 assumed constants |
 | **2** | Full-scale column (32,500 neurons, 130 M synapses) | **not done** — everything runs at 1.5–3 % of neurons with full in-degree; needs a GPU simulator and ≥64 GB |
 | **3** | Cortical sheet: per-area layers (BigBrain), cell types (Allen), area wiring (HCP) | **started with substitutes** — multi-column sheet + 8 macaque association areas (Markov FLN); same column everywhere; no human atlas data yet (Stages 4–5) |
 | **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **not started** — stand-ins only (hand-made selection circuit, external reward, scalar surprise/uncertainty) |
@@ -1567,6 +1567,61 @@ partial-result writing for long runs, honest framing, and a four-network
 re-test of every conclusion that had rested on two networks — all three held
 (`results/areas8_four_network_retest.json`; table in `AUDIT.md` §5).
 
+## Stage 25: the non-FS interneuron fix — recalibrated column (v2)
+
+Open problem 0 (Stage 24) was that all four non-fast-spiking interneuron
+populations were off-range: silent in L2/3, 2–7× too fast in L4–L6. Diagnosis
+(`scripts/analysis/scan_rates.py`, per-population drive budget):
+
+* **L4–L6 non-FS too fast:** their drive was external input — H01 cannot
+  split input counts by interneuron subtype, so the budget gave non-FS cells
+  the same outside fibres as FS cells (L4N: 3,260 fibres, 11.5 nS steady
+  conductance onto high-impedance, low-threshold cells). In the data thalamic
+  input onto SST/VIP cells is ~1/10 of that onto PV cells (Ji et al. 2016;
+  Cruikshank 2007, 2010). Cutting it alone made the column collapse, because
+  the FS cells had been calibrated against the inhibition those over-active
+  non-FS cells provided.
+* **L2/3 non-FS silent:** the measured E→non-FS synapse used in v1 came from
+  5 pairs (0.35 mV, depressing), while the layer-pair rule elsewhere requires
+  10. Applying one rule (≥ 10 pairs, else class values) restores a class-level
+  E→non-FS synapse and wakes the cells.
+
+The v2 preset (`human_h01_dendritic_v2`; `results/deep_ext_calibration_v2.json`):
+subtype synapse values only from ≥ 10 pairs; non-FS external fibres ×0.1
+(**assumed**, from the literature ratio); then the existing calibrations
+refitted — external gain 1.5 (was 2.0), deep external input ×1.2 / ×0.7
+(was 1.6 / 1.0), E→FS outside L2/3 ×0.3 (was 0.35) — until every population
+was in or at its reference range. Fitted by hand scan over 15 settings; the
+v1 preset is unchanged and every earlier result still reproduces.
+
+| population | v1 | v2 (3 seeds) | reference |
+|---|---|---|---|
+| L2/3E / F / N | 1.8 / 9.8 / 0.05 | 1.3 / 6.4 / **0.15** | 0.3–3 / 2–9 / 0.2–3 |
+| L4E / F / N | 4.7 / 14.9 / **32.6** | 4.0 / **21.0** / **6.0** | 0.5–6 / 4–20 / 0.2–5 |
+| L5E / F / N | 4.4 / 18.5 / **10.1** | 3.9 / 17.8 / 4.4 | 1–8 / 4–25 / 0.5–6 |
+| L6E / F / N | 2.5 / 8.1 / **9.9** | 1.1 / 4.1 / 1.1 | 0.3–5 / 3–20 / 0.5–6 |
+
+9 of 12 in range (was 7), and the three misses are 5–25 % past an edge
+instead of 65–550 % (bold = out of range). Residuals: L2/3 non-FS still low
+(in vivo these cells get neuromodulatory depolarisation the model lacks);
+layer 4 FS and non-FS trade off against each other at the edge.
+
+**Learning on the recalibrated column** (quick rule, 150 trials, four
+networks each; `results/v2/learning_v1_vs_v2.json`):
+
+| | v1 column | v2 column |
+|---|---|---|
+| 2 areas, trials 101–150 | 82 ± 7 % | **97 ± 2 %** |
+| 2 areas, reaches 75 % | trial 43–97 | **30–40** |
+| 8 areas, trials 101–150 | 83 ± 3 % | **96 ± 5 %** |
+| 8 areas, reaches 75 % | trial 54–83 | **30–63** |
+| 8 areas, time per trial | 15 s | **7 s** |
+
+Decisions are not degenerate (same spikes per decision, similar weight
+growth, cleaner pool separation: dominance 0.81 vs 0.68). The speed-up is a
+by-product: no population fires at 33 Hz any more. RASPUTIN's core uses v2
+(`NEURAL_CORE_COLUMN=v2`, default; `v1` restores the previous column).
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
@@ -1586,9 +1641,9 @@ These are the real findings so far. Each is a concrete next task.
    silence L4 pyramids (0.13 Hz). The column's balance therefore rests on
    non-FS → FS inhibition driven by an input those cells probably should not
    have. L2/3N stays silent at every setting, so it has a second cause.
-   **Not changed**: every calibration and learning result was made at ×1.0,
-   so the fix is a planned re-calibration (rates *and* learning re-checked),
-   not a silent default change.
+   **Resolved in Stage 25** (v2 preset): 9 of 12 populations in range, the
+   rest within 5–25 % of an edge; learning improved from 82–83 % to 96–97 %.
+   Residual: L2/3 non-FS at 0.15 Hz (floor 0.2); L4 FS/non-FS at the edge.
 
 1. **Density vs. in-degree when moving to human numbers (resolved in principle by Phase 1).** Human cortex has
    ~5× fewer neurons per mm³ than rodent but each neuron carries *more*

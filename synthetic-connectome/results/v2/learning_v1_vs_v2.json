@@ -1,0 +1,89 @@
+{
+ "about": "Stage 25: quick learning rule on the v1 (stage 3d) and v2 (stage 25) columns, 150 trials, four networks each",
+ "summary": {
+  "2-area, v1 column": {
+   "blocks": [
+    62.5,
+    79.0,
+    82.5
+   ],
+   "last50_per_net": [
+    74,
+    84,
+    92,
+    80
+   ],
+   "last50_mean": 82.5,
+   "last50_sd": 6.5,
+   "to75": [
+    77,
+    49,
+    43,
+    97
+   ]
+  },
+  "2-area, v2 column": {
+   "blocks": [
+    80.5,
+    95.0,
+    97.0
+   ],
+   "last50_per_net": [
+    94,
+    100,
+    98,
+    96
+   ],
+   "last50_mean": 97.0,
+   "last50_sd": 2.2,
+   "to75": [
+    30,
+    38,
+    30,
+    40
+   ]
+  },
+  "8-area, v1 column": {
+   "blocks": [
+    60.0,
+    73.5,
+    83.0
+   ],
+   "last50_per_net": [
+    82,
+    82,
+    80,
+    88
+   ],
+   "last50_mean": 83.0,
+   "last50_sd": 3.0,
+   "to75": [
+    62,
+    82,
+    54,
+    83
+   ]
+  },
+  "8-area, v2 column": {
+   "blocks": [
+    75.0,
+    86.5,
+    95.5
+   ],
+   "last50_per_net": [
+    88,
+    100,
+    96,
+    98
+   ],
+   "last50_mean": 95.5,
+   "last50_sd": 4.6,
+   "to75": [
+    30,
+    43,
+    31,
+    63
+   ]
+  }
+ }
+}
