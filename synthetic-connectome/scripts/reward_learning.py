@@ -77,7 +77,7 @@ def build(seed=1, n_scale=0.015, areas=("46d", "9/46d"), cache={}):
 
 
 def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=None,
-        areas=("46d", "9/46d"), cue_area="46d", action_area="9/46d", fast=False):
+        areas=("46d", "9/46d"), cue_area="46d", action_area="9/46d", fast=False, partial_out=None):
     """reverse_at: trial index from which the rewarded mapping flips (A -> 2, B -> 1).
     fast: merged Poisson inputs + per-neuron STP/iSTDP state (same dynamics, ~2x faster)"""
     g = dict(DEFAULT_GENOME, **genome)
@@ -223,6 +223,9 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
             snaps.append(snapshot(k + 1))
         if k % 20 == 19:
             wsum.append(float(np.mean(np.concatenate([np.asarray(S_.w / nS) for S_, _ in rgroups])) / w_scale))
+            if partial_out:                     # a run killed by a restart still leaves its curve so far
+                json.dump(dict(partial=True, trials_done=k + 1, curve=curve, weight_trend=wsum, seed=seed,
+                               genome=g), open(partial_out, "w"))
             if verbose:
                 print(f"trial {k + 1:4d}  accuracy (last 20) {np.mean(curve[-20:]):.2f}  mean plastic weight x{wsum[-1]:.2f}", flush=True)
     # rates over the last 10 trials' inter-trial intervals
@@ -288,12 +291,15 @@ def main():
     t0 = time.time()
     areas = load_interareal()["areas"] if a.areas == "all" else a.areas.split(",")
     r = run(json.loads(a.genome), a.trials, a.seed, n_scale=a.n_scale, verbose=True, reverse_at=a.reverse_at,
-            areas=areas, cue_area=a.cue_area, action_area=a.action_area, fast=a.fast)
+            areas=areas, cue_area=a.cue_area, action_area=a.action_area, fast=a.fast,
+            partial_out=(a.out + ".partial.json") if a.out else None)
     r["wall_s"] = round(time.time() - t0)
     r["fast"] = bool(a.fast)
     print(json.dumps(r))
     if a.out:
         json.dump(r, open(a.out, "w"))
+        if os.path.exists(a.out + ".partial.json"):
+            os.remove(a.out + ".partial.json")
 
 
 if __name__ == "__main__":
