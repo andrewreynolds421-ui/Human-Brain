@@ -1,0 +1,121 @@
+{
+ "n_scale": 0.03,
+ "t_ms": 2000.0,
+ "seeds": [
+  3
+ ],
+ "istdp": true,
+ "ext_gain": 2.0,
+ "bg_ratio": 2.0,
+ "rows": [
+  {
+   "pop": "L23E",
+   "rate": 1.62,
+   "spread": 0.0,
+   "min": 0.3,
+   "max": 3.0,
+   "species": "human",
+   "verdict": "IN"
+  },
+  {
+   "pop": "L23F",
+   "rate": 9.62,
+   "spread": 0.0,
+   "min": 2.0,
+   "max": 9.0,
+   "species": "human",
+   "verdict": "HIGH"
+  },
+  {
+   "pop": "L23N",
+   "rate": 0.049,
+   "spread": 0.0,
+   "min": 0.2,
+   "max": 3.0,
+   "species": "rodent",
+   "verdict": "LOW"
+  },
+  {
+   "pop": "L4E",
+   "rate": 4.873,
+   "spread": 0.0,
+   "min": 0.5,
+   "max": 6.0,
+   "species": "rodent",
+   "verdict": "IN"
+  },
+  {
+   "pop": "L4F",
+   "rate": 15.167,
+   "spread": 0.0,
+   "min": 4.0,
+   "max": 20.0,
+   "species": "rodent",
+   "verdict": "IN"
+  },
+  {
+   "pop": "L4N",
+   "rate": 33.205,
+   "spread": 0.0,
+   "min": 0.2,
+   "max": 5.0,
+   "species": "rodent",
+   "verdict": "HIGH"
+  },
+  {
+   "pop": "L5E",
+   "rate": 4.653,
+   "spread": 0.0,
+   "min": 1.0,
+   "max": 8.0,
+   "species": "rodent",
+   "verdict": "IN"
+  },
+  {
+   "pop": "L5F",
+   "rate": 17.8,
+   "spread": 0.0,
+   "min": 4.0,
+   "max": 25.0,
+   "species": "rodent",
+   "verdict": "IN"
+  },
+  {
+   "pop": "L5N",
+   "rate": 10.438,
+   "spread": 0.0,
+   "min": 0.5,
+   "max": 6.0,
+   "species": "rodent",
+   "verdict": "HIGH"
+  },
+  {
+   "pop": "L6E",
+   "rate": 3.147,
+   "spread": 0.0,
+   "min": 0.3,
+   "max": 5.0,
+   "species": "rodent",
+   "verdict": "IN"
+  },
+  {
+   "pop": "L6F",
+   "rate": 8.071,
+   "spread": 0.0,
+   "min": 3.0,
+   "max": 20.0,
+   "species": "rodent",
+   "verdict": "IN"
+  },
+  {
+   "pop": "L6N",
+   "rate": 9.409,
+   "spread": 0.0,
+   "min": 0.5,
+   "max": 6.0,
+   "species": "rodent",
+   "verdict": "HIGH"
+  }
+ ],
+ "out_of_range": 5
+}

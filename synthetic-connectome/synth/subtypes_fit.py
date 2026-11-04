@@ -107,7 +107,7 @@ def human_12pop_column(ext_gain=0.5, adapt_b_exc_pA=60.0, adapt_tau_ms=150.0, ve
                        subtypes_file=SUBTYPES_FILE, celltypes_file=CELLTYPES_FILE, fs_fraction=None,
                        input_budget=True, measured_kinetics=True, ext_budget=False, bg_ratio=None,
                        min_n_layer_pair=10, two_compartment=False, dend_cap_frac=0.7, fs_soma_fraction=1.0,
-                       deep_ext_gain=None, ef_deep_factor=None, **kw):
+                       deep_ext_gain=None, ef_deep_factor=None, nfs_ext_factor=None, **kw):
     base = human_synphys_column(mode="full", coba=True, ext_gain=ext_gain, adapt_b_exc_pA=adapt_b_exc_pA,
                                 adapt_b_inh_pA=adapt_b_exc_pA / 6, adapt_tau_ms=adapt_tau_ms,
                                 verbose=False, min_n_layer_pair=min_n_layer_pair, **kw)
@@ -366,6 +366,17 @@ def human_12pop_column(ext_gain=0.5, adapt_b_exc_pA=60.0, adapt_tau_ms=150.0, ve
             new[i] = p.K_ext[e_i] * exc_in[i] / exc_in[e_i]
             prov["external input budget"][q] = f"{p.K_ext[i]:.0f} -> {new[i]:.0f} fibres"
         p.K_ext = new
+    if nfs_ext_factor is not None and float(nfs_ext_factor) != 1.0:
+        # ASSUMPTION (not fitted): non-fast-spiking (SST-like) interneurons receive only a
+        # fraction of the external / thalamic input that fast-spiking cells receive
+        # (thalamocortical EPSPs onto SST cells are weak: Cruikshank et al. 2010 J Neurosci;
+        # Ji et al. 2016 Cereb Cortex).  H01 cannot split F/N input counts, so the budget
+        # above gave both subtypes the same fibres; this scales the N share.
+        prov["ASSUMED non-FS external input"] = {}
+        for i, q in enumerate(pops12):
+            if types[i] == "N":
+                p.K_ext[i] *= float(nfs_ext_factor)
+                prov["ASSUMED non-FS external input"][q] = f"x{float(nfs_ext_factor):.2f} external fibres (assumed, see code)"
     p.bg_ratio = bg_ratio
     # CALIBRATION (the one fitted number set in this preset): extra external
     # fibres onto deep pyramidal cells, standing in for thalamic / long-range

@@ -1548,6 +1548,25 @@ never checkpoints a collapsed layer now, and marks it so it is not resumed.
 
 These are the real findings so far. Each is a concrete next task.
 
+0. **Non-fast-spiking interneurons are off-range in every layer** (found by
+   `scripts/check_rates.py` against `results/rate_targets.json`, 4 Nov 2026):
+   L2/3N 0.06 Hz (reference 0.2–3), L4N 33 Hz (0.2–5), L5N 10 Hz (0.5–6),
+   L6N 10 Hz (0.5–6); L2/3F 9.8 Hz is just above its human range (2–9).
+   Inhibitory plasticity does not touch this (it targets pyramidal cells).
+   Likely cause: H01 cannot split input counts by interneuron subtype, so the
+   external-input budget gives non-FS cells the same outside fibres as FS
+   cells, while thalamic input onto SST-type cells is weak in the data
+   (Cruikshank 2010; Ji 2016). Sensitivity test (`nfs_ext_factor`, labelled
+   as an assumption; `results/rate_sensitivity_nfs_ext.json`): at ×0.5 L5N,
+   L6N and L2/3F come into range and L4N falls to 7 Hz, but pyramidal rates
+   drop (L4E 4.7 → 2.0 Hz); at ×0.25 the FS cells are disinhibited and
+   silence L4 pyramids (0.13 Hz). The column's balance therefore rests on
+   non-FS → FS inhibition driven by an input those cells probably should not
+   have. L2/3N stays silent at every setting, so it has a second cause.
+   **Not changed**: every calibration and learning result was made at ×1.0,
+   so the fix is a planned re-calibration (rates *and* learning re-checked),
+   not a silent default change.
+
 1. **Density vs. in-degree when moving to human numbers (resolved in principle by Phase 1).** Human cortex has
    ~5× fewer neurons per mm³ than rodent but each neuron carries *more*
    synapses. Keeping rodent *connection probabilities* at human density
