@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+# regenerable simulation outputs
+synthetic-connectome/results/*_column.npz
+synthetic-connectome/results/istdp_learned_weights.npy
+synthetic-connectome/results/**/*_ckpt.npz
+synthetic-connectome/results/**/*features*.npz
+synthetic-connectome/results/letters/collapsed_*/
+synthetic-connectome/results/speed/
+synthetic-connectome/data/letters_x3.npz
+*.log
+# local databases
+*.db

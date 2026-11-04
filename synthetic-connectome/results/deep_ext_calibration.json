@@ -1,0 +1,89 @@
+{
+ "deep_ext_gain": {
+  "L5E": 1.6,
+  "L6E": 1.0
+ },
+ "ef_deep_factor": 0.35,
+ "targets": {
+  "L5E": 4.0,
+  "L6E": 2.0,
+  "L5F": "10-20 (awake fast-spiking)"
+ },
+ "setup": {
+  "ext_gain": 2.0,
+  "ext_budget": "h01",
+  "fs_soma_fraction": 0.3,
+  "bg_ratio": 2.0,
+  "K": 1.0,
+  "N_scaling": 0.03
+ },
+ "history": [
+  {
+   "ef": 1.0,
+   "m5": 5,
+   "m6": 2.5,
+   "L5E": 5.2,
+   "L5F": 43.2,
+   "L5E_drive_response": 0.6
+  },
+  {
+   "ef": 0.5,
+   "m5": 5,
+   "m6": 2.5,
+   "L5E": 8.4,
+   "L5F": 31.9,
+   "resp": 1.7
+  },
+  {
+   "ef": 0.3,
+   "m5": 5,
+   "m6": 2.5,
+   "L5E": 12.9,
+   "L5F": 25.3,
+   "resp": 1.6
+  },
+  {
+   "ef": 0.5,
+   "m5": 2.5,
+   "m6": 1.5,
+   "L5E": 4.9,
+   "L5F": 25.4,
+   "L6E": 3.1,
+   "resp": 1.9
+  },
+  {
+   "ef": 0.35,
+   "m5": 1.8,
+   "m6": 1.2,
+   "L5E": 5.1,
+   "L5F": 18.6,
+   "L6E": 4.2,
+   "resp": 2.6
+  },
+  {
+   "ef": 0.35,
+   "m5": 1.6,
+   "m6": 1.0,
+   "L5E": 4.3,
+   "L5F": 18.5,
+   "L6E": 2.4,
+   "resp": 3.0
+  }
+ ],
+ "superseded": [
+  {
+   "note": "stage 3c fit (8x / 8x) made with a saturated dendrite; see README stage 3d",
+   "value": {
+    "L5E": 8.0,
+    "L6E": 8.0
+   }
+  },
+  {
+   "note": "stage 3d fit (5x / 2.5x, E->FS unscaled)",
+   "value": {
+    "L5E": 5.0,
+    "L6E": 2.5
+   }
+  }
+ ]
+}

@@ -1,0 +1,14 @@
+1. s (100%) simulated in 1s
+done in 2.0 s wall
+activity (transient of 200 ms discarded)
+pop    rate Hz  ref Hz  CV_ISI   sync
+L23E      2.08    0.94    0.59   8.31
+L23I      3.36    3.03    0.59   4.90
+L4E       2.91    4.37    0.62   3.00
+L4I      10.45    5.88    0.81   2.01
+L5E       9.54    7.73    0.63   4.42
+L5I      13.94    8.66    0.71   2.03
+L6E       0.00    1.10     nan    nan
+L6I       9.96    7.85    0.66   1.02
+mean |rate - published| = 2.22 spikes/s; rank correlation = -0.19
+figure: results/human_H01_activity.png

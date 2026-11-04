@@ -1,0 +1,48 @@
+in-degree scale factor slab->column: 588.4  (spread of per-entry ratios: 243.9 .. 766.9)
+trusted entries: 29 / 64
+
+neurons per 1 mm^2 column:
+  pop    human(H01)   rodent
+  L23E         8157    20683
+  L23I         4381     5834
+  L4E          7775    21915
+  L4I          2089     5479
+  L5E          4045     4850
+  L5I          1282     1065
+  L6E          4190    14395
+  L6I           596     2948
+  total       32515    77169
+
+layer thickness (um): {'L1': 250, 'L23': 747, 'L4': 377, 'L5': 378, 'L6': 453}  total 2205
+lateral sigma: E 130 um, I 105 um (slab-truncated, lower bounds)
+inhibitory weight rebalance factor per target population: {'L23E': np.float64(0.98), 'L23I': np.float64(0.93), 'L4E': np.float64(0.78), 'L4I': np.float64(2.84), 'L5E': np.float64(0.76), 'L5I': np.float64(1.9), 'L6E': np.float64(2.47), 'L6I': np.float64(1.03)}
+
+connection probabilities (rows target, cols source), H01-fitted:
+[[0.1731 0.2148 0.0449 0.0571 0.0386 0.     0.0259 0.    ]
+ [0.2452 0.1554 0.051  0.1295 0.0898 0.     0.0144 0.    ]
+ [0.0415 0.0353 0.1343 0.2549 0.008  0.0994 0.1472 0.    ]
+ [0.0693 0.0039 0.4302 0.1999 0.0693 0.     0.3187 0.    ]
+ [0.2353 0.082  0.1359 0.0753 0.1514 0.3754 0.0632 0.    ]
+ [0.1332 0.0357 0.1509 0.0058 0.2975 0.2509 0.0292 0.    ]
+ [0.0391 0.0088 0.0583 0.043  0.1225 0.111  0.3384 0.3341]
+ [0.0897 0.0013 0.0096 0.0013 0.0331 0.0067 0.1909 0.5374]]
+
+trusted (H01) entries marked 1, rodent fallback 0:
+[[1 1 1 1 0 0 0 0]
+ [1 1 1 0 0 0 0 0]
+ [1 1 1 1 0 1 0 0]
+ [1 0 1 1 1 0 0 0]
+ [0 0 0 1 1 1 1 0]
+ [0 0 1 0 1 1 0 0]
+ [0 0 0 0 1 1 1 1]
+ [0 0 0 0 0 0 1 1]]
+
+recurrent in-degree per neuron (sum over sources):
+  L23E  human    3359   rodent    4995
+  L23I  human    4172   rodent    5285
+  L4E   human    3072   rodent    2806
+  L4I   human    7340   rodent    5888
+  L5E   human    5403   rodent    4944
+  L5I   human    4531   rodent    2736
+  L6E   human    3575   rodent    2564
+  L6I   human    2342   rodent    2434

@@ -1,0 +1,75 @@
+--- main.py.orig	2026-10-30 15:53:29.481800054 -0500
++++ main.py	2026-10-30 15:53:29.498490277 -0500
+@@ -118,7 +118,16 @@
+ from dispatch import (  # noqa: E402
+     build_consult_tool, dispatch_knows, dispatch_tools_for, handle_consult,
+ )
++# Live neural core. NEURAL_CORE=0 (default) leaves everything below inert:
++# the router answers 503 and the tool is never registered. See neural_core.py.
++from neural_core import (  # noqa: E402
++    NEURAL_CORE_ENABLED, NEURAL_CORE_SYSTEM_NOTE, NEURAL_CORE_TOOL,
++    neural_router, run_neural_core_tool, start_neural_core,
++)
+ model_provider = build_provider(anthropic_client)
++app.include_router(neural_router)
++if NEURAL_CORE_ENABLED:
++    start_neural_core()   # builds and warms the column in a background thread
+ 
+ # Dispatch-first routing. DELEGATION=0 restores the old tools_for() behaviour.
+ DELEGATION_ENABLED = os.environ.get("DELEGATION", "1") != "0"
+@@ -1170,7 +1179,7 @@
+ 
+ # Bump when something ships. Lets you confirm at a glance WHICH build Render
+ # is serving — a pending or failed deploy otherwise looks identical to a bug.
+-BUILD = "2026-10-29.1"
++BUILD = "2026-10-30.1"
+ 
+ 
+ @app.get("/")
+@@ -2900,6 +2909,7 @@
+     "web_search", "create_graph", "create_project", "update_project",
+     "manage_ui", "workspace", "browse", "open_link", "run_code",
+     "customize_dashboard", "set_directive", "get_location",
++    "neural_core",  # present only when NEURAL_CORE=1 (see chat())
+ }
+ 
+ # Extra tools by submind speciality.
+@@ -3979,6 +3989,9 @@
+                 )
+                 consults_used += 1
+ 
++            elif call.name == "neural_core":
++                result_text = run_neural_core_tool(call.input or {})
++
+             else:
+                 result_text = f"Unknown tool: {call.name}"
+ 
+@@ -4543,6 +4556,9 @@
+             "so plainly and suggest they ask RASPUTIN."
+         )
+ 
++    if NEURAL_CORE_ENABLED:
++        system_prompt += NEURAL_CORE_SYSTEM_NOTE
++
+     # Split for caching: everything above is identical between calls for a
+     # given submind, so it can be cached. The directive and project list
+     # change, so they follow the breakpoint and are re-read each time.
+@@ -4607,7 +4623,8 @@
+     # the model knows. Dropping them means the worst an injected page can
+     # achieve is a wrong answer in one reply.
+     TAINTED_BLOCKED_TOOLS = {"set_directive", "customize_dashboard", "open_link",
+-                             "open_navigation", "run_code", "manage_ui"}
++                             "open_navigation", "run_code", "manage_ui",
++                             "neural_core"}  # reward rewires the core: durable
+ 
+     tools = [
+         {"type": "web_search_20250305", "name": "web_search", "max_uses": 3},
+@@ -4635,6 +4652,8 @@
+         CUSTOMIZE_DASHBOARD_TOOL,
+         SET_DIRECTIVE_TOOL,
+     ]
++    if NEURAL_CORE_ENABLED:
++        tools.append(NEURAL_CORE_TOOL)
+     if target in subminds:
+         tools.append(UPDATE_STATUS_TOOL)
+ 

@@ -1,0 +1,29 @@
+Synthesized column 'human_placeholder'  (N_scaling=0.1, K_scaling=0.1)
+  neurons : 4,481
+  synapses: 1,007,600  (mean in-degree 225)
+  L23E  n=  1201  in-degree=  290.0  exc fraction of inputs=0.69  DC=384.3 pA
+  L23I  n=   339  in-degree=  306.8  exc fraction of inputs=0.78  DC=360.2 pA
+  L4E   n=  1272  in-degree=  162.9  exc fraction of inputs=0.70  DC=504.3 pA
+  L4I   n=   318  in-degree=  341.9  exc fraction of inputs=0.84  DC=456.3 pA
+  L5E   n=   282  in-degree=  287.0  exc fraction of inputs=0.82  DC=480.3 pA
+  L5I   n=    62  in-degree=  158.8  exc fraction of inputs=0.79  DC=456.3 pA
+  L6E   n=   836  in-degree=  148.8  exc fraction of inputs=0.65  DC=696.5 pA
+  L6I   n=   171  in-degree=  141.3  exc fraction of inputs=0.80  DC=504.3 pA
+  mean lateral distance of a synapse: 378 um
+simulating 4,481 neurons / 1,007,600 synapses for 1000 ms ...
+Starting simulation at t=0. s for a duration of 1. s
+1. s (100%) simulated in 1s
+done in 2.6 s wall
+
+activity (transient of 200 ms discarded)
+pop    rate Hz  ref Hz  CV_ISI   sync
+L23E      6.33      --    0.61   4.37
+L23I     15.81      --    0.56   1.72
+L4E      18.78      --    0.53   5.68
+L4I      33.04      --    0.51   1.38
+L5E      39.62      --    0.46   4.38
+L5I      39.21      --    0.42   0.74
+L6E      18.98      --    0.53   5.52
+L6I      42.35      --    0.40   0.98
+
+figure: results/human_placeholder_activity.png

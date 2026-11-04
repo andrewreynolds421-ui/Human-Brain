@@ -1,0 +1,13 @@
+activity (transient of 200 ms discarded)
+pop    rate Hz  ref Hz  CV_ISI   sync
+L23E      9.99    0.94    0.46 251.89
+L23I      7.98    3.03    0.65 101.84
+L4E      11.13    4.37    0.50 185.71
+L4I      11.43    5.88    1.12  40.91
+L5E      16.70    7.73    0.73 181.23
+L5I      20.40    8.66    1.08  37.43
+L6E      26.88    1.10    0.85 137.08
+L6I      27.69    7.85    0.94  20.74
+
+mean |rate - published| = 11.58 spikes/s; rank correlation = 0.45
+

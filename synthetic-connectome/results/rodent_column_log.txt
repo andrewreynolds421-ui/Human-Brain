@@ -1,0 +1,31 @@
+Synthesized column 'rodent_PD2014'  (N_scaling=0.1, K_scaling=0.1)
+  neurons : 7,717
+  synapses: 2,988,686  (mean in-degree 387)
+  L23E  n=  2068  in-degree=  499.5  exc fraction of inputs=0.69  DC=21.5 pA
+  L23I  n=   583  in-degree=  528.5  exc fraction of inputs=0.78  DC=110.3 pA
+  L4E   n=  2192  in-degree=  280.6  exc fraction of inputs=0.70  DC=110.8 pA
+  L4I   n=   548  in-degree=  588.8  exc fraction of inputs=0.84  DC=113.1 pA
+  L5E   n=   485  in-degree=  494.4  exc fraction of inputs=0.82  DC=123.9 pA
+  L5I   n=   106  in-degree=  273.6  exc fraction of inputs=0.79  DC=151.1 pA
+  L6E   n=  1440  in-degree=  256.4  exc fraction of inputs=0.65  DC=42.4 pA
+  L6I   n=   295  in-degree=  243.4  exc fraction of inputs=0.80  DC=153.6 pA
+  mean lateral distance of a synapse: 312 um
+simulating 7,717 neurons / 2,988,686 synapses for 1000 ms ...
+Starting simulation at t=0. s for a duration of 1. s
+1. s (100%) simulated in 2s
+done in 3.0 s wall
+
+activity (transient of 200 ms discarded)
+pop    rate Hz  ref Hz  CV_ISI   sync
+L23E      0.44    0.94    0.57   5.31
+L23I      1.97    3.03    0.53   2.22
+L4E       3.91    4.37    0.58   6.77
+L4I       5.02    5.88    0.60   2.53
+L5E       6.43    7.73    0.59   4.44
+L5I       8.03    8.66    0.62   1.16
+L6E       0.88    1.10    0.50   1.70
+L6I       6.98    7.85    0.60   1.06
+
+mean |rate - published| = 0.74 spikes/s; rank correlation = 1.00
+
+figure: results/rodent_PD2014_activity.png

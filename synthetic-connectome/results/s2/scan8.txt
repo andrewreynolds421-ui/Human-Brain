@@ -1,0 +1,15 @@
+ext gain |   L23E   L23I    L4E    L4I    L5E    L5I    L6E    L6I | Fano    CV   regime
+  r = population_rates(res, args.t / 3); sy = float(np.nanmean(synchrony(res, args.t / 3))); cv = float(np.nanmean(irregularity(res, args.t / 3)))
+ [py.warnings]
+    0.15 |    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0 |    nan   nan  silent
+  r = population_rates(res, args.t / 3); sy = float(np.nanmean(synchrony(res, args.t / 3))); cv = float(np.nanmean(irregularity(res, args.t / 3)))
+ [py.warnings]
+    0.20 |    0.0    0.0    0.0    0.0    0.0    0.0    0.0    0.0 |    1.0   nan  silent
+    0.30 |    8.0   12.3    9.7   25.0    9.6   18.8   13.8   18.1 |  362.3  2.16  bursting
+    0.40 |   12.2   19.8   15.2   40.1   15.7   29.2   21.8   28.5 |  365.0  1.86  bursting
+    0.50 |   15.2   23.7   20.3   52.9   20.8   37.4   29.2   37.9 |  324.2  1.68  bursting
+    0.65 |   20.5   30.6   28.0   80.3   29.7   54.3   41.8   55.0 |  320.5  1.55  bursting
+    0.80 |   24.2   36.1   30.3  102.3   34.8   65.1   50.4   67.5 |  311.6  1.43  bursting
+    1.00 |   30.7   46.8   34.5  146.3   42.3   85.0   64.7   88.2 |  219.2  1.24  bursting
+
+figure for ext gain 0.3: results/s2/stage1_human_h01_coba_activity.png
