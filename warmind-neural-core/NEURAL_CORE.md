@@ -1,5 +1,12 @@
 # Neural core — 2026-10-30
 
+> **What the neural core is:** a spiking model of human association cortex
+> (measured local wiring and physiology, 1.5–3 % of real neuron density,
+> macaque long-range wiring, a hand-made action-selection circuit) that
+> learns from the rewards RASPUTIN sends it. It does not think, read or
+> talk; the chat stays Claude. See `synthetic-connectome/AUDIT.md`.
+
+
 A live spiking simulation of a human cortical column running beside the
 Warmind, visible on the dashboard, readable and perturbable by RASPUTIN.
 Same deployment discipline as providers and dispatch: **inert until a flag is

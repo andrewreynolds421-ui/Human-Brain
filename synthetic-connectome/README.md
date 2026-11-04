@@ -5,6 +5,18 @@ data we actually have (one cubic millimetre of cortex at synapse resolution,
 whole-brain histology atlases, MRI tractography), then let it learn with
 biologically local, reward-gated plasticity.
 
+**What the object is today (4 Nov 2026):** a model of human *association
+cortex* — twelve cell populations per column with measured local wiring
+(H01), membranes and synapses (Allen human data), at 1.5–3 % of the real
+neuron count with full per-neuron in-degree; up to eight areas joined by
+*macaque* long-range wiring; a hand-made action-selection circuit standing
+in for the basal ganglia; reward supplied from outside. It learns cue–action
+tasks (80–92 %), routes real text at 63 % through a self-organising sensory
+layer, and reads printed letters at 76 % in unseen fonts. It is not a brain,
+not full-scale, and not yet validated against human recordings. Status by
+roadmap stage: *Phase plan* below; full audit: `AUDIT.md`; working rules:
+`METHODS.md`.
+
 This repository holds **Phase 0** (pipeline, validated on the rodent
 reference column) and **Phase 1** (the same column re-fitted to the human
 H01 data): the pipeline exists end to end at the scale of one cortical
