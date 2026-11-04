@@ -61,27 +61,30 @@ DEFAULT_GENOME = dict(eta=0.05, tau_elig_ms=500.0, a_minus=1.05, baseline_trials
 #         redistributes strength instead of inflating it.
 CUE_MS, TRIAL_MS, SETTLE_MS = 200.0, 500.0, 500.0
 ISTDP_TARGET = {"L23E": 1.6, "L4E": 5.8, "L5E": 4.8, "L6E": 3.2}
+from synth.learner import ISTDP_TARGET_BY_PRESET   # noqa: E402
 
 
-def build(seed=1, n_scale=0.015, areas=("46d", "9/46d"), cache={}):
-    key = (seed, n_scale, tuple(areas))
+def build(seed=1, n_scale=0.015, areas=("46d", "9/46d"), preset="human_h01_dendritic", cache={}):
+    key = (seed, n_scale, tuple(areas), preset)
     if key not in cache:
         data = load_interareal()
         areas = list(areas)
         sub = dict(data, areas=areas)
-        p = PRESETS["human_h01_dendritic"](verbose=False, ext_gain=2.0)
+        p = PRESETS[preset](verbose=False, **({"ext_gain": 2.0} if preset == "human_h01_dendritic" else {}))
         col = build_areas(p, areas, n_scale=n_scale, seed=seed)
         col = add_interareal(col, sub, seed=seed, verbose=False)
+        col.preset = preset
         cache[key] = col
     return cache[key]
 
 
 def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=None,
-        areas=("46d", "9/46d"), cue_area="46d", action_area="9/46d", fast=False, partial_out=None):
+        areas=("46d", "9/46d"), cue_area="46d", action_area="9/46d", fast=False, partial_out=None,
+        preset="human_h01_dendritic"):
     """reverse_at: trial index from which the rewarded mapping flips (A -> 2, B -> 1).
     fast: merged Poisson inputs + per-neuron STP/iSTDP state (same dynamics, ~2x faster)"""
     g = dict(DEFAULT_GENOME, **genome)
-    col = build(seed, n_scale, areas)
+    col = build(seed, n_scale, areas, preset)
     pops = col.pops
     src_area, dst_area = col.areas.index(cue_area), col.areas.index(action_area)
     pre_a, post_a = col.area_of[col.pre], col.area_of[col.post]
@@ -97,7 +100,8 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
         col, _potential, w_init_all, mask = add_potential_synapses(col, mask, g["sp_pool"], seed)
         sp_rule = StructuralPlasticity(g["sp_prune"], g["sp_new"], seed)
     b2.start_scope(); b2.prefs.codegen.target = "cython"; b2.defaultclock.dt = 0.1 * ms
-    istdp = dict(eta=g["istdp_eta"], tau_ms=20.0, target_hz=ISTDP_TARGET) if g["istdp_eta"] > 0 else None
+    istdp = (dict(eta=g["istdp_eta"], tau_ms=20.0, target_hz=ISTDP_TARGET_BY_PRESET.get(preset, ISTDP_TARGET))
+             if g["istdp_eta"] > 0 else None)
     nw = build_network(col, seed=seed, bg_ratio=2.0, rstdp=dict(mask=mask, tau_elig_ms=g["tau_elig_ms"], a_minus=g["a_minus"]),
                        istdp=istdp, merged_inputs=fast, shared_stp=fast)
     G, net, spk = nw["G"], nw["net"], nw["spikes"]
@@ -286,15 +290,17 @@ def main():
     ap.add_argument("--action-area", default="9/46d")
     ap.add_argument("--n-scale", type=float, default=0.015)
     ap.add_argument("--fast", action="store_true", help="merged inputs + per-neuron synaptic state (README: Speed)")
+    ap.add_argument("--preset", default="human_h01_dendritic", help="column preset (human_h01_dendritic_v2 = stage 25)")
     ap.add_argument("--out", default=None, help="also write the JSON result here")
     a = ap.parse_args()
     t0 = time.time()
     areas = load_interareal()["areas"] if a.areas == "all" else a.areas.split(",")
     r = run(json.loads(a.genome), a.trials, a.seed, n_scale=a.n_scale, verbose=True, reverse_at=a.reverse_at,
             areas=areas, cue_area=a.cue_area, action_area=a.action_area, fast=a.fast,
-            partial_out=(a.out + ".partial.json") if a.out else None)
+            partial_out=(a.out + ".partial.json") if a.out else None, preset=a.preset)
     r["wall_s"] = round(time.time() - t0)
     r["fast"] = bool(a.fast)
+    r["preset"] = a.preset
     print(json.dumps(r))
     if a.out:
         json.dump(r, open(a.out, "w"))

@@ -1,0 +1,21 @@
+{
+ "stage": 25,
+ "date": "2026-11-04",
+ "ext_gain": 1.5,
+ "nfs_ext_factor": 0.1,
+ "subtype_min_n": 10,
+ "ef_deep_factor": 0.3,
+ "deep_ext_gain": {
+  "L5E": 1.2,
+  "L6E": 0.7
+ },
+ "targets": "all 12 populations within results/rate_targets.json; fitted by hand scan (scripts/analysis/scan_rates.py), seeds 3-5",
+ "provenance": {
+  "ext_gain": "ASSUMED in-vivo external gain (was 2.0)",
+  "nfs_ext_factor": "ASSUMED from Ji et al. 2016 (thalamic input onto SST/VIP ~1/10 of PV)",
+  "subtype_min_n": "RULE: same minimum sample as layer pairs",
+  "ef_deep_factor": "CALIBRATED (fitted)",
+  "deep_ext_gain": "CALIBRATED (fitted)"
+ },
+ "previous": "results/deep_ext_calibration.json (stage 3d: ext_gain 2.0, deep 1.6/1.0, ef 0.35, nfs 1.0, min_n 3)"
+}

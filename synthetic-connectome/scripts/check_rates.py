@@ -23,8 +23,8 @@ TARGETS = json.load(open(os.path.join(HERE, "..", "results", "rate_targets.json"
 ISTDP_TARGET = {"L23E": 1.6, "L4E": 5.8, "L5E": 4.8, "L6E": 3.2}
 
 
-def run(n_scale, t_ms, seed, istdp, preset_kw):
-    p = PRESETS["human_h01_dendritic"](verbose=False, **preset_kw)
+def run(n_scale, t_ms, seed, istdp, preset_kw, preset="human_h01_dendritic"):
+    p = PRESETS[preset](verbose=False, **preset_kw)
     col = synthesize(p, N_scaling=n_scale, K_scaling=1.0, seed=seed)
     b2.start_scope(); b2.prefs.codegen.target = "cython"; b2.defaultclock.dt = 0.1 * ms
     nw = build_network(col, seed=seed, bg_ratio=preset_kw.get("bg_ratio", 2.0), merged_inputs=True, shared_stp=True,
@@ -40,16 +40,21 @@ def run(n_scale, t_ms, seed, istdp, preset_kw):
 
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--preset", default="human_h01_dendritic")
     ap.add_argument("--n-scale", type=float, default=0.03)
     ap.add_argument("--t", type=float, default=2000.0)
     ap.add_argument("--seeds", type=int, nargs="+", default=[3])
     ap.add_argument("--istdp", action="store_true")
-    ap.add_argument("--ext-gain", type=float, default=2.0)
+    ap.add_argument("--ext-gain", type=float, default=None, help="override the preset's external gain")
     ap.add_argument("--bg-ratio", type=float, default=2.0)
     ap.add_argument("--nfs-ext", type=float, default=None, help="external-fibre factor for non-FS interneurons (assumption test)")
     ap.add_argument("--out", default=os.path.join(HERE, "..", "results", "rate_check.json"))
     a = ap.parse_args()
-    runs = [run(a.n_scale, a.t, s, a.istdp, dict(ext_gain=a.ext_gain, bg_ratio=a.bg_ratio, nfs_ext_factor=a.nfs_ext)) for s in a.seeds]
+    pk = dict(bg_ratio=a.bg_ratio)
+    if a.ext_gain is not None: pk["ext_gain"] = a.ext_gain
+    elif a.preset == "human_h01_dendritic": pk["ext_gain"] = 2.0
+    if a.nfs_ext is not None: pk["nfs_ext_factor"] = a.nfs_ext
+    runs = [run(a.n_scale, a.t, s, a.istdp, pk, a.preset) for s in a.seeds]
     pops = runs[0][0]
     rates = np.mean([r[1] for r in runs], 0)
     spread = np.std([r[1] for r in runs], 0) if len(runs) > 1 else np.zeros(len(pops))
@@ -63,7 +68,7 @@ def main():
               + (f"  (±{spread[k]:.2f} over seeds)" if len(runs) > 1 else ""))
         rows.append(dict(pop=p, rate=round(r, 3), spread=round(float(spread[k]), 3), min=t["min"], max=t["max"],
                          species=t["species"], verdict=verdict))
-    json.dump(dict(n_scale=a.n_scale, t_ms=a.t, seeds=a.seeds, istdp=a.istdp, ext_gain=a.ext_gain,
+    json.dump(dict(preset=a.preset, n_scale=a.n_scale, t_ms=a.t, seeds=a.seeds, istdp=a.istdp, ext_gain=pk.get("ext_gain"),
                    bg_ratio=a.bg_ratio, nfs_ext=a.nfs_ext, rows=rows, out_of_range=bad), open(a.out, "w"), indent=1)
     print(f"{bad} of {len(pops)} populations out of range")
     sys.exit(1 if bad else 0)

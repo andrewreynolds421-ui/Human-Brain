@@ -58,7 +58,7 @@ from .synphys_fit import human_synphys_column, RESULTS, CELLTYPES_FILE, POP_LAYE
 from .h01_fit import _indegree_from_probs, _probs_from_indegree, h01_input_budget
 
 SUBTYPES_FILE = os.path.join(RESULTS, "synphys_human_subtypes.json")
-MIN_N = 3
+SUBTYPE_MIN_N = 3          # default; the calibrated presets pass subtype_min_n=10 (same rule as layer pairs)
 MIN_PROBED = 30
 SUB = {"E": "E", "F": "FS", "N": "nFS"}          # population letter -> subtype label in the json
 LAYER_KEYS = {"L23": ["23", "2", "3", "2/3"], "L4": ["4"], "L5": ["5"], "L6": ["6"]}
@@ -107,7 +107,9 @@ def human_12pop_column(ext_gain=0.5, adapt_b_exc_pA=60.0, adapt_tau_ms=150.0, ve
                        subtypes_file=SUBTYPES_FILE, celltypes_file=CELLTYPES_FILE, fs_fraction=None,
                        input_budget=True, measured_kinetics=True, ext_budget=False, bg_ratio=None,
                        min_n_layer_pair=10, two_compartment=False, dend_cap_frac=0.7, fs_soma_fraction=1.0,
-                       deep_ext_gain=None, ef_deep_factor=None, nfs_ext_factor=None, **kw):
+                       deep_ext_gain=None, ef_deep_factor=None, nfs_ext_factor=None, subtype_min_n=None, **kw):
+    MIN_N = SUBTYPE_MIN_N                                                     # membranes / kinetics per layer
+    SYN_MIN_N = MIN_N if subtype_min_n is None else int(subtype_min_n)       # synapse strength / STP per subtype pair
     base = human_synphys_column(mode="full", coba=True, ext_gain=ext_gain, adapt_b_exc_pA=adapt_b_exc_pA,
                                 adapt_b_inh_pA=adapt_b_exc_pA / 6, adapt_tau_ms=adapt_tau_ms,
                                 verbose=False, min_n_layer_pair=min_n_layer_pair, **kw)
@@ -199,7 +201,7 @@ def human_12pop_column(ext_gain=0.5, adapt_b_exc_pA=60.0, adapt_tau_ms=150.0, ve
                 continue
             g = _g(groups, f"{SUB[st]}->{SUB[tt]}")
             c = _g(groups, f"class:{'E' if st == 'E' else 'I'}->class:{'E' if tt == 'E' else 'I'}")
-            if g.get("psp_n", 0) >= MIN_N and c.get("psp_n", 0) >= MIN_N and g.get("psp_mV") and c.get("psp_mV"):
+            if g.get("psp_n", 0) >= SYN_MIN_N and c.get("psp_n", 0) >= SYN_MIN_N and g.get("psp_mV") and c.get("psp_mV"):
                 r = g["psp_mV"] / c["psp_mV"]
                 for t in range(P):
                     for s in range(P):
@@ -234,7 +236,7 @@ def human_12pop_column(ext_gain=0.5, adapt_b_exc_pA=60.0, adapt_tau_ms=150.0, ve
             if tt == "E" and st == "E":
                 continue
             g = _g(groups, f"{SUB[st]}->{SUB[tt]}")
-            if g.get("model_n", 0) >= MIN_N and g.get("release_U") and g.get("dep_tau_ms"):
+            if g.get("model_n", 0) >= SYN_MIN_N and g.get("release_U") and g.get("dep_tau_ms"):
                 tf = g["fac_tau_ms"] if (g.get("fac_amount") or 0) > 0.1 and g.get("fac_tau_ms") else 0.0
                 stp[(tt, st)] = dict(U=float(np.clip(g["release_U"], 0.02, 0.95)), tau_rec_ms=float(g["dep_tau_ms"]),
                                      tau_fac_ms=float(tf))

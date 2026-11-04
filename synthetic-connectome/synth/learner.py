@@ -38,22 +38,29 @@ QUICK_SETTINGS = dict(eta=13.1, uncert_gain=2.0)
 # action selection scaled to pool size (README Stage 15): selection input per spike x
 # WTA_REF_POOL / pool size, so bigger networks keep the same competition
 WTA_REF_POOL = 30.5
-ISTDP_TARGET = {"L23E": 1.6, "L4E": 5.8, "L5E": 4.8, "L6E": 3.2}
+ISTDP_TARGET = {"L23E": 1.6, "L4E": 5.8, "L5E": 4.8, "L6E": 3.2}            # spontaneous rates of the v1 column
+ISTDP_TARGET_BY_PRESET = {"human_h01_dendritic": ISTDP_TARGET,
+                          "human_h01_dendritic_v2": {"L23E": 1.3, "L4E": 4.0, "L5E": 3.9, "L6E": 1.1}}   # results/rate_check_v2.json
 CUE_MS, TRIAL_MS = 200.0, 500.0
 PATTERN_FIBRES = 100
 SENS_RELAY_HZ = 300.0
 
 
-def build_learner_network(n_scale=0.015, seed=1, ext_gain=2.0, areas=None):
-    """areas: list of area names (default the two-area learner); "all" = the eight areas."""
+def build_learner_network(n_scale=0.015, seed=1, ext_gain=None, areas=None, preset="human_h01_dendritic"):
+    """areas: list of area names (default the two-area learner); "all" = the eight areas.
+    preset: "human_h01_dendritic" (stage 3d column, ext_gain 2.0) or "human_h01_dendritic_v2" (stage 25)."""
     from . import PRESETS
     from .areas import build_areas, add_interareal, load_interareal
     data = load_interareal()
     areas = data["areas"] if areas == "all" else list(areas or ["46d", "9/46d"])
-    p = PRESETS["human_h01_dendritic"](verbose=False, ext_gain=ext_gain, bg_ratio=2.0)
+    kw = dict(verbose=False, bg_ratio=2.0)
+    if ext_gain is not None or preset == "human_h01_dendritic":
+        kw["ext_gain"] = 2.0 if ext_gain is None else ext_gain
+    p = PRESETS[preset](**kw)
     col = build_areas(p, areas, n_scale=n_scale, seed=seed)
     col = add_interareal(col, dict(data, areas=areas), seed=seed, verbose=False)
     col.name = "two_area_learner_46d_to_9-46d" if len(areas) == 2 else f"{len(areas)}_area_learner_46d_to_9-46d"
+    col.preset = preset
     _trim_memory()                     # return wiring-build scratch (~0.6 GB for 8 areas) to the system
     return col
 
@@ -148,7 +155,9 @@ class LearnerColumn(LiveColumn):
         mask = self._mask
         nw = build_network(col, seed=seed, with_stimulus=True, merged_inputs=self._merged, shared_stp=self._shared,
                            rstdp=dict(mask=mask, tau_elig_ms=g["tau_elig_ms"], a_minus=g["a_minus"]),
-                           istdp=dict(eta=g["istdp_eta"], tau_ms=20.0, target_hz=ISTDP_TARGET) if g["istdp_eta"] > 0 else None)
+                           istdp=dict(eta=g["istdp_eta"], tau_ms=20.0,
+                                      target_hz=ISTDP_TARGET_BY_PRESET.get(getattr(col, "preset", None), ISTDP_TARGET))
+                           if g["istdp_eta"] > 0 else None)
         self.G, self.spikes, self.net = nw["G"], nw["spikes"], nw["net"]
         self._synapses, self._syn_index = nw["synapses"], nw["syn_index"]
         self._stim_groups, self.w_ext_pop = nw["stim_groups"], nw["w_ext_pop"]
