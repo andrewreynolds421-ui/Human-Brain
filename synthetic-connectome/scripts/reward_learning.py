@@ -80,9 +80,12 @@ def build(seed=1, n_scale=0.015, areas=("46d", "9/46d"), preset="human_h01_dendr
 
 def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=None,
         areas=("46d", "9/46d"), cue_area="46d", action_area="9/46d", fast=False, partial_out=None,
-        preset="human_h01_dendritic"):
+        preset="human_h01_dendritic", selection="wta", bg_kw=None):
     """reverse_at: trial index from which the rewarded mapping flips (A -> 2, B -> 1).
-    fast: merged Poisson inputs + per-neuron STP/iSTDP state (same dynamics, ~2x faster)"""
+    fast: merged Poisson inputs + per-neuron STP/iSTDP state (same dynamics, ~2x faster)
+    selection: "wta" (the stand-in selection groups, genome wta/wta_in_mV) or "bg" (the measured
+    basal-ganglia-thalamus loop, synth/basal_ganglia.py, options in bg_kw; the WTA groups are then
+    not built and the choice is still read from the pool spike counts)"""
     g = dict(DEFAULT_GENOME, **genome)
     col = build(seed, n_scale, areas, preset)
     pops = col.pops
@@ -142,7 +145,15 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
     act = np.flatnonzero((col.area_of == dst_area) & (col.pop_of == l5))
     perm = rng.permutation(act); pool1, pool2 = np.sort(perm[: perm.size // 2]), np.sort(perm[perm.size // 2:])
     w_cue = float(np.asarray(col.neuron["w_ext_pop"])[l23])
-    if g["wta"] > 0:
+    bg = None
+    if selection == "bg":
+        from synth.basal_ganglia import BasalGanglia
+        w_thal = float(np.asarray(col.neuron["w_ext_pop"])[l5])     # the column's external (thalamic) synapse on L5E
+        bg = BasalGanglia([(G, pool1), (G, pool2)], seed=seed + 7, target=(G, "g_ed", w_thal), **(bg_kw or {}))
+        net.add(*bg.objects)
+    elif selection != "wta":
+        raise ValueError("selection must be 'wta' or 'bg'")
+    if g["wta"] > 0 and selection == "wta":
         sel_groups = []
         for k_, (own, other) in enumerate(((pool1, pool2), (pool2, pool1))):
             Sg = b2.NeuronGroup(40, "dv/dt = (-(v - -56*mV)) / (10*ms) + sigma_s * sqrt(2 / (10*ms)) * xi : volt",
@@ -173,6 +184,7 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
     in2 = np.zeros(col.N, bool); in2[pool2] = True
     rbar, choices, wsum, dominance, counts = 0.0, [], [], [], []
     rslow, surprises = 0.0, []
+    bg_log = []                    # per trial: SNr rate per channel in the decision window, channel below 5 Hz
     cue_seq = rng.integers(0, 2, trials)
     t_now = SETTLE_MS
     for k in range(trials):
@@ -187,6 +199,12 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
         c1, c2 = in1[i_spk[win]].sum(), in2[i_spk[win]].sum()
         choice = 1 if c1 > c2 else 2 if c2 > c1 else int(rng.integers(1, 3))
         dominance.append(abs(int(c1) - int(c2)) / max(int(c1) + int(c2), 1))
+        if bg is not None:
+            snr = bg.rates("SNr", t_now + 20, t_now + CUE_MS + 20)
+            th = bg.rates("Thal", t_now + 20, t_now + CUE_MS + 20)
+            bg_log.append(dict(snr=[round(float(x), 1) for x in snr], thal=[round(float(x), 1) for x in th],
+                               selected=bg.selected(t_now + 20, t_now + CUE_MS + 20)))
+            bg.clear()
         cue_cells_now = cueA if cue == "A" else cueB
         counts.append((int(c1), int(c2), int(np.isin(i_spk[win], cue_cells_now).sum())))
         reversed_now = reverse_at is not None and k >= reverse_at
@@ -276,7 +294,12 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
                 weight_trend=wsum, selectivity=round(sel, 4), rates=rates,
                 dominance=round(float(np.mean(dominance)), 3) if dominance else None,
                 counts=counts, cues="".join("AB"[c] for c in cue_seq), choices=[int(c) for c in choices],
-                n_plastic=int(sum(idx.size for _, idx in rgroups)))
+                n_plastic=int(sum(idx.size for _, idx in rgroups)), selection=selection,
+                bg=(dict(params=bg.p, log=bg_log,
+                         agree_with_counts=round(float(np.mean([(e["selected"] is not None) and (e["selected"] + 1 == ch)
+                                                                for e, ch in zip(bg_log, choices)])), 3),
+                         selected_frac=round(float(np.mean([e["selected"] is not None for e in bg_log])), 3))
+                    if bg is not None else None))
 
 
 def main():
@@ -292,12 +315,15 @@ def main():
     ap.add_argument("--fast", action="store_true", help="merged inputs + per-neuron synaptic state (README: Speed)")
     ap.add_argument("--preset", default="human_h01_dendritic", help="column preset (human_h01_dendritic_v2 = stage 25)")
     ap.add_argument("--out", default=None, help="also write the JSON result here")
+    ap.add_argument("--selection", default="wta", help="wta (stand-in groups) or bg (synth/basal_ganglia.py)")
+    ap.add_argument("--bg", default="{}", help="JSON options for BasalGanglia (ctx_gain, ctx_gain_stn, thal_drive_mV, thal_gain, spon_nA ...)")
     a = ap.parse_args()
     t0 = time.time()
     areas = load_interareal()["areas"] if a.areas == "all" else a.areas.split(",")
     r = run(json.loads(a.genome), a.trials, a.seed, n_scale=a.n_scale, verbose=True, reverse_at=a.reverse_at,
             areas=areas, cue_area=a.cue_area, action_area=a.action_area, fast=a.fast,
-            partial_out=(a.out + ".partial.json") if a.out else None, preset=a.preset)
+            partial_out=(a.out + ".partial.json") if a.out else None, preset=a.preset,
+            selection=a.selection, bg_kw=json.loads(a.bg))
     r["wall_s"] = round(time.time() - t0)
     r["fast"] = bool(a.fast)
     r["preset"] = a.preset

@@ -1,0 +1,893 @@
+{
+ "ctx_gain": 2.0,
+ "ctx_gain_stn": 0.3,
+ "seeds": [
+  1,
+  2
+ ],
+ "grid": {
+  "STN": [
+   1.1,
+   1.14,
+   1.18
+  ],
+  "GP": [
+   0.38,
+   0.42,
+   0.46
+  ],
+  "SNr": [
+   0.39,
+   0.42,
+   0.45
+  ]
+ },
+ "best": {
+  "spon_nA": {
+   "STN": 1.22,
+   "GP": 0.38,
+   "SNr": 0.42
+  },
+  "rates_hz": {
+   "D1": 0.59,
+   "D2": 0.0,
+   "STN": 10.16,
+   "GP": 18.79,
+   "SNr": 25.26,
+   "Thal": 2.05
+  },
+  "ok": {
+   "D1": true,
+   "D2": false,
+   "STN": true,
+   "GP": true,
+   "SNr": true,
+   "Thal": false
+  },
+  "n_ok": 4,
+  "score": 0.356,
+  "extension": true
+ },
+ "rows": [
+  {
+   "spon_nA": {
+    "STN": 1.22,
+    "GP": 0.38,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 10.16,
+    "GP": 18.79,
+    "SNr": 25.26,
+    "Thal": 2.05
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 4,
+   "score": 0.356,
+   "extension": true
+  },
+  {
+   "spon_nA": {
+    "STN": 1.18,
+    "GP": 0.38,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 8.75,
+    "GP": 17.55,
+    "SNr": 24.75,
+    "Thal": 2.26
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 4,
+   "score": 0.457
+  },
+  {
+   "spon_nA": {
+    "STN": 1.26,
+    "GP": 0.38,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 12.35,
+    "GP": 20.68,
+    "SNr": 26.3,
+    "Thal": 1.77
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 4,
+   "score": 0.552,
+   "extension": true
+  },
+  {
+   "spon_nA": {
+    "STN": 1.18,
+    "GP": 0.42,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 6.63,
+    "GP": 18.19,
+    "SNr": 25.65,
+    "Thal": 1.76
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 4,
+   "score": 0.579
+  },
+  {
+   "spon_nA": {
+    "STN": 1.22,
+    "GP": 0.38,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 10.16,
+    "GP": 18.79,
+    "SNr": 28.53,
+    "Thal": 1.15
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 4,
+   "score": 0.622,
+   "extension": true
+  },
+  {
+   "spon_nA": {
+    "STN": 1.18,
+    "GP": 0.38,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 8.75,
+    "GP": 17.55,
+    "SNr": 27.99,
+    "Thal": 1.25
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 4,
+   "score": 0.623
+  },
+  {
+   "spon_nA": {
+    "STN": 1.18,
+    "GP": 0.42,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 6.63,
+    "GP": 18.19,
+    "SNr": 22.4,
+    "Thal": 3.04
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 4,
+   "score": 0.86
+  },
+  {
+   "spon_nA": {
+    "STN": 1.3,
+    "GP": 0.38,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 13.36,
+    "GP": 21.44,
+    "SNr": 26.56,
+    "Thal": 1.63
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 3,
+   "score": 0.646,
+   "extension": true
+  },
+  {
+   "spon_nA": {
+    "STN": 1.14,
+    "GP": 0.38,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 7.34,
+    "GP": 16.35,
+    "SNr": 24.11,
+    "Thal": 2.29
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": false,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 3,
+   "score": 0.694
+  },
+  {
+   "spon_nA": {
+    "STN": 1.14,
+    "GP": 0.38,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 7.34,
+    "GP": 16.35,
+    "SNr": 27.52,
+    "Thal": 1.35
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": false,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 3,
+   "score": 0.754
+  },
+  {
+   "spon_nA": {
+    "STN": 1.14,
+    "GP": 0.42,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 5.35,
+    "GP": 17.1,
+    "SNr": 25.19,
+    "Thal": 1.94
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 3,
+   "score": 0.755
+  },
+  {
+   "spon_nA": {
+    "STN": 1.18,
+    "GP": 0.38,
+    "SNr": 0.39
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 8.75,
+    "GP": 17.55,
+    "SNr": 21.31,
+    "Thal": 3.66
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 3,
+   "score": 0.785
+  },
+  {
+   "spon_nA": {
+    "STN": 1.26,
+    "GP": 0.38,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 12.35,
+    "GP": 20.68,
+    "SNr": 29.48,
+    "Thal": 1.03
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 3,
+   "score": 0.855,
+   "extension": true
+  },
+  {
+   "spon_nA": {
+    "STN": 1.18,
+    "GP": 0.46,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 4.98,
+    "GP": 19.25,
+    "SNr": 23.64,
+    "Thal": 2.52
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 3,
+   "score": 0.862
+  },
+  {
+   "spon_nA": {
+    "STN": 1.14,
+    "GP": 0.46,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 4.03,
+    "GP": 18.45,
+    "SNr": 23.23,
+    "Thal": 2.77
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 3,
+   "score": 1.02
+  },
+  {
+   "spon_nA": {
+    "STN": 1.18,
+    "GP": 0.42,
+    "SNr": 0.39
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 6.63,
+    "GP": 18.19,
+    "SNr": 19.09,
+    "Thal": 5.35
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 3,
+   "score": 1.175
+  },
+  {
+   "spon_nA": {
+    "STN": 1.1,
+    "GP": 0.46,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 3.02,
+    "GP": 17.6,
+    "SNr": 22.86,
+    "Thal": 3.01
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 3,
+   "score": 1.181
+  },
+  {
+   "spon_nA": {
+    "STN": 1.1,
+    "GP": 0.38,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 5.96,
+    "GP": 15.14,
+    "SNr": 27.04,
+    "Thal": 1.58
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": false,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 0.882
+  },
+  {
+   "spon_nA": {
+    "STN": 1.1,
+    "GP": 0.38,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 5.96,
+    "GP": 15.14,
+    "SNr": 23.67,
+    "Thal": 2.6
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": false,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 0.91
+  },
+  {
+   "spon_nA": {
+    "STN": 1.1,
+    "GP": 0.42,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 4.29,
+    "GP": 16.15,
+    "SNr": 24.9,
+    "Thal": 2.16
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": false,
+    "SNr": true,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 0.916
+  },
+  {
+   "spon_nA": {
+    "STN": 1.3,
+    "GP": 0.38,
+    "SNr": 0.45
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 13.36,
+    "GP": 21.44,
+    "SNr": 29.72,
+    "Thal": 0.93
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 0.947,
+   "extension": true
+  },
+  {
+   "spon_nA": {
+    "STN": 1.14,
+    "GP": 0.38,
+    "SNr": 0.39
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 7.34,
+    "GP": 16.35,
+    "SNr": 20.9,
+    "Thal": 3.95
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": true,
+    "GP": false,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 1.0
+  },
+  {
+   "spon_nA": {
+    "STN": 1.14,
+    "GP": 0.42,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 5.35,
+    "GP": 17.1,
+    "SNr": 21.79,
+    "Thal": 3.32
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 1.078
+  },
+  {
+   "spon_nA": {
+    "STN": 1.18,
+    "GP": 0.46,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 4.98,
+    "GP": 19.25,
+    "SNr": 20.25,
+    "Thal": 4.39
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 1.185
+  },
+  {
+   "spon_nA": {
+    "STN": 1.14,
+    "GP": 0.46,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 4.03,
+    "GP": 18.45,
+    "SNr": 19.85,
+    "Thal": 4.69
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 1.342
+  },
+  {
+   "spon_nA": {
+    "STN": 1.14,
+    "GP": 0.42,
+    "SNr": 0.39
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 5.35,
+    "GP": 17.1,
+    "SNr": 18.47,
+    "Thal": 5.62
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 1.395
+  },
+  {
+   "spon_nA": {
+    "STN": 1.18,
+    "GP": 0.46,
+    "SNr": 0.39
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 4.98,
+    "GP": 19.25,
+    "SNr": 16.9,
+    "Thal": 7.46
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 1.504
+  },
+  {
+   "spon_nA": {
+    "STN": 1.1,
+    "GP": 0.46,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 3.02,
+    "GP": 17.6,
+    "SNr": 19.46,
+    "Thal": 5.18
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 1.505
+  },
+  {
+   "spon_nA": {
+    "STN": 1.14,
+    "GP": 0.46,
+    "SNr": 0.39
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 4.03,
+    "GP": 18.45,
+    "SNr": 16.41,
+    "Thal": 7.93
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 1.669
+  },
+  {
+   "spon_nA": {
+    "STN": 1.1,
+    "GP": 0.46,
+    "SNr": 0.39
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 3.02,
+    "GP": 17.6,
+    "SNr": 16.01,
+    "Thal": 8.59
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": true,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 2,
+   "score": 1.833
+  },
+  {
+   "spon_nA": {
+    "STN": 1.1,
+    "GP": 0.38,
+    "SNr": 0.39
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 5.96,
+    "GP": 15.14,
+    "SNr": 20.31,
+    "Thal": 4.37
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": false,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 1,
+   "score": 1.23
+  },
+  {
+   "spon_nA": {
+    "STN": 1.1,
+    "GP": 0.42,
+    "SNr": 0.42
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 4.29,
+    "GP": 16.15,
+    "SNr": 21.48,
+    "Thal": 3.66
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": false,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 1,
+   "score": 1.242
+  },
+  {
+   "spon_nA": {
+    "STN": 1.1,
+    "GP": 0.42,
+    "SNr": 0.39
+   },
+   "rates_hz": {
+    "D1": 0.59,
+    "D2": 0.0,
+    "STN": 4.29,
+    "GP": 16.15,
+    "SNr": 18.07,
+    "Thal": 6.26
+   },
+   "ok": {
+    "D1": true,
+    "D2": false,
+    "STN": false,
+    "GP": false,
+    "SNr": false,
+    "Thal": false
+   },
+   "n_ok": 1,
+   "score": 1.567
+  }
+ ],
+ "wall_s": 257,
+ "chosen": {
+  "spon_nA": {
+   "STN": 1.22,
+   "GP": 0.38,
+   "SNr": 0.42
+  },
+  "why": "all three in range with STN at the paper's own ~10 Hz target; D2 stays silent at rest (0.0 Hz, floor 0.01) \u2014 stated residual"
+ }
+}

@@ -54,6 +54,10 @@ NEURAL_CORE_LEAN=1          learner models: same dynamics, ~40% less RAM while r
                             (reset snapshot on disk, unused wiring tables freed)
 NEURAL_CORE_FAST=1          learner models: same dynamics, ~2x faster (merged inputs,
                             per-neuron synaptic state; 0 = original per-synapse code)
+NEURAL_CORE_SELECTION=wta   learner models: how the action pools compete.  "wta" = the
+                            hand-made selection groups; "bg" = the basal-ganglia-thalamus loop
+                            built from Humphries et al. 2006 (stage 26; synth/basal_ganglia.py)
+NEURAL_CORE_BG={}           JSON options for the loop (ctx_gain, ctx_gain_stn, thal_gain, ...)
                             expectations (unexpected uncertainty; 0 = off)
 
 Thread model
@@ -66,6 +70,7 @@ dict copy.
 """
 from __future__ import annotations
 
+import json
 import os
 import sys
 import threading
@@ -88,6 +93,8 @@ NEURAL_CORE_FAST = os.environ.get("NEURAL_CORE_FAST", "1") == "1"               
 NEURAL_CORE_QUICK = os.environ.get("NEURAL_CORE_QUICK", "1") == "1"                # learner: fewer trials to learn
 NEURAL_CORE_LEAN = os.environ.get("NEURAL_CORE_LEAN", "1") == "1"                  # learner: less RAM, same dynamics
 NEURAL_CORE_COLUMN = os.environ.get("NEURAL_CORE_COLUMN", "v2")                     # column calibration: v2 (stage 25) or v1
+NEURAL_CORE_SELECTION = os.environ.get("NEURAL_CORE_SELECTION", "wta")               # learner: "wta" groups or the "bg" loop
+NEURAL_CORE_BG = json.loads(os.environ.get("NEURAL_CORE_BG", "{}"))                  # learner: basal-ganglia loop options
 COLUMN_PRESET = {"v1": "human_h01_dendritic", "v2": "human_h01_dendritic_v2"}.get(NEURAL_CORE_COLUMN, "human_h01_dendritic_v2")
 NEURAL_CORE_LEARNER_SCALE = float(os.environ.get("NEURAL_CORE_LEARNER_SCALE", "0.03"))    # learner size (0.015 = previous)
 NEURAL_CORE_LEARNER8_SCALE = float(os.environ.get("NEURAL_CORE_LEARNER8_SCALE", "0.015"))  # learner8 size
@@ -196,11 +203,13 @@ class NeuralCoreService:
             col = build_learner_network(n_scale=n_scale, seed=1, areas="all" if self.mode == "learner8" else None,
                                         preset=COLUMN_PRESET)
             self.info = dict(model=col.name, mode=self.mode, neurons=col.N, synapses=col.S, layers=list(LAYERS),
+                             selection=NEURAL_CORE_SELECTION,
                              modes={k: v[2] for k, v in MODES.items()},
                              description=("Two human-like prefrontal columns (H01 wiring, Allen human physiology) "
                                           "joined by the measured macaque 46d -> 9/46d pathway. " + mdesc))
             self.column = LearnerColumn(col, seed=1, structural=NEURAL_CORE_STRUCTURAL,
                                         surprise_gain=NEURAL_CORE_SURPRISE, fast=NEURAL_CORE_FAST, lean=NEURAL_CORE_LEAN,
+                                        selection=NEURAL_CORE_SELECTION, bg_kw=NEURAL_CORE_BG,
                                         **(dict(genome=dict(eta=QUICK_SETTINGS["eta"], wta_ref_pool=WTA_REF_POOL),
                                                 uncert_gain=QUICK_SETTINGS["uncert_gain"]) if NEURAL_CORE_QUICK else {}))
             self.chunk_ms = min(self.chunk_ms, 50.0)        # ~2 s wall per step at ~0.02x real time

@@ -1,0 +1,304 @@
+{
+ "_what": "Circuit parameters for the spiking basal-ganglia-thalamus selection loop (synth/basal_ganglia.py, Stage 26). Every number is labelled MEASURED/MODEL (taken from the cited paper), ASSUMED (our choice, stated), or FITTED (set by a scan in this project, see results/bg/*).",
+ "primary_source": {
+  "citation": "Humphries MD, Stewart RD, Gurney KN (2006) A physiologically plausible model of action selection and oscillatory activity in the basal ganglia. J Neurosci 26(50):12921-12942. doi:10.1523/JNEUROSCI.3486-06.2006; ModelDB 83559 (MATLAB).",
+  "species": "rat",
+  "what_we_took": "populations, pathways, within/between-channel connection probabilities, delays, PSP sizes and time constants, membrane constants, tonic currents, reset/refractory/noise, selection criterion, switching protocol"
+ },
+ "populations": {
+  "per_channel_n": {
+   "value": 64,
+   "label": "MODEL",
+   "note": "Humphries 2006: 3 channels x 64 neurons per population; we keep 64 per channel for K channels"
+  },
+  "list": [
+   "D1 (striatum, direct)",
+   "D2 (striatum, indirect)",
+   "STN",
+   "GP (external pallidum)",
+   "SNr",
+   "Thal (relay; ASSUMED, not in Humphries 2006)"
+  ]
+ },
+ "neuron_model": {
+  "equation": "LIF, v relative to rest: tau_m dv/dt = -v + R*I_spon + PSP currents; reset 0 mV; refractory 2 ms; Gaussian noise SD 0.3 mV; lower bound v >= -V_lim (chloride reversal)",
+  "label": "MODEL",
+  "membranes": {
+   "D1": {
+    "R_MOhm": 42,
+    "tau_ms": 25,
+    "theta_mV": 30,
+    "I_spon_nA": -0.25,
+    "note": "I_down = 0.25 nA hyperpolarising (striatal down state held as a constant current)"
+   },
+   "D2": {
+    "R_MOhm": 42,
+    "tau_ms": 25,
+    "theta_mV": 30,
+    "I_spon_nA": -0.25
+   },
+   "STN": {
+    "R_MOhm": 18,
+    "tau_ms": 6,
+    "theta_mV": 20,
+    "I_spon_nA": 1.1,
+    "I_spon_nA_used": 1.22,
+    "I_spon_label": "FITTED (results/bg/spon_scan.json); paper 1.1"
+   },
+   "GP": {
+    "R_MOhm": 88,
+    "tau_ms": 14,
+    "theta_mV": 30,
+    "I_spon_nA": 0.38,
+    "I_spon_nA_used": 0.38,
+    "I_spon_label": "paper value kept"
+   },
+   "SNr": {
+    "R_MOhm": 112,
+    "tau_ms": 8,
+    "theta_mV": 30,
+    "I_spon_nA": 0.39,
+    "I_spon_nA_used": 0.42,
+    "I_spon_label": "FITTED (results/bg/spon_scan.json); paper 0.39"
+   },
+   "Thal": {
+    "R_MOhm": null,
+    "tau_ms": 10,
+    "theta_mV": 20,
+    "drive_mV": "24 ASSUMED starting value; thal_gain FITTED in the learner (results/bg/learn_*.json)",
+    "label": "ASSUMED generic relay cell; SNr holds it near silence at rest"
+   }
+  },
+  "reset_mV": 0,
+  "refractory_ms": 2,
+  "noise_sd_mV": 0.3,
+  "V_lim_mV": 20,
+  "dt_ms": 0.1,
+  "_tonic_currents_note": "Humphries 2006 tuned its tonic currents to hit the recorded rates with its own cortical input; we did the same for ours (stand-in cortex at 3 spikes/s background, ctx_gain 2.0, ctx_gain_stn 0.3): STN 1.22 nA, GP 0.38 nA, SNr 0.42 nA give STN 10.2, GP 18.8, SNr 25.3 Hz (all inside the ranges below); D2 stays silent at rest (0.0 Hz, floor 0.01 Hz) \u2014 a stated residual."
+ },
+ "synapses": {
+  "label": "MODEL",
+  "kernel": "exponential current, scaled so one spike gives the stated peak PSP on the target membrane",
+  "AMPA": {
+   "psp_mV": 3.0,
+   "tau_ms": 2
+  },
+  "NMDA": {
+   "psp_mV": 0.1,
+   "tau_ms": 100
+  },
+  "GABA_A": {
+   "psp_mV": 3.0,
+   "tau_ms": 3
+  },
+  "striatal_output_weight": {
+   "value": 4,
+   "note": "D1->SNr and D2->GP carry weight 4 (Oorschot 1996 cell counts); all others 1"
+  }
+ },
+ "connectivity": {
+  "label": "MODEL",
+  "within_channel_p": 0.25,
+  "diffuse_p": "0.25 / K (Humphries: b = c/N = 0.083 for N = 3 channels); used for STN->GP, STN->SNr, GP->GP, SNr->SNr",
+  "pathways": [
+   {
+    "pre": "cortex pool k",
+    "post": "D1_k",
+    "type": "AMPA+NMDA",
+    "p": "ctx_p (ASSUMED 0.25) x",
+    "delay_ms": 10
+   },
+   {
+    "pre": "cortex pool k",
+    "post": "D2_k",
+    "type": "AMPA+NMDA",
+    "p": "ctx_p",
+    "delay_ms": 10
+   },
+   {
+    "pre": "cortex pool k",
+    "post": "STN_k",
+    "type": "AMPA+NMDA",
+    "p": "ctx_p",
+    "delay_ms": 2.5
+   },
+   {
+    "pre": "D1_k",
+    "post": "SNr_k",
+    "type": "GABA_A x4",
+    "p": 0.25,
+    "delay_ms": 4
+   },
+   {
+    "pre": "D2_k",
+    "post": "GP_k",
+    "type": "GABA_A x4",
+    "p": 0.25,
+    "delay_ms": 5
+   },
+   {
+    "pre": "STN (all)",
+    "post": "SNr (all)",
+    "type": "AMPA+NMDA",
+    "p": "diffuse",
+    "delay_ms": 1.5
+   },
+   {
+    "pre": "STN (all)",
+    "post": "GP (all)",
+    "type": "AMPA+NMDA",
+    "p": "diffuse",
+    "delay_ms": 2
+   },
+   {
+    "pre": "GP_k",
+    "post": "STN_k",
+    "type": "GABA_A",
+    "p": 0.25,
+    "delay_ms": 4
+   },
+   {
+    "pre": "GP (all)",
+    "post": "GP (all)",
+    "type": "GABA_A",
+    "p": "diffuse",
+    "delay_ms": 1
+   },
+   {
+    "pre": "GP_k",
+    "post": "SNr_k",
+    "type": "GABA_A",
+    "p": 0.25,
+    "delay_ms": 3
+   },
+   {
+    "pre": "SNr (all)",
+    "post": "SNr (all)",
+    "type": "GABA_A",
+    "p": "diffuse",
+    "delay_ms": 1
+   },
+   {
+    "pre": "SNr_k",
+    "post": "Thal_k",
+    "type": "GABA_A",
+    "p": 0.25,
+    "delay_ms": 2,
+    "label": "ASSUMED (nigro-thalamic; not in Humphries 2006)"
+   },
+   {
+    "pre": "Thal_k",
+    "post": "cortex pool k",
+    "type": "conductance onto the dendrite (g_ed), weight = the column's external (thalamic) synapse for L5E x thal_gain",
+    "p": "ctx_p",
+    "delay_ms": 2,
+    "label": "ASSUMED pathway, thal_gain FITTED"
+   }
+  ],
+  "cortical_input_note": "Humphries 2006 drives each channel with Poisson 'salience' trains (4-40 spikes/s; 3 spikes/s background); the number of inputs per neuron is not stated in the paper. Here the input is the spikes of the cortical action pool (L5 pyramids of 9/46d), connected with probability ctx_p; the per-spike cortical PSP is scaled by ctx_gain (FITTED, results/bg/ctx_scan.json) because a pool of ~30-60 real cells at 3-20 Hz is not the same drive as the paper's salience trains."
+ },
+ "left_out_in_this_version": [
+  "dopamine modulation of cortico-striatal, STN and GP efficacy (paper: lambda_D1 = lambda_D2 = 0.3 normal)",
+  "striatal up/down-state dynamics beyond the constant I_down (paper: ~16 Hz striatal low-pass)",
+  "STN rebound (calcium) bursts",
+  "shunting proximal/somatic inhibition (paper eqs 11-15)",
+  "striatal fast-spiking interneurons, GP->striatum, thalamic reticular nucleus",
+  "reward prediction inside the circuit: the reward signal is still applied by the learner (external)"
+ ],
+ "selection_criterion": {
+  "label": "MODEL",
+  "rule": "channel k is selected when its mean SNr rate falls below 5 spikes/s"
+ },
+ "switching_protocol": {
+  "label": "MODEL",
+  "rule": "channel 1 input from t = 1 s, channel 2 from t = 2.5 s, end 5 s; inputs 4..40 spikes/s in steps of 4 (100 pairs); switching = channel 1 selected during its input alone, then deselected and channel 2 selected"
+ },
+ "rate_targets_hz": {
+  "_note": "awake or in vivo rodent, control animals; ranges span the cited means",
+  "D1": {
+   "range": [
+    0.01,
+    2.0
+   ],
+   "sources": [
+    "Kita & Kita 2011 (control rat striatal projection neurons: most very low, bursty ones < 2 Hz average)",
+    "Wilson 1993 (low-rate firing interrupted by bursts)",
+    "Lindahl et al. 2013 Front Comput Neurosci 7:76 (basal MSN 0.01-2.0 Hz)"
+   ]
+  },
+  "D2": {
+   "range": [
+    0.01,
+    2.0
+   ],
+   "sources": [
+    "as D1"
+   ]
+  },
+  "STN": {
+   "range": [
+    6,
+    13
+   ],
+   "sources": [
+    "Walters et al. 2007 (6 Hz)",
+    "Farries et al. 2010 (10 Hz)",
+    "Fujimoto & Kita 1993 (11 Hz)",
+    "Paz et al. 2005 (13 Hz)",
+    "collected in Lindahl et al. 2013",
+    "Humphries 2006 tuned STN to Kreiss et al. 1997; awake monkey 10-30 Hz (DeLong et al. 1985, via Bevan & Wilson 1999)"
+   ]
+  },
+  "GP": {
+   "range": [
+    17,
+    36
+   ],
+   "sources": [
+    "Gage et al. 2010 (17 Hz)",
+    "Walters et al. 2007 (26 Hz)",
+    "Kita & Kita 2011 (29 Hz)",
+    "Urbain et al. 2000 Eur J Neurosci 12:3361 (32 Hz, awake head-restrained rat)",
+    "Ruskin et al. 1999 (36 Hz)",
+    "Ni et al. 2000 Eur J Neurosci 12:4338 (22.1 +/- 1.4 Hz, normal rat)",
+    "collected in Lindahl et al. 2013"
+   ]
+  },
+  "SNr": {
+   "range": [
+    22,
+    29
+   ],
+   "sources": [
+    "Zahr et al. 2004 (22 Hz)",
+    "Walters et al. 2007 (24 Hz)",
+    "Maurice et al. 2003 (24-27 Hz)",
+    "Gernert et al. 2004 (29 Hz)",
+    "collected in Lindahl et al. 2013",
+    "Humphries 2006 tuned SNr to Windels & Kiyatkin 2004"
+   ]
+  },
+  "Thal": {
+   "range": null,
+   "sources": [],
+   "note": "no reference range used in this version; the relay is a stand-in whose job is to be quiet under tonic SNr and to fire when its SNr channel drops below 5 Hz"
+  }
+ },
+ "fitted_gains": {
+  "ctx_gain": {
+   "value": 2.0,
+   "label": "FITTED",
+   "how": "stand-in scan results/bg/scan_g*_s*.json: selection threshold 8 spikes/s (1.5 gives 12, the paper's circuit selects from ~10); in the learner the pools fire 4-6 spikes/s so 2.0 is the lowest gain at which the loop engages"
+  },
+  "ctx_gain_stn": {
+   "value": 0.3,
+   "label": "FITTED",
+   "how": "same scan; at 1.0 the hyperdirect STN burst (90-100 spikes/s) outweighs the direct pathway and no channel is ever selected"
+  },
+  "thal_gain": {
+   "value": "see results/bg/learn_configs.json",
+   "label": "FITTED in the learner",
+   "how": "the thalamo-cortical feedback is the one pathway with no measured weight here; too strong and the loop locks onto one pool between trials"
+  }
+ }
+}

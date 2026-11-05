@@ -128,3 +128,71 @@ def test_sensory_layer_save_load_roundtrip(tmp_path):
     T = SensoryLayer.load(p)
     assert np.allclose(np.asarray(T.S.w), w) and np.allclose(np.asarray(T.E.theta), th)
     assert T.trained_examples == 5
+
+
+# ---------------------------------------------------------------- basal ganglia (stage 26)
+def test_psp_scale_gives_the_stated_peak():
+    """A spike must produce the paper's peak PSP on each membrane: integrate the LIF +
+    exponential-current response numerically and compare with the analytic scale."""
+    from synth.basal_ganglia import psp_scale, PSP, MEMBRANE
+    for pop, m in MEMBRANE.items():
+        for kind, (peak, tau_s) in PSP.items():
+            dt, tau_m = 0.001, m["tau"]
+            a = peak * psp_scale(tau_m, tau_s)
+            g, v, vmax = a, 0.0, 0.0
+            for _ in range(int(8 * max(tau_m, tau_s) / dt)):
+                v += dt * (-v + g) / tau_m
+                g += dt * (-g / tau_s)
+                vmax = max(vmax, v)
+            assert vmax == pytest.approx(peak, rel=2e-3), (pop, kind, vmax)
+
+
+def test_basal_ganglia_wiring_follows_the_parameter_file():
+    """K channels x 64 cells per population; within-channel pathways at p 0.25 inside
+    the channel only, diffuse pathways at 0.25 / K across all channels, cortical inputs
+    ~ctx_n_in per cell; every number labelled in results/bg_parameters.json."""
+    import brian2 as b2
+    from brian2 import ms, Hz
+    from synth.basal_ganglia import BasalGanglia, load_params, C_WITHIN
+    b2.start_scope(); b2.defaultclock.dt = 0.1 * ms
+    K, n_pool = 3, 40
+    pools = [b2.PoissonGroup(n_pool, rates=3 * Hz) for _ in range(K)]
+    bg = BasalGanglia([(p, np.arange(n_pool)) for p in pools], seed=3, monitor="all")
+    par = load_params()
+    assert par["populations"]["per_channel_n"]["value"] == bg.n_per == 64
+    for pop in bg.POPS:
+        assert len(bg.groups[pop]) == K * 64
+    by_name = {S.name: S for S in bg.synapses}
+    d1_snr = by_name["bg_d1_snr"]
+    assert np.all(bg.ch[np.asarray(d1_snr.i)] == bg.ch[np.asarray(d1_snr.j)])      # within channel only
+    assert len(d1_snr) == pytest.approx(K * 64 * 64 * C_WITHIN, rel=0.1)
+    stn_snr = by_name["bg_stn_snr"]
+    same = np.mean(bg.ch[np.asarray(stn_snr.i)] == bg.ch[np.asarray(stn_snr.j)])
+    assert same == pytest.approx(1.0 / K, abs=0.05)                                   # diffuse: all channels
+    assert len(stn_snr) == pytest.approx((K * 64) ** 2 * C_WITHIN / K, rel=0.1)
+    ctx = by_name["bg_ctx0_d1"]
+    assert len(ctx) == pytest.approx(64 * bg.p["ctx_n_in"], rel=0.15)                # channel 0's pool -> D1_0
+    assert set(bg.ch[np.asarray(ctx.j)]) == {0}
+    assert all(k in par["rate_targets_hz"] for k in bg.POPS)
+
+
+@pytest.mark.slow
+def test_basal_ganglia_selects_the_driven_channel():
+    """Stand-in cortex: a channel driven at 24 spikes/s must bring its SNr below 5 Hz while
+    the resting channels stay tonic and its thalamic relay is released (Humphries 2006
+    selection criterion; fitted gains from results/bg/)."""
+    import brian2 as b2
+    from brian2 import ms, Hz
+    from synth.basal_ganglia import BasalGanglia, SELECT_HZ
+    b2.start_scope(); b2.prefs.codegen.target = "cython"; b2.defaultclock.dt = 0.1 * ms; b2.seed(5)
+    pools = [b2.PoissonGroup(40, rates=3 * Hz) for _ in range(3)]
+    bg = BasalGanglia([(p, np.arange(40)) for p in pools], seed=5, ctx_gain=2.0, ctx_gain_stn=0.3)
+    net = b2.Network(*pools, *bg.objects)
+    net.run(1000 * ms)
+    rest = bg.rates("SNr", 300, 1000)
+    assert np.all(rest > SELECT_HZ)
+    pools[1].rates = 24 * Hz
+    net.run(800 * ms)
+    snr = bg.rates("SNr", 1300, 1800); thal = bg.rates("Thal", 1300, 1800)
+    assert bg.selected(1300, 1800) == 1 and snr[1] < SELECT_HZ and min(snr[0], snr[2]) > SELECT_HZ
+    assert thal[1] > 5 * max(thal[0], thal[2])

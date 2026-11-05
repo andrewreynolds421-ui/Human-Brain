@@ -225,6 +225,18 @@ The spike record no longer grows: earlier versions kept every spike, plus
 copies, so a long-running core slowly used more and more memory (a 1000-trial
 run passed 4.8 GB). Memory now stays flat however long the core runs.
 
+Action selection from data (`NEURAL_CORE_SELECTION=bg`; default `wta`): the
+action pools compete through a spiking basal-ganglia–thalamus loop built from
+a published rat circuit model (Humphries et al. 2006; README Stage 26) instead
+of the hand-made selection groups. One channel per action: cortex → striatum
+(direct / indirect) and → STN (hyperdirect), GP, SNr, a thalamic relay back
+to the pool. It learns the cue task as well as the hand-made circuit (97.5 %
+vs 97 % on four networks, two areas) and each trial reports the SNr rate of
+each channel, from which the chosen action can be read directly (the
+channel whose SNr drops). Costs ~2 s more per trial. `NEURAL_CORE_BG` takes
+JSON options (`ctx_gain`, `ctx_gain_stn`, `thal_gain`, `da`, `spon_nA`);
+reward is still supplied from outside by the `reward` action.
+
 Model size: `learner` runs at double the previous neuron count by default
 (`NEURAL_CORE_LEARNER_SCALE=0.03`), with action selection scaled to pool size
 (README Stage 15); it learns sooner and better than the smaller one.

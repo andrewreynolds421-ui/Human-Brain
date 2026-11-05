@@ -92,7 +92,16 @@ class LearnerColumn(LiveColumn):
 
     def __init__(self, col, genome=None, seed=1, structural=False, sp_every=10, surprise_gain=0.0,
                  surprise_slow_trials=50.0, fast=False, shared_stp=None, merged_inputs=None, uncert_gain=0.0, lean=False, n_actions=2, pattern_cues=False,
-                 cue_frac=0.05, cue_gain=1.0, cue_code="union", cue_ms=CUE_MS, sensory=None, sens_gain=1.0, sens_lr=1.0, **kw):
+                 cue_frac=0.05, cue_gain=1.0, cue_code="union", cue_ms=CUE_MS, sensory=None, sens_gain=1.0, sens_lr=1.0,
+                 selection="wta", bg_kw=None, **kw):
+        # selection: "wta" = the stand-in selection groups (genome wta / wta_in_mV); "bg" = the
+        # basal-ganglia-thalamus loop built from Humphries et al. 2006 (synth/basal_ganglia.py, Stage 26),
+        # one channel per action pool, options in bg_kw.  The choice is read from the pool spike
+        # counts either way; with "bg" the SNr rates of the trial are reported too.
+        if selection not in ("wta", "bg"):
+            raise ValueError("selection must be 'wta' or 'bg'")
+        self.selection, self.bg_kw = selection, dict(bg_kw or {})
+        self.bg = None
         self.sens_lr = float(sens_lr)     # learning-rate factor for the sensory -> action synapses
         # sensory: a trained synth.sensory.SensoryLayer (or path to one).  Text trials then go through it
         # and its cells' spikes are replayed onto the action pools through plastic synapses that learn
@@ -186,7 +195,13 @@ class LearnerColumn(LiveColumn):
             S.connect(i=rng.integers(0, 2000, cells.size * int(g["cue_fibres"])), j=np.repeat(cells, int(g["cue_fibres"])))
             S.w = w_cue * nS
             extra += [pg, S]; self.cue_gen[name] = pg
-        for k_ in range(K):
+        if self.selection == "bg":
+            from .basal_ganglia import BasalGanglia
+            w_thal = float(np.asarray(col.neuron["w_ext_pop"])[l5])   # the column's external (thalamic) synapse on L5E
+            self.bg = BasalGanglia([(self.G, self.pools[k_ + 1]) for k_ in range(K)], seed=seed + 7,
+                                   target=(self.G, "g_ed", w_thal), **self.bg_kw)
+            extra += self.bg.objects
+        for k_ in (range(K) if self.selection == "wta" else ()):
             own = self.pools[k_ + 1]
             other = np.concatenate([self.pools[j + 1] for j in range(K) if j != k_])
             Sg = b2.NeuronGroup(40, "dv/dt = (-(v - -56*mV)) / (10*ms) + sigma_s * sqrt(2 / (10*ms)) * xi : volt",
@@ -257,6 +272,11 @@ class LearnerColumn(LiveColumn):
         self.ee_idx = np.empty(0, int)          # LiveColumn's Hebbian reward is not used here
         self._warm = False
 
+    def _clear_spikes(self):
+        super()._clear_spikes()
+        if self.bg is not None:
+            self.bg.clear()
+
     # ---------------------------------------------------------------- trials
     def trial(self, cue="A"):
         """cue: "A"/"B", or (pattern_cues) a text string or an activity array over the cue cells"""
@@ -300,6 +320,10 @@ class LearnerColumn(LiveColumn):
             self.pattern_gen.rates = 0 * Hz
         self.step(TRIAL_MS - CUE_MS)               # same 300 ms after the cue whatever its length
         t = np.asarray(self.spikes.t / ms)[n0:]; i = np.asarray(self.spikes.i)[n0:]
+        snr = None
+        if self.bg is not None:               # read the loop's output before the monitors are emptied
+            snr = [round(float(x), 1) for x in self.bg.rates("SNr", t_start + 20, t_start + self.cue_ms + 20)]
+            self.last_bg = dict(snr=snr, selected=self.bg.selected(t_start + 20, t_start + self.cue_ms + 20))
         self._in_trial = False
         self._clear_spikes()
         win = (t >= t_start + 20) & (t < t_start + self.cue_ms + 20)
@@ -318,8 +342,12 @@ class LearnerColumn(LiveColumn):
             el = np.asarray(self.s_syn.elig) * np.exp(-(t_end - np.asarray(self.s_syn.t_e / ms)) / self.genome["tau_elig_ms"])
             s_tag = el * self.in_pool[choice][self.s_post]
         self.pending = dict(cue=cue, choice=choice, counts=tuple(counts), tags=tags, s_tag=s_tag)
-        self.events.append((round(self.t_ms), "trial", f"cue {cue} -> action {choice} (spikes {counts})"))
-        return dict(cue=cue, choice=choice, pool_spikes=counts)
+        self.events.append((round(self.t_ms), "trial", f"cue {cue} -> action {choice} (spikes {counts}"
+                            + (f", SNr Hz {snr})" if snr is not None else ")")))
+        out = dict(cue=cue, choice=choice, pool_spikes=counts)
+        if snr is not None:
+            out["snr_hz"] = snr
+        return out
 
     def reward(self, value=1.0, note=""):
         value = float(np.clip(value, -1.0, 1.0))

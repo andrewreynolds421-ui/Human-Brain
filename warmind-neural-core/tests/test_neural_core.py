@@ -170,3 +170,28 @@ def test_learner_mode_trial_and_reward():
     finally:
         nc._service = None
         svc.stop()
+
+
+def test_learner_mode_with_basal_ganglia_selection(monkeypatch):
+    """NEURAL_CORE_SELECTION=bg: the action pools compete through the basal-ganglia-thalamus
+    loop (stage 26) instead of the hand-made groups; trials still run and report the loop's
+    output, and the learner trains as before."""
+    monkeypatch.setattr(nc, "NEURAL_CORE_SELECTION", "bg")
+    monkeypatch.setattr(nc, "NEURAL_CORE_BG", {"ctx_gain": 2.0, "ctx_gain_stn": 0.3, "thal_gain": 0.5})
+    svc = nc.NeuralCoreService(mode="learner", scale=0.05, chunk_ms=100, autostart=False)
+    svc.start()
+    t0 = time.time()
+    while svc.status == "warming" and time.time() - t0 < 900:
+        time.sleep(1)
+    assert svc.status == "running", svc.error
+    nc._service = svc
+    try:
+        assert svc.info["selection"] == "bg" and svc.column.bg is not None
+        assert not any(name.startswith("select") for name in (o.name for o in svc.column.net.objects))
+        r = svc.column.trial("A")
+        assert r["choice"] in (1, 2) and len(r["snr_hz"]) == 2 and all(x >= 0 for x in r["snr_hz"])
+        out = nc.run_neural_core_tool({"action": "reward", "value": 1 if r["choice"] == 1 else -1})
+        assert out.startswith("reward") and "applied" in out, out
+    finally:
+        nc._service = None
+        svc.stop()

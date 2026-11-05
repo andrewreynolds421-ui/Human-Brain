@@ -1,0 +1,27 @@
+{
+ "A": {
+  "ctx_gain": 2.0,
+  "ctx_gain_stn": 0.3,
+  "thal_gain": 0.5
+ },
+ "B": {
+  "ctx_gain": 2.0,
+  "ctx_gain_stn": 0.3,
+  "thal_gain": 0.25
+ },
+ "C": {
+  "ctx_gain": 1.5,
+  "ctx_gain_stn": 0.3,
+  "thal_gain": 1.0
+ },
+ "D": {
+  "ctx_gain": 2.5,
+  "ctx_gain_stn": 0.3,
+  "thal_gain": 0.5
+ },
+ "E": {
+  "ctx_gain": 2.0,
+  "ctx_gain_stn": 0.3,
+  "thal_gain": 1.0
+ }
+}
