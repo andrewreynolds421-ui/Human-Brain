@@ -80,12 +80,16 @@ def build(seed=1, n_scale=0.015, areas=("46d", "9/46d"), preset="human_h01_dendr
 
 def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=None,
         areas=("46d", "9/46d"), cue_area="46d", action_area="9/46d", fast=False, partial_out=None,
-        preset="human_h01_dendritic", selection="wta", bg_kw=None):
+        preset="human_h01_dendritic", selection="wta", bg_kw=None, da_kw=None, cortical_da=True):
     """reverse_at: trial index from which the rewarded mapping flips (A -> 2, B -> 1).
     fast: merged Poisson inputs + per-neuron STP/iSTDP state (same dynamics, ~2x faster)
     selection: "wta" (the stand-in selection groups, genome wta/wta_in_mV) or "bg" (the measured
     basal-ganglia-thalamus loop, synth/basal_ganglia.py, options in bg_kw; the WTA groups are then
-    not built and the choice is still read from the pool spike counts)"""
+    not built and the choice is still read from the pool spike counts)
+    da_kw: not None = reward prediction inside the circuit (Stage 27b): a dopamine population and a
+    striosomal critic (synth.basal_ganglia.DopamineSystem, options in da_kw); the outcome is delivered
+    as an input event and the loop's plasticity is gated by the dopamine rate deviation, not by R - rbar;
+    cortical_da=True makes the cortical three-factor rule use that same dopamine signal"""
     g = dict(DEFAULT_GENOME, **genome)
     col = build(seed, n_scale, areas, preset)
     pops = col.pops
@@ -145,12 +149,22 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
     act = np.flatnonzero((col.area_of == dst_area) & (col.pop_of == l5))
     perm = rng.permutation(act); pool1, pool2 = np.sort(perm[: perm.size // 2]), np.sort(perm[perm.size // 2:])
     w_cue = float(np.asarray(col.neuron["w_ext_pop"])[l23])
-    bg = None
+    bg = da = None
     if selection == "bg":
         from synth.basal_ganglia import BasalGanglia
         w_thal = float(np.asarray(col.neuron["w_ext_pop"])[l5])     # the column's external (thalamic) synapse on L5E
-        bg = BasalGanglia([(G, pool1), (G, pool2)], seed=seed + 7, target=(G, "g_ed", w_thal), **(bg_kw or {}))
+        bkw = dict(bg_kw or {})
+        # plastic loop (Stage 27): the cue cells project to the striatum of both channels and those
+        # synapses learn from dopamine; the pool -> striatum channel wiring stays fixed
+        ctx = (G, np.sort(np.concatenate([cueA, cueB]))) if bkw.get("plastic") else None
+        bg = BasalGanglia([(G, pool1), (G, pool2)], seed=seed + 7, target=(G, "g_ed", w_thal), context=ctx, **bkw)
         net.add(*bg.objects)
+        if da_kw is not None:
+            from synth.basal_ganglia import DopamineSystem
+            if ctx is None:
+                ctx = (G, np.sort(np.concatenate([cueA, cueB])))
+            da = DopamineSystem(bg, ctx, seed=seed + 7, **da_kw)
+            net.add(*da.objects)
     elif selection != "wta":
         raise ValueError("selection must be 'wta' or 'bg'")
     if g["wta"] > 0 and selection == "wta":
@@ -185,10 +199,13 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
     rbar, choices, wsum, dominance, counts = 0.0, [], [], [], []
     rslow, surprises = 0.0, []
     bg_log = []                    # per trial: SNr rate per channel in the decision window, channel below 5 Hz
+    bg_weights = []                # plastic loop: mean cue -> D1/D2 weight per channel every 20 trials
     cue_seq = rng.integers(0, 2, trials)
     t_now = SETTLE_MS
+    t_starts, da_log = [], []
     for k in range(trials):
         cue = "AB"[cue_seq[k]]
+        t_starts.append(t_now)
         n0 = spk.num_spikes
         stim[cue].rates = 30 * Hz
         net.run(CUE_MS * ms)
@@ -211,6 +228,17 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
         correct = ((choice == 1) == (cue == "A")) != reversed_now
         R = 1.0 if correct else -1.0
         t_now += TRIAL_MS
+        signal = R - rbar                     # the learning signal: reward minus its running prediction ...
+        if da is not None:
+            # ... or, with the dopamine system, the outcome arrives as an input event and the dopamine
+            # population's response to it (burst / pause against tonic) is the prediction error
+            da.deliver(R); net.run(da.p["rew_ms"] * ms); da.end_event()
+            net.run((da.p["window_ms"] - da.p["rew_ms"]) * ms)
+            delta = da.delta(t_now, t_now + da.p["window_ms"])
+            da_log.append(dict(R=R, da_hz=round(da.rate(t_now, t_now + da.p["window_ms"]), 1), delta=round(delta, 3),
+                               critic_hz=round(da.rate(t_now - TRIAL_MS + 20, t_now - TRIAL_MS + CUE_MS + 20, "critic"), 1)))
+            if cortical_da:
+                signal = delta
         # reward-gated update
         chosen = in1 if choice == 1 else in2
         surprise = max(0.0, rslow - rbar) if g["surprise_gain"] > 0 else 0.0
@@ -221,7 +249,7 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
             el = np.asarray(S_.elig) * np.exp(-(t_now - np.asarray(S_.t_e / ms)) / g["tau_elig_ms"])
             if g["gate"]:
                 el = el * chosen[col.post[idx]]
-            w = np.clip(np.asarray(S_.w / nS) + g["eta"] * lr_gain * (R - rbar) * el * w_scale, 0, wm)
+            w = np.clip(np.asarray(S_.w / nS) + g["eta"] * lr_gain * signal * el * w_scale, 0, wm)
             if g["normalize"]:
                 post = col.post[idx]
                 tot0 = np.bincount(post, weights=w_init, minlength=col.N)
@@ -236,6 +264,17 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
                 if new.size:
                     el_all = np.asarray(S_.elig); el_all[new] = 0.0; S_.elig = el_all
             S_.w = w * nS
+        if da is not None:
+            bg.reward(delta)                          # eligibilities decayed to the current clock time
+            crit_w = da.learn(delta)
+            da.clear()
+            t_now += da.p["window_ms"]
+            if (k + 1) % 20 == 0:
+                bg_weights.append(dict(trial=k + 1, critic_w=round(crit_w, 3), **bg.weight_summary()))
+        elif bg is not None and bg.plastic:
+            bg.reward(R - rbar, t_ms=t_now)           # dopamine = reward minus its running prediction
+            if (k + 1) % 20 == 0:
+                bg_weights.append(dict(trial=k + 1, **bg.weight_summary()))
         rbar += (R - rbar) / g["baseline_trials"]
         rslow += (R - rslow) / g["surprise_slow_trials"]
         curve.append(int(correct)); choices.append(choice)
@@ -254,7 +293,7 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
     t = np.asarray(spk.t / ms); i = np.asarray(spk.i)
     rest = np.zeros(t.size, bool)
     for k in range(max(0, trials - 10), trials):
-        on = SETTLE_MS + k * TRIAL_MS
+        on = t_starts[k]
         rest |= (t >= on + CUE_MS + 50) & (t < on + TRIAL_MS)
     dur = 10 * (TRIAL_MS - CUE_MS - 50) / 1000.0
     rates = {}
@@ -295,7 +334,8 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
                 dominance=round(float(np.mean(dominance)), 3) if dominance else None,
                 counts=counts, cues="".join("AB"[c] for c in cue_seq), choices=[int(c) for c in choices],
                 n_plastic=int(sum(idx.size for _, idx in rgroups)), selection=selection,
-                bg=(dict(params=bg.p, log=bg_log,
+                dopamine=(dict(params=da.p, log=da_log, cortical_da=cortical_da) if da is not None else None),
+                bg=(dict(params=bg.p, log=bg_log, weights=bg_weights,
                          agree_with_counts=round(float(np.mean([(e["selected"] is not None) and (e["selected"] + 1 == ch)
                                                                 for e, ch in zip(bg_log, choices)])), 3),
                          selected_frac=round(float(np.mean([e["selected"] is not None for e in bg_log])), 3))
@@ -317,13 +357,16 @@ def main():
     ap.add_argument("--out", default=None, help="also write the JSON result here")
     ap.add_argument("--selection", default="wta", help="wta (stand-in groups) or bg (synth/basal_ganglia.py)")
     ap.add_argument("--bg", default="{}", help="JSON options for BasalGanglia (ctx_gain, ctx_gain_stn, thal_drive_mV, thal_gain, spon_nA ...)")
+    ap.add_argument("--da", default=None, help="JSON options for DopamineSystem; giving this turns on reward prediction inside the circuit")
+    ap.add_argument("--cortical-da", type=int, default=1, help="with --da: 1 = the cortical rule also learns from the dopamine response (default), 0 = from R - rbar")
     a = ap.parse_args()
     t0 = time.time()
     areas = load_interareal()["areas"] if a.areas == "all" else a.areas.split(",")
     r = run(json.loads(a.genome), a.trials, a.seed, n_scale=a.n_scale, verbose=True, reverse_at=a.reverse_at,
             areas=areas, cue_area=a.cue_area, action_area=a.action_area, fast=a.fast,
             partial_out=(a.out + ".partial.json") if a.out else None, preset=a.preset,
-            selection=a.selection, bg_kw=json.loads(a.bg))
+            selection=a.selection, bg_kw=json.loads(a.bg), da_kw=None if a.da is None else json.loads(a.da),
+            cortical_da=bool(a.cortical_da))
     r["wall_s"] = round(time.time() - t0)
     r["fast"] = bool(a.fast)
     r["preset"] = a.preset

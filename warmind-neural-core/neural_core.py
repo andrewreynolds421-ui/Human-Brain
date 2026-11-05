@@ -58,6 +58,10 @@ NEURAL_CORE_SELECTION=wta   learner models: how the action pools compete.  "wta"
                             hand-made selection groups; "bg" = the basal-ganglia-thalamus loop
                             built from Humphries et al. 2006 (stage 26; synth/basal_ganglia.py)
 NEURAL_CORE_BG={}           JSON options for the loop (ctx_gain, ctx_gain_stn, thal_gain, ...)
+NEURAL_CORE_DOPAMINE=0      with the "bg" loop: 1 = reward prediction inside the circuit (stage 27):
+                            a dopamine population and a striosomal critic turn each reward into a
+                            prediction error that the loop's and the cortex's synapses read
+NEURAL_CORE_DA={}           JSON options for that dopamine system (crit_gain, crit_eta, rew_hz, ...)
                             expectations (unexpected uncertainty; 0 = off)
 
 Thread model
@@ -95,6 +99,8 @@ NEURAL_CORE_LEAN = os.environ.get("NEURAL_CORE_LEAN", "1") == "1"               
 NEURAL_CORE_COLUMN = os.environ.get("NEURAL_CORE_COLUMN", "v2")                     # column calibration: v2 (stage 25) or v1
 NEURAL_CORE_SELECTION = os.environ.get("NEURAL_CORE_SELECTION", "wta")               # learner: "wta" groups or the "bg" loop
 NEURAL_CORE_BG = json.loads(os.environ.get("NEURAL_CORE_BG", "{}"))                  # learner: basal-ganglia loop options
+NEURAL_CORE_DOPAMINE = os.environ.get("NEURAL_CORE_DOPAMINE", "0") == "1"            # learner: dopamine population + critic
+NEURAL_CORE_DA = json.loads(os.environ.get("NEURAL_CORE_DA", "{}"))                  # its options
 COLUMN_PRESET = {"v1": "human_h01_dendritic", "v2": "human_h01_dendritic_v2"}.get(NEURAL_CORE_COLUMN, "human_h01_dendritic_v2")
 NEURAL_CORE_LEARNER_SCALE = float(os.environ.get("NEURAL_CORE_LEARNER_SCALE", "0.03"))    # learner size (0.015 = previous)
 NEURAL_CORE_LEARNER8_SCALE = float(os.environ.get("NEURAL_CORE_LEARNER8_SCALE", "0.015"))  # learner8 size
@@ -203,13 +209,14 @@ class NeuralCoreService:
             col = build_learner_network(n_scale=n_scale, seed=1, areas="all" if self.mode == "learner8" else None,
                                         preset=COLUMN_PRESET)
             self.info = dict(model=col.name, mode=self.mode, neurons=col.N, synapses=col.S, layers=list(LAYERS),
-                             selection=NEURAL_CORE_SELECTION,
+                             selection=NEURAL_CORE_SELECTION, dopamine=NEURAL_CORE_DOPAMINE,
                              modes={k: v[2] for k, v in MODES.items()},
                              description=("Two human-like prefrontal columns (H01 wiring, Allen human physiology) "
                                           "joined by the measured macaque 46d -> 9/46d pathway. " + mdesc))
             self.column = LearnerColumn(col, seed=1, structural=NEURAL_CORE_STRUCTURAL,
                                         surprise_gain=NEURAL_CORE_SURPRISE, fast=NEURAL_CORE_FAST, lean=NEURAL_CORE_LEAN,
                                         selection=NEURAL_CORE_SELECTION, bg_kw=NEURAL_CORE_BG,
+                                        da_kw=(NEURAL_CORE_DA if NEURAL_CORE_DOPAMINE else None),
                                         **(dict(genome=dict(eta=QUICK_SETTINGS["eta"], wta_ref_pool=WTA_REF_POOL),
                                                 uncert_gain=QUICK_SETTINGS["uncert_gain"]) if NEURAL_CORE_QUICK else {}))
             self.chunk_ms = min(self.chunk_ms, 50.0)        # ~2 s wall per step at ~0.02x real time
@@ -497,9 +504,11 @@ def run_neural_core_tool(inputs: dict) -> str:
         if r.get("ok") and "applied" in r:
             if not r["applied"]:
                 return f"reward not applied: {r['reason']}"
+            da = r.get("dopamine")
             return (f"reward {r['value']:+.2f} applied to the trial cue {r['cue']} -> action {r['choice']} "
                     f"(prediction error {r['prediction_error']:+.2f}, {r['eligible_synapses']} tagged synapses, "
-                    f"relative weight change {r['relative_weight_change']:.4f})")
+                    f"relative weight change {r['relative_weight_change']:.4f})"
+                    + (f"; dopamine cells {da['da_hz']:.1f} Hz, their prediction error {da['delta']:+.2f}" if da else ""))
         if r.get("ok"):
             return (f"reward {r['value']:+.2f} applied to {r['eligible_synapses']} eligible synapses "
                     f"({r['active_neurons']} recently active neurons), relative weight change {r['relative_weight_change']:.4f}")

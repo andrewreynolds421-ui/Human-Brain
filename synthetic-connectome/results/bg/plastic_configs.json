@@ -1,0 +1,117 @@
+{
+ "dl_g1.5_e0.05": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 0.5,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.05
+  },
+  "da": {
+   "crit_gain": 1.5,
+   "crit_eta": 0.02
+  },
+  "cortical_rule": false
+ },
+ "dl_g1.5_e0.1": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 0.5,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.1
+  },
+  "da": {
+   "crit_gain": 1.5,
+   "crit_eta": 0.02
+  },
+  "cortical_rule": false
+ },
+ "dl_g3.0_e0.05": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 0.5,
+   "plastic": true,
+   "ctx_gain_cue": 3.0,
+   "eta_bg": 0.05
+  },
+  "da": {
+   "crit_gain": 1.5,
+   "crit_eta": 0.02
+  },
+  "cortical_rule": false
+ },
+ "dl_g3.0_e0.1": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 0.5,
+   "plastic": true,
+   "ctx_gain_cue": 3.0,
+   "eta_bg": 0.1
+  },
+  "da": {
+   "crit_gain": 1.5,
+   "crit_eta": 0.02
+  },
+  "cortical_rule": false
+ },
+ "dasys": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 0.5,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "cortical_rule": true,
+  "cortical_da": true,
+  "note": "whole system learns from the dopamine population: loop synapses and cortical synapses; critic gain 2.5 keeps a floor of striosome activity so the prediction can grow"
+ },
+ "dasys_noloop": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 0.5,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.0
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "cortical_rule": true,
+  "cortical_da": true,
+  "note": "dopamine population drives the cortical rule only; loop synapses fixed"
+ },
+ "dasys_v0_critic_silent": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 0.5,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0
+  },
+  "da": {
+   "crit_gain": 1.5,
+   "crit_eta": 0.02
+  },
+  "cortical_rule": true,
+  "cortical_da": true,
+  "note": "first attempt, crit_gain 1.5: the critic went silent and never predicted; 96 % learning on two networks; files in results/bg/old/"
+ }
+}

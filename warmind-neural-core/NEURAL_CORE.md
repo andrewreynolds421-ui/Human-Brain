@@ -234,8 +234,22 @@ to the pool. It learns the cue task as well as the hand-made circuit (97.5 %
 vs 97 % on four networks, two areas) and each trial reports the SNr rate of
 each channel, from which the chosen action can be read directly (the
 channel whose SNr drops). Costs ~2 s more per trial. `NEURAL_CORE_BG` takes
-JSON options (`ctx_gain`, `ctx_gain_stn`, `thal_gain`, `da`, `spon_nA`);
-reward is still supplied from outside by the `reward` action.
+JSON options (`ctx_gain`, `ctx_gain_stn`, `thal_gain`, `da`, `spon_nA`).
+
+Reward prediction inside the circuit (`NEURAL_CORE_DOPAMINE=1`, with the
+loop; README Stage 27): the `reward` action no longer changes synapses
+directly. It is delivered as an outcome event to a modelled dopamine
+population (64 cells at ~4.7 spikes/s) with a reward input, a habenula-type
+negative input and a striosomal critic that learns to predict the outcome
+from the cue; the population's burst or pause over the next 200 ms is the
+prediction error that the loop's cortico-striatal synapses and the cortical
+synapses read. As RASPUTIN's feedback becomes predictable the burst fades
+(from ~21 to ~10 spikes/s at 95–100 % accuracy) while an error still gives a
+full pause; learning is as before (96 ± 2 % on four networks). Each `reward`
+result then carries `dopamine: {da_hz, delta}`. Costs another ~1 s per
+trial. `NEURAL_CORE_DA` takes JSON options (`crit_gain`, `crit_eta`,
+`rew_hz`, `inh_hz`, ...). The outcome itself is still given by RASPUTIN —
+as food is given to an animal.
 
 Model size: `learner` runs at double the previous neuron count by default
 (`NEURAL_CORE_LEARNER_SCALE=0.03`), with action selection scaled to pool size

@@ -196,3 +196,54 @@ def test_basal_ganglia_selects_the_driven_channel():
     snr = bg.rates("SNr", 1300, 1800); thal = bg.rates("Thal", 1300, 1800)
     assert bg.selected(1300, 1800) == 1 and snr[1] < SELECT_HZ and min(snr[0], snr[2]) > SELECT_HZ
     assert thal[1] > 5 * max(thal[0], thal[2])
+
+
+# ------------------------------------------------------- plasticity in the loop (stage 27)
+def test_plastic_context_synapses_follow_the_rule():
+    """Context -> D1/D2 synapses carry weight and eligibility; reward(delta) moves D1 weights with
+    delta and D2 against it, in proportion to eligibility, within [0, w_max]; nothing moves at
+    eta_bg = 0."""
+    import brian2 as b2
+    from brian2 import ms, Hz
+    from synth.basal_ganglia import BasalGanglia
+    b2.start_scope(); b2.defaultclock.dt = 0.1 * ms
+    pools = [b2.PoissonGroup(40, rates=3 * Hz) for _ in range(2)]
+    cue = b2.PoissonGroup(100, rates=1 * Hz)
+    bg = BasalGanglia([(p, np.arange(40)) for p in pools], seed=2, context=(cue, np.arange(100)),
+                      plastic=True, eta_bg=0.1, ctx_gain_cue=1.0)
+    assert [pop for _, _, pop in bg.plastic] == ["D1", "D2"]
+    for S, sign, pop in bg.plastic:
+        assert len(S) == pytest.approx(2 * 64 * bg.p["cue_n_in"], rel=0.15)
+        S.elig = np.linspace(0, 1, len(S)); S.t_e = 0 * ms           # hand-set eligibilities
+    w_before = {pop: np.asarray(S.wf).copy() for S, _, pop in bg.plastic}
+    bg.reward(+1.0, t_ms=0.0)
+    for S, sign, pop in bg.plastic:
+        dw = np.asarray(S.wf) - w_before[pop]
+        e = np.linspace(0, 1, len(S))
+        assert np.allclose(dw, np.clip(w_before[pop] + sign * 0.1 * e, 0, bg.w_max[pop]) - w_before[pop])
+        assert (dw >= 0).all() if pop == "D1" else (dw <= 0).all()
+    bg.p["eta_bg"] = 0.0
+    assert bg.reward(+1.0) == {}
+
+
+@pytest.mark.slow
+def test_dopamine_cells_burst_to_reward_and_pause_to_punishment():
+    """The dopamine population sits near its tonic rate, bursts to a reward event and pauses to a
+    negative one; the read-out error has the right sign in each case (stand-in cortex)."""
+    import brian2 as b2
+    from brian2 import ms, Hz
+    from synth.basal_ganglia import BasalGanglia, DopamineSystem
+    b2.start_scope(); b2.prefs.codegen.target = "cython"; b2.defaultclock.dt = 0.1 * ms; b2.seed(7)
+    pools = [b2.PoissonGroup(40, rates=3 * Hz) for _ in range(2)]
+    cue = b2.PoissonGroup(100, rates=1 * Hz)
+    bg = BasalGanglia([(p, np.arange(40)) for p in pools], seed=7, context=(cue, np.arange(100)), plastic=True, eta_bg=0.05)
+    da = DopamineSystem(bg, (cue, np.arange(100)), seed=7)
+    net = b2.Network(*pools, cue, *bg.objects, *da.objects)
+    net.run(1000 * ms)
+    tonic = da.rate(300, 1000)
+    assert 2.5 < tonic < 7.0, tonic
+    t = float(net.t / ms); da.deliver(+1.0); net.run(150 * ms); da.end_event(); net.run(50 * ms)
+    assert da.rate(t, t + 200) > 15 and da.delta(t, t + 200) > 0.5
+    net.run(500 * ms)
+    t = float(net.t / ms); da.deliver(-1.0); net.run(150 * ms); da.end_event(); net.run(50 * ms)
+    assert da.rate(t, t + 200) < 2 and da.delta(t, t + 200) < -0.5

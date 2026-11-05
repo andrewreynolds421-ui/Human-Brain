@@ -1,0 +1,561 @@
+{
+ "about": "Stage 27: the dopamine population's response as the learning signal for every plastic synapse; v2 column, quick rule, 150 trials, 2 areas",
+ "configs": {
+  "dl_g1.5_e0.05": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 0.5,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.05
+   },
+   "da": {
+    "crit_gain": 1.5,
+    "crit_eta": 0.02
+   },
+   "cortical_rule": false
+  },
+  "dl_g1.5_e0.1": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 0.5,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.1
+   },
+   "da": {
+    "crit_gain": 1.5,
+    "crit_eta": 0.02
+   },
+   "cortical_rule": false
+  },
+  "dl_g3.0_e0.05": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 0.5,
+    "plastic": true,
+    "ctx_gain_cue": 3.0,
+    "eta_bg": 0.05
+   },
+   "da": {
+    "crit_gain": 1.5,
+    "crit_eta": 0.02
+   },
+   "cortical_rule": false
+  },
+  "dl_g3.0_e0.1": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 0.5,
+    "plastic": true,
+    "ctx_gain_cue": 3.0,
+    "eta_bg": 0.1
+   },
+   "da": {
+    "crit_gain": 1.5,
+    "crit_eta": 0.02
+   },
+   "cortical_rule": false
+  },
+  "dasys": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 0.5,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "post_lin": 0.0,
+    "post_gain": 1.0
+   },
+   "da": {
+    "crit_gain": 2.5,
+    "crit_eta": 0.05
+   },
+   "cortical_rule": true,
+   "cortical_da": true,
+   "note": "whole system learns from the dopamine population: loop synapses and cortical synapses; critic gain 2.5 keeps a floor of striosome activity so the prediction can grow"
+  },
+  "dasys_noloop": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 0.5,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.0
+   },
+   "da": {
+    "crit_gain": 2.5,
+    "crit_eta": 0.05
+   },
+   "cortical_rule": true,
+   "cortical_da": true,
+   "note": "dopamine population drives the cortical rule only; loop synapses fixed"
+  },
+  "dasys_v0_critic_silent": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 0.5,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "post_lin": 0.0,
+    "post_gain": 1.0
+   },
+   "da": {
+    "crit_gain": 1.5,
+    "crit_eta": 0.02
+   },
+   "cortical_rule": true,
+   "cortical_da": true,
+   "note": "first attempt, crit_gain 1.5: the critic went silent and never predicted; 96 % learning on two networks; files in results/bg/old/"
+  }
+ },
+ "dopamine_system_loop_plastic": {
+  "n": 4,
+  "per_network": [
+   {
+    "seed": 31,
+    "acc_last50": 0.94,
+    "reach75": 43,
+    "wall_s": 1221,
+    "da_burst_first30": 20.60666666666667,
+    "da_burst_last30": 10.651724137931033,
+    "delta_reward_first30": 0.8057333333333333,
+    "delta_reward_last30": 0.3051034482758621,
+    "delta_error_all": -0.8976296296296296,
+    "critic_first30": 3.563333333333334,
+    "critic_last30": 8.906666666666666
+   },
+   {
+    "seed": 32,
+    "acc_last50": 0.98,
+    "reach75": 34,
+    "wall_s": 1224,
+    "da_burst_first30": 20.46111111111111,
+    "da_burst_last30": 10.063333333333334,
+    "delta_reward_first30": 0.798,
+    "delta_reward_last30": 0.2741,
+    "delta_error_all": -0.8987692307692309,
+    "critic_first30": 3.736666666666667,
+    "critic_last30": 9.24
+   },
+   {
+    "seed": 33,
+    "acc_last50": 0.96,
+    "reach75": 55,
+    "wall_s": 1240,
+    "da_burst_first30": 23.108333333333334,
+    "da_burst_last30": 15.917241379310346,
+    "delta_reward_first30": 0.9309166666666667,
+    "delta_reward_last30": 0.5710344827586207,
+    "delta_error_all": -0.8878055555555554,
+    "critic_first30": 2.893333333333333,
+    "critic_last30": 6.036666666666666
+   },
+   {
+    "seed": 34,
+    "acc_last50": 0.92,
+    "reach75": 43,
+    "wall_s": 1239,
+    "da_burst_first30": 21.800000000000004,
+    "da_burst_last30": 15.914285714285715,
+    "delta_reward_first30": 0.8644615384615384,
+    "delta_reward_last30": 0.5703214285714286,
+    "delta_error_all": -0.895,
+    "critic_first30": 3.1433333333333326,
+    "critic_last30": 7.183333333333334
+   }
+  ],
+  "acc_last50": {
+   "mean": 0.95,
+   "sd": 0.02236067977499788,
+   "min": 0.92,
+   "max": 0.98
+  },
+  "reach75": {
+   "mean": 43.75,
+   "sd": 7.46240577829965,
+   "min": 34.0,
+   "max": 55.0
+  },
+  "wall_s": {
+   "mean": 1231.0,
+   "sd": 8.573214099741124,
+   "min": 1221.0,
+   "max": 1240.0
+  },
+  "da_burst_first30": {
+   "mean": 21.49402777777778,
+   "sd": 1.0669967208547626,
+   "min": 20.46111111111111,
+   "max": 23.108333333333334
+  },
+  "da_burst_last30": {
+   "mean": 13.136646141215106,
+   "sd": 2.786892555046806,
+   "min": 10.063333333333334,
+   "max": 15.917241379310346
+  },
+  "delta_reward_first30": {
+   "mean": 0.8497778846153846,
+   "sd": 0.05343216137290455,
+   "min": 0.798,
+   "max": 0.9309166666666667
+  },
+  "delta_reward_last30": {
+   "mean": 0.43013983990147786,
+   "sd": 0.1409651632985135,
+   "min": 0.2741,
+   "max": 0.5710344827586207
+  },
+  "delta_error_all": {
+   "mean": -0.894801103988604,
+   "sd": 0.004263913840345076,
+   "min": -0.8987692307692309,
+   "max": -0.8878055555555554
+  },
+  "critic_first30": {
+   "mean": 3.3341666666666665,
+   "sd": 0.33364464629302865,
+   "min": 2.893333333333333,
+   "max": 3.736666666666667
+  },
+  "critic_last30": {
+   "mean": 7.841666666666667,
+   "sd": 1.3020165982898309,
+   "min": 6.036666666666666,
+   "max": 9.24
+  }
+ },
+ "dopamine_system_loop_fixed": {
+  "n": 2,
+  "per_network": [
+   {
+    "seed": 31,
+    "acc_last50": 0.96,
+    "reach75": 42,
+    "wall_s": 1241,
+    "da_burst_first30": 20.375,
+    "da_burst_last30": 10.460714285714287,
+    "delta_reward_first30": 0.794,
+    "delta_reward_last30": 0.2971071428571429,
+    "delta_error_all": -0.8976666666666665,
+    "critic_first30": 3.486666666666667,
+    "critic_last30": 8.873333333333335
+   },
+   {
+    "seed": 32,
+    "acc_last50": 0.96,
+    "reach75": 49,
+    "wall_s": 1237,
+    "da_burst_first30": 20.393333333333334,
+    "da_burst_last30": 11.703448275862069,
+    "delta_reward_first30": 0.7945333333333334,
+    "delta_reward_last30": 0.36013793103448277,
+    "delta_error_all": -0.894478260869565,
+    "critic_first30": 3.3600000000000003,
+    "critic_last30": 8.16
+   }
+  ],
+  "acc_last50": {
+   "mean": 0.96,
+   "sd": 0.0,
+   "min": 0.96,
+   "max": 0.96
+  },
+  "reach75": {
+   "mean": 45.5,
+   "sd": 3.5,
+   "min": 42.0,
+   "max": 49.0
+  },
+  "wall_s": {
+   "mean": 1239.0,
+   "sd": 2.0,
+   "min": 1237.0,
+   "max": 1241.0
+  },
+  "da_burst_first30": {
+   "mean": 20.384166666666665,
+   "sd": 0.009166666666667211,
+   "min": 20.375,
+   "max": 20.393333333333334
+  },
+  "da_burst_last30": {
+   "mean": 11.082081280788177,
+   "sd": 0.6213669950738909,
+   "min": 10.460714285714287,
+   "max": 11.703448275862069
+  },
+  "delta_reward_first30": {
+   "mean": 0.7942666666666667,
+   "sd": 0.0002666666666666928,
+   "min": 0.794,
+   "max": 0.7945333333333334
+  },
+  "delta_reward_last30": {
+   "mean": 0.32862253694581284,
+   "sd": 0.031515394088669935,
+   "min": 0.2971071428571429,
+   "max": 0.36013793103448277
+  },
+  "delta_error_all": {
+   "mean": -0.8960724637681157,
+   "sd": 0.0015942028985507783,
+   "min": -0.8976666666666665,
+   "max": -0.894478260869565
+  },
+  "critic_first30": {
+   "mean": 3.423333333333334,
+   "sd": 0.06333333333333324,
+   "min": 3.3600000000000003,
+   "max": 3.486666666666667
+  },
+  "critic_last30": {
+   "mean": 8.516666666666667,
+   "sd": 0.35666666666666735,
+   "min": 8.16,
+   "max": 8.873333333333335
+  }
+ },
+ "loop_only_cortex_off": {
+  "n": 2,
+  "per_network": [
+   {
+    "seed": 31,
+    "acc_last50": 0.54,
+    "reach75": null,
+    "wall_s": 1392,
+    "da_burst_first30": 26.28125,
+    "da_burst_last30": 26.84210526315789,
+    "delta_reward_first30": 1.089,
+    "delta_reward_last30": 1.116947368421053,
+    "delta_error_all": -0.8553846153846152,
+    "critic_first30": 0.3633333333333333,
+    "critic_last30": 0.029999999999999995
+   },
+   {
+    "seed": 32,
+    "acc_last50": 0.58,
+    "reach75": 40,
+    "wall_s": 1501,
+    "da_burst_first30": 27.047058823529408,
+    "da_burst_last30": 27.133333333333336,
+    "delta_reward_first30": 1.1274117647058823,
+    "delta_reward_last30": 1.1316111111111111,
+    "delta_error_all": -0.854968253968254,
+    "critic_first30": 0.2,
+    "critic_last30": 0.030000000000000002
+   }
+  ],
+  "acc_last50": {
+   "mean": 0.56,
+   "sd": 0.019999999999999962,
+   "min": 0.54,
+   "max": 0.58
+  },
+  "wall_s": {
+   "mean": 1446.5,
+   "sd": 54.5,
+   "min": 1392.0,
+   "max": 1501.0
+  },
+  "da_burst_first30": {
+   "mean": 26.664154411764706,
+   "sd": 0.382904411764704,
+   "min": 26.28125,
+   "max": 27.047058823529408
+  },
+  "da_burst_last30": {
+   "mean": 26.987719298245615,
+   "sd": 0.14561403508772308,
+   "min": 26.84210526315789,
+   "max": 27.133333333333336
+  },
+  "delta_reward_first30": {
+   "mean": 1.1082058823529413,
+   "sd": 0.019205882352941184,
+   "min": 1.089,
+   "max": 1.1274117647058823
+  },
+  "delta_reward_last30": {
+   "mean": 1.1242792397660821,
+   "sd": 0.007331871345029106,
+   "min": 1.116947368421053,
+   "max": 1.1316111111111111
+  },
+  "delta_error_all": {
+   "mean": -0.8551764346764346,
+   "sd": 0.000208180708180572,
+   "min": -0.8553846153846152,
+   "max": -0.854968253968254
+  },
+  "critic_first30": {
+   "mean": 0.2816666666666666,
+   "sd": 0.08166666666666664,
+   "min": 0.2,
+   "max": 0.3633333333333333
+  },
+  "critic_last30": {
+   "mean": 0.03,
+   "sd": 3.469446951953614e-18,
+   "min": 0.029999999999999995,
+   "max": 0.030000000000000002
+  }
+ },
+ "stage26_reference": {
+  "n": 4,
+  "seeds": [
+   31,
+   32,
+   33,
+   34
+  ],
+  "per_network": [
+   {
+    "seed": 31,
+    "acc_last50": 0.96,
+    "acc_last40": 0.975,
+    "reach75": 45,
+    "dominance": 0.266,
+    "wall_s": 623,
+    "bg_argmin_snr_matches_choice": 0.8266666666666667,
+    "bg_argmin_snr_correct_last50": 0.98,
+    "bg_below_5hz_frac": 0.0,
+    "snr_winner_hz": 20.957333333333334,
+    "snr_loser_hz": 26.497333333333337,
+    "thal_winner_hz": 8.252666666666668,
+    "thal_loser_hz": 2.8640000000000003
+   },
+   {
+    "seed": 32,
+    "acc_last50": 0.98,
+    "acc_last40": 0.975,
+    "reach75": 43,
+    "dominance": 0.3,
+    "wall_s": 632,
+    "bg_argmin_snr_matches_choice": 0.9133333333333333,
+    "bg_argmin_snr_correct_last50": 0.98,
+    "bg_below_5hz_frac": 0.0,
+    "snr_winner_hz": 19.241333333333333,
+    "snr_loser_hz": 28.444666666666667,
+    "thal_winner_hz": 11.479333333333335,
+    "thal_loser_hz": 2.2319999999999998
+   },
+   {
+    "seed": 33,
+    "acc_last50": 0.98,
+    "acc_last40": 0.975,
+    "reach75": 20,
+    "dominance": 0.229,
+    "wall_s": 807,
+    "bg_argmin_snr_matches_choice": 0.84,
+    "bg_argmin_snr_correct_last50": 0.82,
+    "bg_below_5hz_frac": 0.0,
+    "snr_winner_hz": 20.828666666666667,
+    "snr_loser_hz": 27.80866666666666,
+    "thal_winner_hz": 10.102,
+    "thal_loser_hz": 3.3566666666666665
+   },
+   {
+    "seed": 34,
+    "acc_last50": 0.98,
+    "acc_last40": 0.975,
+    "reach75": 20,
+    "dominance": 0.222,
+    "wall_s": 812,
+    "bg_argmin_snr_matches_choice": 0.8533333333333334,
+    "bg_argmin_snr_correct_last50": 0.9,
+    "bg_below_5hz_frac": 0.0,
+    "snr_winner_hz": 20.561333333333334,
+    "snr_loser_hz": 26.496000000000002,
+    "thal_winner_hz": 10.271333333333333,
+    "thal_loser_hz": 4.083333333333333
+   }
+  ],
+  "acc_last50": {
+   "mean": 0.975,
+   "sd": 0.008660254037844395,
+   "min": 0.96,
+   "max": 0.98
+  },
+  "acc_last40": {
+   "mean": 0.975,
+   "sd": 0.0,
+   "min": 0.975,
+   "max": 0.975
+  },
+  "reach75": {
+   "mean": 32.0,
+   "sd": 12.020815280171307,
+   "min": 20.0,
+   "max": 45.0
+  },
+  "dominance": {
+   "mean": 0.25425000000000003,
+   "sd": 0.031259998400511795,
+   "min": 0.222,
+   "max": 0.3
+  },
+  "wall_s": {
+   "mean": 718.5,
+   "sd": 91.07277309931877,
+   "min": 623.0,
+   "max": 812.0
+  },
+  "bg_argmin_snr_matches_choice": {
+   "mean": 0.8583333333333334,
+   "sd": 0.033124344857252984,
+   "min": 0.8266666666666667,
+   "max": 0.9133333333333333
+  },
+  "bg_argmin_snr_correct_last50": {
+   "mean": 0.9199999999999999,
+   "sd": 0.06633249580710801,
+   "min": 0.82,
+   "max": 0.98
+  },
+  "bg_below_5hz_frac": {
+   "mean": 0.0,
+   "sd": 0.0,
+   "min": 0.0,
+   "max": 0.0
+  },
+  "snr_winner_hz": {
+   "mean": 20.397166666666667,
+   "sd": 0.6824368713172916,
+   "min": 19.241333333333333,
+   "max": 20.957333333333334
+  },
+  "snr_loser_hz": {
+   "mean": 27.311666666666667,
+   "sd": 0.845450898764806,
+   "min": 26.496000000000002,
+   "max": 28.444666666666667
+  },
+  "thal_winner_hz": {
+   "mean": 10.026333333333334,
+   "sd": 1.1535654390723666,
+   "min": 8.252666666666668,
+   "max": 11.479333333333335
+  },
+  "thal_loser_hz": {
+   "mean": 3.1339999999999995,
+   "sd": 0.6777385598854144,
+   "min": 2.2319999999999998,
+   "max": 4.083333333333333
+  },
+  "bg_options": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 0.5
+  }
+ }
+}

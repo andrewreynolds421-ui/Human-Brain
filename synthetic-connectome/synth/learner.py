@@ -93,7 +93,7 @@ class LearnerColumn(LiveColumn):
     def __init__(self, col, genome=None, seed=1, structural=False, sp_every=10, surprise_gain=0.0,
                  surprise_slow_trials=50.0, fast=False, shared_stp=None, merged_inputs=None, uncert_gain=0.0, lean=False, n_actions=2, pattern_cues=False,
                  cue_frac=0.05, cue_gain=1.0, cue_code="union", cue_ms=CUE_MS, sensory=None, sens_gain=1.0, sens_lr=1.0,
-                 selection="wta", bg_kw=None, **kw):
+                 selection="wta", bg_kw=None, da_kw=None, **kw):
         # selection: "wta" = the stand-in selection groups (genome wta / wta_in_mV); "bg" = the
         # basal-ganglia-thalamus loop built from Humphries et al. 2006 (synth/basal_ganglia.py, Stage 26),
         # one channel per action pool, options in bg_kw.  The choice is read from the pool spike
@@ -101,7 +101,13 @@ class LearnerColumn(LiveColumn):
         if selection not in ("wta", "bg"):
             raise ValueError("selection must be 'wta' or 'bg'")
         self.selection, self.bg_kw = selection, dict(bg_kw or {})
-        self.bg = None
+        # da_kw: not None = reward prediction inside the loop (Stage 27b): a dopamine population and a
+        # striosomal critic; the outcome given to reward() is delivered as an input event and the loop's
+        # cortico-striatal plasticity is gated by the dopamine response, not by value - rbar
+        self.da_kw = None if da_kw is None else dict(da_kw)
+        if self.da_kw is not None and selection != "bg":
+            raise ValueError("the dopamine system needs selection='bg'")
+        self.bg = self.da = None
         self.sens_lr = float(sens_lr)     # learning-rate factor for the sensory -> action synapses
         # sensory: a trained synth.sensory.SensoryLayer (or path to one).  Text trials then go through it
         # and its cells' spikes are replayed onto the action pools through plastic synapses that learn
@@ -198,9 +204,14 @@ class LearnerColumn(LiveColumn):
         if self.selection == "bg":
             from .basal_ganglia import BasalGanglia
             w_thal = float(np.asarray(col.neuron["w_ext_pop"])[l5])   # the column's external (thalamic) synapse on L5E
+            ctx = (self.G, np.sort(cue_cells)) if (self.bg_kw.get("plastic") or self.da_kw is not None) else None
             self.bg = BasalGanglia([(self.G, self.pools[k_ + 1]) for k_ in range(K)], seed=seed + 7,
-                                   target=(self.G, "g_ed", w_thal), **self.bg_kw)
+                                   target=(self.G, "g_ed", w_thal), context=ctx, **self.bg_kw)
             extra += self.bg.objects
+            if self.da_kw is not None:
+                from .basal_ganglia import DopamineSystem
+                self.da = DopamineSystem(self.bg, ctx, seed=seed + 7, **self.da_kw)
+                extra += self.da.objects
         for k_ in (range(K) if self.selection == "wta" else ()):
             own = self.pools[k_ + 1]
             other = np.concatenate([self.pools[j + 1] for j in range(K) if j != k_])
@@ -276,6 +287,8 @@ class LearnerColumn(LiveColumn):
         super()._clear_spikes()
         if self.bg is not None:
             self.bg.clear()
+        if self.da is not None:
+            self.da.clear()
 
     # ---------------------------------------------------------------- trials
     def trial(self, cue="A"):
@@ -382,6 +395,22 @@ class LearnerColumn(LiveColumn):
         if do_sp:
             self.events.append((round(self.t_ms), "rewiring", f"{n_pr} synapses removed, {n_fo} formed"))
         rpe = value - self.rbar
+        self.last_dopamine = None
+        if self.da is not None:
+            # the outcome as an input event; the dopamine rate deviation over the next window is the
+            # prediction error that changes the loop's synapses (and the critic's)
+            t0 = float(self.net.t / ms)
+            self._in_trial = True                 # keep the monitors until the window is read
+            self.da.deliver(value); self.step(self.da.p["rew_ms"]); self.da.end_event()
+            self.step(self.da.p["window_ms"] - self.da.p["rew_ms"])
+            self._in_trial = False
+            delta = self.da.delta(t0, t0 + self.da.p["window_ms"])
+            self.last_dopamine = dict(da_hz=round(self.da.rate(t0, t0 + self.da.p["window_ms"]), 1), delta=round(delta, 3))
+            self.bg.reward(delta)
+            self.da.learn(delta)
+            self._clear_spikes()
+        elif self.bg is not None and self.bg.plastic:
+            self.bg.reward(rpe)
         self.rbar += (value - self.rbar) / g["baseline_trials"]
         self.rslow += (value - self.rslow) / self.surprise_slow
         self.last_surprise = surprise
@@ -394,9 +423,12 @@ class LearnerColumn(LiveColumn):
         n_tagged = int(sum((t != 0).sum() for t in p["tags"]))
         self.events.append((round(self.t_ms), "reward", f"{value:+.2f} on trial cue {p['cue']} -> action {p['choice']} "
                                                         f"(prediction error {rpe:+.2f}) {note}".strip()))
-        return dict(value=value, applied=True, cue=p["cue"], choice=p["choice"], prediction_error=round(rpe, 3),
-                    eligible_synapses=n_tagged, active_neurons=int(self.pools[p["choice"]].size),
-                    relative_weight_change=change)
+        out = dict(value=value, applied=True, cue=p["cue"], choice=p["choice"], prediction_error=round(rpe, 3),
+                   eligible_synapses=n_tagged, active_neurons=int(self.pools[p["choice"]].size),
+                   relative_weight_change=change)
+        if self.last_dopamine is not None:
+            out["dopamine"] = self.last_dopamine
+        return out
 
     def selectivity(self):
         """Mean learned weight cue A -> pool 1 and B -> pool 2, minus the crossed

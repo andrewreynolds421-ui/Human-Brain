@@ -300,5 +300,98 @@
    "label": "FITTED in the learner",
    "how": "the thalamo-cortical feedback is the one pathway with no measured weight here; too strong and the loop locks onto one pool between trials"
   }
+ },
+ "cortico_striatal_plasticity": {
+  "_what": "Stage 27: cue/context cells -> D1 and D2 of every channel, plastic; pool -> striatum channel wiring fixed",
+  "rule": "three-factor: eligibility from pre->post coincidences (pre trace tau_x) decaying with tau_e; at the dopamine signal delta: D1 weights += eta delta e, D2 weights -= eta delta e; weights clipped to [0, w_max_factor x initial]",
+  "sources": [
+   "Reynolds JN, Hyland BI, Wickens JR (2001) A cellular mechanism of reward-related learning. Nature 413:67-70 (dopamine-dependent cortico-striatal potentiation)",
+   "Shen W, Flajolet M, Greengard P, Surmeier DJ (2008) Dichotomous dopaminergic control of striatal synaptic plasticity. Science 321:848-851 (D1 MSNs: LTP with dopamine; D2 MSNs: LTD with dopamine, LTP without)",
+   "Yagishita S et al. (2014) A critical time window for dopamine actions on the structural plasticity of dendritic spines. Science 345:1616-1620 (dopamine must follow the input within 0.3-2 s)",
+   "Pawlak V, Kerr JND (2008) Dopamine receptor activation is required for corticostriatal spike-timing-dependent plasticity. J Neurosci 28:2435-2446 (STDP windows of tens of ms)"
+  ],
+  "constants": {
+   "tau_x_ms": {
+    "value": 20,
+    "label": "MODEL (coincidence window, Pawlak & Kerr 2008)"
+   },
+   "tau_e_ms": {
+    "value": 1000,
+    "label": "MEASURED window (Yagishita 2014: 0.3-2 s)"
+   },
+   "a_minus": {
+    "value": 0,
+    "label": "ASSUMED: pure pre->post coincidence"
+   },
+   "cue_n_in": {
+    "value": 16,
+    "label": "ASSUMED: same convergence as the pool input"
+   },
+   "ctx_gain_cue": {
+    "value": "scan",
+    "label": "FITTED (results/bg/plastic_*.json): the cue cells fire ~6 spikes/s during a cue, the stand-in's salience trains 30"
+   },
+   "eta_bg": {
+    "value": "scan",
+    "label": "FITTED (results/bg/plastic_*.json)"
+   },
+   "w_max_factor": {
+    "value": 3,
+    "label": "ASSUMED"
+   },
+   "w_init_spread": {
+    "value": 0.25,
+    "label": "ASSUMED"
+   }
+  }
+ },
+ "dopamine_system": {
+  "_what": "Stage 27b: SNc/VTA population, primary-reward input, negative-outcome input, striosomal critic; its rate deviation after the outcome is the prediction error that gates the plasticity",
+  "measured": {
+   "tonic_rate_hz": {
+    "value": "4-5",
+    "sources": [
+     "Grace AA, Bunney BS (1984) The control of firing pattern in nigral dopamine neurons: single spike firing. J Neurosci 4:2866-2876",
+     "Schultz W (1998) Predictive reward signal of dopamine neurons. J Neurophysiol 80:1-27"
+    ]
+   },
+   "phasic_burst": {
+    "value": "15-30 spikes/s for 100-200 ms to unpredicted reward; pause on omission",
+    "sources": [
+     "Schultz 1998",
+     "Bayer HM, Glimcher PW (2005) Neuron 47:129-141 (bursts encode positive errors linearly; dips are rate-floored)",
+     "Bayer, Lau & Glimcher (2007) J Neurophysiol 98:1428 (pause duration encodes negative errors)"
+    ]
+   },
+   "negative_outcome_pathway": {
+    "value": "lateral habenula -> RMTg (GABA) -> dopamine neurons",
+    "sources": [
+     "Matsumoto M, Hikosaka O (2007) Nature 447:1111-1115",
+     "Jhou TC et al. (2009) Neuron 61:786-800"
+    ]
+   },
+   "reward_pathway": {
+    "value": "PPTg / lateral hypothalamus glutamate -> dopamine neurons",
+    "sources": [
+     "Watabe-Uchida M, Eshel N, Uchida N (2017) Annu Rev Neurosci 40:373-394 (review of inputs)"
+    ]
+   },
+   "critic_pathway": {
+    "value": "striosomal D1 MSNs -> SNc dopamine cells (GABA)",
+    "sources": [
+     "Gerfen CR (1984) Nature 311:461",
+     "Crittenden JR et al. (2016) Striosome-dendron bouquets, PNAS 113:11318",
+     "Houk JC, Adams JL, Barto AG (1995) model of how the basal ganglia generate and use neural signals that predict reinforcement"
+    ]
+   }
+  },
+  "stand_ins_stated": [
+   "LIF constants of the dopamine cells (tau 20 ms, theta 20 mV, refractory 10 ms) and the tonic drive (14.5 mV, FITTED to 4.5 spikes/s)",
+   "reward / habenula inputs as Poisson fibres (100 each, p 0.25, 10 spikes/s per unit outcome for 150 ms; FITTED to a 25-28 spikes/s burst and a pause to ~0)",
+   "the critic's inhibition onto dopamine cells decays with 500 ms so that a prediction formed during the cue still acts at the outcome 300-500 ms later: a stand-in for the temporal-difference circuit; the burst does not transfer to the cue here, and dopamine cells pause during a predictive cue, which is wrong-signed and unused",
+   "critic cells have the D1 membrane plus a per-cell resting offset uniform in [-15, 0] mV (ASSUMED heterogeneity) so the population's output is graded",
+   "delta = (rate - tonic) / 20 spikes/s, negative values x 4 (ASSUMED, so a full pause weighs as much as a full burst; the biology's asymmetry is in the references above)"
+  ],
+  "defaults": "synth/basal_ganglia.py DA_DEFAULTS"
  }
 }

@@ -11,7 +11,9 @@ cortex* — twelve cell populations per column with measured local wiring
 neuron count with full per-neuron in-degree; up to eight areas joined by
 *macaque* long-range wiring; action selection by a basal-ganglia–thalamus
 loop built from published rat circuit data (or the earlier hand-made
-circuit); reward supplied from outside. It learns cue–action
+circuit); outcomes turned into a learning signal by a modelled dopamine
+population with a critic that learns to predict them (or, as before, a
+number applied from outside). It learns cue–action
 tasks (96–97 % on the recalibrated column, Stage 25), routes real text at
 63 % through a self-organising sensory layer, and reads printed letters at 76 % in unseen fonts. It is not a brain,
 not full-scale, and not yet validated against human recordings. Status by
@@ -105,7 +107,7 @@ and where each stands. Full audit in `AUDIT.md`.
 | **1** | One column in the right state: asynchronous 1–10 Hz, no tuning knobs beyond external drive | **done with caveats** — 12 populations, dendrites, measured membranes/synapses/wiring, asynchronous; 9 of 12 populations within reference rate ranges after the Stage 25 recalibration (was 7); still 2 fitted calibrations + 5 assumed constants |
 | **2** | Full-scale column (32,500 neurons, 130 M synapses) | **not done** — everything runs at 1.5–3 % of neurons with full in-degree; needs a GPU simulator and ≥64 GB |
 | **3** | Cortical sheet: per-area layers (BigBrain), cell types (Allen), area wiring (HCP) | **started with substitutes** — multi-column sheet + 8 macaque association areas (Markov FLN); same column everywhere; no human atlas data yet (Stages 4–5) |
-| **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **started** — a spiking basal-ganglia–thalamus loop built from published rat circuit data (Humphries et al. 2006) replaces the hand-made selection circuit without loss (Stage 26); reward still external, surprise/uncertainty still scalar formulas; no hippocampus, cerebellum or neuromodulator circuits |
+| **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **started** — a spiking basal-ganglia–thalamus loop built from published rat circuit data (Humphries et al. 2006) replaces the hand-made selection circuit without loss (Stage 26); a dopamine population with a striosomal critic turns the outcome into a prediction error that every plastic synapse reads, and the loop's cortico-striatal synapses learn (Stage 27) — though they cannot carry the task alone yet; the thalamic relay is a stand-in; surprise/uncertainty still scalar formulas; no hippocampus or cerebellum |
 | **5** | Senses and a body | **partial, by another route** — RASPUTIN as a toy body; self-organising sensory layers for text and printed letters (Stages 20–23); no retina/cochlea/motor, no speech yet |
 | **6** | Learning across the sheet with dopamine from the basal ganglia | **most progress** — three-factor rule, gating, turnover, surprise, uncertainty; 80–92 % on cue tasks, 63 % routing real text; but on one pathway only, reward from outside, 9 evolved rule settings (Stages 6–21) |
 | **7** | Validation against human recordings (intracranial, EEG/MEG, fMRI, behaviour) | **not done** — only firing rates vs reference ranges |
@@ -1720,6 +1722,86 @@ the wiring against the parameter file, selection on the stand-in
 (`tests/test_synth.py`), and the RASPUTIN option (`tests/test_neural_core.py`).
 Open problem 10 records what the loop still lacks.
 
+## Stage 27: reward prediction inside the circuit — a dopamine population and plasticity in the loop
+
+Open problem 10 said the loop had no synapse that learns and the reward was a
+number from outside. Both are addressed, with one honest negative result
+along the way. Constants and sources: `results/bg_parameters.json`
+(`cortico_striatal_plasticity`, `dopamine_system`).
+
+**Plasticity in the loop.** The cue cells (46d L2/3) now project to the
+striatum of every channel — the cortico-striatal convergence the task needs —
+through synapses that learn by a dopamine-gated three-factor rule: an
+eligibility trace from pre→post coincidences (20 ms window; Pawlak & Kerr
+2008) decaying over the ~1 s in which dopamine must arrive (Yagishita et al.
+2014), and at the dopamine signal δ the D1 inputs change by +η δ e and the D2
+inputs by −η δ e (Shen et al. 2008: dopamine potentiates D1-MSN inputs and
+depresses D2-MSN inputs; a dip does the reverse). The pool → striatum channel
+wiring stays fixed.
+
+**A dopamine population.** `DopamineSystem`: 64 SNc/VTA cells at 4.7
+spikes/s (target 4–5; Grace & Bunney 1984; Schultz 1998), a primary-reward
+input (PPTg/hypothalamus glutamate) that bursts them to ~27 spikes/s for the
+150 ms of an outcome, a negative-outcome input (lateral habenula → RMTg GABA;
+Matsumoto & Hikosaka 2007; Jhou et al. 2009) that pauses them to ~0, and a
+striosomal critic — 64 D1-type cells driven by the cue cells through plastic
+synapses, inhibiting the dopamine cells (Gerfen 1984; Crittenden et al. 2016)
+— that learns to predict the outcome with the same three-factor rule. The
+learning signal is the dopamine rate deviation from tonic in the 200 ms after
+the outcome: ≈ +1 for an unpredicted reward, ≈ −0.9 for an error, 0 when the
+critic predicts the reward. Stated stand-ins: the LIF constants, the fitted
+input rates, a per-cell resting offset in the critic so its output is graded,
+and a 500 ms decay on the critic's inhibition that carries a prediction made
+during the cue to the outcome — the real mechanism is a temporal-difference
+circuit, so the burst does **not** transfer to the cue here, and the dopamine
+cells pause during a predictive cue (wrong-signed, unused).
+
+**The negative result first** (`results/bg/loop_only_diagnostics.json`,
+`plastic_dl_*.json`): with the cortical rule switched off, the loop's own
+synapses move in the right direction (cue A → channel 1 ends 15–25 % above
+cue A → channel 2) but accuracy stays at 40–55 % after 120 trials. The cue
+drives both channels' striatum, so most of the change is shared and the
+channel-specific part — which pool won — is weak in a learner whose two pools
+sit in one column with no cortical competition between them (the real pools
+would be in different columns that suppress each other; the sheet of Stage 4b
+does that). A supralinear eligibility term did not change this; a
+thalamostriatal pathway (Smith et al. 2004) locked both channels on. So the
+loop cannot yet learn the task by itself; what it can do is supply the
+learning signal.
+
+**The positive result.** With the dopamine population's response replacing
+the external number for *every* plastic synapse — cortical and striatal
+alike — the system learns as before (v2 column, quick rule, 150 trials,
+networks 31–34; `results/bg/plastic_dasys_seed*.json`):
+
+| learning signal | trials 101–150 | reaches 75 % |
+|---|---|---|
+| external reward − running mean (Stage 26, loop fixed) | 97.5 ± 0.9 % | 20–45 |
+| **dopamine population** (loop and cortex plastic) | **95.0 ± 2.2 %** | 34–55 |
+| dopamine population, loop fixed (2 networks) | 96.0 ± 0.0 % | 42–49 |
+
+And the dopamine cells show the signature the circuit is meant to produce
+(Schultz 1998): over the 150 trials, as accuracy rises from 50–60 % to
+92–98 %, the critic's response to the cue grows from 3.3 to 7.8 spikes/s and
+the burst to the (now predicted) reward falls from 21.5 to 13.1 spikes/s
+(δ +0.85 → +0.43; on the two best-learning networks 21 → 10, δ → +0.3),
+while an error still produces a full pause (δ −0.9). The prediction is
+partial, not complete, after 150 trials — the critic is still rising. The
+first version of the critic (gain 1.5) went silent and never predicted —
+cells that do not fire cannot learn — and 96 % learning on two networks
+hid it; the fix was a floor of striosome activity (gain 2.5,
+`results/bg/old/`).
+
+What this does and does not settle: the reward is no longer a number applied
+to synapses — it is an outcome event, and a population of modelled dopamine
+cells turns it into a prediction error that every plastic synapse reads. The
+primary outcome is still delivered by the task (as food would be). The loop's
+own synapses learn but do not yet carry the task; open problem 10 is replaced
+by open problem 11. RASPUTIN: `NEURAL_CORE_DOPAMINE=1` with the loop; each
+`reward` then reports the dopamine cells' rate and their prediction error.
+Tests added for the plastic synapses, the dopamine population and the
+RASPUTIN option. Cost: 8 s per two-area trial (WTA 2.9, loop 4.8).
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
@@ -1815,7 +1897,8 @@ These are the real findings so far. Each is a concrete next task.
    L2/3 and L5 pyramidal cells. Thalamocortical and long-range inputs per
    cell type are the next data to bring in.
 
-10. **The basal-ganglia loop perseverates and does not learn (Stage 26).**
+10. **The basal-ganglia loop perseverates and does not learn (Stage 26)** —
+    *the learning half is addressed in Stage 27; the perseveration remains.*
     With the measured loop in place of the hand-made circuit, the first
     30–60 choices are one action, which costs 40–50 trials in eight areas,
     and in eight areas its own output (lowest SNr) names the rewarded action
@@ -1829,6 +1912,19 @@ These are the real findings so far. Each is a concrete next task.
     signal computed from it. A cheaper interim fix is membrane noise in the
     striatum at the level the hand-made groups had (1.5 mV), which breaks
     ties; it is a stand-in and would be labelled one.
+
+11. **Credit assignment inside the loop needs cortical competition (Stage
+    27).** The cue drives the striatum of every channel, so dopamine-gated
+    plasticity on those synapses changes all channels together and the loop
+    cannot learn the cue–action rule on its own (40–55 % after 120 trials);
+    the cortical synapses still carry the task. The missing piece is not a
+    better rule but the structure around it: action pools in separate
+    columns of the sheet (Stage 4b) that suppress each other, and a thalamus
+    that is the pools' drive rather than an addition to it, so that the
+    selected channel's striatum is the only active one. A striatal
+    fast-spiking interneuron population (Koos & Tepper 1999) is the cheaper
+    partial step. Also still to do in the dopamine system: a
+    temporal-difference circuit so the burst transfers to the cue.
 
 ## Data sources (for Phases 1–3)
 

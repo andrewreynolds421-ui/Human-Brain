@@ -304,3 +304,31 @@ circuits, while eight areas can (no circuit: 93 ± 3 % on two networks, 75 % at 
 uncertainty (formulas). Not done: dopamine effects in STN/GP, striatal
 up/down states, rebound bursts, shunting, FSIs, TRN; hippocampus, cerebellum.
 Cost: +1.9 s per trial, from object count, removable by merging populations.
+
+## 8. Follow-up (5 November, afternoon): the reward signal moves inside the circuit
+
+Stage 27 adds to the loop what §7 said it lacked. (i) Dopamine-gated
+cortico-striatal plasticity (Reynolds 2001; Shen 2008; Yagishita 2014) on
+cue-cell inputs to D1/D2 of every channel. (ii) A dopamine population with a
+reward input, a habenula-type negative input and a striosomal critic that
+learns to predict the outcome; its burst or pause after the outcome is the
+prediction error that every plastic synapse — striatal and cortical — now
+reads, in place of the number applied from outside. Result on four networks:
+95 ± 2 % (Stage 26: 97.5 ± 1), 75 % at trial 34–55, and the dopamine cells
+show the Schultz signature (burst to reward 21.5 → 13 spikes/s as the critic
+rises 3.3 → 7.8 spikes/s; errors still a full pause). Negative result, stated
+in the README and `results/bg/loop_only_diagnostics.json`: the loop's own
+synapses learn in the right direction but cannot carry the task alone
+(40–55 % with the cortical rule off), because the shared cue input moves all
+channels together and this learner has no cortical competition between its
+pools; two structural attempts (supralinear eligibility, thalamostriatal
+input) did not fix it and one locked the loop. A process lesson recorded as
+well: the first critic went silent and the 96 % learning result hid it —
+the dopamine log, not the accuracy, showed the fault. Stage 4 status: basal
+ganglia with plasticity and an internal prediction error, thalamic relay a
+stand-in, reward still delivered as an outcome by the task; hippocampus,
+cerebellum and neuromodulator circuits not started. Knob count in the loop:
+MODEL constants from the paper; FITTED: 2 cortical gains, 2 tonic currents,
+thalamic gain, cue gain, 2 learning rates, critic gain, 3 input rates;
+ASSUMED: thalamic relay, critic offsets, 500 ms critic inhibition, dip gain,
+weight bounds. Open problem 11 names the next structural step.

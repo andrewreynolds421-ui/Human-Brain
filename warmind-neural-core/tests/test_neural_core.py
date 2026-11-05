@@ -198,3 +198,32 @@ def test_learner_mode_with_basal_ganglia_selection(monkeypatch):
     finally:
         nc._service = None
         svc.stop()
+
+
+def test_learner_mode_with_dopamine_system(monkeypatch):
+    """NEURAL_CORE_DOPAMINE=1: a reward is delivered as an outcome event to the dopamine
+    population; the result reports its response, and an error produces a pause."""
+    monkeypatch.setattr(nc, "NEURAL_CORE_SELECTION", "bg")
+    monkeypatch.setattr(nc, "NEURAL_CORE_BG", {"ctx_gain": 2.0, "ctx_gain_stn": 0.3, "thal_gain": 0.5, "plastic": True, "eta_bg": 0.5,
+                                                "ctx_gain_cue": 1.5, "post_lin": 0.0, "post_gain": 1.0})
+    monkeypatch.setattr(nc, "NEURAL_CORE_DOPAMINE", True)
+    monkeypatch.setattr(nc, "NEURAL_CORE_DA", {})
+    svc = nc.NeuralCoreService(mode="learner", scale=0.05, chunk_ms=100, autostart=False)
+    svc.start()
+    t0 = time.time()
+    while svc.status == "warming" and time.time() - t0 < 900:
+        time.sleep(1)
+    assert svc.status == "running", svc.error
+    nc._service = svc
+    try:
+        assert svc.info["dopamine"] is True and svc.column.da is not None and svc.column.bg.plastic
+        out = nc.run_neural_core_tool({"action": "trial", "cue": "A"})
+        assert out.startswith("cue A -> the network chose action"), out
+        r = svc.enqueue("reward", value=1.0, note="")
+        assert r["applied"] and r["dopamine"]["da_hz"] > 12 and r["dopamine"]["delta"] > 0.3, r
+        nc.run_neural_core_tool({"action": "trial", "cue": "B"})
+        r = svc.enqueue("reward", value=-1.0, note="")
+        assert r["applied"] and r["dopamine"]["da_hz"] < 2 and r["dopamine"]["delta"] < -0.3, r
+    finally:
+        nc._service = None
+        svc.stop()

@@ -1,0 +1,135 @@
+{
+ "_what": "Stage 27 diagnostics: can the loop learn the task by itself (cortical rule off)? 60-trial probes on network 31, cue -> striatum plastic, dopamine system on. Weights are cue-specific means per channel relative to their start.",
+ "probes": [
+  {
+   "settings": {
+    "ctx_gain_cue": 3.0,
+    "eta_bg": 0.1,
+    "thal_gain": 0.5,
+    "eligibility": "linear"
+   },
+   "accuracy_blocks_of_20": [
+    0.3,
+    0.5,
+    0.55
+   ],
+   "D1": {
+    "A->ch1": 0.395,
+    "A->ch2": 0.348,
+    "B->ch1": 1.055,
+    "B->ch2": 1.234
+   },
+   "D2": {
+    "A->ch1": 1.274,
+    "A->ch2": 1.295,
+    "B->ch1": 0.853,
+    "B->ch2": 0.81
+   },
+   "reading": "common mode dominates: cue A depressed both channels' D1 x0.35-0.4 (A trials were mostly wrong), cue B potentiated both; the channel difference is 10-15 %"
+  },
+  {
+   "settings": {
+    "ctx_gain_cue": 3.0,
+    "eta_bg": 0.5,
+    "thal_gain": 1.0,
+    "eligibility": "xpre * xpost (supralinear)"
+   },
+   "accuracy_blocks_of_20": [
+    0.55,
+    0.65,
+    0.45
+   ],
+   "D1": {
+    "A->ch1": 0.962,
+    "A->ch2": 0.899,
+    "B->ch1": 0.867,
+    "B->ch2": 0.921
+   },
+   "D2": {
+    "A->ch1": 0.923,
+    "A->ch2": 0.916,
+    "B->ch1": 0.943,
+    "B->ch2": 0.929
+   },
+   "reading": "weights barely move; both SNr channels low during cues (shared cue drive)"
+  },
+  {
+   "settings": {
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "thal_gain": 1.0,
+    "eligibility": "xpre * xpost"
+   },
+   "accuracy_blocks_of_20": [
+    0.45,
+    0.55,
+    0.65
+   ],
+   "D1": {
+    "A->ch1": 1.069,
+    "A->ch2": 0.913,
+    "B->ch1": 1.438,
+    "B->ch2": 1.775
+   },
+   "D2": {
+    "A->ch1": 1.0,
+    "A->ch2": 1.0,
+    "B->ch1": 1.0,
+    "B->ch2": 0.999
+   },
+   "reading": "right direction (A->ch1 > A->ch2 by 17 %, B->ch2 > B->ch1 by 23 %) but slow; D2 never fires so the NoGo side does not learn"
+  },
+  {
+   "settings": {
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "thal_gain": 1.0,
+    "eligibility": "xpre * xpost",
+    "thal_str_gain": 1.0
+   },
+   "accuracy_blocks_of_20": [
+    0.5,
+    0.45,
+    0.4
+   ],
+   "D1": {
+    "A->ch1": 2.582,
+    "A->ch2": 2.585,
+    "B->ch1": 2.508,
+    "B->ch2": 2.505
+   },
+   "SNr_last_trials": "0 Hz in both channels",
+   "reading": "thalamostriatal input closes a positive loop: both channels selected permanently, weights saturate"
+  },
+  {
+   "settings": {
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "thal_gain": 1.0,
+    "eligibility": "xpre * xpost",
+    "thal_str_gain": 2.0
+   },
+   "accuracy_blocks_of_20": [
+    0.8,
+    0.4,
+    0.7
+   ],
+   "D1": {
+    "A->ch1": 0.126,
+    "A->ch2": 0.114,
+    "B->ch1": 0.058,
+    "B->ch2": 0.055
+   },
+   "D2": {
+    "A->ch1": 2.86,
+    "A->ch2": 2.891,
+    "B->ch1": 2.918,
+    "B->ch2": 2.921
+   },
+   "SNr_last_trials": "0 Hz in both channels",
+   "reading": "same lock, weights swing the other way"
+  }
+ ],
+ "dopamine_in_all_probes": "burst to reward 25-28 spikes/s (delta +1.1), pause to <0.3 spikes/s on error (delta -0.85 to -0.9); the critic stays near 0 because the mean reward is near 0 while accuracy is at chance",
+ "conclusion": "the loop's synapses learn in the right direction but cannot assign credit between channels on their own: the cue drives both channels' striatum and the channel-specific signal (which pool won) is weak in this learner, whose two pools sit in one column with no cortical competition between them. The 150-trial loop-only runs (plastic_dl_*, two networks) confirm it: 40-55 % at trial 120."
+}
