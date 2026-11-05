@@ -5,12 +5,13 @@ data we actually have (one cubic millimetre of cortex at synapse resolution,
 whole-brain histology atlases, MRI tractography), then let it learn with
 biologically local, reward-gated plasticity.
 
-**What the object is today (4 Nov 2026):** a model of human *association
+**What the object is today (5 Nov 2026):** a model of human *association
 cortex* — twelve cell populations per column with measured local wiring
 (H01), membranes and synapses (Allen human data), at 1.5–3 % of the real
 neuron count with full per-neuron in-degree; up to eight areas joined by
-*macaque* long-range wiring; a hand-made action-selection circuit standing
-in for the basal ganglia; reward supplied from outside. It learns cue–action
+*macaque* long-range wiring; action selection by a basal-ganglia–thalamus
+loop built from published rat circuit data (or the earlier hand-made
+circuit); reward supplied from outside. It learns cue–action
 tasks (96–97 % on the recalibrated column, Stage 25), routes real text at
 63 % through a self-organising sensory layer, and reads printed letters at 76 % in unseen fonts. It is not a brain,
 not full-scale, and not yet validated against human recordings. Status by
@@ -104,7 +105,7 @@ and where each stands. Full audit in `AUDIT.md`.
 | **1** | One column in the right state: asynchronous 1–10 Hz, no tuning knobs beyond external drive | **done with caveats** — 12 populations, dendrites, measured membranes/synapses/wiring, asynchronous; 9 of 12 populations within reference rate ranges after the Stage 25 recalibration (was 7); still 2 fitted calibrations + 5 assumed constants |
 | **2** | Full-scale column (32,500 neurons, 130 M synapses) | **not done** — everything runs at 1.5–3 % of neurons with full in-degree; needs a GPU simulator and ≥64 GB |
 | **3** | Cortical sheet: per-area layers (BigBrain), cell types (Allen), area wiring (HCP) | **started with substitutes** — multi-column sheet + 8 macaque association areas (Markov FLN); same column everywhere; no human atlas data yet (Stages 4–5) |
-| **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **not started** — stand-ins only (hand-made selection circuit, external reward, scalar surprise/uncertainty) |
+| **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **started** — a spiking basal-ganglia–thalamus loop built from published rat circuit data (Humphries et al. 2006) replaces the hand-made selection circuit without loss (Stage 26); reward still external, surprise/uncertainty still scalar formulas; no hippocampus, cerebellum or neuromodulator circuits |
 | **5** | Senses and a body | **partial, by another route** — RASPUTIN as a toy body; self-organising sensory layers for text and printed letters (Stages 20–23); no retina/cochlea/motor, no speech yet |
 | **6** | Learning across the sheet with dopamine from the basal ganglia | **most progress** — three-factor rule, gating, turnover, surprise, uncertainty; 80–92 % on cue tasks, 63 % routing real text; but on one pathway only, reward from outside, 9 evolved rule settings (Stages 6–21) |
 | **7** | Validation against human recordings (intracranial, EEG/MEG, fMRI, behaviour) | **not done** — only firing rates vs reference ranges |
@@ -1622,6 +1623,103 @@ growth, cleaner pool separation: dominance 0.81 vs 0.68). The speed-up is a
 by-product: no population fires at 33 Hz any more. RASPUTIN's core uses v2
 (`NEURAL_CORE_COLUMN=v2`, default; `v1` restores the previous column).
 
+## Stage 26: a measured basal-ganglia–thalamus loop replaces the hand-made selection circuit
+
+Roadmap Stage 4 (subcortex) begins here. Until now the action pools competed
+through two or three hand-made groups of 40 cells with mutual inhibition — a
+stand-in measured nowhere. They are now replaced, as an option, by a spiking
+basal-ganglia–thalamus loop built from a published rat circuit model
+(Humphries, Stewart & Gurney 2006, *J Neurosci* 26:12921; `synth/basal_ganglia.py`;
+every number with its label and source in `results/bg_parameters.json`):
+
+* **Taken from the paper:** the populations (D1 and D2 striatum, STN, GP,
+  SNr; 64 cells per channel), the pathways (direct, indirect, hyperdirect,
+  pallidal and nigral collaterals), within-channel connection probability
+  0.25 and diffuse 0.25/K, all ten transmission delays, the synaptic kinetics
+  (AMPA 3 mV / 2 ms, NMDA 0.1 mV / 100 ms, GABA_A 3 mV / 3 ms, striatal
+  output ×4), the membranes (R, τ, threshold), reset, refractory period,
+  noise, the chloride floor, the striatal down-state current, the dopamine
+  level (λ = 0.3: D1 input ×1.3, D2 ×0.7), the selection criterion (a channel
+  is selected when its SNr falls below 5 spikes/s) and the switching protocol.
+* **Added, labelled assumed:** a thalamic relay per channel (the paper stops
+  at SNr), SNr → thalamus and thalamus → cortical pool, the latter using the
+  column's own external (thalamic) synapse onto L5 pyramids.
+* **Fitted (stand-in cortex first, as `METHODS.md` asks):** the cortical PSP
+  gain onto striatum (2.0) and onto STN (0.3) — a pool of 30–60 real cells is
+  not the paper's Poisson "salience" train and the paper does not say how
+  many inputs each cell gets; the STN and SNr tonic currents (1.22 / 0.42 nA,
+  paper 1.1 / 0.39) refitted so the resting rates sit in the recorded ranges
+  with this input, exactly as the paper fitted its own; the thalamo-cortical
+  gain (0.5). `results/bg/scan_*.json`, `spon_scan.json`.
+* **Left out, stated:** dopamine's effects in STN and GP, striatal up/down
+  states beyond the constant current, STN rebound bursts, shunting
+  inhibition, striatal interneurons, GP → striatum, the reticular nucleus.
+  **Reward is still a number from outside** — nothing in the circuit
+  predicts it yet; that is the next step.
+
+**The loop alone** (`scripts/bg_selection_test.py`, Poisson stand-in cortex
+at the paper's 3 spikes/s background, four seeds): resting rates STN 10,
+GP 19, SNr 25, D1 0.6 spikes/s — inside the awake-rodent ranges collected in
+`results/bg_parameters.json` (STN 6–13, GP 17–36, SNr 22–29, MSN < 2); D2 is
+silent at rest (floor 0.01), a stated residual. Driving one channel at ≥ 10–12
+spikes/s brings its SNr below 5 spikes/s and releases its thalamic relay
+(~50 spikes/s against ~8 in the other channels). In the paper's switching
+protocol (100 salience pairs, 4–40 spikes/s, four seeds;
+`results/bg/standalone_final.json`) the loop behaves as the paper's does up
+to ~16 spikes/s — it switches to a stronger second channel in 80 % of pairs
+and keeps the first against a weaker one in 85 % — but above that both
+channels end up selected (97 % of pairs with both saliences > 16), because
+the LIF striatum saturates; the paper's striatal low-pass dynamics and
+dopamine effects in STN/GP, left out here, are what limit that. Its working
+range is therefore 10–16 spikes/s of cortical pool rate.
+
+**Under the learner** (v2 column, quick rule, 150 trials, same four network
+seeds per row; `results/bg/learning_comparison.json`, "reaches 75 %" = first
+trial at which the previous 20 average ≥ 75 %):
+
+| selection circuit | 2 areas, trials 101–150 | reaches 75 % | 8 areas, trials 101–150 | reaches 75 % | s / trial (2 areas) |
+|---|---|---|---|---|---|
+| hand-made WTA groups (Stage 25) | 97.0 ± 2.2 % | 21–32 | 95.5 ± 4.6 % | 20–40 | 2.9 |
+| **basal-ganglia loop** (gain 2.0 / 0.3, thalamic 0.5) | **97.5 ± 0.9 %** | 20–45 | **96.0 ± 1.4 %** | 64–85 | 4.8 |
+| no circuit at all | 98.0 ± 1.4 % | 33–52 | 93.0 ± 3.0 % (2 networks) | 48–78 | 3.9 |
+
+Three honest readings of this table:
+
+1. The measured loop does the stand-in's job without loss, and the decision
+   can be read where the brain reads it: in the last 50 trials the channel
+   with the lowest SNr is the rewarded action 92 % of the time (thalamic
+   relay of the winner 10 spikes/s, loser 3), without looking at the cortical
+   counts. The other thalamic gains tried (0.25, 1.0; cortical gain 1.5) all
+   land at 95–98 % too (`results/bg/learn_{B,C,E}_*.json`).
+2. In the learner the loop works in a *graded* regime, not the paper's
+   all-or-none one: the winning channel's SNr falls to ~20 spikes/s, not
+   below 5, because the cortical pools fire 4–8 spikes/s, under the circuit's
+   selection threshold. Stronger thalamic feedback (gain 1.0) did not lock
+   the loop onto one pool, which was the fear; what every non-WTA learner
+   shows instead is a persistent early bias toward one pool (the first 40
+   choices nearly all the same action), which the three-factor rule
+   corrects within ~40 trials.
+3. **On the recalibrated column the two-area task no longer needs a selection
+   circuit at all** (98 ± 1 % with none, though it reaches 75 % later: trial 33–52 against 21–32 with the WTA groups and 20–45 with the loop), so the two-area result cannot
+   tell the circuits apart. Eight areas can: there the loop ends highest
+   (96 ± 1 %, against 93 ± 3 % with no circuit) but is the slowest to start
+   — 75 % at trial 64–85, against 20–40 with the WTA groups — because it
+   **perseverates**: with the loop the first 30–60 choices are all the same
+   action (the bare pools do the same for 20–40 trials; the WTA groups'
+   membrane noise breaks ties from trial 1). The three-factor rule, acting
+   only on the cortical synapses, has to weaken the favoured pool until the
+   other wins; nothing in the loop itself learns from the reward yet.
+
+Cost: ~1.9 s per trial for the loop's 6 cell groups and 17 pathways as
+separate Brian2 objects; merging the populations into one group would
+remove most of it (not done, so that these runs stay exactly reproducible).
+RASPUTIN can use the loop with `NEURAL_CORE_SELECTION=bg` (the default stays
+`wta`, which still starts fastest); `LearnerColumn(selection="bg")` and
+`reward_learning.py --selection bg` elsewhere. Tests added: the PSP scaling,
+the wiring against the parameter file, selection on the stand-in
+(`tests/test_synth.py`), and the RASPUTIN option (`tests/test_neural_core.py`).
+Open problem 10 records what the loop still lacks.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
@@ -1716,6 +1814,21 @@ These are the real findings so far. Each is a concrete next task.
    interneuron subtypes this over-drives fast-spiking cells and starves
    L2/3 and L5 pyramidal cells. Thalamocortical and long-range inputs per
    cell type are the next data to bring in.
+
+10. **The basal-ganglia loop perseverates and does not learn (Stage 26).**
+    With the measured loop in place of the hand-made circuit, the first
+    30–60 choices are one action, which costs 40–50 trials in eight areas,
+    and in eight areas its own output (lowest SNr) names the rewarded action
+    only 79 % of the time because one channel sits ~7 spikes/s lower than the
+    other at rest. Both have the same cause: every synapse in the loop is
+    fixed, so nothing corrects a channel's baseline or weakens a channel the
+    reward has just punished. The next step is the one the roadmap always
+    named — reward prediction and dopamine-dependent cortico-striatal
+    plasticity inside the loop (Reynolds & Wickens 2002 three-factor rule on
+    the D1/D2 inputs), with the external reward replaced by a dopamine
+    signal computed from it. A cheaper interim fix is membrane noise in the
+    striatum at the level the hand-made groups had (1.5 mV), which breaks
+    ties; it is a stand-in and would be labelled one.
 
 ## Data sources (for Phases 1–3)
 

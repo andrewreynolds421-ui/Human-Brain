@@ -65,16 +65,19 @@ thicknesses, no Allen Human Brain Atlas cell-type differences); it is 8 of
 when" was fMRI network patterns and EEG spectra). The 25 % inter-areal
 share is a reasoned estimate from one paper.
 
-### Stage 4 — subcortex  ▸ not started
+### Stage 4 — subcortex  ▸ started (5 November, Stage 26 — see §7)
 
-Everything subcortical is a stand-in: action selection is two to three
-hand-made groups of 40 LIF cells with mutual inhibition (not measured
-anywhere); the thalamus is Poisson input; reward is a number from outside;
-"surprise" and "uncertainty" are two-line formulas standing in for
-noradrenaline and acetylcholine. These stand-ins did real work (learning
-only became reliable once the selection circuit existed), but they are the
-biggest gap between the model and the roadmap, and they are hand-designed
-in a project whose premise was "architecture from data".
+At the time of the audit everything subcortical was a stand-in: action
+selection was two to three hand-made groups of 40 LIF cells with mutual
+inhibition (not measured anywhere); the thalamus Poisson input; reward a
+number from outside; "surprise" and "uncertainty" two-line formulas standing
+in for noradrenaline and acetylcholine. These stand-ins did real work
+(learning only became reliable once the selection circuit existed, on the v1
+column), but they were the biggest gap between the model and the roadmap,
+hand-designed in a project whose premise was "architecture from data".
+Since then the selection circuit has been replaced by a basal-ganglia–
+thalamus loop built from published rat circuit data (§7); reward and the
+neuromodulator formulas remain stand-ins.
 
 ### Stage 5 — senses and a body  ▸ partial, by a different route than planned
 
@@ -276,3 +279,28 @@ each: two areas 97 ± 2 % (was 82 ± 7), eight areas 96 ± 5 % (was 83 ± 3),
 7 s instead of 15 s. The v1 preset and all earlier results are unchanged;
 RASPUTIN uses v2 by default. Knob count after the fix: 2 fitted, 5 assumed
 (one more than before: the non-FS input ratio, sourced).
+
+## 7. Follow-up (5 November): Stage 4 begun — the selection circuit from data
+
+Recommendation 7 of §4 ("Stage 4 first, not Stage 2") is carried out in part.
+`synth/basal_ganglia.py` is a spiking basal-ganglia–thalamus loop built from
+Humphries, Stewart & Gurney (2006): populations, pathways, probabilities,
+delays, synaptic kinetics, membranes, tonic currents, noise, dopamine level,
+selection criterion and protocol from the paper; a thalamic relay and its two
+pathways added and labelled assumed; four numbers fitted on a stand-in cortex
+first (two cortical gains, two tonic currents) and one in the learner (the
+thalamo-cortical gain), all recorded with their scans in
+`results/bg_parameters.json` and `results/bg/`. On its own the loop sits in the
+recorded resting ranges (STN 10, GP 19, SNr 25 spikes/s) and selects and
+switches as the paper's does. Under the learner it replaces the hand-made
+circuit with no loss: two areas 97.5 ± 0.9 % on four networks (WTA 97 ± 2),
+eight areas 96 ± 1 % (WTA 96 ± 5) but reaching 75 % only at trial 64–85 against 20–40, because the loop perseverates on one action for its first 30–60 trials (below); the rewarded action can be read off the SNr/thalamus directly
+(92 % in the last 50 trials). Two things the comparison showed that were not
+known before: the loop works in a graded regime in the learner (SNr 20 vs 27
+spikes/s, never below the paper's 5 Hz criterion, because the pools fire
+4–8 spikes/s), and on the recalibrated column the two-area task no longer
+needs any selection circuit (98 ± 1 % with none, reaching 75 % later: trial 33–52 vs 21–32 / 20–45) — so that task cannot separate the
+circuits, while eight areas can (no circuit: 93 ± 3 % on two networks, 75 % at trial 48–78). The loop's slow start is perseveration — its first 30–60 choices are one action, since nothing in the loop learns from the reward and only the WTA groups' noise breaks ties — which points the next step at plasticity inside the loop (cortico-striatal learning and reward prediction), not at more fitting. Still stand-ins: reward (external), surprise and
+uncertainty (formulas). Not done: dopamine effects in STN/GP, striatal
+up/down states, rebound bursts, shunting, FSIs, TRN; hippocampus, cerebellum.
+Cost: +1.9 s per trial, from object count, removable by merging populations.

@@ -188,9 +188,12 @@ def test_learner_mode_with_basal_ganglia_selection(monkeypatch):
     try:
         assert svc.info["selection"] == "bg" and svc.column.bg is not None
         assert not any(name.startswith("select") for name in (o.name for o in svc.column.net.objects))
-        r = svc.column.trial("A")
-        assert r["choice"] in (1, 2) and len(r["snr_hz"]) == 2 and all(x >= 0 for x in r["snr_hz"])
-        out = nc.run_neural_core_tool({"action": "reward", "value": 1 if r["choice"] == 1 else -1})
+        out = nc.run_neural_core_tool({"action": "trial", "cue": "A"})     # through the worker thread
+        assert out.startswith("cue A -> the network chose action"), out
+        choice = int(out.split("action ")[1][0])
+        bg = svc.column.last_bg                                           # the loop's own output
+        assert len(bg["snr"]) == 2 and all(x >= 0 for x in bg["snr"])
+        out = nc.run_neural_core_tool({"action": "reward", "value": 1 if choice == 1 else -1})
         assert out.startswith("reward") and "applied" in out, out
     finally:
         nc._service = None
