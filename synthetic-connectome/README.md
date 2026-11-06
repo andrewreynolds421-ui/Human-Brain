@@ -1889,6 +1889,40 @@ and 29c below had already been queued with ×0.5; given this table that
 setting is equivalent to the unchanged rule within spread, and they are
 reported as such.
 
+### 29b. Eight areas and rule reversal with the routed loop
+
+Both with the routed loop, dopamine system and cortical rate ×0.5 (29a: same
+as unchanged within spread).
+
+**Eight areas** (networks 9001–9004, 150 trials):
+
+| | trials 101–150 | reaches 75 % | early run | s / trial |
+|---|---|---|---|---|
+| loop, routed, dopamine (Stage 29) | 89.5 ± 4.3 % | 33–59 | 20 | 13.2 |
+| loop, not routed, external reward (Stage 26) | 96.0 ± 1.4 % | 64–85 | 37 | 11.2 |
+| hand-made WTA groups (Stage 25) | 95.5 ± 4.6 % | 20–40 | 9 | 6.5 |
+
+Routing roughly halves the eight-area perseveration (longest early run 37 →
+20; 75 % reached ~30 trials sooner) but does not reach the WTA circuit's
+start, and the final accuracy is ~6 points lower — the same loop/cortex
+competition as in two areas, larger here. Not a one-change comparison:
+Stage 26 had neither routing nor the dopamine system and the full cortical
+rate.
+
+**Reversal** (networks 31–34, 200 trials, rewarded mapping flipped at trial
+100):
+
+| | trials 71–100 | trials 101–130 | trials 171–200 | back to 75 % after the flip |
+|---|---|---|---|---|
+| loop, routed, dopamine | 92 % | 36 % | 79 ± 5 % | 44–93 trials (all four relearn) |
+| hand-made WTA groups | 96 % | 38 % | 80 ± 7 % | 32–56 trials (all four relearn) |
+
+The loop reverses — its own synapses and the critic follow the new rule —
+and ends level with the WTA circuit, but takes longer to get back (median
+~62 vs ~49 trials): the striatal weights learned for the old rule are
+bounded at ×3 and must be unlearned through dopamine dips, which are
+rate-floored.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
