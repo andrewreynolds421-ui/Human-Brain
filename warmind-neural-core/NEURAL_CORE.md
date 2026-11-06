@@ -251,6 +251,12 @@ trial. `NEURAL_CORE_DA` takes JSON options (`crit_gain`, `crit_eta`,
 `rew_hz`, `inh_hz`, ...). The outcome itself is still given by RASPUTIN —
 as food is given to an animal.
 
+Thalamus as the pools' drive (README Stage 28): add
+`"thal_route": 0.15, "thal_drive_mV": 31, "thal_n_in": 64, "thal_gain": 1.0`
+to `NEURAL_CORE_BG` (with `plastic`, `eta_bg 0.5`, `ctx_gain_cue 1.5`,
+`post_lin 0`, `post_gain 1`) and the loop learns the task itself and no
+longer perseverates: 92.5 % on four networks, 75 % within 20–42 trials.
+
 Model size: `learner` runs at double the previous neuron count by default
 (`NEURAL_CORE_LEARNER_SCALE=0.03`), with action selection scaled to pool size
 (README Stage 15); it learns sooner and better than the smaller one.

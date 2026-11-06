@@ -247,3 +247,29 @@ def test_dopamine_cells_burst_to_reward_and_pause_to_punishment():
     net.run(500 * ms)
     t = float(net.t / ms); da.deliver(-1.0); net.run(150 * ms); da.end_event(); net.run(50 * ms)
     assert da.rate(t, t + 200) < 2 and da.delta(t, t + 200) < -0.5
+
+
+# ------------------------------------------------------ thalamus as the pools' drive (stage 28)
+def test_routing_through_the_thalamus_preserves_the_resting_input():
+    """route_external_through_thalamus removes `frac` of each pool cell's external Poisson input and
+    sets the relay weights so that the relay at its resting rate delivers exactly what was removed."""
+    import brian2 as b2
+    from brian2 import ms, Hz
+    from synth.basal_ganglia import BasalGanglia, route_external_through_thalamus, THAL_REST_HZ
+    b2.start_scope(); b2.defaultclock.dt = 0.1 * ms
+    G = b2.NeuronGroup(100, "v : 1\ng_ed : siemens\nlam_ext : 1\ne_ext : 1", threshold="v > 1")
+    dt_s = 1e-4
+    lam0 = np.linspace(2.0, 3.0, 100); G.lam_ext = lam0; G.e_ext = np.exp(-lam0)
+    pools = [np.arange(0, 30), np.arange(30, 60)]
+    bg = BasalGanglia([(G, p) for p in pools], seed=4, target=(G, "g_ed", 0.33), thal_n_in=64)
+    info = route_external_through_thalamus(G, pools, 0.15, bg, 0.33)
+    cells = np.arange(60)
+    assert np.allclose(np.asarray(G.lam_ext)[cells], 0.85 * lam0[cells])
+    assert np.allclose(np.asarray(G.lam_ext)[60:], lam0[60:])                     # non-pool cells untouched
+    assert np.allclose(np.asarray(G.e_ext)[cells], np.exp(-0.85 * lam0[cells]))
+    # relay at rest: sum over a cell's relay inputs of rate x weight == removed rate x external weight
+    w = np.asarray(bg.thal_ctx.w / b2.nS); j = np.asarray(bg.thal_ctx.j)
+    delivered = np.bincount(j, weights=w * THAL_REST_HZ, minlength=100)[cells]
+    removed = 0.15 * lam0[cells] / dt_s * 0.33
+    assert np.allclose(delivered, removed, rtol=1e-9)
+    assert info["frac"] == 0.15 and info["relay_inputs_per_cell"] == 64

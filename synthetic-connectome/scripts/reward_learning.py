@@ -154,11 +154,15 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
         from synth.basal_ganglia import BasalGanglia
         w_thal = float(np.asarray(col.neuron["w_ext_pop"])[l5])     # the column's external (thalamic) synapse on L5E
         bkw = dict(bg_kw or {})
+        thal_route = float(bkw.pop("thal_route", 0.0))   # Stage 28: share of the pools' external drive sent through the relay
         # plastic loop (Stage 27): the cue cells project to the striatum of both channels and those
         # synapses learn from dopamine; the pool -> striatum channel wiring stays fixed
         ctx = (G, np.sort(np.concatenate([cueA, cueB]))) if bkw.get("plastic") else None
         bg = BasalGanglia([(G, pool1), (G, pool2)], seed=seed + 7, target=(G, "g_ed", w_thal), context=ctx, **bkw)
         net.add(*bg.objects)
+        if thal_route > 0:
+            from synth.basal_ganglia import route_external_through_thalamus
+            route_external_through_thalamus(G, [pool1, pool2], thal_route, bg, w_thal)
         if da_kw is not None:
             from synth.basal_ganglia import DopamineSystem
             if ctx is None:
@@ -335,7 +339,7 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
                 counts=counts, cues="".join("AB"[c] for c in cue_seq), choices=[int(c) for c in choices],
                 n_plastic=int(sum(idx.size for _, idx in rgroups)), selection=selection,
                 dopamine=(dict(params=da.p, log=da_log, cortical_da=cortical_da) if da is not None else None),
-                bg=(dict(params=bg.p, log=bg_log, weights=bg_weights,
+                bg=(dict(params=bg.p, routed=getattr(bg, "routed", None), log=bg_log, weights=bg_weights,
                          agree_with_counts=round(float(np.mean([(e["selected"] is not None) and (e["selected"] + 1 == ch)
                                                                 for e, ch in zip(bg_log, choices)])), 3),
                          selected_frac=round(float(np.mean([e["selected"] is not None for e in bg_log])), 3))

@@ -1,0 +1,50 @@
+{
+ "about": "relay tonic drive scan, stand-in cortex 3 spikes/s, channel 0 driven at 14 spikes/s; target rest 13 Hz (Vitek et al. 1994, VLo 13 +/- 8, VA 15 +/- 8 Hz, awake monkey)",
+ "rows": [
+  {
+   "drive_mV": 24,
+   "thal_rest": 2.3,
+   "snr_rest": 25.2,
+   "thal_sel": 45.4,
+   "thal_unsel": 0.2,
+   "snr_sel": 2.2,
+   "snr_unsel": 34.4
+  },
+  {
+   "drive_mV": 28,
+   "thal_rest": 7.1,
+   "snr_rest": 25.2,
+   "thal_sel": 62.6,
+   "thal_unsel": 1.6,
+   "snr_sel": 2.2,
+   "snr_unsel": 34.4
+  },
+  {
+   "drive_mV": 32,
+   "thal_rest": 15.5,
+   "snr_rest": 25.2,
+   "thal_sel": 78.5,
+   "thal_unsel": 5.2,
+   "snr_sel": 2.2,
+   "snr_unsel": 34.4
+  },
+  {
+   "drive_mV": 36,
+   "thal_rest": 27.1,
+   "snr_rest": 25.2,
+   "thal_sel": 92.8,
+   "thal_unsel": 11.5,
+   "snr_sel": 2.2,
+   "snr_unsel": 34.4
+  },
+  {
+   "drive_mV": 40,
+   "thal_rest": 40.0,
+   "snr_rest": 25.2,
+   "thal_sel": 106.3,
+   "thal_unsel": 21.4,
+   "snr_sel": 2.2,
+   "snr_unsel": 34.4
+  }
+ ]
+}

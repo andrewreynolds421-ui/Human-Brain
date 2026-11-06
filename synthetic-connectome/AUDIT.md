@@ -332,3 +332,16 @@ MODEL constants from the paper; FITTED: 2 cortical gains, 2 tonic currents,
 thalamic gain, cue gain, 2 learning rates, critic gain, 3 input rates;
 ASSUMED: thalamic relay, critic offsets, 500 ms critic inhibition, dip gain,
 weight bounds. Open problem 11 names the next structural step.
+
+## 9. Follow-up (5–6 November): the thalamus as the pools' drive (Stage 28)
+
+The handoff's first item, done. 15 % of each action pool's outside input now
+arrives through the thalamic relay, held at the measured resting rate of
+motor thalamus (13 spikes/s, Vitek et al. 1994) with weights computed so the
+resting input is unchanged; only the share is assumed. On four networks the
+loop learns the task with all cortical plasticity frozen (83 ± 7.5 %, was
+56 %), and the full system loses its perseveration (75 % by trial 20–42,
+was 34–55) at a cost of 2.5 points in final accuracy (92.5 ± 1.7 vs 95 ± 2.2)
+because loop and cortex now both learn and partly compete. Open problems 10
+and 11 are addressed; the loop/cortex balance, the TD circuit and the
+eight-area test are what remains for Stage 4's basal ganglia and thalamus.

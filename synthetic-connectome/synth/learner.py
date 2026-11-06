@@ -205,9 +205,13 @@ class LearnerColumn(LiveColumn):
             from .basal_ganglia import BasalGanglia
             w_thal = float(np.asarray(col.neuron["w_ext_pop"])[l5])   # the column's external (thalamic) synapse on L5E
             ctx = (self.G, np.sort(cue_cells)) if (self.bg_kw.get("plastic") or self.da_kw is not None) else None
+            bkw = dict(self.bg_kw); thal_route = float(bkw.pop("thal_route", 0.0))
             self.bg = BasalGanglia([(self.G, self.pools[k_ + 1]) for k_ in range(K)], seed=seed + 7,
-                                   target=(self.G, "g_ed", w_thal), context=ctx, **self.bg_kw)
+                                   target=(self.G, "g_ed", w_thal), context=ctx, **bkw)
             extra += self.bg.objects
+            if thal_route > 0:                    # Stage 28: the relay carries a share of the pools' drive
+                from .basal_ganglia import route_external_through_thalamus
+                route_external_through_thalamus(self.G, [self.pools[k_ + 1] for k_ in range(K)], thal_route, self.bg, w_thal)
             if self.da_kw is not None:
                 from .basal_ganglia import DopamineSystem
                 self.da = DopamineSystem(self.bg, ctx, seed=seed + 7, **self.da_kw)

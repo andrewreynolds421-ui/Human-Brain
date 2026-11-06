@@ -393,5 +393,29 @@
    "delta = (rate - tonic) / 20 spikes/s, negative values x 4 (ASSUMED, so a full pause weighs as much as a full burst; the biology's asymmetry is in the references above)"
   ],
   "defaults": "synth/basal_ganglia.py DA_DEFAULTS"
+ },
+ "thalamic_routing": {
+  "_what": "Stage 28: a share of each action pool's external Poisson input is delivered through the relay instead",
+  "relay_rest_hz": {
+   "value": 13,
+   "label": "MEASURED",
+   "source": "Vitek JL et al. (1994) Physiological properties and somatotopic organization of the primate motor thalamus. J Neurophysiol 71:1498-1513 (VLo 13 +/- 8, VA 15 +/- 8 spikes/s, awake monkey)"
+  },
+  "thal_drive_mV": {
+   "value": 31,
+   "label": "FITTED to relay_rest_hz under tonic SNr (results/bg/thal_drive_scan.json)"
+  },
+  "thal_route": {
+   "value": 0.15,
+   "label": "ASSUMED: thalamic synapses are a minority (~5-20 %) of cortical excitatory input (Benshalom & White 1986; Bruno & Sakmann 2006); 0.10 and 0.30 also run (results/thal/)"
+  },
+  "relay_to_pool_weight": {
+   "value": "computed per cell: removed input rate / (relay inputs x 13 Hz), x the external synapse; ~x5 at 15 %",
+   "label": "DERIVED"
+  },
+  "thal_n_in": {
+   "value": 64,
+   "label": "ASSUMED: every relay cell of the channel onto every pool cell"
+  }
  }
 }

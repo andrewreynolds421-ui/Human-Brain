@@ -178,6 +178,7 @@ environment variables are listed at the top of `warmind/neural_core.py`.
 | basal-ganglia loop instead of WTA | 2 areas 97.5 ± 0.9 %; 8 areas 96 ± 1 % but 75 % only by 64–85 (perseveration) | 4 + 4 | `results/bg/learning_comparison.json` |
 | no selection circuit at all | 2 areas 98 ± 1 %; 8 areas 93 ± 3 % (2 nets) | 4 / 2 | same |
 | loop alone, paper protocol | rest STN 10 / GP 19 / SNr 25 Hz in range; selects from 10–12 spikes/s; switches 80 %, keeps 85 % up to 16 spikes/s; both selected above | 4 | `results/bg/standalone_final.json` |
+| thalamic relay carrying 15 % of the pools' drive (Stage 28) | loop alone 83 ± 7.5 %; full system 92.5 ± 1.7 %, 75 % by 20–42 | 4 | `results/thal/summary.json` |
 | dopamine population as the learning signal | 95 ± 2 %, 75 % by 34–55; burst to reward 21.5 → 13 Hz as the critic rises 3.3 → 7.8 Hz | 4 | `results/bg/stage27_summary.json` |
 | loop learning the task alone (cortex off) | **does not**: 40–55 % | 2 + probes | `results/bg/loop_only_diagnostics.json` |
 | text routing, CLINC150, 3 ways | 58–63 % on unseen messages (chance 33 %) | — | `results/routing/clinc_s400_lr033*.json`, `results/sensory/s400_score.json` |
@@ -208,7 +209,7 @@ result does and does not settle.
 The audit (`AUDIT.md` §4, §7, §8) and the README's *Open problems* 0–11 are
 the long form. Priorities as they stand on 5 Nov:
 
-1. **Thalamus as the pools' drive, and cortical competition between pools**
+1. *(Done 6 Nov, README Stage 28: loop alone 83 %, full system 92.5 % reaching 75 % by trial 20–42. Remaining: the loop/cortex balance — both relays rise late in a run — and the eight-area and reversal tests with routing.)* **Thalamus as the pools' drive, and cortical competition between pools**
    (open problem 11; also the Stage 4 thalamus item). Today the thalamic relay
    adds to a pool's external Poisson drive; nothing is removed from an
    unselected pool, so the loop's striatal synapses cannot tell channels

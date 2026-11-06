@@ -107,7 +107,7 @@ and where each stands. Full audit in `AUDIT.md`.
 | **1** | One column in the right state: asynchronous 1–10 Hz, no tuning knobs beyond external drive | **done with caveats** — 12 populations, dendrites, measured membranes/synapses/wiring, asynchronous; 9 of 12 populations within reference rate ranges after the Stage 25 recalibration (was 7); still 2 fitted calibrations + 5 assumed constants |
 | **2** | Full-scale column (32,500 neurons, 130 M synapses) | **not done** — everything runs at 1.5–3 % of neurons with full in-degree; needs a GPU simulator and ≥64 GB |
 | **3** | Cortical sheet: per-area layers (BigBrain), cell types (Allen), area wiring (HCP) | **started with substitutes** — multi-column sheet + 8 macaque association areas (Markov FLN); same column everywhere; no human atlas data yet (Stages 4–5) |
-| **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **started** — a spiking basal-ganglia–thalamus loop built from published rat circuit data (Humphries et al. 2006) replaces the hand-made selection circuit without loss (Stage 26); a dopamine population with a striosomal critic turns the outcome into a prediction error that every plastic synapse reads, and the loop's cortico-striatal synapses learn (Stage 27) — though they cannot carry the task alone yet; the thalamic relay is a stand-in; surprise/uncertainty still scalar formulas; no hippocampus or cerebellum |
+| **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **started** — a spiking basal-ganglia–thalamus loop built from published rat circuit data (Humphries et al. 2006) replaces the hand-made selection circuit without loss (Stage 26); a dopamine population with a striosomal critic turns the outcome into a prediction error that every plastic synapse reads, the loop's cortico-striatal synapses learn (Stage 27) and, with the thalamic relay carrying a share of the pools' drive at its measured resting rate, carry the task on their own at 83 % (Stage 28); relay membranes and the routed share are still assumed, no reticular nucleus; surprise/uncertainty still scalar formulas; no hippocampus or cerebellum |
 | **5** | Senses and a body | **partial, by another route** — RASPUTIN as a toy body; self-organising sensory layers for text and printed letters (Stages 20–23); no retina/cochlea/motor, no speech yet |
 | **6** | Learning across the sheet with dopamine from the basal ganglia | **most progress** — three-factor rule, gating, turnover, surprise, uncertainty; 80–92 % on cue tasks, 63 % routing real text; but on one pathway only, reward from outside, 9 evolved rule settings (Stages 6–21) |
 | **7** | Validation against human recordings (intracranial, EEG/MEG, fMRI, behaviour) | **not done** — only firing rates vs reference ranges |
@@ -1802,6 +1802,63 @@ by open problem 11. RASPUTIN: `NEURAL_CORE_DOPAMINE=1` with the loop; each
 Tests added for the plastic synapses, the dopamine population and the
 RASPUTIN option. Cost: 8 s per two-area trial (WTA 2.9, loop 4.8).
 
+## Stage 28: the thalamus as the pools' drive — the loop learns by itself
+
+Open problem 11 said the loop could not assign credit between channels: its
+thalamic relay only *added* to a pool's input, so an unselected channel lost
+nothing and the cue-driven striatal change was shared by all channels. Now a
+stated share of each action pool's outside input comes *through* the relay
+(`route_external_through_thalamus` in `synth/basal_ganglia.py`;
+`bg_kw={"thal_route": 0.15, ...}`):
+
+* **Measured:** the relay's resting rate, 13 spikes/s — awake monkey motor
+  thalamus, basal-ganglia-recipient VLo 13 ± 8, VA 15 ± 8 (Vitek et al. 1994).
+  The relay's tonic drive is fitted to it under tonic SNr (31 mV;
+  `results/bg/thal_drive_scan.json`); it then rises to ~70 spikes/s for a
+  selected channel and falls to ~3 for an unselected one.
+* **Computed, not fitted:** the relay → pool weights, set so the relay at its
+  resting rate delivers exactly the input removed from each cell (test:
+  `test_routing_through_the_thalamus_preserves_the_resting_input`). Every
+  pool cell gets all 64 relay cells of its channel (×5 the external synapse
+  at 15 %). Action-area L5 pyramids rest at 2.9–3.4 spikes/s (before: 3.0–3.6;
+  range 1–8).
+* **Assumed:** the share, 15 % of the pools' external drive — thalamic
+  synapses are a minority of a cortical cell's excitatory input (roughly
+  5–20 %; Benshalom & White 1986; Bruno & Sakmann 2006). 10 % and 30 % were
+  also run; 30 % feeds back on itself and locks both channels on.
+
+Results (v2 column, 150 trials, dopamine system on, networks 31–34;
+`results/thal/summary.json`, `scripts/analysis/thal_compare.py`;
+"early run" = longest run of one action in the first 40 choices):
+
+| | trials 101–150 | reaches 75 % | early run | relay winner / loser (spikes/s) |
+|---|---|---|---|---|
+| **loop alone** (cortical rule off), 15 % routed | **83.0 ± 7.5 %** (76–94) | 23–67 | 6 | 53 / 29 |
+| loop alone, 10 % routed (2 networks) | 75.0 ± 1.0 % | 20–23 | 6 | 56 / 41 |
+| loop alone, no routing (Stage 27, 2 networks) | 56.0 ± 2.0 % | — | 5 | 17 / 14 |
+| **full system** (loop + cortex + dopamine), 15 % routed | **92.5 ± 1.7 %** | **20–42** | **9** | 58 / 48 |
+| full system, no routing (Stage 27) | 95.0 ± 2.2 % | 34–55 | 28 | 27 / 18 |
+| hand-made WTA groups (Stage 25) | 97.0 ± 2.2 % | 21–32 | 7 | — |
+
+What this settles and what it does not:
+
+1. **The measured loop now learns the cue–action rule on its own** — 83 %
+   with every cortical synapse frozen, from 56 %. Its cortico-striatal
+   synapses carry the task; the structural change, not a new rule, did it,
+   as open problem 11 predicted.
+2. **The perseveration of Stages 26–27 is gone**: the full system reaches
+   75 % by trial 20–42 (34–55 before) and its early choices alternate like
+   the hand-made circuit's (longest run 9, was 28).
+3. **The price**: the full system ends 2.5 points below Stage 27 (92.5 vs
+   95, within about one spread). The logs show why — as the cortical
+   synapses strengthen the pools fire more, both relays rise (58 vs 48
+   spikes/s late in the run) and the channels separate less. The loop and
+   the cortex now both learn and partly compete; balancing them (e.g. a
+   lower cortical rate once the loop learns, or relay adaptation) is the
+   next tuning question, not settled here. The hand-made WTA groups still
+   finish highest and are 3× cheaper (2.9 vs 8 s/trial).
+4. Not yet tested: eight areas, reversal learning, double size.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
@@ -1898,7 +1955,7 @@ These are the real findings so far. Each is a concrete next task.
    cell type are the next data to bring in.
 
 10. **The basal-ganglia loop perseverates and does not learn (Stage 26)** —
-    *the learning half is addressed in Stage 27; the perseveration remains.*
+    *addressed: learning in Stage 27, perseveration in Stage 28.*
     With the measured loop in place of the hand-made circuit, the first
     30–60 choices are one action, which costs 40–50 trials in eight areas,
     and in eight areas its own output (lowest SNr) names the rewarded action
@@ -1914,7 +1971,9 @@ These are the real findings so far. Each is a concrete next task.
     ties; it is a stand-in and would be labelled one.
 
 11. **Credit assignment inside the loop needs cortical competition (Stage
-    27).** The cue drives the striatum of every channel, so dopamine-gated
+    27)** — *largely addressed in Stage 28 by making the relay a share of the
+    pools' drive (loop alone 56 → 83 %); what remains is the balance between
+    loop and cortex learning (Stage 28, reading 3), and the TD circuit.* The cue drives the striatum of every channel, so dopamine-gated
     plasticity on those synapses changes all channels together and the loop
     cannot learn the cue–action rule on its own (40–55 % after 120 trials);
     the cortical synapses still carry the task. The missing piece is not a

@@ -1,0 +1,715 @@
+{
+ "about": "Stage 28 summary: the relay as a share of the pools' drive.  Reads results/thal/*_seed*.json and the\nStage 26/27 references; writes results/thal/summary.json and prints the table.\n\"Reaches 75 %\" = first trial at which the previous 20 average >= 75 %; \"longest early run\" = longest\nrun of one action in the first 40 choices (perseveration).",
+ "configs": {
+  "route15_loop_only": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 1.0,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "post_lin": 0.0,
+    "post_gain": 1.0,
+    "thal_drive_mV": 31.0,
+    "thal_n_in": 64,
+    "thal_route": 0.15
+   },
+   "da": {
+    "crit_gain": 2.5,
+    "crit_eta": 0.05
+   },
+   "genome": "loop only (cortical eta 0, no turnover)"
+  },
+  "route15_full": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 1.0,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "post_lin": 0.0,
+    "post_gain": 1.0,
+    "thal_drive_mV": 31.0,
+    "thal_n_in": 64,
+    "thal_route": 0.15
+   },
+   "da": {
+    "crit_gain": 2.5,
+    "crit_eta": 0.05
+   },
+   "genome": "quick"
+  },
+  "route10_loop_only": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 1.0,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "post_lin": 0.0,
+    "post_gain": 1.0,
+    "thal_drive_mV": 31.0,
+    "thal_n_in": 64,
+    "thal_route": 0.1
+   },
+   "da": {
+    "crit_gain": 2.5,
+    "crit_eta": 0.05
+   },
+   "genome": "loop only"
+  }
+ },
+ "rows": {
+  "route10_loop_only": {
+   "n": 2,
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.74,
+     "reach75": 23,
+     "early_run": 8,
+     "blocks30": [
+      0.67,
+      0.73,
+      0.87,
+      0.83,
+      0.7
+     ],
+     "l5e_rest_hz": 3.32,
+     "s_per_trial": 7.906666666666666,
+     "thal_win": 52.96866666666667,
+     "thal_lose": 40.361333333333334,
+     "snr_correct_last50": 0.82
+    },
+    {
+     "seed": 32,
+     "acc_last50": 0.76,
+     "reach75": 20,
+     "early_run": 5,
+     "blocks30": [
+      0.77,
+      0.9,
+      0.67,
+      0.67,
+      0.8
+     ],
+     "l5e_rest_hz": 3.4,
+     "s_per_trial": 7.866666666666666,
+     "thal_win": 59.85733333333332,
+     "thal_lose": 41.623333333333335,
+     "snr_correct_last50": 0.84
+    }
+   ],
+   "acc_last50": {
+    "mean": 0.75,
+    "sd": 0.010000000000000009,
+    "min": 0.74,
+    "max": 0.76
+   },
+   "reach75": {
+    "mean": 21.5,
+    "sd": 1.5,
+    "min": 20.0,
+    "max": 23.0
+   },
+   "early_run": {
+    "mean": 6.5,
+    "sd": 1.5,
+    "min": 5.0,
+    "max": 8.0
+   },
+   "l5e_rest_hz": {
+    "mean": 3.36,
+    "sd": 0.040000000000000036,
+    "min": 3.32,
+    "max": 3.4
+   },
+   "s_per_trial": {
+    "mean": 7.886666666666667,
+    "sd": 0.020000000000000018,
+    "min": 7.866666666666666,
+    "max": 7.906666666666666
+   },
+   "thal_win": {
+    "mean": 56.413,
+    "sd": 3.4443333333333257,
+    "min": 52.96866666666667,
+    "max": 59.85733333333332
+   },
+   "thal_lose": {
+    "mean": 40.992333333333335,
+    "sd": 0.6310000000000002,
+    "min": 40.361333333333334,
+    "max": 41.623333333333335
+   },
+   "snr_correct_last50": {
+    "mean": 0.83,
+    "sd": 0.010000000000000009,
+    "min": 0.82,
+    "max": 0.84
+   }
+  },
+  "route15_full": {
+   "n": 4,
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.94,
+     "reach75": 20,
+     "early_run": 8,
+     "blocks30": [
+      0.83,
+      0.9,
+      0.83,
+      0.87,
+      0.97
+     ],
+     "l5e_rest_hz": 2.89,
+     "s_per_trial": 7.973333333333334,
+     "thal_win": 59.42733333333334,
+     "thal_lose": 51.43533333333334,
+     "snr_correct_last50": 0.76
+    },
+    {
+     "seed": 32,
+     "acc_last50": 0.94,
+     "reach75": 20,
+     "early_run": 5,
+     "blocks30": [
+      0.83,
+      0.97,
+      0.97,
+      0.97,
+      0.93
+     ],
+     "l5e_rest_hz": 2.96,
+     "s_per_trial": 7.94,
+     "thal_win": 62.01533333333333,
+     "thal_lose": 52.73733333333334,
+     "snr_correct_last50": 0.88
+    },
+    {
+     "seed": 33,
+     "acc_last50": 0.9,
+     "reach75": 21,
+     "early_run": 13,
+     "blocks30": [
+      0.7,
+      0.83,
+      0.83,
+      0.73,
+      0.93
+     ],
+     "l5e_rest_hz": 2.96,
+     "s_per_trial": 7.986666666666666,
+     "thal_win": 57.56799999999999,
+     "thal_lose": 49.84066666666667,
+     "snr_correct_last50": 0.68
+    },
+    {
+     "seed": 34,
+     "acc_last50": 0.92,
+     "reach75": 42,
+     "early_run": 9,
+     "blocks30": [
+      0.43,
+      0.93,
+      1.0,
+      0.87,
+      0.97
+     ],
+     "l5e_rest_hz": 2.81,
+     "s_per_trial": 7.98,
+     "thal_win": 52.92466666666666,
+     "thal_lose": 39.565999999999995,
+     "snr_correct_last50": 0.72
+    }
+   ],
+   "acc_last50": {
+    "mean": 0.9249999999999999,
+    "sd": 0.016583123951776964,
+    "min": 0.9,
+    "max": 0.94
+   },
+   "reach75": {
+    "mean": 25.75,
+    "sd": 9.390819985496474,
+    "min": 20.0,
+    "max": 42.0
+   },
+   "early_run": {
+    "mean": 8.75,
+    "sd": 2.8613807855648994,
+    "min": 5.0,
+    "max": 13.0
+   },
+   "l5e_rest_hz": {
+    "mean": 2.905,
+    "sd": 0.061846584384264866,
+    "min": 2.81,
+    "max": 2.96
+   },
+   "s_per_trial": {
+    "mean": 7.97,
+    "sd": 0.01795054935711485,
+    "min": 7.94,
+    "max": 7.986666666666666
+   },
+   "thal_win": {
+    "mean": 57.98383333333333,
+    "sd": 3.3205710812382216,
+    "min": 52.92466666666666,
+    "max": 62.01533333333333
+   },
+   "thal_lose": {
+    "mean": 48.39483333333334,
+    "sd": 5.199535521456597,
+    "min": 39.565999999999995,
+    "max": 52.73733333333334
+   },
+   "snr_correct_last50": {
+    "mean": 0.76,
+    "sd": 0.07483314773547882,
+    "min": 0.68,
+    "max": 0.88
+   }
+  },
+  "route15_loop_only": {
+   "n": 4,
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.86,
+     "reach75": 44,
+     "early_run": 6,
+     "blocks30": [
+      0.47,
+      0.8,
+      0.63,
+      0.8,
+      0.87
+     ],
+     "l5e_rest_hz": 3.33,
+     "s_per_trial": 8.22,
+     "thal_win": 43.374,
+     "thal_lose": 18.502,
+     "snr_correct_last50": 0.82
+    },
+    {
+     "seed": 32,
+     "acc_last50": 0.76,
+     "reach75": 23,
+     "early_run": 5,
+     "blocks30": [
+      0.77,
+      0.87,
+      0.77,
+      0.8,
+      0.77
+     ],
+     "l5e_rest_hz": 3.05,
+     "s_per_trial": 8.246666666666666,
+     "thal_win": 61.32666666666667,
+     "thal_lose": 38.83,
+     "snr_correct_last50": 0.84
+    },
+    {
+     "seed": 33,
+     "acc_last50": 0.94,
+     "reach75": 67,
+     "early_run": 7,
+     "blocks30": [
+      0.43,
+      0.6,
+      0.83,
+      0.93,
+      0.97
+     ],
+     "l5e_rest_hz": 3.04,
+     "s_per_trial": 8.0,
+     "thal_win": 46.29533333333333,
+     "thal_lose": 18.47266666666667,
+     "snr_correct_last50": 1.0
+    },
+    {
+     "seed": 34,
+     "acc_last50": 0.76,
+     "reach75": 34,
+     "early_run": 6,
+     "blocks30": [
+      0.73,
+      0.83,
+      0.73,
+      0.7,
+      0.83
+     ],
+     "l5e_rest_hz": 3.09,
+     "s_per_trial": 8.053333333333333,
+     "thal_win": 61.291999999999994,
+     "thal_lose": 41.766000000000005,
+     "snr_correct_last50": 0.82
+    }
+   ],
+   "acc_last50": {
+    "mean": 0.8300000000000001,
+    "sd": 0.07549834435270747,
+    "min": 0.76,
+    "max": 0.94
+   },
+   "reach75": {
+    "mean": 42.0,
+    "sd": 16.232683080747925,
+    "min": 23.0,
+    "max": 67.0
+   },
+   "early_run": {
+    "mean": 6.0,
+    "sd": 0.7071067811865476,
+    "min": 5.0,
+    "max": 7.0
+   },
+   "l5e_rest_hz": {
+    "mean": 3.1275,
+    "sd": 0.11840080236214624,
+    "min": 3.04,
+    "max": 3.33
+   },
+   "s_per_trial": {
+    "mean": 8.13,
+    "sd": 0.10546194679704259,
+    "min": 8.0,
+    "max": 8.246666666666666
+   },
+   "thal_win": {
+    "mean": 53.072,
+    "sd": 8.3018422185815,
+    "min": 43.374,
+    "max": 61.32666666666667
+   },
+   "thal_lose": {
+    "mean": 29.392666666666667,
+    "sd": 10.954629827915989,
+    "min": 18.47266666666667,
+    "max": 41.766000000000005
+   },
+   "snr_correct_last50": {
+    "mean": 0.87,
+    "sd": 0.07549834435270752,
+    "min": 0.82,
+    "max": 1.0
+   }
+  },
+  "ref: loop only, no routing (Stage 27)": {
+   "n": 2,
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.54,
+     "reach75": null,
+     "early_run": 5,
+     "blocks30": [
+      0.53,
+      0.33,
+      0.5,
+      0.4,
+      0.63
+     ],
+     "l5e_rest_hz": 3.67,
+     "s_per_trial": 9.28,
+     "thal_win": 14.631333333333332,
+     "thal_lose": 12.233333333333333,
+     "snr_correct_last50": 0.72
+    },
+    {
+     "seed": 32,
+     "acc_last50": 0.58,
+     "reach75": 40,
+     "early_run": 5,
+     "blocks30": [
+      0.57,
+      0.67,
+      0.53,
+      0.53,
+      0.6
+     ],
+     "l5e_rest_hz": 3.56,
+     "s_per_trial": 10.006666666666666,
+     "thal_win": 20.096666666666668,
+     "thal_lose": 16.232666666666667,
+     "snr_correct_last50": 0.64
+    }
+   ],
+   "acc_last50": {
+    "mean": 0.56,
+    "sd": 0.019999999999999962,
+    "min": 0.54,
+    "max": 0.58
+   },
+   "reach75": {
+    "mean": 40.0,
+    "sd": 0.0,
+    "min": 40.0,
+    "max": 40.0
+   },
+   "early_run": {
+    "mean": 5.0,
+    "sd": 0.0,
+    "min": 5.0,
+    "max": 5.0
+   },
+   "l5e_rest_hz": {
+    "mean": 3.615,
+    "sd": 0.05499999999999994,
+    "min": 3.56,
+    "max": 3.67
+   },
+   "s_per_trial": {
+    "mean": 9.643333333333333,
+    "sd": 0.3633333333333333,
+    "min": 9.28,
+    "max": 10.006666666666666
+   },
+   "thal_win": {
+    "mean": 17.364,
+    "sd": 2.7326666666666677,
+    "min": 14.631333333333332,
+    "max": 20.096666666666668
+   },
+   "thal_lose": {
+    "mean": 14.233,
+    "sd": 1.9996666666666671,
+    "min": 12.233333333333333,
+    "max": 16.232666666666667
+   },
+   "snr_correct_last50": {
+    "mean": 0.6799999999999999,
+    "sd": 0.03999999999999998,
+    "min": 0.64,
+    "max": 0.72
+   }
+  },
+  "ref: full system, no routing (Stage 27)": {
+   "n": 4,
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.94,
+     "reach75": 43,
+     "early_run": 33,
+     "blocks30": [
+      0.5,
+      0.8,
+      0.9,
+      0.93,
+      0.97
+     ],
+     "l5e_rest_hz": 4.1,
+     "s_per_trial": 8.14,
+     "thal_win": 27.602000000000007,
+     "thal_lose": 18.314666666666664,
+     "snr_correct_last50": 0.8
+    },
+    {
+     "seed": 32,
+     "acc_last50": 0.98,
+     "reach75": 34,
+     "early_run": 24,
+     "blocks30": [
+      0.6,
+      1.0,
+      1.0,
+      0.97,
+      1.0
+     ],
+     "l5e_rest_hz": 3.04,
+     "s_per_trial": 8.16,
+     "thal_win": 30.314000000000004,
+     "thal_lose": 21.282666666666664,
+     "snr_correct_last50": 0.8
+    },
+    {
+     "seed": 33,
+     "acc_last50": 0.96,
+     "reach75": 55,
+     "early_run": 40,
+     "blocks30": [
+      0.4,
+      0.67,
+      0.9,
+      0.87,
+      0.97
+     ],
+     "l5e_rest_hz": 3.18,
+     "s_per_trial": 8.266666666666667,
+     "thal_win": 22.258,
+     "thal_lose": 12.656666666666665,
+     "snr_correct_last50": 0.66
+    },
+    {
+     "seed": 34,
+     "acc_last50": 0.92,
+     "reach75": 43,
+     "early_run": 17,
+     "blocks30": [
+      0.43,
+      0.93,
+      0.97,
+      0.9,
+      0.93
+     ],
+     "l5e_rest_hz": 3.0,
+     "s_per_trial": 8.26,
+     "thal_win": 27.25466666666666,
+     "thal_lose": 19.339333333333332,
+     "snr_correct_last50": 0.7
+    }
+   ],
+   "acc_last50": {
+    "mean": 0.95,
+    "sd": 0.02236067977499788,
+    "min": 0.92,
+    "max": 0.98
+   },
+   "reach75": {
+    "mean": 43.75,
+    "sd": 7.46240577829965,
+    "min": 34.0,
+    "max": 55.0
+   },
+   "early_run": {
+    "mean": 28.5,
+    "sd": 8.73212459828649,
+    "min": 17.0,
+    "max": 40.0
+   },
+   "l5e_rest_hz": {
+    "mean": 3.33,
+    "sd": 0.44955533585978025,
+    "min": 3.0,
+    "max": 4.1
+   },
+   "s_per_trial": {
+    "mean": 8.206666666666667,
+    "sd": 0.057154760664940796,
+    "min": 8.14,
+    "max": 8.266666666666667
+   },
+   "thal_win": {
+    "mean": 26.857166666666668,
+    "sd": 2.907525308001063,
+    "min": 22.258,
+    "max": 30.314000000000004
+   },
+   "thal_lose": {
+    "mean": 17.89833333333333,
+    "sd": 3.2085275439054595,
+    "min": 12.656666666666665,
+    "max": 21.282666666666664
+   },
+   "snr_correct_last50": {
+    "mean": 0.74,
+    "sd": 0.061644140029689785,
+    "min": 0.66,
+    "max": 0.8
+   }
+  },
+  "ref: WTA groups (Stage 25)": {
+   "n": 4,
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.94,
+     "reach75": 21,
+     "early_run": 5,
+     "blocks30": [
+      0.77,
+      0.9,
+      1.0,
+      0.93,
+      0.93
+     ],
+     "l5e_rest_hz": 3.19,
+     "s_per_trial": 2.94
+    },
+    {
+     "seed": 32,
+     "acc_last50": 1.0,
+     "reach75": 31,
+     "early_run": 6,
+     "blocks30": [
+      0.67,
+      0.93,
+      0.93,
+      1.0,
+      1.0
+     ],
+     "l5e_rest_hz": 2.91,
+     "s_per_trial": 2.94
+    },
+    {
+     "seed": 33,
+     "acc_last50": 0.98,
+     "reach75": 23,
+     "early_run": 7,
+     "blocks30": [
+      0.77,
+      1.0,
+      0.97,
+      0.97,
+      0.97
+     ],
+     "l5e_rest_hz": 2.95,
+     "s_per_trial": 2.9066666666666667
+    },
+    {
+     "seed": 34,
+     "acc_last50": 0.96,
+     "reach75": 32,
+     "early_run": 9,
+     "blocks30": [
+      0.63,
+      0.9,
+      0.97,
+      0.93,
+      1.0
+     ],
+     "l5e_rest_hz": 2.79,
+     "s_per_trial": 2.88
+    }
+   ],
+   "acc_last50": {
+    "mean": 0.97,
+    "sd": 0.022360679774997918,
+    "min": 0.94,
+    "max": 1.0
+   },
+   "reach75": {
+    "mean": 26.75,
+    "sd": 4.815340071064556,
+    "min": 21.0,
+    "max": 32.0
+   },
+   "early_run": {
+    "mean": 6.75,
+    "sd": 1.479019945774904,
+    "min": 5.0,
+    "max": 9.0
+   },
+   "l5e_rest_hz": {
+    "mean": 2.96,
+    "sd": 0.14525839046333947,
+    "min": 2.79,
+    "max": 3.19
+   },
+   "s_per_trial": {
+    "mean": 2.916666666666667,
+    "sd": 0.02516611478423584,
+    "min": 2.88,
+    "max": 2.94
+   }
+  }
+ }
+}

@@ -80,7 +80,8 @@ DEFAULTS = dict(
     ctx_gain_stn=1.0,    # FITTED: factor on the cortical PSP onto STN (hyperdirect)
     da=0.3,              # tonic dopamine lambda (paper: 0.3 normal, 0 depleted, 0.8 high); cortical input
                          # onto D1 x (1 + lambda), onto D2 x (1 - lambda) (Gurney et al. 2001 convention)
-    thal_drive_mV=24.0,  # FITTED: tonic depolarisation of the relay (results/bg/thal_scan.json)
+    thal_drive_mV=24.0,  # tonic depolarisation of the relay; 31 mV gives the measured resting rate of motor
+                         # thalamus (~13 Hz; Vitek et al. 1994) under tonic SNr (results/bg/thal_drive_scan.json)
     thal_gain=1.0,       # FITTED: factor on the thalamo-cortical conductance
     thal_n_in=16,        # thalamic inputs per cortical pool cell
     thal_str_gain=0.0,   # thalamostriatal input: Thal_k -> D1_k, D2_k (within channel, p 0.25, glutamate, 5 ms;
@@ -122,6 +123,38 @@ def psp_scale(tau_m, tau_s):
 def load_params():
     with open(PARAM_FILE) as f:
         return json.load(f)
+
+
+THAL_REST_HZ = 13.0      # MEASURED: awake monkey VLo 13 +/- 8, VA 15 +/- 8 spikes/s (Vitek et al. 1994 J Neurophysiol 71:1498)
+
+
+def route_external_through_thalamus(G, pools, frac, bg, w_ext_nS, rest_hz=THAL_REST_HZ):
+    """Stage 28: make the relay a *share of the pools' drive* instead of an addition to it.
+    For each pool cell, a fraction `frac` (ASSUMED) of its external Poisson input is removed (merged-input
+    mode: lam_ext scaled), and the thalamo-cortical weight is set so that the relay, firing at its resting
+    rate, delivers the same mean input as was removed.  At rest the pools get what they got before; a
+    selected channel (SNr down, relay up) gets more, an unselected one (relay silenced) gets less.
+    Returns a dict with what was done (for the run record)."""
+    if not hasattr(G, "lam_ext"):
+        raise RuntimeError("routing through the thalamus needs merged inputs (fast mode)")
+    S = getattr(bg, "thal_ctx", None)
+    if S is None:
+        raise RuntimeError("the loop has no thalamo-cortical pathway (give BasalGanglia a target)")
+    dt_s = float(b2.defaultclock.dt / b2.second)
+    cells = np.unique(np.concatenate([np.asarray(p, int) for p in pools]))
+    lam = np.asarray(G.lam_ext)[cells].copy()
+    removed_hz = frac * lam / dt_s                                   # input spikes/s removed per cell
+    lam_new = (1.0 - frac) * lam
+    lam_all = np.asarray(G.lam_ext).copy(); lam_all[cells] = lam_new; G.lam_ext = lam_all
+    e_all = np.asarray(G.e_ext).copy(); e_all[cells] = np.exp(-lam_new); G.e_ext = e_all
+    j = np.asarray(S.j)
+    n_in = np.bincount(j, minlength=len(G))[cells].astype(float)       # relay inputs per pool cell
+    # per-synapse weight: removed rate of its target / (its inputs x relay resting rate), in external units
+    per_cell = np.zeros(len(G)); per_cell[cells] = removed_hz / np.maximum(n_in, 1.0) / rest_hz
+    S.w = w_ext_nS * per_cell[j] * nS
+    bg.routed = dict(frac=float(frac), rest_hz=rest_hz, removed_input_hz_per_cell=float(removed_hz.mean()),
+                     relay_inputs_per_cell=float(n_in.mean()), weight_x_external=float(per_cell[cells].mean()))
+    return bg.routed
 
 
 class BasalGanglia:

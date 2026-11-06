@@ -1,0 +1,62 @@
+{
+ "route15_loop_only": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "loop only (cortical eta 0, no turnover)"
+ },
+ "route15_full": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick"
+ },
+ "route10_loop_only": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.1
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "loop only"
+ }
+}
