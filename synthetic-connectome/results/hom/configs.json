@@ -1,0 +1,76 @@
+{
+ "hom0.1": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15,
+   "thal_hom": 0.1
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick"
+ },
+ "hom0.5": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15,
+   "thal_hom": 0.5
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick"
+ },
+ "chosen": {
+  "name": "hom0.1",
+  "why": "scan 31-32: 96 % for 0.1 and 0.5; 0.1 reaches 75 % sooner (20-24 vs 27-29)"
+ },
+ "td_hom": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15,
+   "thal_hom": 0.1
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05,
+   "value_n": 64,
+   "value_gain": 3.0,
+   "value_to_da_mV": 8.0,
+   "crit_rise_ms": 150.0,
+   "crit_to_da_mV": 0.25,
+   "crit_hom": 0.1,
+   "value_hom": 0.1
+  },
+  "genome": "quick"
+ }
+}

@@ -417,5 +417,22 @@
    "value": 64,
    "label": "ASSUMED: every relay cell of the channel onto every pool cell"
   }
+ },
+ "homeostasis": {
+  "_what": "Stage 30: intrinsic homeostatic plasticity \u2014 running rate estimate r (tau hom_tau_r_s), depolarisation v_hom drifting at k x (target - r), clipped",
+  "sources": [
+   "Desai NS, Rutherford LC, Turrigiano GG (1999) Plasticity in the intrinsic excitability of cortical pyramidal neurons. Nat Neurosci 2:515-520",
+   "Turrigiano GG (2008) The self-tuning neuron: synaptic scaling of excitatory synapses. Cell 135:422-435"
+  ],
+  "relay": {
+   "target_hz": "13 MEASURED (Vitek 1994)",
+   "thal_hom": "0.1 mV/s per Hz, FITTED on networks 31-32, confirmed on 35-38",
+   "hom_tau_r_s": "5 ASSUMED",
+   "hom_max_mV": "15 ASSUMED"
+  },
+  "critic_value": {
+   "targets_hz": "3 / 5 ASSUMED",
+   "rates": "crit_hom, value_hom (0 = off)"
+  }
  }
 }

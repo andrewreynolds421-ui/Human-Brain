@@ -84,6 +84,12 @@ DEFAULTS = dict(
                          # thalamus (~13 Hz; Vitek et al. 1994) under tonic SNr (results/bg/thal_drive_scan.json)
     thal_gain=1.0,       # FITTED: factor on the thalamo-cortical conductance
     thal_n_in=16,        # thalamic inputs per cortical pool cell
+    thal_hom=0.0,        # Stage 30: intrinsic homeostatic plasticity of the relay (0 = off): each cell keeps a running
+                         # rate estimate r (time constant hom_tau_r_s) and a depolarisation v_hom that drifts at
+                         # thal_hom mV/s per Hz of (target - r), clipped to +/- hom_max_mV (Desai et al. 1999; Turrigiano
+                         # 2008).  Target = THAL_REST_HZ (measured).  Rate constants ASSUMED, faster than in vivo (hours)
+    hom_tau_r_s=5.0,     # ASSUMED: averages over ~7 trials, so a selected channel's burst survives
+    hom_max_mV=15.0,     # ASSUMED bound
     thal_str_gain=0.0,   # thalamostriatal input: Thal_k -> D1_k, D2_k (within channel, p 0.25, glutamate, 5 ms;
                          # Smith et al. 2004 "The thalamostriatal system"); the gain is FITTED, 0 = pathway absent
     noise_sd_mV=NOISE_SD_MV,
@@ -217,9 +223,22 @@ class BasalGanglia:
             ns = dict(tau_m=m["tau"] * ms, v_spon=v_spon * mV, sigma_step=self.p["noise_sd_mV"] * mV,
                       dt_noise=dt, tau_ampa=PSP["ampa"][1] * ms, tau_nmda=PSP["nmda"][1] * ms,
                       tau_gaba=PSP["gaba"][1] * ms, theta=m["theta"] * mV, v_lim=self.p["v_lim_mV"] * mV)
-            G = b2.NeuronGroup(n * K, eqs, threshold="v > theta", reset=f"v = {RESET_MV}*mV",
+            geqs, reset = eqs, f"v = {RESET_MV}*mV"
+            if pop == "Thal" and self.p["thal_hom"] > 0:
+                geqs = eqs.replace("+ v_spon) / tau_m", "+ v_spon + v_hom) / tau_m") + """
+        dr_est/dt = -r_est / tau_r : 1
+        dv_hom/dt = k_hom * (r_target - r_est) : volt
+        """
+                reset += "; r_est += 1 / (tau_r / second)"
+                ns.update(tau_r=self.p["hom_tau_r_s"] * b2.second, k_hom=self.p["thal_hom"] * mV / b2.second,
+                          r_target=THAL_REST_HZ, hom_max=self.p["hom_max_mV"] * mV)
+            G = b2.NeuronGroup(n * K, geqs, threshold="v > theta", reset=reset,
                                refractory=REFRACTORY_MS * ms, method="euler", namespace=ns,
                                name=f"{self.name}_{pop.lower()}")
+            if pop == "Thal" and self.p["thal_hom"] > 0:
+                G.r_est = THAL_REST_HZ
+                self._floors.append(G.run_regularly("v_hom = clip(v_hom, -hom_max, hom_max)", dt=10 * ms, when="end",
+                                                    name=f"{self.name}_thal_hom_clip"))
             G.ch = self.ch
             G.v = np.clip(self.rng.normal(0.5 * m["theta"], 3.0, n * K), -self.p["v_lim_mV"], 0.95 * m["theta"]) * mV
             if pop != "D1" and pop != "D2":          # chloride floor (striatum gets no GABA here)
@@ -454,6 +473,10 @@ DA_DEFAULTS = dict(
     value_to_da_mV=1.0,  # FITTED: AMPA peak of one value-cell spike on a DA cell
     value_eta=0.05,      # learning rate (as the critic)
     value_w_max_factor=10.0,
+    # ---- Stage 30: intrinsic homeostasis of the critic and value cells (0 = off), as for the relay ----
+    crit_hom=0.0, crit_target_hz=3.0,    # ASSUMED target (no measured striosomal rate used)
+    value_hom=0.0, value_target_hz=5.0,  # ASSUMED target (PPTg baseline a few spikes/s; Okada et al. 2009)
+    hom_tau_r_s=5.0, hom_max_mV=15.0,
 )
 
 
@@ -503,17 +526,24 @@ class DopamineSystem:
         # critic: striosomal D1 cells with the loop's D1 membrane, driven by the context cells
         m = MEMBRANE["D1"]
         ceqs = """
-        dv/dt = (-v + ampa + nmda + v_spon + v_off) / tau_m + sigma_step * xi / sqrt(dt_noise) : volt (unless refractory)
+        dv/dt = (-v + ampa + nmda + v_spon + v_off + v_hom) / tau_m + sigma_step * xi / sqrt(dt_noise) : volt (unless refractory)
         dampa/dt = -ampa / tau_ampa : volt
         dnmda/dt = -nmda / tau_nmda : volt
         v_off : volt (constant)
+        dr_est/dt = -r_est / tau_r : 1
+        dv_hom/dt = k_hom * (r_target - r_est) : volt
         """
         cns = dict(tau_m=m["tau"] * ms, v_spon=m["R"] * m["I_spon"] * mV, sigma_step=NOISE_SD_MV * mV, dt_noise=dt,
                    tau_ampa=PSP["ampa"][1] * ms, tau_nmda=PSP["nmda"][1] * ms, theta=m["theta"] * mV)
-        self.critic = b2.NeuronGroup(int(p["crit_n"]), ceqs, threshold="v > theta", reset="v = 0*mV",
+        cns.update(tau_r=p["hom_tau_r_s"] * b2.second, k_hom=p["crit_hom"] * mV / b2.second, r_target=p["crit_target_hz"],
+                   hom_max=p["hom_max_mV"] * mV)
+        self.critic = b2.NeuronGroup(int(p["crit_n"]), ceqs, threshold="v > theta", reset="v = 0*mV; r_est += 1 / (tau_r / second)",
                                      refractory=REFRACTORY_MS * ms, method="euler", namespace=cns, name=f"{name}_striosome")
         self.critic.v = self.rng.uniform(-10, 10, int(p["crit_n"])) * mV
         self.critic.v_off = self.rng.uniform(-float(p["crit_spread_mV"]), 0.0, int(p["crit_n"])) * mV
+        self.critic.r_est = p["crit_target_hz"]
+        if p["crit_hom"] > 0:
+            self.critic.run_regularly("v_hom = clip(v_hom, -hom_max, hom_max)", dt=10 * ms, when="end", name=f"{name}_crit_hom_clip")
         lam = float(bg.p["da"])
         gain = float(p["crit_gain"]) * (1.0 + lam)
         psp = bg._onpre("glut", "D1", gain).replace("*mV", "*mV*wf")
@@ -553,17 +583,23 @@ class DopamineSystem:
         if int(p["value_n"]) > 0:
             nv = int(p["value_n"])
             veqs = """
-            dv/dt = (-v + ampa + nmda + v_off) / tau_m + sigma_step * xi / sqrt(dt_noise) : volt (unless refractory)
+            dv/dt = (-v + ampa + nmda + v_off + v_hom) / tau_m + sigma_step * xi / sqrt(dt_noise) : volt (unless refractory)
             dampa/dt = -ampa / tau_ampa : volt
             dnmda/dt = -nmda / tau_nmda : volt
             v_off : volt (constant)
+            dr_est/dt = -r_est / tau_r : 1
+            dv_hom/dt = k_hom * (r_target - r_est) : volt
             """
             vns = dict(tau_m=p["value_tau_ms"] * ms, sigma_step=NOISE_SD_MV * mV, dt_noise=dt, tau_ampa=PSP["ampa"][1] * ms,
-                       tau_nmda=PSP["nmda"][1] * ms, theta=p["value_theta_mV"] * mV)
-            self.value = b2.NeuronGroup(nv, veqs, threshold="v > theta", reset="v = 0*mV", refractory=REFRACTORY_MS * ms,
-                                        method="euler", namespace=vns, name=f"{name}_pptg")
+                       tau_nmda=PSP["nmda"][1] * ms, theta=p["value_theta_mV"] * mV, tau_r=p["hom_tau_r_s"] * b2.second,
+                       k_hom=p["value_hom"] * mV / b2.second, r_target=p["value_target_hz"], hom_max=p["hom_max_mV"] * mV)
+            self.value = b2.NeuronGroup(nv, veqs, threshold="v > theta", reset="v = 0*mV; r_est += 1 / (tau_r / second)",
+                                        refractory=REFRACTORY_MS * ms, method="euler", namespace=vns, name=f"{name}_pptg")
             lo, hi = p["value_offset_mV"]
             self.value.v_off = self.rng.uniform(lo, hi, nv) * mV
+            self.value.r_est = p["value_target_hz"]
+            if p["value_hom"] > 0:
+                self.value.run_regularly("v_hom = clip(v_hom, -hom_max, hom_max)", dt=10 * ms, when="end", name=f"{name}_value_hom_clip")
             vpsp = PSP["ampa"][0] * psp_scale(p["value_tau_ms"], PSP["ampa"][1]) * float(p["value_gain"])
             vnm = PSP["nmda"][0] * psp_scale(p["value_tau_ms"], PSP["nmda"][1]) * float(p["value_gain"])
             von_pre = (f"ampa_post += {vpsp:.6g}*mV*wf; nmda_post += {vnm:.6g}*mV*wf; "

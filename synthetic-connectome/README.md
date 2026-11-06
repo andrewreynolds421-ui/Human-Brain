@@ -1956,6 +1956,34 @@ transfer lies between the last two rows and was not found tonight; a proper
 fix is probably homeostatic (bounding the value and critic cells' rates)
 rather than another hand scan. The model default is the pathway **off**.
 
+## Stage 30: homeostasis in the loop
+
+Open problem 12: populations in the loop drift with learning. First target:
+the thalamic relay. Each relay cell now keeps a running estimate of its own
+rate (5 s time constant) and an intrinsic depolarisation that drifts toward
+the rate the cell should have — the measured 13 spikes/s of motor thalamus —
+bounded at ±15 mV (intrinsic homeostatic plasticity: Desai, Rutherford &
+Turrigiano 1999; Turrigiano 2008). Because the estimate spans ~7 trials, a
+selected channel still bursts within a trial; what is removed is the slow
+drift. Rate constants are ASSUMED and far faster than in vivo (hours there);
+`thal_hom` (mV/s per Hz of error) chosen on networks 31–32 (0.1 and 0.5 both
+96 %; 0.1 starts sooner), then confirmed on held-out networks 35–38
+(`results/hom/stage30_summary.json`, `scripts/analysis/stage30.py`;
+test `test_relay_homeostasis_pulls_a_held_channel_back_toward_its_target`):
+
+| networks 35–38 (held out) | trials 101–150 | reaches 75 % | relay winner / loser, first → last 30 trials |
+|---|---|---|---|
+| **routed loop + relay homeostasis** | **95.0 ± 2.2 %** (92–98) | 20–58 | 27/15 → 28/23 |
+| routed loop (Stage 28) | 91.0 ± 1.0 % (90–92) | 25–39 | 52/38 → 57/52 |
+| hand-made WTA groups | 96.5 ± 1.7 % (94–98) | 20–29 | — |
+
+The diagnosis of Stage 29 holds: with the relays held near their measured
+rate, the routed loop gains 4 points (better or equal on every network) and
+the gap to the hand-made circuit shrinks from 5.5 to 1.5 points, inside the
+seed spread. The drift itself is gone (relays end at 28/23 spikes/s instead
+of 57/52). Slowing cortical learning (29a) had not done this; holding the
+relay's rate did.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

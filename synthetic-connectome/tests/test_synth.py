@@ -273,3 +273,24 @@ def test_routing_through_the_thalamus_preserves_the_resting_input():
     removed = 0.15 * lam0[cells] / dt_s * 0.33
     assert np.allclose(delivered, removed, rtol=1e-9)
     assert info["frac"] == 0.15 and info["relay_inputs_per_cell"] == 64
+
+
+@pytest.mark.slow
+def test_relay_homeostasis_pulls_a_held_channel_back_toward_its_target():
+    """Stage 30: with thal_hom > 0 a relay held selected for seconds is pulled back toward 13 Hz,
+    while with thal_hom = 0 it stays high; v_hom stays inside its bound."""
+    import brian2 as b2
+    from brian2 import ms, Hz
+    from synth.basal_ganglia import BasalGanglia
+    out = {}
+    for k in (0.0, 0.5):
+        b2.start_scope(); b2.prefs.codegen.target = "cython"; b2.defaultclock.dt = 0.1 * ms; b2.seed(1)
+        pools = [b2.PoissonGroup(40, rates=3 * Hz) for _ in range(2)]
+        bg = BasalGanglia([(p, np.arange(40)) for p in pools], seed=1, ctx_gain=2.0, ctx_gain_stn=0.3,
+                          thal_drive_mV=31, thal_hom=k)
+        net = b2.Network(*pools, *bg.objects); net.run(1000 * ms)
+        pools[0].rates = 14 * Hz; net.run(6000 * ms)
+        out[k] = bg.rates("Thal", 6000, 7000)[0]
+        if k > 0:
+            assert np.all(np.abs(np.asarray(bg.groups["Thal"].v_hom / b2.mV)) <= bg.p["hom_max_mV"] + 0.1)   # clipped every 10 ms
+    assert out[0.0] > 40 and out[0.5] < 0.5 * out[0.0], out
