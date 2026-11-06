@@ -1,0 +1,798 @@
+{
+ "about": "Stage 29 summary: (a) loop/cortex balance confirmed on held-out networks 35-38, (b) eight areas and\nrule reversal with the routed loop, (c) temporal-difference dopamine (burst at the cue).\nWrites results/thal/stage29_summary.json and prints the tables.",
+ "a_heldout_35_38": {
+  "bal_eta05": {
+   "seeds": [
+    35,
+    36,
+    37,
+    38
+   ],
+   "acc_last50": {
+    "mean": 0.89,
+    "sd": 0.022,
+    "min": 0.86,
+    "max": 0.92,
+    "n": 4
+   },
+   "reach75": {
+    "mean": 30.25,
+    "sd": 16.068,
+    "min": 20.0,
+    "max": 58.0,
+    "n": 4
+   },
+   "early_run": {
+    "mean": 8.75,
+    "sd": 4.323,
+    "min": 5.0,
+    "max": 16.0,
+    "n": 4
+   },
+   "s_per_trial": {
+    "mean": 8.032,
+    "sd": 0.564,
+    "min": 7.673333333333333,
+    "max": 9.006666666666666,
+    "n": 4
+   },
+   "per_network": [
+    {
+     "seed": 35,
+     "acc_last50": 0.86,
+     "reach75": 20,
+     "early_run": 8
+    },
+    {
+     "seed": 36,
+     "acc_last50": 0.9,
+     "reach75": 58,
+     "early_run": 16
+    },
+    {
+     "seed": 37,
+     "acc_last50": 0.88,
+     "reach75": 20,
+     "early_run": 5
+    },
+    {
+     "seed": 38,
+     "acc_last50": 0.92,
+     "reach75": 23,
+     "early_run": 6
+    }
+   ]
+  },
+  "route15_full": {
+   "seeds": [
+    35,
+    36,
+    37,
+    38
+   ],
+   "acc_last50": {
+    "mean": 0.91,
+    "sd": 0.01,
+    "min": 0.9,
+    "max": 0.92,
+    "n": 4
+   },
+   "reach75": {
+    "mean": 32.0,
+    "sd": 4.95,
+    "min": 25.0,
+    "max": 39.0,
+    "n": 4
+   },
+   "early_run": {
+    "mean": 11.25,
+    "sd": 3.112,
+    "min": 8.0,
+    "max": 16.0,
+    "n": 4
+   },
+   "s_per_trial": {
+    "mean": 8.038,
+    "sd": 0.555,
+    "min": 7.7,
+    "max": 9.0,
+    "n": 4
+   },
+   "per_network": [
+    {
+     "seed": 35,
+     "acc_last50": 0.92,
+     "reach75": 32,
+     "early_run": 9
+    },
+    {
+     "seed": 36,
+     "acc_last50": 0.9,
+     "reach75": 25,
+     "early_run": 8
+    },
+    {
+     "seed": 37,
+     "acc_last50": 0.9,
+     "reach75": 32,
+     "early_run": 12
+    },
+    {
+     "seed": 38,
+     "acc_last50": 0.92,
+     "reach75": 39,
+     "early_run": 16
+    }
+   ]
+  },
+  "wta": {
+   "seeds": [
+    35,
+    36,
+    37,
+    38
+   ],
+   "acc_last50": {
+    "mean": 0.965,
+    "sd": 0.017,
+    "min": 0.94,
+    "max": 0.98,
+    "n": 4
+   },
+   "reach75": {
+    "mean": 23.75,
+    "sd": 3.897,
+    "min": 20.0,
+    "max": 29.0,
+    "n": 4
+   },
+   "early_run": {
+    "mean": 9.0,
+    "sd": 5.958,
+    "min": 4.0,
+    "max": 19.0,
+    "n": 4
+   },
+   "s_per_trial": {
+    "mean": 2.878,
+    "sd": 0.016,
+    "min": 2.86,
+    "max": 2.9,
+    "n": 4
+   },
+   "per_network": [
+    {
+     "seed": 35,
+     "acc_last50": 0.96,
+     "reach75": 20,
+     "early_run": 8
+    },
+    {
+     "seed": 36,
+     "acc_last50": 0.98,
+     "reach75": 29,
+     "early_run": 19
+    },
+    {
+     "seed": 37,
+     "acc_last50": 0.94,
+     "reach75": 20,
+     "early_run": 5
+    },
+    {
+     "seed": 38,
+     "acc_last50": 0.98,
+     "reach75": 26,
+     "early_run": 4
+    }
+   ]
+  }
+ },
+ "a_scan_31_32": {
+  "bal_eta05": {
+   "seeds": [
+    31,
+    32
+   ],
+   "acc_last50": {
+    "mean": 0.98,
+    "sd": 0.02,
+    "min": 0.96,
+    "max": 1.0,
+    "n": 2
+   },
+   "reach75": {
+    "mean": 23.0,
+    "sd": 3.0,
+    "min": 20.0,
+    "max": 26.0,
+    "n": 2
+   },
+   "early_run": {
+    "mean": 7.0,
+    "sd": 2.0,
+    "min": 5.0,
+    "max": 9.0,
+    "n": 2
+   },
+   "s_per_trial": {
+    "mean": 7.643,
+    "sd": 0.017,
+    "min": 7.626666666666667,
+    "max": 7.66,
+    "n": 2
+   },
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.96,
+     "reach75": 20,
+     "early_run": 5
+    },
+    {
+     "seed": 32,
+     "acc_last50": 1.0,
+     "reach75": 26,
+     "early_run": 9
+    }
+   ]
+  },
+  "bal_eta025": {
+   "seeds": [
+    31,
+    32
+   ],
+   "acc_last50": {
+    "mean": 0.93,
+    "sd": 0.05,
+    "min": 0.88,
+    "max": 0.98,
+    "n": 2
+   },
+   "reach75": {
+    "mean": 39.5,
+    "sd": 1.5,
+    "min": 38.0,
+    "max": 41.0,
+    "n": 2
+   },
+   "early_run": {
+    "mean": 9.0,
+    "sd": 4.0,
+    "min": 5.0,
+    "max": 13.0,
+    "n": 2
+   },
+   "s_per_trial": {
+    "mean": 7.6,
+    "sd": 0.0,
+    "min": 7.6,
+    "max": 7.6,
+    "n": 2
+   },
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.98,
+     "reach75": 41,
+     "early_run": 13
+    },
+    {
+     "seed": 32,
+     "acc_last50": 0.88,
+     "reach75": 38,
+     "early_run": 5
+    }
+   ]
+  },
+  "bal_route10": {
+   "seeds": [
+    31,
+    32
+   ],
+   "acc_last50": {
+    "mean": 0.95,
+    "sd": 0.03,
+    "min": 0.92,
+    "max": 0.98,
+    "n": 2
+   },
+   "reach75": {
+    "mean": 25.5,
+    "sd": 1.5,
+    "min": 24.0,
+    "max": 27.0,
+    "n": 2
+   },
+   "early_run": {
+    "mean": 14.0,
+    "sd": 2.0,
+    "min": 12.0,
+    "max": 16.0,
+    "n": 2
+   },
+   "s_per_trial": {
+    "mean": 7.657,
+    "sd": 0.03,
+    "min": 7.626666666666667,
+    "max": 7.6866666666666665,
+    "n": 2
+   },
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.92,
+     "reach75": 24,
+     "early_run": 12
+    },
+    {
+     "seed": 32,
+     "acc_last50": 0.98,
+     "reach75": 27,
+     "early_run": 16
+    }
+   ]
+  },
+  "route15_full": {
+   "seeds": [
+    31,
+    32
+   ],
+   "acc_last50": {
+    "mean": 0.94,
+    "sd": 0.0,
+    "min": 0.94,
+    "max": 0.94,
+    "n": 2
+   },
+   "reach75": {
+    "mean": 20.0,
+    "sd": 0.0,
+    "min": 20.0,
+    "max": 20.0,
+    "n": 2
+   },
+   "early_run": {
+    "mean": 6.5,
+    "sd": 1.5,
+    "min": 5.0,
+    "max": 8.0,
+    "n": 2
+   },
+   "s_per_trial": {
+    "mean": 7.957,
+    "sd": 0.017,
+    "min": 7.94,
+    "max": 7.973333333333334,
+    "n": 2
+   },
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.94,
+     "reach75": 20,
+     "early_run": 8
+    },
+    {
+     "seed": 32,
+     "acc_last50": 0.94,
+     "reach75": 20,
+     "early_run": 5
+    }
+   ]
+  }
+ },
+ "b_reversal_31_34": {
+  "loop (balanced, routed)": null,
+  "WTA groups": {
+   "seeds": [
+    31
+   ],
+   "before": {
+    "mean": 0.967,
+    "sd": 0.0,
+    "min": 0.9666666666666667,
+    "max": 0.9666666666666667,
+    "n": 1
+   },
+   "first30_after": {
+    "mean": 0.267,
+    "sd": 0.0,
+    "min": 0.26666666666666666,
+    "max": 0.26666666666666666,
+    "n": 1
+   },
+   "end": {
+    "mean": 0.867,
+    "sd": 0.0,
+    "min": 0.8666666666666667,
+    "max": 0.8666666666666667,
+    "n": 1
+   },
+   "relearn_to75": {
+    "mean": 49.0,
+    "sd": 0.0,
+    "min": 49.0,
+    "max": 49.0,
+    "n": 1
+   },
+   "never_relearned": 0,
+   "per_network": [
+    {
+     "seed": 31,
+     "before": 0.9666666666666667,
+     "first30_after": 0.26666666666666666,
+     "end": 0.8666666666666667,
+     "relearn_to75": 49
+    }
+   ]
+  }
+ },
+ "b_eight_areas_9001_9004": {
+  "loop (balanced, routed)": null,
+  "loop, no routing (Stage 26)": {
+   "seeds": [
+    9001,
+    9002,
+    9003,
+    9004
+   ],
+   "acc_last50": {
+    "mean": 0.96,
+    "sd": 0.014,
+    "min": 0.94,
+    "max": 0.98,
+    "n": 4
+   },
+   "reach75": {
+    "mean": 73.25,
+    "sd": 8.043,
+    "min": 64.0,
+    "max": 85.0,
+    "n": 4
+   },
+   "early_run": {
+    "mean": 37.0,
+    "sd": 3.674,
+    "min": 31.0,
+    "max": 40.0,
+    "n": 4
+   },
+   "s_per_trial": {
+    "mean": 11.198,
+    "sd": 0.203,
+    "min": 10.96,
+    "max": 11.406666666666666,
+    "n": 4
+   },
+   "per_network": [
+    {
+     "seed": 9001,
+     "acc_last50": 0.94,
+     "reach75": 76,
+     "early_run": 31
+    },
+    {
+     "seed": 9002,
+     "acc_last50": 0.96,
+     "reach75": 68,
+     "early_run": 40
+    },
+    {
+     "seed": 9003,
+     "acc_last50": 0.98,
+     "reach75": 64,
+     "early_run": 37
+    },
+    {
+     "seed": 9004,
+     "acc_last50": 0.96,
+     "reach75": 85,
+     "early_run": 40
+    }
+   ]
+  },
+  "WTA groups (Stage 25)": {
+   "seeds": [
+    9001,
+    9002,
+    9003,
+    9004
+   ],
+   "acc_last50": {
+    "mean": 0.955,
+    "sd": 0.046,
+    "min": 0.88,
+    "max": 1.0,
+    "n": 4
+   },
+   "reach75": {
+    "mean": 29.0,
+    "sd": 9.11,
+    "min": 20.0,
+    "max": 40.0,
+    "n": 4
+   },
+   "early_run": {
+    "mean": 9.0,
+    "sd": 3.808,
+    "min": 4.0,
+    "max": 14.0,
+    "n": 4
+   },
+   "s_per_trial": {
+    "mean": 6.512,
+    "sd": 0.272,
+    "min": 6.226666666666667,
+    "max": 6.793333333333333,
+    "n": 4
+   },
+   "per_network": [
+    {
+     "seed": 9001,
+     "acc_last50": 0.88,
+     "reach75": 20,
+     "early_run": 4
+    },
+    {
+     "seed": 9002,
+     "acc_last50": 1.0,
+     "reach75": 36,
+     "early_run": 11
+    },
+    {
+     "seed": 9003,
+     "acc_last50": 0.96,
+     "reach75": 20,
+     "early_run": 7
+    },
+    {
+     "seed": 9004,
+     "acc_last50": 0.98,
+     "reach75": 40,
+     "early_run": 14
+    }
+   ]
+  }
+ },
+ "c_td": {
+  "with value pathway": {
+   "learning": null,
+   "dopamine": null
+  },
+  "without (balanced, held-out nets)": {
+   "dopamine": {
+    "per_network": [
+     {
+      "seed": 35,
+      "da_cue_first30": 0.05666666666666668,
+      "da_cue_last30": 0.0,
+      "da_reward_first30": 17.70909090909091,
+      "da_reward_last30": 10.52692307692308,
+      "da_error_last30": 0.0,
+      "value_first30": 0.0,
+      "value_last30": 0.0,
+      "critic_first30": 5.6833333333333345,
+      "critic_last30": 9.296666666666669
+     },
+     {
+      "seed": 36,
+      "da_cue_first30": 1.0666666666666667,
+      "da_cue_last30": 0.10000000000000002,
+      "da_reward_first30": 23.82857142857143,
+      "da_reward_last30": 16.844444444444445,
+      "da_error_last30": 0.0,
+      "value_first30": 0.0,
+      "value_last30": 0.0,
+      "critic_first30": 2.4900000000000007,
+      "critic_last30": 5.5699999999999985
+     },
+     {
+      "seed": 37,
+      "da_cue_first30": 0.2233333333333333,
+      "da_cue_last30": 0.010000000000000002,
+      "da_reward_first30": 20.233333333333334,
+      "da_reward_last30": 10.1625,
+      "da_error_last30": 0.0,
+      "value_first30": 0.0,
+      "value_last30": 0.0,
+      "critic_first30": 4.496666666666667,
+      "critic_last30": 9.266666666666667
+     },
+     {
+      "seed": 38,
+      "da_cue_first30": 0.05999999999999999,
+      "da_cue_last30": 0.0,
+      "da_reward_first30": 20.308695652173917,
+      "da_reward_last30": 11.43703703703704,
+      "da_error_last30": 0.0,
+      "value_first30": 0.0,
+      "value_last30": 0.0,
+      "critic_first30": 5.243333333333333,
+      "critic_last30": 10.203333333333337
+     }
+    ],
+    "da_cue_first30": {
+     "mean": 0.352,
+     "sd": 0.418,
+     "min": 0.05666666666666668,
+     "max": 1.0666666666666667,
+     "n": 4
+    },
+    "da_cue_last30": {
+     "mean": 0.028,
+     "sd": 0.042,
+     "min": 0.0,
+     "max": 0.10000000000000002,
+     "n": 4
+    },
+    "da_reward_first30": {
+     "mean": 20.52,
+     "sd": 2.178,
+     "min": 17.70909090909091,
+     "max": 23.82857142857143,
+     "n": 4
+    },
+    "da_reward_last30": {
+     "mean": 12.243,
+     "sd": 2.697,
+     "min": 10.1625,
+     "max": 16.844444444444445,
+     "n": 4
+    },
+    "da_error_last30": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 4
+    },
+    "value_first30": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 4
+    },
+    "value_last30": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 4
+    },
+    "critic_first30": {
+     "mean": 4.478,
+     "sd": 1.224,
+     "min": 2.4900000000000007,
+     "max": 5.6833333333333345,
+     "n": 4
+    },
+    "critic_last30": {
+     "mean": 8.584,
+     "sd": 1.78,
+     "min": 5.5699999999999985,
+     "max": 10.203333333333337,
+     "n": 4
+    }
+   }
+  },
+  "without (Stage 28, nets 31-34)": {
+   "dopamine": {
+    "per_network": [
+     {
+      "seed": 31,
+      "da_cue_first30": NaN,
+      "da_cue_last30": NaN,
+      "da_reward_first30": 17.624000000000002,
+      "da_reward_last30": 9.644827586206896,
+      "da_error_last30": 0.0,
+      "value_first30": NaN,
+      "value_last30": NaN,
+      "critic_first30": 5.283333333333335,
+      "critic_last30": 10.120000000000001
+     },
+     {
+      "seed": 32,
+      "da_cue_first30": NaN,
+      "da_cue_last30": NaN,
+      "da_reward_first30": 18.844,
+      "da_reward_last30": 8.714285714285714,
+      "da_error_last30": 0.0,
+      "value_first30": NaN,
+      "value_last30": NaN,
+      "critic_first30": 4.78,
+      "critic_last30": 10.02
+     },
+     {
+      "seed": 33,
+      "da_cue_first30": NaN,
+      "da_cue_last30": NaN,
+      "da_reward_first30": 17.299999999999997,
+      "da_reward_last30": 10.471428571428572,
+      "da_error_last30": 0.0,
+      "value_first30": NaN,
+      "value_last30": NaN,
+      "critic_first30": 5.94,
+      "critic_last30": 8.166666666666666
+     },
+     {
+      "seed": 34,
+      "da_cue_first30": NaN,
+      "da_cue_last30": NaN,
+      "da_reward_first30": 23.215384615384615,
+      "da_reward_last30": 12.72758620689655,
+      "da_error_last30": 0.0,
+      "value_first30": NaN,
+      "value_last30": NaN,
+      "critic_first30": 3.0099999999999993,
+      "critic_last30": 8.476666666666667
+     }
+    ],
+    "da_cue_first30": {
+     "mean": NaN,
+     "sd": NaN,
+     "min": NaN,
+     "max": NaN,
+     "n": 4
+    },
+    "da_cue_last30": {
+     "mean": NaN,
+     "sd": NaN,
+     "min": NaN,
+     "max": NaN,
+     "n": 4
+    },
+    "da_reward_first30": {
+     "mean": 19.246,
+     "sd": 2.363,
+     "min": 17.299999999999997,
+     "max": 23.215384615384615,
+     "n": 4
+    },
+    "da_reward_last30": {
+     "mean": 10.39,
+     "sd": 1.486,
+     "min": 8.714285714285714,
+     "max": 12.72758620689655,
+     "n": 4
+    },
+    "da_error_last30": {
+     "mean": 0.0,
+     "sd": 0.0,
+     "min": 0.0,
+     "max": 0.0,
+     "n": 4
+    },
+    "value_first30": {
+     "mean": NaN,
+     "sd": NaN,
+     "min": NaN,
+     "max": NaN,
+     "n": 4
+    },
+    "value_last30": {
+     "mean": NaN,
+     "sd": NaN,
+     "min": NaN,
+     "max": NaN,
+     "n": 4
+    },
+    "critic_first30": {
+     "mean": 4.753,
+     "sd": 1.087,
+     "min": 3.0099999999999993,
+     "max": 5.94,
+     "n": 4
+    },
+    "critic_last30": {
+     "mean": 9.196,
+     "sd": 0.882,
+     "min": 8.166666666666666,
+     "max": 10.120000000000001,
+     "n": 4
+    }
+   }
+  }
+ }
+}

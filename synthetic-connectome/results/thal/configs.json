@@ -58,5 +58,93 @@
    "crit_eta": 0.05
   },
   "genome": "loop only"
+ },
+ "bal_eta05": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick, eta 6.55"
+ },
+ "bal_eta025": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick, eta 3.3"
+ },
+ "bal_route10": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.1
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick, eta 13.1"
+ },
+ "chosen": {
+  "name": "bal_eta05",
+  "why": "scan on networks 31-32: 98 +/- 2 %, 75 % by 20-26, early run 7 (eta x0.25: 93 %, 38-41; route 10 %: 95 %, early run 14; unbalanced: 94 %)"
+ },
+ "td": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05,
+   "value_n": 64,
+   "value_gain": 3.0,
+   "value_to_da_mV": 2.0
+  },
+  "genome": "quick, eta 6.55",
+  "note": "Stage 29c: chosen balance + fast PPTg-type value pathway"
  }
 }

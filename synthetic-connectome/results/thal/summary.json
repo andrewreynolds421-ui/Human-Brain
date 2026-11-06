@@ -60,9 +60,336 @@
     "crit_eta": 0.05
    },
    "genome": "loop only"
+  },
+  "bal_eta05": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 1.0,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "post_lin": 0.0,
+    "post_gain": 1.0,
+    "thal_drive_mV": 31.0,
+    "thal_n_in": 64,
+    "thal_route": 0.15
+   },
+   "da": {
+    "crit_gain": 2.5,
+    "crit_eta": 0.05
+   },
+   "genome": "quick, eta 6.55"
+  },
+  "bal_eta025": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 1.0,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "post_lin": 0.0,
+    "post_gain": 1.0,
+    "thal_drive_mV": 31.0,
+    "thal_n_in": 64,
+    "thal_route": 0.15
+   },
+   "da": {
+    "crit_gain": 2.5,
+    "crit_eta": 0.05
+   },
+   "genome": "quick, eta 3.3"
+  },
+  "bal_route10": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 1.0,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "post_lin": 0.0,
+    "post_gain": 1.0,
+    "thal_drive_mV": 31.0,
+    "thal_n_in": 64,
+    "thal_route": 0.1
+   },
+   "da": {
+    "crit_gain": 2.5,
+    "crit_eta": 0.05
+   },
+   "genome": "quick, eta 13.1"
   }
  },
  "rows": {
+  "bal_eta025": {
+   "n": 2,
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.98,
+     "reach75": 41,
+     "early_run": 13,
+     "blocks30": [
+      0.47,
+      0.8,
+      0.7,
+      0.97,
+      0.97
+     ],
+     "l5e_rest_hz": 3.24,
+     "s_per_trial": 7.6,
+     "thal_win": 51.09799999999999,
+     "thal_lose": 23.830666666666666,
+     "snr_correct_last50": 0.96
+    },
+    {
+     "seed": 32,
+     "acc_last50": 0.88,
+     "reach75": 38,
+     "early_run": 5,
+     "blocks30": [
+      0.67,
+      0.87,
+      0.87,
+      0.83,
+      0.97
+     ],
+     "l5e_rest_hz": 3.09,
+     "s_per_trial": 7.6,
+     "thal_win": 62.20466666666666,
+     "thal_lose": 47.238666666666674,
+     "snr_correct_last50": 0.76
+    }
+   ],
+   "acc_last50": {
+    "mean": 0.9299999999999999,
+    "sd": 0.04999999999999999,
+    "min": 0.88,
+    "max": 0.98
+   },
+   "reach75": {
+    "mean": 39.5,
+    "sd": 1.5,
+    "min": 38.0,
+    "max": 41.0
+   },
+   "early_run": {
+    "mean": 9.0,
+    "sd": 4.0,
+    "min": 5.0,
+    "max": 13.0
+   },
+   "l5e_rest_hz": {
+    "mean": 3.165,
+    "sd": 0.07500000000000018,
+    "min": 3.09,
+    "max": 3.24
+   },
+   "s_per_trial": {
+    "mean": 7.6,
+    "sd": 0.0,
+    "min": 7.6,
+    "max": 7.6
+   },
+   "thal_win": {
+    "mean": 56.651333333333326,
+    "sd": 5.553333333333335,
+    "min": 51.09799999999999,
+    "max": 62.20466666666666
+   },
+   "thal_lose": {
+    "mean": 35.534666666666666,
+    "sd": 11.704000000000004,
+    "min": 23.830666666666666,
+    "max": 47.238666666666674
+   },
+   "snr_correct_last50": {
+    "mean": 0.86,
+    "sd": 0.09999999999999998,
+    "min": 0.76,
+    "max": 0.96
+   }
+  },
+  "bal_eta05": {
+   "n": 2,
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.96,
+     "reach75": 20,
+     "early_run": 5,
+     "blocks30": [
+      0.87,
+      0.83,
+      0.93,
+      0.93,
+      0.97
+     ],
+     "l5e_rest_hz": 2.85,
+     "s_per_trial": 7.66,
+     "thal_win": 62.04066666666667,
+     "thal_lose": 50.93,
+     "snr_correct_last50": 0.88
+    },
+    {
+     "seed": 32,
+     "acc_last50": 1.0,
+     "reach75": 26,
+     "early_run": 9,
+     "blocks30": [
+      0.7,
+      0.87,
+      0.93,
+      0.93,
+      1.0
+     ],
+     "l5e_rest_hz": 2.61,
+     "s_per_trial": 7.626666666666667,
+     "thal_win": 59.077999999999996,
+     "thal_lose": 47.69466666666666,
+     "snr_correct_last50": 0.74
+    }
+   ],
+   "acc_last50": {
+    "mean": 0.98,
+    "sd": 0.020000000000000018,
+    "min": 0.96,
+    "max": 1.0
+   },
+   "reach75": {
+    "mean": 23.0,
+    "sd": 3.0,
+    "min": 20.0,
+    "max": 26.0
+   },
+   "early_run": {
+    "mean": 7.0,
+    "sd": 2.0,
+    "min": 5.0,
+    "max": 9.0
+   },
+   "l5e_rest_hz": {
+    "mean": 2.73,
+    "sd": 0.1200000000000001,
+    "min": 2.61,
+    "max": 2.85
+   },
+   "s_per_trial": {
+    "mean": 7.6433333333333335,
+    "sd": 0.016666666666666607,
+    "min": 7.626666666666667,
+    "max": 7.66
+   },
+   "thal_win": {
+    "mean": 60.55933333333333,
+    "sd": 1.4813333333333354,
+    "min": 59.077999999999996,
+    "max": 62.04066666666667
+   },
+   "thal_lose": {
+    "mean": 49.31233333333333,
+    "sd": 1.6176666666666684,
+    "min": 47.69466666666666,
+    "max": 50.93
+   },
+   "snr_correct_last50": {
+    "mean": 0.81,
+    "sd": 0.07,
+    "min": 0.74,
+    "max": 0.88
+   }
+  },
+  "bal_route10": {
+   "n": 2,
+   "per_network": [
+    {
+     "seed": 31,
+     "acc_last50": 0.92,
+     "reach75": 24,
+     "early_run": 12,
+     "blocks30": [
+      0.7,
+      0.87,
+      0.93,
+      1.0,
+      0.87
+     ],
+     "l5e_rest_hz": 2.73,
+     "s_per_trial": 7.6866666666666665,
+     "thal_win": 58.67666666666667,
+     "thal_lose": 50.91133333333333,
+     "snr_correct_last50": 0.76
+    },
+    {
+     "seed": 32,
+     "acc_last50": 0.98,
+     "reach75": 27,
+     "early_run": 16,
+     "blocks30": [
+      0.7,
+      0.87,
+      0.97,
+      0.93,
+      1.0
+     ],
+     "l5e_rest_hz": 3.23,
+     "s_per_trial": 7.626666666666667,
+     "thal_win": 59.402666666666654,
+     "thal_lose": 50.670666666666676,
+     "snr_correct_last50": 0.76
+    }
+   ],
+   "acc_last50": {
+    "mean": 0.95,
+    "sd": 0.02999999999999997,
+    "min": 0.92,
+    "max": 0.98
+   },
+   "reach75": {
+    "mean": 25.5,
+    "sd": 1.5,
+    "min": 24.0,
+    "max": 27.0
+   },
+   "early_run": {
+    "mean": 14.0,
+    "sd": 2.0,
+    "min": 12.0,
+    "max": 16.0
+   },
+   "l5e_rest_hz": {
+    "mean": 2.98,
+    "sd": 0.25,
+    "min": 2.73,
+    "max": 3.23
+   },
+   "s_per_trial": {
+    "mean": 7.656666666666666,
+    "sd": 0.029999999999999805,
+    "min": 7.626666666666667,
+    "max": 7.6866666666666665
+   },
+   "thal_win": {
+    "mean": 59.03966666666666,
+    "sd": 0.36299999999999244,
+    "min": 58.67666666666667,
+    "max": 59.402666666666654
+   },
+   "thal_lose": {
+    "mean": 50.791000000000004,
+    "sd": 0.12033333333332763,
+    "min": 50.670666666666676,
+    "max": 50.91133333333333
+   },
+   "snr_correct_last50": {
+    "mean": 0.76,
+    "sd": 0.0,
+    "min": 0.76,
+    "max": 0.76
+   }
+  },
   "route10_loop_only": {
    "n": 2,
    "per_network": [

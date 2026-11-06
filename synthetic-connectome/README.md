@@ -1859,6 +1859,36 @@ What this settles and what it does not:
    finish highest and are 3× cheaper (2.9 vs 8 s/trial).
 4. Not yet tested: eight areas, reversal learning, double size.
 
+## Stage 29: balancing loop and cortex, eight areas, reversal, and dopamine at the cue
+
+### 29a. Balancing loop and cortex — a negative result on held-out networks
+
+Stage 28 left the full system 2.5 points below Stage 27 because loop and
+cortex both learn. Scan on networks 31–32 (`results/thal/bal_*`): cortical
+learning rate ×0.5 → 98 ± 2 %, 75 % by trial 20–26; ×0.25 → 93 %, 38–41;
+routing 10 % instead of 15 % → 95 %, early run 14; unchanged (Stage 28) →
+94 %. ×0.5 was chosen and checked, with the unchanged rule and the hand-made
+WTA groups, on networks 35–38, which the scan never saw
+(`results/thal/stage29_summary.json`, `scripts/analysis/stage29.py`):
+
+| on networks 35–38 | trials 101–150 | reaches 75 % |
+|---|---|---|
+| loop, routed, cortical rate ×0.5 | 89.0 ± 2.2 % (86–92) | 20–58 |
+| loop, routed, cortical rate unchanged (Stage 28) | 91.0 ± 1.0 % (90–92) | 25–39 |
+| hand-made WTA groups | 96.5 ± 1.7 % (94–98) | 20–29 |
+
+**The scan's gain did not survive**: on new networks the halved rate is no
+better (2 points worse, within one spread) — the 98 % on 31–32 was seed luck,
+exactly what METHODS rule 2 exists to catch. The real finding is the third
+row: on held-out networks the routed loop finishes 5–7 points below the
+hand-made circuit, while starting about as fast. The loop/cortex competition
+is not fixed by slowing the cortex; the stronger lead is the relays rising
+together late in a run (Stage 28, reading 3), i.e. the loop needs its own
+homeostasis (relay or SNr adaptation), which remains open. The runs in 29b
+and 29c below had already been queued with ×0.5; given this table that
+setting is equivalent to the unchanged rule within spread, and they are
+reported as such.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

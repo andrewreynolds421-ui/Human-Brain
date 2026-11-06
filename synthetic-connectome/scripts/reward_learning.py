@@ -240,7 +240,9 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
             net.run((da.p["window_ms"] - da.p["rew_ms"]) * ms)
             delta = da.delta(t_now, t_now + da.p["window_ms"])
             da_log.append(dict(R=R, da_hz=round(da.rate(t_now, t_now + da.p["window_ms"]), 1), delta=round(delta, 3),
-                               critic_hz=round(da.rate(t_now - TRIAL_MS + 20, t_now - TRIAL_MS + CUE_MS + 20, "critic"), 1)))
+                               critic_hz=round(da.rate(t_now - TRIAL_MS + 20, t_now - TRIAL_MS + CUE_MS + 20, "critic"), 1),
+                               da_cue_hz=round(da.rate(t_now - TRIAL_MS + 20, t_now - TRIAL_MS + CUE_MS + 20), 1),
+                               value_hz=round(da.rate(t_now - TRIAL_MS + 20, t_now - TRIAL_MS + CUE_MS + 20, "value"), 1)))
             if cortical_da:
                 signal = delta
         # reward-gated update

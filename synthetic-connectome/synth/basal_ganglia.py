@@ -438,6 +438,19 @@ DA_DEFAULTS = dict(
     dip_gain=4.0,        # ASSUMED: factor on negative delta, so a full pause weighs about as much as a full burst
                          # (pauses are rate-floored and code negative errors by duration; Bayer & Glimcher 2005, 2007)
     window_ms=200.0,     # DA rate read over this window from the reward event
+    # ---- Stage 29c: fast excitatory value pathway, so the burst moves to the cue (temporal difference) ----
+    value_n=0,           # PPTg-type excitatory cells driven by the cue cells through learned synapses (0 = off);
+                         # PPTg neurons carry the reward predicted by a cue at cue time (Okada et al. 2009;
+                         # Kobayashi & Okada 2007) and excite dopamine cells (Lokwan et al. 1999).  With the slow
+                         # striosomal inhibition this is the two-pathway account of the TD error (Houk et al. 1995;
+                         # Vitay & Hamker 2014): fast excitation at the cue, slow cancellation at the reward.
+    value_tau_ms=10.0, value_theta_mV=20.0,  # ASSUMED generic LIF
+    value_offset_mV=(-24.0, -12.0),          # ASSUMED: resting offsets, so the cells are near-silent until learned
+    value_n_in=16,
+    value_gain=1.0,      # FITTED: PSP factor of cue -> value cells
+    value_to_da_mV=1.0,  # FITTED: AMPA peak of one value-cell spike on a DA cell
+    value_eta=0.05,      # learning rate (as the critic)
+    value_w_max_factor=10.0,
 )
 
 
@@ -526,6 +539,42 @@ class DopamineSystem:
         self.mon = b2.SpikeMonitor(self.DA, name=f"{name}_mon")
         self.mon_c = b2.SpikeMonitor(self.critic, name=f"{name}_mon_critic")
         self.objects = [self.DA, self.rew, self.inh, S1, S2, self.critic, self.crit_syn, S3, self.mon, self.mon_c]
+        self.value = self.value_syn = self.mon_v = None
+        if int(p["value_n"]) > 0:
+            nv = int(p["value_n"])
+            veqs = """
+            dv/dt = (-v + ampa + nmda + v_off) / tau_m + sigma_step * xi / sqrt(dt_noise) : volt (unless refractory)
+            dampa/dt = -ampa / tau_ampa : volt
+            dnmda/dt = -nmda / tau_nmda : volt
+            v_off : volt (constant)
+            """
+            vns = dict(tau_m=p["value_tau_ms"] * ms, sigma_step=NOISE_SD_MV * mV, dt_noise=dt, tau_ampa=PSP["ampa"][1] * ms,
+                       tau_nmda=PSP["nmda"][1] * ms, theta=p["value_theta_mV"] * mV)
+            self.value = b2.NeuronGroup(nv, veqs, threshold="v > theta", reset="v = 0*mV", refractory=REFRACTORY_MS * ms,
+                                        method="euler", namespace=vns, name=f"{name}_pptg")
+            lo, hi = p["value_offset_mV"]
+            self.value.v_off = self.rng.uniform(lo, hi, nv) * mV
+            vpsp = PSP["ampa"][0] * psp_scale(p["value_tau_ms"], PSP["ampa"][1]) * float(p["value_gain"])
+            vnm = PSP["nmda"][0] * psp_scale(p["value_tau_ms"], PSP["nmda"][1]) * float(p["value_gain"])
+            von_pre = (f"ampa_post += {vpsp:.6g}*mV*wf; nmda_post += {vnm:.6g}*mV*wf; "
+                       "elig = elig * exp(-(t - t_e) / tau_e) - a_minus * xpost; t_e = t; xpre += 1")
+            self.value_syn = b2.Synapses(g, self.value, model=model, on_pre=von_pre, on_post=on_post, delay=5 * ms,
+                                         name=f"{name}_cue_pptg",
+                                         namespace=dict(tau_x=bg.p["tau_x_ms"] * ms, tau_e=bg.p["tau_e_ms"] * ms,
+                                                        a_minus=float(bg.p["a_minus"])))
+            n_in = int(p["value_n_in"])
+            p_c = min(1.0, n_in / max(1, idx.size)); wfs = max(1.0, n_in / max(1, idx.size))
+            pi_ = np.repeat(idx, nv); pj_ = np.tile(np.arange(nv), idx.size)
+            kp = self.rng.random(pi_.size) < p_c
+            self.value_syn.connect(i=pi_[kp], j=pj_[kp])
+            self.value_syn.wf = wfs * self.rng.uniform(1.0 - spread, 1.0 + spread, int(kp.sum()))
+            self.value_syn.elig = 0.0; self.value_syn.t_e = 0 * ms
+            self.value_w0 = np.asarray(self.value_syn.wf).copy()
+            a_v = float(p["value_to_da_mV"]) * psp_scale(p["tau_ms"], PSP["ampa"][1])
+            S4 = b2.Synapses(self.value, self.DA, on_pre=f"ampa_post += {a_v:.6g}*mV", delay=3 * ms, name=f"{name}_pptg_da")
+            S4.connect(p=p["p_in"])
+            self.mon_v = b2.SpikeMonitor(self.value, name=f"{name}_mon_pptg")
+            self.objects += [self.value, self.value_syn, S4, self.mon_v]
         self._event = None
 
     # ------------------------------------------------------------------ events
@@ -540,10 +589,12 @@ class DopamineSystem:
         self.rew.rates = 0 * Hz; self.inh.rates = 0 * Hz
 
     def rate(self, t0_ms, t1_ms, which="da"):
-        mon = self.mon if which == "da" else self.mon_c
+        mon = {"da": self.mon, "critic": self.mon_c, "value": self.mon_v}[which]
+        if mon is None:
+            return 0.0
         t = np.asarray(mon.t / ms)
         n = int(((t >= t0_ms) & (t < t1_ms)).sum())
-        N = int(self.p["n"]) if which == "da" else int(self.p["crit_n"])
+        N = {"da": int(self.p["n"]), "critic": int(self.p["crit_n"]), "value": int(self.p["value_n"])}[which]
         return n / N / ((t1_ms - t0_ms) / 1000.0)
 
     def delta(self, t0_ms, t1_ms):
@@ -559,9 +610,14 @@ class DopamineSystem:
         e = np.asarray(S.elig) * np.exp(-np.clip(now - np.asarray(S.t_e / ms), 0, None) / self.bg.p["tau_e_ms"])
         w = np.clip(np.asarray(S.wf) + self.p["crit_eta"] * float(delta) * e, 0.0, self.p["crit_w_max_factor"] * self.crit_w0)
         S.wf = w
+        if self.value_syn is not None:              # the fast value pathway learns from the same error
+            V = self.value_syn
+            ev = np.asarray(V.elig) * np.exp(-np.clip(now - np.asarray(V.t_e / ms), 0, None) / self.bg.p["tau_e_ms"])
+            V.wf = np.clip(np.asarray(V.wf) + self.p["value_eta"] * float(delta) * ev, 0.0,
+                           self.p["value_w_max_factor"] * self.value_w0)
         return float(np.mean(w / self.crit_w0))
 
     def clear(self):
-        for mon in (self.mon, self.mon_c):
+        for mon in (self.mon, self.mon_c) + ((self.mon_v,) if self.mon_v is not None else ()):
             mon.resize(0)
             mon.variables["N"].set_value(0)
