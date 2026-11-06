@@ -360,3 +360,18 @@ moves to the cue (21 → 43 spikes/s while the reward burst fades 24 → 15) but
 overshoots and costs learning (78 ± 8 %). New open problem 12 groups these
 as missing homeostasis in the loop's populations. Two machine restarts
 during the night; the job runner and partial files recovered every run.
+
+## 11. Follow-up (6 November, day): Stage 30, homeostasis
+
+Intrinsic homeostatic plasticity on the thalamic relay (target: its measured
+13 spikes/s) removes the relays' drift and brings the routed loop to 95.0 ±
+2.2 % on held-out networks 35–38 (was 91 ± 1; WTA 96.5 ± 1.7) — the gap
+Stage 29 measured is now inside the seed spread. With homeostasis also on
+the critic and value cells and the value pathway at half the overshooting
+strength, dopamine at the cue doubles (13.6 → 25.3 spikes/s) while the
+reward burst falls (23 → 13.5) and learning stays at 95.5 ± 3.3 %: the TD
+signature, with the stated limit that the cue response starts above rest.
+Negative: in eight areas relay homeostasis costs ~6 points (83.5 vs 89.5),
+probably because one target rate under-drives the selected relay when the
+pools get more input. Stage 4's basal ganglia and thalamus now work end to
+end in two areas; eight areas is the open part.

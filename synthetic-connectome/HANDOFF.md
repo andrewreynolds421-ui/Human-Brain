@@ -180,6 +180,8 @@ environment variables are listed at the top of `warmind/neural_core.py`.
 | loop alone, paper protocol | rest STN 10 / GP 19 / SNr 25 Hz in range; selects from 10–12 spikes/s; switches 80 %, keeps 85 % up to 16 spikes/s; both selected above | 4 | `results/bg/standalone_final.json` |
 | loop vs WTA on held-out networks 35–38 (Stage 29a) | 91 ± 1 % vs 96.5 ± 1.7 % | 4 | `results/thal/stage29_summary.json` |
 | routed loop, 8 areas / reversal (Stage 29b) | 89.5 ± 4.3 %; reversal end 79 ± 5 % (WTA 80 ± 7) | 4 + 4 | same |
+| relay homeostasis, held-out networks 35–38 (Stage 30) | 95.0 ± 2.2 % (WTA 96.5 ± 1.7); 8 areas 83.5 ± 2.2 % | 4 + 4 | `results/hom/stage30_summary.json` |
+| dopamine burst moves to the cue (Stage 30, `td_hom2`) | cue 13.6 → 25.3, reward 23 → 13.5 spikes/s; learning 95.5 ± 3.3 % | 4 | same |
 | thalamic relay carrying 15 % of the pools' drive (Stage 28) | loop alone 83 ± 7.5 %; full system 92.5 ± 1.7 %, 75 % by 20–42 | 4 | `results/thal/summary.json` |
 | dopamine population as the learning signal | 95 ± 2 %, 75 % by 34–55; burst to reward 21.5 → 13 Hz as the critic rises 3.3 → 7.8 Hz | 4 | `results/bg/stage27_summary.json` |
 | loop learning the task alone (cortex off) | **does not**: 40–55 % | 2 + probes | `results/bg/loop_only_diagnostics.json` |
@@ -244,6 +246,8 @@ the long form. Priorities as they stand on 5 Nov:
 8. **Hippocampus** is its own stage; **cerebellum** waits for a body (Stage
    5); **neuromodulator circuits** replace the surprise/uncertainty formulas
    once the dopamine system is a TD circuit.
+
+*Current best two-area loop settings (6 Nov): `results/hom/configs.json`, `td_hom2` — routed relay + relay homeostasis + dopamine with value pathway and critic/value homeostasis. Open: eight areas (open problem 12).*
 
 "Putting it all together" — one system rather than parts — is items 1, 3 and
 4 wired through RASPUTIN: the sensory layers as the cue source

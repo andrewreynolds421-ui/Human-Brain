@@ -41,7 +41,8 @@ def main():
     res["eight_areas"] = {"relay homeostasis": block(H + "areas8_hom_seed*.json"),
                           "no homeostasis (Stage 29b)": block(T + "areas8_bal_eta05_seed*.json"),
                           "WTA groups (Stage 25)": block("results/v2/quick_8area_seed*.json")}
-    res["td"] = {"value x4 + critic x0.5 + homeostasis": block(H + "td_hom_seed*.json"),
+    res["td"] = {"value x2 + critic 0.35 + homeostasis 0.3": block(H + "td_hom2_seed*.json"),
+                 "value x4 + critic x0.5 + homeostasis": block(H + "td_hom_seed*.json"),
                  "value x4 + critic x0.5, no homeostasis (Stage 29c)": block(T + "td3_seed*.json")}
     json.dump(res, open(H + "stage30_summary.json", "w"), indent=1)
     for part, rows in res.items():

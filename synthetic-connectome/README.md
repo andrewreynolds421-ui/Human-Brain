@@ -1984,6 +1984,42 @@ seed spread. The drift itself is gone (relays end at 28/23 spikes/s instead
 of 57/52). Slowing cortical learning (29a) had not done this; holding the
 relay's rate did.
 
+**Eight areas — homeostasis does not carry over** (networks 9001–9004):
+
+| | trials 101–150 | reaches 75 % | relay winner / loser, first → last |
+|---|---|---|---|
+| routed loop + relay homeostasis | 83.5 ± 2.2 % | 24–54 | 25/13 → 28/21 |
+| routed loop (29b; cortical rate ×0.5) | 89.5 ± 4.3 % | 33–59 | 40/25 → 59/44 |
+| hand-made WTA groups | 95.5 ± 4.6 % | 20–40 | — |
+
+The drift is removed in eight areas too, but accuracy falls ~6 points
+(not a one-change comparison: 29b had the halved cortical rate). The selected
+relay now reaches only 25–28 spikes/s; with seven other areas feeding the
+action pools, that is too little to separate the channels. A single target
+rate for a relay whose input changes with network size is the likely
+problem — in vivo the relay's resting rate is fixed but its selected
+response is not limited by the homeostat. To try: homeostasis on the slower
+mean only (longer `hom_tau_r_s`), or on the relay's *resting* periods only.
+
+**Dopamine at the cue, with homeostasis** (networks 31–34; homeostasis also
+on critic and value cells, targets 3 / 5 spikes/s ASSUMED; first → last 30
+trials):
+
+| | learning | dopamine at cue | at reward | at error | value / critic late |
+|---|---|---|---|---|---|
+| **value ×2 (4 mV), critic 0.35 mV, homeostasis 0.3** | **95.5 ± 3.3 %** | **13.6 → 25.3** | **23.1 → 13.5** | 5.2 | 23 / 16 |
+| value ×4, critic ×0.5, homeostasis 0.1 | 90.5 ± 4.1 % | 19.5 → 46.4 | 25.2 → 16.7 | 9.3 | 37 / 29 |
+| value ×4, critic ×0.5, none (29c) | 78.0 ± 8.1 % | 21.1 → 43.1 | 23.8 → 15.0 | 7.9 | 30 / 28 |
+
+The half-strength setting is the first that does the whole job together:
+the burst at the cue doubles as the burst at the now-predicted reward falls
+by 40 %, errors still pull dopamine close to a pause, and learning matches
+the hand-made circuit (95.5 vs 97 ± 2 on these networks in Stage 25). Two
+honest limits: the cue already evokes 13.6 spikes/s before learning (resting
+4.7), so the transfer starts from a raised baseline rather than from zero;
+and the value and critic targets are assumptions, not measurements. Settings:
+`results/hom/configs.json` (`td_hom2`).
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
@@ -2122,7 +2158,10 @@ These are the real findings so far. Each is a concrete next task.
     spike-frequency adaptation or synaptic scaling on the relay, critic and
     value cells, with targets from their measured rates (relay 13, dopamine
     4.5 spikes/s); also intrinsic SNr adaptation. Test against Stage 28/29 on
-    held-out networks.
+    held-out networks. *Stage 30: relay homeostasis closes the two-area gap
+    (95 vs 96.5 % on held-out networks) and, with homeostasis on critic and
+    value cells, the burst moves to the cue with learning intact; in eight
+    areas it costs ~6 points — the remaining part of this problem.*
 
 ## Data sources (for Phases 1–3)
 
