@@ -18,7 +18,7 @@ tasks (96–97 % on the recalibrated column, Stage 25), routes real text at
 63 % through a self-organising sensory layer, and reads printed letters at 76 % in unseen fonts. It is not a brain,
 not full-scale, and not yet validated against human recordings. Status by
 roadmap stage: *Phase plan* below; full audit: `AUDIT.md`; working rules:
-`METHODS.md`.
+`METHODS.md`; **picking the project up: `HANDOFF.md`**.
 
 This repository holds **Phase 0** (pipeline, validated on the rodent
 reference column) and **Phase 1** (the same column re-fitted to the human
