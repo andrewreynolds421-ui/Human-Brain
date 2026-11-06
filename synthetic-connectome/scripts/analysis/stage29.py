@@ -84,7 +84,9 @@ def main():
     res["b_eight_areas_9001_9004"] = {"loop (balanced, routed)": learning(load(T + "areas8_bal_eta05_seed*.json")),
                                       "loop, no routing (Stage 26)": learning(load("results/bg/learn8_A_seed*.json")),
                                       "WTA groups (Stage 25)": learning(load("results/v2/quick_8area_seed*.json"))}
-    res["c_td"] = {"with value pathway": dict(learning=learning(load(T + "td_seed*.json")), dopamine=dopamine(load(T + "td_seed*.json"))),
+    res["c_td"] = {"rebalanced: value x4, critic x0.5, timed": dict(learning=learning(load(T + "td3_seed*.json")), dopamine=dopamine(load(T + "td3_seed*.json"))),
+                   "value pathway + timed critic (150 ms rise)": dict(learning=learning(load(T + "td2_seed*.json")), dopamine=dopamine(load(T + "td2_seed*.json"))),
+                   "value pathway, instant critic (first try)": dict(learning=learning(load(T + "td_seed*.json")), dopamine=dopamine(load(T + "td_seed*.json"))),
                    "without (balanced, held-out nets)": dict(dopamine=dopamine(load(T + "heldout_bal_eta05_seed*.json"))),
                    "without (Stage 28, nets 31-34)": dict(dopamine=dopamine(load(T + "route15_full_seed*.json")))}
     json.dump(res, open(T + "stage29_summary.json", "w"), indent=1)

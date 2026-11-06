@@ -430,6 +430,9 @@ DA_DEFAULTS = dict(
                          # activity, so the prediction can grow or shrink); 1.5 left them silent and unable to learn
     crit_to_da_mV=0.5,   # ASSUMED: slow inhibition from one critic spike onto a DA cell (peak, mV)
     crit_tau_ms=500.0,   # ASSUMED stand-in for sustained striosomal inhibition reaching the reward time
+    crit_rise_ms=0.0,    # ASSUMED (Stage 29c): rise time of that inhibition; > 0 makes it a timed prediction that
+                         # builds toward the reward instead of starting at the cue, same total inhibition
+                         # (two-pathway TD account: fast excitation at the cue, slow timed cancellation; Houk et al. 1995)
     crit_eta=0.05,       # FITTED: critic learning rate (0.02 too slow to follow the learner's accuracy)
     crit_w_max_factor=10.0,
     crit_spread_mV=15.0, # ASSUMED: per-cell offset of the critic's resting level, uniform in [-spread, 0], so the
@@ -479,10 +482,12 @@ class DopamineSystem:
         dv/dt = (-v + ampa - gaba - gslow + v_spon) / tau_m + sigma_step * xi / sqrt(dt_noise) : volt (unless refractory)
         dampa/dt = -ampa / tau_ampa : volt
         dgaba/dt = -gaba / tau_gaba : volt
-        dgslow/dt = -gslow / tau_slow : volt
+        dgslow/dt = (hslow - gslow) / tau_slow : volt
+        dhslow/dt = -hslow / tau_hr : volt
         """
         ns = dict(tau_m=p["tau_ms"] * ms, v_spon=p["drive_mV"] * mV, sigma_step=NOISE_SD_MV * mV, dt_noise=dt,
                   tau_ampa=PSP["ampa"][1] * ms, tau_gaba=PSP["gaba"][1] * ms, tau_slow=p["crit_tau_ms"] * ms,
+                  tau_hr=max(float(p["crit_rise_ms"]), 0.1) * ms,
                   theta=p["theta_mV"] * mV)
         self.DA = b2.NeuronGroup(int(p["n"]), eqs, threshold="v > theta", reset="v = 0*mV",
                                  refractory=p["refractory_ms"] * ms, method="euler", namespace=ns, name=f"{name}_snc")
@@ -534,7 +539,12 @@ class DopamineSystem:
         self.crit_w0 = np.asarray(self.crit_syn.wf).copy()
         # critic -> DA: slow inhibition (the prediction), scaled so one spike gives crit_to_da_mV peak
         a_s = float(p["crit_to_da_mV"]) * psp_scale(p["tau_ms"], p["crit_tau_ms"])
-        S3 = b2.Synapses(self.critic, self.DA, on_pre=f"gslow_post += {a_s:.6g}*mV", name=f"{name}_critic_da")
+        if float(p["crit_rise_ms"]) > 0:
+            # gslow is a low-pass of hslow: same time integral as a jump of a_s in gslow, peak delayed
+            on_s = f"hslow_post += {a_s * p['crit_tau_ms'] / p['crit_rise_ms']:.6g}*mV"
+        else:
+            on_s = f"gslow_post += {a_s:.6g}*mV"          # instantaneous rise (Stage 27 behaviour)
+        S3 = b2.Synapses(self.critic, self.DA, on_pre=on_s, name=f"{name}_critic_da")
         S3.connect(p=p["p_in"])
         self.mon = b2.SpikeMonitor(self.DA, name=f"{name}_mon")
         self.mon_c = b2.SpikeMonitor(self.critic, name=f"{name}_mon_critic")

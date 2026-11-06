@@ -707,9 +707,504 @@
   }
  },
  "c_td": {
-  "with value pathway": {
-   "learning": null,
-   "dopamine": null
+  "rebalanced: value x4, critic x0.5, timed": {
+   "learning": {
+    "seeds": [
+     31,
+     32,
+     33,
+     34
+    ],
+    "acc_last50": {
+     "mean": 0.78,
+     "sd": 0.081,
+     "min": 0.66,
+     "max": 0.88,
+     "n": 4
+    },
+    "reach75": {
+     "mean": 45.5,
+     "sd": 30.712,
+     "min": 20.0,
+     "max": 98.0,
+     "n": 4
+    },
+    "early_run": {
+     "mean": 11.25,
+     "sd": 3.832,
+     "min": 7.0,
+     "max": 16.0,
+     "n": 4
+    },
+    "s_per_trial": {
+     "mean": 8.84,
+     "sd": 0.19,
+     "min": 8.673333333333334,
+     "max": 9.16,
+     "n": 4
+    },
+    "per_network": [
+     {
+      "seed": 31,
+      "acc_last50": 0.88,
+      "reach75": 33,
+      "early_run": 14
+     },
+     {
+      "seed": 32,
+      "acc_last50": 0.82,
+      "reach75": 31,
+      "early_run": 8
+     },
+     {
+      "seed": 33,
+      "acc_last50": 0.76,
+      "reach75": 98,
+      "early_run": 16
+     },
+     {
+      "seed": 34,
+      "acc_last50": 0.66,
+      "reach75": 20,
+      "early_run": 7
+     }
+    ]
+   },
+   "dopamine": {
+    "per_network": [
+     {
+      "seed": 31,
+      "da_cue_first30": 15.770000000000003,
+      "da_cue_last30": 37.04,
+      "da_reward_first30": 23.46666666666666,
+      "da_reward_last30": 14.325925925925926,
+      "da_error_last30": 5.633333333333333,
+      "value_first30": 3.3100000000000005,
+      "value_last30": 20.54666666666667,
+      "critic_first30": 5.863333333333333,
+      "critic_last30": 24.640000000000004
+     },
+     {
+      "seed": 32,
+      "da_cue_first30": 20.636666666666667,
+      "da_cue_last30": 47.41,
+      "da_reward_first30": 23.625,
+      "da_reward_last30": 14.34,
+      "da_error_last30": 9.120000000000001,
+      "value_first30": 5.223333333333333,
+      "value_last30": 35.903333333333336,
+      "critic_first30": 7.016666666666666,
+      "critic_last30": 29.920000000000005
+     },
+     {
+      "seed": 33,
+      "da_cue_first30": 21.90666666666666,
+      "da_cue_last30": 40.22333333333333,
+      "da_reward_first30": 22.91176470588235,
+      "da_reward_last30": 15.334615384615384,
+      "da_error_last30": 5.975,
+      "value_first30": 7.109999999999999,
+      "value_last30": 25.509999999999994,
+      "critic_first30": 8.706666666666667,
+      "critic_last30": 25.25666666666667
+     },
+     {
+      "seed": 34,
+      "da_cue_first30": 25.92333333333333,
+      "da_cue_last30": 47.88666666666666,
+      "da_reward_first30": 25.030434782608694,
+      "da_reward_last30": 16.063157894736843,
+      "da_error_last30": 11.018181818181818,
+      "value_first30": 8.806666666666667,
+      "value_last30": 38.269999999999996,
+      "critic_first30": 8.93,
+      "critic_last30": 30.09666666666666
+     }
+    ],
+    "da_cue_first30": {
+     "mean": 21.059,
+     "sd": 3.624,
+     "min": 15.770000000000003,
+     "max": 25.92333333333333,
+     "n": 4
+    },
+    "da_cue_last30": {
+     "mean": 43.14,
+     "sd": 4.65,
+     "min": 37.04,
+     "max": 47.88666666666666,
+     "n": 4
+    },
+    "da_reward_first30": {
+     "mean": 23.758,
+     "sd": 0.781,
+     "min": 22.91176470588235,
+     "max": 25.030434782608694,
+     "n": 4
+    },
+    "da_reward_last30": {
+     "mean": 15.016,
+     "sd": 0.73,
+     "min": 14.325925925925926,
+     "max": 16.063157894736843,
+     "n": 4
+    },
+    "da_error_last30": {
+     "mean": 7.937,
+     "sd": 2.239,
+     "min": 5.633333333333333,
+     "max": 11.018181818181818,
+     "n": 4
+    },
+    "value_first30": {
+     "mean": 6.112,
+     "sd": 2.055,
+     "min": 3.3100000000000005,
+     "max": 8.806666666666667,
+     "n": 4
+    },
+    "value_last30": {
+     "mean": 30.057,
+     "sd": 7.293,
+     "min": 20.54666666666667,
+     "max": 38.269999999999996,
+     "n": 4
+    },
+    "critic_first30": {
+     "mean": 7.629,
+     "sd": 1.26,
+     "min": 5.863333333333333,
+     "max": 8.93,
+     "n": 4
+    },
+    "critic_last30": {
+     "mean": 27.478,
+     "sd": 2.54,
+     "min": 24.640000000000004,
+     "max": 30.09666666666666,
+     "n": 4
+    }
+   }
+  },
+  "value pathway + timed critic (150 ms rise)": {
+   "learning": {
+    "seeds": [
+     31,
+     32,
+     33,
+     34
+    ],
+    "acc_last50": {
+     "mean": 0.91,
+     "sd": 0.041,
+     "min": 0.84,
+     "max": 0.94,
+     "n": 4
+    },
+    "reach75": {
+     "mean": 25.0,
+     "sd": 5.523,
+     "min": 20.0,
+     "max": 34.0,
+     "n": 4
+    },
+    "early_run": {
+     "mean": 6.25,
+     "sd": 1.09,
+     "min": 5.0,
+     "max": 8.0,
+     "n": 4
+    },
+    "s_per_trial": {
+     "mean": 8.75,
+     "sd": 0.096,
+     "min": 8.673333333333334,
+     "max": 8.913333333333334,
+     "n": 4
+    },
+    "per_network": [
+     {
+      "seed": 31,
+      "acc_last50": 0.92,
+      "reach75": 20,
+      "early_run": 5
+     },
+     {
+      "seed": 32,
+      "acc_last50": 0.94,
+      "reach75": 34,
+      "early_run": 6
+     },
+     {
+      "seed": 33,
+      "acc_last50": 0.94,
+      "reach75": 21,
+      "early_run": 8
+     },
+     {
+      "seed": 34,
+      "acc_last50": 0.84,
+      "reach75": 25,
+      "early_run": 6
+     }
+    ]
+   },
+   "dopamine": {
+    "per_network": [
+     {
+      "seed": 31,
+      "da_cue_first30": 1.7066666666666666,
+      "da_cue_last30": 2.52,
+      "da_reward_first30": 15.033333333333333,
+      "da_reward_last30": 10.9,
+      "da_error_last30": 0.05,
+      "value_first30": 3.083333333333333,
+      "value_last30": 6.653333333333334,
+      "critic_first30": 5.943333333333333,
+      "critic_last30": 9.263333333333334
+     },
+     {
+      "seed": 32,
+      "da_cue_first30": 3.5433333333333334,
+      "da_cue_last30": 5.273333333333335,
+      "da_reward_first30": 23.5,
+      "da_reward_last30": 11.485185185185184,
+      "da_error_last30": 0.06666666666666667,
+      "value_first30": 1.7800000000000002,
+      "value_last30": 11.183333333333334,
+      "critic_first30": 2.5666666666666673,
+      "critic_last30": 9.06
+     },
+     {
+      "seed": 33,
+      "da_cue_first30": 2.443333333333334,
+      "da_cue_last30": 4.239999999999999,
+      "da_reward_first30": 16.714285714285715,
+      "da_reward_last30": 10.403703703703703,
+      "da_error_last30": 0.3666666666666667,
+      "value_first30": 4.036666666666666,
+      "value_last30": 10.526666666666669,
+      "critic_first30": 5.790000000000001,
+      "critic_last30": 9.77
+     },
+     {
+      "seed": 34,
+      "da_cue_first30": 3.5933333333333337,
+      "da_cue_last30": 8.239999999999998,
+      "da_reward_first30": 21.65238095238095,
+      "da_reward_last30": 12.703846153846156,
+      "da_error_last30": 0.375,
+      "value_first30": 3.2066666666666666,
+      "value_last30": 13.496666666666664,
+      "critic_first30": 4.086666666666667,
+      "critic_last30": 9.723333333333333
+     }
+    ],
+    "da_cue_first30": {
+     "mean": 2.822,
+     "sd": 0.791,
+     "min": 1.7066666666666666,
+     "max": 3.5933333333333337,
+     "n": 4
+    },
+    "da_cue_last30": {
+     "mean": 5.068,
+     "sd": 2.079,
+     "min": 2.52,
+     "max": 8.239999999999998,
+     "n": 4
+    },
+    "da_reward_first30": {
+     "mean": 19.225,
+     "sd": 3.466,
+     "min": 15.033333333333333,
+     "max": 23.5,
+     "n": 4
+    },
+    "da_reward_last30": {
+     "mean": 11.373,
+     "sd": 0.858,
+     "min": 10.403703703703703,
+     "max": 12.703846153846156,
+     "n": 4
+    },
+    "da_error_last30": {
+     "mean": 0.215,
+     "sd": 0.156,
+     "min": 0.05,
+     "max": 0.375,
+     "n": 4
+    },
+    "value_first30": {
+     "mean": 3.027,
+     "sd": 0.808,
+     "min": 1.7800000000000002,
+     "max": 4.036666666666666,
+     "n": 4
+    },
+    "value_last30": {
+     "mean": 10.465,
+     "sd": 2.462,
+     "min": 6.653333333333334,
+     "max": 13.496666666666664,
+     "n": 4
+    },
+    "critic_first30": {
+     "mean": 4.597,
+     "sd": 1.38,
+     "min": 2.5666666666666673,
+     "max": 5.943333333333333,
+     "n": 4
+    },
+    "critic_last30": {
+     "mean": 9.454,
+     "sd": 0.302,
+     "min": 9.06,
+     "max": 9.77,
+     "n": 4
+    }
+   }
+  },
+  "value pathway, instant critic (first try)": {
+   "learning": {
+    "seeds": [
+     31,
+     32
+    ],
+    "acc_last50": {
+     "mean": 0.95,
+     "sd": 0.01,
+     "min": 0.94,
+     "max": 0.96,
+     "n": 2
+    },
+    "reach75": {
+     "mean": 23.5,
+     "sd": 1.5,
+     "min": 22.0,
+     "max": 25.0,
+     "n": 2
+    },
+    "early_run": {
+     "mean": 6.0,
+     "sd": 1.0,
+     "min": 5.0,
+     "max": 7.0,
+     "n": 2
+    },
+    "s_per_trial": {
+     "mean": 8.673,
+     "sd": 0.013,
+     "min": 8.66,
+     "max": 8.686666666666667,
+     "n": 2
+    },
+    "per_network": [
+     {
+      "seed": 31,
+      "acc_last50": 0.94,
+      "reach75": 22,
+      "early_run": 5
+     },
+     {
+      "seed": 32,
+      "acc_last50": 0.96,
+      "reach75": 25,
+      "early_run": 7
+     }
+    ]
+   },
+   "dopamine": {
+    "per_network": [
+     {
+      "seed": 31,
+      "da_cue_first30": 1.6566666666666667,
+      "da_cue_last30": 2.2533333333333334,
+      "da_reward_first30": 17.791666666666668,
+      "da_reward_last30": 11.010344827586207,
+      "da_error_last30": 0.1,
+      "value_first30": 2.8933333333333326,
+      "value_last30": 7.29,
+      "critic_first30": 5.693333333333333,
+      "critic_last30": 9.993333333333334
+     },
+     {
+      "seed": 32,
+      "da_cue_first30": 2.413333333333333,
+      "da_cue_last30": 4.716666666666666,
+      "da_reward_first30": 20.968421052631577,
+      "da_reward_last30": 11.823333333333336,
+      "da_error_last30": null,
+      "value_first30": 2.5866666666666673,
+      "value_last30": 11.946666666666667,
+      "critic_first30": 3.8900000000000006,
+      "critic_last30": 10.16
+     }
+    ],
+    "da_cue_first30": {
+     "mean": 2.035,
+     "sd": 0.378,
+     "min": 1.6566666666666667,
+     "max": 2.413333333333333,
+     "n": 2
+    },
+    "da_cue_last30": {
+     "mean": 3.485,
+     "sd": 1.232,
+     "min": 2.2533333333333334,
+     "max": 4.716666666666666,
+     "n": 2
+    },
+    "da_reward_first30": {
+     "mean": 19.38,
+     "sd": 1.588,
+     "min": 17.791666666666668,
+     "max": 20.968421052631577,
+     "n": 2
+    },
+    "da_reward_last30": {
+     "mean": 11.417,
+     "sd": 0.406,
+     "min": 11.010344827586207,
+     "max": 11.823333333333336,
+     "n": 2
+    },
+    "da_error_last30": {
+     "mean": 0.1,
+     "sd": 0.0,
+     "min": 0.1,
+     "max": 0.1,
+     "n": 1
+    },
+    "value_first30": {
+     "mean": 2.74,
+     "sd": 0.153,
+     "min": 2.5866666666666673,
+     "max": 2.8933333333333326,
+     "n": 2
+    },
+    "value_last30": {
+     "mean": 9.618,
+     "sd": 2.328,
+     "min": 7.29,
+     "max": 11.946666666666667,
+     "n": 2
+    },
+    "critic_first30": {
+     "mean": 4.792,
+     "sd": 0.902,
+     "min": 3.8900000000000006,
+     "max": 5.693333333333333,
+     "n": 2
+    },
+    "critic_last30": {
+     "mean": 10.077,
+     "sd": 0.083,
+     "min": 9.993333333333334,
+     "max": 10.16,
+     "n": 2
+    }
+   }
   },
   "without (balanced, held-out nets)": {
    "dopamine": {

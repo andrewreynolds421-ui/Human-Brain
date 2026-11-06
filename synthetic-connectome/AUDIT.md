@@ -345,3 +345,18 @@ was 34–55) at a cost of 2.5 points in final accuracy (92.5 ± 1.7 vs 95 ± 2.2
 because loop and cortex now both learn and partly compete. Open problems 10
 and 11 are addressed; the loop/cortex balance, the TD circuit and the
 eight-area test are what remains for Stage 4's basal ganglia and thalamus.
+
+## 10. Follow-up (6 November, overnight): Stage 29
+
+(a) Balancing loop and cortex: the scan's best setting (cortical rate ×0.5,
+98 % on networks 31–32) did not hold on held-out networks 35–38 (89 ± 2 vs
+91 ± 1 unchanged; WTA 96.5 ± 1.7) — METHODS rule 2 caught a seed effect.
+(b) The routed loop reverses rules (all four networks relearn; ends 79 ± 5
+vs WTA 80 ± 7, slower to recover) and runs in eight areas (89.5 ± 4.3, 75 %
+by 33–59, perseveration halved vs Stage 26, ~6 points below WTA). (c) A
+fast value pathway beside the slow critic: at moderate strength it fills the
+cue-time dopamine dip but makes no burst; at four-fold strength the burst
+moves to the cue (21 → 43 spikes/s while the reward burst fades 24 → 15) but
+overshoots and costs learning (78 ± 8 %). New open problem 12 groups these
+as missing homeostasis in the loop's populations. Two machine restarts
+during the night; the job runner and partial files recovered every run.

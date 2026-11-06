@@ -178,6 +178,8 @@ environment variables are listed at the top of `warmind/neural_core.py`.
 | basal-ganglia loop instead of WTA | 2 areas 97.5 ± 0.9 %; 8 areas 96 ± 1 % but 75 % only by 64–85 (perseveration) | 4 + 4 | `results/bg/learning_comparison.json` |
 | no selection circuit at all | 2 areas 98 ± 1 %; 8 areas 93 ± 3 % (2 nets) | 4 / 2 | same |
 | loop alone, paper protocol | rest STN 10 / GP 19 / SNr 25 Hz in range; selects from 10–12 spikes/s; switches 80 %, keeps 85 % up to 16 spikes/s; both selected above | 4 | `results/bg/standalone_final.json` |
+| loop vs WTA on held-out networks 35–38 (Stage 29a) | 91 ± 1 % vs 96.5 ± 1.7 % | 4 | `results/thal/stage29_summary.json` |
+| routed loop, 8 areas / reversal (Stage 29b) | 89.5 ± 4.3 %; reversal end 79 ± 5 % (WTA 80 ± 7) | 4 + 4 | same |
 | thalamic relay carrying 15 % of the pools' drive (Stage 28) | loop alone 83 ± 7.5 %; full system 92.5 ± 1.7 %, 75 % by 20–42 | 4 | `results/thal/summary.json` |
 | dopamine population as the learning signal | 95 ± 2 %, 75 % by 34–55; burst to reward 21.5 → 13 Hz as the critic rises 3.3 → 7.8 Hz | 4 | `results/bg/stage27_summary.json` |
 | loop learning the task alone (cortex off) | **does not**: 40–55 % | 2 + probes | `results/bg/loop_only_diagnostics.json` |
@@ -222,7 +224,7 @@ the long form. Priorities as they stand on 5 Nov:
    run to leave chance. Cheaper partial step: a striatal fast-spiking
    interneuron population (Koos & Tepper 1999) with feed-forward inhibition.
    2–3 days.
-2. **Temporal-difference dopamine** so the burst transfers to the cue: replace
+2. *(Tried 6 Nov, README Stage 29c: a value pathway gives the transfer only at an overshooting strength; next is homeostasis, open problem 12.)* **Temporal-difference dopamine** so the burst transfers to the cue: replace
    the 500 ms critic decay with a proper TD circuit (eligibility in the
    critic, prediction at cue onset exciting the dopamine cells). Measure the
    Schultz transfer in `results/bg/stage27_summary.json`'s format. 1–2 days.

@@ -107,7 +107,7 @@ and where each stands. Full audit in `AUDIT.md`.
 | **1** | One column in the right state: asynchronous 1–10 Hz, no tuning knobs beyond external drive | **done with caveats** — 12 populations, dendrites, measured membranes/synapses/wiring, asynchronous; 9 of 12 populations within reference rate ranges after the Stage 25 recalibration (was 7); still 2 fitted calibrations + 5 assumed constants |
 | **2** | Full-scale column (32,500 neurons, 130 M synapses) | **not done** — everything runs at 1.5–3 % of neurons with full in-degree; needs a GPU simulator and ≥64 GB |
 | **3** | Cortical sheet: per-area layers (BigBrain), cell types (Allen), area wiring (HCP) | **started with substitutes** — multi-column sheet + 8 macaque association areas (Markov FLN); same column everywhere; no human atlas data yet (Stages 4–5) |
-| **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **started** — a spiking basal-ganglia–thalamus loop built from published rat circuit data (Humphries et al. 2006) replaces the hand-made selection circuit without loss (Stage 26); a dopamine population with a striosomal critic turns the outcome into a prediction error that every plastic synapse reads, the loop's cortico-striatal synapses learn (Stage 27) and, with the thalamic relay carrying a share of the pools' drive at its measured resting rate, carry the task on their own at 83 % (Stage 28); relay membranes and the routed share are still assumed, no reticular nucleus; surprise/uncertainty still scalar formulas; no hippocampus or cerebellum |
+| **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **started** — a spiking basal-ganglia–thalamus loop built from published rat circuit data (Humphries et al. 2006) replaces the hand-made selection circuit without loss (Stage 26); a dopamine population with a striosomal critic turns the outcome into a prediction error that every plastic synapse reads, the loop's cortico-striatal synapses learn (Stage 27) and, with the thalamic relay carrying a share of the pools' drive at its measured resting rate, carry the task on their own at 83 % (Stage 28); it reverses rules and runs in eight areas but finishes 5–7 points below the hand-made circuit, and a TD value pathway moves the dopamine burst to the cue only at an overshooting strength (Stage 29); relay membranes and the routed share are still assumed, no reticular nucleus; surprise/uncertainty still scalar formulas; no hippocampus or cerebellum |
 | **5** | Senses and a body | **partial, by another route** — RASPUTIN as a toy body; self-organising sensory layers for text and printed letters (Stages 20–23); no retina/cochlea/motor, no speech yet |
 | **6** | Learning across the sheet with dopamine from the basal ganglia | **most progress** — three-factor rule, gating, turnover, surprise, uncertainty; 80–92 % on cue tasks, 63 % routing real text; but on one pathway only, reward from outside, 9 evolved rule settings (Stages 6–21) |
 | **7** | Validation against human recordings (intracranial, EEG/MEG, fMRI, behaviour) | **not done** — only firing rates vs reference ranges |
@@ -1923,6 +1923,39 @@ and ends level with the WTA circuit, but takes longer to get back (median
 bounded at ×3 and must be unlearned through dopamine dips, which are
 rate-floored.
 
+### 29c. Moving the dopamine burst to the cue (temporal difference) — partly
+
+In Stage 27 the dopamine burst faded at a predicted reward but never moved
+to the cue. Added: a fast **value pathway** — 64 PPTg-type excitatory cells
+driven by the cue cells through synapses that learn from the same dopamine
+error, exciting the dopamine cells (PPTg cells carry cue-time reward
+predictions, Okada et al. 2009; excite dopamine cells, Lokwan et al. 1999) —
+beside the slow striosomal inhibition, the two-pathway account of the TD
+error (Houk et al. 1995; Vitay & Hamker 2014); and optionally a **rise time**
+on that inhibition so it builds toward the reward instead of starting at the
+cue (`DA_DEFAULTS`: `value_n`, `value_gain`, `value_to_da_mV`, `crit_rise_ms`).
+Dopamine during the cue is now logged. Networks 31–34, 150 trials, first 30
+→ last 30 trials (`results/thal/stage29_summary.json`, part c):
+
+| | dopamine at cue (rest 4.7) | at reward | at error | value cells | critic | learning |
+|---|---|---|---|---|---|---|
+| no value pathway | 0.4 → 0.0 | 20.5 → 12.2 | 0.0 | — | 4.5 → 8.6 | 89 % (held-out) |
+| value pathway (2 networks) | 2.0 → 3.5 | 19.4 → 11.4 | 0.1 | 2.7 → 9.6 | 4.8 → 10.1 | 95 ± 1 % |
+| + 150 ms critic rise | 2.8 → 5.1 | 19.2 → 11.4 | 0.2 | 3.0 → 10.5 | 4.6 → 9.5 | 91 ± 4 % |
+| + value ×4, critic ×0.5 | **21.1 → 43.1** | **23.8 → 15.0** | 7.9 | 6.1 → 30.1 | 7.6 → 27.5 | 78 ± 8 % |
+
+What happened, plainly: the value pathway learns (its cells' cue response
+triples) and fills in the cue-time dip, but at the first two settings the
+critic's slow inhibition — ~35 mV mean against ~6 mV of fast excitation by
+late learning — keeps dopamine at the cue near rest. Rebalancing four-fold
+produces the transfer signature (cue burst grows 21 → 43 spikes/s as the
+reward burst fades 24 → 15) but overshoots: the cue already bursts before
+learning, value and critic run up to ~30 spikes/s, errors no longer give a
+full pause, and learning falls to 78 %. The setting that gives a clean
+transfer lies between the last two rows and was not found tonight; a proper
+fix is probably homeostatic (bounding the value and critic cells' rates)
+rather than another hand scan. The model default is the pathway **off**.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
@@ -2047,7 +2080,21 @@ These are the real findings so far. Each is a concrete next task.
     selected channel's striatum is the only active one. A striatal
     fast-spiking interneuron population (Koos & Tepper 1999) is the cheaper
     partial step. Also still to do in the dopamine system: a
-    temporal-difference circuit so the burst transfers to the cue.
+    temporal-difference circuit so the burst transfers to the cue (Stage
+    29c: a value pathway produces the transfer only at a strength that
+    overshoots; see open problem 12).
+
+12. **The loop needs its own homeostasis (Stage 29).** Three findings point
+    the same way: in the full system both thalamic relays rise late in a run
+    and the routed loop finishes 5–7 points below the hand-made circuit on
+    held-out networks (29a; slowing cortical learning did not help); in
+    eight areas the gap is ~6 points (29b); and the dopamine value pathway
+    either cannot outweigh the critic or runs away to ~30 spikes/s (29c).
+    Each is a population whose rate drifts with learning. Candidate:
+    spike-frequency adaptation or synaptic scaling on the relay, critic and
+    value cells, with targets from their measured rates (relay 13, dopamine
+    4.5 spikes/s); also intrinsic SNr adaptation. Test against Stage 28/29 on
+    held-out networks.
 
 ## Data sources (for Phases 1–3)
 
