@@ -1,0 +1,3 @@
+{
+ "criteria_fixed_before_results": "accept if, on networks 33-36, low_vs_30_45_db > plain's (+2.7 dB) and the awake 30-45 Hz slope is not flatter than plain's (-2.21)"
+}

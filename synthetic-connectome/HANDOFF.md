@@ -180,7 +180,7 @@ environment variables are listed at the top of `warmind/neural_core.py`.
 | loop alone, paper protocol | rest STN 10 / GP 19 / SNr 25 Hz in range; selects from 10–12 spikes/s; switches 80 %, keeps 85 % up to 16 spikes/s; both selected above | 4 | `results/bg/standalone_final.json` |
 | loop vs WTA on held-out networks 35–38 (Stage 29a) | 91 ± 1 % vs 96.5 ± 1.7 % | 4 | `results/thal/stage29_summary.json` |
 | routed loop, 8 areas / reversal (Stage 29b) | 89.5 ± 4.3 %; reversal end 79 ± 5 % (WTA 80 ± 7) | 4 + 4 | same |
-| field spectrum vs awake human iEEG (Stage 33) | 30–45 Hz slope −1.13 ± 0.92 (human −2.75…−2.99); no 1/f background | 4 | `results/spectra/stage33.json` |
+| field spectrum vs awake human iEEG (Stages 33–34, corrected proxy) | 30–45 Hz slope −2.20 ± 0.45 (human −2.75…−2.99); slow power ~25 dB short | 4 held-out | `results/spectra/stage34_summary.json` |
 | routing unseen CLINC messages, 3 destinations (Stage 32) | loop 58.1 ± 8.4 %, WTA 51.9 ± 5.7 % (loop better on 4/4) | 4 | `results/router/stage32_summary.json` |
 | relay homeostasis, held-out networks 35–38 (Stage 30) | 95.0 ± 2.2 % (WTA 96.5 ± 1.7); 8 areas 83.5 ± 2.2 % | 4 + 4 | `results/hom/stage30_summary.json` |
 | dopamine burst moves to the cue (Stage 30, `td_hom2`) | cue 13.6 → 25.3, reward 23 → 13.5 spikes/s; learning 95.5 ± 3.3 % | 4 | same |
@@ -238,7 +238,7 @@ the long form. Priorities as they stand on 5 Nov:
 4. **Letters → words** with a prediction rule on top of the letter layer
    (`results/letters/l1600v_final.npz`): a second layer learning
    letter sequences; test on held-out fonts and words. 2–3 days.
-5. *(Done 7 Nov, README Stage 33: mismatch — no 1/f background; cause and next test in open problem 13.)* **Stage 7, cheaply**: compare the column's population spectrum with human
+5. *(Done 7 Nov, README Stages 33–34: with a corrected LFP proxy the 30–45 Hz slope is near human (−2.2 vs −2.8/−3.0); slow power ~25 dB short, open problem 13.)* **Stage 7, cheaply**: compare the column's population spectrum with human
    intracranial spectra (`scripts/rhythm_diagnostics.py` is the start). Hours.
 6. **Speed**: merge the loop's six cell groups into one Brian2 group with
    per-cell constants (removes most of the +1.9 s/trial); only with

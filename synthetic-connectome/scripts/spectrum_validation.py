@@ -24,14 +24,18 @@ import numpy as np
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 
-def record(seed, cond, t_s, n_rec, preset):
+V_REST_MV = -65.0     # ASSUMED fixed driving-force reference for the "fixed" proxy
+
+
+def record(seed, cond, t_s, n_rec, preset, ext_mode="poisson", ext_mod=None, proxy="fixed"):
     import brian2 as b2
     from brian2 import ms, mV, nS
     from synth.learner import build_learner_network
     from synth.network import build_network
     b2.start_scope(); b2.prefs.codegen.target = "cython"; b2.defaultclock.dt = 0.1 * ms; b2.seed(seed)
     col = build_learner_network(n_scale=0.015, seed=seed, preset=preset)
-    nw = build_network(col, seed=seed, merged_inputs=True, shared_stp=True)
+    nw = build_network(col, seed=seed, merged_inputs=(ext_mode == "poisson"), shared_stp=True, ext_mode=ext_mode,
+                       **({"ext_mod": ext_mod} if ext_mod else {}))
     G, net = nw["G"], nw["net"]
     if cond == "propofol":
         G.tau_i = np.asarray(G.tau_i) * 2.0 * b2.second
@@ -42,9 +46,16 @@ def record(seed, cond, t_s, n_rec, preset):
     # sparsely aliases their fast input fluctuations into the band), then low-passed and decimated to 1 kHz
     nrn = col.neuron
     probe = b2.NeuronGroup(1, "Ie : amp\nIi : amp", name="lfp_probe")
-    Sx = b2.Synapses(G, probe, model="""Ie_post = abs(g_e_pre * (E_e - v_pre) + g_ed_pre * (E_e - v_d_pre)) : amp (summed)
-    Ii_post = abs(g_i_pre * (E_i - v_pre) + g_id_pre * (E_i - v_d_pre)) : amp (summed)""",
-                     namespace=dict(E_e=nrn["E_exc_mV"] * mV, E_i=nrn["E_inh_mV"] * mV), name="lfp_sum")
+    if proxy == "fixed":
+        # driving force fixed at the resting potential (V_REST_MV): the proxy follows the synaptic conductances
+        # only; with the actual membrane potential every spike and reset injects broadband power
+        model = """Ie_post = (g_e_pre + g_ed_pre) * (E_e - V_rest) : amp (summed)
+    Ii_post = (g_i_pre + g_id_pre) * (V_rest - E_i) : amp (summed)"""
+    else:
+        model = """Ie_post = abs(g_e_pre * (E_e - v_pre) + g_ed_pre * (E_e - v_d_pre)) : amp (summed)
+    Ii_post = abs(g_i_pre * (E_i - v_pre) + g_id_pre * (E_i - v_d_pre)) : amp (summed)"""
+    Sx = b2.Synapses(G, probe, model=model, name="lfp_sum",
+                     namespace=dict(E_e=nrn["E_exc_mV"] * mV, E_i=nrn["E_inh_mV"] * mV, V_rest=V_REST_MV * mV))
     Sx.connect(i=cells, j=0)
     mon = b2.StateMonitor(probe, ["Ie", "Ii"], record=[0], dt=0.1 * ms)
     net.add(probe, Sx)
@@ -56,7 +67,12 @@ def record(seed, cond, t_s, n_rec, preset):
     I_exc = decimate(decimate(np.asarray(mon.Ie[0] / pA), 5, ftype="fir"), 2, ftype="fir")   # 10 kHz -> 1 kHz
     I_inh = decimate(decimate(np.asarray(mon.Ii[0] / pA), 5, ftype="fir"), 2, ftype="fir")
     lfp = I_exc[:-6] - 1.65 * I_inh[6:]                       # excitatory term delayed 6 ms (1 ms samples)
-    return lfp, dict(n_cells=int(cells.size), wall_s=round(wall, 1))
+    # firing rates per population over the recorded period (the fix must keep Stage 25's rates)
+    sp = nw["spikes"]; ti = np.asarray(sp.t / ms); ii = np.asarray(sp.i)
+    keep = ti >= 1000.0
+    cnt = np.bincount(ii[keep], minlength=col.N)
+    rates = {p: round(float(cnt[col.pop_of == k].mean() / t_s), 2) for k, p in enumerate(col.pops)}
+    return lfp, dict(n_cells=int(cells.size), wall_s=round(wall, 1), rates=rates)
 
 
 def analyse(lfp, fs=1000.0):
@@ -64,7 +80,8 @@ def analyse(lfp, fs=1000.0):
     f, P = welch(lfp - lfp.mean(), fs=fs, nperseg=int(2 * fs))
     sel = (f >= 30) & (f <= 45)
     slope = float(np.polyfit(np.log10(f[sel]), np.log10(P[sel]), 1)[0])
-    out = dict(slope_30_45=slope)
+    low = (f >= 1) & (f <= 4)
+    out = dict(slope_30_45=slope, low_vs_30_45_db=float(10 * np.log10(P[low].mean() / P[sel].mean())))
     try:
         from fooof import FOOOF
         fm = FOOOF(peak_width_limits=(2, 12), max_n_peaks=4, min_peak_height=0.15, aperiodic_mode="fixed", verbose=False)
@@ -86,8 +103,11 @@ def main():
     ap.add_argument("--preset", default="human_h01_dendritic_v2")
     ap.add_argument("--conds", default="awake,propofol")
     ap.add_argument("--out", required=True)
+    ap.add_argument("--ext-mode", default="poisson", help="poisson (default) or constant (external drive as its mean conductance)")
+    ap.add_argument("--proxy", default="fixed", help="fixed (driving force at rest) or actual (uses the membrane potential, Stage 33)")
+    ap.add_argument("--ext-mod", default=None, help="JSON: shared slow modulation of the external rate (Stage 34)")
     a = ap.parse_args()
-    res = dict(about=__doc__, preset=a.preset, t_s=a.t, runs=[])
+    res = dict(about=__doc__, preset=a.preset, t_s=a.t, ext_mode=a.ext_mode, ext_mod=a.ext_mod, proxy=a.proxy, runs=[])
     if os.path.exists(a.out):                                  # resume: keep finished runs
         res = json.load(open(a.out))
     done = {(r["seed"], r["cond"]) for r in res["runs"]}
@@ -95,7 +115,7 @@ def main():
         for cond in a.conds.split(","):
             if (s, cond) in done:
                 continue
-            lfp, info = record(s, cond, a.t, a.n_rec, a.preset)
+            lfp, info = record(s, cond, a.t, a.n_rec, a.preset, a.ext_mode, json.loads(a.ext_mod) if a.ext_mod else None, a.proxy)
             m, f, P = analyse(lfp)
             res["runs"].append(dict(seed=s, cond=cond, **info, **m, f=f, P=P))
             print(s, cond, {k: v for k, v in m.items()}, info, flush=True)

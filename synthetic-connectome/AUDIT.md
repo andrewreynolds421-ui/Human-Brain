@@ -409,3 +409,16 @@ rest of the brain — independent stationary Poisson input, 1.5–2× the
 recurrent input — dominates the field. This is the first test against human
 data that the model fails, and it fails for a reason that points at a
 specific next step (open problem 13).
+
+## 15. Follow-up (7 November): Stage 34 — Stage 33 corrected
+
+Stage 33's failure was mostly the measurement: the LFP proxy used the
+membrane potential, whose spike resets inject broadband power. With the
+driving force fixed at rest, the resting column's 30–45 Hz slope is −2.20 ±
+0.45 on held-out networks (human awake −2.75/−2.99). Stage 33's diagnosis
+(independent Poisson input flattens the field) was wrong — a constant-input
+control showed it. Remaining real gap: slow power ~25 dB short of the human
+spectrum; shared slow input adds some but flattens the high-frequency slope,
+and a slow-only variant failed criteria fixed in advance. A lesson for the
+standards: a new measurement needs its own control (here, a signal whose
+spectrum is known) before its result is interpreted.

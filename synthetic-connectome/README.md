@@ -110,7 +110,7 @@ and where each stands. Full audit in `AUDIT.md`.
 | **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **started** — a spiking basal-ganglia–thalamus loop built from published rat circuit data (Humphries et al. 2006) replaces the hand-made selection circuit without loss (Stage 26); a dopamine population with a striosomal critic turns the outcome into a prediction error that every plastic synapse reads, the loop's cortico-striatal synapses learn (Stage 27) and, with the thalamic relay carrying a share of the pools' drive at its measured resting rate, carry the task on their own at 83 % (Stage 28); it reverses rules and runs in eight areas but finishes 5–7 points below the hand-made circuit, and a TD value pathway moves the dopamine burst to the cue only at an overshooting strength (Stage 29); relay membranes and the routed share are still assumed, no reticular nucleus; surprise/uncertainty still scalar formulas; no hippocampus or cerebellum |
 | **5** | Senses and a body | **partial, by another route** — RASPUTIN as a toy body; self-organising sensory layers for text and printed letters (Stages 20–23); no retina/cochlea/motor, no speech yet |
 | **6** | Learning across the sheet with dopamine from the basal ganglia | **most progress** — three-factor rule, gating, turnover, surprise, uncertainty; 80–92 % on cue tasks, 63 % routing real text; but on one pathway only, reward from outside, 9 evolved rule settings (Stages 6–21) |
-| **7** | Validation against human recordings (intracranial, EEG/MEG, fMRI, behaviour) | **started** — firing rates vs reference ranges; field spectrum vs awake human iEEG (Stage 33): beta rhythm near the frontal band, but no 1/f background and wrong response to slower inhibition — traced to unstructured external input (open problem 13) |
+| **7** | Validation against human recordings (intracranial, EEG/MEG, fMRI, behaviour) | **started** — firing rates vs reference ranges; field spectrum vs awake human iEEG (Stages 33–34): with a corrected LFP proxy the 30–45 Hz slope is near the human value (−2.2 vs −2.8/−3.0) and a beta rhythm sits near the frontal band; slow (<4 Hz) power is ~25 dB too low (open problem 13) |
 | **8** | Warmind / RASPUTIN integration | **done for v1, routing in shadow** — live core, tool actions, trained through the tool; a shadow router (sensory text layer + basal-ganglia loop + dopamine) learns RASPUTIN's routing decisions live without changing them (Stage 32); 17 tests |
 
 Earlier sub-phases: Phase 0 (rodent pipeline) done; Phase 1 (H01 fit) done;
@@ -2145,6 +2145,56 @@ thalamus; the model's own Stage 28 relay is the first piece of that.
 Firing rates (Stage 25) and learning were blind to this — it is exactly
 what a field comparison exists to catch. Open problem 13.
 
+## Stage 34: fixing the field comparison — mostly a measurement error, plus a real gap at low frequencies
+
+Following open problem 13 (`results/spectra/stage34_summary.json`, figure
+`results/spectra/stage34_spectra.png`):
+
+1. **Diagnostic first.** With the external input made constant the spectrum
+   stayed flat, so the independent Poisson input was *not* what flattened it
+   — Stage 33's diagnosis was wrong.
+2. **The real cause was the LFP proxy.** Stage 33 multiplied each conductance
+   by (reversal − membrane potential); the membrane potential jumps at every
+   spike and reset, injecting broadband power. With the driving force fixed
+   at rest (−65 mV, ASSUMED — the usual form for conductance models; Mazzoni's
+   proxy was built for current-based synapses), the proxy follows the
+   synaptic conductances only.
+3. **Structured input** (shared Ornstein–Uhlenbeck modulation of each area's
+   external rate, mean unchanged; `build_network(ext_mod=...)`,
+   `reward_learning.py --ext-mod`): scanned on networks 31–32, then checked
+   on held-out networks 33–36. For the slow-only variant the acceptance
+   criteria were written down before the run (`slow_mod_criteria.json`).
+
+| held-out networks 33–36, awake, 10 s each | 30–45 Hz slope | exponent 2–80 Hz | slow power (1–4 Hz vs 30–45 Hz) | propofol-like steepens (slope / exponent) |
+|---|---|---|---|---|
+| Stage 33 proxy (membrane potential), nets 31–34 | −1.13 ± 0.92 | ≈ −0.26 | below | 0/4 |
+| **corrected proxy, plain input** | **−2.20 ± 0.45** | 0.42 | +2.7 dB | 1/4 / 3/4 |
+| + shared fluctuations 20 %, 20–500 ms | −1.28 ± 0.48 | 0.58 | +5.6 dB | 1/4 / 4/4 |
+| + shared fluctuations 40 %, slow only (0.2–3 s) | −1.67 ± 0.24 | 0.56 | +6.4 dB | 2/4 / 4/4 |
+| human awake iEEG (Lendner 2020) | −2.75 to −2.99 | clear 1/f | ≈ +30 dB at that slope | steeper (propofol −4.34) |
+
+What is settled: **with a correct measurement, the column's 30–45 Hz slope
+is close to the human value** (−2.2 vs −2.8/−3.0; three of four held-out
+networks inside −1.6 to −2.7), and above 20 Hz its spectrum falls the way
+human recordings do. The 20 % fluctuation setting looked even better on the
+scan networks (−2.3, −2.6) but did not hold on the held-out ones — the third
+time in this project a two-network scan has been seed luck. What is not
+settled: **the column has far too little slow power** (+3 to +6 dB where
+the human spectrum implies ~30 dB), and shared input fluctuations, while
+they add slow power and make the propofol-like direction consistent in the
+broad exponent, flatten the 30–45 Hz slope; the slow-only variant failed its
+pre-set criteria. Learning is unchanged with structured input (2 areas,
+networks 31–34: 96 ± 2 % vs 97 ± 2 %); firing rates unchanged. Defaults stay
+as they were (plain input; the corrected proxy is the default in
+`scripts/spectrum_validation.py`).
+
+Why slow power is likely out of reach at this scale: human iEEG low-frequency
+power comes from slow dynamics coordinated across large territories of
+cortex and thalamus (up/down-state-like fluctuations, spatial summation over
+millions of neurons); a two-area model at 1.5 % of neuron count with
+stationary drive has nothing that generates seconds-long co-fluctuation, and
+injecting it from outside trades against the high-frequency shape.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
@@ -2291,7 +2341,7 @@ These are the real findings so far. Each is a concrete next task.
     (88.7 vs 87.3 % on held-out networks); a ~5-point gap to the hand-made
     circuit in eight areas remains.*
 
-13. **The column's field spectrum has no 1/f background (Stage 33).** Against
+13. *(Revised in Stage 34: the flat spectrum was mostly a measurement error; with a corrected proxy the 30–45 Hz slope is −2.2 vs human −2.8/−3.0. What remains is too little slow power, ~25 dB short, which structured input does not fix without flattening the slope.)* **The column's field spectrum has no 1/f background (Stage 33).** Against
     awake human iEEG the 30–45 Hz slope is too flat (−1.1 vs −2.8/−3.0),
     there is no slow power, and slowing inhibition does not steepen it,
     because independent stationary Poisson input (1.5–2× the recurrent input)

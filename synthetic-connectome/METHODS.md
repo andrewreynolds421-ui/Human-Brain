@@ -66,3 +66,10 @@ breaking it cost time or credibility earlier (see `AUDIT.md`, section 3).
     including what was tried and what it ruled out.
 15. **One status page stays current** (the roadmap table at the top of
     `README.md`); the stage log underneath is history and is not rewritten.
+
+16. **A new measurement gets its own control before its result is read.**
+    Stage 33 interpreted a field spectrum from a proxy that had never been
+    checked on a signal with a known answer; the proxy itself was the cause
+    of the mismatch (Stage 34). Run the measurement on a case whose result is
+    known (a constant-input or shuffled control, or a synthetic signal)
+    first.

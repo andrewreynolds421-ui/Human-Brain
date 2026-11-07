@@ -1,0 +1,343 @@
+{
+ "about": "Stage 34: corrected LFP proxy (driving force fixed at rest) and structured external input; scan on networks 31-32, held-out 33-36, 10 s each",
+ "human": {
+  "slope_30_45_awake": [
+   -2.75,
+   -2.99
+  ],
+  "propofol": -4.34,
+  "source": "Lendner et al. 2020 eLife 9:e55092"
+ },
+ "scan_31_32": {
+  "plain": {
+   "awake": {
+    "n": 2,
+    "seeds": [
+     31,
+     32
+    ],
+    "slope_30_45": [
+     -1.53,
+     -0.43
+    ],
+    "slope_mean": -0.98,
+    "slope_sd": 0.55,
+    "exponent_2_80": 0.33,
+    "low_vs_30_45_db": null,
+    "rates_mean": null
+   },
+   "propofol": {
+    "n": 2,
+    "seeds": [
+     31,
+     32
+    ],
+    "slope_30_45": [
+     -2.11,
+     -1.3
+    ],
+    "slope_mean": -1.7,
+    "slope_sd": 0.4,
+    "exponent_2_80": 0.47,
+    "low_vs_30_45_db": null,
+    "rates_mean": null
+   },
+   "propofol_steeper_slope": 2,
+   "propofol_steeper_exponent": 2
+  },
+  "ou_0.2": {
+   "awake": {
+    "n": 2,
+    "seeds": [
+     31,
+     32
+    ],
+    "slope_30_45": [
+     -2.28,
+     -2.64
+    ],
+    "slope_mean": -2.46,
+    "slope_sd": 0.18,
+    "exponent_2_80": 0.51,
+    "low_vs_30_45_db": null,
+    "rates_mean": null
+   },
+   "propofol": {
+    "n": 2,
+    "seeds": [
+     31,
+     32
+    ],
+    "slope_30_45": [
+     -1.11,
+     -2.19
+    ],
+    "slope_mean": -1.65,
+    "slope_sd": 0.54,
+    "exponent_2_80": 0.78,
+    "low_vs_30_45_db": null,
+    "rates_mean": null
+   },
+   "propofol_steeper_slope": 0,
+   "propofol_steeper_exponent": 2
+  },
+  "ou_0.4": {
+   "awake": {
+    "n": 2,
+    "seeds": [
+     31,
+     32
+    ],
+    "slope_30_45": [
+     -0.81,
+     -0.84
+    ],
+    "slope_mean": -0.82,
+    "slope_sd": 0.02,
+    "exponent_2_80": 0.73,
+    "low_vs_30_45_db": null,
+    "rates_mean": null
+   },
+   "propofol": {
+    "n": 2,
+    "seeds": [
+     31,
+     32
+    ],
+    "slope_30_45": [
+     -0.82,
+     -1.44
+    ],
+    "slope_mean": -1.13,
+    "slope_sd": 0.31,
+    "exponent_2_80": 1.17,
+    "low_vs_30_45_db": null,
+    "rates_mean": null
+   },
+   "propofol_steeper_slope": 2,
+   "propofol_steeper_exponent": 2
+  }
+ },
+ "heldout_33_36": {
+  "plain": {
+   "awake": {
+    "n": 4,
+    "seeds": [
+     33,
+     34,
+     35,
+     36
+    ],
+    "slope_30_45": [
+     -1.65,
+     -2.6,
+     -1.88,
+     -2.69
+    ],
+    "slope_mean": -2.2,
+    "slope_sd": 0.45,
+    "exponent_2_80": 0.42,
+    "low_vs_30_45_db": 2.7,
+    "rates_mean": {
+     "L23E": 2.23,
+     "L23F": 10.68,
+     "L23N": 0.69,
+     "L4E": 4.68,
+     "L4F": 25.26,
+     "L4N": 9.39,
+     "L5E": 4.95,
+     "L5F": 21.7,
+     "L5N": 7.47,
+     "L6E": 1.5,
+     "L6F": 7.32,
+     "L6N": 2.16
+    }
+   },
+   "propofol": {
+    "n": 4,
+    "seeds": [
+     33,
+     34,
+     35,
+     36
+    ],
+    "slope_30_45": [
+     -1.32,
+     -2.0,
+     -2.58,
+     -1.53
+    ],
+    "slope_mean": -1.86,
+    "slope_sd": 0.48,
+    "exponent_2_80": 0.55,
+    "low_vs_30_45_db": 3.5,
+    "rates_mean": {
+     "L23E": 0.1,
+     "L23F": 0.59,
+     "L23N": 0.03,
+     "L4E": 1.32,
+     "L4F": 5.21,
+     "L4N": 1.53,
+     "L5E": 1.8,
+     "L5F": 5.58,
+     "L5N": 1.76,
+     "L6E": 0.05,
+     "L6F": 0.14,
+     "L6N": 0.06
+    }
+   },
+   "propofol_steeper_slope": 1,
+   "propofol_steeper_exponent": 3
+  },
+  "ou_0.2_fast+slow": {
+   "awake": {
+    "n": 4,
+    "seeds": [
+     33,
+     34,
+     35,
+     36
+    ],
+    "slope_30_45": [
+     -0.69,
+     -1.96,
+     -1.45,
+     -1.02
+    ],
+    "slope_mean": -1.28,
+    "slope_sd": 0.48,
+    "exponent_2_80": 0.58,
+    "low_vs_30_45_db": 5.6,
+    "rates_mean": {
+     "L23E": 2.23,
+     "L23F": 10.86,
+     "L23N": 0.66,
+     "L4E": 4.75,
+     "L4F": 25.45,
+     "L4N": 9.68,
+     "L5E": 4.86,
+     "L5F": 21.74,
+     "L5N": 7.45,
+     "L6E": 1.55,
+     "L6F": 7.6,
+     "L6N": 2.09
+    }
+   },
+   "propofol": {
+    "n": 4,
+    "seeds": [
+     33,
+     34,
+     35,
+     36
+    ],
+    "slope_30_45": [
+     -1.48,
+     -1.46,
+     -1.19,
+     -0.58
+    ],
+    "slope_mean": -1.18,
+    "slope_sd": 0.36,
+    "exponent_2_80": 0.88,
+    "low_vs_30_45_db": 10.6,
+    "rates_mean": {
+     "L23E": 0.08,
+     "L23F": 0.56,
+     "L23N": 0.02,
+     "L4E": 1.24,
+     "L4F": 5.33,
+     "L4N": 1.37,
+     "L5E": 1.71,
+     "L5F": 5.6,
+     "L5N": 1.65,
+     "L6E": 0.04,
+     "L6F": 0.11,
+     "L6N": 0.06
+    }
+   },
+   "propofol_steeper_slope": 1,
+   "propofol_steeper_exponent": 4
+  },
+  "ou_0.4_slow_only": {
+   "awake": {
+    "n": 4,
+    "seeds": [
+     33,
+     34,
+     35,
+     36
+    ],
+    "slope_30_45": [
+     -1.85,
+     -1.64,
+     -1.88,
+     -1.28
+    ],
+    "slope_mean": -1.67,
+    "slope_sd": 0.24,
+    "exponent_2_80": 0.56,
+    "low_vs_30_45_db": 6.4,
+    "rates_mean": {
+     "L23E": 2.45,
+     "L23F": 11.88,
+     "L23N": 0.8,
+     "L4E": 4.77,
+     "L4F": 27.03,
+     "L4N": 9.89,
+     "L5E": 4.64,
+     "L5F": 22.22,
+     "L5N": 7.51,
+     "L6E": 1.54,
+     "L6F": 8.38,
+     "L6N": 2.18
+    }
+   },
+   "propofol": {
+    "n": 4,
+    "seeds": [
+     33,
+     34,
+     35,
+     36
+    ],
+    "slope_30_45": [
+     -2.21,
+     -1.07,
+     -1.16,
+     -1.32
+    ],
+    "slope_mean": -1.44,
+    "slope_sd": 0.45,
+    "exponent_2_80": 0.87,
+    "low_vs_30_45_db": 12.1,
+    "rates_mean": {
+     "L23E": 0.09,
+     "L23F": 0.53,
+     "L23N": 0.02,
+     "L4E": 1.18,
+     "L4F": 5.49,
+     "L4N": 1.28,
+     "L5E": 1.63,
+     "L5F": 5.55,
+     "L5N": 1.52,
+     "L6E": 0.06,
+     "L6F": 0.12,
+     "L6N": 0.08
+    }
+   },
+   "propofol_steeper_slope": 2,
+   "propofol_steeper_exponent": 4
+  }
+ },
+ "stage33_actual_membrane_proxy": {
+  "awake_slope_mean": -1.13,
+  "awake_slope_sd": 0.92,
+  "note": "results/spectra/stage33.json, networks 31-34"
+ },
+ "diag_constant_input": "results/spectra/diag_constant.json (actual-membrane proxy; network 31 and 32: still flat)",
+ "criteria_slow_only": {
+  "criteria_fixed_before_results": "accept if, on networks 33-36, low_vs_30_45_db > plain's (+2.7 dB) and the awake 30-45 Hz slope is not flatter than plain's (-2.21)"
+ },
+ "learning_check": "structured input 0.2 vs plain, 2 areas, networks 31-34 (see README Stage 34)"
+}

@@ -93,7 +93,7 @@ def stp_slot_overflows(col, spike_i, spike_t_ms, slots=3):
 def build_network(col, seed=0, with_stimulus=False, ext_mode="poisson", ext_rate_factor=1.0, recurrent=True,
                   bg_ratio=None, bg_rate_hz=5.0, bg_w_exc_nS=0.5, bg_w_inh_nS=1.0, bg_balance_mV=-60.0,
                   bg_by_membrane=None, istdp=None, rstdp=None, merged_inputs=False, shared_stp=False,
-                  stp_slots=3):
+                  stp_slots=3, ext_mod=None):
     """ext_mode: "poisson" (default, independent Poisson fibres per neuron),
     "constant" (the same mean drive as a steady conductance / current, no
     fluctuations), or "none".  ext_rate_factor > 1 uses that many times
@@ -203,6 +203,11 @@ def build_network(col, seed=0, with_stimulus=False, ext_mode="poisson", ext_rate
     if MERGED:
         ns["poisson_inv"] = POISSON_INV
         eqs += "\n        lam_ext : 1 (constant)\n        e_ext : 1 (constant)"
+        if ext_mod:
+            # Stage 34: the external rate of every neuron in an area is multiplied by (1 + m_area(t)), m a
+            # sum of Ornstein-Uhlenbeck processes shared by the area's fibres (correlated, slowly
+            # fluctuating input instead of independent stationary Poisson); mean rate unchanged
+            eqs += "\n        ext_mod : 1 (linked)"
         eqs += "".join(f"\n        w_ext_{v_} : siemens (constant)" for v_ in ext_vars)
         eqs += "".join(f"\n        lam_bg_{v_} : 1 (constant)\n        e_bg_{v_} : 1 (constant)\n        w_bg_{v_} : siemens (constant)"
                        for v_ in chan_vars) + "\n"
@@ -272,6 +277,19 @@ def build_network(col, seed=0, with_stimulus=False, ext_mode="poisson", ext_rate
                        refractory=nrn["t_ref"] * ms, method="euler", namespace=ns)
     G.b_a = adapt_b[pop] * pA
     G.w_a = 0 * pA
+    ext_mod_group = None
+    if MERGED and ext_mod:
+        # one shared modulation per area: a sum of OU processes with time constants taus_ms, each of
+        # standard deviation sigma / sqrt(len(taus)), so the total has standard deviation sigma
+        taus = [float(x) for x in ext_mod.get("taus_ms", (20.0, 100.0, 500.0))]
+        sig = float(ext_mod.get("sigma", 0.2)) / np.sqrt(len(taus))
+        area = np.asarray(getattr(col, "area_of", np.zeros(col.N, int)), int)
+        n_area = int(area.max()) + 1
+        oeqs = "\n".join(f"dm{k}/dt = -m{k} / tau{k} + sig * sqrt(2 / tau{k}) * xi_{k} : 1" for k in range(len(taus)))
+        oeqs += "\nm = " + " + ".join(f"m{k}" for k in range(len(taus))) + " : 1"
+        ext_mod_group = b2.NeuronGroup(n_area, oeqs, method="euler", name="ext_mod_ou",
+                                       namespace=dict(sig=sig, **{f"tau{k}": t * ms for k, t in enumerate(taus)}))
+        G.ext_mod = b2.linked_var(ext_mod_group, "m", index=area)
 
     def per_pop(key, scalar_key):
         arr = nrn.get(key)
@@ -556,7 +574,11 @@ def build_network(col, seed=0, with_stimulus=False, ext_mode="poisson", ext_rate
     if MERGED and used:
         code = []
         if any(k_ == "ext" for _, k_ in used):
-            code.append("n_ext = poisson_inv(lam_ext, e_ext, rand())")
+            if ext_mod:
+                code.append("lam_m = lam_ext * clip(1 + ext_mod, 0, 10)")
+                code.append("n_ext = poisson_inv(lam_m, exp(-lam_m), rand())")
+            else:
+                code.append("n_ext = poisson_inv(lam_ext, e_ext, rand())")
             code += [f"{v_} += w_ext_{v_} * n_ext" for v_ in ext_vars if (v_, "ext") in used]
         code += [f"{v_} += w_bg_{v_} * poisson_inv(lam_bg_{v_}, e_bg_{v_}, rand())" for v_ in chan_vars if (v_, "bg") in used]
         ext.append(G.run_regularly("\n".join(code), dt=b2.defaultclock.dt, when="synapses"))
@@ -575,7 +597,7 @@ def build_network(col, seed=0, with_stimulus=False, ext_mode="poisson", ext_rate
             ext += [pg, Sst]
 
     spikes = b2.SpikeMonitor(G)
-    net = b2.Network(G, *synapses, spikes, *ext)
+    net = b2.Network(G, *synapses, spikes, *ext, *([ext_mod_group] if ext_mod_group is not None else []))
     reward_groups = [(S_, idx) for S_, idx, pl_ in zip(synapses, syn_index, syn_plastic) if pl_ == "reward"]
     return dict(G=G, synapses=synapses, syn_index=syn_index, reward_groups=reward_groups, shared_stp=SHARED,
                 stp_slots=K if SHARED else None, ext=ext, stim_groups=stim_groups, spikes=spikes, net=net,

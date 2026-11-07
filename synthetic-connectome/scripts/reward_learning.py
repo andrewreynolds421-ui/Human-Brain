@@ -80,7 +80,7 @@ def build(seed=1, n_scale=0.015, areas=("46d", "9/46d"), preset="human_h01_dendr
 
 def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=None,
         areas=("46d", "9/46d"), cue_area="46d", action_area="9/46d", fast=False, partial_out=None,
-        preset="human_h01_dendritic", selection="wta", bg_kw=None, da_kw=None, cortical_da=True):
+        preset="human_h01_dendritic", selection="wta", bg_kw=None, da_kw=None, cortical_da=True, ext_mod=None):
     """reverse_at: trial index from which the rewarded mapping flips (A -> 2, B -> 1).
     fast: merged Poisson inputs + per-neuron STP/iSTDP state (same dynamics, ~2x faster)
     selection: "wta" (the stand-in selection groups, genome wta/wta_in_mV) or "bg" (the measured
@@ -110,7 +110,7 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
     istdp = (dict(eta=g["istdp_eta"], tau_ms=20.0, target_hz=ISTDP_TARGET_BY_PRESET.get(preset, ISTDP_TARGET))
              if g["istdp_eta"] > 0 else None)
     nw = build_network(col, seed=seed, bg_ratio=2.0, rstdp=dict(mask=mask, tau_elig_ms=g["tau_elig_ms"], a_minus=g["a_minus"]),
-                       istdp=istdp, merged_inputs=fast, shared_stp=fast)
+                       istdp=istdp, merged_inputs=fast, shared_stp=fast, ext_mod=ext_mod)
     G, net, spk = nw["G"], nw["net"], nw["spikes"]
     # free wiring tables the simulator now holds (weights, delays, STP) and return build scratch
     for k_ in ("weight_pA", "delay_ms", "stp_U", "stp_tau_rec_ms", "stp_tau_fac_ms", "syn_on_dend"):
@@ -369,6 +369,7 @@ def main():
     ap.add_argument("--selection", default="wta", help="wta (stand-in groups) or bg (synth/basal_ganglia.py)")
     ap.add_argument("--bg", default="{}", help="JSON options for BasalGanglia (ctx_gain, ctx_gain_stn, thal_drive_mV, thal_gain, spon_nA ...)")
     ap.add_argument("--da", default=None, help="JSON options for DopamineSystem; giving this turns on reward prediction inside the circuit")
+    ap.add_argument("--ext-mod", default=None, help="JSON: shared slow modulation of the external input (Stage 34)")
     ap.add_argument("--cortical-da", type=int, default=1, help="with --da: 1 = the cortical rule also learns from the dopamine response (default), 0 = from R - rbar")
     a = ap.parse_args()
     t0 = time.time()
@@ -377,7 +378,7 @@ def main():
             areas=areas, cue_area=a.cue_area, action_area=a.action_area, fast=a.fast,
             partial_out=(a.out + ".partial.json") if a.out else None, preset=a.preset,
             selection=a.selection, bg_kw=json.loads(a.bg), da_kw=None if a.da is None else json.loads(a.da),
-            cortical_da=bool(a.cortical_da))
+            cortical_da=bool(a.cortical_da), ext_mod=json.loads(a.ext_mod) if a.ext_mod else None)
     r["wall_s"] = round(time.time() - t0)
     r["fast"] = bool(a.fast)
     r["preset"] = a.preset
