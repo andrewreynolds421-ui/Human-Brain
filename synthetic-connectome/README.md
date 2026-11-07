@@ -2020,6 +2020,50 @@ honest limits: the cue already evokes 13.6 spikes/s before learning (resting
 and the value and critic targets are assumptions, not measurements. Settings:
 `results/hom/configs.json` (`td_hom2`).
 
+## Stage 31: how the relay's homeostat should respond
+
+Stage 30's homeostat (5 s rate estimate) helped in two areas but cost ~6
+points in eight. Tried on eight-area networks 9001–9002
+(`results/hom/stage31_summary.json`, `scripts/analysis/stage31.py`), with
+the clean control added after noticing that the earlier eight-area reference
+also differed in cortical learning rate:
+
+| eight areas, networks 9001–9002 | trials 101–150 | reaches 75 % | relay winner/loser first → last |
+|---|---|---|---|
+| no homeostat, full cortical rate (clean control) | 88 ± 2 % | 38–50 | 39/23 → 58/38 |
+| 5 s homeostat (Stage 30) | 82 ± 2 % | 42–54 | 23/14 → 27/21 |
+| 30 s homeostat (slower average) | 86 ± 4 % | 43–45 | 34/19 → 26/17 |
+| rest-gated homeostat (adjusts only between trials) | 80 ± 12 % | 23–33 | 39/20 → 38/32 |
+| **25 % routed + 5 s homeostat** | **90 ± 4 %** | 35–41 | 28/16 → 28/21 |
+| 25 % routed + rest-gated | 90 ± 2 % | 32–45 | 40/22 → 39/31 |
+
+The clean control confirmed the cost was the homeostat's, not the cortical
+rate's. Neither a slower nor a rest-gated response fixed it; what did was
+**giving the thalamus a larger share of the pools' drive (25 % instead of
+15 %)**. In eight areas the pools get much more input from the other seven
+areas, so 15 % routed through a relay held at 13 Hz was too weak to separate
+the channels; at 25 % it is not, and the homeostat — which at 30 % without
+it would have been needed anyway (Stage 28: runaway) — keeps the relays
+level. The 25 % + 5 s homeostat setting was chosen (gated also 90 %, but its
+losing relay still drifts up) and checked on networks the scan never used:
+
+| held-out | routed 25 % + homeostat | routed 15 %, no homeostat | hand-made WTA |
+|---|---|---|---|
+| two areas, networks 35–38 | 93.5 ± 2.2 % (75 % by 20–36) | 91.0 ± 1.0 % | 96.5 ± 1.7 % |
+| eight areas, networks 9005–9007 (9008 running) | 88.7 ± 1.9 % (30–39) | 87.3 ± 0.9 % (24–43) | 94.0 ± 0.0 % (22–38) |
+
+What it settles: one setting now works in both two and eight areas without
+drift (relays 25/14 → 30/21 in eight areas, against 50/40 → 60/52 without
+the homeostat), and the eight-area cost of Stage 30 is gone. What it does
+not: in eight areas the loop is still ~5 points below the hand-made circuit
+(two areas: ~3, within spread). The routed share is an ASSUMED number that
+now sits at the top of the cited 5–20 % range for thalamic synapses on
+cortical cells — a stated stretch. Eight-area held-out with 3 of 4 networks
+so far; this table will be updated when network 9008 finishes. Settings:
+`results/hom/configs.json` → `r25_hom` (adds `"thal_route": 0.25,
+"thal_hom": 0.1` to Stage 28's loop settings); `thal_hom_gated` and
+`hom_tau_r_s` remain available.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
@@ -2161,7 +2205,10 @@ These are the real findings so far. Each is a concrete next task.
     held-out networks. *Stage 30: relay homeostasis closes the two-area gap
     (95 vs 96.5 % on held-out networks) and, with homeostasis on critic and
     value cells, the burst moves to the cue with learning intact; in eight
-    areas it costs ~6 points — the remaining part of this problem.*
+    areas it costs ~6 points — the remaining part of this problem.* *Stage
+    31: with 25 % routed through the relay the eight-area cost is gone
+    (88.7 vs 87.3 % on held-out networks); a ~5-point gap to the hand-made
+    circuit in eight areas remains.*
 
 ## Data sources (for Phases 1–3)
 

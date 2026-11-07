@@ -211,10 +211,15 @@ def run(genome, trials=200, seed=1, n_scale=0.015, verbose=False, reverse_at=Non
         cue = "AB"[cue_seq[k]]
         t_starts.append(t_now)
         n0 = spk.num_spikes
+        if bg is not None:
+            bg.set_homeostat(False)                    # gated homeostasis: closed from cue onset ...
         stim[cue].rates = 30 * Hz
         net.run(CUE_MS * ms)
         stim[cue].rates = 0 * Hz
-        net.run((TRIAL_MS - CUE_MS) * ms)
+        net.run(100 * ms)
+        if bg is not None:
+            bg.set_homeostat(True)                     # ... to 100 ms after the cue (decision over)
+        net.run((TRIAL_MS - CUE_MS - 100) * ms)
         t_spk = np.asarray(spk.t[n0:] / ms); i_spk = np.asarray(spk.i[n0:])
         win = (t_spk >= t_now + 20) & (t_spk < t_now + CUE_MS + 20)
         c1, c2 = in1[i_spk[win]].sum(), in2[i_spk[win]].sum()

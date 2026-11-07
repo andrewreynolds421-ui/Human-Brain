@@ -101,5 +101,137 @@
   },
   "genome": "quick",
   "note": "value x2 (4 mV), critic 0.35 mV, homeostasis 0.3 on critic/value"
+ },
+ "slow30": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15,
+   "thal_hom": 0.1,
+   "hom_tau_r_s": 30.0
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick"
+ },
+ "gated": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15,
+   "thal_hom": 0.1,
+   "thal_hom_gated": true
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick"
+ },
+ "nohom_fulleta": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick eta 13.1"
+ },
+ "hom_halfeta": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.15,
+   "thal_hom": 0.1
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick eta 6.55"
+ },
+ "r25_hom": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.25,
+   "thal_hom": 0.1
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick"
+ },
+ "r25_gated": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.25,
+   "thal_hom": 0.1,
+   "thal_hom_gated": true
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  },
+  "genome": "quick"
+ },
+ "chosen31": {
+  "name": "r25_hom",
+  "why": "8-area scan 9001-9002: 90 +/- 4 % (no homeostat 88 +/- 2), relays stable 28/16 -> 28/21; rest-gated also 90 % but its losing relay drifts 22 -> 31"
  }
 }

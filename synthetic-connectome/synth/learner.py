@@ -328,6 +328,8 @@ class LearnerColumn(LiveColumn):
             # named cue: each cue cell gets cue_fibres fibres x 30 Hz; same per active cell here
             self.pattern_gen.rates = (np.repeat(pattern, PATTERN_FIBRES) * 30.0 * int(self.genome["cue_fibres"])
                                       * self.cue_gain / PATTERN_FIBRES * Hz)
+        if self.bg is not None:
+            self.bg.set_homeostat(False)          # gated relay homeostasis: closed during cue and decision
         self.step(self.cue_ms)
         if sens_spikes is not None:
             self.sens_relay.rates = 0 * Hz
@@ -335,7 +337,10 @@ class LearnerColumn(LiveColumn):
             self.cue_gen[cue].rates = 0 * Hz
         else:
             self.pattern_gen.rates = 0 * Hz
-        self.step(TRIAL_MS - CUE_MS)               # same 300 ms after the cue whatever its length
+        self.step(100.0)                           # same 300 ms after the cue whatever its length
+        if self.bg is not None:
+            self.bg.set_homeostat(True)
+        self.step(TRIAL_MS - CUE_MS - 100.0)
         t = np.asarray(self.spikes.t / ms)[n0:]; i = np.asarray(self.spikes.i)[n0:]
         snr = None
         if self.bg is not None:               # read the loop's output before the monitors are emptied

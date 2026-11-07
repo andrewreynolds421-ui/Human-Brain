@@ -90,6 +90,9 @@ DEFAULTS = dict(
                          # 2008).  Target = THAL_REST_HZ (measured).  Rate constants ASSUMED, faster than in vivo (hours)
     hom_tau_r_s=5.0,     # ASSUMED: averages over ~7 trials, so a selected channel's burst survives
     hom_max_mV=15.0,     # ASSUMED bound
+    thal_hom_gated=False,  # Stage 31: the relay's homeostat only measures and adjusts while hom_gate = 1 (the caller
+                           # opens it between trials), so it holds the *resting* rate - the quantity that was measured -
+                           # and leaves the selected response alone
     thal_str_gain=0.0,   # thalamostriatal input: Thal_k -> D1_k, D2_k (within channel, p 0.25, glutamate, 5 ms;
                          # Smith et al. 2004 "The thalamostriatal system"); the gain is FITTED, 0 = pathway absent
     noise_sd_mV=NOISE_SD_MV,
@@ -226,10 +229,11 @@ class BasalGanglia:
             geqs, reset = eqs, f"v = {RESET_MV}*mV"
             if pop == "Thal" and self.p["thal_hom"] > 0:
                 geqs = eqs.replace("+ v_spon) / tau_m", "+ v_spon + v_hom) / tau_m") + """
-        dr_est/dt = -r_est / tau_r : 1
-        dv_hom/dt = k_hom * (r_target - r_est) : volt
+        dr_est/dt = -hom_gate * r_est / tau_r : 1
+        dv_hom/dt = hom_gate * k_hom * (r_target - r_est) : volt
+        hom_gate : 1 (shared)
         """
-                reset += "; r_est += 1 / (tau_r / second)"
+                reset += "; r_est += hom_gate / (tau_r / second)"
                 ns.update(tau_r=self.p["hom_tau_r_s"] * b2.second, k_hom=self.p["thal_hom"] * mV / b2.second,
                           r_target=THAL_REST_HZ, hom_max=self.p["hom_max_mV"] * mV)
             G = b2.NeuronGroup(n * K, geqs, threshold="v > theta", reset=reset,
@@ -237,6 +241,7 @@ class BasalGanglia:
                                name=f"{self.name}_{pop.lower()}")
             if pop == "Thal" and self.p["thal_hom"] > 0:
                 G.r_est = THAL_REST_HZ
+                G.hom_gate = 1.0
                 self._floors.append(G.run_regularly("v_hom = clip(v_hom, -hom_max, hom_max)", dt=10 * ms, when="end",
                                                     name=f"{self.name}_thal_hom_clip"))
             G.ch = self.ch
@@ -417,6 +422,11 @@ class BasalGanglia:
         r = self.rates("SNr", t0_ms, t1_ms)
         k = int(np.argmin(r))
         return k if r[k] < hz else None
+
+    def set_homeostat(self, open_):
+        """gated relay homeostasis: open (1) between trials, closed (0) during cue and decision"""
+        if self.p["thal_hom"] > 0 and self.p["thal_hom_gated"]:
+            self.groups["Thal"].hom_gate = 1.0 if open_ else 0.0
 
     def clear(self):
         for mon in self.monitors.values():

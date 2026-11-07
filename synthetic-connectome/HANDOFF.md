@@ -247,7 +247,7 @@ the long form. Priorities as they stand on 5 Nov:
    5); **neuromodulator circuits** replace the surprise/uncertainty formulas
    once the dopamine system is a TD circuit.
 
-*Current best two-area loop settings (6 Nov): `results/hom/configs.json`, `td_hom2` — routed relay + relay homeostasis + dopamine with value pathway and critic/value homeostasis. Open: eight areas (open problem 12).*
+*Current best loop settings (6 Nov): `results/hom/configs.json` → `r25_hom` (25 % routed + relay homeostasis; two and eight areas), plus the dopamine value pathway and critic/value homeostasis of `td_hom2` when the cue burst is wanted. Open: ~5-point gap to the hand-made circuit in eight areas.*
 
 "Putting it all together" — one system rather than parts — is items 1, 3 and
 4 wired through RASPUTIN: the sensory layers as the cue source

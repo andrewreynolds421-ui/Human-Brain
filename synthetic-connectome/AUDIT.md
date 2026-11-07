@@ -375,3 +375,13 @@ Negative: in eight areas relay homeostasis costs ~6 points (83.5 vs 89.5),
 probably because one target rate under-drives the selected relay when the
 pools get more input. Stage 4's basal ganglia and thalamus now work end to
 end in two areas; eight areas is the open part.
+
+## 12. Follow-up (6 November, afternoon): Stage 31
+
+Two changes to how the relay's homeostat responds (slower average,
+rest-gated) did not remove its eight-area cost; a clean control showed the
+cost was real (88 % without the homeostat at the full cortical rate). What
+removed it was routing 25 % rather than 15 % of the pools' drive through
+the relay, which the homeostat makes safe. On held-out networks: two areas
+93.5 ± 2.2 %, eight areas 88.7 ± 1.9 % (3 of 4 networks; no-homeostat
+87.3, WTA 94.0). Restarts: three during the day; every run recovered.
