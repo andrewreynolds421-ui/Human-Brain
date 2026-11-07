@@ -15,7 +15,7 @@ circuit); outcomes turned into a learning signal by a modelled dopamine
 population with a critic that learns to predict them (or, as before, a
 number applied from outside). It learns cue–action
 tasks (96–97 % on the recalibrated column, Stage 25), routes real text at
-63 % through a self-organising sensory layer, and reads printed letters at 76 % in unseen fonts. It is not a brain,
+58–63 % through a self-organising sensory layer (now also live, in shadow mode, beside RASPUTIN), and reads printed letters at 76 % in unseen fonts. It is not a brain,
 not full-scale, and not yet validated against human recordings. Status by
 roadmap stage: *Phase plan* below; full audit: `AUDIT.md`; working rules:
 `METHODS.md`; **picking the project up: `HANDOFF.md`**.
@@ -111,7 +111,7 @@ and where each stands. Full audit in `AUDIT.md`.
 | **5** | Senses and a body | **partial, by another route** — RASPUTIN as a toy body; self-organising sensory layers for text and printed letters (Stages 20–23); no retina/cochlea/motor, no speech yet |
 | **6** | Learning across the sheet with dopamine from the basal ganglia | **most progress** — three-factor rule, gating, turnover, surprise, uncertainty; 80–92 % on cue tasks, 63 % routing real text; but on one pathway only, reward from outside, 9 evolved rule settings (Stages 6–21) |
 | **7** | Validation against human recordings (intracranial, EEG/MEG, fMRI, behaviour) | **not done** — only firing rates vs reference ranges |
-| **8** | Warmind / RASPUTIN integration | **done for v1** — live core, tool actions, trained through the tool, 8 tests; routing in shadow mode and the sensory layers not wired in yet |
+| **8** | Warmind / RASPUTIN integration | **done for v1, routing in shadow** — live core, tool actions, trained through the tool; a shadow router (sensory text layer + basal-ganglia loop + dopamine) learns RASPUTIN's routing decisions live without changing them (Stage 32); 17 tests |
 
 Earlier sub-phases: Phase 0 (rodent pipeline) done; Phase 1 (H01 fit) done;
 Phase 1b (Allen physiology) done.
@@ -2063,6 +2063,42 @@ so far; this table will be updated when network 9008 finishes. Settings:
 `results/hom/configs.json` → `r25_hom` (adds `"thal_route": 0.25,
 "thal_hom": 0.1` to Stage 28's loop settings); `thal_hom_gated` and
 `hom_tau_r_s` remain available.
+
+## Stage 32: RASPUTIN integration — the loop routes real queries, and a live shadow router
+
+**Offline benchmark.** Real assistant queries (CLINC150, three
+destinations: RASPUTIN / PLUTUS / GEO), read through the self-organising
+sensory text layer of Stage 20, on the v2 column; 300 training messages with
+balanced reward, held-out tests on 90 messages never trained on, networks
+41–44 (`results/router/stage32_summary.json`; `scripts/routing_experiment.py`
+now takes `--preset --selection --bg --da --ckpt`, and resumes from a
+checkpoint, which the machine's restarts made necessary). With text the
+loop's learning striatal inputs and its critic read the sensory layer, not
+the 46d cue cells, which text never drives.
+
+| unseen messages (chance 33 %) | after 150 | after 300 | per network after 300 | s / message |
+|---|---|---|---|---|
+| **basal-ganglia loop** (Stage 31 settings + dopamine) | 44.7 ± 8.4 % | **58.1 ± 8.4 %** | 52 / 72 / 51 / 57 | 7.0 |
+| hand-made WTA groups | 43.6 ± 8.2 % | 51.9 ± 5.7 % | 47 / 61 / 48 / 52 | 3.9 |
+
+The loop is better on all four networks (paired +6.1 ± 3.0 points). It
+matches the best earlier routing result (58–63 %, Stage 21, older column,
+double size) at single size, and one network reaches 72 %. Still far from
+usable as a router: 4 in 10 unseen messages go to the wrong place, and the
+spread between networks is large.
+
+**Live shadow router** (`warmind/neural_router.py`, `NEURAL_ROUTER=1`). The
+same brain now runs beside RASPUTIN: after each of RASPUTIN's first
+responses it reads the user's message, picks a destination, and is rewarded
+for agreeing with what RASPUTIN did — **never changing what RASPUTIN does**.
+Picks, the loop's output and the dopamine response go to a `brain_shadow`
+table; `GET /api/neural/shadow` reports agreement (last 50 / 200, per
+destination, against the majority baseline); it replays the latest logged
+decisions at start so restarts keep its training. Checked end to end with
+the real brain (dopamine bursts on agreement, pauses on disagreement) and
+by 7 tests with a stand-in brain. The real RASPUTIN log on this machine is
+empty, so the shadow router's first real numbers will come from your own
+running instance.
 
 ## Open problems found so far
 

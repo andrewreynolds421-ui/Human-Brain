@@ -385,3 +385,15 @@ removed it was routing 25 % rather than 15 % of the pools' drive through
 the relay, which the homeostat makes safe. On held-out networks: two areas
 93.5 ± 2.2 %, eight areas 88.7 ± 1.9 % (3 of 4 networks; no-homeostat
 87.3, WTA 94.0). Restarts: three during the day; every run recovered.
+
+## 13. Follow-up (6 November, evening): Stage 32, RASPUTIN integration
+
+The handoff's "putting it together" item, in shadow form. Offline, on real
+assistant queries through the sensory layer, the basal-ganglia loop routes
+unseen messages at 58.1 ± 8.4 % against 51.9 ± 5.7 % for the hand-made
+circuit, better on all four networks. Live, `neural_router.py` runs the
+same brain beside RASPUTIN, learns from each routing decision RASPUTIN
+makes, logs its own pick and never acts on it. First measurement on real
+traffic needs the user's running instance (the local log is empty). Also
+built: checkpoint/resume for routing runs (the machine restarted ~10 times
+on 6 Nov).

@@ -1,0 +1,127 @@
+{
+ "about": "Stage 32: routing real assistant queries (CLINC150, 3 destinations) through the sensory text layer; v2 column; 300 training messages, held-out tests of 90 unseen messages at 0/150/300; balanced reward; networks 41-44",
+ "configs": {
+  "loop": {
+   "bg": {
+    "ctx_gain": 2.0,
+    "ctx_gain_stn": 0.3,
+    "thal_gain": 1.0,
+    "plastic": true,
+    "ctx_gain_cue": 1.5,
+    "eta_bg": 0.5,
+    "post_lin": 0.0,
+    "post_gain": 1.0,
+    "thal_drive_mV": 31.0,
+    "thal_n_in": 64,
+    "thal_route": 0.25,
+    "thal_hom": 0.1
+   },
+   "da": {
+    "crit_gain": 2.5,
+    "crit_eta": 0.05
+   }
+  },
+  "common": "--data clinc --sensory results/sensory/s400_final.npz --sens-lr 0.33 --balanced --preset human_h01_dendritic_v2 --train 300 --n-test 90 --test-every 150"
+ },
+ "loop": {
+  "per_network": [
+   {
+    "seed": 41,
+    "test0": 0.3111111111111111,
+    "test150": 0.32222222222222224,
+    "test300": 0.5222222222222223,
+    "train_last50": 0.54,
+    "wall_s": 4016
+   },
+   {
+    "seed": 42,
+    "test0": 0.3333333333333333,
+    "test150": 0.5555555555555556,
+    "test300": 0.7222222222222222,
+    "train_last50": 0.58,
+    "wall_s": 4017
+   },
+   {
+    "seed": 43,
+    "test0": 0.37777777777777777,
+    "test150": 0.43333333333333335,
+    "test300": 0.5111111111111111,
+    "train_last50": 0.68,
+    "wall_s": 3987
+   },
+   {
+    "seed": 44,
+    "test0": 0.3,
+    "test150": 0.4777777777777778,
+    "test300": 0.5666666666666667,
+    "train_last50": 0.52,
+    "wall_s": 3965
+   }
+  ],
+  "test300": {
+   "mean": 0.5805555555555555,
+   "sd": 0.08439143072757395
+  },
+  "test150": {
+   "mean": 0.44722222222222224,
+   "sd": 0.08439143072757396
+  },
+  "s_per_message": 7.010964912280702
+ },
+ "wta": {
+  "per_network": [
+   {
+    "seed": 41,
+    "test0": 0.28888888888888886,
+    "test150": 0.4222222222222222,
+    "test300": 0.4666666666666667,
+    "train_last50": 0.6,
+    "wall_s": 2268
+   },
+   {
+    "seed": 42,
+    "test0": 0.28888888888888886,
+    "test150": 0.4777777777777778,
+    "test300": 0.6111111111111112,
+    "train_last50": 0.54,
+    "wall_s": 2259
+   },
+   {
+    "seed": 43,
+    "test0": 0.26666666666666666,
+    "test150": 0.3111111111111111,
+    "test300": 0.4777777777777778,
+    "train_last50": 0.4,
+    "wall_s": 2189
+   },
+   {
+    "seed": 44,
+    "test0": 0.2777777777777778,
+    "test150": 0.5333333333333333,
+    "test300": 0.5222222222222223,
+    "train_last50": 0.44,
+    "wall_s": 2190
+   }
+  ],
+  "test300": {
+   "mean": 0.5194444444444445,
+   "sd": 0.05685969302905202
+  },
+  "test150": {
+   "mean": 0.4361111111111111,
+   "sd": 0.08216777476527244
+  },
+  "s_per_message": 3.906140350877193
+ },
+ "paired_loop_minus_wta_test300": {
+  "per_network": [
+   0.05555555555555558,
+   0.11111111111111105,
+   0.03333333333333327,
+   0.0444444444444444
+  ],
+  "mean": 0.061111111111111074,
+  "sd": 0.02991758226185835,
+  "loop_better_on": 4
+ }
+}
