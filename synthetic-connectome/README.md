@@ -110,7 +110,7 @@ and where each stands. Full audit in `AUDIT.md`.
 | **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **started** — a spiking basal-ganglia–thalamus loop built from published rat circuit data (Humphries et al. 2006) replaces the hand-made selection circuit without loss (Stage 26); a dopamine population with a striosomal critic turns the outcome into a prediction error that every plastic synapse reads, the loop's cortico-striatal synapses learn (Stage 27) and, with the thalamic relay carrying a share of the pools' drive at its measured resting rate, carry the task on their own at 83 % (Stage 28); it reverses rules and runs in eight areas but finishes 5–7 points below the hand-made circuit, and a TD value pathway moves the dopamine burst to the cue only at an overshooting strength (Stage 29); relay membranes and the routed share are still assumed, no reticular nucleus; surprise/uncertainty still scalar formulas; no hippocampus or cerebellum |
 | **5** | Senses and a body | **partial, by another route** — RASPUTIN as a toy body; self-organising sensory layers for text and printed letters (Stages 20–23); no retina/cochlea/motor, no speech yet |
 | **6** | Learning across the sheet with dopamine from the basal ganglia | **most progress** — three-factor rule, gating, turnover, surprise, uncertainty; 80–92 % on cue tasks, 63 % routing real text; but on one pathway only, reward from outside, 9 evolved rule settings (Stages 6–21) |
-| **7** | Validation against human recordings (intracranial, EEG/MEG, fMRI, behaviour) | **not done** — only firing rates vs reference ranges |
+| **7** | Validation against human recordings (intracranial, EEG/MEG, fMRI, behaviour) | **started** — firing rates vs reference ranges; field spectrum vs awake human iEEG (Stage 33): beta rhythm near the frontal band, but no 1/f background and wrong response to slower inhibition — traced to unstructured external input (open problem 13) |
 | **8** | Warmind / RASPUTIN integration | **done for v1, routing in shadow** — live core, tool actions, trained through the tool; a shadow router (sensory text layer + basal-ganglia loop + dopamine) learns RASPUTIN's routing decisions live without changing them (Stage 32); 17 tests |
 
 Earlier sub-phases: Phase 0 (rodent pipeline) done; Phase 1 (H01 fit) done;
@@ -2100,6 +2100,51 @@ by 7 tests with a stand-in brain. The real RASPUTIN log on this machine is
 empty, so the shadow router's first real numbers will come from your own
 running instance.
 
+## Stage 33: first comparison with human intracranial EEG — a mismatch, and why
+
+Roadmap Stage 7 (validation against human recordings) had only firing rates.
+Here the resting column's field potential is compared with awake human
+intracranial EEG (`scripts/spectrum_validation.py`;
+`results/spectra/stage33.json`, figure `results/spectra/stage33_spectra.png`).
+
+* **Model signal:** the LFP proxy of Mazzoni et al. 2015 (excitatory synaptic
+  currents on pyramidal cells delayed 6 ms, minus 1.65 × inhibitory), summed
+  inside the simulator every 0.1 ms over 300 L2/3 and L5 pyramids of the
+  two-area v2 column (both compartments), low-passed to 1 kHz — a first
+  version sampled every 1 ms aliased the fast input noise into the band and
+  was discarded. 10 s per network, networks 31–34.
+* **Human references:** 30–45 Hz slope of awake human iEEG −2.75 ± 0.15 and
+  −2.99 ± 0.32 (mean ± SEM, n = 12 and 10), steeper in N3 sleep (−3.69), REM
+  (−4.15) and propofol (−4.34) (Lendner et al. 2020, eLife 9:e55092); normal
+  awake iEEG atlas: frontal lobe beta peak 20–24 Hz, alpha mainly occipital,
+  1/f background with most power at low frequencies (Frauscher et al. 2018,
+  Brain 141:1130).
+* **Direction check:** "propofol-like" = GABA_A decay ×2 in every cell
+  (propofol's main synaptic action; the factor is ASSUMED) should steepen
+  the slope (Gao et al. 2017).
+
+| | model (4 networks) | human awake iEEG |
+|---|---|---|
+| 30–45 Hz slope, awake | −1.13 ± 0.92 (−0.5 to −2.3) | −2.75 to −2.99 |
+| 30–45 Hz slope, propofol-like | −0.38 ± 0.63 — *not* steeper | propofol −4.34 |
+| aperiodic exponent 2–80 Hz | ≈ −0.26 (flat / slightly rising) | clear 1/f fall-off |
+| power below 4 Hz | lowest in the spectrum | highest in the spectrum |
+| rhythms | strongest peak 12–20 Hz in all; a 20–24 Hz peak in 3 of 4; gamma 60–80 Hz | frontal: one beta peak, 20–24 Hz |
+
+**The column does not reproduce the human field spectrum.** It has the right
+kind of rhythm (beta, near the frontal band) but none of the aperiodic 1/f
+background, no slow power, too many peaks, and slowing inhibition does not
+steepen it. The likely reason is identified rather than guessed: each
+pyramidal cell gets 19,000–29,000 external input spikes per second — the
+stand-in for the rest of the brain — as *independent, stationary* Poisson
+trains, about 1.5–2× its recurrent input. Summed over cells that input is
+white noise filtered by fast synapses, which is flat up to ~80 Hz and buries
+both the 1/f shape and the inhibitory effect. Human cortex receives
+correlated, slowly fluctuating input from other areas and from the
+thalamus; the model's own Stage 28 relay is the first piece of that.
+Firing rates (Stage 25) and learning were blind to this — it is exactly
+what a field comparison exists to catch. Open problem 13.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
@@ -2245,6 +2290,20 @@ These are the real findings so far. Each is a concrete next task.
     31: with 25 % routed through the relay the eight-area cost is gone
     (88.7 vs 87.3 % on held-out networks); a ~5-point gap to the hand-made
     circuit in eight areas remains.*
+
+13. **The column's field spectrum has no 1/f background (Stage 33).** Against
+    awake human iEEG the 30–45 Hz slope is too flat (−1.1 vs −2.8/−3.0),
+    there is no slow power, and slowing inhibition does not steepen it,
+    because independent stationary Poisson input (1.5–2× the recurrent input)
+    dominates the field. Test: give the external drive the structure real
+    input has — shared, slowly fluctuating rates (e.g. an Ornstein–Uhlenbeck
+    or 1/f-modulated rate common to a column's fibres, amplitude and time
+    scale from recorded thalamic/cortical input statistics) — keeping the
+    mean rates (so Stage 25's rate check still passes), then re-run this
+    comparison and the propofol direction check, and check learning is
+    unchanged. A cheaper diagnostic first: the same spectrum with the
+    external input made constant (conductance-only), which isolates the
+    network's own contribution.
 
 ## Data sources (for Phases 1–3)
 

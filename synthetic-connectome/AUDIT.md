@@ -397,3 +397,15 @@ makes, logs its own pick and never acts on it. First measurement on real
 traffic needs the user's running instance (the local log is empty). Also
 built: checkpoint/resume for routing runs (the machine restarted ~10 times
 on 6 Nov).
+
+## 14. Follow-up (7 November): Stage 33, first human-recording comparison
+
+The column's field-potential spectrum (Mazzoni LFP proxy) against awake
+human intracranial EEG (Lendner 2020; Frauscher 2018 atlas): a beta rhythm
+near the frontal band is present, but the 1/f background is absent (30–45 Hz
+slope −1.1 vs −2.8/−3.0 in humans), slow power is missing, and doubling the
+GABA_A decay does not steepen the slope. Diagnosis: the stand-in for the
+rest of the brain — independent stationary Poisson input, 1.5–2× the
+recurrent input — dominates the field. This is the first test against human
+data that the model fails, and it fails for a reason that points at a
+specific next step (open problem 13).

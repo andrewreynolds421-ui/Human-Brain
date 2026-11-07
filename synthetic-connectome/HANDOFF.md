@@ -180,6 +180,7 @@ environment variables are listed at the top of `warmind/neural_core.py`.
 | loop alone, paper protocol | rest STN 10 / GP 19 / SNr 25 Hz in range; selects from 10–12 spikes/s; switches 80 %, keeps 85 % up to 16 spikes/s; both selected above | 4 | `results/bg/standalone_final.json` |
 | loop vs WTA on held-out networks 35–38 (Stage 29a) | 91 ± 1 % vs 96.5 ± 1.7 % | 4 | `results/thal/stage29_summary.json` |
 | routed loop, 8 areas / reversal (Stage 29b) | 89.5 ± 4.3 %; reversal end 79 ± 5 % (WTA 80 ± 7) | 4 + 4 | same |
+| field spectrum vs awake human iEEG (Stage 33) | 30–45 Hz slope −1.13 ± 0.92 (human −2.75…−2.99); no 1/f background | 4 | `results/spectra/stage33.json` |
 | routing unseen CLINC messages, 3 destinations (Stage 32) | loop 58.1 ± 8.4 %, WTA 51.9 ± 5.7 % (loop better on 4/4) | 4 | `results/router/stage32_summary.json` |
 | relay homeostasis, held-out networks 35–38 (Stage 30) | 95.0 ± 2.2 % (WTA 96.5 ± 1.7); 8 areas 83.5 ± 2.2 % | 4 + 4 | `results/hom/stage30_summary.json` |
 | dopamine burst moves to the cue (Stage 30, `td_hom2`) | cue 13.6 → 25.3, reward 23 → 13.5 spikes/s; learning 95.5 ± 3.3 % | 4 | same |
@@ -227,7 +228,7 @@ the long form. Priorities as they stand on 5 Nov:
    run to leave chance. Cheaper partial step: a striatal fast-spiking
    interneuron population (Koos & Tepper 1999) with feed-forward inhibition.
    2–3 days.
-2. *(Tried 6 Nov, README Stage 29c: a value pathway gives the transfer only at an overshooting strength; next is homeostasis, open problem 12.)* **Temporal-difference dopamine** so the burst transfers to the cue: replace
+2. *(Done 6 Nov, README Stage 30: with homeostasis on critic and value cells the burst moves to the cue — 13.6 → 25.3 spikes/s — while the reward burst falls and learning stays at 95.5 %.)* **Temporal-difference dopamine** so the burst transfers to the cue: replace
    the 500 ms critic decay with a proper TD circuit (eligibility in the
    critic, prediction at cue onset exciting the dopamine cells). Measure the
    Schultz transfer in `results/bg/stage27_summary.json`'s format. 1–2 days.
@@ -237,7 +238,7 @@ the long form. Priorities as they stand on 5 Nov:
 4. **Letters → words** with a prediction rule on top of the letter layer
    (`results/letters/l1600v_final.npz`): a second layer learning
    letter sequences; test on held-out fonts and words. 2–3 days.
-5. **Stage 7, cheaply**: compare the column's population spectrum with human
+5. *(Done 7 Nov, README Stage 33: mismatch — no 1/f background; cause and next test in open problem 13.)* **Stage 7, cheaply**: compare the column's population spectrum with human
    intracranial spectra (`scripts/rhythm_diagnostics.py` is the start). Hours.
 6. **Speed**: merge the loop's six cell groups into one Brian2 group with
    per-cell constants (removes most of the +1.9 s/trial); only with
