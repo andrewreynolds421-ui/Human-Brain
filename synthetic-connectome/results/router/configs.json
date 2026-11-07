@@ -1,0 +1,23 @@
+{
+ "loop": {
+  "bg": {
+   "ctx_gain": 2.0,
+   "ctx_gain_stn": 0.3,
+   "thal_gain": 1.0,
+   "plastic": true,
+   "ctx_gain_cue": 1.5,
+   "eta_bg": 0.5,
+   "post_lin": 0.0,
+   "post_gain": 1.0,
+   "thal_drive_mV": 31.0,
+   "thal_n_in": 64,
+   "thal_route": 0.25,
+   "thal_hom": 0.1
+  },
+  "da": {
+   "crit_gain": 2.5,
+   "crit_eta": 0.05
+  }
+ },
+ "common": "--data clinc --sensory results/sensory/s400_final.npz --sens-lr 0.33 --balanced --preset human_h01_dendritic_v2 --train 300 --n-test 90 --test-every 150"
+}

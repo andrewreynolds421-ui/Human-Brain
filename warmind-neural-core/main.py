@@ -129,6 +129,17 @@ app.include_router(neural_router)
 if NEURAL_CORE_ENABLED:
     start_neural_core()   # builds and warms the column in a background thread
 
+# Shadow router (NEURAL_ROUTER=1): the spiking brain watches each routing decision RASPUTIN makes and
+# learns to make the same one. Shadow only: it never changes routing. See neural_router.py.
+from neural_router import shadow_observe, shadow_stats, start_shadow_router  # noqa: E402
+start_shadow_router()     # no-op unless NEURAL_ROUTER=1
+
+
+@app.get("/api/neural/shadow")
+def neural_shadow():
+    """How often the brain's own routing pick agrees with RASPUTIN's (shadow mode)."""
+    return shadow_stats()
+
 # Dispatch-first routing. DELEGATION=0 restores the old tools_for() behaviour.
 DELEGATION_ENABLED = os.environ.get("DELEGATION", "1") != "0"
 
@@ -3054,6 +3065,12 @@ def run_tool_use_loop(system_prompt: str, tools: list, messages: list, target: s
     if not nested:
         _first_calls = [b for b in response.content
                         if getattr(b, "type", None) == "tool_use"]
+        if target == "RASPUTIN":
+            # shadow router: what RASPUTIN did in direct response to the user's words (first submind
+            # consulted, or none). Returns at once; the brain works in its own thread.
+            _consult = next(((b.input or {}).get("submind") for b in _first_calls
+                             if b.name == "consult_submind"), None)
+            shadow_observe(_trigger, _consult)
         if not _first_calls:
             _server = any(getattr(b, "type", None) == "server_tool_use"
                           for b in response.content)

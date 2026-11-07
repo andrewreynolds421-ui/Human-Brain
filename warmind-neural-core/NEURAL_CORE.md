@@ -260,3 +260,37 @@ longer perseverates: 92.5 % on four networks, 75 % within 20–42 trials.
 Model size: `learner` runs at double the previous neuron count by default
 (`NEURAL_CORE_LEARNER_SCALE=0.03`), with action selection scaled to pool size
 (README Stage 15); it learns sooner and better than the smaller one.
+
+
+## Update: the shadow router — the brain learns RASPUTIN's routing (6 Nov)
+
+`neural_router.py`, switched on with `NEURAL_ROUTER=1` (independent of
+`NEURAL_CORE`). **Shadow only: it never changes which submind RASPUTIN
+consults.** After each of RASPUTIN's first responses, main.py passes the
+user's message and what RASPUTIN did (the first submind consulted, or none)
+to a background thread; the call returns at once. The brain reads the
+message through its sensory text layer, picks a destination with its
+basal-ganglia loop, and is rewarded +1 if it agreed with RASPUTIN and
+−1/(K−1) if not, delivered as an outcome to its dopamine cells. Every pick
+is stored in the `brain_shadow` table with the loop's output and the
+dopamine response.
+
+* Destinations: `NEURAL_ROUTER_DESTS` (default `RASPUTIN,PLUTUS,GEO`; any
+  regional submind counts as GEO; anything else as RASPUTIN). Add
+  `ASCLEPIUS` once enough health questions are logged.
+* On start it replays the newest `NEURAL_ROUTER_REPLAY` (300) logged
+  decisions from `tool_calls`, so a restart does not lose its training.
+* `GET /api/neural/shadow`: status, agreement over the last 50 / 200 live
+  messages, per destination, against the always-the-commonest baseline, and
+  a confusion count.
+* `NEURAL_ROUTER_SELECTION=bg` (default: the Stage 31 loop with dopamine) or
+  `wta` (the hand-made circuit).
+* Cost: one extra Python thread with ~0.6 GB, ~6–8 s of simulation per
+  message, in the background; if messages arrive faster the oldest waiting
+  ones are skipped (counted as `dropped`). The chat turn is never delayed.
+* Tests: `tests/test_neural_router.py` (7, seconds, stand-in brain).
+
+What to look for before letting it decide anything: live agreement well
+above `majority_baseline`, per destination, over a few hundred messages.
+The offline benchmark on CLINC (three destinations) is in the
+synthetic-connectome README.

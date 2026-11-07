@@ -108,6 +108,7 @@ class LearnerColumn(LiveColumn):
         if self.da_kw is not None and selection != "bg":
             raise ValueError("the dopamine system needs selection='bg'")
         self.bg = self.da = None
+        self.sens_relay = None
         self.sens_lr = float(sens_lr)     # learning-rate factor for the sensory -> action synapses
         # sensory: a trained synth.sensory.SensoryLayer (or path to one).  Text trials then go through it
         # and its cells' spikes are replayed onto the action pools through plastic synapses that learn
@@ -204,7 +205,16 @@ class LearnerColumn(LiveColumn):
         if self.selection == "bg":
             from .basal_ganglia import BasalGanglia
             w_thal = float(np.asarray(col.neuron["w_ext_pop"])[l5])   # the column's external (thalamic) synapse on L5E
-            ctx = (self.G, np.sort(cue_cells)) if (self.bg_kw.get("plastic") or self.da_kw is not None) else None
+            ctx = None
+            if self.bg_kw.get("plastic") or self.da_kw is not None:
+                if self.sensory is not None:
+                    # text trials reach the brain through the sensory relay, so that is the context the
+                    # striatum and the critic must see (the 46d cue cells stay silent on text trials)
+                    self.sens_relay = b2.PoissonGroup(self.sensory.n_e, rates=0 * Hz, name="sens_relay")
+                    extra.append(self.sens_relay)
+                    ctx = (self.sens_relay, np.arange(self.sensory.n_e))
+                else:
+                    ctx = (self.G, np.sort(cue_cells))
             bkw = dict(self.bg_kw); thal_route = float(bkw.pop("thal_route", 0.0))
             self.bg = BasalGanglia([(self.G, self.pools[k_ + 1]) for k_ in range(K)], seed=seed + 7,
                                    target=(self.G, "g_ed", w_thal), context=ctx, **bkw)
@@ -247,7 +257,9 @@ class LearnerColumn(LiveColumn):
             ns_e = self.sensory.n_e
             # each sensory cell stands for a small population: while the cue lasts it drives its fibres
             # at SENS_RELAY_HZ x (its spike count / the top count) — a reading of which cells won
-            self.sens_relay = b2.PoissonGroup(ns_e, rates=0 * Hz, name="sens_relay")
+            if getattr(self, "sens_relay", None) is None:
+                self.sens_relay = b2.PoissonGroup(ns_e, rates=0 * Hz, name="sens_relay")
+                extra.append(self.sens_relay)
             pool_cells = np.concatenate([self.pools[k] for k in sorted(self.pools)])
             tau_r = 20.0 * ms
             Ss = b2.Synapses(self.sens_relay, self.G, model="""w : siemens
@@ -269,7 +281,7 @@ class LearnerColumn(LiveColumn):
             Ss.delay = 2 * ms
             self.s_syn, self.s_post = Ss, np.tile(pool_cells, ns_e)
             self.s_wmax = g["w_max_factor"] * self.s_w0
-            extra += [self.sens_relay, Ss]
+            extra += [Ss]
         self.net.add(*extra)
         # lean: no reset snapshot (Brian2 assembles a full in-memory copy of the state to make one,
         # ~1-2 GB at double size); reset = rebuild from the same seed, which gives the same state
