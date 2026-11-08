@@ -2052,7 +2052,7 @@ losing relay still drifts up) and checked on networks the scan never used:
 | held-out | routed 25 % + homeostat | routed 15 %, no homeostat | hand-made WTA |
 |---|---|---|---|
 | two areas, networks 35–38 | 93.5 ± 2.2 % (75 % by 20–36) | 91.0 ± 1.0 % | 96.5 ± 1.7 % |
-| eight areas, networks 9005–9007 (9008 running) | 88.7 ± 1.9 % (30–39) | 87.3 ± 0.9 % (24–43) | 94.0 ± 0.0 % (22–38) |
+| eight areas, networks 9005–9008 | 88.5 ± 1.7 % (30–39) | 87.5 ± 0.9 % (24–43) | 94.5 ± 0.9 % (22–38) |
 
 What it settles: one setting now works in both two and eight areas without
 drift (relays 25/14 → 30/21 in eight areas, against 50/40 → 60/52 without
@@ -2060,8 +2060,7 @@ the homeostat), and the eight-area cost of Stage 30 is gone. What it does
 not: in eight areas the loop is still ~5 points below the hand-made circuit
 (two areas: ~3, within spread). The routed share is an ASSUMED number that
 now sits at the top of the cited 5–20 % range for thalamic synapses on
-cortical cells — a stated stretch. Eight-area held-out with 3 of 4 networks
-so far; this table will be updated when network 9008 finishes. Settings:
+cortical cells — a stated stretch. Settings:
 `results/hom/configs.json` → `r25_hom` (adds `"thal_route": 0.25,
 "thal_hom": 0.1` to Stage 28's loop settings); `thal_hom_gated` and
 `hom_tau_r_s` remain available.
@@ -2340,7 +2339,7 @@ These are the real findings so far. Each is a concrete next task.
     value cells, the burst moves to the cue with learning intact; in eight
     areas it costs ~6 points — the remaining part of this problem.* *Stage
     31: with 25 % routed through the relay the eight-area cost is gone
-    (88.7 vs 87.3 % on held-out networks); a ~5-point gap to the hand-made
+    (88.5 vs 87.5 % on held-out networks); a ~5-point gap to the hand-made
     circuit in eight areas remains.*
 
 13. *(Revised in Stage 34: the flat spectrum was mostly a measurement error; with a corrected proxy the 30–45 Hz slope is −2.2 vs human −2.8/−3.0. What remains is too little slow power, ~25 dB short, which structured input does not fix without flattening the slope.)* **The column's field spectrum has no 1/f background (Stage 33).** Against

@@ -197,7 +197,7 @@ environment variables are listed at the top of `warmind/neural_core.py`.
 | routed loop, 8 areas / reversal (Stage 29b) | 89.5 ± 4.3 %; reversal end 79 ± 5 % (WTA 80 ± 7) | 4 + 4 | same |
 | field spectrum vs awake human iEEG (Stages 33–34, corrected proxy) | 30–45 Hz slope −2.20 ± 0.45 (human −2.75…−2.99); slow power ~25 dB short | 4 held-out | `results/spectra/stage34_summary.json` |
 | routing unseen CLINC messages, 3 destinations (Stage 32) | loop 58.1 ± 8.4 %, WTA 51.9 ± 5.7 % (loop better on 4/4) | 4 | `results/router/stage32_summary.json` |
-| relay homeostasis, held-out networks 35–38 (Stage 30) | 95.0 ± 2.2 % (WTA 96.5 ± 1.7); 8 areas 83.5 ± 2.2 % | 4 + 4 | `results/hom/stage30_summary.json` |
+| relay homeostasis, held-out networks 35–38 (Stage 30) | 95.0 ± 2.2 % (WTA 96.5 ± 1.7); 8 areas 83.5 ± 2.2 % (Stage 31 with 25 % routed: 88.5 ± 1.7 %, WTA 94.5) | 4 + 4 | `results/hom/stage30_summary.json` |
 | dopamine burst moves to the cue (Stage 30, `td_hom2`) | cue 13.6 → 25.3, reward 23 → 13.5 spikes/s; learning 95.5 ± 3.3 % | 4 | same |
 | thalamic relay carrying 15 % of the pools' drive (Stage 28) | loop alone 83 ± 7.5 %; full system 92.5 ± 1.7 %, 75 % by 20–42 | 4 | `results/thal/summary.json` |
 | dopamine population as the learning signal | 95 ± 2 %, 75 % by 34–55; burst to reward 21.5 → 13 Hz as the critic rises 3.3 → 7.8 Hz | 4 | `results/bg/stage27_summary.json` |

@@ -383,8 +383,8 @@ rest-gated) did not remove its eight-area cost; a clean control showed the
 cost was real (88 % without the homeostat at the full cortical rate). What
 removed it was routing 25 % rather than 15 % of the pools' drive through
 the relay, which the homeostat makes safe. On held-out networks: two areas
-93.5 ± 2.2 %, eight areas 88.7 ± 1.9 % (3 of 4 networks; no-homeostat
-87.3, WTA 94.0). Restarts: three during the day; every run recovered.
+93.5 ± 2.2 %, eight areas 88.5 ± 1.7 % (four networks; no-homeostat
+87.5, WTA 94.5). Restarts: three during the day; every run recovered.
 
 ## 13. Follow-up (6 November, evening): Stage 32, RASPUTIN integration
 
