@@ -294,3 +294,27 @@ def test_relay_homeostasis_pulls_a_held_channel_back_toward_its_target():
         if k > 0:
             assert np.all(np.abs(np.asarray(bg.groups["Thal"].v_hom / b2.mV)) <= bg.p["hom_max_mV"] + 0.1)   # clipped every 10 ms
     assert out[0.0] > 40 and out[0.5] < 0.5 * out[0.0], out
+
+
+@pytest.mark.slow
+def test_merged_loop_gives_identical_spikes():
+    """Stage 35: the six populations as slices of one NeuronGroup (merged=True, the default) must give
+    the same spikes, spike for spike, as six separate groups - with the relay homeostat, its gate, and
+    the thalamostriatal pathway all in use (the learner-level check is scripts/verify_merged_bg.py)."""
+    import brian2 as b2
+    from brian2 import ms, Hz
+    from synth.basal_ganglia import BasalGanglia
+    out = {}
+    for merged in (False, True):
+        b2.start_scope(); b2.prefs.codegen.target = "cython"; b2.defaultclock.dt = 0.1 * ms; b2.seed(5)
+        src = b2.PoissonGroup(60, 8 * Hz, name="src")
+        bg = BasalGanglia([(src, np.arange(k * 20, (k + 1) * 20)) for k in range(3)], seed=3, ctx_gain=2.0,
+                          ctx_gain_stn=0.3, thal_drive_mV=31, thal_hom=0.5, thal_hom_gated=True, thal_str_gain=0.5,
+                          monitor="all", merged=merged)
+        net = b2.Network(src, *bg.objects); net.run(600 * ms)
+        bg.set_homeostat(False); net.run(300 * ms)
+        out[merged] = {p: (np.asarray(m.i).copy(), np.asarray(m.t / ms).copy()) for p, m in bg.monitors.items()}
+    assert sum(len(v[0]) for v in out[True].values()) > 1000
+    for pop in BasalGanglia.POPS:
+        assert np.array_equal(out[False][pop][0], out[True][pop][0]), pop
+        assert np.array_equal(out[False][pop][1], out[True][pop][1]), pop

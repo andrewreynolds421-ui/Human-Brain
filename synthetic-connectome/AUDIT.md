@@ -422,3 +422,18 @@ spectrum; shared slow input adds some but flattens the high-frequency slope,
 and a slow-only variant failed criteria fixed in advance. A lesson for the
 standards: a new measurement needs its own control (here, a signal whose
 spectrum is known) before its result is interpreted.
+
+## 16. Follow-up (8 November): Stage 35 — speed
+
+The loop's six cell populations are now one simulator group (`merged=True`,
+the default), with the populations as slices. The profiler showed the loop
+was slow because of its many small objects, not its arithmetic. The merged
+group is laid out in the separate groups' schedule order and uses their
+generated arithmetic form, so it reproduces them exactly. Proof: every field
+of the learner record was identical in 8/8 runs (four configurations, two
+networks, 20 trials, including eight areas, the gated homeostat and the TD
+value pathway), and a test guards it. The loop's time fell 28 %, about 1 s
+per trial. That is half the overhead rather than most of it: the synapse
+pathways are the larger remaining share, and merging them changes the
+float-addition order, so it would need a seed-spread check.
+

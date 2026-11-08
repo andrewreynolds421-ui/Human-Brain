@@ -255,9 +255,11 @@ the long form. Priorities as they stand on 5 Nov:
    letter sequences; test on held-out fonts and words. 2–3 days.
 5. *(Done 7 Nov, README Stages 33–34: with a corrected LFP proxy the 30–45 Hz slope is near human (−2.2 vs −2.8/−3.0); slow power ~25 dB short, open problem 13.)* **Stage 7, cheaply**: compare the column's population spectrum with human
    intracranial spectra (`scripts/rhythm_diagnostics.py` is the start). Hours.
-6. **Speed**: merge the loop's six cell groups into one Brian2 group with
-   per-cell constants (removes most of the +1.9 s/trial); only with
-   `scripts/verify_fast.py`-style proof that spikes are unchanged. Half a day.
+6. *(Cell groups done 8 Nov, README Stage 35: `BasalGanglia(merged=True)`, the default; spikes identical in
+   8/8 learner runs, `scripts/verify_merged_bg.py`; loop time −28 %, about 1 s less per trial.)* **Speed**, what
+   remains: merge the loop's 19 synapse pathways (~2 s per 2 s simulated). This is not exact (it changes the
+   order of float additions), so it needs four networks within the seed spread. Optionally, merge the dopamine
+   cells the exact way. Half a day.
 7. **Stage 2 (full-scale column)** needs a GPU simulator port (GeNN or NEST
    GPU) and ≥ 64 GB; do not attempt it in Brian2 runtime on this machine.
 8. **Hippocampus** is its own stage; **cerebellum** waits for a body (Stage

@@ -114,6 +114,8 @@ DEFAULTS = dict(
     eta_bg=0.0,          # FITTED: cortico-striatal learning rate (results/bg/eta_scan.json)
     w_max_factor=3.0,    # ASSUMED: bound on the plastic weight (x initial)
     w_init_spread=0.25,  # ASSUMED: initial plastic weights uniform in 1 +/- spread
+    merged=True,         # Stage 35: the six populations as slices of one NeuronGroup (identical spikes, ~28 % less
+                         # loop time; results/speed/verify_merged_bg.json); False = the original separate groups
 )
 
 
@@ -197,7 +199,11 @@ class BasalGanglia:
         self.groups, self.synapses, self.monitors, self._floors = {}, [], {}, []
         self.plastic = []                                     # (Synapses, sign, population)
         self.context = None if context is None else (context[0], np.asarray(context[1], int))
-        self._build_populations()
+        self.cells = None
+        if self.p["merged"]:
+            self._build_populations_merged()
+        else:
+            self._build_populations()
         self._wire_internal()
         self._wire_cortex()
         if self.context is not None:
@@ -250,6 +256,78 @@ class BasalGanglia:
                 self._floors.append(G.run_regularly("v = clip(v, -v_lim, 1*volt)", dt=dt, when="end",
                                                     name=f"{self.name}_{pop.lower()}_floor"))
             self.groups[pop] = G
+
+    # Stage 35 (speed): all six populations in ONE NeuronGroup with per-cell constants; self.groups[pop] are
+    # slices of it, so every pathway, monitor and caller is unchanged.  The layout is the simulator's schedule
+    # order of the separate groups (bg_d1 < bg_d2 < bg_gp < bg_snr < bg_stn < bg_thal), so the merged updater
+    # draws the membrane noise from the random stream in the same sequence.  The equation is written in the
+    # form the code generator produced for the separate groups (1/tau and v_spon/tau hoisted), with the
+    # constants computed by the same float operations, and v_hom is exactly 0 outside the relay - so the
+    # arithmetic is bit-identical (verified: scripts/verify_merged_bg.py).
+    MERGE_ORDER = ("D1", "D2", "GP", "SNr", "STN", "Thal")
+
+    def _build_populations_merged(self):
+        n, K = self.n_per, self.K
+        hom = self.p["thal_hom"] > 0
+        dt = b2.defaultclock.dt
+        eqs = """
+        dv/dt = (k_spon + (k_m * ampa + k_m * nmda""" + (" + k_m * v_hom" if hom else "") + """) - (k_m * gaba + k_m * v)) + sigma_step * xi / sqrt(dt_noise) : volt (unless refractory)
+        dampa/dt = -ampa / tau_ampa : volt
+        dnmda/dt = -nmda / tau_nmda : volt
+        dgaba/dt = -gaba / tau_gaba : volt
+        ch : integer (constant)
+        k_m : Hz (constant)
+        k_spon : volt / second (constant)
+        theta : volt (constant)
+        v_floor : volt (constant)
+        """
+        ns = dict(sigma_step=self.p["noise_sd_mV"] * mV, dt_noise=dt, tau_ampa=PSP["ampa"][1] * ms,
+                  tau_nmda=PSP["nmda"][1] * ms, tau_gaba=PSP["gaba"][1] * ms)
+        reset = f"v = {RESET_MV}*mV"
+        if hom:
+            eqs += """
+        dr_est/dt = -hom_gate * r_est / tau_r : 1
+        dv_hom/dt = hom_gate * k_hom * (r_target - r_est) * is_thal : volt
+        hom_gate : 1 (shared)
+        is_thal : 1 (constant)
+        """
+            reset += "; r_est += hom_gate / (tau_r / second)"
+            ns.update(tau_r=self.p["hom_tau_r_s"] * b2.second, k_hom=self.p["thal_hom"] * mV / b2.second,
+                      r_target=THAL_REST_HZ, hom_max=self.p["hom_max_mV"] * mV)
+        N = n * K * len(self.MERGE_ORDER)
+        C = b2.NeuronGroup(N, eqs, threshold="v > theta", reset=reset, refractory=REFRACTORY_MS * ms,
+                           method="euler", namespace=ns, name=f"{self.name}_cells")
+        k_m, k_spon, theta, floor, v0, is_thal = (np.zeros(N) for _ in range(6))
+        init = {}
+        for pop in self.POPS:                       # initial voltages drawn in the original construction order
+            m = THAL_MEMBRANE if pop == "Thal" else MEMBRANE[pop]
+            init[pop] = np.clip(self.rng.normal(0.5 * m["theta"], 3.0, n * K), -self.p["v_lim_mV"], 0.95 * m["theta"])
+        for s, pop in enumerate(self.MERGE_ORDER):
+            m = THAL_MEMBRANE if pop == "Thal" else MEMBRANE[pop]
+            spon = (self.p["spon_nA"] or {}).get(pop, m.get("I_spon"))
+            v_spon = self.p["thal_drive_mV"] if pop == "Thal" else m["R"] * spon
+            tau_s, vs_V = float(m["tau"] * ms), float(v_spon * mV)          # the same doubles as the namespace
+            sl = slice(s * n * K, (s + 1) * n * K)
+            k_m[sl] = 1.0 / tau_s
+            k_spon[sl] = vs_V / tau_s
+            theta[sl] = float(m["theta"] * mV)
+            floor[sl] = -1000.0 if pop in ("D1", "D2") else -float(self.p["v_lim_mV"] * mV)   # striatum: no floor
+            v0[sl] = init[pop] * float(mV)
+            is_thal[sl] = 1.0 if pop == "Thal" else 0.0
+        C.k_m, C.k_spon, C.theta, C.v_floor = k_m * b2.Hz, k_spon * b2.volt / b2.second, theta * b2.volt, floor * b2.volt
+        C.ch = np.tile(self.ch, len(self.MERGE_ORDER))
+        C.v = v0 * b2.volt
+        if hom:
+            C.is_thal = is_thal
+            C.r_est = np.where(is_thal > 0, THAL_REST_HZ, 0.0)
+            C.hom_gate = 1.0
+            self._floors.append(C.run_regularly("v_hom = clip(v_hom, -hom_max, hom_max)", dt=10 * ms, when="end",
+                                                name=f"{self.name}_thal_hom_clip"))
+        self._floors.append(C.run_regularly("v = clip(v, v_floor, 1*volt)", dt=dt, when="end",
+                                            name=f"{self.name}_floor"))
+        self.cells = C
+        for s, pop in enumerate(self.MERGE_ORDER):
+            self.groups[pop] = C[s * n * K:(s + 1) * n * K]
 
     def _onpre(self, receptor, post, factor=1.0):
         """on_pre code giving the paper's peak PSP(s) on population `post`, times factor."""
@@ -404,7 +482,8 @@ class BasalGanglia:
     @property
     def objects(self):
         # (the floor operations are contained in their groups and travel with them)
-        return list(self.groups.values()) + self.synapses + list(self.monitors.values())
+        groups = [self.cells] if self.cells is not None else list(self.groups.values())
+        return groups + self.synapses + list(self.monitors.values())
 
     def counts(self, pop, t0_ms, t1_ms):
         """spikes per channel of population `pop` in [t0, t1) ms"""
@@ -426,7 +505,7 @@ class BasalGanglia:
     def set_homeostat(self, open_):
         """gated relay homeostasis: open (1) between trials, closed (0) during cue and decision"""
         if self.p["thal_hom"] > 0 and self.p["thal_hom_gated"]:
-            self.groups["Thal"].hom_gate = 1.0 if open_ else 0.0
+            (self.cells if self.cells is not None else self.groups["Thal"]).hom_gate = 1.0 if open_ else 0.0
 
     def clear(self):
         for mon in self.monitors.values():

@@ -2196,6 +2196,64 @@ millions of neurons); a two-area model at 1.5 % of neuron count with
 stationary drive has nothing that generates seconds-long co-fluctuation, and
 injecting it from outside trades against the high-frequency shape.
 
+## Stage 35: speed — the loop's six cell groups as one, with identical spikes
+
+**What was done.** The simulator's own per-object profiler showed where the
+loop's cost goes. With the loop and dopamine on, 2 s of simulated learner time
+took 16 s, and 6.8 s of that (42 %) went to the loop and dopamine objects.
+There are 86 of them, each small: at 64 cells per channel, the per-step
+bookkeeping of an object costs more than its arithmetic. So the number of
+objects was the lever. `BasalGanglia(merged=True)` (now the default) builds
+the six populations as slices of one `NeuronGroup`. Membrane time constant,
+tonic drive, threshold, floor and the relay's homeostat are per-cell
+constants. `bg.groups[pop]` are slices of the merged group, so every pathway,
+monitor and caller is unchanged.
+
+**Why the spikes are identical, not just similar.**
+
+- *Noise order.* The cells are laid out in the order the simulator scheduled
+  the separate groups (d1, d2, gp, snr, stn, thal). The merged update
+  therefore draws the membrane noise from the random stream in the same
+  sequence.
+- *Same arithmetic.* The voltage equation is written in the form the code
+  generator had produced for the separate groups (1/τ and v_spon/τ hoisted
+  out of the loop). Those constants are computed by the same float
+  operations, so the arithmetic is bit-for-bit the same.
+- *Relay-only terms.* The relay's homeostatic term is an exact zero in the
+  other five populations.
+- *Unchanged objects.* Initial voltages come from the loop's own generator in
+  the original order. All synapse objects are kept as they were, so the order
+  of additions onto each cell is unchanged.
+
+**Result.**
+
+| check | outcome |
+|---|---|
+| loop alone (3 channels, homeostat gated) | every spike in all six populations identical |
+| learner, 20 trials × 2 networks (31, 9001) × 4 configurations: `r25_hom` 2 areas, `r25_gated`, `td_hom2` (value pathway, critic/value homeostasis), `r25_hom` 8 areas | **all 8 runs identical** in the whole record: choices, rewards, loop rates, dopamine responses, plastic weights (`results/speed/verify_merged_bg.json`, `scripts/verify_merged_bg.py`) |
+| loop + dopamine time per 2 s simulated (same network, two runs each) | 6.8–7.0 s → 4.7–5.2 s (**−28 %**) |
+| whole learner wall time | −14 %; about **1 s less per trial** (20-trial runs: 168 → 147 s, 8 areas 294 → 275 s) |
+
+This removes about half of the loop's +1.9 s/trial overhead, not "most" as the
+handoff guessed: cell groups were only part of the object count. A fast test
+guards the exactness (`test_merged_loop_gives_identical_spikes`), and
+`merged=False` keeps the original groups for re-checking.
+
+**What is left, and why it was not done here.**
+
+- *Synapse pathways* (19 objects, ~2 s per 2 s simulated) are now the loop's
+  biggest cost. Merging pathways that land on the same cells changes the order
+  in which their inputs are added in a time step. Float addition is not
+  associative, so the spikes would diverge after a while. That is a "same
+  statistics" change, which under METHODS needs four networks within the seed
+  spread, not an exactness proof. Worth doing next.
+- *Dopamine cells* (SNc, striosomal critic, value cells) could be merged the
+  same exact way for perhaps another 0.5 s per 2 s simulated. Their equations
+  differ more, so the gain is smaller per unit of work.
+- *Cortex background input* is the single most expensive object in the learner
+  (1.7 s per 2 s simulated). It is real random-number work, not overhead, so
+  merging cannot remove it.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
