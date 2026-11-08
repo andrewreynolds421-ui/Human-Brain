@@ -16,10 +16,12 @@ count with full per-neuron in-degree; up to eight areas joined by *macaque*
 long-range wiring; action selection by a basal-ganglia–thalamus loop built
 from a published rat circuit model; outcomes turned into a learning signal by
 a modelled dopamine population with a critic. It learns cue–action tasks
-(95–97 %), routes real text at 63 % through a self-organising sensory layer,
-reads printed letters at 76 % in unseen fonts, and runs live inside the
-RASPUTIN assistant as a tool. It is not a brain, not full-scale, and has not
-been validated against human recordings.
+(95–97 %), routes real text at 58–63 % through a self-organising sensory
+layer, reads printed letters at 76 % in unseen fonts, and runs live inside the
+RASPUTIN assistant as a tool and as a shadow router that learns RASPUTIN's
+routing decisions without changing them. Against human recordings: firing
+rates in range for 9 of 12 populations; field-spectrum slope near awake human
+iEEG, slow power far too low. It is not a brain and not full-scale.
 
 ## 1. The pieces and how they fit
 
@@ -99,8 +101,8 @@ two — hence the runner, partial results and checkpoints.
 
 ```bash
 cd synthetic-connectome
-python -m pytest tests -q                       # 12 fast tests, seconds
-python -m pytest tests -q -m slow               # 5 network tests, minutes
+python -m pytest tests -q                       # 13 fast tests, seconds
+python -m pytest tests -q -m slow               # 6 network tests, ~2 min
 python scripts/check_rates.py --preset human_h01_dendritic_v2 --seeds 3   # rates vs reference ranges
 python -m synth.h01_fit                          # every H01-derived number
 
@@ -123,15 +125,28 @@ python scripts/routing_experiment.py --data clinc --sensory results/sensory/s400
 python scripts/make_letters.py; python scripts/train_letters.py --n-e 1600 --epochs 3 --ink 100 --dt 0.25 --out results/letters/x
 python scripts/analysis/readout.py results/letters/l1600v_final.npz
 
+# field spectrum vs human iEEG (Stages 33-34; corrected proxy is the default)
+python scripts/spectrum_validation.py --seeds 33,34,35,36 --t 10 --out results/spectra/x.json
+#   --ext-mod '{"sigma": 0.2}'   shared slow modulation of the external input (off by default)
+
+# routing benchmark with the loop (Stage 32; resumable)
+python scripts/routing_experiment.py --data clinc --sensory results/sensory/s400_final.npz --sens-lr 0.33 --balanced \
+  --preset human_h01_dendritic_v2 --selection bg --bg "<r25_hom bg from results/hom/configs.json>" --da '{"crit_gain": 2.5, "crit_eta": 0.05}' \
+  --train 300 --n-test 90 --test-every 150 --ckpt results/router/ck_x --out results/router/x.json
+
 # RASPUTIN (from warmind/)
 NEURAL_CORE=1 NEURAL_CORE_MODE=learner uvicorn main:app          # the tool appears when the flag is on
 NEURAL_CORE_SELECTION=bg NEURAL_CORE_DOPAMINE=1 ...              # loop + dopamine
 python -m pytest tests/test_neural_core.py -q                    # 10 tests, ~3 min
-python scripts/train_router_from_logs.py                         # sensory router from real warmind.db logs
+python scripts/train_router_from_logs.py                         # sensory router from real warmind.db logs (offline)
+NEURAL_ROUTER=1 uvicorn main:app                                 # live shadow router; GET /api/neural/shadow
+python -m pytest tests/test_neural_router.py -q                  # 7 tests, seconds
 ```
 
 Long runs: put them in `/home/claude/jobs/queue.json` and start the runner
-(`nohup python /home/claude/jobs/runner.py &`); every learning run writes
+(`/home/claude/jobs/ensure.sh` starts it if it is not running — nothing on
+this machine starts it at boot, and the machine restarted ~10 times a day on
+6–7 Nov, so call it after every check); every learning run writes
 `<out>.partial.json` every 20 trials; sensory training checkpoints and never
 checkpoints a collapsed layer (`_COLLAPSED` marker). Commit with
 `bash /home/claude/jobs/sync_repo.sh "message"`.

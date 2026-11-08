@@ -5,7 +5,7 @@ data we actually have (one cubic millimetre of cortex at synapse resolution,
 whole-brain histology atlases, MRI tractography), then let it learn with
 biologically local, reward-gated plasticity.
 
-**What the object is today (5 Nov 2026):** a model of human *association
+**What the object is today (7 Nov 2026):** a model of human *association
 cortex* — twelve cell populations per column with measured local wiring
 (H01), membranes and synapses (Allen human data), at 1.5–3 % of the real
 neuron count with full per-neuron in-degree; up to eight areas joined by
@@ -15,8 +15,10 @@ circuit); outcomes turned into a learning signal by a modelled dopamine
 population with a critic that learns to predict them (or, as before, a
 number applied from outside). It learns cue–action
 tasks (96–97 % on the recalibrated column, Stage 25), routes real text at
-58–63 % through a self-organising sensory layer (now also live, in shadow mode, beside RASPUTIN), and reads printed letters at 76 % in unseen fonts. It is not a brain,
-not full-scale, and not yet validated against human recordings. Status by
+58–63 % through a self-organising sensory layer (now also live, in shadow mode, beside RASPUTIN), and reads printed letters at 76 % in unseen fonts. Against human recordings it has firing rates in
+range for 9 of 12 populations and a field spectrum whose 30–45 Hz slope is
+near awake human intracranial EEG but with far too little slow power (Stages
+33–34). It is not a brain and not full-scale. Status by
 roadmap stage: *Phase plan* below; full audit: `AUDIT.md`; working rules:
 `METHODS.md`; **picking the project up: `HANDOFF.md`**.
 
@@ -107,9 +109,9 @@ and where each stands. Full audit in `AUDIT.md`.
 | **1** | One column in the right state: asynchronous 1–10 Hz, no tuning knobs beyond external drive | **done with caveats** — 12 populations, dendrites, measured membranes/synapses/wiring, asynchronous; 9 of 12 populations within reference rate ranges after the Stage 25 recalibration (was 7); still 2 fitted calibrations + 5 assumed constants |
 | **2** | Full-scale column (32,500 neurons, 130 M synapses) | **not done** — everything runs at 1.5–3 % of neurons with full in-degree; needs a GPU simulator and ≥64 GB |
 | **3** | Cortical sheet: per-area layers (BigBrain), cell types (Allen), area wiring (HCP) | **started with substitutes** — multi-column sheet + 8 macaque association areas (Markov FLN); same column everywhere; no human atlas data yet (Stages 4–5) |
-| **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **started** — a spiking basal-ganglia–thalamus loop built from published rat circuit data (Humphries et al. 2006) replaces the hand-made selection circuit without loss (Stage 26); a dopamine population with a striosomal critic turns the outcome into a prediction error that every plastic synapse reads, the loop's cortico-striatal synapses learn (Stage 27) and, with the thalamic relay carrying a share of the pools' drive at its measured resting rate, carry the task on their own at 83 % (Stage 28); it reverses rules and runs in eight areas but finishes 5–7 points below the hand-made circuit, and a TD value pathway moves the dopamine burst to the cue only at an overshooting strength (Stage 29); relay membranes and the routed share are still assumed, no reticular nucleus; surprise/uncertainty still scalar formulas; no hippocampus or cerebellum |
+| **4** | Subcortex: thalamus, basal ganglia, hippocampus, neuromodulators, cerebellum | **started** — a spiking basal-ganglia–thalamus loop built from published rat circuit data (Humphries et al. 2006) replaces the hand-made selection circuit without loss (Stage 26); a dopamine population with a striosomal critic turns the outcome into a prediction error that every plastic synapse reads, the loop's cortico-striatal synapses learn (Stage 27) and, with the thalamic relay carrying a share of the pools' drive at its measured resting rate, carry the task on their own at 83 % (Stage 28); it reverses rules and runs in eight areas (Stage 29); with intrinsic homeostasis on the relay and 25 % of the pools' drive routed through it, it is within spread of the hand-made circuit in two areas (95 vs 96.5 % held-out) and ~5 points below in eight (Stages 30–31); with homeostasis on the critic and value cells the dopamine burst moves to the cue with learning intact (Stage 30); it routes real queries better than the hand-made circuit (58 vs 52 %, Stage 32); relay membranes and the routed share are still assumed, no reticular nucleus; surprise/uncertainty still scalar formulas; no hippocampus or cerebellum |
 | **5** | Senses and a body | **partial, by another route** — RASPUTIN as a toy body; self-organising sensory layers for text and printed letters (Stages 20–23); no retina/cochlea/motor, no speech yet |
-| **6** | Learning across the sheet with dopamine from the basal ganglia | **most progress** — three-factor rule, gating, turnover, surprise, uncertainty; 80–92 % on cue tasks, 63 % routing real text; but on one pathway only, reward from outside, 9 evolved rule settings (Stages 6–21) |
+| **6** | Learning across the sheet with dopamine from the basal ganglia | **most progress** — three-factor rule, gating, turnover, surprise, uncertainty; 95–97 % on cue tasks (v2 column), 58–63 % routing real text; the learning signal can come from the modelled dopamine population rather than a number from outside (Stages 27–30); but plasticity on one inter-areal pathway plus cortico-striatal synapses only, and 9 evolved rule settings (Stages 6–32) |
 | **7** | Validation against human recordings (intracranial, EEG/MEG, fMRI, behaviour) | **started** — firing rates vs reference ranges; field spectrum vs awake human iEEG (Stages 33–34): with a corrected LFP proxy the 30–45 Hz slope is near the human value (−2.2 vs −2.8/−3.0) and a beta rhythm sits near the frontal band; slow (<4 Hz) power is ~25 dB too low (open problem 13) |
 | **8** | Warmind / RASPUTIN integration | **done for v1, routing in shadow** — live core, tool actions, trained through the tool; a shadow router (sensory text layer + basal-ganglia loop + dopamine) learns RASPUTIN's routing decisions live without changing them (Stage 32); 17 tests |
 
