@@ -2359,6 +2359,66 @@ in letter-position coding models). The other route is recurrent prediction.
 In either case the test is the same: beat the context pathway on new words.
 Then words as units (word cells) for whole-word recognition.
 
+## Stage 37: where the remaining reading accuracy is — more reading, not a bigger sequence layer
+
+The plan from Stage 36 was a sequence layer that keeps the letter while adding
+order: letter-pair ("open bigram") cells, each tuned to the current letter
+combined with an earlier one. Before spending simulation hours on spiking
+cells, the headroom was measured offline with exact versions, on the four
+networks, paired on identical test words (`scripts/analysis/stage37.py`).
+
+**Checks before building.**
+
+- *Next-letter guesses.* A fully fitted predictor from letter pairs plus
+  context guesses the next letter better than from the context alone:
+  +1.5 points on known words, +0.5–1 on new ones. With 40,000 practice words
+  the gain on known words is +4, about reaching an ideal 3-letter reader.
+- *Letter reading.* That gain barely reaches reading: letter accuracy rises by
+  only about 1 point on known words even when fully fitted.
+- *New words have little room.* Even the ideal reader gains only 0.9 points
+  of letter accuracy on new words by going from 2- to 3-letter statistics. So
+  the Stage 36 target, a sequence layer that beats the context on new words,
+  was mis-set.
+
+**Result** (letter accuracy in unseen fonts, mean ± SD over 4 networks,
+differences paired):
+
+| prediction rule | letters, known words | letters, new words | whole words, known / new |
+|---|---|---|---|
+| letters alone | 77.6 ± 0.8 % | 78.7 ± 0.5 % | 35.5 / 37.8 % |
+| Stage 36 rule (inputs scaled to sum 1), 2,000 practice words | 84.1 ± 1.5 % | 81.1 ± 2.0 % | 51.8 / 40.8 % |
+| inputs unscaled, 2,000 words | 84.8 % (+0.7 ± 1.1) | 81.7 % (+0.6 ± 0.7) | 53.1 / 42.3 % |
+| **inputs unscaled, 20,000 words** | **86.5 ± 0.7 % (+2.4 ± 1.5)** | **82.5 ± 1.5 % (+1.5 ± 1.2)** | **56.3 / 42.9 %** |
+| same + letter-pair cells | 85.5 % (+1.4) | 81.1 % (+0.1) | 55.7 / 40.6 % |
+| reference: predictor fitted to the true letters | 87.1 ± 1.0 % | 84.0 ± 1.1 % | 59.3 / 46.5 % |
+| ideal reader, exact 2-letter statistics (Stage 36) | 86.8 % | 84.0 % | 57.7 / 47.1 % |
+
+**What this says.**
+
+- *More reading is the lever.* Ten times the practice adds 2.4 / 1.5 points.
+  Removing the input scaling adds a little.
+- *Letter-pair cells make reading slightly worse.* Their 729 extra weights
+  learned online cost more than the order they add. They are not built as
+  spiking cells.
+- *The learning rule is not the limit.* The online rule matches a fully fitted
+  predictor taught by the same kind of percept (86.0 vs 86.0 % with the
+  winner of the evidence as teacher). A learning rate that settles with
+  experience was worse (−1 point).
+- *The teacher is the limit.* Taught by the true letters, the same predictor
+  reaches the ideal 2-letter reader. The letter units' own misreadings, about
+  8 % even in familiar fonts, cost the last 1–2 points.
+
+**Next.** The two places with real headroom are better letters (82 % alone;
+every point there also improves the teacher) and recognising words as units.
+An ideal reader that knows the word list reads whole words far better than
+any letter-by-letter predictor here (Stage 36: 3-letter ideal 63.7 % of known
+words vs 56 %), because it uses all of a word's letters at once, including
+later ones.
+
+The supporting checks (fitted bounds, reading-amount scaling, teacher split) are kept as scratch scripts with
+their outputs in `results/words/stage37_checks/`. The Stage 36 analysis is unchanged (`Predictor(scale="sum")`, the default).
+The Stage 37 setting is `scale="none"`.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

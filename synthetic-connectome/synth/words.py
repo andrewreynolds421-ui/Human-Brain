@@ -129,19 +129,29 @@ def context_groups(cur, trace, start):
     return np.concatenate([cur, np.clip(trace, 0, 1), [1.0 if start else 0.0]])
 
 
+def letter_pairs(groups):
+    """Stage 37 conjunctive code: (current letter or start) x (earlier letters or start), 27 x 27 = 729
+    cells, each the product of its two inputs - letter-pair ('open bigram') detectors"""
+    cur, tr, st = groups[:L], groups[L:2 * L], groups[2 * L]
+    return np.outer(np.r_[cur, st], np.r_[tr, st]).ravel()
+
+
 # ----------------------------------------------------------------------------- prediction rule
 class Predictor:
     """synapses from context cells (spike counts c) to the 26 letter units; the prediction of the next
     letter is softmax(W c + b).  Learning: delta rule on the local error (teacher - prediction), the
     teacher being the next letter's bottom-up evidence (no labels)."""
 
-    def __init__(self, n_in, eta=0.05, decay=0.0, seed=0):
+    def __init__(self, n_in, eta=0.05, decay=0.0, seed=0, scale="sum"):
+        """scale: 'sum' = inputs divided by their total (Stage 36); 'none' = inputs as they are
+        (Stage 37: better, +0.7 / +0.6 points on known / new words over 4 networks)"""
         self.W = np.zeros((L, n_in)); self.b = np.zeros(L)
-        self.eta, self.decay = eta, decay
+        self.eta, self.decay, self.scale = eta, decay, scale
 
-    @staticmethod
-    def _scale(c):
+    def _scale(self, c):
         c = np.asarray(c, float)
+        if self.scale == "none":
+            return c
         s = c.sum()
         return c / s if s > 0 else c
 

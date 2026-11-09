@@ -351,13 +351,16 @@ def test_word_ideal_reader_matches_brute_force():
 def test_prediction_rule_learns_a_sequence_from_its_own_input():
     """Stage 36: the delta rule, taught only by the arriving letter's evidence, learns a deterministic
     successor (one-hot context of the current letter -> next letter)."""
-    from synth.words import Predictor, L
-    P = Predictor(L, eta=0.5)
+    from synth.words import Predictor, L, letter_pairs
     nxt = np.roll(np.arange(L), -1)
-    for _ in range(40):
-        for a in range(L):
-            c = np.zeros(L); c[a] = 1.0
-            y = np.full(L, 0.02 / (L - 1)); y[nxt[a]] = 0.98       # noisy evidence of the true next letter
-            P.learn(c, y)
-    acc = np.mean([P.predict(np.eye(L)[a]).argmax() == nxt[a] for a in range(L)])
-    assert acc == 1.0
+    for scale in ("sum", "none"):                         # Stage 36 and Stage 37 input scaling
+        P = Predictor(L, eta=0.5, scale=scale)
+        for _ in range(40):
+            for a in range(L):
+                c = np.zeros(L); c[a] = 1.0
+                y = np.full(L, 0.02 / (L - 1)); y[nxt[a]] = 0.98       # noisy evidence of the true next letter
+                P.learn(c, y)
+        assert np.mean([P.predict(np.eye(L)[a]).argmax() == nxt[a] for a in range(L)]) == 1.0
+    g = np.zeros(2 * L + 1); g[3] = 1.0; g[L + 7] = 0.5               # current 'd', earlier 'h' at 0.5
+    pc = letter_pairs(g).reshape(L + 1, L + 1)
+    assert pc[3, 7] == 0.5 and pc.sum() == 0.5

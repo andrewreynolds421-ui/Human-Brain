@@ -465,3 +465,22 @@ Process notes:
   ~1e-5). It was caught because the 3-letter ideal scored below the 2-letter
   one, and fixed.
 
+## 18. Follow-up (9 November): Stage 37 — measuring the headroom before building
+
+The planned spiking letter-pair layer was not built. Exact offline versions
+showed about 1 point of letter-reading headroom from order beyond the
+context: even fully fitted, pairs added about 1 point, and learned online
+they cost 1.4 / 0.1 points against plain unscaled context.
+
+The Stage 36 target, "beat the context on new words", was mis-set. The ideal
+reader itself gains only 0.9 points there.
+
+What did help, measured on 4 networks and paired:
+- 10× more reading and unscaled inputs to the prediction rule: +2.4 ± 1.5 /
+  +1.5 ± 1.2 points.
+- The online rule equals a fully fitted one taught by the same kind of
+  teacher. The remaining 1–2 points are teacher errors.
+
+The supporting checks are scratch scripts kept with their outputs; the main
+table is reproduced exactly by `scripts/analysis/stage37.py`.
+
