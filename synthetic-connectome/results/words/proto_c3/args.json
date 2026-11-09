@@ -1,0 +1,1 @@
+{"cmd": "run", "runs": [], "seed": 3, "shuffle": 1, "n_words": 5000, "held_frac": 0.2, "learn_tokens": 2000, "pred_tokens": 2000, "val_words": 200, "test_words": 400, "n_cells": 400, "m": 20, "layer": "none", "decay": 0.5, "save_every": 250, "out": "results/words/proto_c3", "save": null}

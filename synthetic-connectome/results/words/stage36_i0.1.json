@@ -1,0 +1,646 @@
+{
+ "known": {
+  "letter_alone": {
+   "mean": 77.6,
+   "sd": 0.8,
+   "n": 4
+  },
+  "letter_sequence_layer": {
+   "mean": 83.0,
+   "sd": 1.3,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 5.4,
+    "sd": 1.1,
+    "n": 4
+   }
+  },
+  "letter_context_only": {
+   "mean": 85.1,
+   "sd": 2.0,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 7.4,
+    "sd": 1.8,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 81.4,
+    "sd": 1.9,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 3.6,
+    "sd": 1.7,
+    "n": 4
+   }
+  },
+  "letter_context_only_evidence_teacher": {
+   "mean": 83.8,
+   "sd": 0.9,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 6.1,
+    "sd": 1.1,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 81.4,
+    "sd": 0.9,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 2.4,
+    "sd": 0.9,
+    "n": 4
+   }
+  },
+  "letter_context_only_label_teacher": {
+   "mean": 86.2,
+   "sd": 0.9,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 8.6,
+    "sd": 0.8,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 82.4,
+    "sd": 0.7,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 3.8,
+    "sd": 0.9,
+    "n": 4
+   }
+  },
+  "letter_context_and_sequence_layer": {
+   "mean": 84.1,
+   "sd": 1.6,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 6.4,
+    "sd": 1.5,
+    "n": 4
+   }
+  },
+  "letter_sequence_layer_label_teacher": {
+   "mean": 84.7,
+   "sd": 0.8,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 7.1,
+    "sd": 0.5,
+    "n": 4
+   }
+  },
+  "letter_context_and_sequence_layer_label_teacher": {
+   "mean": 85.8,
+   "sd": 1.4,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 8.2,
+    "sd": 1.3,
+    "n": 4
+   }
+  },
+  "letter_ideal_1gram": {
+   "mean": 82.3,
+   "sd": 1.5,
+   "n": 4
+  },
+  "letter_ideal_2gram": {
+   "mean": 86.8,
+   "sd": 0.7,
+   "n": 4
+  },
+  "letter_ideal_3gram": {
+   "mean": 88.6,
+   "sd": 0.6,
+   "n": 4
+  },
+  "word_alone": {
+   "mean": 35.5,
+   "sd": 0.8,
+   "n": 4
+  },
+  "word_sequence_layer": {
+   "mean": 48.7,
+   "sd": 3.6,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 13.2,
+    "sd": 4.2,
+    "n": 4
+   }
+  },
+  "word_context_only": {
+   "mean": 54.1,
+   "sd": 3.0,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 18.6,
+    "sd": 3.0,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 43.9,
+    "sd": 4.3,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 10.2,
+    "sd": 3.9,
+    "n": 4
+   }
+  },
+  "word_context_only_evidence_teacher": {
+   "mean": 50.3,
+   "sd": 2.0,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 14.8,
+    "sd": 2.6,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 44.4,
+    "sd": 2.5,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 5.9,
+    "sd": 2.5,
+    "n": 4
+   }
+  },
+  "word_context_only_label_teacher": {
+   "mean": 55.7,
+   "sd": 2.2,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 20.2,
+    "sd": 2.7,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 46.4,
+    "sd": 1.6,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 9.2,
+    "sd": 3.0,
+    "n": 4
+   }
+  },
+  "word_context_and_sequence_layer": {
+   "mean": 52.1,
+   "sd": 2.8,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 16.6,
+    "sd": 3.3,
+    "n": 4
+   }
+  },
+  "word_sequence_layer_label_teacher": {
+   "mean": 51.2,
+   "sd": 2.4,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 15.7,
+    "sd": 2.9,
+    "n": 4
+   }
+  },
+  "word_context_and_sequence_layer_label_teacher": {
+   "mean": 55.4,
+   "sd": 2.6,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 19.9,
+    "sd": 2.7,
+    "n": 4
+   }
+  },
+  "word_ideal_1gram": {
+   "mean": 45.4,
+   "sd": 1.9,
+   "n": 4
+  },
+  "word_ideal_2gram": {
+   "mean": 57.7,
+   "sd": 1.6,
+   "n": 4
+  },
+  "word_ideal_3gram": {
+   "mean": 63.7,
+   "sd": 1.2,
+   "n": 4
+  },
+  "next_letter_sequence_layer": {
+   "top1": {
+    "mean": 26.4,
+    "sd": 2.2,
+    "n": 4
+   },
+   "bits": 3.83
+  },
+  "next_letter_context_only": {
+   "top1": {
+    "mean": 26.3,
+    "sd": 3.6,
+    "n": 4
+   },
+   "bits": 3.56
+  },
+  "next_letter_context_only_evidence_teacher": {
+   "top1": {
+    "mean": 25.8,
+    "sd": 3.1,
+    "n": 4
+   },
+   "bits": 3.68
+  },
+  "next_letter_context_only_label_teacher": {
+   "top1": {
+    "mean": 28.0,
+    "sd": 2.0,
+    "n": 4
+   },
+   "bits": 3.46
+  },
+  "next_letter_context_and_sequence_layer": {
+   "top1": {
+    "mean": 26.0,
+    "sd": 3.1,
+    "n": 4
+   },
+   "bits": 3.7
+  },
+  "next_letter_sequence_layer_label_teacher": {
+   "top1": {
+    "mean": 26.8,
+    "sd": 1.9,
+    "n": 4
+   },
+   "bits": 3.73
+  },
+  "next_letter_context_and_sequence_layer_label_teacher": {
+   "top1": {
+    "mean": 25.9,
+    "sd": 2.1,
+    "n": 4
+   },
+   "bits": 3.61
+  },
+  "next_letter_ideal_1gram": {
+   "top1": {
+    "mean": 13.2,
+    "sd": 0.4,
+    "n": 4
+   },
+   "bits": 4.16
+  },
+  "next_letter_ideal_2gram": {
+   "top1": {
+    "mean": 28.6,
+    "sd": 2.2,
+    "n": 4
+   },
+   "bits": 3.36
+  },
+  "next_letter_ideal_3gram": {
+   "top1": {
+    "mean": 37.9,
+    "sd": 2.5,
+    "n": 4
+   },
+   "bits": 2.87
+  }
+ },
+ "held": {
+  "letter_alone": {
+   "mean": 78.7,
+   "sd": 0.5,
+   "n": 4
+  },
+  "letter_sequence_layer": {
+   "mean": 80.2,
+   "sd": 1.5,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 1.4,
+    "sd": 1.9,
+    "n": 4
+   }
+  },
+  "letter_context_only": {
+   "mean": 81.3,
+   "sd": 1.7,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 2.6,
+    "sd": 1.9,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 79.4,
+    "sd": 1.9,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 1.9,
+    "sd": 0.7,
+    "n": 4
+   }
+  },
+  "letter_context_only_evidence_teacher": {
+   "mean": 80.6,
+   "sd": 1.8,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 1.9,
+    "sd": 1.9,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 79.8,
+    "sd": 1.2,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 0.8,
+    "sd": 0.8,
+    "n": 4
+   }
+  },
+  "letter_context_only_label_teacher": {
+   "mean": 83.1,
+   "sd": 1.0,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 4.3,
+    "sd": 0.9,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 80.0,
+    "sd": 1.6,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 3.0,
+    "sd": 1.7,
+    "n": 4
+   }
+  },
+  "letter_context_and_sequence_layer": {
+   "mean": 79.9,
+   "sd": 1.5,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 1.1,
+    "sd": 1.8,
+    "n": 4
+   }
+  },
+  "letter_sequence_layer_label_teacher": {
+   "mean": 80.9,
+   "sd": 1.9,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 2.1,
+    "sd": 2.1,
+    "n": 4
+   }
+  },
+  "letter_context_and_sequence_layer_label_teacher": {
+   "mean": 82.0,
+   "sd": 1.5,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 3.3,
+    "sd": 1.6,
+    "n": 4
+   }
+  },
+  "letter_ideal_1gram": {
+   "mean": 80.0,
+   "sd": 1.7,
+   "n": 4
+  },
+  "letter_ideal_2gram": {
+   "mean": 84.0,
+   "sd": 1.2,
+   "n": 4
+  },
+  "letter_ideal_3gram": {
+   "mean": 84.9,
+   "sd": 1.3,
+   "n": 4
+  },
+  "word_alone": {
+   "mean": 37.8,
+   "sd": 2.6,
+   "n": 4
+  },
+  "word_sequence_layer": {
+   "mean": 38.4,
+   "sd": 6.4,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 0.7,
+    "sd": 6.5,
+    "n": 4
+   }
+  },
+  "word_context_only": {
+   "mean": 40.6,
+   "sd": 5.6,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 2.9,
+    "sd": 5.6,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 35.9,
+    "sd": 6.6,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 4.8,
+    "sd": 2.3,
+    "n": 4
+   }
+  },
+  "word_context_only_evidence_teacher": {
+   "mean": 38.7,
+   "sd": 4.9,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 1.0,
+    "sd": 4.2,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 37.4,
+    "sd": 4.2,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 1.3,
+    "sd": 1.9,
+    "n": 4
+   }
+  },
+  "word_context_only_label_teacher": {
+   "mean": 45.1,
+   "sd": 3.9,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 7.3,
+    "sd": 2.7,
+    "n": 4
+   },
+   "shuffled_control": {
+    "mean": 37.7,
+    "sd": 5.7,
+    "n": 4
+   },
+   "gain_vs_control": {
+    "mean": 7.4,
+    "sd": 4.9,
+    "n": 4
+   }
+  },
+  "word_context_and_sequence_layer": {
+   "mean": 37.9,
+   "sd": 5.7,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 0.1,
+    "sd": 5.7,
+    "n": 4
+   }
+  },
+  "word_sequence_layer_label_teacher": {
+   "mean": 39.8,
+   "sd": 6.8,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 2.0,
+    "sd": 6.3,
+    "n": 4
+   }
+  },
+  "word_context_and_sequence_layer_label_teacher": {
+   "mean": 41.4,
+   "sd": 5.0,
+   "n": 4,
+   "gain_vs_alone": {
+    "mean": 3.6,
+    "sd": 4.0,
+    "n": 4
+   }
+  },
+  "word_ideal_1gram": {
+   "mean": 37.3,
+   "sd": 5.1,
+   "n": 4
+  },
+  "word_ideal_2gram": {
+   "mean": 47.1,
+   "sd": 4.5,
+   "n": 4
+  },
+  "word_ideal_3gram": {
+   "mean": 49.6,
+   "sd": 5.4,
+   "n": 4
+  },
+  "next_letter_sequence_layer": {
+   "top1": {
+    "mean": 13.7,
+    "sd": 1.3,
+    "n": 4
+   },
+   "bits": 4.25
+  },
+  "next_letter_context_only": {
+   "top1": {
+    "mean": 15.4,
+    "sd": 1.5,
+    "n": 4
+   },
+   "bits": 4.1
+  },
+  "next_letter_context_only_evidence_teacher": {
+   "top1": {
+    "mean": 15.6,
+    "sd": 1.8,
+    "n": 4
+   },
+   "bits": 4.06
+  },
+  "next_letter_context_only_label_teacher": {
+   "top1": {
+    "mean": 15.1,
+    "sd": 1.2,
+    "n": 4
+   },
+   "bits": 3.93
+  },
+  "next_letter_context_and_sequence_layer": {
+   "top1": {
+    "mean": 13.6,
+    "sd": 1.5,
+    "n": 4
+   },
+   "bits": 4.19
+  },
+  "next_letter_sequence_layer_label_teacher": {
+   "top1": {
+    "mean": 14.3,
+    "sd": 1.6,
+    "n": 4
+   },
+   "bits": 4.1
+  },
+  "next_letter_context_and_sequence_layer_label_teacher": {
+   "top1": {
+    "mean": 14.9,
+    "sd": 1.2,
+    "n": 4
+   },
+   "bits": 4.03
+  },
+  "next_letter_ideal_1gram": {
+   "top1": {
+    "mean": 11.9,
+    "sd": 2.3,
+    "n": 4
+   },
+   "bits": 4.34
+  },
+  "next_letter_ideal_2gram": {
+   "top1": {
+    "mean": 15.2,
+    "sd": 1.6,
+    "n": 4
+   },
+   "bits": 3.82
+  },
+  "next_letter_ideal_3gram": {
+   "top1": {
+    "mean": 18.5,
+    "sd": 1.4,
+    "n": 4
+   },
+   "bits": 3.71
+  }
+ }
+}

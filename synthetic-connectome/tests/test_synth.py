@@ -318,3 +318,46 @@ def test_merged_loop_gives_identical_spikes():
     for pop in BasalGanglia.POPS:
         assert np.array_equal(out[False][pop][0], out[True][pop][0]), pop
         assert np.array_equal(out[False][pop][1], out[True][pop][1]), pop
+
+
+def test_word_ideal_reader_matches_brute_force():
+    """Stage 36: the bigram forward filter gives the exact posterior of the last letter (brute force over
+    every letter string of the same length), and an uninformative reader predicts 't' after a word start."""
+    from synth.words import NGram, L
+    rng = np.random.default_rng(0)
+    words = ["the", "then", "than", "ten", "net", "eat", "tea", "ant"]
+    G = NGram(words, np.ones(len(words)), n=2, alpha=0.1)
+    E = rng.dirichlet(np.ones(L) * 0.5, 3)
+    post, _ = G.filter(E)
+    import itertools
+    sub = np.argsort(-E, 1)[:, :6]                       # brute force over the 6 likeliest letters per slot
+    num = np.zeros(L)
+    for s in itertools.product(*sub):
+        p, prev = 1.0, L
+        for t, c in enumerate(s):
+            p *= G.P[prev, c] * E[t, c]; prev = c
+        num[s[-1]] += p
+    bf = num / num.sum()
+    m = num > 0
+    E2 = E.copy()
+    for t in range(3):                                   # same restriction for the filter
+        keep = np.zeros(L, bool); keep[sub[t]] = True; E2[t, ~keep] = 0
+    post2, _ = G.filter(np.maximum(E2, 0))
+    assert np.allclose(post2[-1][m], bf[m], rtol=1e-4, atol=0)       # residue: the 1e-12 evidence floor
+    _, pred = G.filter(np.full((1, L), 1.0 / L))
+    assert pred[0].argmax() == 19                        # 't'
+
+
+def test_prediction_rule_learns_a_sequence_from_its_own_input():
+    """Stage 36: the delta rule, taught only by the arriving letter's evidence, learns a deterministic
+    successor (one-hot context of the current letter -> next letter)."""
+    from synth.words import Predictor, L
+    P = Predictor(L, eta=0.5)
+    nxt = np.roll(np.arange(L), -1)
+    for _ in range(40):
+        for a in range(L):
+            c = np.zeros(L); c[a] = 1.0
+            y = np.full(L, 0.02 / (L - 1)); y[nxt[a]] = 0.98       # noisy evidence of the true next letter
+            P.learn(c, y)
+    acc = np.mean([P.predict(np.eye(L)[a]).argmax() == nxt[a] for a in range(L)])
+    assert acc == 1.0

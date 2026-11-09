@@ -15,7 +15,7 @@ circuit); outcomes turned into a learning signal by a modelled dopamine
 population with a critic that learns to predict them (or, as before, a
 number applied from outside). It learns cue–action
 tasks (96–97 % on the recalibrated column, Stage 25), routes real text at
-58–63 % through a self-organising sensory layer (now also live, in shadow mode, beside RASPUTIN), and reads printed letters at 76 % in unseen fonts. Against human recordings it has firing rates in
+58–63 % through a self-organising sensory layer (now also live, in shadow mode, beside RASPUTIN), reads printed letters at 76–82 % in unseen fonts, and reads letters inside words better than alone through a learned prediction of the next letter (Stage 36). Against human recordings it has firing rates in
 range for 9 of 12 populations and a field spectrum whose 30–45 Hz slope is
 near awake human intracranial EEG but with far too little slow power (Stages
 33–34). It is not a brain and not full-scale. Status by
@@ -2253,6 +2253,111 @@ guards the exactness (`test_merged_loop_gives_identical_spikes`), and
 - *Cortex background input* is the single most expensive object in the learner
   (1.7 s per 2 s simulated). It is real random-number work, not overhead, so
   merging cannot remove it.
+
+## Stage 36: from letters to words — a prediction rule helps, a spiking sequence layer does not (yet)
+
+**Set-up** (`synth/words.py`, `scripts/word_reading.py`).
+
+- **Letters.** Printed words arrive one letter at a time. Each letter is a real
+  image in one font per word, read by the frozen 1,600-cell letter layer
+  (Stage 23).
+- **Letter units.** 26 letter units read that layer. They are trained on
+  labelled images of 70 training fonts and read 82.2 % of isolated letters in
+  the 22 unseen fonts. That is up from 76 % with a better readout (more
+  labelled images, log spike counts) on the same frozen layer.
+- **Words.** The 5,000 most frequent English words of 3–7 letters, with
+  measured frequencies (wordfreq 3.1). 20 % of the word types are held out
+  per network.
+- **Practice and test.** All streams are frequency-weighted, as in running
+  text. Practice uses 2,000 + 2,000 word tokens. The test uses 400 known and
+  400 held-out word tokens in unseen fonts.
+- **Prediction rule.** Synapses onto the letter units learn to predict the
+  next letter and add the prediction top-down: posterior ∝ evidence ×
+  prediction^β, with β FITTED on 19 validation fonts.
+- **Comparisons.** All comparisons are paired on identical test words over
+  four networks. The control learns from the same words with their letters
+  shuffled (same letter frequencies, no order).
+
+**Result 1 — reading letters in words: the prediction works.** Accuracy in
+unseen fonts, mean ± SD over 4 networks:
+
+| | letters, known words | letters, new words | whole words, known | whole words, new |
+|---|---|---|---|---|
+| letter units alone | 77.6 ± 0.8 % | 78.7 ± 0.5 % | 35.5 % | 37.8 % |
+| + prediction from the context (current letter + fading trace of earlier ones) | **85.1 ± 2.0 %** (+7.4 ± 1.8) | **81.3 ± 1.7 %** (+2.6 ± 1.9) | **54.1 %** (+18.6) | 40.6 % (+2.9 ± 5.6) |
+| same, learned from shuffled-order words (control) | 81.4 % | 79.4 % | 43.9 % | 35.9 % |
+| gain over the control (sequence knowledge) | **+3.6 ± 1.7** | **+1.9 ± 0.7** | +10.2 ± 3.9 | +4.8 ± 2.3 |
+| ideal reader, exact 1 / 2 / 3-letter statistics | 82.3 / 86.8 / 88.6 % | 80.0 / 84.0 / 84.9 % | 45.4 / 57.7 / 63.7 % | 37.3 / 47.1 / 49.6 % |
+
+- **Letters are read better inside words.** This is the direction of the human
+  word-superiority effect (Reicher 1969). The paradigm here, serial letters in
+  unseen fonts, is not Reicher's, so the size is not comparable.
+- **New words.** On words never practised the gain over the shuffled control
+  is small (+1.9 points), but it appears on every network. Sequence knowledge
+  transfers.
+- **Ceiling.** The learned prediction is close to an ideal reader that knows
+  exact 2-letter statistics (next letter, known words: 26 % vs 29 %). The
+  3-letter reader (38 %) shows what is left.
+
+**Result 2 — what the prediction should be taught with.** The rule is a
+delta rule: prediction is compared with what arrives. The teacher matters.
+
+| teacher (context pathway, 4 networks) | known words | new words |
+|---|---|---|
+| raw bottom-up evidence of the arriving letter | 83.8 % | 80.6 % |
+| **the percept: winning letter unit after evidence + prediction (no labels)** | **85.1 %** | **81.3 %** |
+| the true letter (reference, needs labels) | 86.2 % | 83.1 % |
+
+Raw evidence spreads probability over look-alike letters (h/b, i/l), so a rule
+that learns to predict it learns smeared predictions exactly where they are
+needed. Teaching with the categorical percept closes most of the gap. The
+rest comes from the letter units' own errors, about 8 % even in fonts they
+know.
+
+**Result 3 — a spiking sequence layer does not help (negative).** A second
+self-organising spiking layer (the letter layer's type, 400 cells, no labels)
+sees the context and should learn letter chunks. Its spike counts feed the
+prediction instead of, or together with, the context.
+
+| prediction from (4 networks) | gain, known words | gain, new words | next letter, new words |
+|---|---|---|---|
+| the context directly | **+7.4 ± 1.8** | **+2.6 ± 1.9** | 15.4 % |
+| sequence-layer cells (normal inhibition, ~3 cells per step) | +4.7 ± 1.1 | +0.7 ± 1.8 | 11.0 % |
+| context + cells | +6.5 ± 1.4 | +1.8 ± 1.8 | 14.1 % |
+| cells read with inhibition ×0.1 (~12 cells per step) | +5.4 ± 1.1 | +1.4 ± 1.9 | 13.7 % |
+| context + those cells | +6.4 ± 1.5 | +1.1 ± 1.8 | 13.6 % |
+
+The diagnosis was done in three steps:
+
+1. *Information lost.* With normal inhibition the winner-take-all cells
+   encode the letter just read only 52–53 % of the time on new words (the
+   letter units themselves: ~78 %). The cells are templates of whole prefixes
+   of frequent words, and half of them never fire on new words.
+2. *Information kept, but not new.* Read with weaker inhibition, the cells
+   carry the letter just read (79–81 %) and the one before (60–67 %).
+3. *The decisive test.* Even the best possible linear predictor (fitted to
+   the true next letters) does no better from the cells, or from cells plus
+   context, than from the context alone. Next-letter top-1 is the same, and
+   the cells are worse in bits on new words: they overfit.
+
+So the layer re-encodes what the context already carries. It does not make
+the letter conjunctions an ideal 3-letter reader uses available. That is a
+property of this layer type (whole-input templates), not of its learning rate.
+
+**Limits.**
+
+- The prediction rule acts per letter on spike counts (event level).
+- The context is built from bottom-up evidence. Top-down cleaning of earlier
+  letters does not feed back into it; in a check, cleaning the context added
+  ~0.5–1 point.
+- Reading is strictly left to right; humans also use later letters.
+- 4,000 practice words is very little reading.
+
+**Next.** A sequence layer that keeps the letter while adding order, for
+example conjunctive cells each tuned to one letter and gated by the trace (as
+in letter-position coding models). The other route is recurrent prediction.
+In either case the test is the same: beat the context pathway on new words.
+Then words as units (word cells) for whole-word recognition.
 
 ## Open problems found so far
 

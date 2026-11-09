@@ -437,3 +437,31 @@ per trial. That is half the overhead rather than most of it: the synapse
 pathways are the larger remaining share, and merging them changes the
 float-addition order, so it would need a seed-spread check.
 
+## 17. Follow-up (9 November): Stage 36 — letters to words
+
+Words are read letter by letter from real letter-layer responses in unseen
+fonts. A prediction rule on the letter units, taught by the percept (the
+winning letter unit; no labels), raises letter accuracy inside words. On
+known words it goes from 77.6 to 85.1 %, +3.6 ± 1.7 points beyond a control
+trained on shuffled-order words. On new words it goes from 78.7 to 81.3 %,
++1.9 ± 0.7 beyond the control. Both are paired on identical test words over
+4 networks.
+
+Teaching the rule with the raw evidence instead was found to smear
+predictions over look-alike letters. That is now part of the record as a
+reference row.
+
+A spiking self-organising sequence layer was the planned core, and it does
+not help (negative). Its winner-take-all templates lose the current letter
+on new words. With weaker inhibition they keep it but add nothing a linear
+predictor can use beyond the context, which a fitted decoder confirmed.
+
+Process notes:
+- The first shuffled control drew different test words (shared random
+  stream). It was fixed before any spiking control ran, and the controls
+  were then done for the context pathway only.
+- The spiking controls were dropped once the layer was negative.
+- The ideal-reader smoothing initially swamped real counts (frequencies are
+  ~1e-5). It was caught because the 3-letter ideal scored below the 2-letter
+  one, and fixed.
+

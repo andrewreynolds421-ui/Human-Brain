@@ -250,9 +250,14 @@ the long form. Priorities as they stand on 5 Nov:
 3. *(Done 6 Nov, README Stage 32: `warmind/neural_router.py`, `NEURAL_ROUTER=1`; CLINC benchmark loop 58 ± 8 % vs WTA 52 ± 6 %.)* **Shadow-mode routing on real logs**: `warmind/scripts/train_router_from_logs.py`
    on the user's `warmind.db`; report unseen-message accuracy per destination
    before anything is wired into dispatch. 1 day, needs the real log.
-4. **Letters → words** with a prediction rule on top of the letter layer
-   (`results/letters/l1600v_final.npz`): a second layer learning
-   letter sequences; test on held-out fonts and words. 2–3 days.
+4. *(Started 9 Nov, README Stage 36: a prediction rule taught by the percept reads letters in words
+   +7.4 points better on known words, +2.6 on new ones, and +3.6 / +1.9 beyond a shuffled-order control,
+   on 4 networks; a self-organising spiking sequence layer adds nothing - negative, diagnosed.)*
+   **Letters → words, what remains**: a sequence layer that keeps letter identity while adding order
+   (conjunctive letter x trace cells, or recurrent prediction) and beats the context pathway on new
+   words; feed the top-down percept back into the context; then word cells for whole-word recognition.
+   Data: `results/words/` (letter-layer responses to every image, `evidence.npz`, runs s1-s4, the
+   prototype and controls `proto_*`); `scripts/word_reading.py`. 1-2 days.
 5. *(Done 7 Nov, README Stages 33–34: with a corrected LFP proxy the 30–45 Hz slope is near human (−2.2 vs −2.8/−3.0); slow power ~25 dB short, open problem 13.)* **Stage 7, cheaply**: compare the column's population spectrum with human
    intracranial spectra (`scripts/rhythm_diagnostics.py` is the start). Hours.
 6. *(Cell groups done 8 Nov, README Stage 35: `BasalGanglia(merged=True)`, the default; spikes identical in
