@@ -15,7 +15,7 @@ circuit); outcomes turned into a learning signal by a modelled dopamine
 population with a critic that learns to predict them (or, as before, a
 number applied from outside). It learns cue–action
 tasks (96–97 % on the recalibrated column, Stage 25), routes real text at
-58–63 % through a self-organising sensory layer (now also live, in shadow mode, beside RASPUTIN), reads printed letters at 76–82 % in unseen fonts, and reads letters inside words better than alone through a learned prediction of the next letter (Stage 36). Against human recordings it has firing rates in
+58–63 % through a self-organising sensory layer (now also live, in shadow mode, beside RASPUTIN), reads printed letters at 87 % in font designs it has never seen (a V1-like edge front end feeding the learned letter layer; Stage 38), and reads letters inside words better than alone through a learned prediction of the next letter (Stage 36). Against human recordings it has firing rates in
 range for 9 of 12 populations and a field spectrum whose 30–45 Hz slope is
 near awake human intracranial EEG but with far too little slow power (Stages
 33–34). It is not a brain and not full-scale. Status by
@@ -2418,6 +2418,95 @@ later ones.
 The supporting checks (fitted bounds, reading-amount scaling, teacher split) are kept as scratch scripts with
 their outputs in `results/words/stage37_checks/`. The Stage 36 analysis is unchanged (`Predictor(scale="sum")`, the default).
 The Stage 37 setting is `scale="none"`.
+
+## Stage 38: lowercase letters from edges — a stricter test, a V1-like front end, and words follow
+
+**The old test was weaker than it said.** 21 of the 22 "unseen" test fonts used in Stages 21–37 had a
+sibling of the same family among the training fonts (e.g. LiberationSans-Italic tested, LiberationSans-
+Regular trained); the 111 installed fonts are only ~15 designs (36 of them Inter). So "unseen fonts" meant
+unseen *styles* of mostly familiar families. It affected every method alike, so earlier comparisons stand,
+but the generalisation claim was stronger than the test. New letter set (`scripts/make_letters_families.py`,
+`data/letters_fam.npz`): 300 text typefaces sampled from Google's open font collection (OFL; 184 sans, 104
+serif, 12 mono; one regular font per family; 299 render), split by **family**: 209 to learn from, 30 for
+choices (validation), **60 never-seen designs for the test**; 6 random renderings per letter as before.
+
+**Where the letters are** (letter units = logistic readout, C chosen on validation families; accuracy on
+the 60 test families):
+
+| what the letter units read | letters, never-seen families | hardest letters |
+|---|---|---|
+| raw pixels | 86.6 % | i 67 %, g 78 %, r 79 %, l 81 % |
+| **V1-like complex cells** (`synth/v1.py`: Gabor quadrature pairs, 8 orientations, energy, max over 4×4 px → 392 cells) | **97.8 %** | r, g 96 %; f, d, t, y 97 % |
+| same, labels shuffled (control) | 3.9 % (chance 3.8 %) | |
+
+Edge cells at a few positions settle the look-alikes (b/h: is the bowl closed; i/l: the dot) that whole-
+letter templates confuse.
+
+**The learned (self-organising, spiking) letter layer is the weak link** (400 cells, one pass over the 209
+families, no labels; letter units then read its spike counts; 10,000 labelled images):
+
+| layer trained on | read at normal inhibition | read with inhibition ×0.1 |
+|---|---|---|
+| pixels | 69.6 % (~3 cells fire) | 80.0 % (~17 cells) |
+| V1 cells, dense output | 59.9 % (~5 cells) | 72.8 % (~12 cells) |
+| **V1 cells, sparse output** (4 networks) | **86.9 ± 0.4 %** (~3 cells) | — |
+| (the V1 cells themselves, read directly) | 97.3 % | |
+
+(All with thresholds held fixed during reading; see the bug below.)
+
+Dense edge input does worse than pixels: every cell responds a little to every letter, so the few winner
+cells learn the average letter (cell similarity rose to 0.82). Real V1 output is sparse (thresholds,
+normalisation); keeping each image's strongest quarter of edge responses (`synth/v1.py: sparsify`, ASSUMED
+75th percentile; a readout from it alone still gets 95.9 %) gives the layer input as sparse as pixels, and
+the same learned layer then reads **86.9 ± 0.4 %** of letters in never-seen designs (networks 0–3: 87.3,
+86.6, 87.2, 86.6 %) - 17 points above the pixel-trained layer and level with a trained readout of the raw
+pixels (86.6 %).  Reading the layer together with the edge cells gives 97.3 %, no more than the edge cells
+alone.
+
+**What is left** (all four networks agree): thin vertical letters - i↔l (the largest by far: 64-86 test
+images each way per network), j, f↔r, g↔q.  Much of i/l is the rendering, not the brain: every letter image
+is scaled on its own to fill a 20-pixel box (MNIST convention), which erases the cue a reader uses most - an
+l is tall and an i is short *relative to the line*.  Rendering letters on a common baseline and x-height,
+as they sit in text, is the next step.
+
+**A measurement bug, found and fixed** (affects earlier stages). The layer's adaptive thresholds decay with
+a time constant of 10,000 s of simulated time (Diehl & Cook's value) - also while the trained layer was only
+being *read*.  Recording ~24,000 images is ~8,000 s simulated, so the thresholds sagged by up to about half
+between the first and the last recording: letter units trained on early recordings were tested on a
+different network.  Diehl & Cook hold thresholds fixed in test mode; `SensoryLayer.features` /
+`spike_train` now do too (`test_frozen_reads_do_not_change_the_layer`, which fails on the old code).  Found
+because one layer scored 15.5 % from its in-run recording but 82 % when loaded fresh.  Effects:
+
+| result | with drift | fixed |
+|---|---|---|
+| sparse-edge letter layer, network 0 | 15.5 % | 87.3 % |
+| pixel letter layer, normal / weak inhibition | 52.7 / 75.9 % | 69.6 / 80.0 % |
+| dense-edge letter layer, normal / weak inhibition | 21.7 / 72.9 % | 59.9 / 72.8 % |
+| Stage 36 sequence layer (weak inhibition), networks 1-2: letters, new words | 81.2 / 79.5 % | 81.2 / 79.6 % — negative result stands |
+
+Also affected, smaller (shorter recordings): the Stage 21-23 letter scores (~15 % sag across each
+recording, likely somewhat underestimated) and the letter-layer responses behind Stages 36-37 (~20 %);
+text routing (sessions of a few hundred seconds) by a few percent at most.  The Stage 36 sequence layer at
+normal inhibition and networks 3-4 are queued for re-recording (`results/words/s*/counts_*_i<inhib>.npz`).
+
+**Better letters make words** (`scripts/analysis/stage38_evidence.py`, `WORDS_LETTER_SET=families`; word reading as Stage 37, 4 word splits, frequency-weighted English words
+printed in the never-seen families; letter units on V1 cells vs on pixels):
+
+| letter units on | letters in words, alone (known / new words) | + prediction, 20,000 practice words | whole words alone | whole words + prediction |
+|---|---|---|---|---|
+| pixels | 85.5 / 85.4 % | 89.2 / 87.1 % | 59.8 / 57.4 % | 69.2 / 59.6 % |
+| **V1 cells** | **98.1 / 97.6 %** | 98.5 / 97.8 % | **95.2 / 93.4 %** | 96.2 / 93.8 % |
+
+Knowing the letters is what reading words needs: whole-word accuracy rises from ~60 % to ~95 %, far more
+than any prediction rule gave (Stages 36–37); with near-perfect letters the prediction has little left to
+correct.
+
+Letter units here read the edge cells directly (the learned layer's responses were recorded only for a
+10,000-image subset); reading words through the learned layer is the next check.
+
+Scripts: `scripts/make_letters_families.py` (font list `data/letters_fam_fonts.json`), `synth/v1.py`,
+`scripts/letters_v1.py` (train / record / score), `scripts/analysis/stage38.py` (summary:
+`results/letters_fam/stage38_summary.json`).
 
 ## Open problems found so far
 

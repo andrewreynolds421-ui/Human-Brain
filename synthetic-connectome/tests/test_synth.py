@@ -364,3 +364,25 @@ def test_prediction_rule_learns_a_sequence_from_its_own_input():
     g = np.zeros(2 * L + 1); g[3] = 1.0; g[L + 7] = 0.5               # current 'd', earlier 'h' at 0.5
     pc = letter_pairs(g).reshape(L + 1, L + 1)
     assert pc[3, 7] == 0.5 and pc.sum() == 0.5
+
+
+@pytest.mark.slow
+def test_frozen_reads_do_not_change_the_layer():
+    """Stage 38 fix: reading a trained self-organising layer (features / spike_train) leaves its adaptive
+    thresholds exactly as they were, however long the reading goes on (they used to decay with tau_theta,
+    so a readout trained on early recordings was tested on a different network)."""
+    import brian2 as b2
+    from synth.sensory import SensoryLayer
+    b2.start_scope()
+    rng = np.random.default_rng(0)
+    S = SensoryLayer(n_in=64, n_e=20, seed=0, dt_ms=0.5)
+    X = (rng.random((30, 64)) < 0.2).astype(float)
+    for x in X[:10]:
+        S.present(x, learn=True)
+    th0 = np.asarray(S.E.theta).copy(); w0 = np.asarray(S.S.w).copy()
+    for x in X:
+        S.features(x)
+    assert np.array_equal(th0, np.asarray(S.E.theta)) and np.array_equal(w0, np.asarray(S.S.w))
+    th_before = np.asarray(S.E.theta).copy()
+    S.present(X[0], learn=True)                                # learning still adapts the thresholds
+    assert not np.array_equal(th_before, np.asarray(S.E.theta)) or np.asarray(S.mon.count).sum() == 0

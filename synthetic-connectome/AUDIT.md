@@ -484,3 +484,25 @@ What did help, measured on 4 networks and paired:
 The supporting checks are scratch scripts kept with their outputs; the main
 table is reproduced exactly by `scripts/analysis/stage37.py`.
 
+## 19. Follow-up (10-11 November): Stage 38 — a weaker test, a measurement bug, and letters from edges
+
+Two findings about our own measurements.
+
+1. **The font split.** 21 of the 22 "unseen" test fonts of Stages 21-37 had a same-family sibling in
+   training, so generalisation was to new styles, not new designs. A family-split set from 300 Google Fonts
+   typefaces replaces it for new work.
+2. **Threshold drift.** The self-organising layer's thresholds kept decaying while the trained layer was
+   only being read, by up to ~half over a long recording. Every frozen read before 10 November had it.
+   Fixed: thresholds are held during reads, with a regression test that fails on the old code.
+
+Corrected numbers are in the README Stage 38 table. The Stage 36 negative result for the sequence layer
+holds at weak inhibition (networks 1-2). The normal-inhibition and networks 3-4 re-check is queued.
+
+The result: the learned letter layer on sparse V1-like edge cells reads 86.9 +/- 0.4 % of letters in
+never-seen designs (4 networks), vs 69.6 % on pixels.
+
+Process notes:
+- A score that disagreed with a fresh reload by 67 points was investigated before being reported. It
+  turned out to be the drift bug.
+- A draft table had one wrong cell (82.2 for 81.2), caught on re-reading against the analysis files.
+

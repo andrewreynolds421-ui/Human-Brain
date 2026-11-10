@@ -19,11 +19,18 @@ from synth.words import (LETTERS, L, PER_FONT, ROOT, LetterBank, LetterReadout, 
                          context_groups, context_vector, encode, load_words, split_words)
 
 WD = os.path.join(ROOT, "results", "words")
-EVID = os.path.join(WD, "evidence.npz")
+# letter set: "fonts" = data/letters.npz (Stages 36-37; 89 training fonts, 22 test fonts split by file);
+# "families" = data/letters_fam.npz (Stage 38; 209 train + 30 validation families stacked as the "train"
+# split, 60 never-seen test families), evidence from letter units on V1-like cells
+LETTER_SET = os.environ.get("WORDS_LETTER_SET", "fonts")
+EVID = os.environ.get("WORDS_EVID") or os.path.join(WD, "evidence.npz" if LETTER_SET == "fonts" else "evidence_fam.npz")
 N_READOUT_FONTS = 70
+N_TEST_FONTS = 22 if LETTER_SET == "fonts" else 60
 
 
 def font_split():
+    if LETTER_SET == "families":
+        return np.arange(209), np.arange(209, 239)
     perm = np.random.default_rng(0).permutation(89)
     return np.sort(perm[:N_READOUT_FONTS]), np.sort(perm[N_READOUT_FONTS:])
 
@@ -93,8 +100,8 @@ def build_sets(seed, shuffle, a):
         learn=sample_set(rng, tr, a.learn_tokens, ro, freqs[tr], shuffle, words),
         pred=sample_set(rng, tr, a.pred_tokens, ro, freqs[tr], shuffle, words),
         val=sample_set(rng, tr, a.val_words, va, freqs[tr], None, words),
-        known=sample_set(rng, tr, a.test_words, np.arange(22), freqs[tr], None, words),
-        held=sample_set(rng, ho, a.test_words, np.arange(22), freqs[ho], None, words))
+        known=sample_set(rng, tr, a.test_words, np.arange(N_TEST_FONTS), freqs[tr], None, words),
+        held=sample_set(rng, ho, a.test_words, np.arange(N_TEST_FONTS), freqs[ho], None, words))
     return words, freqs, tr, ho, sets
 
 
@@ -174,7 +181,9 @@ def predictor_inputs(name, run_dir, toks, E, a, kind):
     """what the prediction synapses see: 'cells' = sequence-layer spike counts; 'context' = the context
     groups directly; 'both' = both pathways (each normalised to sum 1)"""
     ctx = lambda: np.array([c for tok in toks for c in contexts(evidence_of(tok, E), a.decay)])
-    suffix = "" if getattr(a, "inhib", 1.0) == 1.0 else f"_i{a.inhib:g}"
+    # Stage 38: "_i<inhib>" files are recorded with frozen thresholds; the Stage 36 files without a
+    # suffix had threshold drift (README Stage 38).  --drift-era reads the old files.
+    suffix = "" if getattr(a, "drift_era", False) else f"_i{a.inhib:g}"
     cells = lambda: np.load(os.path.join(run_dir, f"counts_{name}{suffix}.npz"))["C"].astype(float)
     if kind == "cells":
         return cells()
@@ -226,6 +235,7 @@ def next_letter(toks, priors):
 def analyse_run(run_dir, a, betas=(0, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0)):
     ra = argparse.Namespace(**json.load(open(os.path.join(run_dir, "args.json"))))
     ra.inhib = a.inhib
+    ra.drift_era = a.drift_era
     ev = np.load(EVID)
     E = {"train": ev["E_train"], "test": ev["E_test"]}
     words, freqs, tr, ho, sets = build_sets(ra.seed, bool(ra.shuffle), ra)
@@ -297,6 +307,7 @@ def main():
     ap.add_argument("--n-cells", type=int, default=400)
     ap.add_argument("--m", type=int, default=20)
     ap.add_argument("--layer", choices=("spiking", "none"), default="spiking")
+    ap.add_argument("--drift-era", action="store_true", help="analyse: use the Stage 36 recordings (threshold drift)")
     ap.add_argument("--inhib", type=float, default=1.0, help="record/analyse: lateral inhibition factor of the frozen sequence layer")
     ap.add_argument("--decay", type=float, default=0.5)
     ap.add_argument("--save-every", type=int, default=250)

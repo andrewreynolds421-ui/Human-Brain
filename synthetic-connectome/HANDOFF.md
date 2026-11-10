@@ -260,6 +260,14 @@ the long form. Priorities as they stand on 5 Nov:
    units: word cells that use all of a word's letters at once (an ideal reader that knows the word list
    gets 63.7 % of known words vs 56 % now). Data: `results/words/`; `scripts/word_reading.py`,
    `scripts/analysis/stage37.py`. 1-2 days each.
+   *(10-11 Nov, README Stage 38: the user's order is letters first, then capitals and how they relate to
+   lowercase, then words.  Lowercase: new family-split test (300 Google Fonts typefaces, 60 never-seen
+   designs); V1-like sparse edge cells feeding the learned layer: 86.9 +/- 0.4 % (4 networks), pixels 69.6 %;
+   edge cells read directly 97.8 %; words follow - whole words ~95 % from edge-based letter units.)*
+   **Next, in order**: (a) render letters on a common baseline / x-height (the i<->l errors are largely the
+   per-letter box scaling); (b) capitals and their relation to lowercase (abstract letter identity);
+   (c) words read through the learned layer, not only the edge cells; (d) finish the queued re-check of the
+   Stage 36 sequence layer at normal inhibition (job queue `words_rec_*_i1_fixed`).
 5. *(Done 7 Nov, README Stages 33–34: with a corrected LFP proxy the 30–45 Hz slope is near human (−2.2 vs −2.8/−3.0); slow power ~25 dB short, open problem 13.)* **Stage 7, cheaply**: compare the column's population spectrum with human
    intracranial spectra (`scripts/rhythm_diagnostics.py` is the start). Hours.
 6. *(Cell groups done 8 Nov, README Stage 35: `BasalGanglia(merged=True)`, the default; spikes identical in

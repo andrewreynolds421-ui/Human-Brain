@@ -1,0 +1,1802 @@
+[
+{
+"dir": "vollkornsc",
+"category": "SERIF",
+"family": "Vollkorn SC",
+"file": "VollkornSC-Regular.ttf"
+},
+{
+"dir": "crimsonpro",
+"category": "SERIF",
+"family": "Crimson Pro",
+"file": "CrimsonPro[wght].ttf"
+},
+{
+"dir": "taiheritagepro",
+"category": "SERIF",
+"family": "Tai Heritage Pro",
+"file": "TaiHeritagePro-Regular.ttf"
+},
+{
+"dir": "numans",
+"category": "SANS_SERIF",
+"family": "Numans",
+"file": "Numans-Regular.ttf"
+},
+{
+"dir": "bhutukaexpandedone",
+"category": "SERIF",
+"family": "BhuTuka Expanded One",
+"file": "BhuTukaExpandedOne-Regular.ttf"
+},
+{
+"dir": "balthazar",
+"category": "SERIF",
+"family": "Balthazar",
+"file": "Balthazar-Regular.ttf"
+},
+{
+"dir": "nokora",
+"category": "SANS_SERIF",
+"family": "Nokora",
+"file": "Nokora[wght].ttf"
+},
+{
+"dir": "b612mono",
+"category": "MONOSPACE",
+"family": "B612 Mono",
+"file": "B612Mono-Regular.ttf"
+},
+{
+"dir": "alatsi",
+"category": "SANS_SERIF",
+"family": "Alatsi",
+"file": "Alatsi-Regular.ttf"
+},
+{
+"dir": "googlesanscode",
+"category": "MONOSPACE",
+"family": "Google Sans Code",
+"file": "GoogleSansCode[wght].ttf"
+},
+{
+"dir": "digitalnumbers",
+"category": "MONOSPACE",
+"family": "Digital Numbers",
+"file": "DigitalNumbers-Regular.ttf"
+},
+{
+"dir": "sawarabimincho",
+"category": "SERIF",
+"family": "Sawarabi Mincho",
+"file": "SawarabiMincho-Regular.ttf"
+},
+{
+"dir": "ancizarsans",
+"category": "SANS_SERIF",
+"family": "Ancizar Sans",
+"file": "AncizarSans[wght].ttf"
+},
+{
+"dir": "zenkakugothicantique",
+"category": "SANS_SERIF",
+"family": "Zen Kaku Gothic Antique",
+"file": "ZenKakuGothicAntique-Regular.ttf"
+},
+{
+"dir": "arya",
+"category": "SANS_SERIF",
+"family": "Arya",
+"file": "Arya-Regular.ttf"
+},
+{
+"dir": "splinesansmono",
+"category": "SANS_SERIF",
+"family": "Spline Sans Mono",
+"file": "SplineSansMono[wght].ttf"
+},
+{
+"dir": "imprima",
+"category": "SANS_SERIF",
+"family": "Imprima",
+"file": "Imprima-Regular.ttf"
+},
+{
+"dir": "notosansdevanagari",
+"category": "SANS_SERIF",
+"family": "Noto Sans Devanagari",
+"file": "NotoSansDevanagari[wdth,wght].ttf"
+},
+{
+"dir": "notosanssundanese",
+"category": "SANS_SERIF",
+"family": "Noto Sans Sundanese",
+"file": "NotoSansSundanese[wght].ttf"
+},
+{
+"dir": "koho",
+"category": "SANS_SERIF",
+"family": "KoHo",
+"file": "KoHo-Regular.ttf"
+},
+{
+"dir": "gulim",
+"category": "SANS_SERIF",
+"family": "Gulim",
+"file": "Gulim-Regular.ttf"
+},
+{
+"dir": "notosanscyprominoan",
+"category": "SANS_SERIF",
+"family": "Noto Sans Cypro Minoan",
+"file": "NotoSansCyproMinoan-Regular.ttf"
+},
+{
+"dir": "winkysans",
+"category": "SANS_SERIF",
+"family": "Winky Sans",
+"file": "WinkySans[wght].ttf"
+},
+{
+"dir": "shipporimincho",
+"category": "SERIF",
+"family": "Shippori Mincho",
+"file": "ShipporiMincho-Regular.ttf"
+},
+{
+"dir": "merriweather",
+"category": "SERIF",
+"family": "Merriweather",
+"file": "Merriweather[opsz,wdth,wght].ttf"
+},
+{
+"dir": "jomolhari",
+"category": "SERIF",
+"family": "Jomolhari",
+"file": "Jomolhari-Regular.ttf"
+},
+{
+"dir": "notosansmeroitic",
+"category": "SANS_SERIF",
+"family": "Noto Sans Meroitic",
+"file": "NotoSansMeroitic-Regular.ttf"
+},
+{
+"dir": "zcoolkuaile",
+"category": "SANS_SERIF",
+"family": "ZCOOL KuaiLe",
+"file": "ZCOOLKuaiLe-Regular.ttf"
+},
+{
+"dir": "mirandasans",
+"category": "SANS_SERIF",
+"family": "Miranda Sans",
+"file": "MirandaSans[wght].ttf"
+},
+{
+"dir": "notosanswarangciti",
+"category": "SANS_SERIF",
+"family": "Noto Sans Warang Citi",
+"file": "NotoSansWarangCiti-Regular.ttf"
+},
+{
+"dir": "alike",
+"category": "SERIF",
+"family": "Alike",
+"file": "Alike-Regular.ttf"
+},
+{
+"dir": "notosanshebrew",
+"category": "SANS_SERIF",
+"family": "Noto Sans Hebrew",
+"file": "NotoSansHebrew[wdth,wght].ttf"
+},
+{
+"dir": "notosansoldsoutharabian",
+"category": "SANS_SERIF",
+"family": "Noto Sans Old South Arabian",
+"file": "NotoSansOldSouthArabian-Regular.ttf"
+},
+{
+"dir": "changa",
+"category": "SANS_SERIF",
+"family": "Changa",
+"file": "Changa[wght].ttf"
+},
+{
+"dir": "dmmono",
+"category": "MONOSPACE",
+"family": "DM Mono",
+"file": "DMMono-Regular.ttf"
+},
+{
+"dir": "sairasemicondensed",
+"category": "SANS_SERIF",
+"family": "Saira Semi Condensed",
+"file": "SairaSemiCondensed-Regular.ttf"
+},
+{
+"dir": "sahitya",
+"category": "SERIF",
+"family": "Sahitya",
+"file": "Sahitya-Regular.ttf"
+},
+{
+"dir": "notosansvai",
+"category": "SANS_SERIF",
+"family": "Noto Sans Vai",
+"file": "NotoSansVai-Regular.ttf"
+},
+{
+"dir": "kantumruypro",
+"category": "SANS_SERIF",
+"family": "Kantumruy Pro",
+"file": "KantumruyPro[wght].ttf"
+},
+{
+"dir": "federo",
+"category": "SANS_SERIF",
+"family": "Federo",
+"file": "Federo-Regular.ttf"
+},
+{
+"dir": "notoserifdivesakuru",
+"category": "SERIF",
+"family": "Noto Serif Dives Akuru",
+"file": "NotoSerifDivesAkuru-Regular.ttf"
+},
+{
+"dir": "marmelad",
+"category": "SANS_SERIF",
+"family": "Marmelad",
+"file": "Marmelad-Regular.ttf"
+},
+{
+"dir": "notorashihebrew",
+"category": "SERIF",
+"family": "Noto Rashi Hebrew",
+"file": "NotoRashiHebrew[wght].ttf"
+},
+{
+"dir": "alyamama",
+"category": "SERIF",
+"family": "Alyamama",
+"file": "Alyamama[wght].ttf"
+},
+{
+"dir": "cutive",
+"category": "SERIF",
+"family": "Cutive",
+"file": "Cutive-Regular.ttf"
+},
+{
+"dir": "mate",
+"category": "SERIF",
+"family": "Mate",
+"file": "Mate-Regular.ttf"
+},
+{
+"dir": "onest",
+"category": "SANS_SERIF",
+"family": "Onest",
+"file": "Onest[wght].ttf"
+},
+{
+"dir": "ramaraja",
+"category": "SERIF",
+"family": "Ramaraja",
+"file": "Ramaraja-Regular.ttf"
+},
+{
+"dir": "arefruqaa",
+"category": "SERIF",
+"family": "Aref Ruqaa",
+"file": "ArefRuqaa-Regular.ttf"
+},
+{
+"dir": "unbounded",
+"category": "SANS_SERIF",
+"family": "Unbounded",
+"file": "Unbounded[wght].ttf"
+},
+{
+"dir": "fenix",
+"category": "SERIF",
+"family": "Fenix",
+"file": "Fenix-Regular.ttf"
+},
+{
+"dir": "notoserifmalayalam",
+"category": "SERIF",
+"family": "Noto Serif Malayalam",
+"file": "NotoSerifMalayalam[wght].ttf"
+},
+{
+"dir": "notosansyi",
+"category": "SANS_SERIF",
+"family": "Noto Sans Yi",
+"file": "NotoSansYi-Regular.ttf"
+},
+{
+"dir": "notoserifgujarati",
+"category": "SERIF",
+"family": "Noto Serif Gujarati",
+"file": "NotoSerifGujarati[wght].ttf"
+},
+{
+"dir": "gidole",
+"category": "SANS_SERIF",
+"family": "Gidole",
+"file": "Gidole-Regular.ttf"
+},
+{
+"dir": "ebgaramond",
+"category": "SERIF",
+"family": "EB Garamond",
+"file": "EBGaramond[wght].ttf"
+},
+{
+"dir": "idiqlat",
+"category": "SERIF",
+"family": "Idiqlat",
+"file": "Idiqlat-Regular.ttf"
+},
+{
+"dir": "inriaserif",
+"category": "SERIF",
+"family": "Inria Serif",
+"file": "InriaSerif-Regular.ttf"
+},
+{
+"dir": "cormorantupright",
+"category": "SERIF",
+"family": "Cormorant Upright",
+"file": "CormorantUpright-Regular.ttf"
+},
+{
+"dir": "shipporiantique",
+"category": "SANS_SERIF",
+"family": "Shippori Antique",
+"file": "ShipporiAntique-Regular.ttf"
+},
+{
+"dir": "gowundodum",
+"category": "SANS_SERIF",
+"family": "Gowun Dodum",
+"file": "GowunDodum-Regular.ttf"
+},
+{
+"dir": "ibmplexsansthailooped",
+"category": "SANS_SERIF",
+"family": "IBM Plex Sans Thai Looped",
+"file": "IBMPlexSansThaiLooped-Regular.ttf"
+},
+{
+"dir": "notosansgurmukhi",
+"category": "SANS_SERIF",
+"family": "Noto Sans Gurmukhi",
+"file": "NotoSansGurmukhi[wdth,wght].ttf"
+},
+{
+"dir": "akatab",
+"category": "SANS_SERIF",
+"family": "Akatab",
+"file": "Akatab-Regular.ttf"
+},
+{
+"dir": "gulzar",
+"category": "SERIF",
+"family": "Gulzar",
+"file": "Gulzar-Regular.ttf"
+},
+{
+"dir": "ruda",
+"category": "SANS_SERIF",
+"family": "Ruda",
+"file": "Ruda[wght].ttf"
+},
+{
+"dir": "hubballi",
+"category": "SANS_SERIF",
+"family": "Hubballi",
+"file": "Hubballi-Regular.ttf"
+},
+{
+"dir": "savate",
+"category": "SANS_SERIF",
+"family": "Savate",
+"file": "Savate[wght].ttf"
+},
+{
+"dir": "imfelldoublepica",
+"category": "SERIF",
+"family": "IM Fell Double Pica",
+"file": "IMFELLDoublePica-Regular.ttf"
+},
+{
+"dir": "mirza",
+"category": "SERIF",
+"family": "Mirza",
+"file": "Mirza-Regular.ttf"
+},
+{
+"dir": "newtegomin",
+"category": "SERIF",
+"family": "New Tegomin",
+"file": "NewTegomin-Regular.ttf"
+},
+{
+"dir": "notosansnko",
+"category": "SANS_SERIF",
+"family": "Noto Sans NKo",
+"file": "NotoSansNKo-Regular.ttf"
+},
+{
+"dir": "niramit",
+"category": "SANS_SERIF",
+"family": "Niramit",
+"file": "Niramit-Regular.ttf"
+},
+{
+"dir": "recursive",
+"category": "SANS_SERIF",
+"family": "Recursive",
+"file": "Recursive[CASL,CRSV,MONO,slnt,wght].ttf"
+},
+{
+"dir": "specialgothiccondensedone",
+"category": "SANS_SERIF",
+"family": "Special Gothic Condensed One",
+"file": "SpecialGothicCondensedOne-Regular.ttf"
+},
+{
+"dir": "azeretmono",
+"category": "MONOSPACE",
+"family": "Azeret Mono",
+"file": "AzeretMono[wght].ttf"
+},
+{
+"dir": "notosanssorasompeng",
+"category": "SANS_SERIF",
+"family": "Noto Sans Sora Sompeng",
+"file": "NotoSansSoraSompeng[wght].ttf"
+},
+{
+"dir": "chironsunghk",
+"category": "SERIF",
+"family": "Chiron Sung HK",
+"file": "ChironSungHK[wght].ttf"
+},
+{
+"dir": "imfellgreatprimersc",
+"category": "SERIF",
+"family": "IM Fell Great Primer SC",
+"file": "IMFeGPsc28P.ttf"
+},
+{
+"dir": "hinamincho",
+"category": "SERIF",
+"family": "Hina Mincho",
+"file": "HinaMincho-Regular.ttf"
+},
+{
+"dir": "wellfleet",
+"category": "SERIF",
+"family": "Wellfleet",
+"file": "Wellfleet-Regular.ttf"
+},
+{
+"dir": "notosansbamum",
+"category": "SANS_SERIF",
+"family": "Noto Sans Bamum",
+"file": "NotoSansBamum[wght].ttf"
+},
+{
+"dir": "ysabeau",
+"category": "SANS_SERIF",
+"family": "Ysabeau",
+"file": "Ysabeau[wght].ttf"
+},
+{
+"dir": "ibarrarealnova",
+"category": "SERIF",
+"family": "Ibarra Real Nova",
+"file": "IbarraRealNova[wght].ttf"
+},
+{
+"dir": "dmseriftext",
+"category": "SERIF",
+"family": "DM Serif Text",
+"file": "DMSerifText-Regular.ttf"
+},
+{
+"dir": "antic",
+"category": "SANS_SERIF",
+"family": "Antic",
+"file": "Antic-Regular.ttf"
+},
+{
+"dir": "estedad",
+"category": "SANS_SERIF",
+"family": "Estedad",
+"file": "Estedad[wght].ttf"
+},
+{
+"dir": "chivo",
+"category": "SANS_SERIF",
+"family": "Chivo",
+"file": "Chivo[wght].ttf"
+},
+{
+"dir": "notosansmalayalam",
+"category": "SANS_SERIF",
+"family": "Noto Sans Malayalam",
+"file": "NotoSansMalayalam[wdth,wght].ttf"
+},
+{
+"dir": "jaldi",
+"category": "SANS_SERIF",
+"family": "Jaldi",
+"file": "Jaldi-Regular.ttf"
+},
+{
+"dir": "lxgwwenkaimonotc",
+"category": "MONOSPACE",
+"family": "LXGW WenKai Mono TC",
+"file": "LXGWWenKaiMonoTC-Regular.ttf"
+},
+{
+"dir": "notoseriftamil",
+"category": "SERIF",
+"family": "Noto Serif Tamil",
+"file": "NotoSerifTamil[wdth,wght].ttf"
+},
+{
+"dir": "chakrapetch",
+"category": "SANS_SERIF",
+"family": "Chakra Petch",
+"file": "ChakraPetch-Regular.ttf"
+},
+{
+"dir": "fresca",
+"category": "SANS_SERIF",
+"family": "Fresca",
+"file": "Fresca-Regular.ttf"
+},
+{
+"dir": "zcoolxiaowei",
+"category": "SANS_SERIF",
+"family": "ZCOOL XiaoWei",
+"file": "ZCOOLXiaoWei-Regular.ttf"
+},
+{
+"dir": "durusans",
+"category": "SANS_SERIF",
+"family": "Duru Sans",
+"file": "DuruSans-Regular.ttf"
+},
+{
+"dir": "basic",
+"category": "SANS_SERIF",
+"family": "Basic",
+"file": "Basic-Regular.ttf"
+},
+{
+"dir": "notosansolditalic",
+"category": "SANS_SERIF",
+"family": "Noto Sans Old Italic",
+"file": "NotoSansOldItalic-Regular.ttf"
+},
+{
+"dir": "tirotelugu",
+"category": "SERIF",
+"family": "Tiro Telugu",
+"file": "TiroTelugu-Regular.ttf"
+},
+{
+"dir": "goudybookletter1911",
+"category": "SERIF",
+"family": "Goudy Bookletter 1911",
+"file": "GoudyBookletter1911.ttf"
+},
+{
+"dir": "timmana",
+"category": "SANS_SERIF",
+"family": "Timmana",
+"file": "Timmana-Regular.ttf"
+},
+{
+"dir": "tirodevanagarimarathi",
+"category": "SERIF",
+"family": "Tiro Devanagari Marathi",
+"file": "TiroDevanagariMarathi-Regular.ttf"
+},
+{
+"dir": "texturina",
+"category": "SERIF",
+"family": "Texturina",
+"file": "Texturina[opsz,wght].ttf"
+},
+{
+"dir": "signikanegative",
+"category": "SANS_SERIF",
+"family": "Signika Negative",
+"file": "SignikaNegative[wght].ttf"
+},
+{
+"dir": "miriamlibre",
+"category": "SANS_SERIF",
+"family": "Miriam Libre",
+"file": "MiriamLibre[wght].ttf"
+},
+{
+"dir": "notosansinscriptionalpahlavi",
+"category": "SANS_SERIF",
+"family": "Noto Sans Inscriptional Pahlavi",
+"file": "NotoSansInscriptionalPahlavi-Regular.ttf"
+},
+{
+"dir": "biorhyme",
+"category": "SERIF",
+"family": "BioRhyme",
+"file": "BioRhyme[wdth,wght].ttf"
+},
+{
+"dir": "aoboshione",
+"category": "SERIF",
+"family": "Aoboshi One",
+"file": "AoboshiOne-Regular.ttf"
+},
+{
+"dir": "firasansextracondensed",
+"category": "SANS_SERIF",
+"family": "Fira Sans Extra Condensed",
+"file": "FiraSansExtraCondensed-Regular.ttf"
+},
+{
+"dir": "ysabeauinfant",
+"category": "SANS_SERIF",
+"family": "Ysabeau Infant",
+"file": "YsabeauInfant[wght].ttf"
+},
+{
+"dir": "firamono",
+"category": "MONOSPACE",
+"family": "Fira Mono",
+"file": "FiraMono-Regular.ttf"
+},
+{
+"dir": "albertsans",
+"category": "SANS_SERIF",
+"family": "Albert Sans",
+"file": "AlbertSans[wght].ttf"
+},
+{
+"dir": "bellefair",
+"category": "SERIF",
+"family": "Bellefair",
+"file": "Bellefair-Regular.ttf"
+},
+{
+"dir": "hedviglettersserif",
+"category": "SERIF",
+"family": "Hedvig Letters Serif",
+"file": "HedvigLettersSerif[opsz].ttf"
+},
+{
+"dir": "sairacondensed",
+"category": "SANS_SERIF",
+"family": "Saira Condensed",
+"file": "SairaCondensed-Regular.ttf"
+},
+{
+"dir": "rokkitt",
+"category": "SERIF",
+"family": "Rokkitt",
+"file": "Rokkitt[wght].ttf"
+},
+{
+"dir": "notokufiarabic",
+"category": "SANS_SERIF",
+"family": "Noto Kufi Arabic",
+"file": "NotoKufiArabic[wght].ttf"
+},
+{
+"dir": "momotrustsans",
+"category": "SANS_SERIF",
+"family": "Momo Trust Sans",
+"file": "MomoTrustSans[wght].ttf"
+},
+{
+"dir": "mulish",
+"category": "SANS_SERIF",
+"family": "Mulish",
+"file": "Mulish[wght].ttf"
+},
+{
+"dir": "notosanssogdian",
+"category": "SANS_SERIF",
+"family": "Noto Sans Sogdian",
+"file": "NotoSansSogdian-Regular.ttf"
+},
+{
+"dir": "volkhov",
+"category": "SERIF",
+"family": "Volkhov",
+"file": "Volkhov-Regular.ttf"
+},
+{
+"dir": "dmsans",
+"category": "SANS_SERIF",
+"family": "DM Sans",
+"file": "DMSans[opsz,wght].ttf"
+},
+{
+"dir": "mplus1p",
+"category": "SANS_SERIF",
+"family": "M PLUS 1p",
+"file": "MPLUS1p-Regular.ttf"
+},
+{
+"dir": "asimovian",
+"category": "SANS_SERIF",
+"family": "Asimovian",
+"file": "Asimovian-Regular.ttf"
+},
+{
+"dir": "alef",
+"category": "SANS_SERIF",
+"family": "Alef",
+"file": "Alef-Regular.ttf"
+},
+{
+"dir": "vidaloka",
+"category": "SERIF",
+"family": "Vidaloka",
+"file": "Vidaloka-Regular.ttf"
+},
+{
+"dir": "notosansnushu",
+"category": "SANS_SERIF",
+"family": "Noto Sans Nushu",
+"file": "NotoSansNushu-Regular.ttf"
+},
+{
+"dir": "gfsneohellenic",
+"category": "SANS_SERIF",
+"family": "GFS Neohellenic",
+"file": "GFSNeohellenic.ttf"
+},
+{
+"dir": "englebert",
+"category": "SANS_SERIF",
+"family": "Englebert",
+"file": "Englebert-Regular.ttf"
+},
+{
+"dir": "librefranklin",
+"category": "SANS_SERIF",
+"family": "Libre Franklin",
+"file": "LibreFranklin[wght].ttf"
+},
+{
+"dir": "notosanskawi",
+"category": "SANS_SERIF",
+"family": "Noto Sans Kawi",
+"file": "NotoSansKawi[wght].ttf"
+},
+{
+"dir": "rosarivo",
+"category": "SERIF",
+"family": "Rosarivo",
+"file": "Rosarivo-Regular.ttf"
+},
+{
+"dir": "notoserifarmenian",
+"category": "SERIF",
+"family": "Noto Serif Armenian",
+"file": "NotoSerifArmenian[wdth,wght].ttf"
+},
+{
+"dir": "suravaram",
+"category": "SERIF",
+"family": "Suravaram",
+"file": "Suravaram-Regular.ttf"
+},
+{
+"dir": "stick",
+"category": "SANS_SERIF",
+"family": "Stick",
+"file": "Stick-Regular.ttf"
+},
+{
+"dir": "ruluko",
+"category": "SANS_SERIF",
+"family": "Ruluko",
+"file": "Ruluko-Regular.ttf"
+},
+{
+"dir": "cinzel",
+"category": "SERIF",
+"family": "Cinzel",
+"file": "Cinzel[wght].ttf"
+},
+{
+"dir": "gotu",
+"category": "SANS_SERIF",
+"family": "Gotu",
+"file": "Gotu-Regular.ttf"
+},
+{
+"dir": "notosanscypriot",
+"category": "SANS_SERIF",
+"family": "Noto Sans Cypriot",
+"file": "NotoSansCypriot-Regular.ttf"
+},
+{
+"dir": "sarala",
+"category": "SANS_SERIF",
+"family": "Sarala",
+"file": "Sarala-Regular.ttf"
+},
+{
+"dir": "sitara",
+"category": "SERIF",
+"family": "Sitara",
+"file": "Sitara-Regular.ttf"
+},
+{
+"dir": "bizudgothic",
+"category": "SANS_SERIF",
+"family": "BIZ UDGothic",
+"file": "BIZUDGothic-Regular.ttf"
+},
+{
+"dir": "orbitron",
+"category": "SANS_SERIF",
+"family": "Orbitron",
+"file": "Orbitron[wght].ttf"
+},
+{
+"dir": "wdxllubrifontsc",
+"category": "SANS_SERIF",
+"family": "WDXL Lubrifont SC",
+"file": "WDXLLubrifontSC-Regular.ttf"
+},
+{
+"dir": "preahvihear",
+"category": "SANS_SERIF",
+"family": "Preahvihear",
+"file": "Preahvihear-Regular.ttf"
+},
+{
+"dir": "sura",
+"category": "SERIF",
+"family": "Sura",
+"file": "Sura-Regular.ttf"
+},
+{
+"dir": "kumbhsans",
+"category": "SANS_SERIF",
+"family": "Kumbh Sans",
+"file": "KumbhSans[YOPQ,wght].ttf"
+},
+{
+"dir": "quantico",
+"category": "SANS_SERIF",
+"family": "Quantico",
+"file": "Quantico-Regular.ttf"
+},
+{
+"dir": "cuprum",
+"category": "SANS_SERIF",
+"family": "Cuprum",
+"file": "Cuprum[wght].ttf"
+},
+{
+"dir": "mavenpro",
+"category": "SANS_SERIF",
+"family": "Maven Pro",
+"file": "MavenPro[wght].ttf"
+},
+{
+"dir": "sharetechmono",
+"category": "MONOSPACE",
+"family": "Share Tech Mono",
+"file": "ShareTechMono-Regular.ttf"
+},
+{
+"dir": "headlandone",
+"category": "SERIF",
+"family": "Headland One",
+"file": "HeadlandOne-Regular.ttf"
+},
+{
+"dir": "anonymouspro",
+"category": "MONOSPACE",
+"family": "Anonymous Pro",
+"file": "AnonymousPro-Regular.ttf"
+},
+{
+"dir": "scopeone",
+"category": "SERIF",
+"family": "Scope One",
+"file": "ScopeOne-Regular.ttf"
+},
+{
+"dir": "publicsans",
+"category": "SANS_SERIF",
+"family": "Public Sans",
+"file": "PublicSans[wght].ttf"
+},
+{
+"dir": "rubik",
+"category": "SANS_SERIF",
+"family": "Rubik",
+"file": "Rubik[wght].ttf"
+},
+{
+"dir": "gungsuh",
+"category": "SERIF",
+"family": "Gungsuh",
+"file": "Gungsuh-Regular.ttf"
+},
+{
+"dir": "notosanshatran",
+"category": "SANS_SERIF",
+"family": "Noto Sans Hatran",
+"file": "NotoSansHatran-Regular.ttf"
+},
+{
+"dir": "notosanskayahli",
+"category": "SANS_SERIF",
+"family": "Noto Sans Kayah Li",
+"file": "NotoSansKayahLi[wght].ttf"
+},
+{
+"dir": "qahiri",
+"category": "SANS_SERIF",
+"family": "Qahiri",
+"file": "Qahiri-Regular.ttf"
+},
+{
+"dir": "lexendexa",
+"category": "SANS_SERIF",
+"family": "Lexend Exa",
+"file": "LexendExa[wght].ttf"
+},
+{
+"dir": "redditsanscondensed",
+"category": "SANS_SERIF",
+"family": "Reddit Sans Condensed",
+"file": "RedditSansCondensed[wght].ttf"
+},
+{
+"dir": "teachers",
+"category": "SANS_SERIF",
+"family": "Teachers",
+"file": "Teachers[wght].ttf"
+},
+{
+"dir": "marvel",
+"category": "SANS_SERIF",
+"family": "Marvel",
+"file": "Marvel-Regular.ttf"
+},
+{
+"dir": "voces",
+"category": "SANS_SERIF",
+"family": "Voces",
+"file": "Voces-Regular.ttf"
+},
+{
+"dir": "intertight",
+"category": "SANS_SERIF",
+"family": "Inter Tight",
+"file": "InterTight[wght].ttf"
+},
+{
+"dir": "junge",
+"category": "SERIF",
+"family": "Junge",
+"file": "Junge-Regular.ttf"
+},
+{
+"dir": "anektamil",
+"category": "SANS_SERIF",
+"family": "Anek Tamil",
+"file": "AnekTamil[wdth,wght].ttf"
+},
+{
+"dir": "kufam",
+"category": "SANS_SERIF",
+"family": "Kufam",
+"file": "Kufam[wght].ttf"
+},
+{
+"dir": "cascadiacode",
+"category": "SANS_SERIF",
+"family": "Cascadia Code",
+"file": "CascadiaCode[wght].ttf"
+},
+{
+"dir": "encodesans",
+"category": "SANS_SERIF",
+"family": "Encode Sans",
+"file": "EncodeSans[wdth,wght].ttf"
+},
+{
+"dir": "carlito",
+"category": "SANS_SERIF",
+"family": "Carlito",
+"file": "Carlito-Regular.ttf"
+},
+{
+"dir": "tirobangla",
+"category": "SERIF",
+"family": "Tiro Bangla",
+"file": "TiroBangla-Regular.ttf"
+},
+{
+"dir": "lunasima",
+"category": "SANS_SERIF",
+"family": "Lunasima",
+"file": "Lunasima-Regular.ttf"
+},
+{
+"dir": "ptsansnarrow",
+"category": "SANS_SERIF",
+"family": "PT Sans Narrow",
+"file": "PT_Sans-Narrow-Web-Regular.ttf"
+},
+{
+"dir": "mohave",
+"category": "SANS_SERIF",
+"family": "Mohave",
+"file": "Mohave[wght].ttf"
+},
+{
+"dir": "nuosusil",
+"category": "SANS_SERIF",
+"family": "Nuosu SIL",
+"file": "NuosuSIL-Regular.ttf"
+},
+{
+"dir": "dotumche",
+"category": "SANS_SERIF",
+"family": "DotumChe",
+"file": "DotumChe-Regular.ttf"
+},
+{
+"dir": "jetbrainsmono",
+"category": "MONOSPACE",
+"family": "JetBrains Mono",
+"file": "JetBrainsMono[wght].ttf"
+},
+{
+"dir": "tenaliramakrishna",
+"category": "SANS_SERIF",
+"family": "Tenali Ramakrishna",
+"file": "TenaliRamakrishna-Regular.ttf"
+},
+{
+"dir": "russoone",
+"category": "SANS_SERIF",
+"family": "Russo One",
+"file": "RussoOne-Regular.ttf"
+},
+{
+"dir": "monasans",
+"category": "SANS_SERIF",
+"family": "Mona Sans",
+"file": "MonaSans[wdth,wght].ttf"
+},
+{
+"dir": "varta",
+"category": "SANS_SERIF",
+"family": "Varta",
+"file": "Varta[wght].ttf"
+},
+{
+"dir": "oxygen",
+"category": "SANS_SERIF",
+"family": "Oxygen",
+"file": "Oxygen-Regular.ttf"
+},
+{
+"dir": "bentham",
+"category": "SERIF",
+"family": "Bentham",
+"file": "Bentham-Regular.ttf"
+},
+{
+"dir": "notosansadlamunjoined",
+"category": "SANS_SERIF",
+"family": "Noto Sans Adlam Unjoined",
+"file": "NotoSansAdlamUnjoined[wght].ttf"
+},
+{
+"dir": "notosansinscriptionalparthian",
+"category": "SANS_SERIF",
+"family": "Noto Sans Inscriptional Parthian",
+"file": "NotoSansInscriptionalParthian-Regular.ttf"
+},
+{
+"dir": "elmessiri",
+"category": "SANS_SERIF",
+"family": "El Messiri",
+"file": "ElMessiri[wght].ttf"
+},
+{
+"dir": "momosignature",
+"category": "SANS_SERIF",
+"family": "Momo Signature",
+"file": "MomoSignature-Regular.ttf"
+},
+{
+"dir": "gidugu",
+"category": "SANS_SERIF",
+"family": "Gidugu",
+"file": "Gidugu-Regular.ttf"
+},
+{
+"dir": "pontanosans",
+"category": "SANS_SERIF",
+"family": "Pontano Sans",
+"file": "PontanoSans[wght].ttf"
+},
+{
+"dir": "lexendtera",
+"category": "SANS_SERIF",
+"family": "Lexend Tera",
+"file": "LexendTera[wght].ttf"
+},
+{
+"dir": "kameron",
+"category": "SERIF",
+"family": "Kameron",
+"file": "Kameron[wght].ttf"
+},
+{
+"dir": "solway",
+"category": "SERIF",
+"family": "Solway",
+"file": "Solway-Regular.ttf"
+},
+{
+"dir": "finlandicaheadline",
+"category": "SANS_SERIF",
+"family": "Finlandica Headline",
+"file": "FinlandicaHeadline[wght].ttf"
+},
+{
+"dir": "strichpunktsans",
+"category": "SANS_SERIF",
+"family": "Strichpunkt Sans",
+"file": "StrichpunktSans[wdth,wght].ttf"
+},
+{
+"dir": "radiocanada",
+"category": "SANS_SERIF",
+"family": "Radio Canada",
+"file": "RadioCanada[wdth,wght].ttf"
+},
+{
+"dir": "metrophobic",
+"category": "SANS_SERIF",
+"family": "Metrophobic",
+"file": "Metrophobic-Regular.ttf"
+},
+{
+"dir": "grenze",
+"category": "SERIF",
+"family": "Grenze",
+"file": "Grenze[wght].ttf"
+},
+{
+"dir": "montserratunderline",
+"category": "SANS_SERIF",
+"family": "Montserrat Underline",
+"file": "MontserratUnderline[wght].ttf"
+},
+{
+"dir": "kodchasan",
+"category": "SANS_SERIF",
+"family": "Kodchasan",
+"file": "Kodchasan-Regular.ttf"
+},
+{
+"dir": "cormorantsc",
+"category": "SERIF",
+"family": "Cormorant SC",
+"file": "CormorantSC-Regular.ttf"
+},
+{
+"dir": "puritan",
+"category": "SANS_SERIF",
+"family": "Puritan",
+"file": "Puritan-Regular.ttf"
+},
+{
+"dir": "huninn",
+"category": "SANS_SERIF",
+"family": "Huninn",
+"file": "Huninn-Regular.ttf"
+},
+{
+"dir": "stacksanstext",
+"category": "SANS_SERIF",
+"family": "Stack Sans Text",
+"file": "StackSansText[wght].ttf"
+},
+{
+"dir": "sticknobills",
+"category": "SANS_SERIF",
+"family": "Stick No Bills",
+"file": "StickNoBills[wght].ttf"
+},
+{
+"dir": "notosanskr",
+"category": "SANS_SERIF",
+"family": "Noto Sans KR",
+"file": "NotoSansKR[wght].ttf"
+},
+{
+"dir": "kedebideri",
+"category": "SANS_SERIF",
+"family": "Kedebideri",
+"file": "Kedebideri-Regular.ttf"
+},
+{
+"dir": "lekton",
+"category": "MONOSPACE",
+"family": "Lekton",
+"file": "Lekton-Regular.ttf"
+},
+{
+"dir": "enriqueta",
+"category": "SERIF",
+"family": "Enriqueta",
+"file": "Enriqueta-Regular.ttf"
+},
+{
+"dir": "k2d",
+"category": "SANS_SERIF",
+"family": "K2D",
+"file": "K2D-Regular.ttf"
+},
+{
+"dir": "trirong",
+"category": "SERIF",
+"family": "Trirong",
+"file": "Trirong-Regular.ttf"
+},
+{
+"dir": "notoserifmakasar",
+"category": "SERIF",
+"family": "Noto Serif Makasar",
+"file": "NotoSerifMakasar-Regular.ttf"
+},
+{
+"dir": "alikeangular",
+"category": "SERIF",
+"family": "Alike Angular",
+"file": "AlikeAngular-Regular.ttf"
+},
+{
+"dir": "anektelugu",
+"category": "SANS_SERIF",
+"family": "Anek Telugu",
+"file": "AnekTelugu[wdth,wght].ttf"
+},
+{
+"dir": "notosanscaucasianalbanian",
+"category": "SANS_SERIF",
+"family": "Noto Sans Caucasian Albanian",
+"file": "NotoSansCaucasianAlbanian-Regular.ttf"
+},
+{
+"dir": "kohsantepheap",
+"category": "SERIF",
+"family": "Koh Santepheap",
+"file": "KohSantepheap-Regular.ttf"
+},
+{
+"dir": "nats",
+"category": "SANS_SERIF",
+"family": "NATS",
+"file": "NATS-Regular.ttf"
+},
+{
+"dir": "teko",
+"category": "SANS_SERIF",
+"family": "Teko",
+"file": "Teko[wght].ttf"
+},
+{
+"dir": "tuffy",
+"category": "SANS_SERIF",
+"family": "Tuffy",
+"file": "Tuffy-Regular.ttf"
+},
+{
+"dir": "aldrich",
+"category": "SANS_SERIF",
+"family": "Aldrich",
+"file": "Aldrich-Regular.ttf"
+},
+{
+"dir": "reemkufifun",
+"category": "SANS_SERIF",
+"family": "Reem Kufi Fun",
+"file": "ReemKufiFun[wght].ttf"
+},
+{
+"dir": "sedan",
+"category": "SERIF",
+"family": "Sedan",
+"file": "Sedan-Regular.ttf"
+},
+{
+"dir": "podkova",
+"category": "SERIF",
+"family": "Podkova",
+"file": "Podkova[wght].ttf"
+},
+{
+"dir": "notable",
+"category": "SANS_SERIF",
+"family": "Notable",
+"file": "Notable-Regular.ttf"
+},
+{
+"dir": "spacegrotesk",
+"category": "SANS_SERIF",
+"family": "Space Grotesk",
+"file": "SpaceGrotesk[wght].ttf"
+},
+{
+"dir": "majormonodisplay",
+"category": "MONOSPACE",
+"family": "Major Mono Display",
+"file": "MajorMonoDisplay-Regular.ttf"
+},
+{
+"dir": "thasadith",
+"category": "SANS_SERIF",
+"family": "Thasadith",
+"file": "Thasadith-Regular.ttf"
+},
+{
+"dir": "funnelsans",
+"category": "SANS_SERIF",
+"family": "Funnel Sans",
+"file": "FunnelSans[wght].ttf"
+},
+{
+"dir": "notosanssinhala",
+"category": "SANS_SERIF",
+"family": "Noto Sans Sinhala",
+"file": "NotoSansSinhala[wdth,wght].ttf"
+},
+{
+"dir": "danfo",
+"category": "SERIF",
+"family": "Danfo",
+"file": "Danfo[ELSH].ttf"
+},
+{
+"dir": "plusjakartasans",
+"category": "SANS_SERIF",
+"family": "Plus Jakarta Sans",
+"file": "PlusJakartaSans[wght].ttf"
+},
+{
+"dir": "notosanssignwriting",
+"category": "SANS_SERIF",
+"family": "Noto Sans SignWriting",
+"file": "NotoSansSignWriting-Regular.ttf"
+},
+{
+"dir": "snippet",
+"category": "SANS_SERIF",
+"family": "Snippet",
+"file": "Snippet.ttf"
+},
+{
+"dir": "notosansosmanya",
+"category": "SANS_SERIF",
+"family": "Noto Sans Osmanya",
+"file": "NotoSansOsmanya-Regular.ttf"
+},
+{
+"dir": "ibmplexserif",
+"category": "SERIF",
+"family": "IBM Plex Serif",
+"file": "IBMPlexSerif-Regular.ttf"
+},
+{
+"dir": "heebo",
+"category": "SANS_SERIF",
+"family": "Heebo",
+"file": "Heebo[wght].ttf"
+},
+{
+"dir": "genos",
+"category": "SANS_SERIF",
+"family": "Genos",
+"file": "Genos[wght].ttf"
+},
+{
+"dir": "notosanskhojki",
+"category": "SANS_SERIF",
+"family": "Noto Sans Khojki",
+"file": "NotoSansKhojki-Regular.ttf"
+},
+{
+"dir": "alkalami",
+"category": "SERIF",
+"family": "Alkalami",
+"file": "Alkalami-Regular.ttf"
+},
+{
+"dir": "annapurnasil",
+"category": "SERIF",
+"family": "Annapurna SIL",
+"file": "AnnapurnaSIL-Regular.ttf"
+},
+{
+"dir": "notoseriftoto",
+"category": "SERIF",
+"family": "Noto Serif Toto",
+"file": "NotoSerifToto[wght].ttf"
+},
+{
+"dir": "kaiseidecol",
+"category": "SERIF",
+"family": "Kaisei Decol",
+"file": "KaiseiDecol-Regular.ttf"
+},
+{
+"dir": "farro",
+"category": "SANS_SERIF",
+"family": "Farro",
+"file": "Farro-Regular.ttf"
+},
+{
+"dir": "gelasio",
+"category": "SERIF",
+"family": "Gelasio",
+"file": "Gelasio[wght].ttf"
+},
+{
+"dir": "tirotamil",
+"category": "SERIF",
+"family": "Tiro Tamil",
+"file": "TiroTamil-Regular.ttf"
+},
+{
+"dir": "prociono",
+"category": "SERIF",
+"family": "Prociono",
+"file": "Prociono-Regular.ttf"
+},
+{
+"dir": "heptaslab",
+"category": "SERIF",
+"family": "Hepta Slab",
+"file": "HeptaSlab[wght].ttf"
+},
+{
+"dir": "gentiumplus",
+"category": "SERIF",
+"family": "Gentium Plus",
+"file": "GentiumPlus-Regular.ttf"
+},
+{
+"dir": "bonanovasc",
+"category": "SERIF",
+"family": "Bona Nova SC",
+"file": "BonaNovaSC-Regular.ttf"
+},
+{
+"dir": "faustina",
+"category": "SERIF",
+"family": "Faustina",
+"file": "Faustina[wght].ttf"
+},
+{
+"dir": "anekmalayalam",
+"category": "SANS_SERIF",
+"family": "Anek Malayalam",
+"file": "AnekMalayalam[wdth,wght].ttf"
+},
+{
+"dir": "alegreyasans",
+"category": "SANS_SERIF",
+"family": "Alegreya Sans",
+"file": "AlegreyaSans-Regular.ttf"
+},
+{
+"dir": "notoserifkannada",
+"category": "SERIF",
+"family": "Noto Serif Kannada",
+"file": "NotoSerifKannada[wght].ttf"
+},
+{
+"dir": "elmssans",
+"category": "SANS_SERIF",
+"family": "Elms Sans",
+"file": "ElmsSans[wght].ttf"
+},
+{
+"dir": "muktamahee",
+"category": "SANS_SERIF",
+"family": "Mukta Mahee",
+"file": "MuktaMahee-Regular.ttf"
+},
+{
+"dir": "notosanssaurashtra",
+"category": "SANS_SERIF",
+"family": "Noto Sans Saurashtra",
+"file": "NotoSansSaurashtra-Regular.ttf"
+},
+{
+"dir": "rhodiumlibre",
+"category": "SERIF",
+"family": "Rhodium Libre",
+"file": "RhodiumLibre-Regular.ttf"
+},
+{
+"dir": "fjallaone",
+"category": "SANS_SERIF",
+"family": "Fjalla One",
+"file": "FjallaOne-Regular.ttf"
+},
+{
+"dir": "kurale",
+"category": "SERIF",
+"family": "Kurale",
+"file": "Kurale-Regular.ttf"
+},
+{
+"dir": "robotocondensed",
+"category": "SANS_SERIF",
+"family": "Roboto Condensed",
+"file": "RobotoCondensed[wght].ttf"
+},
+{
+"dir": "kadwa",
+"category": "SERIF",
+"family": "Kadwa",
+"file": "Kadwa-Regular.ttf"
+},
+{
+"dir": "librecasloncondensed",
+"category": "SERIF",
+"family": "Libre Caslon Condensed",
+"file": "LibreCaslonCondensed[wght].ttf"
+},
+{
+"dir": "benne",
+"category": "SERIF",
+"family": "Benne",
+"file": "Benne-Regular.ttf"
+},
+{
+"dir": "matangi",
+"category": "SANS_SERIF",
+"family": "Matangi",
+"file": "Matangi[wght].ttf"
+},
+{
+"dir": "bbhhegarty",
+"category": "SANS_SERIF",
+"family": "BBH Hegarty",
+"file": "BBHHegarty-Regular.ttf"
+},
+{
+"dir": "notoserifvithkuqi",
+"category": "SERIF",
+"family": "Noto Serif Vithkuqi",
+"file": "NotoSerifVithkuqi[wght].ttf"
+},
+{
+"dir": "nototraditionalnushu",
+"category": "SANS_SERIF",
+"family": "Noto Traditional Nushu",
+"file": "NotoTraditionalNushu[wght].ttf"
+},
+{
+"dir": "davidlibre",
+"category": "SERIF",
+"family": "David Libre",
+"file": "DavidLibre-Regular.ttf"
+},
+{
+"dir": "mplus1",
+"category": "SANS_SERIF",
+"family": "M PLUS 1",
+"file": "MPLUS1[wght].ttf"
+},
+{
+"dir": "lineseedjp",
+"category": "SANS_SERIF",
+"family": "LINE Seed JP",
+"file": "LINESeedJP-Regular.ttf"
+},
+{
+"dir": "bubblerone",
+"category": "SANS_SERIF",
+"family": "Bubbler One",
+"file": "BubblerOne-Regular.ttf"
+},
+{
+"dir": "b612",
+"category": "SANS_SERIF",
+"family": "B612",
+"file": "B612-Regular.ttf"
+},
+{
+"dir": "sofiasans",
+"category": "SANS_SERIF",
+"family": "Sofia Sans",
+"file": "SofiaSans[wght].ttf"
+},
+{
+"dir": "anta",
+"category": "SANS_SERIF",
+"family": "Anta",
+"file": "Anta-Regular.ttf"
+},
+{
+"dir": "gowunbatang",
+"category": "SERIF",
+"family": "Gowun Batang",
+"file": "GowunBatang-Regular.ttf"
+},
+{
+"dir": "tirokannada",
+"category": "SERIF",
+"family": "Tiro Kannada",
+"file": "TiroKannada-Regular.ttf"
+},
+{
+"dir": "notosanstaitham",
+"category": "SANS_SERIF",
+"family": "Noto Sans Tai Tham",
+"file": "NotoSansTaiTham[wght].ttf"
+},
+{
+"dir": "notosanslydian",
+"category": "SANS_SERIF",
+"family": "Noto Sans Lydian",
+"file": "NotoSansLydian-Regular.ttf"
+},
+{
+"dir": "notosanscherokee",
+"category": "SANS_SERIF",
+"family": "Noto Sans Cherokee",
+"file": "NotoSansCherokee[wght].ttf"
+},
+{
+"dir": "notosanspaucinhau",
+"category": "SANS_SERIF",
+"family": "Noto Sans Pau Cin Hau",
+"file": "NotoSansPauCinHau-Regular.ttf"
+},
+{
+"dir": "inclusivesans",
+"category": "SANS_SERIF",
+"family": "Inclusive Sans",
+"file": "InclusiveSans[wght].ttf"
+},
+{
+"dir": "jacquesfrancois",
+"category": "SERIF",
+"family": "Jacques Francois",
+"file": "JacquesFrancois-Regular.ttf"
+},
+{
+"dir": "cardo",
+"category": "SERIF",
+"family": "Cardo",
+"file": "Cardo-Regular.ttf"
+},
+{
+"dir": "notosanssyriacwestern",
+"category": "SANS_SERIF",
+"family": "Noto Sans Syriac Western",
+"file": "NotoSansSyriacWestern[wght].ttf"
+},
+{
+"dir": "parastoo",
+"category": "SERIF",
+"family": "Parastoo",
+"file": "Parastoo[wght].ttf"
+},
+{
+"dir": "arapey",
+"category": "SERIF",
+"family": "Arapey",
+"file": "Arapey-Regular.ttf"
+},
+{
+"dir": "alegreya",
+"category": "SERIF",
+"family": "Alegreya",
+"file": "Alegreya[wght].ttf"
+},
+{
+"dir": "redaction",
+"category": "SERIF",
+"family": "Redaction",
+"file": "Redaction-Regular.ttf"
+},
+{
+"dir": "notosansosage",
+"category": "SANS_SERIF",
+"family": "Noto Sans Osage",
+"file": "NotoSansOsage-Regular.ttf"
+},
+{
+"dir": "orienta",
+"category": "SANS_SERIF",
+"family": "Orienta",
+"file": "Orienta-Regular.ttf"
+},
+{
+"dir": "trocchi",
+"category": "SERIF",
+"family": "Trocchi",
+"file": "Trocchi-Regular.ttf"
+},
+{
+"dir": "ibmplexsanscondensed",
+"category": "SANS_SERIF",
+"family": "IBM Plex Sans Condensed",
+"file": "IBMPlexSansCondensed-Regular.ttf"
+},
+{
+"dir": "ibmplexsanshebrew",
+"category": "SANS_SERIF",
+"family": "IBM Plex Sans Hebrew",
+"file": "IBMPlexSansHebrew-Regular.ttf"
+},
+{
+"dir": "bizudpgothic",
+"category": "SANS_SERIF",
+"family": "BIZ UDPGothic",
+"file": "BIZUDPGothic-Regular.ttf"
+},
+{
+"dir": "matesc",
+"category": "SERIF",
+"family": "Mate SC",
+"file": "MateSC-Regular.ttf"
+},
+{
+"dir": "arsenal",
+"category": "SANS_SERIF",
+"family": "Arsenal",
+"file": "Arsenal-Regular.ttf"
+},
+{
+"dir": "domine",
+"category": "SERIF",
+"family": "Domine",
+"file": "Domine[wght].ttf"
+},
+{
+"dir": "tirodevanagarisanskrit",
+"category": "SERIF",
+"family": "Tiro Devanagari Sanskrit",
+"file": "TiroDevanagariSanskrit-Regular.ttf"
+},
+{
+"dir": "trykker",
+"category": "SERIF",
+"family": "Trykker",
+"file": "Trykker-Regular.ttf"
+}
+]

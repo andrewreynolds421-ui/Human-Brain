@@ -155,6 +155,13 @@ class SensoryLayer:
         undone (weights and thresholds restored)."""
         if learn and max_cells:
             w_backup = np.asarray(self.S.w).copy(); th_backup = np.asarray(self.E.theta).copy()
+        if not learn:
+            # Stage 38 fix: a frozen layer must not change while it is read.  theta decays with
+            # tau_theta (1e4 s) whether or not the layer learns; recording ~24,000 images (~8,000 s
+            # simulated) let the thresholds sag by ~half between the first and last recorded image, so
+            # a readout trained on early recordings was tested on a different network.  Diehl & Cook
+            # hold theta fixed in test mode; so do we (restored after every frozen presentation).
+            th_frozen = np.asarray(self.E.theta).copy()
         self.S.plastic = 1.0 if learn else 0.0
         self.E.theta_plus = (0.05 if learn else 0.0) * mV       # threshold adapts only while learning
         boost = 0.0
@@ -168,6 +175,8 @@ class SensoryLayer:
             if counts.sum() >= min_spikes or not x.any():
                 break
             boost += 32.0                       # Diehl & Cook: raise input intensity and repeat
+        if not learn:
+            self.E.theta = th_frozen * b2.volt
         if learn and max_cells and (counts > 0).sum() > max_cells:
             self.S.w = w_backup; self.E.theta = th_backup * b2.volt
             self.skipped_bursts = getattr(self, "skipped_bursts", 0) + 1
@@ -200,11 +209,13 @@ class SensoryLayer:
             self._tmon = b2.SpikeMonitor(self.E, name="sens_times")
             self.net.add(self._tmon)
         self.S.plastic = 0.0; self.E.theta_plus = 0 * mV
+        th_frozen = np.asarray(self.E.theta).copy()
         n0, t0 = self._tmon.num_spikes, float(self.net.t / ms)
         self._set_rates(self.code(text) * self.rate_hz)
         self.net.run((duration_ms or self.present_ms) * ms)
         self._set_rates(0)
         i = np.asarray(self._tmon.i)[n0:].copy(); t = np.asarray(self._tmon.t / ms)[n0:] - t0
+        self.E.theta = th_frozen * b2.volt                     # frozen read: thresholds unchanged (Stage 38)
         self._reset_state()
         self._tmon.resize(0); self._tmon.variables["N"].set_value(0)
         return i, t
