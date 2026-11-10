@@ -1,0 +1,6 @@
+box (Stage 38)  wavelength 6 dense : 0.973 | i 0.96 l 0.96 j 0.97 | hardest [('r', 0.93), ('f', 0.95), ('m', 0.95), ('e', 0.96), ('i', 0.96)]
+box (Stage 38)  wavelength 6 sparse: 0.956 | i 0.92 l 0.95 j 0.95 | hardest [('i', 0.92), ('d', 0.93), ('r', 0.93), ('t', 0.93), ('y', 0.93)]
+line            wavelength 6 dense : 0.969 | i 0.92 l 0.97 j 0.98 | hardest [('i', 0.92), ('t', 0.94), ('d', 0.95), ('e', 0.95), ('y', 0.95)]
+line            wavelength 6 sparse: 0.958 | i 0.92 l 0.96 j 0.95 | hardest [('i', 0.92), ('t', 0.92), ('y', 0.92), ('e', 0.93), ('c', 0.94)]
+line            wavelength 4 dense : 0.964 | i 0.93 l 0.96 j 0.97 | hardest [('i', 0.93), ('t', 0.93), ('c', 0.94), ('d', 0.95), ('e', 0.95)]
+line            wavelength 4 sparse: 0.955 | i 0.92 l 0.96 j 0.94 | hardest [('t', 0.91), ('y', 0.91), ('i', 0.92), ('c', 0.94), ('d', 0.94)]

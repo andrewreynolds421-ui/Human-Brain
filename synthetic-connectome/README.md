@@ -2472,7 +2472,7 @@ pixels (86.6 %).  Reading the layer together with the edge cells gives 97.3 %, n
 alone.
 
 **What is left** (all four networks agree): thin vertical letters - i↔l (the largest by far: 64-86 test
-images each way per network), j, f↔r, g↔q.  Much of i/l is the rendering, not the brain: every letter image
+images each way per network), j, f↔r, g↔q.  Much of i/l is the rendering, not the brain *(wrong: see Stage 39; the edge cells read i and l fine, the learned layer does not)*: every letter image
 is scaled on its own to fill a 20-pixel box (MNIST convention), which erases the cue a reader uses most - an
 l is tall and an i is short *relative to the line*.  Rendering letters on a common baseline and x-height,
 as they sit in text, is the next step.
@@ -2515,6 +2515,37 @@ Letter units here read the edge cells directly (the learned layer's responses we
 Scripts: `scripts/make_letters_families.py` (font list `data/letters_fam_fonts.json`), `synth/v1.py`,
 `scripts/letters_v1.py` (train / record / score), `scripts/analysis/stage38.py` (summary:
 `results/letters_fam/stage38_summary.json`).
+
+## Stage 39: letters on a text line — no gain for the learned layer (negative)
+
+**Idea.** Stage 38's images scale every letter on its own to a 20-pixel box, which erases relative
+height (l tall, i short, g and j below the line). `scripts/make_letters_line.py` renders the same 299
+families, same split, with one baseline and one scale per font (`data/letters_line.npz`).
+
+**Result** (letters in the 60 never-seen families; thresholds held during reads):
+
+| read by | box-scaled (Stage 38) | on a text line |
+|---|---|---|
+| letter units on the edge cells directly, sparse output (10,000 labelled images) | 95.6 % (i 92 %, l 95 %) | 95.8 % (i 92 %, l 96 %) |
+| learned layer, 400 cells, one pass | 86.9 ± 0.4 % (4 networks; i ~59 %, l ~65 %) | 85.1 % (1 network; i 56 %, l 74 %) |
+| learned layer, 1,600 cells, one pass | — | 82.8 % (1 network; i 51 %, l 72 %) |
+
+- **The i↔l errors belong to the learned layer, not to the images.** Read directly from the edge cells,
+  i and l are fine in both renderings. Stage 38's statement that much of i/l was the rendering was wrong.
+- **Line rendering does not help the learned layer.** l improves a little, i does not, and the smaller
+  letters (about half the size) bring new confusions among round letters (c↔e, o, t).
+- **A larger layer is worse after one pass** (as in Stage 22, where 1,600 cells needed three passes).
+- **A fast stand-in mis-predicted.** Clustered templates with the top 3 responding reproduced the real
+  layer on the box images (88 %, i ~53 %) and predicted 90 % (400) and 94 % (1,600) on the line images;
+  the real layers gave 85.1 % and 82.8 %. The stand-in is not used for decisions again without a real run.
+
+A second 400-cell network on the line images is running as a replication. Files:
+`results/letters_line/` (scores, the headroom and stand-in scripts with their outputs).
+
+**Open choice.** The line rendering is still needed for capitals (c and C differ only in size). For the
+remaining lowercase errors the candidates are: several passes for a larger layer (Stage 23 gained ~10
+points that way, ~12 h per network), a larger image so line-rendered letters keep their resolution, or
+accepting 87 % from the learned layer while letter units also read the edge cells (97 %).
 
 ## Open problems found so far
 

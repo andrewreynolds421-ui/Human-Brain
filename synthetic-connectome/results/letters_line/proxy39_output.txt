@@ -1,0 +1,8 @@
+box (Stage 38)  templates seed 0: 0.882 | i 0.52 l 0.71 j 0.84 f 0.75 g 0.78 | i->l 127, l->i 49 | hardest [('i', 0.52), ('l', 0.71), ('f', 0.75), ('g', 0.78)]
+box (Stage 38)  templates seed 1: 0.885 | i 0.55 l 0.62 j 0.91 f 0.75 g 0.86 | i->l 94, l->i 86 | hardest [('i', 0.55), ('l', 0.62), ('f', 0.75), ('r', 0.84)]
+line            templates seed 0: 0.903 | i 0.63 l 0.79 j 0.91 f 0.85 g 0.89 | i->l 86, l->i 48 | hardest [('i', 0.63), ('l', 0.79), ('t', 0.79), ('f', 0.85)]
+line            templates seed 1: 0.899 | i 0.55 l 0.78 j 0.92 f 0.85 g 0.86 | i->l 115, l->i 62 | hardest [('i', 0.55), ('l', 0.78), ('t', 0.84), ('f', 0.85)]
+line: 400 templates, top 3 respond: 0.904 | i 0.60 l 0.81
+line: 400 templates, top 10 respond: 0.904 | i 0.60 l 0.79
+line: 1600 templates, top 3 respond: 0.938 | i 0.81 l 0.89
+line: 1600 templates, top 10 respond: 0.940 | i 0.78 l 0.87

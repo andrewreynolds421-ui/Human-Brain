@@ -17,11 +17,16 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 sys.path.insert(0, ROOT)
 from synth.v1 import complex_cells, as_rates, sparsify   # noqa: E402
 
-DATA = os.path.join(ROOT, "data", "letters_fam.npz")
-V1_CACHE = os.path.join(ROOT, "data", "letters_fam_v1.npz")
+DATASETS = {"fam": "letters_fam", "line": "letters_line"}     # box-scaled (Stage 38) / on a text line (Stage 39)
 
 
-def inputs(kind, total):
+def paths(data="fam"):
+    b = os.path.join(ROOT, "data", DATASETS[data])
+    return b + ".npz", b + "_v1.npz"
+
+
+def inputs(kind, total, data="fam"):
+    DATA, V1_CACHE = paths(data)
     d = np.load(DATA)
     if kind in ("v1", "v1sparse"):
         if not os.path.exists(V1_CACHE):
@@ -41,7 +46,7 @@ def train(a):
     from synth.sensory import SensoryLayer
     os.makedirs(a.out, exist_ok=True)
     json.dump(vars(a), open(os.path.join(a.out, "args.json"), "w"))
-    X, y = inputs(a.input, a.total)
+    X, y = inputs(a.input, a.total, a.data)
     n_in = X["train"].shape[1]
     rng = np.random.default_rng(a.seed)
     n_total = int(a.epochs * len(X["train"]))
@@ -63,7 +68,7 @@ def train(a):
         S.save(ck + ".tmp.npz"); os.replace(ck + ".tmp.npz", ck)
     sub = np.sort(np.random.default_rng(100 + a.seed).choice(len(X["train"]), a.n_readout, replace=False))
     for name, idx in (("train", sub), ("val", np.arange(len(X["val"]))), ("test", np.arange(len(X["test"])))):
-        f = os.path.join(a.out, f"counts_{name}.npz")
+        f = os.path.join(a.out, f"counts_{name}_i1.npz")       # thresholds are held during reads (Stage 38)
         C = np.zeros((len(idx), S.n_e), np.int16); done = 0
         if os.path.exists(f):
             dd = np.load(f); done = int(dd["done"]); C[:done] = dd["C"][:done]
@@ -72,6 +77,7 @@ def train(a):
             if (m + 1) % 500 == 0 or m + 1 == len(idx):
                 np.savez(f + ".tmp.npz", C=C, idx=idx, done=m + 1); os.replace(f + ".tmp.npz", f)
                 print(f"recorded {name} {m + 1}/{len(idx)} ({time.time() - t0:.0f} s)", flush=True)
+    open(os.path.join(a.out, "DONE_i1"), "w").write("ok\n")
     open(os.path.join(a.out, "DONE"), "w").write("ok\n")
 
 
@@ -79,9 +85,10 @@ def record(a):
     """re-read a trained layer with lateral inhibition x a.inhib: counts_<set>_i<inhib>.npz"""
     from synth.sensory import SensoryLayer
     ra = argparse.Namespace(**json.load(open(os.path.join(a.out, "args.json"))))
-    X, y = inputs(ra.input, ra.total)
+    X, y = inputs(ra.input, ra.total, getattr(ra, 'data', 'fam'))
     S = SensoryLayer.load(os.path.join(a.out, "layer.npz"))
-    sub = np.load(os.path.join(a.out, "counts_train.npz"))["idx"]
+    f0 = os.path.join(a.out, "counts_train.npz")
+    sub = np.load(f0 if os.path.exists(f0) else os.path.join(a.out, "counts_train_i1.npz"))["idx"]
     t0 = time.time()
     for name, idx in (("train", sub), ("val", np.arange(len(X["val"]))), ("test", np.arange(len(X["test"])))):
         f = os.path.join(a.out, f"counts_{name}_i{a.inhib:g}.npz")
@@ -116,18 +123,19 @@ def readout(Ftr, ytr, Fva, yva, Fte, yte, Cs=(0.03, 0.1, 0.3, 1.0)):
 
 def score(a):
     rows = []
-    v = np.load(V1_CACHE)
-    d = np.load(DATA)
-    y = {k: d[f"y_{k}"] for k in ("train", "val", "test")}
     for run in a.runs:
         ra = json.load(open(os.path.join(run, "args.json")))
+        DATA, V1_CACHE = paths(ra.get("data", "fam"))
+        v = np.load(V1_CACHE)
+        d = np.load(DATA)
+        y = {k: d[f"y_{k}"] for k in ("train", "val", "test")}
         suf = f"_i{a.inhib:g}"                     # recorded with frozen thresholds (Stage 38 fix)
         C = {k: np.load(os.path.join(run, f"counts_{k}{suf}.npz")) for k in ("train", "val", "test")}
         idx = C["train"]["idx"]
         L = {k: np.log1p(C[k]["C"].astype(float)) for k in C}
         yy = {"train": y["train"][idx], "val": y["val"], "test": y["test"]}
         V = {"train": v["V_train"][idx], "val": v["V_val"], "test": v["V_test"]}
-        res = dict(run=run, inhib=a.inhib, input=ra["input"], n_e=ra["n_e"], epochs=ra["epochs"], seed=ra["seed"],
+        res = dict(run=run, inhib=a.inhib, data=ra.get("data", "fam"), input=ra["input"], n_e=ra["n_e"], epochs=ra["epochs"], seed=ra["seed"],
                    cells_firing_test=round(float((C["test"]["C"] > 0).sum(1).mean()), 2),
                    silent_test=round(float((C["test"]["C"].sum(1) == 0).mean()), 4))
         res["letter_units_on_layer"] = readout(L["train"], yy["train"], L["val"], yy["val"], L["test"], yy["test"])
@@ -145,6 +153,7 @@ def main():
     ap.add_argument("cmd", choices=("train", "record", "score"))
     ap.add_argument("runs", nargs="*")
     ap.add_argument("--input", choices=("v1", "v1sparse", "pixels"), default="v1")
+    ap.add_argument("--data", choices=tuple(DATASETS), default="fam")
     ap.add_argument("--n-e", type=int, default=400)
     ap.add_argument("--epochs", type=float, default=1.0)
     ap.add_argument("--seed", type=int, default=0)

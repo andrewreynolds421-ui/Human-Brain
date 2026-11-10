@@ -506,3 +506,11 @@ Process notes:
   turned out to be the drift bug.
 - A draft table had one wrong cell (82.2 for 81.2), caught on re-reading against the analysis files.
 
+## 20. Follow-up (10 November): Stage 39 — line-rendered letters, negative
+
+Rendering letters on a common baseline did not help the learned letter layer (85.1 % vs 86.9 %), and a
+1,600-cell layer was worse after one pass (82.8 %). The edge cells read i and l correctly in both
+renderings, so the Stage 38 explanation of the i/l errors (the rendering) was wrong and is marked so. A
+clustering stand-in used to predict the outcome was off by 5-11 points; it had matched the real layer on
+one image set only. Single networks so far; one replication is running.
+
