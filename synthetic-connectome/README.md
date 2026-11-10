@@ -1500,6 +1500,8 @@ to hold a short sequence. That is where a prediction rule is needed.
 
 ## Stage 22: recognising letters better
 
+*(Note added in Stage 38: the recordings behind this stage had threshold drift while the trained layer was being read, and its "unseen fonts" were mostly unseen styles of familiar families. See Stage 38 for the size of the effect and the corrected test.)*
+
 Accuracy on letters from 22 fonts never seen in training (chance 3.8%). The
 layer always learns without labels; "learned letter names" is a readout
 trained on the frozen layer's responses to 3,000 labelled training images —
@@ -1530,6 +1532,8 @@ it costs 2x time. One pass is not enough for 1,600 cells to beat 400 — the
 next test is 1,600 cells over 3 passes (running, checkpointed).
 
 ## Stage 23: letters to 76% — size plus practice, and a safety valve
+
+*(Note added in Stage 38: the recordings behind this stage had threshold drift while the trained layer was being read, and its "unseen fonts" were mostly unseen styles of familiar families. See Stage 38 for the size of the effect and the corrected test.)*
 
 Same test as Stage 22 (22 unseen fonts, chance 3.8%):
 
@@ -2256,6 +2260,8 @@ guards the exactness (`test_merged_loop_gives_identical_spikes`), and
 
 ## Stage 36: from letters to words — a prediction rule helps, a spiking sequence layer does not (yet)
 
+*(Note added in Stage 38: the sequence-layer rows below were recorded with threshold drift. Re-recorded with the fix, networks 1–2 at weak inhibition give the same answer (81.2 / 79.6 % on new words); the remaining re-checks are queued. The context-pathway rows do not use the sequence layer, but their letter evidence comes from letter-layer recordings with ~20 % drift.)*
+
 **Set-up** (`synth/words.py`, `scripts/word_reading.py`).
 
 - **Letters.** Printed words arrive one letter at a time. Each letter is a real
@@ -2450,7 +2456,9 @@ families, no labels; letter units then read its spike counts; 10,000 labelled im
 | pixels | 69.6 % (~3 cells fire) | 80.0 % (~17 cells) |
 | V1 cells, dense output | 59.9 % (~5 cells) | 72.8 % (~12 cells) |
 | **V1 cells, sparse output** (4 networks) | **86.9 ± 0.4 %** (~3 cells) | — |
-| (the V1 cells themselves, read directly) | 97.3 % | |
+| (the V1 cells themselves, read directly, same 10,000 labelled images) | 97.3 % | |
+
+(97.8 % in the table above is the same readout trained on all 32,604 training images.)
 
 (All with thresholds held fixed during reading; see the bug below.)
 
