@@ -265,7 +265,9 @@ the long form. Priorities as they stand on 5 Nov:
    designs); V1-like sparse edge cells feeding the learned layer: 86.9 +/- 0.4 % (4 networks), pixels 69.6 %;
    edge cells read directly 97.8 %; words follow - whole words ~95 % from edge-based letter units.)*
    **Next, in order**: (a) *(done, README Stage 39: negative - line rendering 85.1 % vs 86.9 %, 1,600 cells
-   82.8 % after one pass; i/l errors are the learned layer's, not the images')*; (b) capitals and their relation to lowercase (abstract letter identity);
+   82.8 % after one pass; a 48 x 40 image 80.3 %; i/l errors are the learned layer's, not the images'. The limit
+   is the whole-letter template layer: next lever is part-of-image cells feeding a second layer, or several
+   passes for a larger layer)*; (b) capitals and their relation to lowercase (abstract letter identity);
    (c) words read through the learned layer, not only the edge cells; (d) finish the queued re-check of the
    Stage 36 sequence layer at normal inhibition (job queue `words_rec_*_i1_fixed`).
 5. *(Done 7 Nov, README Stages 33–34: with a corrected LFP proxy the 30–45 Hz slope is near human (−2.2 vs −2.8/−3.0); slow power ~25 dB short, open problem 13.)* **Stage 7, cheaply**: compare the column's population spectrum with human

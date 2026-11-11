@@ -514,3 +514,8 @@ renderings, so the Stage 38 explanation of the i/l errors (the rendering) was wr
 clustering stand-in used to predict the outcome was off by 5-11 points; it had matched the real layer on
 one image set only. Single networks so far; one replication is running.
 
+Addendum (10 November, evening): the replication on the small line images gave 85.3 % (85.1 %). A larger
+image (48 x 40) raised the edge-cell readout to 96.8 % and lowered the learned layer to 80.3 % (one
+network; replication running). All three image changes and the larger layer left the learned layer at or
+below 86.9 %; the limit is the whole-letter template layer.
+

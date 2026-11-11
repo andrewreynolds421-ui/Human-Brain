@@ -2539,13 +2539,27 @@ families, same split, with one baseline and one scale per font (`data/letters_li
   layer on the box images (88 %, i ~53 %) and predicted 90 % (400) and 94 % (1,600) on the line images;
   the real layers gave 85.1 % and 82.8 %. The stand-in is not used for decisions again without a real run.
 
-A second 400-cell network on the line images is running as a replication. Files:
-`results/letters_line/` (scores, the headroom and stand-in scripts with their outputs).
+**Replication and a larger image.** A second 400-cell network on the line images gives 85.3 % (first:
+85.1 %). Rendering the line letters on a 48 × 40 image, so the letter bodies are as large as in the box
+images (960 edge cells instead of 392), helps the edge cells and hurts the learned layer:
 
-**Open choice.** The line rendering is still needed for capitals (c and C differ only in size). For the
-remaining lowercase errors the candidates are: several passes for a larger layer (Stage 23 gained ~10
-points that way, ~12 h per network), a larger image so line-rendered letters keep their resolution, or
-accepting 87 % from the learned layer while letter units also read the edge cells (97 %).
+| read by | box 28 × 28 | line 28 × 28 | line 48 × 40 |
+|---|---|---|---|
+| letter units on the edge cells, sparse output | 95.6 % | 95.8 % | **96.8 %** (i 95 %, l 98 %) |
+| learned layer, 400 cells, one pass | **86.9 ± 0.4 %** (4 networks) | 85.1, 85.3 % | 80.3 % (1 network; replication running) |
+
+On the larger image the layer's errors spread to more letters (n, o, c at 67–70 %; n→h appears). With 2.4
+times as many inputs and the same 400 whole-image templates, each template covers less of the variation
+in position and shape. The information is in the edge cells in every rendering; the whole-letter template
+layer is what loses it, and more so the more detail it is given.
+
+**Conclusion for lowercase.** Three changes to the images (line rendering, larger image) and one to the
+layer (1,600 cells, one pass) all left the learned layer at or below Stage 38's 86.9 %. The limit is the
+layer type - one template per whole letter, a handful of winners - not the input. Candidates that address
+that: cells that each see part of the image feeding a second layer (as Stage 23 proposed), or several
+passes for a larger layer. Until then the letter units read the edge cells (96-98 %).
+
+Files: `results/letters_line/` (scores, the headroom and stand-in scripts with their outputs).
 
 ## Open problems found so far
 

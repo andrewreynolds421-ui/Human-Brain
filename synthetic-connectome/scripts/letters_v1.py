@@ -17,7 +17,7 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")
 sys.path.insert(0, ROOT)
 from synth.v1 import complex_cells, as_rates, sparsify   # noqa: E402
 
-DATASETS = {"fam": "letters_fam", "line": "letters_line"}     # box-scaled (Stage 38) / on a text line (Stage 39)
+DATASETS = {"fam": "letters_fam", "line": "letters_line", "line48": "letters_line48"}     # box-scaled (Stage 38) / on a text line (Stage 39)
 
 
 def paths(data="fam"):

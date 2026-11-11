@@ -29,16 +29,17 @@ KERNELS = [(gabor(th, 0.0), gabor(th, np.pi / 2)) for th in np.arange(N_OR) * np
 
 
 def complex_cells(X):
-    """X: (n, 28, 28) images in [0, 1] -> (n, 392) complex-cell responses (orientation-major)"""
+    """X: (n, H, W) images in [0, 1] (or (n, 784) for 28 x 28) -> (n, 8 * (H//4) * (W//4)) complex-cell
+    responses (orientation-major); 28 x 28 gives 392 cells"""
     X = np.asarray(X, float)
     if X.ndim == 2:
         X = X.reshape(len(X), 28, 28)
-    n, h = len(X), X.shape[1] // POOL
-    out = np.zeros((n, N_OR, h, h))
+    n, h, w = len(X), X.shape[1] // POOL, X.shape[2] // POOL
+    out = np.zeros((n, N_OR, h, w))
     for o, (ke, ko) in enumerate(KERNELS):
         for i in range(n):
             e = np.sqrt(convolve(X[i], ke) ** 2 + convolve(X[i], ko) ** 2)
-            out[i, o] = e[:h * POOL, :h * POOL].reshape(h, POOL, h, POOL).max((1, 3))
+            out[i, o] = e[:h * POOL, :w * POOL].reshape(h, POOL, w, POOL).max((1, 3))
     return out.reshape(n, -1)
 
 
