@@ -1,0 +1,2080 @@
+{
+ "networks": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "100": {
+  "1": {
+   "lower": {
+    "word": [
+     98.2,
+     0.4
+    ],
+    "word_each_word_equally": [
+     97.2,
+     1.6
+    ],
+    "every_letter_right_alone": [
+     86.0,
+     1.4
+    ],
+    "every_letter_right_with_prediction": [
+     94.1,
+     0.6
+    ],
+    "letters_alone": [
+     94.4,
+     0.5
+    ],
+    "letters_with_prediction": [
+     97.4,
+     0.1
+    ],
+    "letters_from_word": [
+     98.9,
+     0.2
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     3.8,
+     0.7
+    ]
+   },
+   "Capital": {
+    "word": [
+     97.8,
+     0.3
+    ],
+    "word_each_word_equally": [
+     96.5,
+     1.6
+    ],
+    "every_letter_right_alone": [
+     82.5,
+     0.4
+    ],
+    "every_letter_right_with_prediction": [
+     91.5,
+     0.5
+    ],
+    "letters_alone": [
+     93.1,
+     0.3
+    ],
+    "letters_with_prediction": [
+     96.5,
+     0.2
+    ],
+    "letters_from_word": [
+     98.8,
+     0.1
+    ],
+    "capital_I_alone": [
+     52.1,
+     11.8
+    ],
+    "capital_I_from_word": [
+     100.0,
+     0.0
+    ],
+    "capital_I_count": 58,
+    "known_word_called_unknown": [
+     4.9,
+     0.9
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     97.1,
+     0.6
+    ],
+    "word_each_word_equally": [
+     95.5,
+     1.2
+    ],
+    "every_letter_right_alone": [
+     70.7,
+     1.7
+    ],
+    "every_letter_right_with_prediction": [
+     87.6,
+     0.8
+    ],
+    "letters_alone": [
+     88.5,
+     0.8
+    ],
+    "letters_with_prediction": [
+     95.0,
+     0.5
+    ],
+    "letters_from_word": [
+     98.4,
+     0.4
+    ],
+    "capital_I_alone": [
+     50.4,
+     5.1
+    ],
+    "capital_I_from_word": [
+     98.8,
+     1.5
+    ],
+    "capital_I_count": 834,
+    "known_word_called_unknown": [
+     9.0,
+     1.6
+    ]
+   },
+   "unknown_words_flagged": [
+    98.6,
+    0.6
+   ]
+  },
+  "3": {
+   "lower": {
+    "word": [
+     98.7,
+     0.2
+    ],
+    "word_each_word_equally": [
+     98.2,
+     0.3
+    ],
+    "every_letter_right_alone": [
+     86.0,
+     1.4
+    ],
+    "every_letter_right_with_prediction": [
+     94.1,
+     0.6
+    ],
+    "letters_alone": [
+     94.4,
+     0.5
+    ],
+    "letters_with_prediction": [
+     97.4,
+     0.1
+    ],
+    "letters_from_word": [
+     99.1,
+     0.2
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     3.7,
+     0.7
+    ]
+   },
+   "Capital": {
+    "word": [
+     98.3,
+     0.3
+    ],
+    "word_each_word_equally": [
+     97.0,
+     0.5
+    ],
+    "every_letter_right_alone": [
+     82.5,
+     0.4
+    ],
+    "every_letter_right_with_prediction": [
+     91.5,
+     0.5
+    ],
+    "letters_alone": [
+     93.1,
+     0.3
+    ],
+    "letters_with_prediction": [
+     96.5,
+     0.2
+    ],
+    "letters_from_word": [
+     98.9,
+     0.1
+    ],
+    "capital_I_alone": [
+     52.1,
+     11.8
+    ],
+    "capital_I_from_word": [
+     100.0,
+     0.0
+    ],
+    "capital_I_count": 58,
+    "known_word_called_unknown": [
+     4.8,
+     1.2
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     97.8,
+     0.2
+    ],
+    "word_each_word_equally": [
+     96.1,
+     1.0
+    ],
+    "every_letter_right_alone": [
+     70.7,
+     1.7
+    ],
+    "every_letter_right_with_prediction": [
+     87.6,
+     0.8
+    ],
+    "letters_alone": [
+     88.5,
+     0.8
+    ],
+    "letters_with_prediction": [
+     95.0,
+     0.5
+    ],
+    "letters_from_word": [
+     98.6,
+     0.2
+    ],
+    "capital_I_alone": [
+     50.4,
+     5.1
+    ],
+    "capital_I_from_word": [
+     99.5,
+     0.4
+    ],
+    "capital_I_count": 834,
+    "known_word_called_unknown": [
+     9.0,
+     2.5
+    ]
+   },
+   "unknown_words_flagged": [
+    98.8,
+    1.1
+   ]
+  },
+  "10": {
+   "lower": {
+    "word": [
+     98.9,
+     0.1
+    ],
+    "word_each_word_equally": [
+     97.9,
+     0.4
+    ],
+    "every_letter_right_alone": [
+     86.0,
+     1.4
+    ],
+    "every_letter_right_with_prediction": [
+     94.1,
+     0.6
+    ],
+    "letters_alone": [
+     94.4,
+     0.5
+    ],
+    "letters_with_prediction": [
+     97.4,
+     0.1
+    ],
+    "letters_from_word": [
+     99.2,
+     0.2
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     3.1,
+     0.3
+    ]
+   },
+   "Capital": {
+    "word": [
+     98.4,
+     0.5
+    ],
+    "word_each_word_equally": [
+     97.4,
+     0.2
+    ],
+    "every_letter_right_alone": [
+     82.5,
+     0.4
+    ],
+    "every_letter_right_with_prediction": [
+     91.5,
+     0.5
+    ],
+    "letters_alone": [
+     93.1,
+     0.3
+    ],
+    "letters_with_prediction": [
+     96.5,
+     0.2
+    ],
+    "letters_from_word": [
+     99.0,
+     0.1
+    ],
+    "capital_I_alone": [
+     52.1,
+     11.8
+    ],
+    "capital_I_from_word": [
+     100.0,
+     0.0
+    ],
+    "capital_I_count": 58,
+    "known_word_called_unknown": [
+     4.0,
+     0.7
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     97.8,
+     0.1
+    ],
+    "word_each_word_equally": [
+     96.4,
+     0.7
+    ],
+    "every_letter_right_alone": [
+     70.7,
+     1.7
+    ],
+    "every_letter_right_with_prediction": [
+     87.6,
+     0.8
+    ],
+    "letters_alone": [
+     88.5,
+     0.8
+    ],
+    "letters_with_prediction": [
+     95.0,
+     0.5
+    ],
+    "letters_from_word": [
+     98.6,
+     0.2
+    ],
+    "capital_I_alone": [
+     50.4,
+     5.1
+    ],
+    "capital_I_from_word": [
+     99.6,
+     0.2
+    ],
+    "capital_I_count": 834,
+    "known_word_called_unknown": [
+     7.6,
+     2.1
+    ]
+   },
+   "unknown_words_flagged": [
+    98.0,
+    1.1
+   ]
+  },
+  "exact": {
+   "lower": {
+    "word": [
+     98.8,
+     0.2
+    ],
+    "word_each_word_equally": [
+     98.0,
+     0.6
+    ],
+    "every_letter_right_alone": [
+     86.0,
+     1.4
+    ],
+    "every_letter_right_with_prediction": [
+     94.1,
+     0.6
+    ],
+    "letters_alone": [
+     94.4,
+     0.5
+    ],
+    "letters_with_prediction": [
+     97.4,
+     0.1
+    ],
+    "letters_from_word": [
+     99.1,
+     0.1
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     3.3,
+     0.2
+    ]
+   },
+   "Capital": {
+    "word": [
+     98.5,
+     0.4
+    ],
+    "word_each_word_equally": [
+     97.3,
+     0.4
+    ],
+    "every_letter_right_alone": [
+     82.5,
+     0.4
+    ],
+    "every_letter_right_with_prediction": [
+     91.5,
+     0.5
+    ],
+    "letters_alone": [
+     93.1,
+     0.3
+    ],
+    "letters_with_prediction": [
+     96.5,
+     0.2
+    ],
+    "letters_from_word": [
+     99.0,
+     0.2
+    ],
+    "capital_I_alone": [
+     52.1,
+     11.8
+    ],
+    "capital_I_from_word": [
+     100.0,
+     0.0
+    ],
+    "capital_I_count": 58,
+    "known_word_called_unknown": [
+     4.2,
+     0.7
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     97.9,
+     0.2
+    ],
+    "word_each_word_equally": [
+     96.4,
+     0.5
+    ],
+    "every_letter_right_alone": [
+     70.7,
+     1.7
+    ],
+    "every_letter_right_with_prediction": [
+     87.6,
+     0.8
+    ],
+    "letters_alone": [
+     88.5,
+     0.8
+    ],
+    "letters_with_prediction": [
+     95.0,
+     0.5
+    ],
+    "letters_from_word": [
+     98.6,
+     0.2
+    ],
+    "capital_I_alone": [
+     50.4,
+     5.1
+    ],
+    "capital_I_from_word": [
+     99.6,
+     0.2
+    ],
+    "capital_I_count": 834,
+    "known_word_called_unknown": [
+     7.8,
+     1.9
+    ]
+   },
+   "unknown_words_flagged": [
+    98.4,
+    0.8
+   ]
+  }
+ },
+ "500": {
+  "1": {
+   "lower": {
+    "word": [
+     97.4,
+     0.3
+    ],
+    "word_each_word_equally": [
+     96.4,
+     1.0
+    ],
+    "every_letter_right_alone": [
+     85.1,
+     1.5
+    ],
+    "every_letter_right_with_prediction": [
+     92.8,
+     1.1
+    ],
+    "letters_alone": [
+     94.1,
+     0.5
+    ],
+    "letters_with_prediction": [
+     96.9,
+     0.3
+    ],
+    "letters_from_word": [
+     98.4,
+     0.1
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     6.1,
+     1.7
+    ]
+   },
+   "Capital": {
+    "word": [
+     97.2,
+     0.5
+    ],
+    "word_each_word_equally": [
+     95.6,
+     1.1
+    ],
+    "every_letter_right_alone": [
+     81.8,
+     0.6
+    ],
+    "every_letter_right_with_prediction": [
+     89.9,
+     0.5
+    ],
+    "letters_alone": [
+     93.0,
+     0.4
+    ],
+    "letters_with_prediction": [
+     96.1,
+     0.2
+    ],
+    "letters_from_word": [
+     98.3,
+     0.1
+    ],
+    "capital_I_alone": [
+     63.5,
+     18.5
+    ],
+    "capital_I_from_word": [
+     98.1,
+     3.8
+    ],
+    "capital_I_count": 45,
+    "known_word_called_unknown": [
+     7.5,
+     2.7
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     96.3,
+     0.4
+    ],
+    "word_each_word_equally": [
+     94.4,
+     0.9
+    ],
+    "every_letter_right_alone": [
+     68.7,
+     0.4
+    ],
+    "every_letter_right_with_prediction": [
+     84.8,
+     0.3
+    ],
+    "letters_alone": [
+     88.3,
+     0.3
+    ],
+    "letters_with_prediction": [
+     94.2,
+     0.2
+    ],
+    "letters_from_word": [
+     97.8,
+     0.2
+    ],
+    "capital_I_alone": [
+     54.1,
+     6.9
+    ],
+    "capital_I_from_word": [
+     98.4,
+     1.5
+    ],
+    "capital_I_count": 1101,
+    "known_word_called_unknown": [
+     13.4,
+     3.4
+    ]
+   },
+   "unknown_words_flagged": [
+    96.2,
+    3.7
+   ]
+  },
+  "3": {
+   "lower": {
+    "word": [
+     98.0,
+     0.4
+    ],
+    "word_each_word_equally": [
+     97.4,
+     0.6
+    ],
+    "every_letter_right_alone": [
+     85.1,
+     1.5
+    ],
+    "every_letter_right_with_prediction": [
+     92.8,
+     1.1
+    ],
+    "letters_alone": [
+     94.1,
+     0.5
+    ],
+    "letters_with_prediction": [
+     96.9,
+     0.3
+    ],
+    "letters_from_word": [
+     98.6,
+     0.2
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     6.0,
+     1.7
+    ]
+   },
+   "Capital": {
+    "word": [
+     97.7,
+     0.4
+    ],
+    "word_each_word_equally": [
+     96.8,
+     0.7
+    ],
+    "every_letter_right_alone": [
+     81.8,
+     0.6
+    ],
+    "every_letter_right_with_prediction": [
+     89.9,
+     0.5
+    ],
+    "letters_alone": [
+     93.0,
+     0.4
+    ],
+    "letters_with_prediction": [
+     96.1,
+     0.2
+    ],
+    "letters_from_word": [
+     98.5,
+     0.3
+    ],
+    "capital_I_alone": [
+     63.5,
+     18.5
+    ],
+    "capital_I_from_word": [
+     98.1,
+     3.8
+    ],
+    "capital_I_count": 45,
+    "known_word_called_unknown": [
+     7.7,
+     1.4
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     97.1,
+     0.1
+    ],
+    "word_each_word_equally": [
+     96.2,
+     0.4
+    ],
+    "every_letter_right_alone": [
+     68.7,
+     0.4
+    ],
+    "every_letter_right_with_prediction": [
+     84.8,
+     0.3
+    ],
+    "letters_alone": [
+     88.3,
+     0.3
+    ],
+    "letters_with_prediction": [
+     94.2,
+     0.2
+    ],
+    "letters_from_word": [
+     98.1,
+     0.2
+    ],
+    "capital_I_alone": [
+     54.1,
+     6.9
+    ],
+    "capital_I_from_word": [
+     98.8,
+     1.3
+    ],
+    "capital_I_count": 1101,
+    "known_word_called_unknown": [
+     13.9,
+     2.1
+    ]
+   },
+   "unknown_words_flagged": [
+    98.3,
+    1.4
+   ]
+  },
+  "10": {
+   "lower": {
+    "word": [
+     98.0,
+     0.3
+    ],
+    "word_each_word_equally": [
+     97.4,
+     0.5
+    ],
+    "every_letter_right_alone": [
+     85.1,
+     1.5
+    ],
+    "every_letter_right_with_prediction": [
+     92.8,
+     1.1
+    ],
+    "letters_alone": [
+     94.1,
+     0.5
+    ],
+    "letters_with_prediction": [
+     96.9,
+     0.3
+    ],
+    "letters_from_word": [
+     98.6,
+     0.2
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     5.8,
+     1.5
+    ]
+   },
+   "Capital": {
+    "word": [
+     97.8,
+     0.4
+    ],
+    "word_each_word_equally": [
+     97.0,
+     0.6
+    ],
+    "every_letter_right_alone": [
+     81.8,
+     0.6
+    ],
+    "every_letter_right_with_prediction": [
+     89.9,
+     0.5
+    ],
+    "letters_alone": [
+     93.0,
+     0.4
+    ],
+    "letters_with_prediction": [
+     96.1,
+     0.2
+    ],
+    "letters_from_word": [
+     98.5,
+     0.3
+    ],
+    "capital_I_alone": [
+     63.5,
+     18.5
+    ],
+    "capital_I_from_word": [
+     98.1,
+     3.8
+    ],
+    "capital_I_count": 45,
+    "known_word_called_unknown": [
+     7.4,
+     1.5
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     97.2,
+     0.3
+    ],
+    "word_each_word_equally": [
+     96.2,
+     0.5
+    ],
+    "every_letter_right_alone": [
+     68.7,
+     0.4
+    ],
+    "every_letter_right_with_prediction": [
+     84.8,
+     0.3
+    ],
+    "letters_alone": [
+     88.3,
+     0.3
+    ],
+    "letters_with_prediction": [
+     94.2,
+     0.2
+    ],
+    "letters_from_word": [
+     98.2,
+     0.2
+    ],
+    "capital_I_alone": [
+     54.1,
+     6.9
+    ],
+    "capital_I_from_word": [
+     98.8,
+     1.2
+    ],
+    "capital_I_count": 1101,
+    "known_word_called_unknown": [
+     13.7,
+     1.8
+    ]
+   },
+   "unknown_words_flagged": [
+    98.3,
+    1.2
+   ]
+  },
+  "exact": {
+   "lower": {
+    "word": [
+     98.0,
+     0.4
+    ],
+    "word_each_word_equally": [
+     97.5,
+     0.6
+    ],
+    "every_letter_right_alone": [
+     85.1,
+     1.5
+    ],
+    "every_letter_right_with_prediction": [
+     92.8,
+     1.1
+    ],
+    "letters_alone": [
+     94.1,
+     0.5
+    ],
+    "letters_with_prediction": [
+     96.9,
+     0.3
+    ],
+    "letters_from_word": [
+     98.6,
+     0.3
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     5.7,
+     1.6
+    ]
+   },
+   "Capital": {
+    "word": [
+     97.8,
+     0.4
+    ],
+    "word_each_word_equally": [
+     97.2,
+     0.6
+    ],
+    "every_letter_right_alone": [
+     81.8,
+     0.6
+    ],
+    "every_letter_right_with_prediction": [
+     89.9,
+     0.5
+    ],
+    "letters_alone": [
+     93.0,
+     0.4
+    ],
+    "letters_with_prediction": [
+     96.1,
+     0.2
+    ],
+    "letters_from_word": [
+     98.5,
+     0.3
+    ],
+    "capital_I_alone": [
+     63.5,
+     18.5
+    ],
+    "capital_I_from_word": [
+     98.1,
+     3.8
+    ],
+    "capital_I_count": 45,
+    "known_word_called_unknown": [
+     7.1,
+     1.6
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     97.2,
+     0.3
+    ],
+    "word_each_word_equally": [
+     96.3,
+     0.3
+    ],
+    "every_letter_right_alone": [
+     68.7,
+     0.4
+    ],
+    "every_letter_right_with_prediction": [
+     84.8,
+     0.3
+    ],
+    "letters_alone": [
+     88.3,
+     0.3
+    ],
+    "letters_with_prediction": [
+     94.2,
+     0.2
+    ],
+    "letters_from_word": [
+     98.2,
+     0.3
+    ],
+    "capital_I_alone": [
+     54.1,
+     6.9
+    ],
+    "capital_I_from_word": [
+     98.8,
+     1.2
+    ],
+    "capital_I_count": 1101,
+    "known_word_called_unknown": [
+     13.2,
+     2.0
+    ]
+   },
+   "unknown_words_flagged": [
+    98.6,
+    1.1
+   ]
+  }
+ },
+ "2000": {
+  "1": {
+   "lower": {
+    "word": [
+     96.6,
+     0.4
+    ],
+    "word_each_word_equally": [
+     94.8,
+     0.4
+    ],
+    "every_letter_right_alone": [
+     84.1,
+     1.5
+    ],
+    "every_letter_right_with_prediction": [
+     91.3,
+     1.0
+    ],
+    "letters_alone": [
+     93.9,
+     0.6
+    ],
+    "letters_with_prediction": [
+     96.8,
+     0.2
+    ],
+    "letters_from_word": [
+     98.1,
+     0.4
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     10.0,
+     0.6
+    ]
+   },
+   "Capital": {
+    "word": [
+     96.0,
+     0.4
+    ],
+    "word_each_word_equally": [
+     94.2,
+     0.6
+    ],
+    "every_letter_right_alone": [
+     80.3,
+     0.8
+    ],
+    "every_letter_right_with_prediction": [
+     88.1,
+     1.0
+    ],
+    "letters_alone": [
+     92.7,
+     0.4
+    ],
+    "letters_with_prediction": [
+     95.8,
+     0.2
+    ],
+    "letters_from_word": [
+     97.9,
+     0.3
+    ],
+    "capital_I_alone": [
+     55.7,
+     18.4
+    ],
+    "capital_I_from_word": [
+     94.9,
+     7.3
+    ],
+    "capital_I_count": 55,
+    "known_word_called_unknown": [
+     12.0,
+     0.8
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     95.0,
+     0.5
+    ],
+    "word_each_word_equally": [
+     92.6,
+     0.7
+    ],
+    "every_letter_right_alone": [
+     67.0,
+     1.0
+    ],
+    "every_letter_right_with_prediction": [
+     81.6,
+     0.7
+    ],
+    "letters_alone": [
+     87.9,
+     0.4
+    ],
+    "letters_with_prediction": [
+     93.6,
+     0.3
+    ],
+    "letters_from_word": [
+     97.3,
+     0.4
+    ],
+    "capital_I_alone": [
+     52.8,
+     6.3
+    ],
+    "capital_I_from_word": [
+     97.1,
+     0.6
+    ],
+    "capital_I_count": 1260,
+    "known_word_called_unknown": [
+     20.4,
+     1.8
+    ]
+   },
+   "unknown_words_flagged": [
+    97.6,
+    0.9
+   ]
+  },
+  "3": {
+   "lower": {
+    "word": [
+     97.6,
+     0.3
+    ],
+    "word_each_word_equally": [
+     96.4,
+     0.3
+    ],
+    "every_letter_right_alone": [
+     84.1,
+     1.5
+    ],
+    "every_letter_right_with_prediction": [
+     91.3,
+     1.0
+    ],
+    "letters_alone": [
+     93.9,
+     0.6
+    ],
+    "letters_with_prediction": [
+     96.8,
+     0.2
+    ],
+    "letters_from_word": [
+     98.4,
+     0.3
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     7.8,
+     1.2
+    ]
+   },
+   "Capital": {
+    "word": [
+     97.0,
+     0.3
+    ],
+    "word_each_word_equally": [
+     95.6,
+     0.5
+    ],
+    "every_letter_right_alone": [
+     80.3,
+     0.8
+    ],
+    "every_letter_right_with_prediction": [
+     88.1,
+     1.0
+    ],
+    "letters_alone": [
+     92.7,
+     0.4
+    ],
+    "letters_with_prediction": [
+     95.8,
+     0.2
+    ],
+    "letters_from_word": [
+     98.2,
+     0.3
+    ],
+    "capital_I_alone": [
+     55.7,
+     18.4
+    ],
+    "capital_I_from_word": [
+     94.9,
+     7.3
+    ],
+    "capital_I_count": 55,
+    "known_word_called_unknown": [
+     10.2,
+     1.2
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     96.2,
+     0.4
+    ],
+    "word_each_word_equally": [
+     94.0,
+     0.3
+    ],
+    "every_letter_right_alone": [
+     67.0,
+     1.0
+    ],
+    "every_letter_right_with_prediction": [
+     81.6,
+     0.7
+    ],
+    "letters_alone": [
+     87.9,
+     0.4
+    ],
+    "letters_with_prediction": [
+     93.6,
+     0.3
+    ],
+    "letters_from_word": [
+     97.7,
+     0.4
+    ],
+    "capital_I_alone": [
+     52.8,
+     6.3
+    ],
+    "capital_I_from_word": [
+     97.6,
+     0.7
+    ],
+    "capital_I_count": 1260,
+    "known_word_called_unknown": [
+     18.9,
+     3.8
+    ]
+   },
+   "unknown_words_flagged": [
+    98.0,
+    0.8
+   ]
+  },
+  "10": {
+   "lower": {
+    "word": [
+     97.7,
+     0.3
+    ],
+    "word_each_word_equally": [
+     96.5,
+     0.3
+    ],
+    "every_letter_right_alone": [
+     84.1,
+     1.5
+    ],
+    "every_letter_right_with_prediction": [
+     91.3,
+     1.0
+    ],
+    "letters_alone": [
+     93.9,
+     0.6
+    ],
+    "letters_with_prediction": [
+     96.8,
+     0.2
+    ],
+    "letters_from_word": [
+     98.4,
+     0.3
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     8.4,
+     0.8
+    ]
+   },
+   "Capital": {
+    "word": [
+     97.1,
+     0.3
+    ],
+    "word_each_word_equally": [
+     95.8,
+     0.5
+    ],
+    "every_letter_right_alone": [
+     80.3,
+     0.8
+    ],
+    "every_letter_right_with_prediction": [
+     88.1,
+     1.0
+    ],
+    "letters_alone": [
+     92.7,
+     0.4
+    ],
+    "letters_with_prediction": [
+     95.8,
+     0.2
+    ],
+    "letters_from_word": [
+     98.1,
+     0.4
+    ],
+    "capital_I_alone": [
+     55.7,
+     18.4
+    ],
+    "capital_I_from_word": [
+     94.9,
+     7.3
+    ],
+    "capital_I_count": 55,
+    "known_word_called_unknown": [
+     10.9,
+     1.3
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     96.3,
+     0.4
+    ],
+    "word_each_word_equally": [
+     94.3,
+     0.6
+    ],
+    "every_letter_right_alone": [
+     67.0,
+     1.0
+    ],
+    "every_letter_right_with_prediction": [
+     81.6,
+     0.7
+    ],
+    "letters_alone": [
+     87.9,
+     0.4
+    ],
+    "letters_with_prediction": [
+     93.6,
+     0.3
+    ],
+    "letters_from_word": [
+     97.7,
+     0.3
+    ],
+    "capital_I_alone": [
+     52.8,
+     6.3
+    ],
+    "capital_I_from_word": [
+     97.6,
+     0.4
+    ],
+    "capital_I_count": 1260,
+    "known_word_called_unknown": [
+     19.9,
+     2.3
+    ]
+   },
+   "unknown_words_flagged": [
+    99.4,
+    0.2
+   ]
+  },
+  "exact": {
+   "lower": {
+    "word": [
+     97.8,
+     0.3
+    ],
+    "word_each_word_equally": [
+     96.9,
+     0.2
+    ],
+    "every_letter_right_alone": [
+     84.1,
+     1.5
+    ],
+    "every_letter_right_with_prediction": [
+     91.3,
+     1.0
+    ],
+    "letters_alone": [
+     93.9,
+     0.6
+    ],
+    "letters_with_prediction": [
+     96.8,
+     0.2
+    ],
+    "letters_from_word": [
+     98.5,
+     0.3
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     7.4,
+     1.1
+    ]
+   },
+   "Capital": {
+    "word": [
+     97.2,
+     0.3
+    ],
+    "word_each_word_equally": [
+     96.2,
+     0.4
+    ],
+    "every_letter_right_alone": [
+     80.3,
+     0.8
+    ],
+    "every_letter_right_with_prediction": [
+     88.1,
+     1.0
+    ],
+    "letters_alone": [
+     92.7,
+     0.4
+    ],
+    "letters_with_prediction": [
+     95.8,
+     0.2
+    ],
+    "letters_from_word": [
+     98.2,
+     0.4
+    ],
+    "capital_I_alone": [
+     55.7,
+     18.4
+    ],
+    "capital_I_from_word": [
+     94.9,
+     7.3
+    ],
+    "capital_I_count": 55,
+    "known_word_called_unknown": [
+     9.6,
+     1.9
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     96.4,
+     0.3
+    ],
+    "word_each_word_equally": [
+     94.8,
+     0.4
+    ],
+    "every_letter_right_alone": [
+     67.0,
+     1.0
+    ],
+    "every_letter_right_with_prediction": [
+     81.6,
+     0.7
+    ],
+    "letters_alone": [
+     87.9,
+     0.4
+    ],
+    "letters_with_prediction": [
+     93.6,
+     0.3
+    ],
+    "letters_from_word": [
+     97.8,
+     0.3
+    ],
+    "capital_I_alone": [
+     52.8,
+     6.3
+    ],
+    "capital_I_from_word": [
+     97.5,
+     0.8
+    ],
+    "capital_I_count": 1260,
+    "known_word_called_unknown": [
+     17.5,
+     3.0
+    ]
+   },
+   "unknown_words_flagged": [
+    98.7,
+    1.2
+   ]
+  }
+ },
+ "5000": {
+  "1": {
+   "lower": {
+    "word": [
+     95.6,
+     0.8
+    ],
+    "word_each_word_equally": [
+     91.0,
+     1.1
+    ],
+    "every_letter_right_alone": [
+     83.8,
+     1.7
+    ],
+    "every_letter_right_with_prediction": [
+     90.8,
+     0.9
+    ],
+    "letters_alone": [
+     93.9,
+     0.6
+    ],
+    "letters_with_prediction": [
+     96.5,
+     0.3
+    ],
+    "letters_from_word": [
+     97.8,
+     0.4
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     13.1,
+     1.6
+    ]
+   },
+   "Capital": {
+    "word": [
+     94.9,
+     0.6
+    ],
+    "word_each_word_equally": [
+     90.3,
+     1.1
+    ],
+    "every_letter_right_alone": [
+     80.5,
+     1.0
+    ],
+    "every_letter_right_with_prediction": [
+     88.0,
+     1.0
+    ],
+    "letters_alone": [
+     92.9,
+     0.5
+    ],
+    "letters_with_prediction": [
+     95.7,
+     0.5
+    ],
+    "letters_from_word": [
+     97.5,
+     0.3
+    ],
+    "capital_I_alone": [
+     60.8,
+     12.5
+    ],
+    "capital_I_from_word": [
+     91.7,
+     6.9
+    ],
+    "capital_I_count": 68,
+    "known_word_called_unknown": [
+     15.0,
+     2.3
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     94.2,
+     1.0
+    ],
+    "word_each_word_equally": [
+     88.0,
+     1.6
+    ],
+    "every_letter_right_alone": [
+     66.5,
+     1.4
+    ],
+    "every_letter_right_with_prediction": [
+     82.7,
+     1.2
+    ],
+    "letters_alone": [
+     88.3,
+     1.1
+    ],
+    "letters_with_prediction": [
+     94.0,
+     0.7
+    ],
+    "letters_from_word": [
+     97.1,
+     0.5
+    ],
+    "capital_I_alone": [
+     56.5,
+     6.0
+    ],
+    "capital_I_from_word": [
+     97.1,
+     0.8
+    ],
+    "capital_I_count": 1385,
+    "known_word_called_unknown": [
+     23.6,
+     4.9
+    ]
+   },
+   "unknown_words_flagged": [
+    98.7,
+    0.1
+   ]
+  },
+  "3": {
+   "lower": {
+    "word": [
+     97.1,
+     0.4
+    ],
+    "word_each_word_equally": [
+     93.0,
+     0.5
+    ],
+    "every_letter_right_alone": [
+     83.8,
+     1.7
+    ],
+    "every_letter_right_with_prediction": [
+     90.8,
+     0.9
+    ],
+    "letters_alone": [
+     93.9,
+     0.6
+    ],
+    "letters_with_prediction": [
+     96.5,
+     0.3
+    ],
+    "letters_from_word": [
+     98.3,
+     0.3
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     9.8,
+     1.3
+    ]
+   },
+   "Capital": {
+    "word": [
+     96.4,
+     0.4
+    ],
+    "word_each_word_equally": [
+     92.0,
+     0.9
+    ],
+    "every_letter_right_alone": [
+     80.5,
+     1.0
+    ],
+    "every_letter_right_with_prediction": [
+     88.0,
+     1.0
+    ],
+    "letters_alone": [
+     92.9,
+     0.5
+    ],
+    "letters_with_prediction": [
+     95.7,
+     0.5
+    ],
+    "letters_from_word": [
+     97.9,
+     0.3
+    ],
+    "capital_I_alone": [
+     60.8,
+     12.5
+    ],
+    "capital_I_from_word": [
+     90.4,
+     6.6
+    ],
+    "capital_I_count": 68,
+    "known_word_called_unknown": [
+     11.9,
+     1.1
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     95.5,
+     0.5
+    ],
+    "word_each_word_equally": [
+     90.0,
+     1.4
+    ],
+    "every_letter_right_alone": [
+     66.5,
+     1.4
+    ],
+    "every_letter_right_with_prediction": [
+     82.7,
+     1.2
+    ],
+    "letters_alone": [
+     88.3,
+     1.1
+    ],
+    "letters_with_prediction": [
+     94.0,
+     0.7
+    ],
+    "letters_from_word": [
+     97.4,
+     0.3
+    ],
+    "capital_I_alone": [
+     56.5,
+     6.0
+    ],
+    "capital_I_from_word": [
+     97.6,
+     0.4
+    ],
+    "capital_I_count": 1385,
+    "known_word_called_unknown": [
+     21.5,
+     1.7
+    ]
+   },
+   "unknown_words_flagged": [
+    98.8,
+    0.8
+   ]
+  },
+  "10": {
+   "lower": {
+    "word": [
+     97.3,
+     0.3
+    ],
+    "word_each_word_equally": [
+     93.5,
+     0.6
+    ],
+    "every_letter_right_alone": [
+     83.8,
+     1.7
+    ],
+    "every_letter_right_with_prediction": [
+     90.8,
+     0.9
+    ],
+    "letters_alone": [
+     93.9,
+     0.6
+    ],
+    "letters_with_prediction": [
+     96.5,
+     0.3
+    ],
+    "letters_from_word": [
+     98.4,
+     0.3
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     9.0,
+     0.6
+    ]
+   },
+   "Capital": {
+    "word": [
+     96.6,
+     0.7
+    ],
+    "word_each_word_equally": [
+     92.7,
+     0.9
+    ],
+    "every_letter_right_alone": [
+     80.5,
+     1.0
+    ],
+    "every_letter_right_with_prediction": [
+     88.0,
+     1.0
+    ],
+    "letters_alone": [
+     92.9,
+     0.5
+    ],
+    "letters_with_prediction": [
+     95.7,
+     0.5
+    ],
+    "letters_from_word": [
+     98.0,
+     0.4
+    ],
+    "capital_I_alone": [
+     60.8,
+     12.5
+    ],
+    "capital_I_from_word": [
+     93.5,
+     5.6
+    ],
+    "capital_I_count": 68,
+    "known_word_called_unknown": [
+     11.0,
+     0.2
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     95.7,
+     0.4
+    ],
+    "word_each_word_equally": [
+     90.7,
+     1.2
+    ],
+    "every_letter_right_alone": [
+     66.5,
+     1.4
+    ],
+    "every_letter_right_with_prediction": [
+     82.7,
+     1.2
+    ],
+    "letters_alone": [
+     88.3,
+     1.1
+    ],
+    "letters_with_prediction": [
+     94.0,
+     0.7
+    ],
+    "letters_from_word": [
+     97.5,
+     0.3
+    ],
+    "capital_I_alone": [
+     56.5,
+     6.0
+    ],
+    "capital_I_from_word": [
+     97.8,
+     0.5
+    ],
+    "capital_I_count": 1385,
+    "known_word_called_unknown": [
+     19.9,
+     2.5
+    ]
+   },
+   "unknown_words_flagged": [
+    98.7,
+    0.5
+   ]
+  },
+  "exact": {
+   "lower": {
+    "word": [
+     97.3,
+     0.4
+    ],
+    "word_each_word_equally": [
+     94.5,
+     0.5
+    ],
+    "every_letter_right_alone": [
+     83.8,
+     1.7
+    ],
+    "every_letter_right_with_prediction": [
+     90.8,
+     0.9
+    ],
+    "letters_alone": [
+     93.9,
+     0.6
+    ],
+    "letters_with_prediction": [
+     96.5,
+     0.3
+    ],
+    "letters_from_word": [
+     98.4,
+     0.3
+    ],
+    "capital_I_alone": null,
+    "capital_I_from_word": null,
+    "capital_I_count": 0,
+    "known_word_called_unknown": [
+     8.4,
+     0.9
+    ]
+   },
+   "Capital": {
+    "word": [
+     96.9,
+     0.5
+    ],
+    "word_each_word_equally": [
+     93.7,
+     0.4
+    ],
+    "every_letter_right_alone": [
+     80.5,
+     1.0
+    ],
+    "every_letter_right_with_prediction": [
+     88.0,
+     1.0
+    ],
+    "letters_alone": [
+     92.9,
+     0.5
+    ],
+    "letters_with_prediction": [
+     95.7,
+     0.5
+    ],
+    "letters_from_word": [
+     98.2,
+     0.2
+    ],
+    "capital_I_alone": [
+     60.8,
+     12.5
+    ],
+    "capital_I_from_word": [
+     92.8,
+     6.0
+    ],
+    "capital_I_count": 68,
+    "known_word_called_unknown": [
+     10.5,
+     0.4
+    ]
+   },
+   "ALLCAPS": {
+    "word": [
+     96.2,
+     0.3
+    ],
+    "word_each_word_equally": [
+     91.6,
+     0.9
+    ],
+    "every_letter_right_alone": [
+     66.5,
+     1.4
+    ],
+    "every_letter_right_with_prediction": [
+     82.7,
+     1.2
+    ],
+    "letters_alone": [
+     88.3,
+     1.1
+    ],
+    "letters_with_prediction": [
+     94.0,
+     0.7
+    ],
+    "letters_from_word": [
+     97.8,
+     0.2
+    ],
+    "capital_I_alone": [
+     56.5,
+     6.0
+    ],
+    "capital_I_from_word": [
+     97.8,
+     0.3
+    ],
+    "capital_I_count": 1385,
+    "known_word_called_unknown": [
+     19.1,
+     1.5
+    ]
+   },
+   "unknown_words_flagged": [
+    99.3,
+    0.6
+   ]
+  }
+ }
+}

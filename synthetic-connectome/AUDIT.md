@@ -539,3 +539,13 @@ settled lowercase knowledge from a stable copy fixes it on four networks: lowerc
 condition, capitals up 3-9 points, 100 fonts of label-free pairs equal to labelled teaching. Stage 40's
 explanation of the lowercase loss ("one unit, two shapes") was wrong and is superseded here.
 
+## 23. Follow-up (11 November): Stage 42 — word units
+
+One unit per taught word, learned from the letter units' own reports (named showings). Four networks,
+never-seen fonts: 5,000 words recognised at 97.1 +/- 0.4 % (lowercase), 96.4 % (Capitalised), 95.5 % (ALL
+CAPS, never shown to the word units), against 84 % / 91 % reading letter by letter without / with
+prediction. One showing gives 95.6 %. Capital I: 56 % alone, 98 % from the word. Unknown words flagged
+98-99 %; known words wrongly flagged 4-10 %. Word units use labels (the word's name); position slots and
+known length are assumed. The first run of network 1 covered two vocabulary sizes only and was rerun in
+full before the summary.
+

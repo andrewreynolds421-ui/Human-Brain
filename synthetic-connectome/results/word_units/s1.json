@@ -1,0 +1,701 @@
+{
+ "seed": 1,
+ "vocab": {
+  "100": {
+   "1": {
+    "threshold": -1.369,
+    "lower": {
+     "word": 0.9853,
+     "word_types": 0.98,
+     "letters_alone": 0.9381,
+     "letters_pred": 0.9732,
+     "letters_word": 0.9911,
+     "all_alone": 0.8467,
+     "all_pred": 0.936,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.038,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.9793,
+     "word_types": 0.9767,
+     "letters_alone": 0.931,
+     "letters_pred": 0.9674,
+     "letters_word": 0.9894,
+     "all_alone": 0.824,
+     "all_pred": 0.9167,
+     "capI_alone": 0.5556,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.0473,
+     "capI_n": 18
+    },
+    "ALLCAPS": {
+     "word": 0.9787,
+     "word_types": 0.9633,
+     "letters_alone": 0.896,
+     "letters_pred": 0.9557,
+     "letters_word": 0.9888,
+     "all_alone": 0.732,
+     "all_pred": 0.884,
+     "capI_alone": 0.4554,
+     "capI_word": 0.995,
+     "known_flagged_unknown": 0.07,
+     "capI_n": 202
+    },
+    "unknown_words_flagged": 0.9833
+   },
+   "3": {
+    "threshold": -1.408,
+    "lower": {
+     "word": 0.9867,
+     "word_types": 0.98,
+     "letters_alone": 0.9381,
+     "letters_pred": 0.9732,
+     "letters_word": 0.9918,
+     "all_alone": 0.8467,
+     "all_pred": 0.936,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.038,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.9807,
+     "word_types": 0.9733,
+     "letters_alone": 0.931,
+     "letters_pred": 0.9674,
+     "letters_word": 0.9894,
+     "all_alone": 0.824,
+     "all_pred": 0.9167,
+     "capI_alone": 0.5556,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.0413,
+     "capI_n": 18
+    },
+    "ALLCAPS": {
+     "word": 0.9787,
+     "word_types": 0.9633,
+     "letters_alone": 0.896,
+     "letters_pred": 0.9557,
+     "letters_word": 0.9888,
+     "all_alone": 0.732,
+     "all_pred": 0.884,
+     "capI_alone": 0.4554,
+     "capI_word": 0.995,
+     "known_flagged_unknown": 0.0613,
+     "capI_n": 202
+    },
+    "unknown_words_flagged": 0.98
+   },
+   "10": {
+    "threshold": -1.444,
+    "lower": {
+     "word": 0.9887,
+     "word_types": 0.98,
+     "letters_alone": 0.9381,
+     "letters_pred": 0.9732,
+     "letters_word": 0.9935,
+     "all_alone": 0.8467,
+     "all_pred": 0.936,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.03,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.978,
+     "word_types": 0.9767,
+     "letters_alone": 0.931,
+     "letters_pred": 0.9674,
+     "letters_word": 0.9885,
+     "all_alone": 0.824,
+     "all_pred": 0.9167,
+     "capI_alone": 0.5556,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.0353,
+     "capI_n": 18
+    },
+    "ALLCAPS": {
+     "word": 0.978,
+     "word_types": 0.9667,
+     "letters_alone": 0.896,
+     "letters_pred": 0.9557,
+     "letters_word": 0.988,
+     "all_alone": 0.732,
+     "all_pred": 0.884,
+     "capI_alone": 0.4554,
+     "capI_word": 0.995,
+     "known_flagged_unknown": 0.052,
+     "capI_n": 202
+    },
+    "unknown_words_flagged": 0.9767
+   },
+   "exact": {
+    "threshold": -1.448,
+    "lower": {
+     "word": 0.9873,
+     "word_types": 0.9767,
+     "letters_alone": 0.9381,
+     "letters_pred": 0.9732,
+     "letters_word": 0.9921,
+     "all_alone": 0.8467,
+     "all_pred": 0.936,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.034,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.9813,
+     "word_types": 0.9767,
+     "letters_alone": 0.931,
+     "letters_pred": 0.9674,
+     "letters_word": 0.9897,
+     "all_alone": 0.824,
+     "all_pred": 0.9167,
+     "capI_alone": 0.5556,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.0407,
+     "capI_n": 18
+    },
+    "ALLCAPS": {
+     "word": 0.98,
+     "word_types": 0.9667,
+     "letters_alone": 0.896,
+     "letters_pred": 0.9557,
+     "letters_word": 0.9887,
+     "all_alone": 0.732,
+     "all_pred": 0.884,
+     "capI_alone": 0.4554,
+     "capI_word": 0.995,
+     "known_flagged_unknown": 0.0573,
+     "capI_n": 202
+    },
+    "unknown_words_flagged": 0.9817
+   }
+  },
+  "500": {
+   "1": {
+    "threshold": -1.33,
+    "lower": {
+     "word": 0.974,
+     "word_types": 0.9767,
+     "letters_alone": 0.9369,
+     "letters_pred": 0.9677,
+     "letters_word": 0.9832,
+     "all_alone": 0.8393,
+     "all_pred": 0.92,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.0387,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.972,
+     "word_types": 0.968,
+     "letters_alone": 0.9312,
+     "letters_pred": 0.9611,
+     "letters_word": 0.9835,
+     "all_alone": 0.8193,
+     "all_pred": 0.8987,
+     "capI_alone": 0.4545,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.0393,
+     "capI_n": 11
+    },
+    "ALLCAPS": {
+     "word": 0.9627,
+     "word_types": 0.954,
+     "letters_alone": 0.8875,
+     "letters_pred": 0.9447,
+     "letters_word": 0.9766,
+     "all_alone": 0.6873,
+     "all_pred": 0.8513,
+     "capI_alone": 0.4702,
+     "capI_word": 0.9614,
+     "known_flagged_unknown": 0.0867,
+     "capI_n": 285
+    },
+    "unknown_words_flagged": 0.9083
+   },
+   "3": {
+    "threshold": -0.678,
+    "lower": {
+     "word": 0.9753,
+     "word_types": 0.9793,
+     "letters_alone": 0.9369,
+     "letters_pred": 0.9677,
+     "letters_word": 0.9835,
+     "all_alone": 0.8393,
+     "all_pred": 0.92,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.0847,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.972,
+     "word_types": 0.9753,
+     "letters_alone": 0.9312,
+     "letters_pred": 0.9611,
+     "letters_word": 0.9816,
+     "all_alone": 0.8193,
+     "all_pred": 0.8987,
+     "capI_alone": 0.4545,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.0927,
+     "capI_n": 11
+    },
+    "ALLCAPS": {
+     "word": 0.9707,
+     "word_types": 0.9673,
+     "letters_alone": 0.8875,
+     "letters_pred": 0.9447,
+     "letters_word": 0.981,
+     "all_alone": 0.6873,
+     "all_pred": 0.8513,
+     "capI_alone": 0.4702,
+     "capI_word": 0.9684,
+     "known_flagged_unknown": 0.1667,
+     "capI_n": 285
+    },
+    "unknown_words_flagged": 0.9983
+   },
+   "10": {
+    "threshold": -0.714,
+    "lower": {
+     "word": 0.9753,
+     "word_types": 0.98,
+     "letters_alone": 0.9369,
+     "letters_pred": 0.9677,
+     "letters_word": 0.9831,
+     "all_alone": 0.8393,
+     "all_pred": 0.92,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.0787,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.9747,
+     "word_types": 0.9773,
+     "letters_alone": 0.9312,
+     "letters_pred": 0.9611,
+     "letters_word": 0.9834,
+     "all_alone": 0.8193,
+     "all_pred": 0.8987,
+     "capI_alone": 0.4545,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.09,
+     "capI_n": 11
+    },
+    "ALLCAPS": {
+     "word": 0.9747,
+     "word_types": 0.9673,
+     "letters_alone": 0.8875,
+     "letters_pred": 0.9447,
+     "letters_word": 0.9822,
+     "all_alone": 0.6873,
+     "all_pred": 0.8513,
+     "capI_alone": 0.4702,
+     "capI_word": 0.9719,
+     "known_flagged_unknown": 0.156,
+     "capI_n": 285
+    },
+    "unknown_words_flagged": 0.9933
+   },
+   "exact": {
+    "threshold": -0.644,
+    "lower": {
+     "word": 0.9753,
+     "word_types": 0.9807,
+     "letters_alone": 0.9369,
+     "letters_pred": 0.9677,
+     "letters_word": 0.9829,
+     "all_alone": 0.8393,
+     "all_pred": 0.92,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.0807,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.9753,
+     "word_types": 0.9793,
+     "letters_alone": 0.9312,
+     "letters_pred": 0.9611,
+     "letters_word": 0.9836,
+     "all_alone": 0.8193,
+     "all_pred": 0.8987,
+     "capI_alone": 0.4545,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.09,
+     "capI_n": 11
+    },
+    "ALLCAPS": {
+     "word": 0.974,
+     "word_types": 0.966,
+     "letters_alone": 0.8875,
+     "letters_pred": 0.9447,
+     "letters_word": 0.982,
+     "all_alone": 0.6873,
+     "all_pred": 0.8513,
+     "capI_alone": 0.4702,
+     "capI_word": 0.9719,
+     "known_flagged_unknown": 0.1593,
+     "capI_n": 285
+    },
+    "unknown_words_flagged": 0.995
+   }
+  },
+  "2000": {
+   "1": {
+    "threshold": -0.852,
+    "lower": {
+     "word": 0.9693,
+     "word_types": 0.954,
+     "letters_alone": 0.9337,
+     "letters_pred": 0.9664,
+     "letters_word": 0.9831,
+     "all_alone": 0.8313,
+     "all_pred": 0.908,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.1067,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.964,
+     "word_types": 0.9487,
+     "letters_alone": 0.9273,
+     "letters_pred": 0.9569,
+     "letters_word": 0.9825,
+     "all_alone": 0.8013,
+     "all_pred": 0.872,
+     "capI_alone": 0.6,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.12,
+     "capI_n": 15
+    },
+    "ALLCAPS": {
+     "word": 0.9547,
+     "word_types": 0.9353,
+     "letters_alone": 0.884,
+     "letters_pred": 0.937,
+     "letters_word": 0.9776,
+     "all_alone": 0.678,
+     "all_pred": 0.8233,
+     "capI_alone": 0.4686,
+     "capI_word": 0.978,
+     "known_flagged_unknown": 0.178,
+     "capI_n": 318
+    },
+    "unknown_words_flagged": 0.9633
+   },
+   "3": {
+    "threshold": -0.797,
+    "lower": {
+     "word": 0.976,
+     "word_types": 0.9673,
+     "letters_alone": 0.9337,
+     "letters_pred": 0.9664,
+     "letters_word": 0.9849,
+     "all_alone": 0.8313,
+     "all_pred": 0.908,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.08,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.9727,
+     "word_types": 0.9573,
+     "letters_alone": 0.9273,
+     "letters_pred": 0.9569,
+     "letters_word": 0.9854,
+     "all_alone": 0.8013,
+     "all_pred": 0.872,
+     "capI_alone": 0.6,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.096,
+     "capI_n": 15
+    },
+    "ALLCAPS": {
+     "word": 0.9673,
+     "word_types": 0.9447,
+     "letters_alone": 0.884,
+     "letters_pred": 0.937,
+     "letters_word": 0.9814,
+     "all_alone": 0.678,
+     "all_pred": 0.8233,
+     "capI_alone": 0.4686,
+     "capI_word": 0.9843,
+     "known_flagged_unknown": 0.144,
+     "capI_n": 318
+    },
+    "unknown_words_flagged": 0.975
+   },
+   "10": {
+    "threshold": -0.709,
+    "lower": {
+     "word": 0.976,
+     "word_types": 0.9627,
+     "letters_alone": 0.9337,
+     "letters_pred": 0.9664,
+     "letters_word": 0.9854,
+     "all_alone": 0.8313,
+     "all_pred": 0.908,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.09,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.9733,
+     "word_types": 0.958,
+     "letters_alone": 0.9273,
+     "letters_pred": 0.9569,
+     "letters_word": 0.9859,
+     "all_alone": 0.8013,
+     "all_pred": 0.872,
+     "capI_alone": 0.6,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.1127,
+     "capI_n": 15
+    },
+    "ALLCAPS": {
+     "word": 0.966,
+     "word_types": 0.9467,
+     "letters_alone": 0.884,
+     "letters_pred": 0.937,
+     "letters_word": 0.9792,
+     "all_alone": 0.678,
+     "all_pred": 0.8233,
+     "capI_alone": 0.4686,
+     "capI_word": 0.9811,
+     "known_flagged_unknown": 0.1667,
+     "capI_n": 318
+    },
+    "unknown_words_flagged": 0.9917
+   },
+   "exact": {
+    "threshold": -0.772,
+    "lower": {
+     "word": 0.9767,
+     "word_types": 0.9693,
+     "letters_alone": 0.9337,
+     "letters_pred": 0.9664,
+     "letters_word": 0.9861,
+     "all_alone": 0.8313,
+     "all_pred": 0.908,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.076,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.9747,
+     "word_types": 0.9627,
+     "letters_alone": 0.9273,
+     "letters_pred": 0.9569,
+     "letters_word": 0.9867,
+     "all_alone": 0.8013,
+     "all_pred": 0.872,
+     "capI_alone": 0.6,
+     "capI_word": 1.0,
+     "known_flagged_unknown": 0.09,
+     "capI_n": 15
+    },
+    "ALLCAPS": {
+     "word": 0.9673,
+     "word_types": 0.9527,
+     "letters_alone": 0.884,
+     "letters_pred": 0.937,
+     "letters_word": 0.9808,
+     "all_alone": 0.678,
+     "all_pred": 0.8233,
+     "capI_alone": 0.4686,
+     "capI_word": 0.9843,
+     "known_flagged_unknown": 0.1413,
+     "capI_n": 318
+    },
+    "unknown_words_flagged": 0.975
+   }
+  },
+  "5000": {
+   "1": {
+    "threshold": -0.677,
+    "lower": {
+     "word": 0.9653,
+     "word_types": 0.912,
+     "letters_alone": 0.9383,
+     "letters_pred": 0.9631,
+     "letters_word": 0.9842,
+     "all_alone": 0.842,
+     "all_pred": 0.9033,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.1327,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.956,
+     "word_types": 0.906,
+     "letters_alone": 0.93,
+     "letters_pred": 0.9573,
+     "letters_word": 0.9788,
+     "all_alone": 0.8113,
+     "all_pred": 0.8793,
+     "capI_alone": 0.5714,
+     "capI_word": 0.8571,
+     "known_flagged_unknown": 0.1407,
+     "capI_n": 14
+    },
+    "ALLCAPS": {
+     "word": 0.9527,
+     "word_types": 0.89,
+     "letters_alone": 0.8968,
+     "letters_pred": 0.9482,
+     "letters_word": 0.9768,
+     "all_alone": 0.6793,
+     "all_pred": 0.8367,
+     "capI_alone": 0.5435,
+     "capI_word": 0.976,
+     "known_flagged_unknown": 0.196,
+     "capI_n": 333
+    },
+    "unknown_words_flagged": 0.9867
+   },
+   "3": {
+    "threshold": -0.578,
+    "lower": {
+     "word": 0.974,
+     "word_types": 0.9347,
+     "letters_alone": 0.9383,
+     "letters_pred": 0.9631,
+     "letters_word": 0.9868,
+     "all_alone": 0.842,
+     "all_pred": 0.9033,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.106,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.9653,
+     "word_types": 0.9287,
+     "letters_alone": 0.93,
+     "letters_pred": 0.9573,
+     "letters_word": 0.9815,
+     "all_alone": 0.8113,
+     "all_pred": 0.8793,
+     "capI_alone": 0.5714,
+     "capI_word": 0.8571,
+     "known_flagged_unknown": 0.1227,
+     "capI_n": 14
+    },
+    "ALLCAPS": {
+     "word": 0.96,
+     "word_types": 0.914,
+     "letters_alone": 0.8968,
+     "letters_pred": 0.9482,
+     "letters_word": 0.9786,
+     "all_alone": 0.6793,
+     "all_pred": 0.8367,
+     "capI_alone": 0.5435,
+     "capI_word": 0.982,
+     "known_flagged_unknown": 0.1927,
+     "capI_n": 333
+    },
+    "unknown_words_flagged": 1.0
+   },
+   "10": {
+    "threshold": -0.651,
+    "lower": {
+     "word": 0.9747,
+     "word_types": 0.9333,
+     "letters_alone": 0.9383,
+     "letters_pred": 0.9631,
+     "letters_word": 0.9865,
+     "all_alone": 0.842,
+     "all_pred": 0.9033,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.098,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.9687,
+     "word_types": 0.9293,
+     "letters_alone": 0.93,
+     "letters_pred": 0.9573,
+     "letters_word": 0.9835,
+     "all_alone": 0.8113,
+     "all_pred": 0.8793,
+     "capI_alone": 0.5714,
+     "capI_word": 0.9286,
+     "known_flagged_unknown": 0.1087,
+     "capI_n": 14
+    },
+    "ALLCAPS": {
+     "word": 0.9613,
+     "word_types": 0.918,
+     "letters_alone": 0.8968,
+     "letters_pred": 0.9482,
+     "letters_word": 0.9784,
+     "all_alone": 0.6793,
+     "all_pred": 0.8367,
+     "capI_alone": 0.5435,
+     "capI_word": 0.982,
+     "known_flagged_unknown": 0.1687,
+     "capI_n": 333
+    },
+    "unknown_words_flagged": 0.99
+   },
+   "exact": {
+    "threshold": -0.563,
+    "lower": {
+     "word": 0.9767,
+     "word_types": 0.9433,
+     "letters_alone": 0.9383,
+     "letters_pred": 0.9631,
+     "letters_word": 0.9873,
+     "all_alone": 0.842,
+     "all_pred": 0.9033,
+     "capI_alone": null,
+     "capI_word": null,
+     "known_flagged_unknown": 0.096,
+     "capI_n": 0
+    },
+    "Capital": {
+     "word": 0.9707,
+     "word_types": 0.938,
+     "letters_alone": 0.93,
+     "letters_pred": 0.9573,
+     "letters_word": 0.9837,
+     "all_alone": 0.8113,
+     "all_pred": 0.8793,
+     "capI_alone": 0.5714,
+     "capI_word": 0.8571,
+     "known_flagged_unknown": 0.11,
+     "capI_n": 14
+    },
+    "ALLCAPS": {
+     "word": 0.9647,
+     "word_types": 0.9207,
+     "letters_alone": 0.8968,
+     "letters_pred": 0.9482,
+     "letters_word": 0.9799,
+     "all_alone": 0.6793,
+     "all_pred": 0.8367,
+     "capI_alone": 0.5435,
+     "capI_word": 0.982,
+     "known_flagged_unknown": 0.1727,
+     "capI_n": 333
+    },
+    "unknown_words_flagged": 1.0
+   }
+  }
+ }
+}

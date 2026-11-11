@@ -399,3 +399,25 @@ def test_word_context_from_both_sides():
     assert c[52:78].sum() == 0 and c[78 + 13] == 0.5      # nothing further left; n fades on the right
     assert c[104] == 0 and c[105] == 0 and c[7] == 0 and c[26 + 7] == 0
     assert context2(ev, 0)[104] == 1 and context2(ev, 3)[105] == 1
+
+
+def test_word_units_learn_from_one_showing_and_reject_unknown_words():
+    """Stage 42: a word unit taught from one noisy showing recognises its word from other noisy letter
+    evidence; a word that was never taught gets a clearly lower match."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    from word_units import Lexicon
+    from synth.words import encode
+    rng = np.random.default_rng(0)
+    words = ["the", "and", "for", "that", "with", "this"]
+    def noisy(w):                                          # letter evidence: 70 % on the right letter, rest spread
+        e = rng.dirichlet(np.ones(26) * 0.3, len(w)) * 0.3
+        e[np.arange(len(w)), encode(w)] += 0.7
+        return e
+    lex = Lexicon(words, np.ones(len(words)))
+    for i, w in enumerate(words):
+        lex.teach(i, noisy(w))
+    lex.finish()
+    hits = [lex.read(noisy(w))[0] == i for i, w in enumerate(words) for _ in range(20)]
+    assert np.mean(hits) == 1.0
+    known = np.mean([lex.read(noisy("that"))[1] for _ in range(20)]); unknown = np.mean([lex.read(noisy("when"))[1] for _ in range(20)])
+    assert known > unknown + 0.5

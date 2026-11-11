@@ -15,7 +15,7 @@ circuit); outcomes turned into a learning signal by a modelled dopamine
 population with a critic that learns to predict them (or, as before, a
 number applied from outside). It learns cue–action
 tasks (96–97 % on the recalibrated column, Stage 25), routes real text at
-58–63 % through a self-organising sensory layer (now also live, in shadow mode, beside RASPUTIN), reads printed letters at 87 % in font designs it has never seen (a V1-like edge front end feeding the learned letter layer; Stage 38), and reads letters inside words better than alone through a learned prediction of the next letter (Stage 36). Against human recordings it has firing rates in
+58–63 % through a self-organising sensory layer (now also live, in shadow mode, beside RASPUTIN), reads printed letters at 87 % in font designs it has never seen (a V1-like edge front end feeding the learned letter layer; Stage 38), learns capitals from alphabet-book pairs without labels (Stage 41), and recognises 5,000 common words as units at 97 % in never-seen fonts (Stage 42). Against human recordings it has firing rates in
 range for 9 of 12 populations and a field spectrum whose 30–45 Hz slope is
 near awake human intracranial EEG but with far too little slow power (Stages
 33–34). It is not a brain and not full-scale. Status by
@@ -2683,6 +2683,51 @@ O'Reilly 1995). No labels are involved. Four networks, 60 never-seen families
 - **What is left is capital I** (about 50 %): in many fonts it is the same shape as lowercase l, and
   the units now keep l. Only the word can tell them apart. G and P still get stuck when words are the
   only teacher.
+
+## Stage 42: common words as units
+
+**Set-up** (`scripts/word_units.py`). Letter units as left by Stage 41 (lowercase taught with labels;
+capitals from 100 fonts of alphabet-book pairs with replay) read the edge cells. One word unit per taught
+word. *Teaching*: the word is shown in lowercase in a random training font and named; its unit
+strengthens synapses from the letter units active at each position (the average of what they reported,
+errors included). How often a word is met follows its measured frequency and sets the unit's resting
+level. *Reading*: each unit of the right length sums the log match between its synapses and the letter
+evidence over positions, plus its resting level; the best unit is the word. Words are the most frequent
+English words of 3–7 letters. Tests in the 60 never-seen font families, tokens drawn by frequency; four
+networks, mean ± SD (`results/word_units/stage42_summary.json`).
+
+**Whole words recognised** (3 showings per word):
+
+| words taught | lowercase | Capitalised | ALL CAPS | every letter right, letters alone (lower / Cap / CAPS) | same, with both-side prediction |
+|---|---|---|---|---|---|
+| 100 | **98.7 ± 0.2 %** | 98.3 % | 97.8 % | 86.0 / 82.5 / 70.7 % | 94.1 / 91.5 / 87.6 % |
+| 500 | 98.0 % | 97.7 % | 97.1 % | 85.1 / 81.8 / 68.7 % | 92.8 / 89.9 / 84.8 % |
+| 2,000 | 97.6 % | 97.0 % | 96.2 % | 84.1 / 80.3 / 67.0 % | 91.3 / 88.1 / 81.6 % |
+| 5,000 | **97.1 ± 0.4 %** | 96.4 % | 95.5 % | 83.8 / 80.5 / 66.5 % | 90.8 / 88.0 / 82.7 % |
+
+- **Words are read far better as units than letter by letter**: with 5,000 words, 97 % against 84 %
+  (letters alone) and 91 % (letters with the next-/previous-letter prediction). In ALL CAPS, which the
+  word units never saw, 95.5 % against 66.5 %: the letter units carry the case, the word units do not
+  need to.
+- **One showing is nearly enough**: 5,000 words, one showing each: 95.6 %; three: 97.1 %; ten: 97.3 %;
+  units given the exact spelling: 97.3 %. The limit is the letters, not the word learning.
+- **Counting every word equally** (rare words as much as common ones), 5,000 words: 93.0 / 92.0 / 90.0 %.
+- **Words repair letters** (5,000 words): letters right 93.9 % alone → 96.5 % with prediction → 98.3 %
+  from the recognised word (ALL CAPS: 88.3 → 94.0 → 97.4 %).
+- **Capital I is settled by the word**, as Stage 41 expected: alone 56.5 ± 6.0 %; from the recognised
+  word 97.6 ± 0.4 % (ALL CAPS, 5,000 words, 1,385 cases; with 100 words 99.5 %).
+- **"Not a word I know."** A threshold on the winner's match per letter (FITTED on validation fonts)
+  flags 98–99 % of words that were never taught (the next 1,000 by frequency), while calling a known word
+  unknown in 3.7 % of cases with 100 words and 9.8 % with 5,000 (a misread letter looks like a new word).
+
+**Limits.** Word units are taught with the word's name (a label, as a child is told the word). Position
+is counted from the first letter and word length is taken as seen (ASSUMED). One bottom-up pass and a
+winner, not a settling network; event level. Words are shown one at a time, not in sentences. Letter
+units read the edge cells, not a learned layer.
+
+**Next.** Unknown words: flagged now, not yet learned on the fly (a new unit recruited when nothing
+matches). Then words in sequence - sentences - where the next *word* can be predicted, the same idea one
+level up.
 
 ## Open problems found so far
 

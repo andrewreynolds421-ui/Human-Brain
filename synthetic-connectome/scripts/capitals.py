@@ -386,6 +386,9 @@ def learn(a):
         (e,), U, info = best_of(dict(grid=[(e,) for e in a.eta_pair], run=lambda U, e, k=k: pair_phase(U, k, e)))
         res[f"pairs_{k}_fonts"] = dict(eta_w=e, pairings=int(5 * k * 26), lowercase_read_correctly_in_pairs=round(info, 4), **report(U, P))
         print(f"pairs {k}", res[f"pairs_{k}_fonts"]["capitals_isolated"], res[f"pairs_{k}_fonts"]["lowercase_isolated"], flush=True)
+        if a.save_units and k == max(a.pairs):
+            np.savez(os.path.join(OUT, f"units_s{a.seed}.npz"), W=U.W, b=U.b, mu=mu, sd=sd, pairs=k, eta=e,
+                     P_W=P.W, P_b=P.b, beta=beta)
         if a.skip_words:
             continue
         (b, e2, lp, cf), U2, info2 = best_of(dict(grid=grid_w, start=lambda U=U: copy_units(U), run=lambda U_, b, e, lp, cf: word_phase(U_, P, b, e, False, lp, cf)))
@@ -401,6 +404,7 @@ def main():
     ap.add_argument("cmd", choices=("features", "basics", "learn"))
     ap.add_argument("--seed", type=int, default=1)
     ap.add_argument("--suffix", default="")
+    ap.add_argument("--save-units", action="store_true", help="save the letter units after the largest pairing (for scripts/word_units.py)")
     ap.add_argument("--replay", type=int, default=0, help="lowercase images replayed from the stable copy per new lesson (Stage 41)")
     ap.add_argument("--tau", type=float, default=0.0, help="> 0: learning step shrinks as eta / (1 + lessons / tau)")
     ap.add_argument("--skip-words", action="store_true", help="pairs only (no word phases)")

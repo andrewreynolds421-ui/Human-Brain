@@ -272,7 +272,10 @@ the long form. Priorities as they stand on 5 Nov:
    unreliably; one unit per letter costs lowercase 2-6 points)* *(11 Nov, README Stage 41: detectors-with-votes and a second unit per letter did not help; the lowercase loss
    was a chain reaction from I/l, fixed by replay of settled lowercase knowledge - 100 fonts of pairs: capitals
    89-94 %, lowercase 95 %; capital I ~50 % remains, needs the word)*; `scripts/capitals.py --replay 1`;
-   (c) words read through the learned layer, not only the edge cells; (d) finish the queued re-check of the
+   (c) *(11 Nov, README Stage 42: word units - 5,000 common words recognised at 97.1 % lowercase, 95.5 % ALL
+   CAPS in never-seen fonts, one showing nearly enough, capital I 56 -> 98 % from the word, unknown words
+   flagged 98-99 %; `scripts/word_units.py`)* next: recruit a unit for an unknown word on the fly; sentences
+   (predict the next word); words read through the learned layer, not only the edge cells; (d) finish the queued re-check of the
    Stage 36 sequence layer at normal inhibition (job queue `words_rec_*_i1_fixed`).
 5. *(Done 7 Nov, README Stages 33–34: with a corrected LFP proxy the 30–45 Hz slope is near human (−2.2 vs −2.8/−3.0); slow power ~25 dB short, open problem 13.)* **Stage 7, cheaply**: compare the column's population spectrum with human
    intracranial spectra (`scripts/rhythm_diagnostics.py` is the start). Hours.
