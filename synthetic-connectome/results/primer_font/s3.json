@@ -1,0 +1,132 @@
+{
+ "seed": 3,
+ "threshold": -0.616,
+ "font_A": 26,
+ "fonts_B": [
+  52,
+  53,
+  54,
+  32
+ ],
+ "A_off": {
+  "units": 733,
+  "duplicates": 66,
+  "words_with_a_unit": 667,
+  "first_sighting_made_a_unit": 0.9460992907801419,
+  "known_read_right": 0.979891724671307,
+  "known_taken_for_new": 0.017014694508894045,
+  "letters_right": 0.9764023934181002,
+  "every_letter_right": 0.9421902268760908
+ },
+ "eta_font": 1.0,
+ "conf": 0.9,
+ "validation": {
+  "off": 0.9428,
+  "on": 0.9722
+ },
+ "A_on": {
+  "units": 731,
+  "duplicates": 58,
+  "words_with_a_unit": 673,
+  "first_sighting_made_a_unit": 0.9669540229885057,
+  "known_read_right": 0.9753086419753086,
+  "known_taken_for_new": 0.014917695473251029,
+  "letters_right": 0.9644302820022717,
+  "every_letter_right": 0.9101221640488656
+ },
+ "B_units_off_reading_off": {
+  "known_share": 0.9943,
+  "known_read_right": 0.9628,
+  "known_called_unknown": 0.0362,
+  "unknown_flagged": 0.1442,
+  "letters_right": 0.9779,
+  "every_letter_right": 0.9552,
+  "words_that_taught": 0.0,
+  "lessons_wrong": null,
+  "read_right_by_fifth": [
+   0.9616,
+   0.9637,
+   0.9572,
+   0.9635,
+   0.9681
+  ],
+  "letters_of_the_font_alone_before": 0.9463,
+  "letters_of_the_font_alone_after": 0.9463
+ },
+ "B_units_off_reading_on": {
+  "known_share": 0.9943,
+  "known_read_right": 0.9672,
+  "known_called_unknown": 0.0286,
+  "unknown_flagged": 0.125,
+  "letters_right": 0.9691,
+  "every_letter_right": 0.9269,
+  "words_that_taught": 0.8526,
+  "lessons_wrong": 0.0058,
+  "read_right_by_fifth": [
+   0.966,
+   0.9697,
+   0.9633,
+   0.967,
+   0.97
+  ],
+  "letters_of_the_font_alone_before": 0.9463,
+  "letters_of_the_font_alone_after": 0.899
+ },
+ "B_units_on_reading_on": {
+  "known_share": 0.9972,
+  "known_read_right": 0.9608,
+  "known_called_unknown": 0.029,
+  "unknown_flagged": 0.1923,
+  "letters_right": 0.9669,
+  "every_letter_right": 0.9194,
+  "words_that_taught": 0.8896,
+  "lessons_wrong": 0.0104,
+  "read_right_by_fifth": [
+   0.9439,
+   0.9667,
+   0.9597,
+   0.9623,
+   0.9716
+  ],
+  "letters_of_the_font_alone_before": 0.9463,
+  "letters_of_the_font_alone_after": 0.8718
+ },
+ "C_second_reader_off": {
+  "known_share": 0.7681,
+  "known_read_right": 0.8849,
+  "known_called_unknown": 0.1102,
+  "unknown_flagged": 0.9605,
+  "letters_right": 0.9158,
+  "every_letter_right": 0.7701,
+  "words_that_taught": 0.0,
+  "lessons_wrong": null,
+  "read_right_by_fifth": [
+   0.8847,
+   0.8814,
+   0.8906,
+   0.8877,
+   0.8797
+  ],
+  "letters_of_the_font_alone_before": 0.766,
+  "letters_of_the_font_alone_after": 0.766
+ },
+ "C_second_reader_on": {
+  "known_share": 0.7705,
+  "known_read_right": 0.9588,
+  "known_called_unknown": 0.0285,
+  "unknown_flagged": 0.9723,
+  "letters_right": 0.9609,
+  "every_letter_right": 0.8998,
+  "words_that_taught": 0.6711,
+  "lessons_wrong": 0.0162,
+  "read_right_by_fifth": [
+   0.9408,
+   0.9651,
+   0.967,
+   0.9623,
+   0.9597
+  ],
+  "letters_of_the_font_alone_before": 0.766,
+  "letters_of_the_font_alone_after": 0.7853
+ }
+}

@@ -2790,6 +2790,49 @@ hyphens are dropped; punctuation is not read. Unit identity is scored by the wor
 font) - the route to fewer misread letters and fewer duplicates. (2) Pictures with the sentences: the
 primer's picture descriptions name what each lesson shows. (3) Hearing the words.
 
+## Stage 44: words teach the letters the book's font
+
+**Idea.** A book is printed in one font. While reading, each word recognised with confidence (not "new",
+winner's posterior ≥ 0.9) teaches the letter units: the word unit's spelling names each letter, and a
+delta rule changes fast weights from the edge cells, reset with every new book. No labels
+(`scripts/read_primer_font.py`). Step size and confidence FITTED on three ordinary validation fonts.
+
+**Protocol.** Per network: the First Reader read from no word units in one never-seen font (A); a second
+copy in four other never-seen fonts with the word units frozen (B); the Second Reader, never read, in
+another font (C); each with font learning off and on. Four networks, mean ± SD; gains paired per network
+(`results/primer_font/stage44_summary.json`).
+
+| | font learning off | on | paired gain |
+|---|---|---|---|
+| **B: second copy** - words read right | 97.3 ± 1.8 % | 98.1 ± 1.5 % | +0.8 ± 1.2 |
+| B: words with every letter read right | 91.8 ± 6.0 % | 96.4–96.8 % | +4.7 ± 7.2 |
+| B: letters read right | 96.7 % | 98.4–98.5 % | |
+| B: known words called "unknown" | 2.5 % | 1.6 % | |
+| **C: Second Reader** - known words read right | 94.1 ± 4.7 % | **97.7 ± 1.9 %** | **+3.6 ± 2.8** (all four networks up) |
+| C: words with every letter read right | 89.2 % | 96.0 % | |
+| A: first reading - words with every letter right | 96.7 % | 97.5 % | +0.8 ± 3.1 |
+| A: duplicate word units | 22 ± 30 | 18 ± 27 | |
+
+- **It helps most where reading is hardest**: an unfamiliar book in a hard font (C: +3.6 points, and in
+  the hardest B case every-letter-right went from 82.9 % to 96.8 %). 92 % of words teach; 0.4 % of the
+  lessons are wrong.
+- **It can entrench a mistake.** In one network of four it made letters worse (every letter right 94.2 →
+  91.0 % in A, 95.5 → 92 % in B): the word units there had been built from misread letters, and teaching
+  from them makes the letters agree with the word units' spellings, not with the truth. Word reading in
+  that network was unchanged.
+- **Letters outside the text do not benefit**: the font's 52 shapes read alone go 95.1 → 95.5 % (capitals
+  and rare letters hardly occur in the book).
+
+**A correction to Stage 43.** Most of its duplicate word units came from the protocol, not the model:
+there every lesson was in a different font. With the whole book in one font, duplicates fall from 318 ± 127
+to 22 ± 30 *without* any font learning (known words taken for new: 8.2 % → 0.6 %), because a misreading
+that is consistent within a font is stored in the word unit and recognised again. The price is that such
+units carry the font's misreadings to the next book (B without font learning: 97.3 %).
+
+**A data note.** The validation families include "Digital Numbers", a seven-segment display face (letters
+read 28 %); another reads 47 %. They were always in the validation set used to choose settings since
+Stage 38. The test families were not screened either; results are over whatever the random sample gave.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

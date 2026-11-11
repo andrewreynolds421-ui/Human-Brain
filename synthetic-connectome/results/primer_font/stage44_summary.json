@@ -1,0 +1,427 @@
+{
+ "networks": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "settings": [
+  [
+   3.0,
+   0.9
+  ],
+  [
+   1.0,
+   0.9
+  ],
+  [
+   1.0,
+   0.9
+  ],
+  [
+   0.3,
+   0.9
+  ]
+ ],
+ "validation": [
+  {
+   "off": 0.9899,
+   "on": 0.9869
+  },
+  {
+   "off": 0.9898,
+   "on": 0.9887
+  },
+  {
+   "off": 0.9428,
+   "on": 0.9722
+  },
+  {
+   "off": 0.9947,
+   "on": 0.991
+  }
+ ],
+ "fonts": [
+  {
+   "A": 4,
+   "B": [
+    52,
+    33,
+    47,
+    44
+   ]
+  },
+  {
+   "A": 18,
+   "B": [
+    57,
+    58,
+    31,
+    36
+   ]
+  },
+  {
+   "A": 26,
+   "B": [
+    52,
+    53,
+    54,
+    32
+   ]
+  },
+  {
+   "A": 4,
+   "B": [
+    52,
+    32,
+    48,
+    40
+   ]
+  }
+ ],
+ "A_off": {
+  "units": [
+   692.2,
+   28.0
+  ],
+  "duplicates": [
+   22.0,
+   29.8
+  ],
+  "words_with_a_unit": [
+   670.2,
+   2.5
+  ],
+  "first_sighting_made_a_unit": [
+   97.1,
+   1.7
+  ],
+  "known_read_right": [
+   99.3,
+   0.9
+  ],
+  "known_taken_for_new": [
+   0.6,
+   0.8
+  ],
+  "letters_right": [
+   98.9,
+   1.0
+  ],
+  "every_letter_right": [
+   96.7,
+   2.3
+  ]
+ },
+ "A_on": {
+  "units": [
+   690.8,
+   27.0
+  ],
+  "duplicates": [
+   17.8,
+   26.9
+  ],
+  "words_with_a_unit": [
+   673.0,
+   1.6
+  ],
+  "first_sighting_made_a_unit": [
+   98.3,
+   1.2
+  ],
+  "known_read_right": [
+   99.3,
+   1.2
+  ],
+  "known_taken_for_new": [
+   0.5,
+   0.7
+  ],
+  "letters_right": [
+   99.0,
+   1.7
+  ],
+  "every_letter_right": [
+   97.5,
+   4.3
+  ]
+ },
+ "B_units_off_reading_off": {
+  "known_share": [
+   99.6,
+   0.2
+  ],
+  "known_read_right": [
+   97.3,
+   1.8
+  ],
+  "known_called_unknown": [
+   2.5,
+   1.7
+  ],
+  "unknown_flagged": [
+   9.3,
+   11.2
+  ],
+  "letters_right": [
+   96.7,
+   2.2
+  ],
+  "every_letter_right": [
+   91.8,
+   6.0
+  ],
+  "words_that_taught": [
+   0.0,
+   0.0
+  ],
+  "read_right_by_fifth": [
+   97.3,
+   97.4,
+   97.4,
+   97.3,
+   97.1
+  ],
+  "letters_of_the_font_alone_before": [
+   95.1,
+   1.7
+  ],
+  "letters_of_the_font_alone_after": [
+   95.1,
+   1.7
+  ]
+ },
+ "B_units_off_reading_on": {
+  "known_share": [
+   99.6,
+   0.2
+  ],
+  "known_read_right": [
+   98.1,
+   1.1
+  ],
+  "known_called_unknown": [
+   1.7,
+   1.0
+  ],
+  "unknown_flagged": [
+   7.1,
+   8.3
+  ],
+  "letters_right": [
+   98.5,
+   1.1
+  ],
+  "every_letter_right": [
+   96.8,
+   2.9
+  ],
+  "words_that_taught": [
+   91.9,
+   4.5
+  ],
+  "lessons_wrong": [
+   0.4,
+   0.1
+  ],
+  "read_right_by_fifth": [
+   98.0,
+   98.3,
+   98.2,
+   98.2,
+   98.1
+  ],
+  "letters_of_the_font_alone_before": [
+   95.1,
+   1.7
+  ],
+  "letters_of_the_font_alone_after": [
+   95.5,
+   3.9
+  ]
+ },
+ "B_units_on_reading_on": {
+  "known_share": [
+   99.8,
+   0.1
+  ],
+  "known_read_right": [
+   98.1,
+   1.5
+  ],
+  "known_called_unknown": [
+   1.6,
+   1.0
+  ],
+  "unknown_flagged": [
+   8.8,
+   10.2
+  ],
+  "letters_right": [
+   98.4,
+   1.2
+  ],
+  "every_letter_right": [
+   96.4,
+   3.1
+  ],
+  "words_that_taught": [
+   92.9,
+   2.8
+  ],
+  "lessons_wrong": [
+   0.4,
+   0.4
+  ],
+  "read_right_by_fifth": [
+   97.7,
+   98.3,
+   98.2,
+   98.2,
+   97.9
+  ],
+  "letters_of_the_font_alone_before": [
+   95.1,
+   1.7
+  ],
+  "letters_of_the_font_alone_after": [
+   94.3,
+   4.9
+  ]
+ },
+ "C_second_reader_off": {
+  "known_share": [
+   77.0,
+   0.2
+  ],
+  "known_read_right": [
+   94.1,
+   4.7
+  ],
+  "known_called_unknown": [
+   5.2,
+   4.3
+  ],
+  "unknown_flagged": [
+   96.9,
+   1.0
+  ],
+  "letters_right": [
+   96.1,
+   3.6
+  ],
+  "every_letter_right": [
+   89.2,
+   10.3
+  ],
+  "words_that_taught": [
+   0.0,
+   0.0
+  ],
+  "read_right_by_fifth": [
+   94.2,
+   94.1,
+   93.9,
+   94.2,
+   94.3
+  ],
+  "letters_of_the_font_alone_before": [
+   89.3,
+   9.4
+  ],
+  "letters_of_the_font_alone_after": [
+   89.3,
+   9.4
+  ]
+ },
+ "C_second_reader_on": {
+  "known_share": [
+   77.1,
+   0.1
+  ],
+  "known_read_right": [
+   97.7,
+   1.9
+  ],
+  "known_called_unknown": [
+   1.9,
+   1.5
+  ],
+  "unknown_flagged": [
+   98.1,
+   0.8
+  ],
+  "letters_right": [
+   98.5,
+   1.7
+  ],
+  "every_letter_right": [
+   96.0,
+   4.4
+  ],
+  "words_that_taught": [
+   70.5,
+   2.6
+  ],
+  "lessons_wrong": [
+   0.8,
+   0.6
+  ],
+  "read_right_by_fifth": [
+   96.9,
+   97.9,
+   98.0,
+   98.1,
+   97.8
+  ],
+  "letters_of_the_font_alone_before": [
+   89.3,
+   9.4
+  ],
+  "letters_of_the_font_alone_after": [
+   90.7,
+   8.9
+  ]
+ },
+ "gain_B_units_on_reading_on_known_read_right": [
+  0.8,
+  1.2,
+  [
+   0.7,
+   0.0,
+   -0.2,
+   2.5
+  ]
+ ],
+ "gain_B_units_on_reading_on_every_letter_right": [
+  4.7,
+  7.2,
+  [
+   3.6,
+   4.9,
+   -3.6,
+   13.9
+  ]
+ ],
+ "gain_A_on_every_letter_right": [
+  0.8,
+  3.1,
+  [
+   2.7,
+   0.0,
+   -3.2,
+   3.6
+  ]
+ ],
+ "gain_C_second_reader_on_known_read_right": [
+  3.6,
+  2.8,
+  [
+   1.3,
+   1.5,
+   7.4,
+   4.1
+  ]
+ ]
+}

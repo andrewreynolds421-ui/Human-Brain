@@ -276,8 +276,9 @@ the long form. Priorities as they stand on 5 Nov:
    CAPS in never-seen fonts, one showing nearly enough, capital I 56 -> 98 % from the word, unknown words
    flagged 98-99 %; `scripts/word_units.py`)* *(11 Nov, README Stage 43: McGuffey's First Reader read from nothing - new words get a unit from one sighting
    (97 %), second copy read 95.5 % vs 96.9 % taught by name; duplicates from confidently misread letters;
-   next-word prediction weak, no help; `scripts/read_primer.py`)* next: words teach the letter units the book's
-   font; pictures with sentences (the primer's picture descriptions; illustration sets openmoji / twemoji /
+   next-word prediction weak, no help; `scripts/read_primer.py`)* *(11 Nov, README Stage 44: words teach the letters the book's font - Second Reader 94.1 -> 97.7 %, second
+   copy 97.3 -> 98.1 %; can entrench a misreading (1 network of 4); Stage 43's duplicates were mostly from
+   switching font every lesson; `scripts/read_primer_font.py`)* next: pictures with sentences (the primer's picture descriptions; illustration sets openmoji / twemoji /
    noto-emoji / fluentui-emoji are reachable on GitHub); hearing (Jakobovski/free-spoken-digit-dataset reachable); words read through the learned layer, not only the edge cells; (d) finish the queued re-check of the
    Stage 36 sequence layer at normal inhibition (job queue `words_rec_*_i1_fixed`).
 5. *(Done 7 Nov, README Stages 33–34: with a corrected LFP proxy the 30–45 Hz slope is near human (−2.2 vs −2.8/−3.0); slow power ~25 dB short, open problem 13.)* **Stage 7, cheaply**: compare the column's population spectrum with human

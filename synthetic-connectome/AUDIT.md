@@ -558,3 +558,13 @@ misread letters). Next-word prediction is weak (11.8 % against 6.1 %) and does n
 first version made it worse (no fallback for unseen word pairs) and was fixed before the four-network run,
 as was the first new-word test (absolute match), which made more duplicates.
 
+## 25. Follow-up (11 November): Stage 44 — font learning
+
+Recognised words teach the letter units the book's font (fast weights, no labels). Four networks, paired:
+Second Reader +3.6 +/- 2.8 points (all four up), second copy of the First Reader +0.8 +/- 1.2 (one network
+slightly down), every-letter-right +4.7 +/- 7.2. One network got worse on letters (teaching from word units
+built on misread letters). Stage 43's duplicate count is corrected: it came mostly from printing each
+lesson in a different font (318 -> 22 with one font per book, no font learning). The first run fitted
+settings on validation fonts that included a seven-segment display face (28 % letters); it was replaced by
+three ordinary fonts and all four networks were rerun before the summary.
+
