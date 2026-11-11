@@ -2729,6 +2729,67 @@ units read the edge cells, not a learned layer.
 matches). Then words in sequence - sentences - where the next *word* can be predicted, the same idea one
 level up.
 
+## Stage 43: reading a primer — new words on the fly, and the next word
+
+**Material.** McGuffey's First Eclectic Reader (1879, public domain; `data/primer/`, `synth/primer.py`):
+58 lessons, 514 sentences, 4,584 words, 676 different words, each lesson introducing a few new words; 54
+lessons carry a description of their picture (lesson 1: "Running dog." - "The dog. The dog ran."). The
+Second Reader (12,892 words, 1,864 different) is the unseen follow-on.
+
+**Set-up** (`scripts/read_primer.py`). The model has letter units (Stage 41) and **no word units**. It
+reads the book in order, each lesson in one font family the letter units have never seen, with capitals
+as printed. For each word the word units compete (Stage 42). If the letters were read with confidence
+and still disagree with every unit - the winner's match, relative to a new word spelled as read, is
+below a threshold (FITTED on validation fonts) - a new unit is recruited from that one sighting, with no
+name. Otherwise the winner is the word and its synapses are refreshed. The model also counts which unit
+follows which. Four networks, mean ± SD (`results/primer/stage43_summary.json`).
+
+**A. Reading the book from nothing.**
+
+| | |
+|---|---|
+| first sightings of a word that made a new unit | 96.9 ± 1.4 % (3.1 % taken for another word) |
+| later sightings read as the right word | 90.4 ± 4.1 % |
+| later sightings taken for a new word (a duplicate unit) | 8.2 ± 3.2 % |
+| later sightings read as a different word | 1.4 % |
+| units at the end / different words with a unit | 986 ± 127 / 668 of 676 |
+
+**B. A second copy of the book, other never-seen fonts, units frozen.**
+
+| reader | words read right |
+|---|---|
+| letter by letter, every letter right | 90.7 % |
+| letter by letter with both-side letter prediction | 93.6 % |
+| **word units learned on the fly** | **95.5 ± 1.3 %** (3.9 % called "unknown") |
+| same, with next-word prediction | 95.4 % |
+| reference: word units taught with names (Stage 42) | 96.9 ± 0.8 % |
+
+**C. Opening the Second Reader, never read.** 76.9 % of its words are already known; of those 94.8 %
+are read right; 97.1 % of the words it has no unit for are flagged as unknown.
+
+**D. Reading on.** After also reading Second Reader lessons 1–45 on the fly (1,646 words with a unit),
+the known share in its last 20 lessons rises from 77.1 % to 89.0 %, read right 94.6 %.
+
+**The next word.** Guessed before it is seen, in text never read: 11.8 ± 0.5 % right (always guessing the
+most common word: 6.1 %); after reading on, 11.2 %. Adding the guess to word recognition changes nothing
+(95.5 → 95.4 %; in the Second Reader 94.8 → 94.0 %).
+
+**What this says.**
+- Words can be picked up from reading alone, one sighting each, without names, and the result is within
+  1.4 points of teaching every word by name.
+- The cost is duplicates: about one known word in twelve is taken for a new one, because a letter was
+  misread *with confidence*. The word units cannot tell "can" misread from a new word "cat". The letters
+  are the limit again (letter by letter, 9 % of words have a misread letter in these fonts).
+- Next-word prediction from 4,600–14,000 words of reading is weak and does not help recognition. Pairs
+  of words are too sparse at this amount of text; this needs far more reading or word classes.
+
+**Limits.** As Stage 42 (position slots, known word length, one pass, event level). Apostrophes and
+hyphens are dropped; punctuation is not read. Unit identity is scored by the word that created the unit.
+
+**Next.** (1) Letting recognised words teach the letter units the book's font (a book is printed in one
+font) - the route to fewer misread letters and fewer duplicates. (2) Pictures with the sentences: the
+primer's picture descriptions name what each lesson shows. (3) Hearing the words.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

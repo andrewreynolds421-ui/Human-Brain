@@ -1,0 +1,131 @@
+{
+ "seed": 1,
+ "threshold": -0.76,
+ "book": {
+  "lessons": 58,
+  "words": 4584,
+  "different_words": 676
+ },
+ "A_reading_from_nothing": {
+  "units": 1143,
+  "duplicates": 476,
+  "words_with_a_unit": 667,
+  "first_sightings": 687,
+  "first_sighting_made_a_unit": 0.9709,
+  "first_sighting_taken_for_another_word": 0.0291,
+  "known_tokens": 3897,
+  "known_read_right": 0.8481,
+  "known_taken_for_new": 0.1221,
+  "known_read_as_other_word": 0.0298,
+  "by_tenth_of_book": [
+   0.98,
+   0.978,
+   0.993,
+   0.967,
+   0.991,
+   0.952,
+   0.928,
+   0.967,
+   0.959,
+   0.987
+  ]
+ },
+ "B_second_copy": {
+  "without_word_prediction": {
+   "tokens": 4584,
+   "known_share": 0.998,
+   "known_read_right": 0.9362,
+   "known_called_unknown": 0.0557,
+   "unknown_flagged": 0.7778,
+   "letter_by_letter": 0.901,
+   "letter_by_letter_with_prediction": 0.9244
+  },
+  "with_word_prediction": {
+   "tokens": 4584,
+   "known_share": 0.998,
+   "known_read_right": 0.9333,
+   "known_called_unknown": 0.059,
+   "unknown_flagged": 0.7778,
+   "letter_by_letter": 0.901,
+   "letter_by_letter_with_prediction": 0.9244
+  },
+  "reference_units_taught_with_names": {
+   "tokens": 4584,
+   "known_share": 1.0,
+   "known_read_right": 0.9575,
+   "known_called_unknown": 0.0395,
+   "unknown_flagged": null,
+   "letter_by_letter": 0.901,
+   "letter_by_letter_with_prediction": 0.9243
+  }
+ },
+ "C_second_reader": {
+  "lessons": 65,
+  "without_word_prediction": {
+   "tokens": 12892,
+   "known_share": 0.7716,
+   "known_read_right": 0.9273,
+   "known_called_unknown": 0.0623,
+   "unknown_flagged": 0.9762,
+   "letter_by_letter": 0.868,
+   "letter_by_letter_with_prediction": 0.9278
+  },
+  "with_word_prediction": {
+   "tokens": 12892,
+   "known_share": 0.7716,
+   "known_read_right": 0.9175,
+   "known_called_unknown": 0.0727,
+   "unknown_flagged": 0.9779,
+   "letter_by_letter": 0.868,
+   "letter_by_letter_with_prediction": 0.9278
+  },
+  "next_word_guessed": {
+   "cases": 7974,
+   "right": 0.1155,
+   "most_common_word_baseline": 0.0806
+  }
+ },
+ "D_before_reading_on": {
+  "last_20_lessons": {
+   "tokens": 4638,
+   "known_share": 0.7745,
+   "known_read_right": 0.9204,
+   "known_called_unknown": 0.0685,
+   "unknown_flagged": 0.9713,
+   "letter_by_letter": 0.8524,
+   "letter_by_letter_with_prediction": 0.9273
+  },
+  "next_word_guessed": {
+   "cases": 2907,
+   "right": 0.1018,
+   "most_common_word_baseline": 0.0774
+  }
+ },
+ "D_after_reading_on": {
+  "units": 2744,
+  "words_with_a_unit": 1643,
+  "last_20_lessons": {
+   "tokens": 4638,
+   "known_share": 0.8915,
+   "known_read_right": 0.9265,
+   "known_called_unknown": 0.0626,
+   "unknown_flagged": 0.9384,
+   "letter_by_letter": 0.8472,
+   "letter_by_letter_with_prediction": 0.9224
+  },
+  "last_20_without_word_prediction": {
+   "tokens": 4638,
+   "known_share": 0.8915,
+   "known_read_right": 0.9311,
+   "known_called_unknown": 0.0571,
+   "unknown_flagged": 0.9364,
+   "letter_by_letter": 0.8472,
+   "letter_by_letter_with_prediction": 0.9224
+  },
+  "next_word_guessed": {
+   "cases": 3756,
+   "right": 0.1062,
+   "most_common_word_baseline": 0.0684
+  }
+ }
+}

@@ -421,3 +421,13 @@ def test_word_units_learn_from_one_showing_and_reject_unknown_words():
     assert np.mean(hits) == 1.0
     known = np.mean([lex.read(noisy("that"))[1] for _ in range(20)]); unknown = np.mean([lex.read(noisy("when"))[1] for _ in range(20)])
     assert known > unknown + 0.5
+
+
+def test_primer_parses_into_lessons_with_pictures():
+    """Stage 43: the First Reader parses into ordered lessons; lesson 1 is the running dog."""
+    from synth.primer import lessons
+    b = lessons()
+    assert len(b) >= 50 and b[0]["pictures"] == ["Running dog."]
+    assert b[0]["sentences"] == [["The", "dog"], ["The", "dog", "ran"]]
+    words = {t.lower() for l in b for s in l["sentences"] for t in s}
+    assert 600 < len(words) < 750 and all(t.isalpha() for t in words)

@@ -549,3 +549,12 @@ prediction. One showing gives 95.6 %. Capital I: 56 % alone, 98 % from the word.
 known length are assumed. The first run of network 1 covered two vocabulary sizes only and was rerun in
 full before the summary.
 
+## 24. Follow-up (11 November): Stage 43 — reading a primer
+
+McGuffey's First Reader read from no word units, in never-seen fonts, four networks. New words get a unit
+from one sighting (96.9 %); a second copy is read 95.5 % right against 96.9 % with named teaching and
+90.7 / 93.6 % letter by letter. About 8 % of known-word sightings create a duplicate unit (confidently
+misread letters). Next-word prediction is weak (11.8 % against 6.1 %) and does not improve recognition; the
+first version made it worse (no fallback for unseen word pairs) and was fixed before the four-network run,
+as was the first new-word test (absolute match), which made more duplicates.
+
