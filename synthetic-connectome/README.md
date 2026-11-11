@@ -2546,7 +2546,7 @@ images (960 edge cells instead of 392), helps the edge cells and hurts the learn
 | read by | box 28 × 28 | line 28 × 28 | line 48 × 40 |
 |---|---|---|---|
 | letter units on the edge cells, sparse output | 95.6 % | 95.8 % | **96.8 %** (i 95 %, l 98 %) |
-| learned layer, 400 cells, one pass | **86.9 ± 0.4 %** (4 networks) | 85.1, 85.3 % | 80.3 % (1 network; replication running) |
+| learned layer, 400 cells, one pass | **86.9 ± 0.4 %** (4 networks) | 85.1, 85.3 % | 80.3, 80.5 % |
 
 On the larger image the layer's errors spread to more letters (n, o, c at 67–70 %; n→h appears). With 2.4
 times as many inputs and the same 400 whole-image templates, each template covers less of the variation
@@ -2560,6 +2560,80 @@ that: cells that each see part of the image feeding a second layer (as Stage 23 
 passes for a larger layer. Until then the letter units read the edge cells (96-98 %).
 
 Files: `results/letters_line/` (scores, the headroom and stand-in scripts with their outputs).
+
+## Stage 40: capital letters, and how they relate to lowercase
+
+Images: a–z and A–Z of the same 299 font families on one text line and one scale per font, 48 × 48
+(`data/letters_case48.npz`), so a capital differs from its lowercase letter in size as it does in print.
+Same family split; all numbers are for the 60 never-seen families. Letter units read the edge cells
+directly (`scripts/capitals.py`).
+
+**A. Capitals as shapes** (letter units taught with labels; `results/capitals/basics.json`):
+
+| task | accuracy | main errors |
+|---|---|---|
+| lowercase alone (26) | 96.8 % | s→g, i→j |
+| capitals alone (26) | **97.7 %** | Q→O, C→G |
+| all 52 shapes | 94.3 % | **I↔l** (capital I 71 %, lowercase l 78 %), then s/S, Q→O, z/Z, u/U, v/V |
+| which letter, either case (26) | 95.4 % (lowercase 95.4 %, capitals 95.5 %) | i↔l |
+
+Capitals are easier than lowercase (more distinct shapes). With all 52 shapes the letter is right 95.8 %
+of the time and only the case is wrong in 1.5 % (s, l, v, w, o, z: capitals that are larger copies).
+The one serious confusion is capital I with lowercase l, which no feature of a single letter resolves.
+
+**B. What carries over for free.** Letter units taught lowercase only read 54.7 % of capitals: H 97 %,
+K 94 %, F 88 %, W 83 %, C 81 %, D 80 % carry over; A, E, G, N, R, P, T, Y do not (14–39 %; G is read as
+c, E and P as f, T as i).
+
+**C. Learning capitals without labels** (4 networks, mean ± SD; letter units know lowercase; edge-cell
+signals standardised; `scripts/analysis/stage40.py`, `results/capitals/stage40_summary.json`). Two
+label-free teachers:
+
+- *Words.* 20,000 words appear with capitals ("The" 70 %, "THE" 30 %; ASSUMED mix). A word-context
+  prediction, learned earlier from reading lowercase words and now using the letters on both sides,
+  is combined with the units' evidence; the resulting percept teaches the units.
+- *Alphabet-book pairs.* A capital is shown with its lowercase letter in the same font; the unit that
+  reads the lowercase letter teaches the capital's shape (k fonts × 26 letters × 5 showings).
+
+| how capitals were learned | capital first letter ("The") | ALL-CAPS words | each capital alone | lowercase alone |
+|---|---|---|---|---|
+| before | 55.7 ± 3.6 % | 49.9 ± 3.4 % | 43.8 % | 96.1 % |
+| reading words with capitals | 71.7 ± 7.8 % | 81.8 ± 5.7 % | 62.8 ± 10.1 % | 91.0 % |
+| control: prediction without letter order | 58.3 % | 56.8 % | 47.2 % | 95.7 % |
+| control: units teach themselves (no context) | 55.7 % | 49.6 % | 43.7 % | 96.1 % |
+| pairs, 1 font (130 pairings) | 68.6 % | 69.5 % | 58.4 % | 95.3 % |
+| pairs, 3 fonts | 74.0 % | 76.5 % | 66.6 % | 92.8 % |
+| pairs, 10 fonts | 80.0 % | 83.5 % | 73.8 % | 93.8 % |
+| **pairs, 30 fonts (3,900 pairings)** | **83.1 ± 3.3 %** | **87.7 ± 0.9 %** | **80.8 ± 0.5 %** | 90.7 % |
+| pairs, 30 fonts, then words | 81.9 ± 8.2 % | 89.0 ± 4.0 % | 78.2 % | 90.1 % |
+| reference: capitals taught with labels (in the same words) | 92.4 % | 95.3 % | 86.6 % | 94.0 % |
+
+- **Word context does teach capitals**, and it is sequence knowledge that does it: both controls stay
+  at the starting level. It works best in ALL-CAPS words (50 → 82 %), where capitals that already carry
+  over anchor the rest.
+- **But it gets stuck and is unreliable** (SD 8–10 points). The units are confidently wrong about some
+  shapes (G is "c", also P, Y, V), and context cannot overrule a confident reading; a first letter has
+  context on one side only; rare capitals (Q, X, Z, J) hardly occur in words. An allowance for confident
+  errors and more weight on context did not change this.
+- **Pairing is the more reliable teacher** and covers every letter: 30 fonts of pairs bring capitals to
+  81–88 % with small spread. One oddity: L stays unread after pairing (4 %; I is 90 %), fixed only partly
+  by words.
+- **Words after pairs add little** (+1 point in ALL-CAPS words, −1 elsewhere): about one context lesson
+  in ten is wrong, and letting only confident percepts teach (98 % correct) removes the lessons that
+  would have taught something new.
+- **Cost to lowercase:** 2–6 points in every condition, labels included. One unit per letter has to fit
+  two shapes with one set of synapses; teaching the second shape disturbs the first.
+- **Side result:** using the letters on both sides improves lowercase reading in words (95.8 → 97.5 %
+  known words, 95.4 → 96.7 % new words).
+
+**Limits.** Letter units read the edge cells, not a learned layer. The delta rule is applied per letter.
+Settings (step size, confidence needed) are FITTED on validation families using their labels. "Before"
+is lower here (43.8 %) than in B (54.7 %) because the standardised signals carry over less.
+
+**Next.** The interference and the stuck letters both point to the same change: separate shape
+detectors for the two cases (as in the brain, case-specific shapes below abstract letter identities),
+each linked to a letter by association - a link per detector, learned from pairs or context by voting,
+which tolerates a teacher that is wrong one time in ten. Then words read with capitals, and word units.
 
 ## Open problems found so far
 

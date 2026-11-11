@@ -519,3 +519,14 @@ image (48 x 40) raised the edge-cell readout to 96.8 % and lowered the learned l
 network; replication running). All three image changes and the larger layer left the learned layer at or
 below 86.9 %; the limit is the whole-letter template layer.
 
+## 21. Follow-up (11 November): Stage 40 — capitals
+
+Capitals rendered on the text line with lowercase (52 shapes). Labelled readouts: capitals 97.7 %,
+lowercase 96.8 %, all 52 shapes 94.3 % with I<->l the one serious confusion. Without labels (4 networks):
+alphabet-book pairing teaches capitals to 81-88 % (30 fonts); word context to 72-82 % with large spread
+and stuck letters; both controls stay at baseline. Development on network 1 went through three failed
+versions before the reported one (steps too large - units collapsed; context weight and a lapse allowance
+- no effect; unstandardised signals - slow learning); those runs are in `results/capitals/dev/` or were
+overwritten, and the settings they led to (standardised signals, step grids) were then applied unchanged
+to networks 2-4. The Stage 39 larger-image result replicated (80.5 %, first 80.3 %).
+

@@ -386,3 +386,16 @@ def test_frozen_reads_do_not_change_the_layer():
     th_before = np.asarray(S.E.theta).copy()
     S.present(X[0], learn=True)                                # learning still adapts the thresholds
     assert not np.array_equal(th_before, np.asarray(S.E.theta)) or np.asarray(S.mon.count).sum() == 0
+
+
+def test_word_context_from_both_sides():
+    """Stage 40: the both-sides context of a letter holds its neighbours, fading traces of the letters
+    further out on each side, and first/last flags - and nothing of the letter itself."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    from capitals import context2
+    ev = np.eye(26)[[19, 7, 4, 13]]                       # t h e n
+    c = context2(ev, 1)
+    assert c[19] == 1 and c[26 + 4] == 1                  # previous t, next e
+    assert c[52:78].sum() == 0 and c[78 + 13] == 0.5      # nothing further left; n fades on the right
+    assert c[104] == 0 and c[105] == 0 and c[7] == 0 and c[26 + 7] == 0
+    assert context2(ev, 0)[104] == 1 and context2(ev, 3)[105] == 1

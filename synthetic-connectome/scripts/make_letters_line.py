@@ -23,13 +23,13 @@ def glyph(font, text):
     return im
 
 
-def frame(font):
+def frame(font, letters=LETTERS):
     """font frame at size S: top of ascenders, bottom of descenders, baseline row, widest letter"""
     a = np.asarray(glyph(font, "bdfhkl")); ys = np.nonzero(a.max(1) > 30)[0]; top = ys.min()
     a = np.asarray(glyph(font, "gjpqy")); bottom = np.nonzero(a.max(1) > 30)[0].max() + 1
     a = np.asarray(glyph(font, "x")); base = np.nonzero(a.max(1) > 30)[0].max() + 1
     wmax = 0
-    for ch in LETTERS:
+    for ch in letters:
         xs = np.nonzero(np.asarray(glyph(font, ch)).max(0) > 30)[0]
         wmax = max(wmax, xs.max() - xs.min() + 1 if xs.size else 0)
     return int(top), int(bottom), int(base), int(wmax)
@@ -61,6 +61,8 @@ def main():
     ap.add_argument("--width", type=int, default=28)
     ap.add_argument("--per-font", type=int, default=6)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--case", choices=("lower", "both"), default="lower",
+                    help="both: classes 0-25 = a-z, 26-51 = A-Z, one scale per font over all 52 (Stage 40)")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
     sel = json.load(open(SEL))
@@ -73,8 +75,9 @@ def main():
         X, y, f = [], [], []
         for fi, k_f in enumerate(idx):
             font = ImageFont.truetype(os.path.join(GF, fams[k_f]["dir"], fams[k_f]["file"]), S)
-            fr = frame(font)
-            for k, ch in enumerate(LETTERS):
+            letters = LETTERS + (LETTERS.upper() if a.case == "both" else "")
+            fr = frame(font, letters)
+            for k, ch in enumerate(letters):
                 for _ in range(a.per_font):
                     img = render(font, fr, ch, rng, a.height, a.width)
                     X.append(img if img is not None else np.zeros((a.height, a.width), np.uint8)); y.append(k); f.append(fi)

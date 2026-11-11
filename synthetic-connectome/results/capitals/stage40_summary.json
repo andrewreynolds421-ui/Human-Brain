@@ -1,0 +1,778 @@
+{
+ "networks": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "before": {
+  "capital_first_letter": [
+   55.7,
+   3.6
+  ],
+  "all_caps_words": [
+   49.9,
+   3.4
+  ],
+  "each_capital_alone": [
+   43.8,
+   1.7
+  ],
+  "lowercase_alone": [
+   96.1,
+   0.1
+  ],
+  "worst_capitals": [
+   [
+    "P",
+    0.03
+   ],
+   [
+    "Y",
+    0.05
+   ],
+   [
+    "G",
+    0.08
+   ],
+   [
+    "T",
+    0.08
+   ],
+   [
+    "R",
+    0.09
+   ],
+   [
+    "N",
+    0.15
+   ]
+  ]
+ },
+ "word_context": {
+  "capital_first_letter": [
+   71.7,
+   7.8
+  ],
+  "all_caps_words": [
+   81.8,
+   5.7
+  ],
+  "each_capital_alone": [
+   62.8,
+   10.1
+  ],
+  "lowercase_alone": [
+   91.0,
+   2.2
+  ],
+  "teacher_correct": [
+   80.8,
+   6.1
+  ],
+  "settings": [
+   [
+    0.1,
+    0.0
+   ],
+   [
+    0.1,
+    0.0
+   ],
+   [
+    0.1,
+    0.0
+   ],
+   [
+    0.3,
+    0.0
+   ]
+  ],
+  "worst_capitals": [
+   [
+    "G",
+    0.15
+   ],
+   [
+    "P",
+    0.21
+   ],
+   [
+    "Y",
+    0.23
+   ],
+   [
+    "V",
+    0.25
+   ],
+   [
+    "X",
+    0.39
+   ],
+   [
+    "J",
+    0.39
+   ]
+  ]
+ },
+ "shuffled_order_control": {
+  "capital_first_letter": [
+   58.3,
+   4.9
+  ],
+  "all_caps_words": [
+   56.8,
+   3.3
+  ],
+  "each_capital_alone": [
+   47.2,
+   2.0
+  ],
+  "lowercase_alone": [
+   95.7,
+   0.3
+  ],
+  "teacher_correct": [
+   86.9,
+   3.9
+  ],
+  "settings": [
+   [
+    0.1,
+    0.99
+   ],
+   [
+    0.1,
+    0.99
+   ],
+   [
+    0.1,
+    0.99
+   ],
+   [
+    0.1,
+    0.99
+   ]
+  ],
+  "worst_capitals": [
+   [
+    "P",
+    0.02
+   ],
+   [
+    "Y",
+    0.04
+   ],
+   [
+    "G",
+    0.08
+   ],
+   [
+    "R",
+    0.08
+   ],
+   [
+    "N",
+    0.17
+   ],
+   [
+    "A",
+    0.25
+   ]
+  ]
+ },
+ "no_prediction_control": {
+  "capital_first_letter": [
+   55.7,
+   3.5
+  ],
+  "all_caps_words": [
+   49.6,
+   3.7
+  ],
+  "each_capital_alone": [
+   43.7,
+   2.2
+  ],
+  "lowercase_alone": [
+   96.1,
+   0.1
+  ],
+  "teacher_correct": [
+   68.2,
+   6.9
+  ],
+  "settings": [
+   [
+    0.1,
+    0.99
+   ],
+   [
+    0.1,
+    0.99
+   ],
+   [
+    0.1,
+    0.99
+   ],
+   [
+    0.1,
+    0.99
+   ]
+  ],
+  "worst_capitals": [
+   [
+    "P",
+    0.03
+   ],
+   [
+    "Y",
+    0.05
+   ],
+   [
+    "G",
+    0.08
+   ],
+   [
+    "T",
+    0.08
+   ],
+   [
+    "R",
+    0.08
+   ],
+   [
+    "N",
+    0.14
+   ]
+  ]
+ },
+ "taught_with_labels": {
+  "capital_first_letter": [
+   92.4,
+   2.7
+  ],
+  "all_caps_words": [
+   95.3,
+   0.9
+  ],
+  "each_capital_alone": [
+   86.6,
+   1.4
+  ],
+  "lowercase_alone": [
+   94.0,
+   0.4
+  ],
+  "teacher_correct": [
+   100.0,
+   0.0
+  ],
+  "settings": [
+   [
+    0.3,
+    0.0
+   ],
+   [
+    0.3,
+    0.0
+   ],
+   [
+    0.1,
+    0.0
+   ],
+   [
+    0.3,
+    0.0
+   ]
+  ],
+  "worst_capitals": [
+   [
+    "J",
+    0.52
+   ],
+   [
+    "Q",
+    0.52
+   ],
+   [
+    "Z",
+    0.59
+   ],
+   [
+    "I",
+    0.63
+   ],
+   [
+    "X",
+    0.77
+   ],
+   [
+    "V",
+    0.82
+   ]
+  ]
+ },
+ "pairs_1_fonts": {
+  "capital_first_letter": [
+   68.6,
+   2.2
+  ],
+  "all_caps_words": [
+   69.5,
+   2.3
+  ],
+  "each_capital_alone": [
+   58.4,
+   0.8
+  ],
+  "lowercase_alone": [
+   95.3,
+   0.5
+  ],
+  "worst_capitals": [
+   [
+    "P",
+    0.24
+   ],
+   [
+    "Y",
+    0.35
+   ],
+   [
+    "R",
+    0.38
+   ],
+   [
+    "N",
+    0.39
+   ],
+   [
+    "T",
+    0.42
+   ],
+   [
+    "D",
+    0.42
+   ]
+  ]
+ },
+ "pairs_1_fonts_then_words": {
+  "capital_first_letter": [
+   74.2,
+   6.1
+  ],
+  "all_caps_words": [
+   82.3,
+   3.8
+  ],
+  "each_capital_alone": [
+   65.5,
+   7.7
+  ],
+  "lowercase_alone": [
+   91.7,
+   2.3
+  ],
+  "teacher_correct": [
+   87.0,
+   5.7
+  ],
+  "settings": [
+   [
+    0.1,
+    0.9
+   ],
+   [
+    0.1,
+    0.0
+   ],
+   [
+    0.1,
+    0.0
+   ],
+   [
+    0.1,
+    0.0
+   ]
+  ],
+  "worst_capitals": [
+   [
+    "V",
+    0.26
+   ],
+   [
+    "P",
+    0.27
+   ],
+   [
+    "G",
+    0.27
+   ],
+   [
+    "F",
+    0.29
+   ],
+   [
+    "J",
+    0.38
+   ],
+   [
+    "Y",
+    0.46
+   ]
+  ]
+ },
+ "pairs_3_fonts": {
+  "capital_first_letter": [
+   74.0,
+   4.2
+  ],
+  "all_caps_words": [
+   76.5,
+   6.2
+  ],
+  "each_capital_alone": [
+   66.6,
+   6.2
+  ],
+  "lowercase_alone": [
+   92.8,
+   1.8
+  ],
+  "worst_capitals": [
+   [
+    "P",
+    0.48
+   ],
+   [
+    "D",
+    0.48
+   ],
+   [
+    "R",
+    0.49
+   ],
+   [
+    "F",
+    0.51
+   ],
+   [
+    "N",
+    0.52
+   ],
+   [
+    "J",
+    0.52
+   ]
+  ]
+ },
+ "pairs_3_fonts_then_words": {
+  "capital_first_letter": [
+   75.5,
+   6.7
+  ],
+  "all_caps_words": [
+   84.7,
+   4.1
+  ],
+  "each_capital_alone": [
+   68.3,
+   9.3
+  ],
+  "lowercase_alone": [
+   91.5,
+   2.3
+  ],
+  "teacher_correct": [
+   88.8,
+   6.5
+  ],
+  "settings": [
+   [
+    0.1,
+    0.9
+   ],
+   [
+    0.1,
+    0.0
+   ],
+   [
+    0.1,
+    0.0
+   ],
+   [
+    0.1,
+    0.0
+   ]
+  ],
+  "worst_capitals": [
+   [
+    "V",
+    0.29
+   ],
+   [
+    "F",
+    0.33
+   ],
+   [
+    "P",
+    0.33
+   ],
+   [
+    "J",
+    0.38
+   ],
+   [
+    "G",
+    0.46
+   ],
+   [
+    "Q",
+    0.47
+   ]
+  ]
+ },
+ "pairs_10_fonts": {
+  "capital_first_letter": [
+   80.0,
+   2.4
+  ],
+  "all_caps_words": [
+   83.5,
+   1.3
+  ],
+  "each_capital_alone": [
+   73.8,
+   1.8
+  ],
+  "lowercase_alone": [
+   93.8,
+   1.5
+  ],
+  "worst_capitals": [
+   [
+    "J",
+    0.55
+   ],
+   [
+    "F",
+    0.57
+   ],
+   [
+    "P",
+    0.57
+   ],
+   [
+    "T",
+    0.65
+   ],
+   [
+    "E",
+    0.66
+   ],
+   [
+    "I",
+    0.66
+   ]
+  ]
+ },
+ "pairs_10_fonts_then_words": {
+  "capital_first_letter": [
+   78.0,
+   5.2
+  ],
+  "all_caps_words": [
+   86.5,
+   2.8
+  ],
+  "each_capital_alone": [
+   71.8,
+   6.4
+  ],
+  "lowercase_alone": [
+   92.0,
+   1.5
+  ],
+  "teacher_correct": [
+   93.6,
+   3.4
+  ],
+  "settings": [
+   [
+    0.1,
+    0.9
+   ],
+   [
+    0.1,
+    0.0
+   ],
+   [
+    0.1,
+    0.9
+   ],
+   [
+    0.1,
+    0.0
+   ]
+  ],
+  "worst_capitals": [
+   [
+    "F",
+    0.36
+   ],
+   [
+    "P",
+    0.38
+   ],
+   [
+    "J",
+    0.4
+   ],
+   [
+    "V",
+    0.41
+   ],
+   [
+    "G",
+    0.48
+   ],
+   [
+    "I",
+    0.5
+   ]
+  ]
+ },
+ "pairs_30_fonts": {
+  "capital_first_letter": [
+   83.1,
+   3.3
+  ],
+  "all_caps_words": [
+   87.7,
+   0.9
+  ],
+  "each_capital_alone": [
+   80.8,
+   0.5
+  ],
+  "lowercase_alone": [
+   90.7,
+   0.3
+  ],
+  "worst_capitals": [
+   [
+    "L",
+    0.04
+   ],
+   [
+    "J",
+    0.68
+   ],
+   [
+    "F",
+    0.7
+   ],
+   [
+    "M",
+    0.76
+   ],
+   [
+    "T",
+    0.78
+   ],
+   [
+    "E",
+    0.79
+   ]
+  ]
+ },
+ "pairs_30_fonts_then_words": {
+  "capital_first_letter": [
+   81.9,
+   8.2
+  ],
+  "all_caps_words": [
+   89.0,
+   4.0
+  ],
+  "each_capital_alone": [
+   78.2,
+   5.3
+  ],
+  "lowercase_alone": [
+   90.1,
+   2.6
+  ],
+  "teacher_correct": [
+   96.6,
+   2.5
+  ],
+  "settings": [
+   [
+    0.1,
+    0.9
+   ],
+   [
+    0.1,
+    0.0
+   ],
+   [
+    0.1,
+    0.9
+   ],
+   [
+    0.3,
+    0.9
+   ]
+  ],
+  "worst_capitals": [
+   [
+    "J",
+    0.47
+   ],
+   [
+    "F",
+    0.5
+   ],
+   [
+    "P",
+    0.51
+   ],
+   [
+    "I",
+    0.59
+   ],
+   [
+    "Q",
+    0.6
+   ],
+   [
+    "L",
+    0.6
+   ]
+  ]
+ },
+ "lowercase_words_both_side_prediction": {
+  "known": {
+   "alone": [
+    95.8,
+    0.4
+   ],
+   "with_prediction": [
+    97.5,
+    0.4
+   ]
+  },
+  "new": {
+   "alone": [
+    95.4,
+    0.9
+   ],
+   "with_prediction": [
+    96.7,
+    1.1
+   ]
+  }
+ }
+}
