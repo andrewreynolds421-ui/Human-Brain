@@ -13,7 +13,9 @@ def ms(v):
 
 
 def main():
-    runs = [json.load(open(f)) for f in sorted(glob.glob(os.path.join(R, "learn_s*.json")))]
+    import sys
+    tag = sys.argv[1] if len(sys.argv) > 1 else ""          # "" = Stage 40; "_replay" = Stage 41
+    runs = [json.load(open(f)) for f in sorted(glob.glob(os.path.join(R, f"learn{tag}_s[0-9].json")))]
     conds = [k for k in runs[0] if isinstance(runs[0][k], dict) and "capitals_isolated" in runs[0][k]]
     out = dict(networks=[r["seed"] for r in runs])
     for c in conds:
@@ -26,12 +28,15 @@ def main():
             o["settings"] = [(r[c]["eta_w"], r[c].get("confidence_needed")) for r in runs]
         pc = np.mean([[r[c]["per_capital"][ch] for ch in "ABCDEFGHIJKLMNOPQRSTUVWXYZ"] for r in runs], 0)
         o["worst_capitals"] = [("ABCDEFGHIJKLMNOPQRSTUVWXYZ"[i], round(float(pc[i]), 2)) for i in np.argsort(pc)[:6]]
+        if "per_lowercase" in runs[0][c]:
+            pl = np.mean([[r[c]["per_lowercase"][ch] for ch in "abcdefghijklmnopqrstuvwxyz"] for r in runs], 0)
+            o["worst_lowercase"] = [("abcdefghijklmnopqrstuvwxyz"[i], round(float(pl[i]), 2)) for i in np.argsort(pl)[:4]]
         out[c] = o
         print(f"{c:30s} The-type {o['capital_first_letter']} | ALL CAPS {o['all_caps_words']} | alone {o['each_capital_alone']} | lowercase {o['lowercase_alone']} | worst {o['worst_capitals'][:4]}")
     out["lowercase_words_both_side_prediction"] = {n: dict(alone=ms([r["lowercase_words"][n]["letters_alone"] for r in runs]),
                                                            with_prediction=ms([r["lowercase_words"][n]["with_both_side_prediction"] for r in runs])) for n in ("known", "new")}
     print(out["lowercase_words_both_side_prediction"])
-    json.dump(out, open(os.path.join(R, "stage40_summary.json"), "w"), indent=1)
+    json.dump(out, open(os.path.join(R, "stage40_summary.json" if not tag else f"stage41{tag}_summary.json"), "w"), indent=1)
 
 
 if __name__ == "__main__":

@@ -269,8 +269,9 @@ the long form. Priorities as they stand on 5 Nov:
    is the whole-letter template layer: next lever is part-of-image cells feeding a second layer, or several
    passes for a larger layer)*; (b) *(started 11 Nov, README Stage 40: capitals alone 97.7 %; I<->l is the one serious cross-case confusion;
    without labels, alphabet-book pairs (30 fonts) teach capitals to 81-88 %, word context to 72-82 % but
-   unreliably; one unit per letter costs lowercase 2-6 points)* next: case-specific shape detectors linked to
-   letter identities by association (voting), `scripts/capitals.py`;
+   unreliably; one unit per letter costs lowercase 2-6 points)* *(11 Nov, README Stage 41: detectors-with-votes and a second unit per letter did not help; the lowercase loss
+   was a chain reaction from I/l, fixed by replay of settled lowercase knowledge - 100 fonts of pairs: capitals
+   89-94 %, lowercase 95 %; capital I ~50 % remains, needs the word)*; `scripts/capitals.py --replay 1`;
    (c) words read through the learned layer, not only the edge cells; (d) finish the queued re-check of the
    Stage 36 sequence layer at normal inhibition (job queue `words_rec_*_i1_fixed`).
 5. *(Done 7 Nov, README Stages 33–34: with a corrected LFP proxy the 30–45 Hz slope is near human (−2.2 vs −2.8/−3.0); slow power ~25 dB short, open problem 13.)* **Stage 7, cheaply**: compare the column's population spectrum with human

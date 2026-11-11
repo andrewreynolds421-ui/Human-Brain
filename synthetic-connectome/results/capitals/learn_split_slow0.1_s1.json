@@ -1,0 +1,418 @@
+{
+ "seed": 1,
+ "arch": "split",
+ "beta": 0.75,
+ "C_lowercase": 0.03,
+ "args": {
+  "cmd": "learn",
+  "seed": 1,
+  "suffix": "_slow0.1",
+  "slow": 0.1,
+  "arch": "split",
+  "n_label": 10000,
+  "n_read": 20000,
+  "n_caps": 20000,
+  "eta_p": 0.1,
+  "eta_w": [
+   1.0,
+   3.0
+  ],
+  "beta_teach": [
+   1.0
+  ],
+  "lapse": [
+   0.01
+  ],
+  "conf": [
+   0.0,
+   0.9,
+   0.99
+  ],
+  "pairs": [
+   30
+  ],
+  "eta_pair": [
+   3.0,
+   10.0
+  ]
+ },
+ "lowercase_words": {
+  "known": {
+   "letters_alone": 0.9620907524411257,
+   "with_both_side_prediction": 0.9793222286042504
+  },
+  "new": {
+   "letters_alone": 0.961764705882353,
+   "with_both_side_prediction": 0.9788235294117648
+  }
+ },
+ "before": {
+  "capitals_isolated": 0.4509,
+  "lowercase_isolated": 0.9621,
+  "per_capital": {
+   "A": 0.206,
+   "B": 0.914,
+   "C": 0.797,
+   "D": 0.275,
+   "E": 0.147,
+   "F": 0.792,
+   "G": 0.017,
+   "H": 0.967,
+   "I": 0.25,
+   "J": 0.433,
+   "K": 0.819,
+   "L": 0.675,
+   "M": 0.361,
+   "N": 0.153,
+   "O": 0.392,
+   "P": 0.019,
+   "Q": 0.592,
+   "R": 0.264,
+   "S": 0.478,
+   "T": 0.117,
+   "U": 0.436,
+   "V": 0.672,
+   "W": 0.731,
+   "X": 0.617,
+   "Y": 0.014,
+   "Z": 0.586
+  },
+  "words_Capital_known": {
+   "all_letters": 0.8764,
+   "capitals": 0.5767
+  },
+  "words_Capital_new": {
+   "all_letters": 0.8606,
+   "capitals": 0.5267
+  },
+  "words_ALLCAPS_known": {
+   "all_letters": 0.5019,
+   "capitals": 0.5019
+  },
+  "words_ALLCAPS_new": {
+   "all_letters": 0.4789,
+   "capitals": 0.4789
+  }
+ },
+ "word_context": {
+  "eta_w": 3.0,
+  "beta_teach": 1.0,
+  "lapse": 0.01,
+  "confidence_needed": 0.9,
+  "teacher_correct_overall": 0.9294,
+  "teacher_correct_last_2000": 0.952,
+  "capitals_isolated": 0.6413,
+  "lowercase_isolated": 0.9278,
+  "per_capital": {
+   "A": 0.956,
+   "B": 0.572,
+   "C": 0.789,
+   "D": 0.006,
+   "E": 0.95,
+   "F": 0.619,
+   "G": 0.011,
+   "H": 0.972,
+   "I": 0.481,
+   "J": 0.322,
+   "K": 0.844,
+   "L": 0.894,
+   "M": 0.722,
+   "N": 0.6,
+   "O": 0.892,
+   "P": 0.008,
+   "Q": 0.403,
+   "R": 0.922,
+   "S": 0.978,
+   "T": 0.986,
+   "U": 0.861,
+   "V": 0.1,
+   "W": 0.872,
+   "X": 0.542,
+   "Y": 0.881,
+   "Z": 0.492
+  },
+  "words_Capital_known": {
+   "all_letters": 0.9304,
+   "capitals": 0.8067
+  },
+  "words_Capital_new": {
+   "all_letters": 0.9153,
+   "capitals": 0.7867
+  },
+  "words_ALLCAPS_known": {
+   "all_letters": 0.8399,
+   "capitals": 0.8399
+  },
+  "words_ALLCAPS_new": {
+   "all_letters": 0.7578,
+   "capitals": 0.7578
+  }
+ },
+ "shuffled_order_control": {
+  "eta_w": 1.0,
+  "beta_teach": 1.0,
+  "lapse": 0.01,
+  "confidence_needed": 0.99,
+  "teacher_correct_overall": 0.8292,
+  "teacher_correct_last_2000": 0.862,
+  "capitals_isolated": 0.4785,
+  "lowercase_isolated": 0.9587,
+  "per_capital": {
+   "A": 0.206,
+   "B": 0.922,
+   "C": 0.842,
+   "D": 0.219,
+   "E": 0.278,
+   "F": 0.583,
+   "G": 0.025,
+   "H": 0.967,
+   "I": 0.469,
+   "J": 0.417,
+   "K": 0.789,
+   "L": 0.656,
+   "M": 0.314,
+   "N": 0.147,
+   "O": 0.742,
+   "P": 0.014,
+   "Q": 0.608,
+   "R": 0.222,
+   "S": 0.622,
+   "T": 0.242,
+   "U": 0.578,
+   "V": 0.633,
+   "W": 0.811,
+   "X": 0.589,
+   "Y": 0.011,
+   "Z": 0.536
+  },
+  "words_Capital_known": {
+   "all_letters": 0.8772,
+   "capitals": 0.59
+  },
+  "words_Capital_new": {
+   "all_letters": 0.8725,
+   "capitals": 0.5767
+  },
+  "words_ALLCAPS_known": {
+   "all_letters": 0.5568,
+   "capitals": 0.5568
+  },
+  "words_ALLCAPS_new": {
+   "all_letters": 0.5012,
+   "capitals": 0.5012
+  }
+ },
+ "no_prediction_control": {
+  "eta_w": 1.0,
+  "beta_teach": 0.0,
+  "lapse": 0.0,
+  "confidence_needed": 0.99,
+  "teacher_correct_overall": 0.7653,
+  "teacher_correct_last_2000": 0.7755,
+  "capitals_isolated": 0.4491,
+  "lowercase_isolated": 0.9621,
+  "per_capital": {
+   "A": 0.189,
+   "B": 0.911,
+   "C": 0.794,
+   "D": 0.267,
+   "E": 0.15,
+   "F": 0.789,
+   "G": 0.019,
+   "H": 0.967,
+   "I": 0.256,
+   "J": 0.431,
+   "K": 0.783,
+   "L": 0.681,
+   "M": 0.328,
+   "N": 0.136,
+   "O": 0.414,
+   "P": 0.014,
+   "Q": 0.603,
+   "R": 0.231,
+   "S": 0.475,
+   "T": 0.122,
+   "U": 0.447,
+   "V": 0.675,
+   "W": 0.817,
+   "X": 0.589,
+   "Y": 0.014,
+   "Z": 0.578
+  },
+  "words_Capital_known": {
+   "all_letters": 0.8764,
+   "capitals": 0.5767
+  },
+  "words_Capital_new": {
+   "all_letters": 0.8614,
+   "capitals": 0.53
+  },
+  "words_ALLCAPS_known": {
+   "all_letters": 0.4996,
+   "capitals": 0.4996
+  },
+  "words_ALLCAPS_new": {
+   "all_letters": 0.4749,
+   "capitals": 0.4749
+  }
+ },
+ "taught_with_labels": {
+  "eta_w": 3.0,
+  "beta_teach": 0.0,
+  "lapse": 0.0,
+  "confidence_needed": 0.0,
+  "teacher_correct_overall": 1.0,
+  "teacher_correct_last_2000": 1.0,
+  "capitals_isolated": 0.8734,
+  "lowercase_isolated": 0.9423,
+  "per_capital": {
+   "A": 0.953,
+   "B": 0.939,
+   "C": 0.933,
+   "D": 0.967,
+   "E": 0.969,
+   "F": 0.956,
+   "G": 0.914,
+   "H": 0.964,
+   "I": 0.564,
+   "J": 0.794,
+   "K": 0.917,
+   "L": 0.961,
+   "M": 0.683,
+   "N": 0.906,
+   "O": 0.947,
+   "P": 0.956,
+   "Q": 0.486,
+   "R": 0.964,
+   "S": 0.975,
+   "T": 0.975,
+   "U": 0.931,
+   "V": 0.806,
+   "W": 0.975,
+   "X": 0.706,
+   "Y": 0.931,
+   "Z": 0.639
+  },
+  "words_Capital_known": {
+   "all_letters": 0.9687,
+   "capitals": 0.9633
+  },
+  "words_Capital_new": {
+   "all_letters": 0.9604,
+   "capitals": 0.9367
+  },
+  "words_ALLCAPS_known": {
+   "all_letters": 0.9497,
+   "capitals": 0.9497
+  },
+  "words_ALLCAPS_new": {
+   "all_letters": 0.9554,
+   "capitals": 0.9554
+  }
+ },
+ "pairs_30_fonts": {
+  "eta_w": 3.0,
+  "pairings": 3900,
+  "lowercase_read_correctly_in_pairs": 0.96,
+  "capitals_isolated": 0.8219,
+  "lowercase_isolated": 0.9123,
+  "per_capital": {
+   "A": 0.897,
+   "B": 0.908,
+   "C": 0.825,
+   "D": 0.806,
+   "E": 0.794,
+   "F": 0.647,
+   "G": 0.869,
+   "H": 0.903,
+   "I": 0.928,
+   "J": 0.883,
+   "K": 0.936,
+   "L": 0.003,
+   "M": 0.85,
+   "N": 0.733,
+   "O": 0.85,
+   "P": 0.808,
+   "Q": 0.814,
+   "R": 0.747,
+   "S": 0.942,
+   "T": 0.847,
+   "U": 0.919,
+   "V": 0.814,
+   "W": 0.903,
+   "X": 0.922,
+   "Y": 0.875,
+   "Z": 0.944
+  },
+  "words_Capital_known": {
+   "all_letters": 0.9202,
+   "capitals": 0.8533
+  },
+  "words_Capital_new": {
+   "all_letters": 0.9145,
+   "capitals": 0.8767
+  },
+  "words_ALLCAPS_known": {
+   "all_letters": 0.8732,
+   "capitals": 0.8732
+  },
+  "words_ALLCAPS_new": {
+   "all_letters": 0.8574,
+   "capitals": 0.8574
+  }
+ },
+ "pairs_30_fonts_then_words": {
+  "eta_w": 3.0,
+  "beta_teach": 1.0,
+  "lapse": 0.01,
+  "confidence_needed": 0.9,
+  "teacher_correct_overall": 0.9843,
+  "teacher_correct_last_2000": 0.9895,
+  "capitals_isolated": 0.823,
+  "lowercase_isolated": 0.9187,
+  "per_capital": {
+   "A": 0.95,
+   "B": 0.811,
+   "C": 0.869,
+   "D": 0.9,
+   "E": 0.953,
+   "F": 0.753,
+   "G": 0.85,
+   "H": 0.978,
+   "I": 0.511,
+   "J": 0.694,
+   "K": 0.861,
+   "L": 0.939,
+   "M": 0.767,
+   "N": 0.861,
+   "O": 0.914,
+   "P": 0.586,
+   "Q": 0.464,
+   "R": 0.933,
+   "S": 0.972,
+   "T": 0.989,
+   "U": 0.933,
+   "V": 0.689,
+   "W": 0.869,
+   "X": 0.817,
+   "Y": 0.906,
+   "Z": 0.628
+  },
+  "words_Capital_known": {
+   "all_letters": 0.9507,
+   "capitals": 0.8933
+  },
+  "words_Capital_new": {
+   "all_letters": 0.943,
+   "capitals": 0.9
+  },
+  "words_ALLCAPS_known": {
+   "all_letters": 0.935,
+   "capitals": 0.935
+  },
+  "words_ALLCAPS_new": {
+   "all_letters": 0.9219,
+   "capitals": 0.9219
+  }
+ }
+}

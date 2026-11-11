@@ -530,3 +530,12 @@ versions before the reported one (steps too large - units collapsed; context wei
 overwritten, and the settings they led to (standardised signals, step grids) were then applied unchanged
 to networks 2-4. The Stage 39 larger-image result replicated (80.5 %, first 80.3 %).
 
+## 22. Follow-up (11 November): Stage 41 — replay
+
+The Stage 40 plan (case-specific detectors with voted links) was tested and not adopted: detectors cap
+reading at ~94 %, and a second unit per letter did not help. The lowercase loss was traced to a chain
+reaction from the I/l look-alike through self-labelled rehearsal (lowercase l fell to 0 %). Replay of
+settled lowercase knowledge from a stable copy fixes it on four networks: lowercase 95-96 % in every
+condition, capitals up 3-9 points, 100 fonts of label-free pairs equal to labelled teaching. Stage 40's
+explanation of the lowercase loss ("one unit, two shapes") was wrong and is superseded here.
+

@@ -2621,8 +2621,8 @@ label-free teachers:
 - **Words after pairs add little** (+1 point in ALL-CAPS words, −1 elsewhere): about one context lesson
   in ten is wrong, and letting only confident percepts teach (98 % correct) removes the lessons that
   would have taught something new.
-- **Cost to lowercase:** 2–6 points in every condition, labels included. One unit per letter has to fit
-  two shapes with one set of synapses; teaching the second shape disturbs the first.
+- **Cost to lowercase:** 2–6 points in every condition, labels included. *(The explanation first given
+  here - one unit fitting two shapes - was wrong; Stage 41 traces it to the I / l look-alike and fixes it.)*
 - **Side result:** using the letters on both sides improves lowercase reading in words (95.8 → 97.5 %
   known words, 95.4 → 96.7 % new words).
 
@@ -2634,6 +2634,55 @@ is lower here (43.8 %) than in B (54.7 %) because the standardised signals carry
 detectors for the two cases (as in the brain, case-specific shapes below abstract letter identities),
 each linked to a letter by association - a link per detector, learned from pairs or context by voting,
 which tolerates a teacher that is wrong one time in ten. Then words read with capitals, and word units.
+
+## Stage 41: why capitals disturbed lowercase — and replay as the fix
+
+Stage 40 ended with a plan: separate shape detectors for the two cases, linked to letters by voting.
+Three things were tried (`scripts/capitals.py`; development on network 1, then four networks).
+
+**1. Unsupervised shape detectors with voted links — not adopted.** 800 / 3,200 detectors learned from
+all 52 shapes without labels, each linked to a letter by votes. Even with perfect labels for the votes,
+reading through them reaches 92 / 94 % (lowercase) and 92 / 93 % (capitals), below the letter units on
+the edge cells (96.8 / 97.7 %). (`results/capitals/dev/detectors_check*`.)
+
+**2. A second, capital-shape unit per letter with its own synapses — no gain.** With the lowercase
+units frozen, lowercase is fully protected (96.2 %) but capitals are not learned: the new units cannot
+out-shout lowercase units that are confidently wrong ("G is a c"). Letting the lowercase units learn
+slowly gives the Stage 40 numbers again (capitals 81–82 %, lowercase 91 %). So shared synapses were not
+the cause.
+
+**3. The cause: a chain reaction from the I / l look-alike.** After pairing, lowercase l was read
+correctly 0 % of the time and capital L 1 %. Capital I is taught as "i"; I looks like l, so l-shapes
+start to be read as "i"; the lowercase letter of each pair was rehearsed with the units' *current*
+reading, so l was re-taught as "i"; then the pair (L, l) taught L as "i" as well.
+
+**The fix: replay.** While new shapes are learned, settled lowercase knowledge is rehearsed from a
+stable copy of the units: one replayed lowercase image per new lesson, named by the stable copy, which
+also names the lowercase letter of each pair (interleaved learning / replay; McClelland, McNaughton &
+O'Reilly 1995). No labels are involved. Four networks, 60 never-seen families
+(`results/capitals/stage41_replay_summary.json`); Stage 40 values in brackets:
+
+| how capitals were learned | capital first letter ("The") | ALL-CAPS words | each capital alone | lowercase alone |
+|---|---|---|---|---|
+| before | 55.7 % | 49.9 % | 43.8 % | 96.1 % |
+| reading words with capitals | 75.4 ± 5.5 % (71.7) | 84.5 ± 4.3 % (81.8) | 67.2 % (62.8) | 95.4 % (91.0) |
+| control: no letter order | 59.5 % | 57.5 % | 46.8 % | 95.6 % |
+| pairs, 1 font (130 pairings) | 68.3 % | 69.2 % | 58.0 % | 95.5 % |
+| pairs, 1 font, then words | 79.4 ± 5.0 % | 86.7 ± 3.2 % | 71.9 % | 95.6 % |
+| pairs, 3 fonts, then words | 82.2 % | 88.4 % | 74.5 % | 95.6 % |
+| pairs, 10 fonts, then words | 84.2 % | 90.1 % | 78.5 % | 95.7 % |
+| pairs, 30 fonts | 87.1 ± 3.6 % (83.1) | 90.4 ± 1.1 % (87.7) | 84.5 % (80.8) | 94.9 % (90.7) |
+| pairs, 30 fonts, then words | 86.5 % | 92.1 ± 2.0 % | 83.0 % | 95.7 % |
+| **pairs, 100 fonts** | **91.4 ± 1.8 %** | **93.9 ± 0.5 %** | **89.3 ± 1.1 %** | 95.2 % |
+| reference: capitals taught with labels | 92.0 % | 95.3 % | 86.9 % | 95.8 % |
+
+- **Lowercase is kept** (95–96 % in every condition; it was 90–94 %).
+- **Capitals improve everywhere**, and 100 fonts of pairs, with no labels, match teaching with labels.
+- **Words now help after a few pairs**: one alphabet book plus reading takes capitals in ALL-CAPS words
+  from 50 % to 87 %; with many pairs, words add little.
+- **What is left is capital I** (about 50 %): in many fonts it is the same shape as lowercase l, and
+  the units now keep l. Only the word can tell them apart. G and P still get stuck when words are the
+  only teacher.
 
 ## Open problems found so far
 

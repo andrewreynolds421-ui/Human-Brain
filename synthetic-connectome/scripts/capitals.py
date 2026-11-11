@@ -121,6 +121,13 @@ def basics(a):
 class Units:
     """26 letter units reading the edge cells: softmax(W x + b); delta-rule updates"""
 
+    tau = 0.0                                     # > 0: the step shrinks with experience, eta / (1 + lessons / tau)
+    lessons = 0
+
+    def rate(self, eta):
+        self.lessons += 1
+        return (eta / (1.0 + self.lessons / self.tau) if self.tau > 0 else eta) / self.xnorm2
+
     def __init__(self, model, xnorm2=1.0):
         self.W = model.coef_.copy(); self.b = model.intercept_.copy()
         self.xnorm2 = xnorm2                      # mean squared input strength: the step is eta / xnorm2
@@ -133,7 +140,40 @@ class Units:
 
     def learn(self, x, target, eta):
         err = target - self.evidence(x[None])[0]
-        self.W += (eta / self.xnorm2) * np.outer(err, x); self.b += (eta / self.xnorm2) * err
+        r = self.rate(eta)
+        self.W += r * np.outer(err, x); self.b += r * err
+
+
+class SplitUnits(Units):
+    """Stage 41: case-specific shape units under one letter identity.  Units 0-25 are the lowercase units
+    (taught with labels, then learning `slow` times as fast as the new units); units 26-51 are a second unit per letter with its own synapses,
+    silent at first.  A letter's evidence is the sum of its two units.  Teaching a letter goes to whichever
+    of its two units responds more to the image; the second units learn fast, the mature ones slowly."""
+
+    def __init__(self, model, xnorm2=1.0, slow=0.0):
+        super().__init__(model, xnorm2)
+        self.slow = slow
+        self.W = np.vstack([self.W, np.zeros_like(self.W)]); self.b = np.concatenate([self.b, np.zeros(L)])
+
+    def _p52(self, X):
+        z = X @ self.W.T + self.b
+        z -= z.max(-1, keepdims=True)
+        p = np.exp(z)
+        return z, p / p.sum(-1, keepdims=True)
+
+    def evidence(self, X):
+        _, p = self._p52(X)
+        return p[:, :L] + p[:, L:]
+
+    def learn(self, x, target, eta):
+        z, p = self._p52(x[None]); z, p = z[0], p[0]
+        k = int(np.argmax(target))
+        unit = k if z[k] >= z[L + k] else L + k
+        err = -p; err[unit] += 1.0
+        r = self.rate(eta)
+        self.W[L:] += r * np.outer(err[L:], x); self.b[L:] += r * err[L:]
+        if self.slow > 0:      # the mature lowercase units still learn, slowly (they must unlearn "G is a c")
+            self.W[:L] += self.slow * r * np.outer(err[:L], x); self.b[:L] += self.slow * r * err[:L]
 
 
 def img_index(fam, cls, r):
@@ -223,12 +263,18 @@ def learn(a):
     # word-context prediction from reading lowercase words
     lw = sample_words(rng, tr, freqs[tr], a.n_read, nf["train"], words, "lower")
     xn2 = float(np.mean(np.sum(V["train"][sub] ** 2, 1)))
-    U0 = Units(m0, xn2)
+    make = (lambda: SplitUnits(m0, xn2, a.slow)) if a.arch == "split" else (lambda: Units(m0, xn2))
+    make0 = make
+
+    def make():
+        U = make0(); U.tau = a.tau
+        return U
+    U0 = make()
     P = train_predictor(lw, V["train"], U0, a.eta_p)
     Pshuf = train_predictor(lw, V["train"], U0, a.eta_p, shuffle_rng=np.random.default_rng(99 + a.seed))
     vw = sample_words(rng, tr, freqs[tr], 300, nf["val"], words, "lower")
     beta = max((read_words(vw, V["val"], U0, P, b)[0], b) for b in (0.5, 0.75, 1.0, 1.5))[1]
-    res = dict(seed=a.seed, beta=beta, C_lowercase=C0, args=vars(a))
+    res = dict(seed=a.seed, arch=a.arch, beta=beta, C_lowercase=C0, args=vars(a))
     tw = {n: sample_words(rng, ids, freqs[ids], 400, nf["test"], words, "lower") for n, ids in (("known", tr), ("new", ho))}
     res["lowercase_words"] = {n: dict(letters_alone=read_words(t, V["test"], U0, None, 0)[0],
                                       with_both_side_prediction=read_words(t, V["test"], U0, P, beta)[0]) for n, t in tw.items()}
@@ -240,14 +286,18 @@ def learn(a):
 
     def report(U, Pred):
         cap, pred, yt = isolated(U, V["test"], y["test"], True)
-        out = dict(capitals_isolated=round(cap, 4), lowercase_isolated=round(isolated(U, V["test"], y["test"], False)[0], 4),
+        lo, pl, yl = isolated(U, V["test"], y["test"], False)
+        out = dict(capitals_isolated=round(cap, 4), lowercase_isolated=round(lo, 4),
+                   per_lowercase={ABC[c]: round(float(np.mean(pl[yl == c] == c)), 3) for c in range(26)},
+                   lowercase_read_as={ABC[c]: ABC[int(np.bincount(pl[yl == c], minlength=26).argmax())] for c in range(26)},
+                   capital_read_as={ABC.upper()[c]: ABC[int(np.bincount(pred[yt == c], minlength=26).argmax())] for c in range(26)},
                    per_capital={ABC.upper()[c]: round(float(np.mean(pred[yt == c] == c)), 3) for c in range(26)})
         for k, t in tests.items():
             al, cp = read_words(t, V["test"], U, Pred, beta)
             out[f"words_{k}"] = dict(all_letters=round(al, 4), capitals=round(cp, 4))
         return out
 
-    res["before"] = report(Units(m0, xn2), P)
+    res["before"] = report(make(), P)
 
     def word_phase(U, Pred, b, eta_w, labels=False, lapse=0.0, conf=0.0):
         """read the words with capitals; every letter's percept (or label) teaches the units"""
@@ -267,9 +317,23 @@ def learn(a):
                 if tok["case"][t]:
                     log.append(k == tok["let"][t])
                 U.learn(X[t], np.eye(L)[k], eta_w)
+                if tok["case"][t]:
+                    replay(U, eta_w)
         return float(np.mean(log)), float(np.mean(log[-2000:]))
 
     pair_fams = np.random.default_rng(500 + a.seed).permutation(nf["train"])
+    # Replay (Stage 41): settled lowercase knowledge is rehearsed from a stable copy of the units while new
+    # shapes are learned (interleaved learning / replay: McClelland et al. 1995), so that new lessons cannot
+    # overwrite it through the units' own drifting guesses.  No labels: the stable copy names the letter.
+    Ustable = make()
+    rr = np.random.default_rng(700 + a.seed)
+
+    def replay(U, eta_w):
+        if not a.replay:
+            return
+        for _ in range(a.replay):
+            x = V["train"][img_index(int(rr.integers(nf["train"])), int(rr.integers(26)), int(rr.integers(PER)))]
+            U.learn(x, np.eye(L)[int(Ustable.evidence(x[None])[0].argmax())], eta_w)
 
     def pair_phase(U, k, eta_w, passes=5):
         """alphabet-book pairing, no labels: a capital is shown with its lowercase letter in the same font
@@ -279,9 +343,11 @@ def learn(a):
             for f in pair_fams[:k]:
                 for c in r.permutation(26):
                     xl = V["train"][img_index(f, c, r.integers(PER))]; xu = V["train"][img_index(f, c + 26, r.integers(PER))]
-                    t = int(U.evidence(xl[None])[0].argmax()); ok.append(t == c)
+                    reader = Ustable if a.replay else U       # replay: the settled lowercase knowledge names the letter
+                    t = int(reader.evidence(xl[None])[0].argmax()); ok.append(t == c)
                     U.learn(xu, np.eye(L)[t], eta_w)
                     U.learn(xl, np.eye(L)[t], eta_w)          # the lowercase letter of the pair is rehearsed too
+                    replay(U, eta_w)
         return float(np.mean(ok))
 
     vlow = y["val"] < 26; vup = ~vlow
@@ -290,18 +356,18 @@ def learn(a):
         ev = U.evidence(V["val"]).argmax(1) == y["val"] % 26
         return read_words(vcap, V["val"], U, P, beta)[1] + float(ev[vup].mean()) + 2 * float(ev[vlow].mean())
 
-    def best_of(make):
+    def best_of(plan):
         best = None
-        for setting in make["grid"]:
-            U = Units(m0, xn2) if make.get("start") is None else make["start"]()
-            info = make["run"](U, *setting)
+        for setting in plan["grid"]:
+            U = make() if plan.get("start") is None else plan["start"]()
+            info = plan["run"](U, *setting)
             sc = val_score(U)
             if best is None or sc > best[0]:
                 best = (sc, setting, U, info)
         return best[1:]
 
     def copy_units(U):
-        C = Units(m0, xn2); C.W = U.W.copy(); C.b = U.b.copy(); return C
+        C = make(); C.W = U.W.copy(); C.b = U.b.copy(); C.lessons = U.lessons; return C
 
     grid_w = [(b, e, lp, cf) for b in a.beta_teach for e in a.eta_w for lp in a.lapse for cf in a.conf]
     plans = dict(
@@ -310,6 +376,8 @@ def learn(a):
         no_prediction_control=dict(grid=[(0.0, e, 0.0, cf) for e in a.eta_w for cf in a.conf], run=lambda U, b, e, lp, cf: word_phase(U, None, b, e, False, 0.0, cf)),
         taught_with_labels=dict(grid=[(0.0, e, 0.0, 0.0) for e in a.eta_w], run=lambda U, b, e, lp, cf: word_phase(U, None, b, e, True)))
     kept = {}
+    if a.skip_words:
+        plans = {}
     for name, plan in plans.items():
         (b, e, lp, cf), U, info = best_of(plan)
         res[name] = dict(eta_w=e, beta_teach=b, lapse=lp, confidence_needed=cf, teacher_correct_overall=round(info[0], 4), teacher_correct_last_2000=round(info[1], 4), **report(U, P))
@@ -318,17 +386,27 @@ def learn(a):
         (e,), U, info = best_of(dict(grid=[(e,) for e in a.eta_pair], run=lambda U, e, k=k: pair_phase(U, k, e)))
         res[f"pairs_{k}_fonts"] = dict(eta_w=e, pairings=int(5 * k * 26), lowercase_read_correctly_in_pairs=round(info, 4), **report(U, P))
         print(f"pairs {k}", res[f"pairs_{k}_fonts"]["capitals_isolated"], res[f"pairs_{k}_fonts"]["lowercase_isolated"], flush=True)
+        if a.skip_words:
+            continue
         (b, e2, lp, cf), U2, info2 = best_of(dict(grid=grid_w, start=lambda U=U: copy_units(U), run=lambda U_, b, e, lp, cf: word_phase(U_, P, b, e, False, lp, cf)))
         res[f"pairs_{k}_fonts_then_words"] = dict(eta_w=e2, beta_teach=b, lapse=lp, confidence_needed=cf, teacher_correct_overall=round(info2[0], 4),
                                                    teacher_correct_last_2000=round(info2[1], 4), **report(U2, P))
         print(f"pairs {k} + words", res[f"pairs_{k}_fonts_then_words"]["capitals_isolated"], res[f"pairs_{k}_fonts_then_words"]["lowercase_isolated"], "teacher", info2, (b, e2, lp, cf), flush=True)
-    json.dump(res, open(os.path.join(OUT, f"learn_s{a.seed}.json"), "w"), indent=1)
+    tag = "" if a.arch == "shared" else f"_{a.arch}"
+    json.dump(res, open(os.path.join(OUT, f"learn{tag}{a.suffix}_s{a.seed}.json"), "w"), indent=1)
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=("features", "basics", "learn"))
     ap.add_argument("--seed", type=int, default=1)
+    ap.add_argument("--suffix", default="")
+    ap.add_argument("--replay", type=int, default=0, help="lowercase images replayed from the stable copy per new lesson (Stage 41)")
+    ap.add_argument("--tau", type=float, default=0.0, help="> 0: learning step shrinks as eta / (1 + lessons / tau)")
+    ap.add_argument("--skip-words", action="store_true", help="pairs only (no word phases)")
+    ap.add_argument("--slow", type=float, default=0.0, help="split: learning rate of the mature lowercase units relative to the new ones")
+    ap.add_argument("--arch", choices=("shared", "split"), default="shared",
+                    help="shared: one unit per letter (Stage 40); split: a second, capital-shape unit per letter (Stage 41)")
     ap.add_argument("--n-label", type=int, default=10000, help="labelled lowercase images for the letter units")
     ap.add_argument("--n-read", type=int, default=20000, help="lowercase words read to learn the word-context prediction")
     ap.add_argument("--n-caps", type=int, default=20000, help="words with capitals (no labels)")

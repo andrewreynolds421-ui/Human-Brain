@@ -1,0 +1,9 @@
+800 detectors, top  1, sharpness 1: lowercase 0.919 capitals 0.905
+800 detectors, top  1, sharpness 8: lowercase 0.918 capitals 0.902
+800 detectors, top  5, sharpness 1: lowercase 0.906 capitals 0.920
+800 detectors, top  5, sharpness 8: lowercase 0.914 capitals 0.924
+800 detectors, top 20, sharpness 1: lowercase 0.821 capitals 0.840
+800 detectors, top 20, sharpness 8: lowercase 0.868 capitals 0.884
+  (61 s)
+3200 detectors, top  1, sharpness 1: lowercase 0.942 capitals 0.934
+3200 detectors, top  1, sharpness 8: lowercase 0.942 capitals 0.934
