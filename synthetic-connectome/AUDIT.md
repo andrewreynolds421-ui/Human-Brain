@@ -581,3 +581,13 @@ network 4 failed in other fonts, and all four were rerun with Stage 44's per-net
 still fails in other fonts, traced to its book font (46.5 % letters alone). Scores that depend on reading
 another font are reported over networks 1-3 with network 4 separately.
 
+## 27. Follow-up (12 November): Stage 46 — code and web pages as text
+
+Direction change by the user (HANDOFF, end). 28 repositories, split by repository. File kind from an
+excerpt: 73.2 +/- 7.7 % on never-read repositories (96 % on files of repositories it read); fitted readouts
+on the same units or on character 3-grams do worse (66-68 %). Failures are kinds with one or two training
+repositories. Function finding from its docstring (1 of 10): learned links 31 % -> 49 % with the standard
+library read; surface overlap 51 %; both 58 %. The first run included test directories (88 % kind accuracy,
+inflated by test fixtures of the held-out repositories); test directories were excluded and everything rerun.
+The repository split is a single split; samplings vary only excerpts and candidates.
+

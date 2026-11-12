@@ -2893,6 +2893,66 @@ mean over networks 1-3, because network 4 cannot read words in other fonts (belo
 **Next.** One name per thing (mutual exclusivity) in the linking rule; pointing (a page whose picture
 belongs to one word); more drawings per thing; hearing.
 
+## Stage 46: reading code and web pages as text
+
+**Why the change.** The goal is a brain that can take over from RASPUTIN in reading web pages and
+programs. Those arrive as text, so this stage reads characters directly; the visual route of Stages
+21-45 is not needed for them. RASPUTIN itself stays the part that understands and answers (see the
+assessment in HANDOFF); what is measured here is how much of the *structure* of code and pages the
+model's simple learning can pick up.
+
+**Material** (`scripts/read_code.py`). 28 open-source repositories (shallow clones): Python (requests,
+flask, click, httpx, rich, typer), JavaScript and TypeScript (express, lodash, axios, chalk, got), Go
+(cobra, gin, urfave/cli), Rust (ripgrep, serde, clap), C (jq, cJSON, kilo), web pages (Mozilla's
+learning-area and css-examples, Bootstrap, HTML5 Boilerplate, normalize.css), shell (oh-my-zsh, nvm,
+pure-bash-bible); test directories excluded. Split by **repository**: 11 repositories are never read
+(ripgrep, rich, httpx, express, html5-boilerplate, jq, learning-area, nvm, requests, got, cobra).
+
+**Token units.** Every new token (identifier, number, symbol, indent) recruits a unit the first time it
+is seen; identifiers also activate units for their pieces (`read_file` and `readFile` share `read`,
+`file`). Text arrives without noise, so recognising a token is exact - unlike print.
+
+**A. What kind of file** (13 kinds, a 40-line excerpt; kind units learn by the delta rule, taught by
+the file's extension - the label that comes with a file). Four samplings, mean ± SD
+(`results/read_code/stage46_summary.json`):
+
+| reader | files from never-read repositories | each kind counted equally | files from the repositories it read |
+|---|---|---|---|
+| **kind units, one pass** | **73.2 ± 7.7 %** | 70.4 ± 3.9 % | 95.9 % |
+| fitted readout on the same token units | 67.7 % | 65.9 % | |
+| fitted readout on character 3-grams | 66.6 % | 64.2 % | |
+
+Per kind: JavaScript 96.8, Rust 95.1, Markdown 93.5, HTML 93.0, CSS
+91.1, shell 88.9, TOML 88.3, Go 84.7, Python 83.9 %; but JSON 32.7,
+TypeScript 30.5, YAML 27.5, C 9.8 %. The failures are kinds learned from one or two
+repositories: the test JSON (mostly from rich) is read as TOML, C from jq as JavaScript (C was learned from
+cJSON alone), TypeScript as JavaScript. **Reading a new project is much harder than the projects it
+has read (96 %)**, and more varied reading is the lever, as with fonts.
+
+**B. What a function is for** (Python functions with docstrings; the function's name withheld). While
+reading, the docstring's words and the code's pieces are linked by counting, function by function (delta
+P, as words and pictures in Stage 45). Test: a docstring from a never-read repository; which of 10
+functions does it describe (chance 10 %)?
+
+| read before the test | learned links | surface overlap (docstring words found in the code) | both |
+|---|---|---|---|
+| the training repositories (708 functions) | 31.3 ± 0.7 % | 50.6 % | 49.9 % |
+| **+ Python's standard library (6802 functions)** | **49.3 ± 1.3 %** | 50.6 % | **58.1 ± 2.1 %** |
+
+The links learned are sensible: "close" goes with close / finally / try; "list" with for / in / append;
+"file" with os / path / open; "error" with exc / exception / handler. With ten times more reading they
+add 7.5 points beyond surface matching; with little reading they add nothing.
+
+**Limits.** One repository split (samplings vary excerpts and candidates, not the split). Kind and links
+are linear, one-pass learning on token counts - no order, no syntax, no meaning of a program. The
+spiking parts of the brain are not involved yet. Nothing here understands a web page or a program in the
+way RASPUTIN's language model does.
+
+**Next, in the direction of the hybrid (option 1).** These units are cheap and learn from use. The place
+they can plausibly beat RASPUTIN is deciding: which tool, submind or file a request needs, learned from
+the user's own feedback (the shadow router, Stage 32), now fed with token units of the text RASPUTIN
+handles.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

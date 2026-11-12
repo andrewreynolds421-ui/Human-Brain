@@ -343,3 +343,16 @@ was left out, the table, three honest readings, what it settles) → `AUDIT.md`
 follow-up section and the status table → tests → `sync_repo.sh` commit →
 artifact republish (`publish_files`, patch mode, index paragraph + file
 list). Nothing is "done" until the last three are.
+
+
+## Direction set on 12 November (user)
+
+The user's goal: a brain that reads web pages and programs and can replace RASPUTIN (a persona over
+Anthropic's Claude in `warmind/main.py`), ideally surpass it. Assessment given: not reachable on this path -
+RASPUTIN rests on a language model trained on trillions of words; this model has read ~18,000 words, cannot
+produce a sentence, and a brain-scale simulation is beyond this machine. Options offered: (1) hybrid - the
+language model stays the language engine, the brain takes over decisions learned from the user's feedback
+(routing, tools, preferences), where it can plausibly beat RASPUTIN; (2) the brain reads text directly (web
+pages, code) and learns their structure; (3) research only. The user chose **(2), keeping (1) in mind**.
+Stage 46 (`scripts/read_code.py`) is the first step of (2). Next: feed token units of real RASPUTIN traffic to
+the shadow router (needs the real `warmind.db` logs).

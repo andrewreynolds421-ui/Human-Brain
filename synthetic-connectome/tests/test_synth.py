@@ -445,3 +445,14 @@ def test_picture_word_links_prefer_the_word_that_comes_with_the_picture():
         Lk.page(pics, words)
     assert Lk.name(0, None) == "dog"
     assert Lk.strength(0, "the") == 0.0 and Lk.strength(0, "sat") < Lk.strength(0, "dog")
+
+
+def test_code_reading_splits_identifiers_into_shared_pieces():
+    """Stage 46: tokens and pieces - read_file and readFile share the units for 'read' and 'file'."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    from read_code import tokens, pieces, TokenUnits
+    t = tokens("def read_file(path):\n    return open(path).read()")
+    assert t[:3] == ["def", "read_file", "("] and "<indent>" in t and t.count("<nl>") == 2
+    assert pieces("read_file") == pieces("readFile") == ["read", "file"] and pieces("(") == []
+    TU = TokenUnits(); a = TU.read(["read_file"]); b = TU.read(["readFile"])
+    assert len(set(a) & set(b)) == 2

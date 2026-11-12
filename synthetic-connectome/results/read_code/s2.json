@@ -1,0 +1,586 @@
+{
+ "seed": 2,
+ "kinds": [
+  "c",
+  "css",
+  "go",
+  "html",
+  "javascript",
+  "json",
+  "markdown",
+  "python",
+  "rust",
+  "shell",
+  "toml",
+  "typescript",
+  "yaml"
+ ],
+ "test_repos": [
+  "BurntSushi_ripgrep",
+  "Textualize_rich",
+  "encode_httpx",
+  "expressjs_express",
+  "h5bp_html5-boilerplate",
+  "jqlang_jq",
+  "mdn_learning-area",
+  "nvm-sh_nvm",
+  "psf_requests",
+  "sindresorhus_got",
+  "spf13_cobra"
+ ],
+ "A_kind_of_file": {
+  "train_files": 2546,
+  "test_files": 1124,
+  "token_units": 40700,
+  "eta": 3.0,
+  "validation": 0.9705,
+  "kind_units": 0.6895,
+  "kind_units_balanced": 0.6729,
+  "references": {
+   "token_units": {
+    "C": 10.0,
+    "test": 0.6753,
+    "test_balanced": 0.6613,
+    "test_by_C": {
+     "0.1": 0.5329,
+     "1.0": 0.6521,
+     "10.0": 0.6753
+    }
+   },
+   "char_3grams": {
+    "C": 10.0,
+    "test": 0.6655,
+    "test_balanced": 0.64,
+    "test_by_C": {
+     "0.1": 0.3069,
+     "1.0": 0.6094,
+     "10.0": 0.6655
+    }
+   }
+  },
+  "test_files_per_kind": {
+   "c": 71,
+   "css": 42,
+   "go": 36,
+   "html": 163,
+   "javascript": 110,
+   "json": 195,
+   "markdown": 160,
+   "python": 189,
+   "rust": 87,
+   "shell": 9,
+   "toml": 15,
+   "typescript": 27,
+   "yaml": 20
+  },
+  "per_kind": {
+   "c": 0.0,
+   "css": 0.952,
+   "go": 0.861,
+   "html": 0.933,
+   "javascript": 0.991,
+   "json": 0.123,
+   "markdown": 0.869,
+   "python": 0.878,
+   "rust": 0.943,
+   "shell": 0.889,
+   "toml": 0.8,
+   "typescript": 0.259,
+   "yaml": 0.25
+  },
+  "top_confusions": [
+   [
+    "json->toml",
+    168
+   ],
+   [
+    "c->javascript",
+    51
+   ],
+   [
+    "typescript->javascript",
+    18
+   ],
+   [
+    "python->javascript",
+    16
+   ],
+   [
+    "c->shell",
+    13
+   ],
+   [
+    "yaml->markdown",
+    10
+   ],
+   [
+    "markdown->python",
+    9
+   ],
+   [
+    "html->javascript",
+    8
+   ]
+  ]
+ },
+ "B_what_a_function_is_for": {
+  "train_functions": 708,
+  "test_functions": 808,
+  "docstring_words_with_links": 1355,
+  "links_learned_from_reading": 0.3045,
+  "surface_overlap": 0.487,
+  "both": 0.4728,
+  "strongest_links": {
+   "request": [
+    [
+     "request",
+     0.62
+    ],
+    [
+     "app",
+     0.35
+    ],
+    [
+     "none",
+     0.3
+    ],
+    [
+     "funcs",
+     0.21
+    ],
+    [
+     "self",
+     0.2
+    ]
+   ],
+   "header": [
+    [
+     "config",
+     0.96
+    ],
+    [
+     "app",
+     0.87
+    ],
+    [
+     "refresh",
+     0.5
+    ],
+    [
+     "modified",
+     0.5
+    ],
+    [
+     "permanent",
+     0.5
+    ]
+   ],
+   "file": [
+    [
+     "file",
+     0.39
+    ],
+    [
+     "open",
+     0.23
+    ],
+    [
+     "path",
+     0.19
+    ],
+    [
+     "os",
+     0.19
+    ],
+    [
+     "import",
+     0.17
+    ]
+   ],
+   "path": [
+    [
+     "path",
+     0.67
+    ],
+    [
+     "os",
+     0.46
+    ],
+    [
+     "if",
+     0.35
+    ],
+    [
+     "join",
+     0.33
+    ],
+    [
+     "return",
+     0.32
+    ]
+   ],
+   "string": [
+    [
+     "return",
+     0.28
+    ],
+    [
+     "decode",
+     0.19
+    ],
+    [
+     "replace",
+     0.18
+    ],
+    [
+     "bytes",
+     0.17
+    ],
+    [
+     "split",
+     0.16
+    ]
+   ],
+   "list": [
+    [
+     "for",
+     0.5
+    ],
+    [
+     "in",
+     0.39
+    ],
+    [
+     "list",
+     0.36
+    ],
+    [
+     "ctx",
+     0.3
+    ],
+    [
+     "commands",
+     0.25
+    ]
+   ],
+   "error": [
+    [
+     "error",
+     0.38
+    ],
+    [
+     "self",
+     0.33
+    ],
+    [
+     "request",
+     0.24
+    ],
+    [
+     "exception",
+     0.23
+    ],
+    [
+     "raise",
+     0.22
+    ]
+   ],
+   "close": [
+    [
+     "close",
+     0.98
+    ],
+    [
+     "should",
+     0.38
+    ],
+    [
+     "exception",
+     0.35
+    ],
+    [
+     "info",
+     0.34
+    ],
+    [
+     "self",
+     0.32
+    ]
+   ],
+   "url": [
+    [
+     "url",
+     0.78
+    ],
+    [
+     "endpoint",
+     0.39
+    ],
+    [
+     "self",
+     0.2
+    ],
+    [
+     "functions",
+     0.19
+    ],
+    [
+     "none",
+     0.17
+    ]
+   ],
+   "response": [
+    [
+     "response",
+     0.51
+    ],
+    [
+     "request",
+     0.37
+    ],
+    [
+     "ctx",
+     0.34
+    ],
+    [
+     "sync",
+     0.32
+    ],
+    [
+     "app",
+     0.3
+    ]
+   ]
+  }
+ },
+ "B_after_also_reading_the_standard_library": {
+  "train_functions": 6802,
+  "test_functions": 808,
+  "docstring_words_with_links": 4501,
+  "links_learned_from_reading": 0.4808,
+  "surface_overlap": 0.487,
+  "both": 0.5588,
+  "strongest_links": {
+   "request": [
+    [
+     "request",
+     0.58
+    ],
+    [
+     "app",
+     0.29
+    ],
+    [
+     "none",
+     0.27
+    ],
+    [
+     "url",
+     0.19
+    ],
+    [
+     "ctx",
+     0.13
+    ]
+   ],
+   "header": [
+    [
+     "header",
+     0.46
+    ],
+    [
+     "headers",
+     0.26
+    ],
+    [
+     "in",
+     0.21
+    ],
+    [
+     "for",
+     0.19
+    ],
+    [
+     "name",
+     0.19
+    ]
+   ],
+   "file": [
+    [
+     "file",
+     0.35
+    ],
+    [
+     "os",
+     0.19
+    ],
+    [
+     "path",
+     0.19
+    ],
+    [
+     "filename",
+     0.18
+    ],
+    [
+     "open",
+     0.16
+    ]
+   ],
+   "path": [
+    [
+     "path",
+     0.67
+    ],
+    [
+     "os",
+     0.3
+    ],
+    [
+     "return",
+     0.17
+    ],
+    [
+     "not",
+     0.13
+    ],
+    [
+     "join",
+     0.13
+    ]
+   ],
+   "string": [
+    [
+     "string",
+     0.24
+    ],
+    [
+     "return",
+     0.21
+    ],
+    [
+     "str",
+     0.15
+    ],
+    [
+     "bytes",
+     0.1
+    ],
+    [
+     "join",
+     0.09
+    ]
+   ],
+   "list": [
+    [
+     "for",
+     0.35
+    ],
+    [
+     "in",
+     0.31
+    ],
+    [
+     "list",
+     0.27
+    ],
+    [
+     "append",
+     0.16
+    ],
+    [
+     "len",
+     0.08
+    ]
+   ],
+   "error": [
+    [
+     "error",
+     0.36
+    ],
+    [
+     "exc",
+     0.23
+    ],
+    [
+     "request",
+     0.16
+    ],
+    [
+     "exception",
+     0.16
+    ],
+    [
+     "handler",
+     0.15
+    ]
+   ],
+   "close": [
+    [
+     "close",
+     0.6
+    ],
+    [
+     "finally",
+     0.21
+    ],
+    [
+     "try",
+     0.17
+    ],
+    [
+     "closed",
+     0.17
+    ],
+    [
+     "self",
+     0.15
+    ]
+   ],
+   "url": [
+    [
+     "url",
+     0.69
+    ],
+    [
+     "endpoint",
+     0.22
+    ],
+    [
+     "none",
+     0.18
+    ],
+    [
+     "scheme",
+     0.17
+    ],
+    [
+     "the",
+     0.16
+    ]
+   ],
+   "response": [
+    [
+     "response",
+     0.43
+    ],
+    [
+     "request",
+     0.29
+    ],
+    [
+     "ctx",
+     0.27
+    ],
+    [
+     "app",
+     0.24
+    ],
+    [
+     "raise",
+     0.22
+    ]
+   ]
+  }
+ }
+}
