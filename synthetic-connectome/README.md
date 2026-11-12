@@ -2864,10 +2864,13 @@ lessons. Four networks (`results/picture_book/stage45_summary.json`).
 
 | book | naming a picture (all 34 things) | choosing the picture for a printed word (of 4; chance 25 %) | naming in the other 3 styles |
 |---|---|---|---|
-| **first-words picture book** | **76.2 ± 8.6 %** | 87.9 % (networks 1-3) | 22.6 ± 4.8 % |
+| **first-words picture book** | **76.2 ± 8.6 %** | 87.9 % | 22.6 ± 4.8 % |
 | primer | 6.5 ± 3.2 % (things it names: 12.5 %) | 52.8 % (things it names: 76.2 %) | 2.6 % |
 | picture book, then primer | 39.4 ± 5.7 % | 82.7 % | 11.8 % |
 | control: primer pictures shuffled | 0.0 % | 24.5 % | 0.2 % |
+
+Naming and naming in other styles: mean ± SD over 4 networks. Choosing and the "things it names" values:
+mean over networks 1-3, because network 4 cannot read words in other fonts (below).
 
 - **A picture book with one word per picture teaches names**: three readings, 76 % of pictures named
   in new renderings, without labels. In drawing styles the book did not use, 23 %, as expected from 56.9
