@@ -568,3 +568,16 @@ lesson in a different font (318 -> 22 with one font per book, no font learning).
 settings on validation fonts that included a seven-segment display face (28 % letters); it was replaced by
 three ordinary fonts and all four networks were rerun before the summary.
 
+## 26. Follow-up (12 November): Stage 45 — pictures
+
+34 things in four emoji styles; picture units recruited on the fly; word-picture links by delta P. Four
+networks: a first-words picture book teaches naming (76.2 +/- 8.6 %); the primer alone 6.5 %; the primer
+after the book lowers naming to 39 % (its unlabelled pictures link to function words and names); a
+shuffled control gives 0 %. Development on network 1 went through three versions: a co-occurrence ratio
+that favoured rare words (replaced by delta P), V1 cells that matched renderings poorly (replaced by
+position-tolerant cells), and a picture threshold fitted on a single prototype (replaced by simulating the
+word book on another style). The first four-network run used one font-learning step for all networks;
+network 4 failed in other fonts, and all four were rerun with Stage 44's per-network settings; network 4
+still fails in other fonts, traced to its book font (46.5 % letters alone). Scores that depend on reading
+another font are reported over networks 1-3 with network 4 separately.
+

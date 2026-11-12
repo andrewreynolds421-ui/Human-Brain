@@ -1,0 +1,426 @@
+{
+ "networks": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "styles": [
+  "openmoji",
+  "twemoji",
+  "noto",
+  "fluent3d"
+ ],
+ "picture_thresholds": [
+  0.9,
+  0.85,
+  0.95,
+  0.8
+ ],
+ "things_named_in_primer": [
+  "girl",
+  "boy",
+  "man",
+  "dog",
+  "cat",
+  "horse",
+  "hen",
+  "bird",
+  "rat",
+  "cow",
+  "sun",
+  "kite",
+  "snow",
+  "basket",
+  "chair",
+  "tree",
+  "hat",
+  "ball",
+  "tent",
+  "boat"
+ ],
+ "wordbook": {
+  "all_34": {
+   "naming": [
+    76.2,
+    8.6
+   ],
+   "choosing": [
+    70.0,
+    36.2
+   ],
+   "naming_other_styles": [
+    22.6,
+    4.8
+   ],
+   "reading_without_picture": [
+    75.5,
+    38.6
+   ],
+   "reading_with_picture": [
+    75.5,
+    38.7
+   ],
+   "reading_gain": [
+    0.1,
+    0.2
+   ],
+   "picture_units": [
+    77.0
+   ]
+  },
+  "primer_things": {
+   "naming": [
+    75.6,
+    9.9
+   ],
+   "choosing": [
+    70.0,
+    35.1
+   ],
+   "naming_other_styles": [
+    22.6,
+    5.7
+   ],
+   "reading_without_picture": [
+    74.5,
+    34.3
+   ],
+   "reading_with_picture": [
+    74.5,
+    34.3
+   ],
+   "reading_gain": [
+    0.0,
+    0.0
+   ],
+   "picture_units": [
+    77.0
+   ]
+  },
+  "naming_per_thing": {
+   "girl": 0.5,
+   "boy": 0.48,
+   "woman": 0.57,
+   "man": 0.4,
+   "baby": 0.75,
+   "dog": 0.82,
+   "cat": 0.45,
+   "horse": 0.92,
+   "hen": 0.75,
+   "chick": 0.7,
+   "goat": 0.57,
+   "bird": 0.72,
+   "rabbit": 0.82,
+   "rat": 0.7,
+   "cow": 0.8,
+   "sun": 0.85,
+   "kite": 0.8,
+   "egg": 0.95,
+   "snow": 0.85,
+   "basket": 0.95,
+   "chair": 0.8,
+   "tree": 0.9,
+   "hat": 0.95,
+   "ball": 1.0,
+   "tent": 0.85,
+   "window": 0.95,
+   "pig": 0.5,
+   "duck": 0.92,
+   "fish": 0.9,
+   "flower": 0.85,
+   "house": 0.82,
+   "bell": 0.52,
+   "boat": 0.95,
+   "moon": 0.62
+  }
+ },
+ "primer": {
+  "all_34": {
+   "naming": [
+    6.5,
+    3.2
+   ],
+   "choosing": [
+    40.2,
+    26.0
+   ],
+   "naming_other_styles": [
+    2.6,
+    2.4
+   ],
+   "reading_without_picture": [
+    68.2,
+    42.5
+   ],
+   "reading_with_picture": [
+    68.3,
+    42.6
+   ],
+   "reading_gain": [
+    0.1,
+    0.2
+   ],
+   "picture_units": [
+    122.0
+   ]
+  },
+  "primer_things": {
+   "naming": [
+    10.5,
+    5.6
+   ],
+   "choosing": [
+    58.9,
+    36.1
+   ],
+   "naming_other_styles": [
+    3.8,
+    2.8
+   ],
+   "reading_without_picture": [
+    67.3,
+    41.3
+   ],
+   "reading_with_picture": [
+    68.1,
+    42.2
+   ],
+   "reading_gain": [
+    0.8,
+    1.7
+   ],
+   "picture_units": [
+    122.0
+   ]
+  },
+  "naming_per_thing": {
+   "girl": 0.0,
+   "boy": 0.0,
+   "woman": 0.0,
+   "man": 0.0,
+   "baby": 0.0,
+   "dog": 0.32,
+   "cat": 0.05,
+   "horse": 0.0,
+   "hen": 0.42,
+   "chick": 0.0,
+   "goat": 0.0,
+   "bird": 0.0,
+   "rabbit": 0.0,
+   "rat": 0.0,
+   "cow": 0.52,
+   "sun": 0.0,
+   "kite": 0.0,
+   "egg": 0.0,
+   "snow": 0.0,
+   "basket": 0.2,
+   "chair": 0.0,
+   "tree": 0.08,
+   "hat": 0.2,
+   "ball": 0.38,
+   "tent": 0.0,
+   "window": 0.0,
+   "pig": 0.0,
+   "duck": 0.0,
+   "fish": 0.02,
+   "flower": 0.0,
+   "house": 0.0,
+   "bell": 0.0,
+   "boat": 0.0,
+   "moon": 0.0
+  }
+ },
+ "both": {
+  "all_34": {
+   "naming": [
+    39.4,
+    5.7
+   ],
+   "choosing": [
+    63.7,
+    38.8
+   ],
+   "naming_other_styles": [
+    11.8,
+    2.7
+   ],
+   "reading_without_picture": [
+    68.1,
+    40.8
+   ],
+   "reading_with_picture": [
+    69.1,
+    41.2
+   ],
+   "reading_gain": [
+    1.0,
+    1.1
+   ],
+   "picture_units": [
+    166.0
+   ]
+  },
+  "primer_things": {
+   "naming": [
+    36.5,
+    5.6
+   ],
+   "choosing": [
+    63.9,
+    39.9
+   ],
+   "naming_other_styles": [
+    11.2,
+    3.3
+   ],
+   "reading_without_picture": [
+    64.2,
+    43.2
+   ],
+   "reading_with_picture": [
+    65.4,
+    43.9
+   ],
+   "reading_gain": [
+    1.1,
+    1.3
+   ],
+   "picture_units": [
+    166.0
+   ]
+  },
+  "naming_per_thing": {
+   "girl": 0.0,
+   "boy": 0.0,
+   "woman": 0.08,
+   "man": 0.02,
+   "baby": 0.65,
+   "dog": 0.4,
+   "cat": 0.12,
+   "horse": 0.18,
+   "hen": 0.68,
+   "chick": 0.22,
+   "goat": 0.12,
+   "bird": 0.12,
+   "rabbit": 0.48,
+   "rat": 0.55,
+   "cow": 0.38,
+   "sun": 0.62,
+   "kite": 0.55,
+   "egg": 0.3,
+   "snow": 0.52,
+   "basket": 0.55,
+   "chair": 0.25,
+   "tree": 0.08,
+   "hat": 0.2,
+   "ball": 0.55,
+   "tent": 0.45,
+   "window": 0.43,
+   "pig": 0.55,
+   "duck": 0.85,
+   "fish": 0.95,
+   "flower": 0.32,
+   "house": 0.57,
+   "bell": 0.52,
+   "boat": 0.65,
+   "moon": 0.48
+  }
+ },
+ "control": {
+  "all_34": {
+   "naming": [
+    0.0,
+    0.0
+   ],
+   "choosing": [
+    19.3,
+    11.1
+   ],
+   "naming_other_styles": [
+    0.2,
+    0.5
+   ],
+   "reading_without_picture": [
+    68.0,
+    40.1
+   ],
+   "reading_with_picture": [
+    64.5,
+    38.8
+   ],
+   "reading_gain": [
+    -3.5,
+    1.6
+   ],
+   "picture_units": [
+    124.8
+   ]
+  },
+  "primer_things": {
+   "naming": [
+    0.0,
+    0.0
+   ],
+   "choosing": [
+    24.9,
+    15.1
+   ],
+   "naming_other_styles": [
+    0.1,
+    0.2
+   ],
+   "reading_without_picture": [
+    67.4,
+    39.4
+   ],
+   "reading_with_picture": [
+    62.5,
+    38.4
+   ],
+   "reading_gain": [
+    -4.9,
+    2.5
+   ],
+   "picture_units": [
+    124.8
+   ]
+  },
+  "naming_per_thing": {
+   "girl": 0.0,
+   "boy": 0.0,
+   "woman": 0.0,
+   "man": 0.0,
+   "baby": 0.0,
+   "dog": 0.0,
+   "cat": 0.0,
+   "horse": 0.0,
+   "hen": 0.0,
+   "chick": 0.0,
+   "goat": 0.0,
+   "bird": 0.0,
+   "rabbit": 0.0,
+   "rat": 0.0,
+   "cow": 0.0,
+   "sun": 0.0,
+   "kite": 0.0,
+   "egg": 0.0,
+   "snow": 0.0,
+   "basket": 0.0,
+   "chair": 0.0,
+   "tree": 0.0,
+   "hat": 0.0,
+   "ball": 0.0,
+   "tent": 0.0,
+   "window": 0.0,
+   "pig": 0.0,
+   "duck": 0.0,
+   "fish": 0.0,
+   "flower": 0.0,
+   "house": 0.0,
+   "bell": 0.0,
+   "boat": 0.0,
+   "moon": 0.0
+  }
+ }
+}

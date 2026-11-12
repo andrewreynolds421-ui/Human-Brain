@@ -431,3 +431,17 @@ def test_primer_parses_into_lessons_with_pictures():
     assert b[0]["sentences"] == [["The", "dog"], ["The", "dog", "ran"]]
     words = {t.lower() for l in b for s in l["sentences"] for t in s}
     assert 600 < len(words) < 750 and all(t.isalpha() for t in words)
+
+
+def test_picture_word_links_prefer_the_word_that_comes_with_the_picture():
+    """Stage 45: delta P links a picture to the word that comes with it more often than without it - not to
+    a word met everywhere ("the") and not to a word met once."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    from picture_book import Links
+    Lk = Links()
+    for i in range(20):
+        pics = [0] if i < 8 else [1]
+        words = ["the", "ran"] + (["dog"] if i < 6 else []) + (["sat"] if i == 3 else [])
+        Lk.page(pics, words)
+    assert Lk.name(0, None) == "dog"
+    assert Lk.strength(0, "the") == 0.0 and Lk.strength(0, "sat") < Lk.strength(0, "dog")

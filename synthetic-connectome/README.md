@@ -2833,6 +2833,63 @@ units carry the font's misreadings to the next book (B without font learning: 97
 read 28 %); another reads 47 %. They were always in the validation set used to choose settings since
 Stage 38. The test families were not screened either; results are over whatever the random sample gave.
 
+## Stage 45: pictures with words, as in children's books
+
+**Pictures** (`synth/pictures.py`, `data/pictures/`). The 34 things the primer's pictures show most (girl,
+boy, woman, man, dog, cat, hen, goat, tree, hat, kite, sun ...), each drawn in four open emoji styles
+(OpenMoji, Twemoji, Noto, Fluent 3D), rendered with random size, position, rotation, mirror image and
+brightness. A drawing style plays the part a font family played for letters.
+
+**Seeing them.** With V1-like edge cells plus colour-opponent cells and a labelled readout, a picture in a
+style never seen is recognised 56.9 % of the time (34 things, chance 2.9 %; per held-out style 33-71 %).
+Each style is only one drawing of each thing, so three drawings of a dog is all there is to learn from;
+coarser pooling does not change this (53-55 %). Within one style, a new rendering matches one of three
+earlier sightings 64-72 % from the V1 cells and 71-85 % from position-tolerant cells (two scales, pooled
+over 4 x 4 and 2 x 2 regions; MODEL stand-in for V4 / inferotemporal cortex), which the picture units use.
+
+**What the primer offers.** Its text rarely names what its pictures show: girls are in 31 lesson pictures
+and the word "girl" is in one lesson; "woman", "goat" and "rabbit" never occur. Only about 20 of the 34
+things are both drawn and named in the same lesson at least once, most of them once.
+
+**Set-up** (`scripts/picture_book.py`). The model reads with letter units, learns words on the fly with
+font learning (Stages 43-44; font settings as fitted per network in Stage 44), and sees each page's
+pictures. Picture units are recruited on the fly like word units (threshold FITTED by simulating the word
+book on a different drawing style). Words and pictures are linked by counting, page by page, which units
+were active together; the link is delta P - how much more often the word comes with the picture than
+without it (Allan 1980). No labels anywhere. Books, each read three times (ASSUMED), each network in a
+different drawing style and a never-seen font: a first-words picture book (34 pages, a picture with its
+word under it), the primer (each lesson's pictured things shown as separate objects, ASSUMED mapping from
+its picture descriptions by keyword), both, and a control with the primer's pictures shuffled between
+lessons. Four networks (`results/picture_book/stage45_summary.json`).
+
+| book | naming a picture (all 34 things) | choosing the picture for a printed word (of 4; chance 25 %) | naming in the other 3 styles |
+|---|---|---|---|
+| **first-words picture book** | **76.2 ± 8.6 %** | 87.9 % (networks 1-3) | 22.6 ± 4.8 % |
+| primer | 6.5 ± 3.2 % (things it names: 12.5 %) | 52.8 % (things it names: 76.2 %) | 2.6 % |
+| picture book, then primer | 39.4 ± 5.7 % | 82.7 % | 11.8 % |
+| control: primer pictures shuffled | 0.0 % | 24.5 % | 0.2 % |
+
+- **A picture book with one word per picture teaches names**: three readings, 76 % of pictures named
+  in new renderings, without labels. In drawing styles the book did not use, 23 %, as expected from 56.9
+  % recognition across styles.
+- **The primer teaches the few things it names** (dog, hen, cow, ball; others rarely), and the shuffled
+  control shows that what it learns comes from pictures and words belonging together.
+- **Reading the primer after the picture book makes naming worse** (76 → 39 %). A girl is pictured in 31
+  lessons whose text never says "girl" but nearly always says "the", "she", a name; the counts link those
+  words to the picture. Illustrations that are not labelled teach a learner that counts co-occurrence the
+  wrong names. Children are thought to avoid this by assuming one name per thing (mutual exclusivity)
+  and by attention to what the reader points at; neither is in the model.
+- **Pictures barely help reading the word under them** (hard font: +0.1 points after the picture book,
+  +1.0 ± 1.1 after both); words are already read 93-96 % right in these fonts. **Wrong pictures hurt**:
+  with the shuffled pictures −3.5 ± 1.6.
+- **One network of four could not read other fonts** (choosing 16.2 %, the hard font
+  17.6 %). Its book font, BIZ UDGothic, has narrow letters read only 46.5 % alone; word units built from
+  those misreadings do not match words printed normally - the Stage 44 risk at its worst. Naming, which
+  does not need another font, was normal there (69.1 %).
+
+**Next.** One name per thing (mutual exclusivity) in the linking rule; pointing (a page whose picture
+belongs to one word); more drawings per thing; hearing.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
