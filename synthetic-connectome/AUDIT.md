@@ -591,3 +591,11 @@ library read; surface overlap 51 %; both 58 %. The first run included test direc
 inflated by test fixtures of the held-out repositories); test directories were excluded and everything rerun.
 The repository split is a single split; samplings vary only excerpts and candidates.
 
+## 28. Follow-up (12 November): Stage 47 — intent router
+
+The brain's router on Warmind's own 10-intent benchmark (106 phrasings, the benchmark's splits): with
+habituation it matches the shipped router at 1-3 examples per intent and is 1-4 points behind at 5-8.
+Three variants are reported (letter triples, 3-5 letters, plus habituation), all with settings fitted on
+other splits; the variant search is itself a choice made on test results and is disclosed as such.
+Reward-only learning: 10-29 %.
+

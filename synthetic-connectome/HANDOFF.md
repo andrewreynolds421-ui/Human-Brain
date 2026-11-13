@@ -356,3 +356,10 @@ language model stays the language engine, the brain takes over decisions learned
 pages, code) and learns their structure; (3) research only. The user chose **(2), keeping (1) in mind**.
 Stage 46 (`scripts/read_code.py`) is the first step of (2). Next: feed token units of real RASPUTIN traffic to
 the shadow router (needs the real `warmind.db` logs).
+
+Stage 47 (12 Nov, hybrid first step): the brain as Warmind's 10-intent router on the audit package's
+benchmark - matches the shipped logistic-regression router at 1-3 examples per intent, 1-4 points behind at
+5-8; reward-only learning far worse. No warmind.db exists yet (Warmind not yet set up). Next: deploy with
+tool_calls logging; brain in shadow mode next to the shipped router; switch when it wins on real requests.
+`scripts/intent_brain.py`, `data/intent/`. Design idea from the user, recorded: rarely used skills stored as
+files and loaded on demand by a small resident index (memory saving, not compute; whole modules only).

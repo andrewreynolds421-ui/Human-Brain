@@ -2953,6 +2953,47 @@ they can plausibly beat RASPUTIN is deciding: which tool, submind or file a requ
 the user's own feedback (the shadow router, Stage 32), now fed with token units of the text RASPUTIN
 handles.
 
+## Stage 47: the brain as Warmind's intent router (the hybrid, first step)
+
+**Task.** Warmind already has a small local router (Warmind Audit Package, `intent/`): before anything is
+sent to RASPUTIN, one of 10 intents is chosen - four handled on the phone with no API call (open an app,
+log a measurement, status, cancel), six picking the submind (health, finance, geography, device, dashboard,
+chat). Its benchmark has 106 phrasings; the shipped router (character 3-5-grams, TF-IDF, logistic
+regression) was chosen there over a fruit-fly-inspired one. Copies in `data/intent/`.
+
+**The brain's router** (`scripts/intent_brain.py`). Units for each word, word piece and letter sequence,
+recruited the first time they are seen; 10 decision units learning by the delta rule from each request;
+every request kept and replayed (Stage 41); optionally habituation - a unit responds less the more requests
+it has fired for (an idf in neural form). Teacher: the intent the request turned out to need (Warmind logs
+this in `tool_calls`, so it comes free after the fact), or reward only (told right / wrong). Settings
+FITTED on splits with seeds 5-9; results on the benchmark's own splits (seeds 0-4).
+
+Accuracy on the held-out phrasings, mean over 5 splits:
+
+| examples per intent | shipped router | brain (letter triples) | brain (3-5 letters) | brain (3-5 letters + habituation) | brain, right / wrong only |
+|---|---|---|---|---|---|
+| 1 | 31.7 % | 31.7 % | 32.1 % | **32.5 %** | 13.1 % |
+| 2 | 45.3 % | 40.9 % | 41.2 % | **40.7 %** | 13.5 % |
+| 3 | 52.4 % | 49.5 % | 50.3 % | **52.1 %** | 10.3 % |
+| 5 | 60.0 % | 54.6 % | 53.6 % | **58.6 %** | 24.3 % |
+| 8 | 68.8 % | 63.4 % | 62.0 % | **64.9 %** | 29.3 % |
+
+The shipped router reproduces the audit's published numbers (51 / 59 / 69 % at 3 / 5 / 8).
+
+**Using it** - the 106 phrasings arriving one at a time, answered before being taught: shipped router
+(refitted after every request) 50.6 %, brain 45.8 % (habituation) / 48.3 % (without),
+reward-only 22.3 %.
+
+- **The brain matches the shipped router at one and three examples per intent and stays 1-4 points behind
+  with more.** Habituation closed most of the gap. It does not beat it.
+- **Right / wrong alone is not enough** at this data size (10-29 %): with ten choices a "wrong" says little.
+  The label-after-the-fact that Warmind already logs is the teacher to use.
+- **What this benchmark cannot test** is where a brain-like learner could win: adapting to one person's
+  phrasing and habits as they drift, and learning without retraining. That needs real use.
+
+**Next.** Deploy Warmind with `tool_calls` logging (the audit package's Step 0) and run the brain in shadow
+mode next to the shipped router; it takes over only when it beats it on real requests.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

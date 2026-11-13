@@ -1,0 +1,133 @@
+{
+ "classes": 10,
+ "utterances": 106,
+ "fitted": {
+  "labelled": [
+   0.3,
+   3
+  ],
+  "reward_only": [
+   0.3,
+   0
+  ]
+ },
+ "by_examples_per_intent": {
+  "1": {
+   "shipped_router": {
+    "accuracy": 0.317,
+    "accuracy_sd": 0.056,
+    "macro_f1": 0.288
+   },
+   "brain_labelled": {
+    "accuracy": 0.317,
+    "accuracy_sd": 0.063,
+    "macro_f1": 0.273
+   },
+   "brain_reward_only": {
+    "accuracy": 0.115,
+    "accuracy_sd": 0.032,
+    "macro_f1": 0.027
+   }
+  },
+  "2": {
+   "shipped_router": {
+    "accuracy": 0.453,
+    "accuracy_sd": 0.041,
+    "macro_f1": 0.404
+   },
+   "brain_labelled": {
+    "accuracy": 0.409,
+    "accuracy_sd": 0.065,
+    "macro_f1": 0.362
+   },
+   "brain_reward_only": {
+    "accuracy": 0.081,
+    "accuracy_sd": 0.02,
+    "macro_f1": 0.021
+   }
+  },
+  "3": {
+   "shipped_router": {
+    "accuracy": 0.524,
+    "accuracy_sd": 0.086,
+    "macro_f1": 0.468
+   },
+   "brain_labelled": {
+    "accuracy": 0.495,
+    "accuracy_sd": 0.075,
+    "macro_f1": 0.428
+   },
+   "brain_reward_only": {
+    "accuracy": 0.189,
+    "accuracy_sd": 0.054,
+    "macro_f1": 0.09
+   }
+  },
+  "5": {
+   "shipped_router": {
+    "accuracy": 0.6,
+    "accuracy_sd": 0.092,
+    "macro_f1": 0.534
+   },
+   "brain_labelled": {
+    "accuracy": 0.546,
+    "accuracy_sd": 0.068,
+    "macro_f1": 0.473
+   },
+   "brain_reward_only": {
+    "accuracy": 0.15,
+    "accuracy_sd": 0.108,
+    "macro_f1": 0.075
+   }
+  },
+  "8": {
+   "shipped_router": {
+    "accuracy": 0.688,
+    "accuracy_sd": 0.02,
+    "macro_f1": 0.578
+   },
+   "brain_labelled": {
+    "accuracy": 0.634,
+    "accuracy_sd": 0.071,
+    "macro_f1": 0.528
+   },
+   "brain_reward_only": {
+    "accuracy": 0.229,
+    "accuracy_sd": 0.07,
+    "macro_f1": 0.115
+   }
+  }
+ },
+ "online_use": {
+  "shipped_router": {
+   "by_fifth": [
+    0.291,
+    0.495,
+    0.562,
+    0.543,
+    0.638
+   ],
+   "overall": 0.506
+  },
+  "brain_labelled": {
+   "by_fifth": [
+    0.255,
+    0.505,
+    0.533,
+    0.552,
+    0.6
+   ],
+   "overall": 0.489
+  },
+  "brain_reward_only": {
+   "by_fifth": [
+    0.136,
+    0.181,
+    0.2,
+    0.267,
+    0.248
+   ],
+   "overall": 0.206
+  }
+ }
+}
