@@ -3080,6 +3080,73 @@ the day's words (same number of lessons as the night). Four days of 5,000 words;
 more than each one alone - duplicate words that are recognisably the same (Stage 48), capitals whose words
 predict them (here). It cannot create information that was never in the experience.
 
+## Stage 50: grammar from text alone
+
+**Material** (`scripts/grammar.py`). 32 children's books from Project Gutenberg (the McGuffey readers,
+Grimm, Aesop, Andersen, Peter Rabbit, five Oz books, Alice, Pinocchio, the Jungle Books, Black Beauty,
+Heidi, Burgess, Raggedy Ann, The Secret Garden, Treasure Island ...). Sentences of 3-25 words: 691,000
+words to learn from; 4 books (117,000 words) never read, 2 for choosing settings. No eyes: text only.
+
+**What the model learns**, with the kinds of learning it already has (event level, not spiking):
+- *word units* for words met at least 3 times;
+- *context counts*: which of the 500 most frequent words come just before and just after each word;
+- *category units* that compete for those context profiles, each word joining the unit it matches best -
+  word classes from distribution alone, as children are thought to find them (Redington, Chater & Finch
+  1998; Mintz 2003);
+- *sequence counts*: which category follows which, and which follows a pair. The grammar is these
+  transitions;
+- a sentence's score combines the category sequence with a word-level model of the same text (the
+  reference without categories).
+
+Number of categories (80-160) and the mixture weight are FITTED on the validation books. Four networks
+(different random starts and samples; `results/grammar/stage50_summary.json`).
+
+**A. Word classes found without labels.** Some of the 80 (network 1): past-tense verbs (*put took gave
+opened followed caught held kept shook*); base verbs after "to" / "can" (*watch escape break meet join obey
+lose enjoy*); -ing verbs (*going looking coming sitting running*); adjectives (*little good great long big
+white black green new*); story creatures (*rabbit tree fox scarecrow girl rat mouse*); body parts (*nose
+arms eye neck throat ear*); character names (*peter dorothy sara heidi pinocchio mowgli*); -ly manner words
+(*angrily eagerly politely sadly*); past participles (*covered filled marked crowded armed*). Agreement with
+a part-of-speech tagger's tags (used for grading only): purity 70.4 ± 1.0 % (random categories of the same
+sizes 46.5 %), V-measure 0.22 (random 0.02); the tagger's one-tag-per-word view understates it (e.g.
+"angrily" next to "drawing").
+
+**B. A new word, placed from a few sentences** (300 words held out of category learning; is the category
+it joins a category of its own part of speech? the most common class alone would be right 49.6 %):
+
+| sentences seen with the new word | 1 | 3 | 10 |
+|---|---|---|---|
+| placed in the right kind of category | 55.5 ± 1.9 % | 64.9 ± 4.3 % | **74.9 ± 2.0 %** |
+
+**C. Word order in books never read** - the real sentence against the same words with two neighbours
+swapped, or shuffled; which does the model prefer?
+
+| | categories only | words only | both |
+|---|---|---|---|
+| two neighbours swapped | 80.7 ± 1.9 % | 87.6 % | **90.0 ± 0.4 %** |
+| shuffled | 95.4 % | 97.7 % | **98.6 ± 0.2 %** |
+
+**D. BLiMP** (Warstadt et al. 2020; 67 phenomena x 1,000 grammatical / ungrammatical pairs; humans 88.6 %,
+a 5-gram model trained on far more text 61.2 %). All pairs: 49.7 % - chance, because only 12.8 % of pairs
+use words the model has met (BLiMP uses adult vocabulary). **Pairs with known words only (8,581): 55.2 ±
+1.0 %.** Strong where a phenomenon is local and frequent in children's books (sentential negation with
+"any" 99.8 %, "there are" with quantifiers 92.6 %, irregular participles 67-77 %, agreement of
+"himself / herself" 61-63 %); at or far below chance where it needs a structure across the sentence (most
+island effects, negative-polarity licensing in questions 8.6 %, "wh" vs "that" with a gap 7.9 %). Below
+chance means systematically preferring the wrong one: a three-word window prefers the common local pattern.
+
+**What this says.** From text alone the model learns real word classes and enough local order to tell a
+real sentence from a disordered one 90-99 % of the time in books it never read. It does not learn the
+grammar that spans a sentence - agreement across words, questions, gaps, scope - which needs memory of
+structure beyond a few words, and far more text (children hear tens of millions of words; this was 0.7
+million).
+
+**Limits.** One category per word (ambiguous words like "can" get one); a window of three words; counts,
+not spiking; BLiMP restricted to pairs with known words is not a random half of it.
+
+**Next.** A memory of structure beyond three words (e.g. sequence units that hold a phrase: subject, verb,
+object) is what agreement and questions need; and more text.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

@@ -368,3 +368,7 @@ duplicates exist (one network of four), awake re-reading does not, replay into s
 nothing at ceiling. `scripts/sleep_primer.py`.
 Stage 49 (15 Nov): night-time pooled judgement for capitals - frees letters whose words predict them (Y,
 I), not G / P (their words do not), no overall gain over awake re-reading. `scripts/sleep_capitals.py`.
+Stage 50 (15 Nov): grammar from text only - 32 Gutenberg children's books; word classes from distribution,
+category transitions; word order judged 90 % in unread books; BLiMP 55 % on pairs with known words (local
+phenomena learned, sentence-spanning ones not). `scripts/grammar.py`; corpora in /home/claude/corpora (books,
+blimp) - not in the repository.

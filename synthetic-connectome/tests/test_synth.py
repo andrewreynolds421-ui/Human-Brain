@@ -476,3 +476,16 @@ def test_sleep_merges_a_duplicate_word_unit_and_keeps_different_words():
     W.recruit(ev("dog"), "dog")
     N, removed, wrong, right = merge(W)
     assert removed == 1 and right == 1 and wrong == 0 and sorted(N.truth) == ["can", "dog"]
+
+
+def test_grammar_learns_word_classes_and_prefers_word_order_seen():
+    """Stage 50: from a tiny text, nouns and verbs fall into different categories, and a sentence in the
+    order seen scores higher than the same words with two neighbours swapped."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    from grammar import Grammar
+    rng = np.random.default_rng(0)
+    nouns, verbs = ["dog", "cat", "bird", "girl", "boy", "fox"], ["ran", "sat", "sang", "hid", "fell", "slept"]
+    sents = [["the", str(rng.choice(nouns)), str(rng.choice(verbs)), "away"] for _ in range(400)]
+    G = Grammar(sents, K=3, n_ctx=20, min_count=3, seed=0)
+    assert len({G.cat[n] for n in nouns}) == 1 and len({G.cat[v] for v in verbs}) == 1 and G.cat["dog"] != G.cat["ran"]
+    assert G.score(["the", "dog", "ran", "away"]) > G.score(["the", "ran", "dog", "away"])

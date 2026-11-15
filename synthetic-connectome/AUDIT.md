@@ -615,3 +615,11 @@ overall gain over awake re-reading (59-60 % vs 63 %); it frees Y and I, cannot f
 A diagnostic shows why: the words around G and P do not predict them. Settings were taken from Stage 41
 without refitting; the pooling width (10) and context weight (2) are ASSUMED and were not varied.
 
+## 31. Follow-up (15 November): Stage 50 — grammar from text
+
+Word classes from distribution, category transitions, four networks. Purity 70 % (random 47 %); new words
+placed right 75 % from 10 sentences (chance 50 %); real vs swapped word order in unread books 90 %; BLiMP
+50 % overall, 55 % on the 8,581 pairs with known words. First run had an indexing bug in test C (crash,
+fixed before any result was recorded). The tagger used for grading is spaCy's small English model,
+type-level majority tags; it is not a gold standard.
+

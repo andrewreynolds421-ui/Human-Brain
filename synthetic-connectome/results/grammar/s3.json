@@ -1,0 +1,4708 @@
+{
+ "sentences": {
+  "train": 55891,
+  "val": 3212,
+  "test": 9960
+ },
+ "words": {
+  "train": 690807,
+  "val": 42417,
+  "test": 116542
+ },
+ "K": 160,
+ "mix": 0.3,
+ "A_categories": {
+  "words": 10059,
+  "purity": 0.711,
+  "purity_random": 0.467,
+  "purity_by_token": 0.762,
+  "purity_by_token_random": 0.561,
+  "v_measure": 0.216,
+  "v_measure_random": 0.024,
+  "categories": {
+   "0": {
+    "main_pos": [
+     [
+      "PROPN",
+      25
+     ],
+     [
+      "ADJ",
+      8
+     ]
+    ],
+    "words": [
+     "www",
+     "conquered",
+     "created",
+     "pgdp",
+     "proofreading",
+     "archive",
+     "cullen",
+     "fied",
+     "wadsworth",
+     "antwerp"
+    ],
+    "size": 45
+   },
+   "1": {
+    "main_pos": [
+     [
+      "PROPN",
+      1
+     ],
+     [
+      "VERB",
+      1
+     ]
+    ],
+    "words": [
+     "o'er",
+     "surrounds"
+    ],
+    "size": 2
+   },
+   "2": {
+    "main_pos": [
+     [
+      "NOUN",
+      34
+     ],
+     [
+      "VERB",
+      1
+     ]
+    ],
+    "words": [
+     "world",
+     "forest",
+     "hour",
+     "wall",
+     "idea",
+     "road",
+     "island",
+     "army",
+     "attic",
+     "gate"
+    ],
+    "size": 35
+   },
+   "3": {
+    "main_pos": [
+     [
+      "VERB",
+      29
+     ],
+     [
+      "NOUN",
+      1
+     ]
+    ],
+    "words": [
+     "said",
+     "asked",
+     "replied",
+     "cried",
+     "answered",
+     "exclaimed",
+     "returned",
+     "continued",
+     "declared",
+     "inquired"
+    ],
+    "size": 31
+   },
+   "4": {
+    "main_pos": [
+     [
+      "NOUN",
+      95
+     ],
+     [
+      "ADJ",
+      3
+     ]
+    ],
+    "words": [
+     "field",
+     "corner",
+     "lake",
+     "branch",
+     "point",
+     "roof",
+     "scene",
+     "patch",
+     "band",
+     "leader"
+    ],
+    "size": 100
+   },
+   "5": {
+    "main_pos": [
+     [
+      "VERB",
+      1
+     ]
+    ],
+    "words": [
+     "nodded"
+    ],
+    "size": 1
+   },
+   "6": {
+    "main_pos": [
+     [
+      "NOUN",
+      78
+     ],
+     [
+      "PROPN",
+      15
+     ]
+    ],
+    "words": [
+     "surprise",
+     "peace",
+     "delight",
+     "mischief",
+     "terror",
+     "holes",
+     "vain",
+     "rage",
+     "astonishment",
+     "grief"
+    ],
+    "size": 104
+   },
+   "7": {
+    "main_pos": [
+     [
+      "VERB",
+      25
+     ],
+     [
+      "ADV",
+      1
+     ]
+    ],
+    "words": [
+     "began",
+     "laughed",
+     "happened",
+     "stopped",
+     "whispered",
+     "died",
+     "appeared",
+     "disappeared",
+     "waited",
+     "remained"
+    ],
+    "size": 27
+   },
+   "8": {
+    "main_pos": [
+     [
+      "VERB",
+      65
+     ],
+     [
+      "PROPN",
+      1
+     ]
+    ],
+    "words": [
+     "tell",
+     "make",
+     "let",
+     "take",
+     "find",
+     "give",
+     "hear",
+     "keep",
+     "help",
+     "ask"
+    ],
+    "size": 67
+   },
+   "9": {
+    "main_pos": [
+     [
+      "ADJ",
+      4
+     ],
+     [
+      "ADV",
+      2
+     ]
+    ],
+    "words": [
+     "different",
+     "hot",
+     "sad",
+     "justly",
+     "differently",
+     "fashionable",
+     "hubert"
+    ],
+    "size": 7
+   },
+   "10": {
+    "main_pos": [
+     [
+      "NOUN",
+      8
+     ],
+     [
+      "VERB",
+      1
+     ]
+    ],
+    "words": [
+     "clouds",
+     "panther",
+     "shadows",
+     "tailed",
+     "tips",
+     "mask",
+     "plume",
+     "robe",
+     "snails",
+     "billed"
+    ],
+    "size": 10
+   },
+   "11": {
+    "main_pos": [
+     [
+      "NOUN",
+      5
+     ],
+     [
+      "PROPN",
+      2
+     ]
+    ],
+    "words": [
+     "txt",
+     "bonnet",
+     "lowland",
+     "reckless",
+     "htm",
+     "nosed",
+     "oy",
+     "bundled",
+     "structure",
+     "windings"
+    ],
+    "size": 10
+   },
+   "12": {
+    "main_pos": [
+     [
+      "NOUN",
+      8
+     ],
+     [
+      "ADJ",
+      1
+     ]
+    ],
+    "words": [
+     "chin",
+     "dingy",
+     "essay",
+     "wand",
+     "brows",
+     "sleeves",
+     "studio",
+     "eyesight",
+     "patriotism"
+    ],
+    "size": 9
+   },
+   "13": {
+    "main_pos": [
+     [
+      "NOUN",
+      3
+     ]
+    ],
+    "words": [
+     "grosbeak",
+     "sparks",
+     "dirge"
+    ],
+    "size": 3
+   },
+   "14": {
+    "main_pos": [
+     [
+      "SCONJ",
+      15
+     ],
+     [
+      "ADV",
+      12
+     ]
+    ],
+    "words": [
+     "when",
+     "if",
+     "where",
+     "because",
+     "while",
+     "until",
+     "perhaps",
+     "till",
+     "though",
+     "however"
+    ],
+    "size": 38
+   },
+   "15": {
+    "main_pos": [
+     [
+      "NOUN",
+      71
+     ],
+     [
+      "ADJ",
+      14
+     ]
+    ],
+    "words": [
+     "fisherman",
+     "maid",
+     "stable",
+     "cupboard",
+     "plump",
+     "greek",
+     "scarlet",
+     "drawer",
+     "balcony",
+     "dollar"
+    ],
+    "size": 94
+   },
+   "16": {
+    "main_pos": [
+     [
+      "PROPN",
+      36
+     ],
+     [
+      "NOUN",
+      19
+     ]
+    ],
+    "words": [
+     "england",
+     "itself",
+     "heaven",
+     "london",
+     "kansas",
+     "boston",
+     "http",
+     "america",
+     "india",
+     "despair"
+    ],
+    "size": 63
+   },
+   "17": {
+    "main_pos": [
+     [
+      "NOUN",
+      6
+     ],
+     [
+      "PROPN",
+      1
+     ]
+    ],
+    "words": [
+     "sentences",
+     "furniture",
+     "richard",
+     "turtles",
+     "baptism",
+     "canvas",
+     "cream"
+    ],
+    "size": 7
+   },
+   "18": {
+    "main_pos": [
+     [
+      "VERB",
+      3
+     ],
+     [
+      "ADJ",
+      3
+     ]
+    ],
+    "words": [
+     "named",
+     "ungrateful",
+     "reasonably",
+     "doubly",
+     "worrying",
+     "heading",
+     "unbearable",
+     "watchful"
+    ],
+    "size": 8
+   },
+   "19": {
+    "main_pos": [
+     [
+      "PROPN",
+      4
+     ],
+     [
+      "NOUN",
+      2
+     ]
+    ],
+    "words": [
+     "b",
+     "n",
+     "ing",
+     "y",
+     "ta",
+     "phillips",
+     "budge",
+     "chic",
+     "dodging",
+     "prastoe"
+    ],
+    "size": 10
+   },
+   "20": {
+    "main_pos": [
+     [
+      "NOUN",
+      93
+     ],
+     [
+      "VERB",
+      8
+     ]
+    ],
+    "words": [
+     "laughing",
+     "grass",
+     "south",
+     "leaves",
+     "west",
+     "nuts",
+     "falling",
+     "hills",
+     "seeds",
+     "sunshine"
+    ],
+    "size": 109
+   },
+   "21": {
+    "main_pos": [
+     [
+      "VERB",
+      4
+     ],
+     [
+      "ADP",
+      3
+     ]
+    ],
+    "words": [
+     "than",
+     "after",
+     "beside",
+     "except",
+     "helping",
+     "contain",
+     "coiled",
+     "seating",
+     "tchee"
+    ],
+    "size": 9
+   },
+   "22": {
+    "main_pos": [
+     [
+      "NOUN",
+      41
+     ],
+     [
+      "ADJ",
+      3
+     ]
+    ],
+    "words": [
+     "college",
+     "knife",
+     "pain",
+     "youth",
+     "servant",
+     "service",
+     "pipe",
+     "speed",
+     "belt",
+     "profession"
+    ],
+    "size": 44
+   },
+   "23": {
+    "main_pos": [
+     [
+      "NOUN",
+      101
+     ],
+     [
+      "ADJ",
+      23
+     ]
+    ],
+    "words": [
+     "glance",
+     "whisper",
+     "pause",
+     "coward",
+     "joke",
+     "neighbor",
+     "splash",
+     "message",
+     "pace",
+     "sunday"
+    ],
+    "size": 146
+   },
+   "24": {
+    "main_pos": [
+     [
+      "PRON",
+      11
+     ],
+     [
+      "DET",
+      3
+     ]
+    ],
+    "words": [
+     "and",
+     "he",
+     "i",
+     "you",
+     "it",
+     "that",
+     "she",
+     "but",
+     "they",
+     "all"
+    ],
+    "size": 22
+   },
+   "25": {
+    "main_pos": [
+     [
+      "VERB",
+      6
+     ]
+    ],
+    "words": [
+     "washed",
+     "kicks",
+     "buzzing",
+     "embracing",
+     "improving",
+     "yoked"
+    ],
+    "size": 6
+   },
+   "26": {
+    "main_pos": [
+     [
+      "VERB",
+      42
+     ],
+     [
+      "ADJ",
+      16
+     ]
+    ],
+    "words": [
+     "enough",
+     "used",
+     "ready",
+     "able",
+     "trying",
+     "gutenberg",
+     "related",
+     "listening",
+     "admitted",
+     "removed"
+    ],
+    "size": 67
+   },
+   "27": {
+    "main_pos": [
+     [
+      "NOUN",
+      31
+     ],
+     [
+      "PROPN",
+      11
+     ]
+    ],
+    "words": [
+     "jumper",
+     "chatterer",
+     "lightfoot",
+     "hooty",
+     "yap",
+     "blacky",
+     "bully",
+     "digger",
+     "spotty",
+     "rattles"
+    ],
+    "size": 52
+   },
+   "28": {
+    "main_pos": [
+     [
+      "NOUN",
+      1
+     ]
+    ],
+    "words": [
+     "caste"
+    ],
+    "size": 1
+   },
+   "29": {
+    "main_pos": [
+     [
+      "VERB",
+      10
+     ],
+     [
+      "NOUN",
+      2
+     ]
+    ],
+    "words": [
+     "looking",
+     "running",
+     "hunting",
+     "straight",
+     "bound",
+     "ee",
+     "jumping",
+     "dancing",
+     "swimming",
+     "picking"
+    ],
+    "size": 16
+   },
+   "30": {
+    "main_pos": [
+     [
+      "NOUN",
+      79
+     ],
+     [
+      "ADJ",
+      5
+     ]
+    ],
+    "words": [
+     "eyes",
+     "own",
+     "feet",
+     "hands",
+     "legs",
+     "ears",
+     "nose",
+     "arms",
+     "wings",
+     "cousins"
+    ],
+    "size": 86
+   },
+   "31": {
+    "main_pos": [
+     [
+      "NOUN",
+      61
+     ]
+    ],
+    "words": [
+     "friends",
+     "death",
+     "hair",
+     "food",
+     "eggs",
+     "money",
+     "breath",
+     "joy",
+     "bread",
+     "dinner"
+    ],
+    "size": 61
+   },
+   "32": {
+    "main_pos": [
+     [
+      "NOUN",
+      8
+     ],
+     [
+      "PROPN",
+      6
+     ]
+    ],
+    "words": [
+     "art",
+     "hast",
+     "dost",
+     "wilt",
+     "shalt",
+     "canst",
+     "didst",
+     "wast",
+     "wouldst",
+     "knowest"
+    ],
+    "size": 22
+   },
+   "33": {
+    "main_pos": [
+     [
+      "NOUN",
+      28
+     ],
+     [
+      "ADJ",
+      4
+     ]
+    ],
+    "words": [
+     "time",
+     "day",
+     "thing",
+     "night",
+     "tree",
+     "morning",
+     "word",
+     "moment",
+     "part",
+     "year"
+    ],
+    "size": 34
+   },
+   "34": {
+    "main_pos": [
+     [
+      "NOUN",
+      101
+     ],
+     [
+      "ADJ",
+      8
+     ]
+    ],
+    "words": [
+     "beard",
+     "lip",
+     "reputation",
+     "antlers",
+     "cheek",
+     "dame",
+     "manners",
+     "doorstep",
+     "countenance",
+     "heels"
+    ],
+    "size": 112
+   },
+   "35": {
+    "main_pos": [
+     [
+      "NOUN",
+      85
+     ],
+     [
+      "ADV",
+      1
+     ]
+    ],
+    "words": [
+     "pieces",
+     "sounds",
+     "editions",
+     "parts",
+     "ahead",
+     "kinds",
+     "stories",
+     "sorts",
+     "tales",
+     "bars"
+    ],
+    "size": 88
+   },
+   "36": {
+    "main_pos": [
+     [
+      "VERB",
+      25
+     ]
+    ],
+    "words": [
+     "watched",
+     "crossed",
+     "sees",
+     "thanked",
+     "approached",
+     "recognized",
+     "grasped",
+     "assured",
+     "welcomed",
+     "informed"
+    ],
+    "size": 25
+   },
+   "37": {
+    "main_pos": [
+     [
+      "NOUN",
+      85
+     ],
+     [
+      "ADJ",
+      4
+     ]
+    ],
+    "words": [
+     "best",
+     "side",
+     "son",
+     "mouth",
+     "foot",
+     "wife",
+     "eye",
+     "neck",
+     "master",
+     "bill"
+    ],
+    "size": 90
+   },
+   "38": {
+    "main_pos": [
+     [
+      "DET",
+      11
+     ],
+     [
+      "NUM",
+      10
+     ]
+    ],
+    "words": [
+     "the",
+     "a",
+     "his",
+     "her",
+     "my",
+     "very",
+     "your",
+     "their",
+     "an",
+     "some"
+    ],
+    "size": 36
+   },
+   "39": {
+    "main_pos": [
+     [
+      "NOUN",
+      38
+     ],
+     [
+      "ADJ",
+      11
+     ]
+    ],
+    "words": [
+     "smiling",
+     "bar",
+     "council",
+     "highest",
+     "tutor",
+     "luncheon",
+     "police",
+     "northern",
+     "herd",
+     "main"
+    ],
+    "size": 55
+   },
+   "40": {
+    "main_pos": [
+     [
+      "NOUN",
+      26
+     ],
+     [
+      "ADJ",
+      3
+     ]
+    ],
+    "words": [
+     "reply",
+     "afternoon",
+     "further",
+     "prison",
+     "sport",
+     "rate",
+     "fashion",
+     "directions",
+     "market",
+     "occasion"
+    ],
+    "size": 31
+   },
+   "41": {
+    "main_pos": [
+     [
+      "VERB",
+      19
+     ],
+     [
+      "NOUN",
+      6
+     ]
+    ],
+    "words": [
+     "fit",
+     "refuse",
+     "occurred",
+     "venture",
+     "hesitate",
+     "delay",
+     "accustomed",
+     "wanting",
+     "afford",
+     "seeming"
+    ],
+    "size": 33
+   },
+   "42": {
+    "main_pos": [
+     [
+      "NOUN",
+      18
+     ],
+     [
+      "VERB",
+      16
+     ]
+    ],
+    "words": [
+     "literary",
+     "rolling",
+     "bare",
+     "upright",
+     "faithful",
+     "covering",
+     "daring",
+     "ability",
+     "loving",
+     "closing"
+    ],
+    "size": 48
+   },
+   "43": {
+    "main_pos": [
+     [
+      "VERB",
+      102
+     ],
+     [
+      "NOUN",
+      9
+     ]
+    ],
+    "words": [
+     "became",
+     "lives",
+     "looks",
+     "gets",
+     "shot",
+     "wrote",
+     "eats",
+     "hath",
+     "studied",
+     "becomes"
+    ],
+    "size": 112
+   },
+   "44": {
+    "main_pos": [
+     [
+      "VERB",
+      73
+     ],
+     [
+      "NOUN",
+      2
+     ]
+    ],
+    "words": [
+     "started",
+     "flew",
+     "jumped",
+     "hurried",
+     "climbed",
+     "sprang",
+     "slipped",
+     "crept",
+     "stepped",
+     "rode"
+    ],
+    "size": 75
+   },
+   "45": {
+    "main_pos": [
+     [
+      "NOUN",
+      96
+     ],
+     [
+      "PROPN",
+      2
+     ]
+    ],
+    "words": [
+     "bottom",
+     "surface",
+     "university",
+     "eaters",
+     "events",
+     "wisest",
+     "flames",
+     "inhabitants",
+     "tones",
+     "marks"
+    ],
+    "size": 101
+   },
+   "46": {
+    "main_pos": [
+     [
+      "NOUN",
+      14
+     ],
+     [
+      "ADJ",
+      3
+     ]
+    ],
+    "words": [
+     "luck",
+     "bye",
+     "hearted",
+     "natured",
+     "swimmer",
+     "tempered",
+     "runner",
+     "naturedly",
+     "pies",
+     "sized"
+    ],
+    "size": 22
+   },
+   "47": {
+    "main_pos": [
+     [
+      "NOUN",
+      136
+     ],
+     [
+      "ADV",
+      33
+     ]
+    ],
+    "words": [
+     "heads",
+     "places",
+     "york",
+     "dass",
+     "haste",
+     "beetles",
+     "dic",
+     "aurex",
+     "beds",
+     "slide"
+    ],
+    "size": 230
+   },
+   "48": {
+    "main_pos": [
+     [
+      "NOUN",
+      24
+     ],
+     [
+      "ADJ",
+      3
+     ]
+    ],
+    "words": [
+     "goat",
+     "pigeon",
+     "puppy",
+     "bun",
+     "buffalo",
+     "carter",
+     "sorcerer",
+     "relative",
+     "shoemaker",
+     "tumble"
+    ],
+    "size": 28
+   },
+   "49": {
+    "main_pos": [
+     [
+      "VERB",
+      31
+     ],
+     [
+      "NOUN",
+      3
+     ]
+    ],
+    "words": [
+     "try",
+     "care",
+     "speak",
+     "talk",
+     "stop",
+     "wait",
+     "seem",
+     "learn",
+     "die",
+     "return"
+    ],
+    "size": 35
+   },
+   "50": {
+    "main_pos": [
+     [
+      "ADJ",
+      18
+     ],
+     [
+      "ADV",
+      4
+     ]
+    ],
+    "words": [
+     "comfortable",
+     "serious",
+     "powerful",
+     "cheerful",
+     "fiercely",
+     "cunning",
+     "magnificent",
+     "savage",
+     "brightly",
+     "sober"
+    ],
+    "size": 25
+   },
+   "51": {
+    "main_pos": [
+     [
+      "VERB",
+      68
+     ],
+     [
+      "ADJ",
+      5
+     ]
+    ],
+    "words": [
+     "filled",
+     "watching",
+     "interrupted",
+     "marked",
+     "joined",
+     "seized",
+     "putting",
+     "worn",
+     "uttered",
+     "drawn"
+    ],
+    "size": 77
+   },
+   "52": {
+    "main_pos": [
+     [
+      "VERB",
+      49
+     ],
+     [
+      "NOUN",
+      4
+     ]
+    ],
+    "words": [
+     "smiled",
+     "sang",
+     "afterwards",
+     "snapped",
+     "lies",
+     "sighed",
+     "wept",
+     "gasped",
+     "screamed",
+     "stands"
+    ],
+    "size": 55
+   },
+   "53": {
+    "main_pos": [
+     [
+      "NOUN",
+      45
+     ],
+     [
+      "PROPN",
+      2
+     ]
+    ],
+    "words": [
+     "man",
+     "king",
+     "boy",
+     "rabbit",
+     "fox",
+     "scarecrow",
+     "girl",
+     "ground",
+     "rat",
+     "mouse"
+    ],
+    "size": 47
+   },
+   "54": {
+    "main_pos": [
+     [
+      "NOUN",
+      82
+     ],
+     [
+      "VERB",
+      4
+     ]
+    ],
+    "words": [
+     "few",
+     "bit",
+     "hundred",
+     "member",
+     "sigh",
+     "pair",
+     "row",
+     "heap",
+     "writer",
+     "dozen"
+    ],
+    "size": 91
+   },
+   "55": {
+    "main_pos": [
+     [
+      "NOUN",
+      34
+     ],
+     [
+      "PROPN",
+      15
+     ]
+    ],
+    "words": [
+     "note",
+     "remark",
+     "whitefoot",
+     "skimmer",
+     "paddy",
+     "yank",
+     "redwing",
+     "chebec",
+     "kitty",
+     "redcoat"
+    ],
+    "size": 57
+   },
+   "56": {
+    "main_pos": [
+     [
+      "VERB",
+      31
+     ],
+     [
+      "NOUN",
+      1
+     ]
+    ],
+    "words": [
+     "comes",
+     "spoke",
+     "grew",
+     "rose",
+     "pulled",
+     "broke",
+     "stretched",
+     "dug",
+     "grows",
+     "awoke"
+    ],
+    "size": 33
+   },
+   "57": {
+    "main_pos": [
+     [
+      "ADJ",
+      43
+     ],
+     [
+      "NOUN",
+      27
+     ]
+    ],
+    "words": [
+     "terrible",
+     "narrow",
+     "trembling",
+     "foremost",
+     "mighty",
+     "button",
+     "lower",
+     "bitter",
+     "briar",
+     "glorious"
+    ],
+    "size": 82
+   },
+   "58": {
+    "main_pos": [
+     [
+      "NOUN",
+      59
+     ],
+     [
+      "ADJ",
+      8
+     ]
+    ],
+    "words": [
+     "path",
+     "pool",
+     "breezes",
+     "joe",
+     "ones",
+     "mistress",
+     "breeze",
+     "bush",
+     "maiden",
+     "toomai"
+    ],
+    "size": 73
+   },
+   "59": {
+    "main_pos": [
+     [
+      "NOUN",
+      8
+     ],
+     [
+      "VERB",
+      6
+     ]
+    ],
+    "words": [
+     "beginning",
+     "rising",
+     "professor",
+     "secretary",
+     "minister",
+     "president",
+     "exception",
+     "pastor",
+     "rushing",
+     "governor"
+    ],
+    "size": 16
+   },
+   "60": {
+    "main_pos": [
+     [
+      "PROPN",
+      18
+     ],
+     [
+      "NOUN",
+      10
+     ]
+    ],
+    "words": [
+     "peter",
+     "dorothy",
+     "sara",
+     "heidi",
+     "miss",
+     "pinocchio",
+     "mowgli",
+     "toad",
+     "oz",
+     "ozma"
+    ],
+    "size": 32
+   },
+   "61": {
+    "main_pos": [
+     [
+      "VERB",
+      50
+     ]
+    ],
+    "words": [
+     "made",
+     "found",
+     "called",
+     "told",
+     "left",
+     "brought",
+     "followed",
+     "caught",
+     "sent",
+     "killed"
+    ],
+    "size": 50
+   },
+   "62": {
+    "main_pos": [
+     [
+      "PROPN",
+      4
+     ],
+     [
+      "NOUN",
+      4
+     ]
+    ],
+    "words": [
+     "jay",
+     "ous",
+     "dumpty",
+     "blug",
+     "horner",
+     "idiotic",
+     "maur",
+     "sa",
+     "bin",
+     "retz"
+    ],
+    "size": 11
+   },
+   "63": {
+    "main_pos": [
+     [
+      "NOUN",
+      21
+     ],
+     [
+      "PROPN",
+      18
+     ]
+    ],
+    "words": [
+     "mr",
+     "raggedy",
+     "johnny",
+     "jack",
+     "reddy",
+     "jenny",
+     "robert",
+     "jimmy",
+     "billy",
+     "anthea"
+    ],
+    "size": 48
+   },
+   "64": {
+    "main_pos": [
+     [
+      "VERB",
+      15
+     ],
+     [
+      "ADV",
+      1
+     ]
+    ],
+    "words": [
+     "fetch",
+     "admire",
+     "repeat",
+     "examine",
+     "drag",
+     "toss",
+     "restore",
+     "congratulate",
+     "denying",
+     "hoist"
+    ],
+    "size": 16
+   },
+   "65": {
+    "main_pos": [
+     [
+      "ADP",
+      20
+     ],
+     [
+      "ADV",
+      5
+     ]
+    ],
+    "words": [
+     "up",
+     "out",
+     "down",
+     "into",
+     "over",
+     "back",
+     "away",
+     "off",
+     "through",
+     "round"
+    ],
+    "size": 28
+   },
+   "66": {
+    "main_pos": [
+     [
+      "ADJ",
+      34
+     ],
+     [
+      "NOUN",
+      25
+     ]
+    ],
+    "words": [
+     "tin",
+     "merry",
+     "lone",
+     "project",
+     "american",
+     "upper",
+     "crooked",
+     "waving",
+     "original",
+     "finest"
+    ],
+    "size": 67
+   },
+   "67": {
+    "main_pos": [
+     [
+      "VERB",
+      13
+     ],
+     [
+      "NOUN",
+      2
+     ]
+    ],
+    "words": [
+     "peeping",
+     "bending",
+     "stooping",
+     "roaming",
+     "tripped",
+     "drives",
+     "linger",
+     "pours",
+     "disappearing",
+     "hovering"
+    ],
+    "size": 15
+   },
+   "68": {
+    "main_pos": [
+     [
+      "PROPN",
+      3
+     ],
+     [
+      "NOUN",
+      1
+     ]
+    ],
+    "words": [
+     "toto",
+     "antonio",
+     "charlie",
+     "marcus"
+    ],
+    "size": 4
+   },
+   "69": {
+    "main_pos": [
+     [
+      "VERB",
+      19
+     ],
+     [
+      "NOUN",
+      5
+     ]
+    ],
+    "words": [
+     "visit",
+     "bite",
+     "wake",
+     "pity",
+     "touch",
+     "gretel",
+     "respect",
+     "tear",
+     "feed",
+     "cheer"
+    ],
+    "size": 26
+   },
+   "70": {
+    "main_pos": [
+     [
+      "VERB",
+      82
+     ],
+     [
+      "ADV",
+      27
+     ]
+    ],
+    "words": [
+     "born",
+     "sitting",
+     "standing",
+     "dressed",
+     "waiting",
+     "singing",
+     "lying",
+     "growing",
+     "published",
+     "written"
+    ],
+    "size": 125
+   },
+   "71": {
+    "main_pos": [
+     [
+      "NOUN",
+      138
+     ],
+     [
+      "ADJ",
+      11
+     ]
+    ],
+    "words": [
+     "bank",
+     "woods",
+     "purple",
+     "crow",
+     "prince",
+     "wagon",
+     "barn",
+     "dhole",
+     "shed",
+     "tower"
+    ],
+    "size": 160
+   },
+   "72": {
+    "main_pos": [
+     [
+      "VERB",
+      5
+     ],
+     [
+      "NOUN",
+      2
+     ]
+    ],
+    "words": [
+     "deserve",
+     "propose",
+     "endure",
+     "salute",
+     "s'pose",
+     "pound",
+     "scurried",
+     "recollect"
+    ],
+    "size": 8
+   },
+   "73": {
+    "main_pos": [
+     [
+      "NOUN",
+      40
+     ],
+     [
+      "ADJ",
+      3
+     ]
+    ],
+    "words": [
+     "sound",
+     "general",
+     "thousand",
+     "tone",
+     "secret",
+     "dream",
+     "manner",
+     "present",
+     "picture",
+     "meal"
+    ],
+    "size": 44
+   },
+   "74": {
+    "main_pos": [
+     [
+      "VERB",
+      131
+     ],
+     [
+      "NOUN",
+      25
+     ]
+    ],
+    "words": [
+     "among",
+     "toward",
+     "during",
+     "leaving",
+     "unto",
+     "bowser",
+     "enquired",
+     "replace",
+     "unlike",
+     "asserted"
+    ],
+    "size": 195
+   },
+   "75": {
+    "main_pos": [
+     [
+      "ADP",
+      14
+     ],
+     [
+      "PART",
+      1
+     ]
+    ],
+    "words": [
+     "to",
+     "of",
+     "in",
+     "for",
+     "as",
+     "with",
+     "at",
+     "on",
+     "by",
+     "from"
+    ],
+    "size": 17
+   },
+   "76": {
+    "main_pos": [
+     [
+      "NOUN",
+      59
+     ],
+     [
+      "ADJ",
+      2
+     ]
+    ],
+    "words": [
+     "jungle",
+     "sea",
+     "mountain",
+     "pack",
+     "french",
+     "sand",
+     "pumpkinhead",
+     "doctor",
+     "moon",
+     "street"
+    ],
+    "size": 61
+   },
+   "77": {
+    "main_pos": [
+     [
+      "NOUN",
+      45
+     ],
+     [
+      "ADJ",
+      2
+     ]
+    ],
+    "words": [
+     "way",
+     "mother",
+     "head",
+     "home",
+     "last",
+     "nature",
+     "house",
+     "voice",
+     "family",
+     "life"
+    ],
+    "size": 47
+   },
+   "78": {
+    "main_pos": [
+     [
+      "VERB",
+      35
+     ],
+     [
+      "NOUN",
+      7
+     ]
+    ],
+    "words": [
+     "eat",
+     "call",
+     "open",
+     "use",
+     "sleep",
+     "love",
+     "turn",
+     "bear",
+     "fear",
+     "read"
+    ],
+    "size": 43
+   },
+   "79": {
+    "main_pos": [
+     [
+      "VERB",
+      27
+     ],
+     [
+      "ADV",
+      2
+     ]
+    ],
+    "words": [
+     "want",
+     "mean",
+     "ought",
+     "need",
+     "dare",
+     "promise",
+     "belong",
+     "expect",
+     "desire",
+     "hate"
+    ],
+    "size": 34
+   },
+   "80": {
+    "main_pos": [
+     [
+      "VERB",
+      2
+     ],
+     [
+      "ADV",
+      2
+     ]
+    ],
+    "words": [
+     "nesting",
+     "audah",
+     "totally",
+     "dyed",
+     "overnight"
+    ],
+    "size": 5
+   },
+   "81": {
+    "main_pos": [
+     [
+      "VERB",
+      43
+     ],
+     [
+      "ADJ",
+      1
+     ]
+    ],
+    "words": [
+     "thought",
+     "saw",
+     "heard",
+     "knew",
+     "felt",
+     "wanted",
+     "knows",
+     "says",
+     "learned",
+     "noticed"
+    ],
+    "size": 44
+   },
+   "82": {
+    "main_pos": [
+     [
+      "NOUN",
+      243
+     ],
+     [
+      "ADJ",
+      32
+     ]
+    ],
+    "words": [
+     "following",
+     "page",
+     "mugger",
+     "kitchen",
+     "opposite",
+     "adjutant",
+     "clock",
+     "moonlight",
+     "future",
+     "ocean"
+    ],
+    "size": 300
+   },
+   "83": {
+    "main_pos": [
+     [
+      "NOUN",
+      44
+     ],
+     [
+      "PROPN",
+      3
+     ]
+    ],
+    "words": [
+     "water",
+     "air",
+     "land",
+     "wood",
+     "fire",
+     "god",
+     "sight",
+     "earth",
+     "shadow",
+     "lord"
+    ],
+    "size": 49
+   },
+   "84": {
+    "main_pos": [
+     [
+      "ADJ",
+      49
+     ],
+     [
+      "ADV",
+      33
+     ]
+    ],
+    "words": [
+     "much",
+     "far",
+     "hard",
+     "fast",
+     "hungry",
+     "quickly",
+     "angry",
+     "carefully",
+     "busy",
+     "easily"
+    ],
+    "size": 85
+   },
+   "85": {
+    "main_pos": [
+     [
+      "VERB",
+      1
+     ]
+    ],
+    "words": [
+     "think"
+    ],
+    "size": 1
+   },
+   "86": {
+    "main_pos": [
+     [
+      "ADJ",
+      88
+     ],
+     [
+      "NOUN",
+      17
+     ]
+    ],
+    "words": [
+     "low",
+     "sharp",
+     "loud",
+     "thick",
+     "broad",
+     "common",
+     "grave",
+     "thin",
+     "pale",
+     "tender"
+    ],
+    "size": 124
+   },
+   "87": {
+    "main_pos": [
+     [
+      "VERB",
+      34
+     ],
+     [
+      "AUX",
+      1
+     ]
+    ],
+    "words": [
+     "been",
+     "seen",
+     "done",
+     "gone",
+     "lost",
+     "taken",
+     "known",
+     "given",
+     "already",
+     "broken"
+    ],
+    "size": 36
+   },
+   "88": {
+    "main_pos": [
+     [
+      "NOUN",
+      62
+     ],
+     [
+      "ADJ",
+      2
+     ]
+    ],
+    "words": [
+     "same",
+     "hare",
+     "sky",
+     "floor",
+     "lamb",
+     "hill",
+     "otter",
+     "sorceress",
+     "brook",
+     "cook"
+    ],
+    "size": 68
+   },
+   "89": {
+    "main_pos": [
+     [
+      "VERB",
+      21
+     ],
+     [
+      "NOUN",
+      11
+     ]
+    ],
+    "words": [
+     "mrs",
+     "mine",
+     "speaking",
+     "charles",
+     "hearing",
+     "colored",
+     "pope",
+     "writing",
+     "stealing",
+     "approaching"
+    ],
+    "size": 45
+   },
+   "90": {
+    "main_pos": [
+     [
+      "PROPN",
+      3
+     ],
+     [
+      "NOUN",
+      1
+     ]
+    ],
+    "words": [
+     "boo",
+     "hale",
+     "jonathan",
+     "joshua"
+    ],
+    "size": 4
+   },
+   "91": {
+    "main_pos": [
+     [
+      "NOUN",
+      55
+     ],
+     [
+      "VERB",
+      7
+     ]
+    ],
+    "words": [
+     "end",
+     "rest",
+     "line",
+     "shore",
+     "form",
+     "study",
+     "mountains",
+     "faces",
+     "act",
+     "names"
+    ],
+    "size": 63
+   },
+   "92": {
+    "main_pos": [
+     [
+      "NOUN",
+      15
+     ],
+     [
+      "PROPN",
+      15
+     ]
+    ],
+    "words": [
+     "t",
+     "jerry",
+     "robin",
+     "yonder",
+     "coyote",
+     "brutus",
+     "nat",
+     "whoever",
+     "dryden",
+     "nell"
+    ],
+    "size": 36
+   },
+   "93": {
+    "main_pos": [
+     [
+      "ADJ",
+      86
+     ],
+     [
+      "NOUN",
+      63
+     ]
+    ],
+    "words": [
+     "single",
+     "sudden",
+     "perfect",
+     "remarkable",
+     "private",
+     "slight",
+     "double",
+     "rum",
+     "noted",
+     "brownish"
+    ],
+    "size": 182
+   },
+   "94": {
+    "main_pos": [
+     [
+      "VERB",
+      3
+     ],
+     [
+      "ADV",
+      2
+     ]
+    ],
+    "words": [
+     "equally",
+     "crowding",
+     "universally",
+     "badgers",
+     "sporting",
+     "fantastic",
+     "lovelier",
+     "sensation",
+     "straying"
+    ],
+    "size": 9
+   },
+   "95": {
+    "main_pos": [
+     [
+      "VERB",
+      67
+     ],
+     [
+      "NOUN",
+      15
+     ]
+    ],
+    "words": [
+     "covered",
+     "stuffed",
+     "ly",
+     "associated",
+     "mixed",
+     "armed",
+     "spotted",
+     "lined",
+     "provided",
+     "connected"
+    ],
+    "size": 93
+   },
+   "96": {
+    "main_pos": [
+     [
+      "NOUN",
+      39
+     ],
+     [
+      "ADJ",
+      3
+     ]
+    ],
+    "words": [
+     "hole",
+     "river",
+     "table",
+     "stone",
+     "box",
+     "glass",
+     "stick",
+     "hollow",
+     "bag",
+     "church"
+    ],
+    "size": 42
+   },
+   "97": {
+    "main_pos": [
+     [
+      "VERB",
+      36
+     ],
+     [
+      "NOUN",
+      1
+     ]
+    ],
+    "words": [
+     "came",
+     "went",
+     "looked",
+     "got",
+     "turned",
+     "ran",
+     "fell",
+     "walked",
+     "goes",
+     "spread"
+    ],
+    "size": 37
+   },
+   "98": {
+    "main_pos": [
+     [
+      "PROPN",
+      128
+     ],
+     [
+      "NOUN",
+      55
+     ]
+    ],
+    "words": [
+     "whose",
+     "william",
+     "notes",
+     "tut",
+     "shere",
+     "produced",
+     "fraulein",
+     "herr",
+     "bob",
+     "pray"
+    ],
+    "size": 279
+   },
+   "99": {
+    "main_pos": [
+     [
+      "NOUN",
+      35
+     ],
+     [
+      "PROPN",
+      8
+     ]
+    ],
+    "words": [
+     "meadow",
+     "owl",
+     "captain",
+     "ram",
+     "squire",
+     "dove",
+     "meantime",
+     "grouse",
+     "information",
+     "rip"
+    ],
+    "size": 53
+   },
+   "100": {
+    "main_pos": [
+     [
+      "NOUN",
+      94
+     ],
+     [
+      "ADJ",
+      4
+     ]
+    ],
+    "words": [
+     "front",
+     "size",
+     "chief",
+     "branches",
+     "steps",
+     "fields",
+     "company",
+     "ways",
+     "walls",
+     "direction"
+    ],
+    "size": 99
+   },
+   "101": {
+    "main_pos": [
+     [
+      "VERB",
+      2
+     ]
+    ],
+    "words": [
+     "scare",
+     "peck"
+    ],
+    "size": 2
+   },
+   "102": {
+    "main_pos": [
+     [
+      "NOUN",
+      23
+     ],
+     [
+      "PROPN",
+      18
+     ]
+    ],
+    "words": [
+     "chuck",
+     "ann",
+     "skunk",
+     "minchin",
+     "andy",
+     "chipmunk",
+     "mink",
+     "ago",
+     "tikki",
+     "khan"
+    ],
+    "size": 53
+   },
+   "103": {
+    "main_pos": [
+     [
+      "VERB",
+      115
+     ]
+    ],
+    "words": [
+     "shook",
+     "shut",
+     "closed",
+     "laid",
+     "lifted",
+     "raised",
+     "bent",
+     "kissed",
+     "bowed",
+     "shaking"
+    ],
+    "size": 115
+   },
+   "104": {
+    "main_pos": [
+     [
+      "NOUN",
+      55
+     ],
+     [
+      "ADJ",
+      4
+     ]
+    ],
+    "words": [
+     "window",
+     "village",
+     "boat",
+     "journey",
+     "garden",
+     "baby",
+     "basket",
+     "party",
+     "seat",
+     "gun"
+    ],
+    "size": 60
+   },
+   "105": {
+    "main_pos": [
+     [
+      "NOUN",
+      57
+     ],
+     [
+      "ADJ",
+      4
+     ]
+    ],
+    "words": [
+     "sort",
+     "lot",
+     "piece",
+     "number",
+     "sign",
+     "group",
+     "glimpse",
+     "fearful",
+     "couple",
+     "guilty"
+    ],
+    "size": 64
+   },
+   "106": {
+    "main_pos": [
+     [
+      "NOUN",
+      19
+     ]
+    ],
+    "words": [
+     "people",
+     "things",
+     "children",
+     "men",
+     "others",
+     "trees",
+     "words",
+     "birds",
+     "flowers",
+     "boys"
+    ],
+    "size": 19
+   },
+   "107": {
+    "main_pos": [
+     [
+      "ADV",
+      44
+     ],
+     [
+      "CCONJ",
+      3
+     ]
+    ],
+    "words": [
+     "not",
+     "so",
+     "then",
+     "no",
+     "now",
+     "how",
+     "just",
+     "more",
+     "here",
+     "never"
+    ],
+    "size": 55
+   },
+   "108": {
+    "main_pos": [
+     [
+      "VERB",
+      79
+     ],
+     [
+      "NOUN",
+      3
+     ]
+    ],
+    "words": [
+     "escape",
+     "worry",
+     "strike",
+     "blame",
+     "control",
+     "frighten",
+     "support",
+     "scold",
+     "amuse",
+     "spare"
+    ],
+    "size": 84
+   },
+   "109": {
+    "main_pos": [
+     [
+      "ADV",
+      61
+     ],
+     [
+      "VERB",
+      8
+     ]
+    ],
+    "words": [
+     "angrily",
+     "eagerly",
+     "politely",
+     "anxiously",
+     "sadly",
+     "hastily",
+     "thoughtfully",
+     "sharply",
+     "alike",
+     "firmly"
+    ],
+    "size": 80
+   },
+   "110": {
+    "main_pos": [
+     [
+      "NOUN",
+      3
+     ],
+     [
+      "ADJ",
+      1
+     ]
+    ],
+    "words": [
+     "chair",
+     "knitting",
+     "chest",
+     "stead"
+    ],
+    "size": 4
+   },
+   "111": {
+    "main_pos": [
+     [
+      "NOUN",
+      96
+     ],
+     [
+      "VERB",
+      22
+     ]
+    ],
+    "words": [
+     "fond",
+     "none",
+     "instead",
+     "plenty",
+     "spite",
+     "files",
+     "hundreds",
+     "thousands",
+     "lots",
+     "possessed"
+    ],
+    "size": 140
+   },
+   "112": {
+    "main_pos": [
+     [
+      "VERB",
+      49
+     ],
+     [
+      "NOUN",
+      43
+     ]
+    ],
+    "words": [
+     "cry",
+     "play",
+     "fight",
+     "laugh",
+     "smile",
+     "fall",
+     "hurry",
+     "morrow",
+     "rule",
+     "start"
+    ],
+    "size": 100
+   },
+   "113": {
+    "main_pos": [
+     [
+      "PROPN",
+      36
+     ],
+     [
+      "NOUN",
+      28
+     ]
+    ],
+    "words": [
+     "bagheera",
+     "henry",
+     "john",
+     "baloo",
+     "mary",
+     "akela",
+     "nag",
+     "james",
+     "tom",
+     "thomas"
+    ],
+    "size": 74
+   },
+   "114": {
+    "main_pos": [
+     [
+      "VERB",
+      67
+     ],
+     [
+      "NOUN",
+      5
+     ]
+    ],
+    "words": [
+     "seemed",
+     "tried",
+     "seems",
+     "pointed",
+     "wants",
+     "likes",
+     "loves",
+     "happens",
+     "managed",
+     "belongs"
+    ],
+    "size": 75
+   },
+   "115": {
+    "main_pos": [
+     [
+      "VERB",
+      30
+     ],
+     [
+      "AUX",
+      1
+     ]
+    ],
+    "words": [
+     "be",
+     "go",
+     "come",
+     "get",
+     "look",
+     "run",
+     "live",
+     "stay",
+     "sit",
+     "stand"
+    ],
+    "size": 32
+   },
+   "116": {
+    "main_pos": [
+     [
+      "NOUN",
+      69
+     ],
+     [
+      "ADJ",
+      64
+     ]
+    ],
+    "words": [
+     "whole",
+     "golden",
+     "tiny",
+     "woggle",
+     "wooden",
+     "third",
+     "royal",
+     "proper",
+     "diamond",
+     "famous"
+    ],
+    "size": 145
+   },
+   "117": {
+    "main_pos": [
+     [
+      "ADJ",
+      86
+     ],
+     [
+      "ADV",
+      7
+     ]
+    ],
+    "words": [
+     "little",
+     "old",
+     "good",
+     "great",
+     "long",
+     "big",
+     "most",
+     "poor",
+     "happy",
+     "beautiful"
+    ],
+    "size": 101
+   },
+   "118": {
+    "main_pos": [
+     [
+      "PRON",
+      10
+     ],
+     [
+      "DET",
+      1
+     ]
+    ],
+    "words": [
+     "nothing",
+     "something",
+     "anything",
+     "everything",
+     "everybody",
+     "whatever",
+     "anyone",
+     "anybody",
+     "nobody",
+     "anywhere"
+    ],
+    "size": 12
+   },
+   "119": {
+    "main_pos": [
+     [
+      "VERB",
+      29
+     ],
+     [
+      "NOUN",
+      6
+     ]
+    ],
+    "words": [
+     "appear",
+     "attend",
+     "settle",
+     "continue",
+     "starve",
+     "mount",
+     "puzzle",
+     "retire",
+     "yield",
+     "heed"
+    ],
+    "size": 39
+   },
+   "120": {
+    "main_pos": [
+     [
+      "VERB",
+      42
+     ],
+     [
+      "NOUN",
+      12
+     ]
+    ],
+    "words": [
+     "stared",
+     "knocked",
+     "graduated",
+     "gazed",
+     "eyed",
+     "landed",
+     "wildly",
+     "alighted",
+     "winked",
+     "tugged"
+    ],
+    "size": 68
+   },
+   "121": {
+    "main_pos": [
+     [
+      "VERB",
+      12
+     ],
+     [
+      "ADV",
+      1
+     ]
+    ],
+    "words": [
+     "sat",
+     "stood",
+     "lay",
+     "depends",
+     "hangs",
+     "depended",
+     "tinkled",
+     "upside",
+     "chained",
+     "galloping"
+    ],
+    "size": 13
+   },
+   "122": {
+    "main_pos": [
+     [
+      "ADJ",
+      33
+     ],
+     [
+      "ADV",
+      10
+     ]
+    ],
+    "words": [
+     "better",
+     "longer",
+     "bigger",
+     "less",
+     "farther",
+     "worse",
+     "nearer",
+     "smaller",
+     "larger",
+     "faster"
+    ],
+    "size": 49
+   },
+   "123": {
+    "main_pos": [
+     [
+      "NOUN",
+      20
+     ],
+     [
+      "ADJ",
+      1
+     ]
+    ],
+    "words": [
+     "years",
+     "times",
+     "days",
+     "minutes",
+     "hours",
+     "miles",
+     "families",
+     "months",
+     "weeks",
+     "o'clock"
+    ],
+    "size": 21
+   },
+   "124": {
+    "main_pos": [
+     [
+      "NOUN",
+      11
+     ],
+     [
+      "VERB",
+      10
+     ]
+    ],
+    "words": [
+     "below",
+     "toil",
+     "groaned",
+     "armies",
+     "hesitation",
+     "smiles",
+     "benevolence",
+     "displayed",
+     "weechi",
+     "dishonor"
+    ],
+    "size": 26
+   },
+   "125": {
+    "main_pos": [
+     [
+      "NOUN",
+      65
+     ],
+     [
+      "ADJ",
+      51
+     ]
+    ],
+    "words": [
+     "english",
+     "instant",
+     "expression",
+     "egg",
+     "awful",
+     "evil",
+     "apple",
+     "opening",
+     "excellent",
+     "odd"
+    ],
+    "size": 124
+   },
+   "126": {
+    "main_pos": [
+     [
+      "NOUN",
+      15
+     ],
+     [
+      "PROPN",
+      2
+     ]
+    ],
+    "words": [
+     "sun",
+     "mole",
+     "least",
+     "meadows",
+     "badger",
+     "length",
+     "turtle",
+     "sooner",
+     "sahib",
+     "sunset"
+    ],
+    "size": 19
+   },
+   "127": {
+    "main_pos": [
+     [
+      "NOUN",
+      189
+     ],
+     [
+      "ADV",
+      100
+     ]
+    ],
+    "words": [
+     "drawing",
+     "promptly",
+     "h",
+     "proudly",
+     "zip",
+     "org",
+     "wick",
+     "renamed",
+     "shortly",
+     "etc"
+    ],
+    "size": 443
+   },
+   "128": {
+    "main_pos": [
+     [
+      "ADJ",
+      21
+     ],
+     [
+      "VERB",
+      6
+     ]
+    ],
+    "words": [
+     "right",
+     "going",
+     "sure",
+     "afraid",
+     "alone",
+     "glad",
+     "coming",
+     "sorry",
+     "tired",
+     "frightened"
+    ],
+    "size": 31
+   },
+   "129": {
+    "main_pos": [
+     [
+      "VERB",
+      4
+     ],
+     [
+      "ADJ",
+      2
+     ]
+    ],
+    "words": [
+     "puzzled",
+     "spoiled",
+     "heedless",
+     "bewildered",
+     "disliked",
+     "squeaking"
+    ],
+    "size": 6
+   },
+   "130": {
+    "main_pos": [
+     [
+      "VERB",
+      83
+     ],
+     [
+      "NOUN",
+      80
+     ]
+    ],
+    "words": [
+     "forward",
+     "slowly",
+     "quietly",
+     "crying",
+     "flat",
+     "twice",
+     "shone",
+     "everywhere",
+     "wondering",
+     "happily"
+    ],
+    "size": 245
+   },
+   "131": {
+    "main_pos": [
+     [
+      "ADJ",
+      19
+     ],
+     [
+      "NOUN",
+      18
+     ]
+    ],
+    "words": [
+     "other",
+     "white",
+     "black",
+     "green",
+     "new",
+     "red",
+     "brown",
+     "snow",
+     "light",
+     "yellow"
+    ],
+    "size": 46
+   },
+   "132": {
+    "main_pos": [
+     [
+      "NOUN",
+      86
+     ],
+     [
+      "ADJ",
+      12
+     ]
+    ],
+    "words": [
+     "rock",
+     "second",
+     "distance",
+     "stranger",
+     "flower",
+     "log",
+     "pig",
+     "poet",
+     "tunnel",
+     "difference"
+    ],
+    "size": 103
+   },
+   "133": {
+    "main_pos": [
+     [
+      "VERB",
+      69
+     ]
+    ],
+    "words": [
+     "put",
+     "took",
+     "gave",
+     "set",
+     "makes",
+     "opened",
+     "held",
+     "cut",
+     "kept",
+     "reached"
+    ],
+    "size": 69
+   },
+   "134": {
+    "main_pos": [
+     [
+      "ADJ",
+      3
+     ],
+     [
+      "NOUN",
+      1
+     ]
+    ],
+    "words": [
+     "strong",
+     "bluff",
+     "eared",
+     "substantial"
+    ],
+    "size": 4
+   },
+   "135": {
+    "main_pos": [
+     [
+      "VERB",
+      113
+     ],
+     [
+      "NOUN",
+      2
+     ]
+    ],
+    "words": [
+     "join",
+     "lose",
+     "enjoy",
+     "buy",
+     "seek",
+     "steal",
+     "pick",
+     "fill",
+     "spend",
+     "consider"
+    ],
+    "size": 118
+   },
+   "136": {
+    "main_pos": [
+     [
+      "AUX",
+      9
+     ],
+     [
+      "VERB",
+      2
+     ]
+    ],
+    "words": [
+     "was",
+     "is",
+     "had",
+     "have",
+     "are",
+     "were",
+     "has",
+     "am",
+     "thou",
+     "does"
+    ],
+    "size": 13
+   },
+   "137": {
+    "main_pos": [
+     [
+      "VERB",
+      54
+     ],
+     [
+      "NOUN",
+      26
+     ]
+    ],
+    "words": [
+     "turning",
+     "obliged",
+     "appointed",
+     "pointing",
+     "unable",
+     "elected",
+     "forced",
+     "eager",
+     "devoted",
+     "willing"
+    ],
+    "size": 106
+   },
+   "138": {
+    "main_pos": [
+     [
+      "NOUN",
+      26
+     ],
+     [
+      "PROPN",
+      19
+     ]
+    ],
+    "words": [
+     "trout",
+     "ay",
+     "copyright",
+     "hopping",
+     "muffet",
+     "bluebird",
+     "harlequin",
+     "occasionally",
+     "phoebe",
+     "puss"
+    ],
+    "size": 65
+   },
+   "139": {
+    "main_pos": [
+     [
+      "NOUN",
+      25
+     ],
+     [
+      "VERB",
+      2
+     ]
+    ],
+    "words": [
+     "deal",
+     "news",
+     "account",
+     "thanks",
+     "opportunity",
+     "reasons",
+     "value",
+     "importance",
+     "drops",
+     "points"
+    ],
+    "size": 28
+   },
+   "140": {
+    "main_pos": [
+     [
+      "VERB",
+      12
+     ],
+     [
+      "ADV",
+      1
+     ]
+    ],
+    "words": [
+     "begged",
+     "merely",
+     "addressed",
+     "offered",
+     "fastened",
+     "hated",
+     "sold",
+     "summoned",
+     "descended",
+     "opposed"
+    ],
+    "size": 14
+   },
+   "141": {
+    "main_pos": [
+     [
+      "NOUN",
+      48
+     ],
+     [
+      "ADJ",
+      9
+     ]
+    ],
+    "words": [
+     "ice",
+     "straw",
+     "mud",
+     "sticks",
+     "interest",
+     "iron",
+     "hunger",
+     "insects",
+     "excitement",
+     "moss"
+    ],
+    "size": 60
+   },
+   "142": {
+    "main_pos": [
+     [
+      "PRON",
+      13
+     ],
+     [
+      "NOUN",
+      2
+     ]
+    ],
+    "words": [
+     "him",
+     "me",
+     "them",
+     "us",
+     "himself",
+     "thee",
+     "herself",
+     "myself",
+     "em",
+     "themselves"
+    ],
+    "size": 16
+   },
+   "143": {
+    "main_pos": [
+     [
+      "PROPN",
+      71
+     ],
+     [
+      "NOUN",
+      66
+     ]
+    ],
+    "words": [
+     "wren",
+     "hans",
+     "coon",
+     "e",
+     "pro",
+     "d",
+     "amelia",
+     "c",
+     "ii",
+     "chee"
+    ],
+    "size": 167
+   },
+   "144": {
+    "main_pos": [
+     [
+      "NOUN",
+      90
+     ],
+     [
+      "ADJ",
+      2
+     ]
+    ],
+    "words": [
+     "dolls",
+     "skeezers",
+     "sheep",
+     "rocks",
+     "houses",
+     "dogs",
+     "wolves",
+     "latter",
+     "fishes",
+     "flatheads"
+    ],
+    "size": 94
+   },
+   "145": {
+    "main_pos": [
+     [
+      "VERB",
+      43
+     ],
+     [
+      "PROPN",
+      8
+     ]
+    ],
+    "words": [
+     "being",
+     "half",
+     "having",
+     "doing",
+     "making",
+     "thinking",
+     "getting",
+     "talking",
+     "saying",
+     "feeling"
+    ],
+    "size": 57
+   },
+   "146": {
+    "main_pos": [
+     [
+      "NOUN",
+      8
+     ],
+     [
+      "PROPN",
+      2
+     ]
+    ],
+    "words": [
+     "pericles",
+     "mummer",
+     "coutchie",
+     "fodder",
+     "mason",
+     "affectation",
+     "keller",
+     "longs",
+     "railings",
+     "sirs"
+    ],
+    "size": 10
+   },
+   "147": {
+    "main_pos": [
+     [
+      "AUX",
+      10
+     ],
+     [
+      "ADV",
+      3
+     ]
+    ],
+    "words": [
+     "will",
+     "can",
+     "would",
+     "could",
+     "did",
+     "must",
+     "shall",
+     "may",
+     "should",
+     "might"
+    ],
+    "size": 14
+   },
+   "148": {
+    "main_pos": [
+     [
+      "VERB",
+      41
+     ],
+     [
+      "ADV",
+      1
+     ]
+    ],
+    "words": [
+     "passed",
+     "lived",
+     "met",
+     "placed",
+     "spent",
+     "hunted",
+     "received",
+     "worked",
+     "played",
+     "slept"
+    ],
+    "size": 43
+   },
+   "149": {
+    "main_pos": [
+     [
+      "NOUN",
+      28
+     ],
+     [
+      "PROPN",
+      7
+     ]
+    ],
+    "words": [
+     "yes",
+     "dear",
+     "o",
+     "please",
+     "else",
+     "sir",
+     "ah",
+     "papa",
+     "tomorrow",
+     "today"
+    ],
+    "size": 53
+   },
+   "150": {
+    "main_pos": [
+     [
+      "NOUN",
+      179
+     ],
+     [
+      "ADJ",
+      14
+     ]
+    ],
+    "words": [
+     "top",
+     "edge",
+     "middle",
+     "members",
+     "ruler",
+     "roots",
+     "author",
+     "largest",
+     "biggest",
+     "guardian"
+    ],
+    "size": 210
+   },
+   "151": {
+    "main_pos": [
+     [
+      "VERB",
+      76
+     ],
+     [
+      "ADV",
+      4
+     ]
+    ],
+    "words": [
+     "asleep",
+     "hidden",
+     "somewhere",
+     "married",
+     "buried",
+     "considered",
+     "ended",
+     "obeyed",
+     "complete",
+     "destroyed"
+    ],
+    "size": 84
+   },
+   "152": {
+    "main_pos": [
+     [
+      "NOUN",
+      133
+     ],
+     [
+      "ADJ",
+      108
+     ]
+    ],
+    "words": [
+     "emerald",
+     "indian",
+     "greatest",
+     "shaggy",
+     "mock",
+     "fir",
+     "su",
+     "troop",
+     "previous",
+     "winged"
+    ],
+    "size": 290
+   },
+   "153": {
+    "main_pos": [
+     [
+      "NOUN",
+      142
+     ],
+     [
+      "PROPN",
+      28
+     ]
+    ],
+    "words": [
+     "self",
+     "fighting",
+     "st",
+     "thine",
+     "conversation",
+     "ours",
+     "pounds",
+     "catching",
+     "admiration",
+     "matters"
+    ],
+    "size": 202
+   },
+   "154": {
+    "main_pos": [
+     [
+      "NOUN",
+      103
+     ],
+     [
+      "PROPN",
+      10
+     ]
+    ],
+    "words": [
+     "corn",
+     "pine",
+     "mercy",
+     "wine",
+     "flesh",
+     "grain",
+     "patience",
+     "thunder",
+     "killing",
+     "liberty"
+    ],
+    "size": 128
+   },
+   "155": {
+    "main_pos": [
+     [
+      "NOUN",
+      12
+     ],
+     [
+      "ADJ",
+      3
+     ]
+    ],
+    "words": [
+     "deer",
+     "sparrow",
+     "weasel",
+     "hawk",
+     "blackbird",
+     "thrush",
+     "warbler",
+     "woodpecker",
+     "marmot",
+     "shrew"
+    ],
+    "size": 15
+   },
+   "156": {
+    "main_pos": [
+     [
+      "ADV",
+      2
+     ],
+     [
+      "NOUN",
+      1
+     ]
+    ],
+    "words": [
+     "exactly",
+     "wh",
+     "zactly"
+    ],
+    "size": 3
+   },
+   "157": {
+    "main_pos": [
+     [
+      "VERB",
+      19
+     ],
+     [
+      "AUX",
+      1
+     ]
+    ],
+    "words": [
+     "do",
+     "see",
+     "know",
+     "say",
+     "wish",
+     "suppose",
+     "remember",
+     "believe",
+     "feel",
+     "understand"
+    ],
+    "size": 20
+   },
+   "158": {
+    "main_pos": [
+     [
+      "VERB",
+      12
+     ],
+     [
+      "NOUN",
+      2
+     ]
+    ],
+    "words": [
+     "supposed",
+     "wishing",
+     "hoped",
+     "intended",
+     "pretending",
+     "excepting",
+     "arranged",
+     "hoping",
+     "persuaded",
+     "believes"
+    ],
+    "size": 15
+   },
+   "159": {
+    "main_pos": [
+     [
+      "NOUN",
+      5
+     ]
+    ],
+    "words": [
+     "property",
+     "embarrassment",
+     "mates",
+     "foolishness",
+     "lids"
+    ],
+    "size": 5
+   }
+  }
+ },
+ "B_new_words": {
+  "1": 0.547,
+  "3": 0.693,
+  "10": 0.763,
+  "chance_most_common_class": 0.5,
+  "held_out_words_by_class": {
+   "NOUN": 150,
+   "VERB": 87,
+   "ADJ": 42,
+   "ADV": 21
+  }
+ },
+ "C_word_order_never_read_books": {
+  "two_neighbours_swapped": {
+   "pairs": 5994,
+   "categories": 0.8177,
+   "words_trigram": 0.8729,
+   "both": 0.8967
+  },
+  "shuffled": {
+   "pairs": 5984,
+   "categories": 0.9594,
+   "words_trigram": 0.9763,
+   "both": 0.985
+  }
+ },
+ "D_blimp": {
+  "overall": {
+   "categories": 0.495,
+   "words": 0.49,
+   "both": 0.498,
+   "known": 0.128
+  },
+  "pairs_with_known_words_only": {
+   "pairs": 8581,
+   "categories": 0.528,
+   "words": 0.538,
+   "both": 0.555
+  },
+  "by_field": {
+   "anaphor_agreement": {
+    "categories": 0.633,
+    "words": 0.589,
+    "both": 0.609
+   },
+   "argument_structure": {
+    "categories": 0.523,
+    "words": 0.51,
+    "both": 0.527
+   },
+   "binding": {
+    "categories": 0.497,
+    "words": 0.544,
+    "both": 0.543
+   },
+   "control_raising": {
+    "categories": 0.478,
+    "words": 0.499,
+    "both": 0.508
+   },
+   "determiner_noun_agreement": {
+    "categories": 0.396,
+    "words": 0.444,
+    "both": 0.428
+   },
+   "ellipsis": {
+    "categories": 0.446,
+    "words": 0.49,
+    "both": 0.456
+   },
+   "filler_gap_dependency": {
+    "categories": 0.606,
+    "words": 0.573,
+    "both": 0.592
+   },
+   "irregular_forms": {
+    "categories": 0.628,
+    "words": 0.648,
+    "both": 0.661
+   },
+   "island_effects": {
+    "categories": 0.463,
+    "words": 0.421,
+    "both": 0.442
+   },
+   "npi_licensing": {
+    "categories": 0.412,
+    "words": 0.345,
+    "both": 0.344
+   },
+   "quantifiers": {
+    "categories": 0.571,
+    "words": 0.559,
+    "both": 0.586
+   },
+   "s-selection": {
+    "categories": 0.651,
+    "words": 0.637,
+    "both": 0.658
+   },
+   "subject_verb_agreement": {
+    "categories": 0.441,
+    "words": 0.439,
+    "both": 0.452
+   }
+  },
+  "by_phenomenon": {
+   "adjunct_island": {
+    "field": "island_effects",
+    "categories": 0.483,
+    "words": 0.56,
+    "both": 0.517,
+    "known": 0.068,
+    "known_pairs": 68,
+    "categories_known_words_only": 0.529,
+    "words_known_words_only": 0.544,
+    "both_known_words_only": 0.618
+   },
+   "anaphor_gender_agreement": {
+    "field": "anaphor_agreement",
+    "categories": 0.624,
+    "words": 0.659,
+    "both": 0.619,
+    "known": 0.226,
+    "known_pairs": 226,
+    "categories_known_words_only": 0.664,
+    "words_known_words_only": 0.659,
+    "both_known_words_only": 0.65
+   },
+   "anaphor_number_agreement": {
+    "field": "anaphor_agreement",
+    "categories": 0.643,
+    "words": 0.518,
+    "both": 0.598,
+    "known": 0.325,
+    "known_pairs": 325,
+    "categories_known_words_only": 0.652,
+    "words_known_words_only": 0.609,
+    "both_known_words_only": 0.628
+   },
+   "animate_subject_passive": {
+    "field": "s-selection",
+    "categories": 0.466,
+    "words": 0.461,
+    "both": 0.461,
+    "known": 0.129,
+    "known_pairs": 129,
+    "categories_known_words_only": 0.69,
+    "words_known_words_only": 0.667,
+    "both_known_words_only": 0.682
+   },
+   "animate_subject_trans": {
+    "field": "s-selection",
+    "categories": 0.836,
+    "words": 0.812,
+    "both": 0.856,
+    "known": 0.073,
+    "known_pairs": 73,
+    "categories_known_words_only": 0.808,
+    "words_known_words_only": 0.822,
+    "both_known_words_only": 0.863
+   },
+   "causative": {
+    "field": "argument_structure",
+    "categories": 0.621,
+    "words": 0.597,
+    "both": 0.619,
+    "known": 0.093,
+    "known_pairs": 93,
+    "categories_known_words_only": 0.473,
+    "words_known_words_only": 0.452,
+    "both_known_words_only": 0.473
+   },
+   "complex_NP_island": {
+    "field": "island_effects",
+    "categories": 0.445,
+    "words": 0.461,
+    "both": 0.473,
+    "known": 0.03,
+    "known_pairs": 30,
+    "categories_known_words_only": 0.367,
+    "words_known_words_only": 0.533,
+    "both_known_words_only": 0.633
+   },
+   "coordinate_structure_constraint_complex_left_branch": {
+    "field": "island_effects",
+    "categories": 0.205,
+    "words": 0.245,
+    "both": 0.197,
+    "known": 0.025,
+    "known_pairs": 25,
+    "categories_known_words_only": 0.16,
+    "words_known_words_only": 0.28,
+    "both_known_words_only": 0.24
+   },
+   "coordinate_structure_constraint_object_extraction": {
+    "field": "island_effects",
+    "categories": 0.519,
+    "words": 0.435,
+    "both": 0.52,
+    "known": 0.102,
+    "known_pairs": 102,
+    "categories_known_words_only": 0.431,
+    "words_known_words_only": 0.549,
+    "both_known_words_only": 0.52
+   },
+   "determiner_noun_agreement_1": {
+    "field": "determiner_noun_agreement",
+    "categories": 0.293,
+    "words": 0.371,
+    "both": 0.356,
+    "known": 0.103,
+    "known_pairs": 103,
+    "categories_known_words_only": 0.427,
+    "words_known_words_only": 0.602,
+    "both_known_words_only": 0.534
+   },
+   "determiner_noun_agreement_2": {
+    "field": "determiner_noun_agreement",
+    "categories": 0.479,
+    "words": 0.537,
+    "both": 0.531,
+    "known": 0.142,
+    "known_pairs": 142,
+    "categories_known_words_only": 0.486,
+    "words_known_words_only": 0.662,
+    "both_known_words_only": 0.634
+   },
+   "determiner_noun_agreement_irregular_1": {
+    "field": "determiner_noun_agreement",
+    "categories": 0.253,
+    "words": 0.301,
+    "both": 0.326,
+    "known": 0.091,
+    "known_pairs": 91,
+    "categories_known_words_only": 0.604,
+    "words_known_words_only": 0.714,
+    "both_known_words_only": 0.813
+   },
+   "determiner_noun_agreement_irregular_2": {
+    "field": "determiner_noun_agreement",
+    "categories": 0.494,
+    "words": 0.675,
+    "both": 0.588,
+    "known": 0.162,
+    "known_pairs": 162,
+    "categories_known_words_only": 0.525,
+    "words_known_words_only": 0.809,
+    "both_known_words_only": 0.747
+   },
+   "determiner_noun_agreement_with_adj_2": {
+    "field": "determiner_noun_agreement",
+    "categories": 0.489,
+    "words": 0.49,
+    "both": 0.487,
+    "known": 0.108,
+    "known_pairs": 108,
+    "categories_known_words_only": 0.454,
+    "words_known_words_only": 0.481,
+    "both_known_words_only": 0.472
+   },
+   "determiner_noun_agreement_with_adj_irregular_1": {
+    "field": "determiner_noun_agreement",
+    "categories": 0.352,
+    "words": 0.356,
+    "both": 0.335,
+    "known": 0.137,
+    "known_pairs": 137,
+    "categories_known_words_only": 0.628,
+    "words_known_words_only": 0.599,
+    "both_known_words_only": 0.577
+   },
+   "determiner_noun_agreement_with_adj_irregular_2": {
+    "field": "determiner_noun_agreement",
+    "categories": 0.495,
+    "words": 0.517,
+    "both": 0.498,
+    "known": 0.135,
+    "known_pairs": 135,
+    "categories_known_words_only": 0.489,
+    "words_known_words_only": 0.593,
+    "both_known_words_only": 0.474
+   },
+   "determiner_noun_agreement_with_adjective_1": {
+    "field": "determiner_noun_agreement",
+    "categories": 0.309,
+    "words": 0.307,
+    "both": 0.305,
+    "known": 0.106,
+    "known_pairs": 106,
+    "categories_known_words_only": 0.481,
+    "words_known_words_only": 0.472,
+    "both_known_words_only": 0.472
+   },
+   "distractor_agreement_relational_noun": {
+    "field": "subject_verb_agreement",
+    "categories": 0.436,
+    "words": 0.403,
+    "both": 0.428,
+    "known": 0.073,
+    "known_pairs": 73,
+    "categories_known_words_only": 0.452,
+    "words_known_words_only": 0.356,
+    "both_known_words_only": 0.397
+   },
+   "distractor_agreement_relative_clause": {
+    "field": "subject_verb_agreement",
+    "categories": 0.486,
+    "words": 0.445,
+    "both": 0.458,
+    "known": 0.053,
+    "known_pairs": 53,
+    "categories_known_words_only": 0.585,
+    "words_known_words_only": 0.415,
+    "both_known_words_only": 0.453
+   },
+   "drop_argument": {
+    "field": "argument_structure",
+    "categories": 0.66,
+    "words": 0.636,
+    "both": 0.652,
+    "known": 0.173,
+    "known_pairs": 173,
+    "categories_known_words_only": 0.688,
+    "words_known_words_only": 0.647,
+    "both_known_words_only": 0.653
+   },
+   "ellipsis_n_bar_1": {
+    "field": "ellipsis",
+    "categories": 0.323,
+    "words": 0.445,
+    "both": 0.375,
+    "known": 0.034,
+    "known_pairs": 34,
+    "categories_known_words_only": 0.382,
+    "words_known_words_only": 0.588,
+    "both_known_words_only": 0.559
+   },
+   "ellipsis_n_bar_2": {
+    "field": "ellipsis",
+    "categories": 0.568,
+    "words": 0.535,
+    "both": 0.537,
+    "known": 0.027,
+    "known_pairs": 27,
+    "categories_known_words_only": 0.481,
+    "words_known_words_only": 0.333,
+    "both_known_words_only": 0.519
+   },
+   "existential_there_object_raising": {
+    "field": "control_raising",
+    "categories": 0.424,
+    "words": 0.404,
+    "both": 0.422,
+    "known": 0.032,
+    "known_pairs": 32,
+    "categories_known_words_only": 0.75,
+    "words_known_words_only": 0.781,
+    "both_known_words_only": 0.719
+   },
+   "existential_there_quantifiers_1": {
+    "field": "quantifiers",
+    "categories": 0.818,
+    "words": 0.828,
+    "both": 0.866,
+    "known": 0.164,
+    "known_pairs": 164,
+    "categories_known_words_only": 0.805,
+    "words_known_words_only": 0.896,
+    "both_known_words_only": 0.951
+   },
+   "existential_there_quantifiers_2": {
+    "field": "quantifiers",
+    "categories": 0.147,
+    "words": 0.277,
+    "both": 0.11,
+    "known": 0.172,
+    "known_pairs": 172,
+    "categories_known_words_only": 0.279,
+    "words_known_words_only": 0.262,
+    "both_known_words_only": 0.151
+   },
+   "existential_there_subject_raising": {
+    "field": "control_raising",
+    "categories": 0.473,
+    "words": 0.624,
+    "both": 0.628,
+    "known": 0.163,
+    "known_pairs": 163,
+    "categories_known_words_only": 0.521,
+    "words_known_words_only": 0.699,
+    "both_known_words_only": 0.65
+   },
+   "expletive_it_object_raising": {
+    "field": "control_raising",
+    "categories": 0.443,
+    "words": 0.463,
+    "both": 0.47,
+    "known": 0.008,
+    "known_pairs": 8,
+    "categories_known_words_only": 0.5,
+    "words_known_words_only": 0.75,
+    "both_known_words_only": 0.625
+   },
+   "inchoative": {
+    "field": "argument_structure",
+    "categories": 0.541,
+    "words": 0.523,
+    "both": 0.534,
+    "known": 0.242,
+    "known_pairs": 242,
+    "categories_known_words_only": 0.409,
+    "words_known_words_only": 0.417,
+    "both_known_words_only": 0.38
+   },
+   "intransitive": {
+    "field": "argument_structure",
+    "categories": 0.61,
+    "words": 0.61,
+    "both": 0.611,
+    "known": 0.176,
+    "known_pairs": 176,
+    "categories_known_words_only": 0.602,
+    "words_known_words_only": 0.591,
+    "both_known_words_only": 0.574
+   },
+   "irregular_past_participle_adjectives": {
+    "field": "irregular_forms",
+    "categories": 0.584,
+    "words": 0.767,
+    "both": 0.673,
+    "known": 0.542,
+    "known_pairs": 542,
+    "categories_known_words_only": 0.57,
+    "words_known_words_only": 0.777,
+    "both_known_words_only": 0.734
+   },
+   "irregular_past_participle_verbs": {
+    "field": "irregular_forms",
+    "categories": 0.672,
+    "words": 0.529,
+    "both": 0.65,
+    "known": 0.221,
+    "known_pairs": 221,
+    "categories_known_words_only": 0.742,
+    "words_known_words_only": 0.575,
+    "both_known_words_only": 0.688
+   },
+   "irregular_plural_subject_verb_agreement_1": {
+    "field": "subject_verb_agreement",
+    "categories": 0.461,
+    "words": 0.494,
+    "both": 0.498,
+    "known": 0.136,
+    "known_pairs": 136,
+    "categories_known_words_only": 0.485,
+    "words_known_words_only": 0.559,
+    "both_known_words_only": 0.574
+   },
+   "irregular_plural_subject_verb_agreement_2": {
+    "field": "subject_verb_agreement",
+    "categories": 0.44,
+    "words": 0.473,
+    "both": 0.469,
+    "known": 0.35,
+    "known_pairs": 350,
+    "categories_known_words_only": 0.58,
+    "words_known_words_only": 0.623,
+    "both_known_words_only": 0.631
+   },
+   "left_branch_island_echo_question": {
+    "field": "island_effects",
+    "categories": 0.392,
+    "words": 0.383,
+    "both": 0.388,
+    "known": 0.14,
+    "known_pairs": 140,
+    "categories_known_words_only": 0.507,
+    "words_known_words_only": 0.4,
+    "both_known_words_only": 0.529
+   },
+   "left_branch_island_simple_question": {
+    "field": "island_effects",
+    "categories": 0.226,
+    "words": 0.232,
+    "both": 0.202,
+    "known": 0.17,
+    "known_pairs": 170,
+    "categories_known_words_only": 0.147,
+    "words_known_words_only": 0.141,
+    "both_known_words_only": 0.165
+   },
+   "matrix_question_npi_licensor_present": {
+    "field": "npi_licensing",
+    "categories": 0.116,
+    "words": 0.219,
+    "both": 0.093,
+    "known": 0.207,
+    "known_pairs": 207,
+    "categories_known_words_only": 0.092,
+    "words_known_words_only": 0.285,
+    "both_known_words_only": 0.053
+   },
+   "npi_present_1": {
+    "field": "npi_licensing",
+    "categories": 0.01,
+    "words": 0.354,
+    "both": 0.12,
+    "known": 0.194,
+    "known_pairs": 194,
+    "categories_known_words_only": 0.015,
+    "words_known_words_only": 0.165,
+    "both_known_words_only": 0.067
+   },
+   "npi_present_2": {
+    "field": "npi_licensing",
+    "categories": 0.003,
+    "words": 0.325,
+    "both": 0.103,
+    "known": 0.191,
+    "known_pairs": 191,
+    "categories_known_words_only": 0.005,
+    "words_known_words_only": 0.199,
+    "both_known_words_only": 0.084
+   },
+   "only_npi_licensor_present": {
+    "field": "npi_licensing",
+    "categories": 1.0,
+    "words": 0.149,
+    "both": 0.41,
+    "known": 0.176,
+    "known_pairs": 176,
+    "categories_known_words_only": 1.0,
+    "words_known_words_only": 0.193,
+    "both_known_words_only": 0.79
+   },
+   "only_npi_scope": {
+    "field": "npi_licensing",
+    "categories": 0.633,
+    "words": 0.57,
+    "both": 0.518,
+    "known": 0.042,
+    "known_pairs": 42,
+    "categories_known_words_only": 0.714,
+    "words_known_words_only": 0.405,
+    "both_known_words_only": 0.5
+   },
+   "passive_1": {
+    "field": "argument_structure",
+    "categories": 0.363,
+    "words": 0.43,
+    "both": 0.425,
+    "known": 0.039,
+    "known_pairs": 39,
+    "categories_known_words_only": 0.436,
+    "words_known_words_only": 0.59,
+    "both_known_words_only": 0.513
+   },
+   "passive_2": {
+    "field": "argument_structure",
+    "categories": 0.401,
+    "words": 0.36,
+    "both": 0.39,
+    "known": 0.13,
+    "known_pairs": 130,
+    "categories_known_words_only": 0.531,
+    "words_known_words_only": 0.462,
+    "both_known_words_only": 0.508
+   },
+   "principle_A_c_command": {
+    "field": "binding",
+    "categories": 0.354,
+    "words": 0.513,
+    "both": 0.431,
+    "known": 0.118,
+    "known_pairs": 118,
+    "categories_known_words_only": 0.559,
+    "words_known_words_only": 0.542,
+    "both_known_words_only": 0.559
+   },
+   "principle_A_case_1": {
+    "field": "binding",
+    "categories": 0.998,
+    "words": 0.98,
+    "both": 0.999,
+    "known": 0.086,
+    "known_pairs": 86,
+    "categories_known_words_only": 1.0,
+    "words_known_words_only": 1.0,
+    "both_known_words_only": 1.0
+   },
+   "principle_A_case_2": {
+    "field": "binding",
+    "categories": 0.356,
+    "words": 0.296,
+    "both": 0.36,
+    "known": 0.084,
+    "known_pairs": 84,
+    "categories_known_words_only": 0.286,
+    "words_known_words_only": 0.19,
+    "both_known_words_only": 0.286
+   },
+   "principle_A_domain_1": {
+    "field": "binding",
+    "categories": 0.679,
+    "words": 0.984,
+    "both": 0.973,
+    "known": 0.07,
+    "known_pairs": 70,
+    "categories_known_words_only": 0.657,
+    "words_known_words_only": 0.986,
+    "both_known_words_only": 0.971
+   },
+   "principle_A_domain_2": {
+    "field": "binding",
+    "categories": 0.531,
+    "words": 0.493,
+    "both": 0.533,
+    "known": 0.074,
+    "known_pairs": 74,
+    "categories_known_words_only": 0.5,
+    "words_known_words_only": 0.473,
+    "both_known_words_only": 0.5
+   },
+   "principle_A_domain_3": {
+    "field": "binding",
+    "categories": 0.323,
+    "words": 0.3,
+    "both": 0.299,
+    "known": 0.048,
+    "known_pairs": 48,
+    "categories_known_words_only": 0.458,
+    "words_known_words_only": 0.5,
+    "both_known_words_only": 0.583
+   },
+   "principle_A_reconstruction": {
+    "field": "binding",
+    "categories": 0.235,
+    "words": 0.242,
+    "both": 0.209,
+    "known": 0.277,
+    "known_pairs": 277,
+    "categories_known_words_only": 0.321,
+    "words_known_words_only": 0.375,
+    "both_known_words_only": 0.271
+   },
+   "regular_plural_subject_verb_agreement_1": {
+    "field": "subject_verb_agreement",
+    "categories": 0.495,
+    "words": 0.51,
+    "both": 0.537,
+    "known": 0.091,
+    "known_pairs": 91,
+    "categories_known_words_only": 0.582,
+    "words_known_words_only": 0.56,
+    "both_known_words_only": 0.681
+   },
+   "regular_plural_subject_verb_agreement_2": {
+    "field": "subject_verb_agreement",
+    "categories": 0.325,
+    "words": 0.31,
+    "both": 0.323,
+    "known": 0.163,
+    "known_pairs": 163,
+    "categories_known_words_only": 0.54,
+    "words_known_words_only": 0.509,
+    "both_known_words_only": 0.54
+   },
+   "sentential_negation_npi_licensor_present": {
+    "field": "npi_licensing",
+    "categories": 1.0,
+    "words": 0.728,
+    "both": 1.0,
+    "known": 0.198,
+    "known_pairs": 198,
+    "categories_known_words_only": 1.0,
+    "words_known_words_only": 0.667,
+    "both_known_words_only": 1.0
+   },
+   "sentential_negation_npi_scope": {
+    "field": "npi_licensing",
+    "categories": 0.122,
+    "words": 0.072,
+    "both": 0.161,
+    "known": 0.038,
+    "known_pairs": 38,
+    "categories_known_words_only": 0.237,
+    "words_known_words_only": 0.105,
+    "both_known_words_only": 0.237
+   },
+   "sentential_subject_island": {
+    "field": "island_effects",
+    "categories": 0.433,
+    "words": 0.369,
+    "both": 0.426,
+    "known": 0.062,
+    "known_pairs": 62,
+    "categories_known_words_only": 0.5,
+    "words_known_words_only": 0.371,
+    "both_known_words_only": 0.5
+   },
+   "superlative_quantifiers_1": {
+    "field": "quantifiers",
+    "categories": 0.559,
+    "words": 0.585,
+    "both": 0.682,
+    "known": 0.204,
+    "known_pairs": 204,
+    "categories_known_words_only": 0.578,
+    "words_known_words_only": 0.593,
+    "both_known_words_only": 0.721
+   },
+   "superlative_quantifiers_2": {
+    "field": "quantifiers",
+    "categories": 0.761,
+    "words": 0.545,
+    "both": 0.686,
+    "known": 0.204,
+    "known_pairs": 204,
+    "categories_known_words_only": 0.755,
+    "words_known_words_only": 0.627,
+    "both_known_words_only": 0.721
+   },
+   "tough_vs_raising_1": {
+    "field": "control_raising",
+    "categories": 0.381,
+    "words": 0.453,
+    "both": 0.402,
+    "known": 0.266,
+    "known_pairs": 266,
+    "categories_known_words_only": 0.398,
+    "words_known_words_only": 0.41,
+    "both_known_words_only": 0.425
+   },
+   "tough_vs_raising_2": {
+    "field": "control_raising",
+    "categories": 0.668,
+    "words": 0.549,
+    "both": 0.618,
+    "known": 0.081,
+    "known_pairs": 81,
+    "categories_known_words_only": 0.642,
+    "words_known_words_only": 0.63,
+    "both_known_words_only": 0.667
+   },
+   "transitive": {
+    "field": "argument_structure",
+    "categories": 0.464,
+    "words": 0.416,
+    "both": 0.459,
+    "known": 0.06,
+    "known_pairs": 60,
+    "categories_known_words_only": 0.5,
+    "words_known_words_only": 0.517,
+    "both_known_words_only": 0.517
+   },
+   "wh_island": {
+    "field": "island_effects",
+    "categories": 1.0,
+    "words": 0.687,
+    "both": 0.81,
+    "known": 0.174,
+    "known_pairs": 174,
+    "categories_known_words_only": 1.0,
+    "words_known_words_only": 0.776,
+    "both_known_words_only": 0.833
+   },
+   "wh_questions_object_gap": {
+    "field": "filler_gap_dependency",
+    "categories": 0.583,
+    "words": 0.516,
+    "both": 0.55,
+    "known": 0.047,
+    "known_pairs": 47,
+    "categories_known_words_only": 0.404,
+    "words_known_words_only": 0.468,
+    "both_known_words_only": 0.553
+   },
+   "wh_questions_subject_gap": {
+    "field": "filler_gap_dependency",
+    "categories": 0.798,
+    "words": 0.777,
+    "both": 0.791,
+    "known": 0.054,
+    "known_pairs": 54,
+    "categories_known_words_only": 0.759,
+    "words_known_words_only": 0.815,
+    "both_known_words_only": 0.722
+   },
+   "wh_questions_subject_gap_long_distance": {
+    "field": "filler_gap_dependency",
+    "categories": 0.863,
+    "words": 0.734,
+    "both": 0.826,
+    "known": 0.005,
+    "known_pairs": 5,
+    "categories_known_words_only": 0.8,
+    "words_known_words_only": 0.4,
+    "both_known_words_only": 1.0
+   },
+   "wh_vs_that_no_gap": {
+    "field": "filler_gap_dependency",
+    "categories": 1.0,
+    "words": 0.79,
+    "both": 0.857,
+    "known": 0.052,
+    "known_pairs": 52,
+    "categories_known_words_only": 1.0,
+    "words_known_words_only": 0.788,
+    "both_known_words_only": 0.885
+   },
+   "wh_vs_that_no_gap_long_distance": {
+    "field": "filler_gap_dependency",
+    "categories": 1.0,
+    "words": 0.791,
+    "both": 0.849,
+    "known": 0.022,
+    "known_pairs": 22,
+    "categories_known_words_only": 1.0,
+    "words_known_words_only": 0.773,
+    "both_known_words_only": 0.773
+   },
+   "wh_vs_that_with_gap": {
+    "field": "filler_gap_dependency",
+    "categories": 0.0,
+    "words": 0.205,
+    "both": 0.128,
+    "known": 0.127,
+    "known_pairs": 127,
+    "categories_known_words_only": 0.0,
+    "words_known_words_only": 0.142,
+    "both_known_words_only": 0.102
+   },
+   "wh_vs_that_with_gap_long_distance": {
+    "field": "filler_gap_dependency",
+    "categories": 0.0,
+    "words": 0.199,
+    "both": 0.143,
+    "known": 0.066,
+    "known_pairs": 66,
+    "categories_known_words_only": 0.0,
+    "words_known_words_only": 0.318,
+    "both_known_words_only": 0.227
+   }
+  }
+ },
+ "seed": 3
+}
