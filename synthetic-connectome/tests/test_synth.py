@@ -456,3 +456,23 @@ def test_code_reading_splits_identifiers_into_shared_pieces():
     assert pieces("read_file") == pieces("readFile") == ["read", "file"] and pieces("(") == []
     TU = TokenUnits(); a = TU.read(["read_file"]); b = TU.read(["readFile"])
     assert len(set(a) & set(b)) == 2
+
+
+def test_sleep_merges_a_duplicate_word_unit_and_keeps_different_words():
+    """Stage 48: replaying a word unit's own pattern merges it into a stronger unit that recognises it as the
+    same word (a duplicate made from a misread letter); a different word of the same length stays."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    from sleep_primer import merge
+    from read_primer import Words
+    from synth.words import encode
+    def ev(w, wrong_at=None):
+        e = np.full((len(w), 26), 0.004); e[np.arange(len(w)), encode(w)] = 0.9
+        if wrong_at is not None:
+            e[wrong_at] = 0.004; e[wrong_at, 4] = 0.5; e[wrong_at, encode(w)[wrong_at]] = 0.45   # "can" half-read as "cen"
+        return e / e.sum(1, keepdims=True)
+    W = Words(-0.76, 0.0)
+    a = W.recruit(ev("can"), "can"); W.n[a] = 10
+    W.recruit(ev("can", wrong_at=1), "can")
+    W.recruit(ev("dog"), "dog")
+    N, removed, wrong, right = merge(W)
+    assert removed == 1 and right == 1 and wrong == 0 and sorted(N.truth) == ["can", "dog"]

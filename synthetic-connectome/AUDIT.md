@@ -599,3 +599,12 @@ Three variants are reported (letter triples, 3-5 letters, plus habituation), all
 other splits; the variant search is itself a choice made on test results and is disclosed as such.
 Reward-only learning: 10-29 %.
 
+## 29. Follow-up (15 November): Stage 48 — sleep
+
+The user's question: does a simulated night help? Four networks, with an awake re-reading control of equal
+effort. Merging duplicate word units by replaying each unit's pattern helped where duplicates existed (one
+network: 58 -> 8 duplicates, +1.1 to +1.2 points); awake re-reading made duplicates worse; replay into slow
+letter weights had no measurable effect. Three of four networks were at ceiling, so the positive result
+rests on one network. A bug (replay looked up renumbered units after merging) crashed networks 3-4 on the
+first run; it was fixed and those two were rerun (networks 1-2 merged nothing, so were unaffected).
+

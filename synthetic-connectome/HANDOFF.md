@@ -363,3 +363,6 @@ benchmark - matches the shipped logistic-regression router at 1-3 examples per i
 tool_calls logging; brain in shadow mode next to the shipped router; switch when it wins on real requests.
 `scripts/intent_brain.py`, `data/intent/`. Design idea from the user, recorded: rarely used skills stored as
 files and loaded on demand by a small resident index (memory saving, not compute; whole modules only).
+Stage 48 (15 Nov): a simulated night after reading - merging duplicate word units by replay helps where
+duplicates exist (one network of four), awake re-reading does not, replay into slow letter weights changes
+nothing at ceiling. `scripts/sleep_primer.py`.

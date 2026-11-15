@@ -1,0 +1,158 @@
+{
+ "seed": 1,
+ "font_A": 4,
+ "fonts_B": [
+  52,
+  33,
+  47,
+  44
+ ],
+ "font_C": 7,
+ "fonts_L": [
+  10,
+  56,
+  40,
+  46,
+  30,
+  18,
+  13,
+  36,
+  49,
+  38
+ ],
+ "replay_eta": 0.3,
+ "validation_by_eta": {
+  "0.03": 0.9894,
+  "0.1": 0.9892,
+  "0.3": 0.9897
+ },
+ "day1": {
+  "units": 682,
+  "duplicates": 7,
+  "episodes": 3749
+ },
+ "none": {
+  "units": 682,
+  "duplicates": 7,
+  "B_second_copy": {
+   "known_read_right": 0.9897,
+   "known_called_unknown": 0.0088,
+   "every_letter_right": 0.9826,
+   "letters_right": 0.9916
+  },
+  "C_second_reader": {
+   "known_read_right": 0.9891,
+   "known_called_unknown": 0.0097,
+   "unknown_flagged": 0.9918,
+   "every_letter_right": 0.9847
+  },
+  "A2_same_book_same_font": {
+   "known_read_right": 0.9991,
+   "known_called_unknown": 0.0009,
+   "every_letter_right": 0.9963
+  },
+  "L_letters_other_fonts_slow_units": 0.9615,
+  "L_letters_book_font_slow_units": 0.984
+ },
+ "awake": {
+  "new_units_while_rereading": 4,
+  "units": 686,
+  "duplicates": 11,
+  "B_second_copy": {
+   "known_read_right": 0.989,
+   "known_called_unknown": 0.0089,
+   "every_letter_right": 0.9826,
+   "letters_right": 0.9916
+  },
+  "C_second_reader": {
+   "known_read_right": 0.9864,
+   "known_called_unknown": 0.012,
+   "unknown_flagged": 0.9925,
+   "every_letter_right": 0.9847
+  },
+  "A2_same_book_same_font": {
+   "known_read_right": 0.9985,
+   "known_called_unknown": 0.0011,
+   "every_letter_right": 0.9963
+  },
+  "L_letters_other_fonts_slow_units": 0.9615,
+  "L_letters_book_font_slow_units": 0.984
+ },
+ "merge": {
+  "units_merged_away": 0,
+  "merges_of_the_same_word": 0,
+  "groups_merging_different_words": 0,
+  "units": 682,
+  "duplicates": 7,
+  "B_second_copy": {
+   "known_read_right": 0.9897,
+   "known_called_unknown": 0.0088,
+   "every_letter_right": 0.9826,
+   "letters_right": 0.9916
+  },
+  "C_second_reader": {
+   "known_read_right": 0.9891,
+   "known_called_unknown": 0.0097,
+   "unknown_flagged": 0.9918,
+   "every_letter_right": 0.9847
+  },
+  "A2_same_book_same_font": {
+   "known_read_right": 0.9991,
+   "known_called_unknown": 0.0009,
+   "every_letter_right": 0.9963
+  },
+  "L_letters_other_fonts_slow_units": 0.9615,
+  "L_letters_book_font_slow_units": 0.984
+ },
+ "replay": {
+  "replayed_words": 4584,
+  "units": 682,
+  "duplicates": 7,
+  "B_second_copy": {
+   "known_read_right": 0.9878,
+   "known_called_unknown": 0.0104,
+   "every_letter_right": 0.9795,
+   "letters_right": 0.99
+  },
+  "C_second_reader": {
+   "known_read_right": 0.989,
+   "known_called_unknown": 0.0098,
+   "unknown_flagged": 0.9918,
+   "every_letter_right": 0.9848
+  },
+  "A2_same_book_same_font": {
+   "known_read_right": 0.9985,
+   "known_called_unknown": 0.0011,
+   "every_letter_right": 0.9954
+  },
+  "L_letters_other_fonts_slow_units": 0.9606,
+  "L_letters_book_font_slow_units": 0.9904
+ },
+ "merge+replay": {
+  "units_merged_away": 0,
+  "merges_of_the_same_word": 0,
+  "groups_merging_different_words": 0,
+  "replayed_words": 4584,
+  "units": 682,
+  "duplicates": 7,
+  "B_second_copy": {
+   "known_read_right": 0.9878,
+   "known_called_unknown": 0.0104,
+   "every_letter_right": 0.9795,
+   "letters_right": 0.99
+  },
+  "C_second_reader": {
+   "known_read_right": 0.989,
+   "known_called_unknown": 0.0098,
+   "unknown_flagged": 0.9918,
+   "every_letter_right": 0.9848
+  },
+  "A2_same_book_same_font": {
+   "known_read_right": 0.9985,
+   "known_called_unknown": 0.0011,
+   "every_letter_right": 0.9954
+  },
+  "L_letters_other_fonts_slow_units": 0.9606,
+  "L_letters_book_font_slow_units": 0.9904
+ }
+}

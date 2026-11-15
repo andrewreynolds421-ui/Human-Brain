@@ -1,0 +1,568 @@
+{
+ "networks": [
+  1,
+  2,
+  3,
+  4
+ ],
+ "replay_eta": [
+  0.3,
+  0.03,
+  0.1,
+  0.03
+ ],
+ "day1": [
+  {
+   "units": 682,
+   "duplicates": 7,
+   "episodes": 3749
+  },
+  {
+   "units": 676,
+   "duplicates": 3,
+   "episodes": 3743
+  },
+  {
+   "units": 731,
+   "duplicates": 58,
+   "episodes": 3391
+  },
+  {
+   "units": 674,
+   "duplicates": 3,
+   "episodes": 3754
+  }
+ ],
+ "none": {
+  "B second copy, read right": {
+   "mean": 98.1,
+   "sd": 1.5,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    99.0,
+    99.3,
+    96.1,
+    97.9
+   ]
+  },
+  "B called unknown": {
+   "mean": 1.6,
+   "sd": 1.0,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    0.9,
+    0.7,
+    2.9,
+    2.0
+   ]
+  },
+  "C Second Reader, read right": {
+   "mean": 98.7,
+   "sd": 1.6,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    98.9,
+    99.7,
+    96.3,
+    99.8
+   ]
+  },
+  "C unknown words flagged": {
+   "mean": 98.1,
+   "sd": 0.8,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    99.2,
+    97.4,
+    97.8,
+    98.0
+   ]
+  },
+  "A2 same book, read right": {
+   "mean": 99.2,
+   "sd": 1.4,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    99.9,
+    99.9,
+    97.2,
+    99.9
+   ]
+  },
+  "L letters, other fonts (slow units)": {
+   "mean": 92.0,
+   "sd": 3.2,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    96.2,
+    90.8,
+    92.5,
+    88.6
+   ]
+  },
+  "L letters, book font (slow units)": {
+   "mean": 97.2,
+   "sd": 2.6,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    98.4,
+    99.0,
+    93.3,
+    98.1
+   ]
+  },
+  "units": [
+   682,
+   676,
+   731,
+   674
+  ],
+  "duplicates": [
+   7,
+   3,
+   58,
+   3
+  ]
+ },
+ "awake": {
+  "B second copy, read right": {
+   "mean": 98.1,
+   "sd": 1.4,
+   "gain": -0.0,
+   "gain_sd": 0.1,
+   "per_network": [
+    98.9,
+    99.3,
+    96.2,
+    97.9
+   ]
+  },
+  "B called unknown": {
+   "mean": 1.6,
+   "sd": 1.0,
+   "gain": -0.0,
+   "gain_sd": 0.1,
+   "per_network": [
+    0.9,
+    0.7,
+    2.8,
+    2.0
+   ]
+  },
+  "C Second Reader, read right": {
+   "mean": 98.5,
+   "sd": 1.7,
+   "gain": -0.2,
+   "gain_sd": 0.1,
+   "per_network": [
+    98.6,
+    99.6,
+    96.0,
+    99.6
+   ]
+  },
+  "C unknown words flagged": {
+   "mean": 98.2,
+   "sd": 0.8,
+   "gain": 0.1,
+   "gain_sd": 0.1,
+   "per_network": [
+    99.2,
+    97.4,
+    97.9,
+    98.1
+   ]
+  },
+  "A2 same book, read right": {
+   "mean": 99.2,
+   "sd": 1.4,
+   "gain": -0.1,
+   "gain_sd": 0.0,
+   "per_network": [
+    99.9,
+    99.9,
+    97.1,
+    99.9
+   ]
+  },
+  "L letters, other fonts (slow units)": {
+   "mean": 92.0,
+   "sd": 3.2,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    96.2,
+    90.8,
+    92.5,
+    88.6
+   ]
+  },
+  "L letters, book font (slow units)": {
+   "mean": 97.2,
+   "sd": 2.6,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    98.4,
+    99.0,
+    93.3,
+    98.1
+   ]
+  },
+  "units": [
+   686,
+   681,
+   806,
+   682
+  ],
+  "duplicates": [
+   11,
+   8,
+   133,
+   11
+  ],
+  "new_units_while_rereading": [
+   4,
+   5,
+   75,
+   8
+  ]
+ },
+ "merge": {
+  "B second copy, read right": {
+   "mean": 98.4,
+   "sd": 0.9,
+   "gain": 0.3,
+   "gain_sd": 0.6,
+   "per_network": [
+    99.0,
+    99.3,
+    97.3,
+    97.9
+   ]
+  },
+  "B called unknown": {
+   "mean": 1.4,
+   "sd": 0.8,
+   "gain": -0.2,
+   "gain_sd": 0.4,
+   "per_network": [
+    0.9,
+    0.7,
+    2.2,
+    2.0
+   ]
+  },
+  "C Second Reader, read right": {
+   "mean": 98.9,
+   "sd": 1.1,
+   "gain": 0.3,
+   "gain_sd": 0.6,
+   "per_network": [
+    98.9,
+    99.7,
+    97.4,
+    99.8
+   ]
+  },
+  "C unknown words flagged": {
+   "mean": 97.8,
+   "sd": 1.1,
+   "gain": -0.3,
+   "gain_sd": 0.6,
+   "per_network": [
+    99.2,
+    97.4,
+    96.6,
+    98.0
+   ]
+  },
+  "A2 same book, read right": {
+   "mean": 99.6,
+   "sd": 0.7,
+   "gain": 0.3,
+   "gain_sd": 0.6,
+   "per_network": [
+    99.9,
+    99.9,
+    98.4,
+    99.9
+   ]
+  },
+  "L letters, other fonts (slow units)": {
+   "mean": 92.0,
+   "sd": 3.2,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    96.2,
+    90.8,
+    92.5,
+    88.6
+   ]
+  },
+  "L letters, book font (slow units)": {
+   "mean": 97.2,
+   "sd": 2.6,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    98.4,
+    99.0,
+    93.3,
+    98.1
+   ]
+  },
+  "units": [
+   682,
+   676,
+   678,
+   673
+  ],
+  "duplicates": [
+   7,
+   3,
+   8,
+   2
+  ],
+  "units_merged_away": [
+   0,
+   0,
+   53,
+   1
+  ],
+  "merges_of_the_same_word": [
+   0,
+   0,
+   49,
+   1
+  ],
+  "groups_merging_different_words": [
+   0,
+   0,
+   3,
+   0
+  ]
+ },
+ "replay": {
+  "B second copy, read right": {
+   "mean": 98.0,
+   "sd": 1.3,
+   "gain": -0.0,
+   "gain_sd": 0.1,
+   "per_network": [
+    98.8,
+    99.2,
+    96.2,
+    97.9
+   ]
+  },
+  "B called unknown": {
+   "mean": 1.6,
+   "sd": 0.9,
+   "gain": 0.0,
+   "gain_sd": 0.1,
+   "per_network": [
+    1.0,
+    0.8,
+    2.8,
+    2.0
+   ]
+  },
+  "C Second Reader, read right": {
+   "mean": 98.6,
+   "sd": 1.6,
+   "gain": -0.1,
+   "gain_sd": 0.2,
+   "per_network": [
+    98.9,
+    99.4,
+    96.3,
+    99.8
+   ]
+  },
+  "C unknown words flagged": {
+   "mean": 98.1,
+   "sd": 0.7,
+   "gain": 0.0,
+   "gain_sd": 0.0,
+   "per_network": [
+    99.2,
+    97.5,
+    97.8,
+    98.1
+   ]
+  },
+  "A2 same book, read right": {
+   "mean": 99.2,
+   "sd": 1.3,
+   "gain": -0.0,
+   "gain_sd": 0.1,
+   "per_network": [
+    99.9,
+    99.8,
+    97.3,
+    99.9
+   ]
+  },
+  "L letters, other fonts (slow units)": {
+   "mean": 92.0,
+   "sd": 3.0,
+   "gain": -0.1,
+   "gain_sd": 0.5,
+   "per_network": [
+    96.1,
+    91.1,
+    91.8,
+    88.9
+   ]
+  },
+  "L letters, book font (slow units)": {
+   "mean": 97.4,
+   "sd": 3.2,
+   "gain": 0.2,
+   "gain_sd": 0.7,
+   "per_network": [
+    99.0,
+    99.0,
+    92.6,
+    99.0
+   ]
+  },
+  "units": [
+   682,
+   676,
+   731,
+   674
+  ],
+  "duplicates": [
+   7,
+   3,
+   58,
+   3
+  ]
+ },
+ "merge+replay": {
+  "B second copy, read right": {
+   "mean": 98.4,
+   "sd": 0.8,
+   "gain": 0.3,
+   "gain_sd": 0.7,
+   "per_network": [
+    98.8,
+    99.2,
+    97.5,
+    97.9
+   ]
+  },
+  "B called unknown": {
+   "mean": 1.4,
+   "sd": 0.6,
+   "gain": -0.2,
+   "gain_sd": 0.5,
+   "per_network": [
+    1.0,
+    0.8,
+    2.0,
+    2.0
+   ]
+  },
+  "C Second Reader, read right": {
+   "mean": 98.9,
+   "sd": 1.0,
+   "gain": 0.2,
+   "gain_sd": 0.6,
+   "per_network": [
+    98.9,
+    99.4,
+    97.5,
+    99.8
+   ]
+  },
+  "C unknown words flagged": {
+   "mean": 97.8,
+   "sd": 1.1,
+   "gain": -0.3,
+   "gain_sd": 0.6,
+   "per_network": [
+    99.2,
+    97.5,
+    96.6,
+    98.1
+   ]
+  },
+  "A2 same book, read right": {
+   "mean": 99.5,
+   "sd": 0.7,
+   "gain": 0.3,
+   "gain_sd": 0.7,
+   "per_network": [
+    99.9,
+    99.8,
+    98.5,
+    99.9
+   ]
+  },
+  "L letters, other fonts (slow units)": {
+   "mean": 92.0,
+   "sd": 3.0,
+   "gain": -0.1,
+   "gain_sd": 0.5,
+   "per_network": [
+    96.1,
+    91.1,
+    91.8,
+    88.9
+   ]
+  },
+  "L letters, book font (slow units)": {
+   "mean": 97.4,
+   "sd": 3.2,
+   "gain": 0.2,
+   "gain_sd": 0.7,
+   "per_network": [
+    99.0,
+    99.0,
+    92.6,
+    99.0
+   ]
+  },
+  "units": [
+   682,
+   676,
+   678,
+   673
+  ],
+  "duplicates": [
+   7,
+   3,
+   8,
+   2
+  ],
+  "units_merged_away": [
+   0,
+   0,
+   53,
+   1
+  ],
+  "merges_of_the_same_word": [
+   0,
+   0,
+   49,
+   1
+  ],
+  "groups_merging_different_words": [
+   0,
+   0,
+   3,
+   0
+  ]
+ }
+}

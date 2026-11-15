@@ -2994,6 +2994,55 @@ reward-only 22.3 %.
 **Next.** Deploy Warmind with `tool_calls` logging (the audit package's Step 0) and run the brain in shadow
 mode next to the shipped router; it takes over only when it beats it on real requests.
 
+## Stage 48: sleep after reading
+
+**Question (the user's).** Does a rest after learning - a simulated night - consolidate what was learned?
+Sleep is thought to (1) replay the day's experiences, interleaved with older knowledge; (2) move fast,
+temporary learning into lasting connections; (3) fold new words into the vocabulary (new words start
+behaving as words only after a night's sleep: Dumay & Gaskell 2007).
+
+**Set-up** (`scripts/sleep_primer.py`). Day 1: the First Reader read from no word units in one never-seen
+font, as Stage 44 (word units on the fly, the book's font taught to fast letter weights). The day's
+episodes are kept: each recognised word's letter inputs and the unit that recognised it. Night, no input
+and no labels, one of:
+- *none*;
+- *awake* - CONTROL: the book read once more, awake, learning on (as many word sightings as the replay), so
+  a gain from sleep is not just extra practice;
+- *merge* - each word unit's own pattern is replayed, weakest first; if a more used unit of the same length
+  recognises it as a word it knows, the two become one;
+- *replay* - the day's words replayed into the SLOW letter units (fast → slow), interleaved one-for-one
+  with rehearsal of old letters named by a copy of the units as they were before the night (as Stage 41);
+  step size FITTED on validation fonts;
+- *merge + replay*.
+
+Day 2: the same book in other never-seen fonts (B), the Second Reader in another (C), the same book in the
+same font (A2), and letters alone in 10 other never-seen fonts with the slow units only (L). Four networks
+(`results/sleep/stage48_summary.json`).
+
+| night | duplicate word units (per network) | B: second copy | C: Second Reader | A2: same book, same font | L: letters, other fonts |
+|---|---|---|---|---|---|
+| none | 7, 3, 58, 3 | 98.1 % | 98.7 % | 99.2 % | 92.0 % |
+| awake re-reading (control) | 11, 8, **133**, 11 | 98.1 % | 98.5 % | 99.2 % | 92.0 % |
+| **merge** | 7, 3, **8**, 2 | **98.4 %** | **98.9 %** | **99.6 %** | 92.0 % |
+| replay | 7, 3, 58, 3 | 98.0 % | 98.6 % | 99.2 % | 92.0 % |
+| merge + replay | 7, 3, 8, 2 | 98.4 % | 98.9 % | 99.5 % | 92.0 % |
+
+- **Most networks had nothing to consolidate**: three of four read 98-100 % before any night (ceiling).
+- **Where there was something to fix, merging fixed it.** Network 3 ended day 1 with 58 duplicate word
+  units; the night merged 53 (49 of them truly the same word, 3 groups wrongly joining different words) and
+  its reading rose 96.1 → 97.3 % (B), 96.3 → 97.4 % (C), 97.2 → 98.4 % (A2).
+- **Awake re-reading did the opposite**: the same effort spent reading again created more duplicates (58 →
+  133 on network 3) and nothing improved. What helped was offline comparison of memories, not more input.
+- **Replay into the slow letter units did nothing measurable** - neither help nor harm to other fonts (92.0
+  → 92.0 %; book font 97.2 → 97.4 %). Within a book the fast weights already hold the font, and at these
+  reading levels there is little left for the slow units to gain.
+
+**Limits.** Four networks, three at ceiling: the merge effect rests on one network. One night after one
+book; sleep stages (slow-wave vs REM) are not modelled; event-level, not spiking.
+
+**Next (if continued).** Test sleep where learning is harder and longer: several books in several fonts over
+several "days", where duplicates and drift accumulate.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
