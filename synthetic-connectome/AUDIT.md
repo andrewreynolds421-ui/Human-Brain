@@ -608,3 +608,10 @@ letter weights had no measurable effect. Three of four networks were at ceiling,
 rests on one network. A bug (replay looked up renumbered units after merging) crashed networks 3-4 on the
 first run; it was fixed and those two were rerun (networks 1-2 merged nothing, so were unaffected).
 
+## 30. Follow-up (15 November): Stage 49 — sleep for stuck capitals
+
+Pooled night-time judgement of the day's capital sightings, four networks with two awake controls: no
+overall gain over awake re-reading (59-60 % vs 63 %); it frees Y and I, cannot free G and P and breaks V.
+A diagnostic shows why: the words around G and P do not predict them. Settings were taken from Stage 41
+without refitting; the pooling width (10) and context weight (2) are ASSUMED and were not varied.
+

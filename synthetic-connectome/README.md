@@ -3043,6 +3043,43 @@ book; sleep stages (slow-wave vs REM) are not modelled; event-level, not spiking
 **Next (if continued).** Test sleep where learning is harder and longer: several books in several fonts over
 several "days", where duplicates and drift accumulate.
 
+## Stage 49: sleep for the capitals that got stuck
+
+**Question (the user's).** Does a night help with the letters that gave trouble - the capitals that, learned
+without labels from words (Stages 40-41), stayed stuck (G read as "c", P, Y)?
+
+**Idea tested.** By day the model learns one sighting at a time, and each sighting of a stuck letter is
+outvoted by its own confident misreading. A night can judge the day's sightings *together*: for each
+remembered capital, find the 10 most similar remembered shapes and pool what the words around them said;
+that pooled context, with the units' evidence, names the letter that teaches the units (no labels, no new
+input), interleaved with lowercase replay as in Stage 41. Variant: synaptic downscaling first (what was
+learned since lowercase scaled by 0.8; Tononi & Cirelli). Controls: awake reading only; awake re-reading of
+the day's words (same number of lessons as the night). Four days of 5,000 words; four networks
+(`scripts/sleep_capitals.py`, `results/sleep_capitals/stage49_summary.json`).
+
+| evenings | each capital alone | capital first letter ("The") | ALL CAPS | lowercase | G / P / Y / V / I |
+|---|---|---|---|---|---|
+| (before) | 43.8 % | 61.0 % | 53.8 % | 96.1 % | 8 / 3 / 5 / 58 / 22 % |
+| awake | 59.2 ± 6.7 % | 78.4 % | 79.1 % | 95.5 % | 2 / 1 / 10 / 35 / 45 % |
+| awake re-reading (control) | **63.0 ± 8.8 %** | **80.8 %** | 82.3 % | 95.6 % | 4 / 1 / 21 / 35 / 47 % |
+| sleep (pooled judgement) | 59.2 ± 6.3 % | 77.8 % | **82.6 %** | 94.5 % | 14 / 5 / **57** / 14 / **57** % |
+| sleep with downscaling | 60.1 ± 6.6 % | 77.4 % | 82.4 % | 94.6 % | 15 / 12 / **57** / 14 / **57** % |
+
+- **Overall, sleep does not beat re-reading awake.** It changes *which* letters are learned.
+- **It frees the letters whose words carry the answer**: Y 21 → 57 %, I 47 → 57 %.
+- **It cannot free G and P, because their words do not carry the answer**, and it breaks V (35 → 14 %).
+  The diagnosis (network 1, one day's sightings; `diagnosis_s1.txt`): for capital G the context of a
+  single word names "g" 1 % of the time and the pooled context 0 % (it says "e"); for P 10 %; for Y
+  pooling raises it from 51 to 82 %; for V pooling turns 15 % into 0 % ("y"). G and P mostly begin a
+  word, so there is no letter before them, and in ALL-CAPS words the letters around them are capitals not
+  yet known either. No consolidation, asleep or awake, recovers information the experience did not hold.
+- **What does teach G and P** is a source that holds the answer: alphabet-book pairs (Stage 41: 100 fonts
+  of pairs, capitals 89 %).
+
+**Conclusion with Stage 48.** Sleep-like offline processing helps where the day's experiences together hold
+more than each one alone - duplicate words that are recognisably the same (Stage 48), capitals whose words
+predict them (here). It cannot create information that was never in the experience.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

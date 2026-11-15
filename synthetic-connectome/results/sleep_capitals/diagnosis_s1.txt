@@ -1,0 +1,7 @@
+G sightings 226 | units alone 0.01 | context of one word 0.01 | pooled context 0.0 (most often says e)
+P sightings 220 | units alone 0.02 | context of one word 0.1 | pooled context 0.1 (most often says s)
+Y sightings 275 | units alone 0.02 | context of one word 0.51 | pooled context 0.82 (most often says y)
+V sightings 126 | units alone 0.52 | context of one word 0.15 | pooled context 0.0 (most often says y)
+I sightings 409 | units alone 0.35 | context of one word 0.22 | pooled context 0.45 (most often says i)
+Q sightings 12 | units alone 0.75 | context of one word 0.0 | pooled context 0.0 (most often says o)
+all capitals: units 0.71 one word's context 0.361 pooled 0.566

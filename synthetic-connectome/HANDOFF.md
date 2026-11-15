@@ -366,3 +366,5 @@ files and loaded on demand by a small resident index (memory saving, not compute
 Stage 48 (15 Nov): a simulated night after reading - merging duplicate word units by replay helps where
 duplicates exist (one network of four), awake re-reading does not, replay into slow letter weights changes
 nothing at ceiling. `scripts/sleep_primer.py`.
+Stage 49 (15 Nov): night-time pooled judgement for capitals - frees letters whose words predict them (Y,
+I), not G / P (their words do not), no overall gain over awake re-reading. `scripts/sleep_capitals.py`.
