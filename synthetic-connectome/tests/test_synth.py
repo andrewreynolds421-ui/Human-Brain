@@ -489,3 +489,18 @@ def test_grammar_learns_word_classes_and_prefers_word_order_seen():
     G = Grammar(sents, K=3, n_ctx=20, min_count=3, seed=0)
     assert len({G.cat[n] for n in nouns}) == 1 and len({G.cat[v] for v in verbs}) == 1 and G.cat["dog"] != G.cat["ran"]
     assert G.score(["the", "dog", "ran", "away"]) > G.score(["the", "ran", "dog", "away"])
+
+
+def test_grammar_memory_controlled_agreement_items():
+    """Stage 51: built agreement pairs differ only at the verb, and the right verb agrees with the SUBJECT
+    (not with the noun in between)."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    from collections import Counter
+    from grammar_memory import controlled, FLIP
+    words = ["dog", "dogs", "cat", "cats", "bird", "birds", "tree", "trees", "near", "of", "saw", "met", "here", "very", "happy"]
+    tok = Counter({w: 50 for w in words}); E2 = controlled(tok, set(words))
+    assert len(E2) > 100
+    for x in E2:
+        diff = [i for i, (g, b) in enumerate(zip(x["good"], x["bad"])) if g != b]
+        assert len(diff) == 1 and FLIP[x["good"][diff[0]]] == x["bad"][diff[0]]
+        assert (x["good"][diff[0]] in ("are", "were")) == x["subj_plural"] == x["good"][1].endswith("s")

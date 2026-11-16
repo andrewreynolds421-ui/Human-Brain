@@ -372,3 +372,6 @@ Stage 50 (15 Nov): grammar from text only - 32 Gutenberg children's books; word 
 category transitions; word order judged 90 % in unread books; BLiMP 55 % on pairs with known words (local
 phenomena learned, sentence-spanning ones not). `scripts/grammar.py`; corpora in /home/claude/corpora (books,
 blimp) - not in the repository.
+Stage 51 (16 Nov): recurrent memory over the sentence (simple, gated) vs Stage 50 - carries number past
+three words (69 % vs 50 %), but cannot tell subject from a noun in between; more text helps on every measure.
+`scripts/grammar_memory.py`; trained models in /home/claude/models/grammar_memory (not in the repository).

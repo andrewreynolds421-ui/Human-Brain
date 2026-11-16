@@ -1,0 +1,626 @@
+{
+ "trigram": {
+  "networks": 4,
+  "val_logp_per_word": [
+   -5.214,
+   0.01,
+   4
+  ],
+  "C_swapped": [
+   90.2,
+   0.4,
+   4
+  ],
+  "C_shuffled": [
+   98.5,
+   0.2,
+   4
+  ],
+  "D_blimp_all": [
+   49.9,
+   0.7,
+   4
+  ],
+  "D_blimp_known": [
+   55.0,
+   1.2,
+   4
+  ],
+  "E_books_right": [
+   75.5,
+   0.4,
+   4
+  ],
+  "E_books_sensitivity": [
+   79.7,
+   0.4,
+   4
+  ],
+  "E_books_sensitivity_dist1plus": [
+   63.5,
+   1.1,
+   4
+  ],
+  "E_books_attractor": [
+   36.8,
+   4.3,
+   4
+  ],
+  "E2_right": [
+   50.1,
+   0.1,
+   4
+  ],
+  "E2_sensitivity": [
+   50.3,
+   0.1,
+   4
+  ],
+  "F_surprise": [
+   74.4,
+   0.8,
+   4
+  ],
+  "F_extra_nats": [
+   1.974,
+   0.049,
+   4
+  ],
+  "E2_pp_same_number": {
+   "right": [
+    64.9,
+    0.4,
+    4
+   ],
+   "singular_subj": [
+    97.9,
+    0.2,
+    4
+   ],
+   "plural_subj": [
+    30.5,
+    0.6,
+    4
+   ],
+   "sensitivity": [
+    81.5,
+    1.5,
+    4
+   ]
+  },
+  "E2_pp_attractor": {
+   "right": [
+    36.3,
+    0.2,
+    4
+   ],
+   "singular_subj": [
+    72.3,
+    0.2,
+    4
+   ],
+   "plural_subj": [
+    2.9,
+    0.4,
+    4
+   ],
+   "sensitivity": [
+    17.9,
+    2.0,
+    4
+   ]
+  },
+  "E2_rel_same_number": {
+   "right": [
+    51.4,
+    0.0,
+    4
+   ],
+   "singular_subj": [
+    100.0,
+    0.0,
+    4
+   ],
+   "plural_subj": [
+    0.0,
+    0.0,
+    4
+   ],
+   "sensitivity": [
+    49.7,
+    5.2,
+    4
+   ]
+  },
+  "E2_rel_attractor": {
+   "right": [
+    48.7,
+    0.0,
+    4
+   ],
+   "singular_subj": [
+    100.0,
+    0.0,
+    4
+   ],
+   "plural_subj": [
+    0.0,
+    0.0,
+    4
+   ],
+   "sensitivity": [
+    53.5,
+    5.0,
+    4
+   ]
+  }
+ },
+ "srn": {
+  "networks": 4,
+  "val_logp_per_word": [
+   -4.954,
+   0.007,
+   4
+  ],
+  "C_swapped": [
+   91.7,
+   0.1,
+   4
+  ],
+  "C_shuffled": [
+   99.0,
+   0.1,
+   4
+  ],
+  "D_blimp_all": [
+   51.4,
+   0.5,
+   4
+  ],
+  "D_blimp_known": [
+   55.5,
+   0.8,
+   4
+  ],
+  "E_books_right": [
+   74.0,
+   1.7,
+   4
+  ],
+  "E_books_sensitivity": [
+   74.1,
+   1.8,
+   4
+  ],
+  "E_books_sensitivity_dist1plus": [
+   64.1,
+   4.8,
+   4
+  ],
+  "E_books_attractor": [
+   52.6,
+   8.6,
+   4
+  ],
+  "E2_right": [
+   50.9,
+   0.5,
+   4
+  ],
+  "E2_sensitivity": [
+   51.9,
+   1.3,
+   4
+  ],
+  "F_surprise": [
+   77.7,
+   0.9,
+   4
+  ],
+  "F_extra_nats": [
+   2.147,
+   0.042,
+   4
+  ],
+  "E2_pp_same_number": {
+   "right": [
+    56.1,
+    0.5,
+    4
+   ],
+   "singular_subj": [
+    91.4,
+    3.0,
+    4
+   ],
+   "plural_subj": [
+    19.3,
+    2.6,
+    4
+   ],
+   "sensitivity": [
+    62.0,
+    3.2,
+    4
+   ]
+  },
+  "E2_pp_attractor": {
+   "right": [
+    45.9,
+    0.8,
+    4
+   ],
+   "singular_subj": [
+    84.7,
+    3.4,
+    4
+   ],
+   "plural_subj": [
+    9.9,
+    4.1,
+    4
+   ],
+   "sensitivity": [
+    41.9,
+    3.0,
+    4
+   ]
+  },
+  "E2_rel_same_number": {
+   "right": [
+    54.5,
+    1.7,
+    4
+   ],
+   "singular_subj": [
+    91.8,
+    12.9,
+    4
+   ],
+   "plural_subj": [
+    14.9,
+    16.6,
+    4
+   ],
+   "sensitivity": [
+    59.0,
+    2.8,
+    4
+   ]
+  },
+  "E2_rel_attractor": {
+   "right": [
+    47.3,
+    2.5,
+    4
+   ],
+   "singular_subj": [
+    87.2,
+    14.1,
+    4
+   ],
+   "plural_subj": [
+    9.5,
+    14.9,
+    4
+   ],
+   "sensitivity": [
+    45.9,
+    4.1,
+    4
+   ]
+  }
+ },
+ "gru": {
+  "networks": 4,
+  "val_logp_per_word": [
+   -4.921,
+   0.008,
+   4
+  ],
+  "C_swapped": [
+   92.0,
+   0.1,
+   4
+  ],
+  "C_shuffled": [
+   99.0,
+   0.2,
+   4
+  ],
+  "D_blimp_all": [
+   51.9,
+   0.3,
+   4
+  ],
+  "D_blimp_known": [
+   57.8,
+   0.9,
+   4
+  ],
+  "E_books_right": [
+   73.1,
+   0.8,
+   4
+  ],
+  "E_books_sensitivity": [
+   73.8,
+   0.9,
+   4
+  ],
+  "E_books_sensitivity_dist1plus": [
+   72.3,
+   2.5,
+   4
+  ],
+  "E_books_attractor": [
+   44.7,
+   16.4,
+   4
+  ],
+  "E2_right": [
+   52.1,
+   1.8,
+   4
+  ],
+  "E2_sensitivity": [
+   57.7,
+   3.4,
+   4
+  ],
+  "F_surprise": [
+   78.2,
+   0.4,
+   4
+  ],
+  "F_extra_nats": [
+   2.107,
+   0.036,
+   4
+  ],
+  "E2_pp_same_number": {
+   "right": [
+    56.2,
+    3.2,
+    4
+   ],
+   "singular_subj": [
+    96.2,
+    1.6,
+    4
+   ],
+   "plural_subj": [
+    14.5,
+    8.0,
+    4
+   ],
+   "sensitivity": [
+    66.1,
+    1.6,
+    4
+   ]
+  },
+  "E2_pp_attractor": {
+   "right": [
+    49.3,
+    2.3,
+    4
+   ],
+   "singular_subj": [
+    94.0,
+    2.6,
+    4
+   ],
+   "plural_subj": [
+    7.8,
+    5.4,
+    4
+   ],
+   "sensitivity": [
+    51.3,
+    6.8,
+    4
+   ]
+  },
+  "E2_rel_same_number": {
+   "right": [
+    54.9,
+    2.9,
+    4
+   ],
+   "singular_subj": [
+    96.8,
+    2.4,
+    4
+   ],
+   "plural_subj": [
+    10.5,
+    5.6,
+    4
+   ],
+   "sensitivity": [
+    69.4,
+    5.9,
+    4
+   ]
+  },
+  "E2_rel_attractor": {
+   "right": [
+    48.0,
+    0.8,
+    4
+   ],
+   "singular_subj": [
+    91.9,
+    3.2,
+    4
+   ],
+   "plural_subj": [
+    6.3,
+    2.8,
+    4
+   ],
+   "sensitivity": [
+    44.1,
+    2.1,
+    4
+   ]
+  }
+ },
+ "gru_f0.5": {
+  "networks": 4,
+  "val_logp_per_word": [
+   -5.085,
+   0.01,
+   4
+  ],
+  "C_swapped": [
+   90.9,
+   0.2,
+   4
+  ],
+  "C_shuffled": [
+   98.7,
+   0.1,
+   4
+  ],
+  "D_blimp_all": [
+   50.4,
+   0.8,
+   4
+  ],
+  "D_blimp_known": [
+   53.8,
+   1.5,
+   4
+  ],
+  "E_books_right": [
+   72.1,
+   1.5,
+   4
+  ],
+  "E_books_sensitivity": [
+   69.6,
+   1.3,
+   4
+  ],
+  "E_books_sensitivity_dist1plus": [
+   69.3,
+   1.5,
+   4
+  ],
+  "E_books_attractor": [
+   51.3,
+   7.9,
+   4
+  ],
+  "E2_right": [
+   50.1,
+   0.6,
+   4
+  ],
+  "E2_sensitivity": [
+   52.6,
+   2.4,
+   4
+  ],
+  "F_surprise": [
+   75.2,
+   0.9,
+   4
+  ],
+  "F_extra_nats": [
+   1.656,
+   0.102,
+   4
+  ],
+  "E2_pp_same_number": {
+   "right": [
+    52.3,
+    1.2,
+    4
+   ],
+   "singular_subj": [
+    96.8,
+    1.5,
+    4
+   ],
+   "plural_subj": [
+    5.9,
+    2.7,
+    4
+   ],
+   "sensitivity": [
+    60.2,
+    5.3,
+    4
+   ]
+  },
+  "E2_pp_attractor": {
+   "right": [
+    48.1,
+    0.9,
+    4
+   ],
+   "singular_subj": [
+    95.8,
+    1.6,
+    4
+   ],
+   "plural_subj": [
+    3.9,
+    1.0,
+    4
+   ],
+   "sensitivity": [
+    48.2,
+    4.1,
+    4
+   ]
+  },
+  "E2_rel_same_number": {
+   "right": [
+    51.6,
+    1.1,
+    4
+   ],
+   "singular_subj": [
+    98.5,
+    1.4,
+    4
+   ],
+   "plural_subj": [
+    2.0,
+    2.6,
+    4
+   ],
+   "sensitivity": [
+    53.1,
+    5.1,
+    4
+   ]
+  },
+  "E2_rel_attractor": {
+   "right": [
+    48.6,
+    0.5,
+    4
+   ],
+   "singular_subj": [
+    97.2,
+    2.8,
+    4
+   ],
+   "plural_subj": [
+    2.4,
+    2.2,
+    4
+   ],
+   "sensitivity": [
+    49.0,
+    1.3,
+    4
+   ]
+  }
+ }
+}

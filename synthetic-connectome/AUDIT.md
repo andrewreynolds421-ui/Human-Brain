@@ -623,3 +623,12 @@ placed right 75 % from 10 sentences (chance 50 %); real vs swapped word order in
 fixed before any result was recorded). The tagger used for grading is spaCy's small English model,
 type-level majority tags; it is not a gold standard.
 
+## 32. Follow-up (16 November): Stage 51 — memory across the sentence
+
+Four networks per model. First scoring compared whole sentences, which let the word after the verb ("are
+here" vs "is here") decide; switched to the standard comparison at the verb and added a bias-free
+sensitivity measure before any result was written up. Book agreement items in which the "wrong" verb equalled
+the right one (1 of 740) were dropped after a crash. A half-trained model file left by an interrupted run was
+deleted before reuse. Agreement items are graded with spaCy's small parser (noisy); the built sentences are the
+controlled test. Sizes ASSUMED, not varied.
+

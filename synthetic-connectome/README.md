@@ -3147,6 +3147,63 @@ not spiking; BLiMP restricted to pairs with known words is not a random half of 
 **Next.** A memory of structure beyond three words (e.g. sequence units that hold a phrase: subject, verb,
 object) is what agreement and questions need; and more text.
 
+## Stage 51: a memory that carries through the sentence
+
+**Question.** Stage 50's model predicted each word from the two before it. Does a memory of the whole
+sentence so far - a recurrent layer whose activity after each word depends on that word and on its own
+previous activity, trained by predicting the next word - learn the grammar that spans a sentence?
+
+**Models** (`scripts/grammar_memory.py`; same 32 books, same split, text only; four networks each):
+- *three-word model* - Stage 50;
+- *simple recurrent memory* (Elman 1990), 256 units;
+- *gated memory* (GRU; Cho et al. 2014): learned gates decide, word by word, what to keep and what to
+  overwrite - the gating of working memory attributed to prefrontal cortex and basal ganglia (Frank,
+  Loughry & O'Reilly 2001);
+- the gated memory trained on *half* the books.
+
+MODEL: credit is assigned by backpropagation through time, an engineering stand-in, not a claim about
+cortex. Sizes ASSUMED; number of passes chosen on the validation books (early stopping).
+
+**Agreement is measured at the verb** ("the dogs in the yard ___": is the right form of *is / are*, *was /
+were*, *barks / bark* more probable?) and, because every model strongly prefers the more frequent singular
+forms, also as **sensitivity**: does the expectation of a plural verb go up after plural subjects? (area
+under the curve; 50 % = no sensitivity). Built sentences use the books' own words, e.g. *the bird that the
+soldiers helped is here*, *the horses by the tree are here*. An *attractor* is a noun of the other number
+between subject and verb.
+
+| | three-word | simple memory | gated memory | gated, half the books |
+|---|---|---|---|---|
+| prediction (log-prob per word, validation) | -5.21 | -4.95 | **-4.92** | -5.09 |
+| word order: two neighbours swapped (unread books) | 90.2 % | 91.7 % | **92.0 %** | 90.9 % |
+| surprise at a noun that does not fit (N400-like) | 74.4 % | 77.7 % | **78.2 %** | 75.2 % |
+| BLiMP, pairs with known words | 55.0 % | 55.5 % | **57.8 ± 0.9 %** | 53.8 % |
+| agreement in book sentences (sensitivity) | **79.7 %** | 74.1 % | 73.8 % | 69.6 % |
+| built: subject + "of the" + noun, same number | **81.5 %** | 62.0 % | 66.1 % | 60.2 % |
+| built: ... noun of the other number (attractor) | 17.9 % | 41.9 % | **51.3 %** | 48.2 % |
+| built: "the birds that the dogs saw ___" (same number) | 49.7 % | 59.0 % | **69.4 ± 5.9 %** | 53.1 % |
+| built: relative clause with attractor | 53.5 % | 45.9 % | 44.1 % | 49.0 % |
+
+- **The memory carries information past three words.** After "the birds that the dogs saw", the subject
+  is out of the three-word model's view (49.7 %, chance); the gated memory expects a plural verb 69 % of
+  the time. It also predicts better overall, judges word order better and is more surprised by a word
+  that does not fit.
+- **It does not know which noun is the subject.** With a noun of the other number in between, the
+  three-word model follows the nearest noun (17.9 %: "the king of the birds *are*"); the gated memory is
+  no longer fooled that strongly but sits at chance (51 %, 44 %) - it carries "a plural noun came by",
+  not "the subject is plural". In book sentences, where most subjects sit right before the verb, the
+  three-word model is best.
+- **Raw accuracy hides a bias.** Every model prefers *is* and *was* (2-4x more frequent in the books):
+  the gated memory picks the right verb for 97 % of singular subjects and only 8 % of plural subjects in
+  the built sentences.
+- **More reading helps, on every measure.** Half the books -> all of them: sentence-spanning agreement 53
+  -> 69 %, BLiMP 53.8 -> 57.8 %, surprise 75 -> 78 %, book agreement 70 -> 74 %. Nothing is flat yet. The
+  model has read 0.7 M words; a child hears about 10 M a year, and recurrent networks in the literature
+  learn agreement with attractors from tens of millions of words (Linzen et al. 2016; Gulordava et al. 2018).
+
+**Next.** More text (Project Gutenberg's children's and young-adult shelves: several million words) is
+the cheapest test of whether this memory learns to find the subject. A structural alternative is a
+memory that keeps the subject in its own slot (gated, as here) instead of in a single mixed state.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
