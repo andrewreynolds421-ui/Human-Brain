@@ -529,3 +529,19 @@ def test_subject_slot_gates():
     G_learn = SlotNet("learned", C, 0).gates_of([sents[0]])[0]
     assert G_open.shape == (4, K) and np.allclose(G_open, 1.0)
     assert G_learn.shape == (4, K) and ((G_learn > 0) & (G_learn < 1)).all()
+
+
+def test_picture_pages_agree_with_the_actor():
+    """Stage 55: the verb on a generated page agrees with the thing that acts, whose number the scene shows; the
+    actor is marked as acting; the misleading-noun flag is right."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import picture_pages as PP
+    bank = PP.PictureBank(); rng = np.random.default_rng(3)
+    for _ in range(200):
+        p = PP.make_page(rng, bank, [0, 1, 2])
+        actor = p["objs"][p["actor"]]; v = p["words"][p["verb"]]
+        several = bool(actor[401] == 1.0)
+        assert several == p["plural"] == (v in ("are", "were"))
+        assert actor[402 + len(PP.ACTIONS)] == 0.0 and sum(o[402 + len(PP.ACTIONS)] for o in p["objs"]) == 2.0
+        others = [o for k, o in enumerate(p["objs"]) if k != p["actor"]]
+        assert p["words"][p["verb"] + 1] in PP.ACTIONS

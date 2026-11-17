@@ -661,3 +661,11 @@ nsubj); 79,604 sentences whose tokens did not match the parser's were left witho
 (2 x 64), gate bias (-2), auxiliary weight (1.0) are ASSUMED. Stage 52's model is a reference only (different
 passes and output layer).
 
+## 36. Follow-up (17 November): Stage 55 — picture-book pages
+
+Four networks per group. Pages are generated (the user chose generated pages first, real illustrated books
+second). The number ("one or several") and action codes in the scene are given, not seen in pixels - MODEL.
+Question budget 10 % of pages per batch, chosen by attention entropy at the verb. Test pages use a drawing
+style and pairs of things never used in training. The built test's attractor nouns are partly picture-book
+nouns. No crashes; no restarts during the runs.
+

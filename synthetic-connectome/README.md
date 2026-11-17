@@ -3349,6 +3349,56 @@ the nearest noun misleads more often (children hear many such sentences in speec
 a signal that rewards agreement itself - the reward-gated learning of Stages 27-29, where the basal ganglia
 learn *when* a held memory pays off.
 
+## Stage 55: picture-book pages - seeing who is doing it
+
+**Question (the user's).** Children take in years of seeing and hearing before they speak, and seeing who
+acts tells them which noun is the subject (semantic bootstrapping, Pinker 1984). Do picture-book pages with
+harder sentences - and letting the model ask "which one?" - teach it the subject?
+
+**Pages** (`scripts/picture_pages.py`; generated - real illustrated books are the second round): a scene of
+2-3 kinds of things from the 34 the picture system sees (Stage 45 object cells of one of 40 drawings), one or
+several of each; one kind acts (singing, sleeping, eating, running, playing, jumping). The model sees each
+thing as (object cells, one-or-several, action seen) - number and action codes stand in for what the eye
+gives (MODEL). Sentences: *the bird is singing by the tree*, *the bird by the cats is singing*, *the bird that
+the cats see is singing*, *the bird that sees the cats is singing*, *the cats see that the bird is singing*;
+the other noun's number is random, so half the pages mislead. 17 nouns for things that act.
+
+**Model and groups** (four networks each; 4.9 M words of books, two passes; 150 k pages per pass): the gated
+memory that, at every word, looks at the scene (attention over the things seen) and uses what it looks at.
+*books* only; *text*: books + the pages' sentences without pictures; *pictures*: books + pages; *questions*:
+pictures, and on 10 % of pages - where it is least sure what to look at when the verb comes - it asks "which
+one?" and is shown (32,812 questions per network). New test pages use an unseen drawing style and unseen
+pairs of things.
+
+| | books | text | pictures | questions |
+|---|---|---|---|---|
+| new pages, picture shown | 58.1 % | 100 % | 100 % | 100 % |
+| looks at the one acting when the verb comes | 25 % (chance) | 25 % | 96.3 % | **100 %** |
+| new pages, text only | 60.4 % | **100 %** | 68.0 % | 68.8 % |
+| ... "the bird that the cats see ___", text only | 58.0 % | **100 %** | 48.6 % | 48.9 % |
+| built test, picture-book nouns, relative clause + misleading noun | 45.0 % | **93.2 ± 3.8 %** | 42.7 % | 44.1 % |
+| built test, other nouns, relative clause + misleading noun | 45.2 % | 36.0 % | 43.7 % | 43.5 % |
+| built test, other nouns, "of the" + misleading noun | 52.1 % | 55.8 % | 54.3 % | 52.2 % |
+| BLiMP, same pairs | 62.5 % | 60.6 % | 62.3 % | 61.8 % |
+
+- **With the picture in view it is perfect** - it looks at the one acting (asking makes that 100 %) and
+  agrees with it past any clause. **Take the picture away and nothing carried over**: the picture groups read
+  the same sentences text-only at 68 %, and past "that the cats see" at chance. The picture was a crutch:
+  when the answer can be seen, the reading pathway never has to learn it.
+- **The harder sentences alone taught it - for those nouns only.** The text group reads every page-type
+  perfectly without pictures and the built test sentences with picture-book nouns at 93-99 %, even past a
+  misleading noun - but for any other noun it is no better than books alone (36 vs 45 % past a relative
+  clause). It learned "after *bird* ... *that* ... comes *is*", noun by noun, not "the verb agrees with the
+  subject".
+- **Asking questions** made its looking perfect and changed nothing else.
+
+**What it means.** Both routes taught something real, neither the rule. Two follow-ups follow directly:
+1. *the picture as a check, not a crutch* - read and predict first, then see the picture (as a child guesses
+   and is shown), so the reading pathway is what learns;
+2. *many nouns* - the same harder sentences with hundreds of nouns, holding some out, to see whether noun-by-
+   noun learning turns into the rule once there are enough nouns (as children generalise after enough verbs:
+   Tomasello's verb islands).
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

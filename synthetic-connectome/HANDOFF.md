@@ -385,3 +385,6 @@ matters to the model. `scripts/graded_reading.py`; caches in /home/claude/models
 Stage 54 (17 Nov): gated subject slots - learned gate does not find the subject; taught gate holds it but
 agreement past relative clauses does not improve over an always-open control. `scripts/subject_slot.py`; models in
 /home/claude/models/slot. Next candidates: misleading-noun-rich material, or reward for agreement.
+Stage 55 (17 Nov): generated picture-book pages - perfect with the picture, nothing carries over without it;
+the pages' sentences alone teach agreement noun by noun, not the rule. `scripts/picture_pages.py`. Next: picture
+as feedback after predicting; many-noun pages with held-out nouns; then real illustrated books (user's round 2).
