@@ -504,3 +504,15 @@ def test_grammar_memory_controlled_agreement_items():
         diff = [i for i, (g, b) in enumerate(zip(x["good"], x["bad"])) if g != b]
         assert len(diff) == 1 and FLIP[x["good"][diff[0]]] == x["bad"][diff[0]]
         assert (x["good"][diff[0]] in ("are", "were")) == x["subj_plural"] == x["good"][1].endswith("s")
+
+
+def test_graded_reading_bands_and_readability():
+    """Stage 53: harder text gets a higher readability grade; grades map to bands with 7 and up merged."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    from synth.readability import fk_grade
+    from graded_reading import band_of
+    easy = "The cat sat. The dog ran. I see the sun. We can play."
+    hard = ("Notwithstanding the considerable difficulties occasioned by the unprecedented circumstances, "
+            "the administration endeavoured to accommodate the extraordinary requirements of the population.")
+    assert fk_grade(easy) < 2 < 12 < fk_grade(hard)
+    assert [band_of(g) for g in (0.4, 1.4, 3.6, 6.2, 7.0, 11.0)] == ["1", "1", "4", "6", "7+", "7+"]

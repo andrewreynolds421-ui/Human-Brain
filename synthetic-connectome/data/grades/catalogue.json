@@ -1,0 +1,2799 @@
+{
+ "calibration": {
+  "slope": 0.682,
+  "intercept": -0.074,
+  "r": 0.691
+ },
+ "books": [
+  {
+   "name": "A-Little-Princess--13-Being-the-whole-story-of-Sara-Crewe-now-told-for-the-first-time_146",
+   "dir": "/home/claude/corpora/books/A-Little-Princess--13-Being-the-whole-story-of-Sara-Crewe-now-told-for-the-first-time_146",
+   "words": 42726,
+   "fk": 6.9,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Aesop-s-Fables_28",
+   "dir": "/home/claude/corpora/books/Aesop-s-Fables_28",
+   "words": 6786,
+   "fk": 6.8,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Alice-s-Adventures-in-Wonderland_11",
+   "dir": "/home/claude/corpora/books/Alice-s-Adventures-in-Wonderland_11",
+   "words": 11540,
+   "fk": 7.7,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Andersen-s-Fairy-Tales_1597",
+   "dir": "/home/claude/corpora/books/Andersen-s-Fairy-Tales_1597",
+   "words": 23439,
+   "fk": 5.5,
+   "reader_grade": null,
+   "grade": 3.7,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Black-Beauty_271",
+   "dir": "/home/claude/corpora/books/Black-Beauty_271",
+   "words": 21792,
+   "fk": 6.2,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "test"
+  },
+  {
+   "name": "Five-Children-and-It_778",
+   "dir": "/home/claude/corpora/books/Five-Children-and-It_778",
+   "words": 31770,
+   "fk": 7.2,
+   "reader_grade": null,
+   "grade": 4.8,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Glinda-of-Oz--13-In-Which-Are-Related-the-Exciting-Experiences-of-Princess-Ozma-of-Oz-and-Dorot__961",
+   "dir": "/home/claude/corpora/books/Glinda-of-Oz--13-In-Which-Are-Related-the-Exciting-Experiences-of-Princess-Ozma-of-Oz-and-Dorot__961",
+   "words": 20773,
+   "fk": 10.0,
+   "reader_grade": null,
+   "grade": 6.7,
+   "band": "7+",
+   "split": "test"
+  },
+  {
+   "name": "Grimms-Fairy-Tales_2591",
+   "dir": "/home/claude/corpora/books/Grimms-Fairy-Tales_2591",
+   "words": 23325,
+   "fk": 7.1,
+   "reader_grade": null,
+   "grade": 4.8,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Heidi_1448",
+   "dir": "/home/claude/corpora/books/Heidi_1448",
+   "words": 31359,
+   "fk": 9.9,
+   "reader_grade": null,
+   "grade": 6.7,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "Just-So-Stories_2781",
+   "dir": "/home/claude/corpora/books/Just-So-Stories_2781",
+   "words": 12488,
+   "fk": 7.8,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "test"
+  },
+  {
+   "name": "McGuffey-s-Eclectic-Primer-Revised-Edition_14642",
+   "dir": "/home/claude/corpora/books/McGuffey-s-Eclectic-Primer-Revised-Edition_14642",
+   "words": 2924,
+   "fk": 3.3,
+   "reader_grade": 1,
+   "grade": 1,
+   "band": "1",
+   "split": "train"
+  },
+  {
+   "name": "McGuffey-s-Fifth-Eclectic-Reader_15040",
+   "dir": "/home/claude/corpora/books/McGuffey-s-Fifth-Eclectic-Reader_15040",
+   "words": 46635,
+   "fk": 5.9,
+   "reader_grade": 5,
+   "grade": 5,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "McGuffey-s-First-Eclectic-Reader-Revised-Edition_14640",
+   "dir": "/home/claude/corpora/books/McGuffey-s-First-Eclectic-Reader-Revised-Edition_14640",
+   "words": 5604,
+   "fk": 2.9,
+   "reader_grade": 1,
+   "grade": 1,
+   "band": "1",
+   "split": "train"
+  },
+  {
+   "name": "McGuffey-s-Second-Eclectic-Reader_14668",
+   "dir": "/home/claude/corpora/books/McGuffey-s-Second-Eclectic-Reader_14668",
+   "words": 12578,
+   "fk": 3.1,
+   "reader_grade": 2,
+   "grade": 2,
+   "band": "2",
+   "split": "train"
+  },
+  {
+   "name": "McGuffey-s-Sixth-Eclectic-Reader_16751",
+   "dir": "/home/claude/corpora/books/McGuffey-s-Sixth-Eclectic-Reader_16751",
+   "words": 59022,
+   "fk": 7.1,
+   "reader_grade": 6,
+   "grade": 6,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "McGuffey-s-Third-Eclectic-Reader_14766",
+   "dir": "/home/claude/corpora/books/McGuffey-s-Third-Eclectic-Reader_14766",
+   "words": 18763,
+   "fk": 3.3,
+   "reader_grade": 3,
+   "grade": 3,
+   "band": "3",
+   "split": "test"
+  },
+  {
+   "name": "Mother-Goose-in-Prose_5312",
+   "dir": "/home/claude/corpora/books/Mother-Goose-in-Prose_5312",
+   "words": 18389,
+   "fk": 10.0,
+   "reader_grade": null,
+   "grade": 6.7,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "Mother-West-Wind-s-Children_20877",
+   "dir": "/home/claude/corpora/books/Mother-West-Wind-s-Children_20877",
+   "words": 18233,
+   "fk": 5.9,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Old-Mother-West-Wind_2557",
+   "dir": "/home/claude/corpora/books/Old-Mother-West-Wind_2557",
+   "words": 11523,
+   "fk": 6.0,
+   "reader_grade": null,
+   "grade": 4.0,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Ozma-of-Oz_486",
+   "dir": "/home/claude/corpora/books/Ozma-of-Oz_486",
+   "words": 20625,
+   "fk": 8.7,
+   "reader_grade": null,
+   "grade": 5.9,
+   "band": "6",
+   "split": "test"
+  },
+  {
+   "name": "Raggedy-Andy-Stories--13-Introducing-the-Little-Rag-Brother-of-Raggedy-Ann_17371",
+   "dir": "/home/claude/corpora/books/Raggedy-Andy-Stories--13-Introducing-the-Little-Rag-Brother-of-Raggedy-Ann_17371",
+   "words": 8482,
+   "fk": 9.1,
+   "reader_grade": null,
+   "grade": 6.1,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Raggedy-Ann-Stories_18190",
+   "dir": "/home/claude/corpora/books/Raggedy-Ann-Stories_18190",
+   "words": 9448,
+   "fk": 8.3,
+   "reader_grade": null,
+   "grade": 5.6,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Pinocchio_500",
+   "dir": "/home/claude/corpora/books/The-Adventures-of-Pinocchio_500",
+   "words": 31286,
+   "fk": 6.3,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Burgess-Animal-Book-for-Children_2441",
+   "dir": "/home/claude/corpora/books/The-Burgess-Animal-Book-for-Children_2441",
+   "words": 57593,
+   "fk": 6.2,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Burgess-Bird-Book-for-Children_3074",
+   "dir": "/home/claude/corpora/books/The-Burgess-Bird-Book-for-Children_3074",
+   "words": 55465,
+   "fk": 5.8,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Emerald-City-of-Oz_517",
+   "dir": "/home/claude/corpora/books/The-Emerald-City-of-Oz_517",
+   "words": 34515,
+   "fk": 8.3,
+   "reader_grade": null,
+   "grade": 5.6,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Jungle-Book_236",
+   "dir": "/home/claude/corpora/books/The-Jungle-Book_236",
+   "words": 24759,
+   "fk": 6.9,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Marvelous-Land-of-Oz_54",
+   "dir": "/home/claude/corpora/books/The-Marvelous-Land-of-Oz_54",
+   "words": 25075,
+   "fk": 9.0,
+   "reader_grade": null,
+   "grade": 6.1,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Second-Jungle-Book_1937",
+   "dir": "/home/claude/corpora/books/The-Second-Jungle-Book_1937",
+   "words": 29070,
+   "fk": 7.1,
+   "reader_grade": null,
+   "grade": 4.8,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Secret-Garden_113",
+   "dir": "/home/claude/corpora/books/The-Secret-Garden_113",
+   "words": 53534,
+   "fk": 6.3,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "test"
+  },
+  {
+   "name": "The-Tale-of-Peter-Rabbit_14838",
+   "dir": "/home/claude/corpora/books/The-Tale-of-Peter-Rabbit_14838",
+   "words": 871,
+   "fk": 4.8,
+   "reader_grade": null,
+   "grade": 3.2,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "The-Wind-in-the-Willows_289",
+   "dir": "/home/claude/corpora/books/The-Wind-in-the-Willows_289",
+   "words": 25455,
+   "fk": 7.8,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Wonderful-Wizard-of-Oz_55",
+   "dir": "/home/claude/corpora/books/The-Wonderful-Wizard-of-Oz_55",
+   "words": 22162,
+   "fk": 8.0,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Treasure-Island_120",
+   "dir": "/home/claude/corpora/books/Treasure-Island_120",
+   "words": 31757,
+   "fk": 6.2,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "test"
+  },
+  {
+   "name": "A-Book-of-Myths_22693",
+   "dir": "/home/claude/corpora/books_more/A-Book-of-Myths_22693",
+   "words": 29420,
+   "fk": 10.0,
+   "reader_grade": null,
+   "grade": 6.7,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "A-Child-s-Garden-of-Verses_136",
+   "dir": "/home/claude/corpora/books_more/A-Child-s-Garden-of-Verses_136",
+   "words": 3931,
+   "fk": 5.9,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "A-Girl-of-the-Limberlost_125",
+   "dir": "/home/claude/corpora/books_more/A-Girl-of-the-Limberlost_125",
+   "words": 91043,
+   "fk": 5.4,
+   "reader_grade": null,
+   "grade": 3.6,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Adventures-of-Huckleberry-Finn_76",
+   "dir": "/home/claude/corpora/books_more/Adventures-of-Huckleberry-Finn_76",
+   "words": 51745,
+   "fk": 5.4,
+   "reader_grade": null,
+   "grade": 3.6,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Anne-of-Avonlea_47",
+   "dir": "/home/claude/corpora/books_more/Anne-of-Avonlea_47",
+   "words": 63098,
+   "fk": 5.9,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Anne-of-Green-Gables_45",
+   "dir": "/home/claude/corpora/books_more/Anne-of-Green-Gables_45",
+   "words": 70630,
+   "fk": 6.4,
+   "reader_grade": null,
+   "grade": 4.3,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Anne-of-the-Island_51",
+   "dir": "/home/claude/corpora/books_more/Anne-of-the-Island_51",
+   "words": 57777,
+   "fk": 5.8,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "At-the-Back-of-the-North-Wind_225",
+   "dir": "/home/claude/corpora/books_more/At-the-Back-of-the-North-Wind_225",
+   "words": 53374,
+   "fk": 5.9,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Bambi_11197",
+   "dir": "/home/claude/corpora/books_more/Bambi_11197",
+   "words": 56004,
+   "fk": 5.6,
+   "reader_grade": null,
+   "grade": 3.7,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Celtic-Fairy-Tales_7885",
+   "dir": "/home/claude/corpora/books_more/Celtic-Fairy-Tales_7885",
+   "words": 32529,
+   "fk": 8.0,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Daddy-Long-Legs_157",
+   "dir": "/home/claude/corpora/books_more/Daddy-Long-Legs_157",
+   "words": 26160,
+   "fk": 5.7,
+   "reader_grade": null,
+   "grade": 3.8,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Dorothy-and-the-Wizard-in-Oz_420",
+   "dir": "/home/claude/corpora/books_more/Dorothy-and-the-Wizard-in-Oz_420",
+   "words": 22904,
+   "fk": 8.4,
+   "reader_grade": null,
+   "grade": 5.7,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Eight-Cousins_2726",
+   "dir": "/home/claude/corpora/books_more/Eight-Cousins_2726",
+   "words": 27963,
+   "fk": 8.8,
+   "reader_grade": null,
+   "grade": 5.9,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "English-Fairy-Tales_7439",
+   "dir": "/home/claude/corpora/books_more/English-Fairy-Tales_7439",
+   "words": 26403,
+   "fk": 6.2,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Fairy-Tales-Every-Child-Should-Know_14916",
+   "dir": "/home/claude/corpora/books_more/Fairy-Tales-Every-Child-Should-Know_14916",
+   "words": 32242,
+   "fk": 8.0,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Fifty-Famous-Stories-Retold_18442",
+   "dir": "/home/claude/corpora/books_more/Fifty-Famous-Stories-Retold_18442",
+   "words": 25716,
+   "fk": 4.4,
+   "reader_grade": null,
+   "grade": 2.9,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "Five-Little-Peppers-Abroad_6987",
+   "dir": "/home/claude/corpora/books_more/Five-Little-Peppers-Abroad_6987",
+   "words": 48795,
+   "fk": 6.9,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Five-Little-Peppers-Midway_5632",
+   "dir": "/home/claude/corpora/books_more/Five-Little-Peppers-Midway_5632",
+   "words": 48460,
+   "fk": 5.9,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Freckles_111",
+   "dir": "/home/claude/corpora/books_more/Freckles_111",
+   "words": 55283,
+   "fk": 5.8,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Gulliver-s-Travels_829",
+   "dir": "/home/claude/corpora/books_more/Gulliver-s-Travels_829",
+   "words": 15886,
+   "fk": 10.2,
+   "reader_grade": null,
+   "grade": 6.9,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "Hans-Brinker--Or-The-Silver-Skates_34378",
+   "dir": "/home/claude/corpora/books_more/Hans-Brinker--Or-The-Silver-Skates_34378",
+   "words": 48685,
+   "fk": 7.0,
+   "reader_grade": null,
+   "grade": 4.7,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Jo-s-Boys_3499",
+   "dir": "/home/claude/corpora/books_more/Jo-s-Boys_3499",
+   "words": 32323,
+   "fk": 7.8,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Kidnapped_421",
+   "dir": "/home/claude/corpora/books_more/Kidnapped_421",
+   "words": 30524,
+   "fk": 6.1,
+   "reader_grade": null,
+   "grade": 4.1,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Kilmeny-of-the-Orchard_5341",
+   "dir": "/home/claude/corpora/books_more/Kilmeny-of-the-Orchard_5341",
+   "words": 27592,
+   "fk": 6.5,
+   "reader_grade": null,
+   "grade": 4.4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "King-Arthur-and-His-Knights_21865",
+   "dir": "/home/claude/corpora/books_more/King-Arthur-and-His-Knights_21865",
+   "words": 35187,
+   "fk": 5.8,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Little-Lord-Fauntleroy_479",
+   "dir": "/home/claude/corpora/books_more/Little-Lord-Fauntleroy_479",
+   "words": 29639,
+   "fk": 6.7,
+   "reader_grade": null,
+   "grade": 4.5,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Little-Men_2788",
+   "dir": "/home/claude/corpora/books_more/Little-Men_2788",
+   "words": 44146,
+   "fk": 8.0,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Little-Prudy_24711",
+   "dir": "/home/claude/corpora/books_more/Little-Prudy_24711",
+   "words": 16839,
+   "fk": 6.6,
+   "reader_grade": null,
+   "grade": 4.4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Little-Women_514",
+   "dir": "/home/claude/corpora/books_more/Little-Women_514",
+   "words": 82005,
+   "fk": 9.4,
+   "reader_grade": null,
+   "grade": 6.3,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Men-of-Iron_1557",
+   "dir": "/home/claude/corpora/books_more/Men-of-Iron_1557",
+   "words": 27196,
+   "fk": 9.1,
+   "reader_grade": null,
+   "grade": 6.1,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "More-Celtic-Fairy-Tales_34453",
+   "dir": "/home/claude/corpora/books_more/More-Celtic-Fairy-Tales_34453",
+   "words": 31734,
+   "fk": 6.9,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Mother-West-Wind--How--Stories_21286",
+   "dir": "/home/claude/corpora/books_more/Mother-West-Wind--How--Stories_21286",
+   "words": 17483,
+   "fk": 4.9,
+   "reader_grade": null,
+   "grade": 3.3,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "Mother-West-Wind-Why-Stories_14958",
+   "dir": "/home/claude/corpora/books_more/Mother-West-Wind-Why-Stories_14958",
+   "words": 17286,
+   "fk": 5.2,
+   "reader_grade": null,
+   "grade": 3.5,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Nights-With-Uncle-Remus_24430",
+   "dir": "/home/claude/corpora/books_more/Nights-With-Uncle-Remus_24430",
+   "words": 59531,
+   "fk": 7.0,
+   "reader_grade": null,
+   "grade": 4.7,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Otto-of-the-Silver-Hand_2865",
+   "dir": "/home/claude/corpora/books_more/Otto-of-the-Silver-Hand_2865",
+   "words": 11360,
+   "fk": 7.9,
+   "reader_grade": null,
+   "grade": 5.3,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Peck-s-Bad-Boy-with-the-Cowboys_6141",
+   "dir": "/home/claude/corpora/books_more/Peck-s-Bad-Boy-with-the-Cowboys_6141",
+   "words": 6332,
+   "fk": 13.8,
+   "reader_grade": null,
+   "grade": 9.3,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "Peter-Pan-in-Kensington-Gardens_26998",
+   "dir": "/home/claude/corpora/books_more/Peter-Pan-in-Kensington-Gardens_26998",
+   "words": 7865,
+   "fk": 9.0,
+   "reader_grade": null,
+   "grade": 6.1,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Peter-and-Wendy_26654",
+   "dir": "/home/claude/corpora/books_more/Peter-and-Wendy_26654",
+   "words": 28617,
+   "fk": 6.2,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Polly-Oliver-s-Problem_15630",
+   "dir": "/home/claude/corpora/books_more/Polly-Oliver-s-Problem_15630",
+   "words": 18798,
+   "fk": 7.6,
+   "reader_grade": null,
+   "grade": 5.1,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Pollyanna-Grows-Up_6100",
+   "dir": "/home/claude/corpora/books_more/Pollyanna-Grows-Up_6100",
+   "words": 51571,
+   "fk": 5.8,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Pollyanna_1450",
+   "dir": "/home/claude/corpora/books_more/Pollyanna_1450",
+   "words": 40369,
+   "fk": 5.4,
+   "reader_grade": null,
+   "grade": 3.6,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Prince-Prigio_20850",
+   "dir": "/home/claude/corpora/books_more/Prince-Prigio_20850",
+   "words": 9343,
+   "fk": 6.5,
+   "reader_grade": null,
+   "grade": 4.4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Queen-Zixi-of-Ix-Or-the-Story-of-the-Magic-Cloak_55737",
+   "dir": "/home/claude/corpora/books_more/Queen-Zixi-of-Ix-Or-the-Story-of-the-Magic-Cloak_55737",
+   "words": 19065,
+   "fk": 8.4,
+   "reader_grade": null,
+   "grade": 5.7,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Rainbow-Valley_5343",
+   "dir": "/home/claude/corpora/books_more/Rainbow-Valley_5343",
+   "words": 63377,
+   "fk": 5.6,
+   "reader_grade": null,
+   "grade": 3.7,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Rebecca-of-Sunnybrook-Farm_498",
+   "dir": "/home/claude/corpora/books_more/Rebecca-of-Sunnybrook-Farm_498",
+   "words": 31104,
+   "fk": 8.0,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Rilla-of-Ingleside_3796",
+   "dir": "/home/claude/corpora/books_more/Rilla-of-Ingleside_3796",
+   "words": 68283,
+   "fk": 6.6,
+   "reader_grade": null,
+   "grade": 4.4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Rinkitink-in-Oz_25581",
+   "dir": "/home/claude/corpora/books_more/Rinkitink-in-Oz_25581",
+   "words": 21436,
+   "fk": 9.8,
+   "reader_grade": null,
+   "grade": 6.6,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "Rose-in-BloomA-Sequel-to-Eight-Cousins-_41127",
+   "dir": "/home/claude/corpora/books_more/Rose-in-BloomA-Sequel-to-Eight-Cousins-_41127",
+   "words": 30547,
+   "fk": 7.4,
+   "reader_grade": null,
+   "grade": 5.0,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Sky-IslandVisit-to-the-Sea-Fairies_39159",
+   "dir": "/home/claude/corpora/books_more/Sky-IslandVisit-to-the-Sea-Fairies_39159",
+   "words": 29933,
+   "fk": 8.9,
+   "reader_grade": null,
+   "grade": 6.0,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Tales-from-Shakespeare_573",
+   "dir": "/home/claude/corpora/books_more/Tales-from-Shakespeare_573",
+   "words": 14708,
+   "fk": 10.0,
+   "reader_grade": null,
+   "grade": 6.7,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "Tanglewood-Tales_976",
+   "dir": "/home/claude/corpora/books_more/Tanglewood-Tales_976",
+   "words": 21010,
+   "fk": 9.8,
+   "reader_grade": null,
+   "grade": 6.6,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Bobby-Coon_46951",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Bobby-Coon_46951",
+   "words": 10428,
+   "fk": 5.1,
+   "reader_grade": null,
+   "grade": 3.4,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Buster-Bear_22816",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Buster-Bear_22816",
+   "words": 9185,
+   "fk": 5.8,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Chatterer-the-Red-Squirrel_37952",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Chatterer-the-Red-Squirrel_37952",
+   "words": 10690,
+   "fk": 5.5,
+   "reader_grade": null,
+   "grade": 3.7,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Danny-Meadow-Mouse_25529",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Danny-Meadow-Mouse_25529",
+   "words": 10438,
+   "fk": 5.6,
+   "reader_grade": null,
+   "grade": 3.7,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Grandfather-Frog_14375",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Grandfather-Frog_14375",
+   "words": 10579,
+   "fk": 6.2,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Jerry-Muskrat_5110",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Jerry-Muskrat_5110",
+   "words": 9579,
+   "fk": 6.1,
+   "reader_grade": null,
+   "grade": 4.1,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Jimmy-Skunk_21015",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Jimmy-Skunk_21015",
+   "words": 11069,
+   "fk": 5.3,
+   "reader_grade": null,
+   "grade": 3.5,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Johnny-Chuck_5844",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Johnny-Chuck_5844",
+   "words": 10872,
+   "fk": 5.5,
+   "reader_grade": null,
+   "grade": 3.7,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Old-Man-Coyote_46952",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Old-Man-Coyote_46952",
+   "words": 8890,
+   "fk": 6.3,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Old-Mr.-Toad_12630",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Old-Mr.-Toad_12630",
+   "words": 11540,
+   "fk": 4.0,
+   "reader_grade": null,
+   "grade": 2.7,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Peter-Cottontail_46866",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Peter-Cottontail_46866",
+   "words": 10841,
+   "fk": 6.0,
+   "reader_grade": null,
+   "grade": 4.0,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Prickly-Porky_15521",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Prickly-Porky_15521",
+   "words": 8639,
+   "fk": 6.5,
+   "reader_grade": null,
+   "grade": 4.4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Reddy-Fox_1825",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Reddy-Fox_1825",
+   "words": 10480,
+   "fk": 5.0,
+   "reader_grade": null,
+   "grade": 3.3,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Sammy-Jay_43596",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Sammy-Jay_43596",
+   "words": 9471,
+   "fk": 6.2,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Sherlock-Holmes_1661",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Sherlock-Holmes_1661",
+   "words": 60366,
+   "fk": 7.8,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Tom-Sawyer_74",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Tom-Sawyer_74",
+   "words": 40102,
+   "fk": 6.3,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Adventures-of-Unc-Billy-Possum_14732",
+   "dir": "/home/claude/corpora/books_more/The-Adventures-of-Unc-Billy-Possum_14732",
+   "words": 9504,
+   "fk": 5.3,
+   "reader_grade": null,
+   "grade": 3.5,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Blue-Fairy-Book_503",
+   "dir": "/home/claude/corpora/books_more/The-Blue-Fairy-Book_503",
+   "words": 40767,
+   "fk": 8.5,
+   "reader_grade": null,
+   "grade": 5.7,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Bobbsey-Twins-in-Washington_5617",
+   "dir": "/home/claude/corpora/books_more/The-Bobbsey-Twins-in-Washington_5617",
+   "words": 30884,
+   "fk": 5.2,
+   "reader_grade": null,
+   "grade": 3.5,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Bobbsey-twins-at-Cloverbank_71239",
+   "dir": "/home/claude/corpora/books_more/The-Bobbsey-twins-at-Cloverbank_71239",
+   "words": 34994,
+   "fk": 5.4,
+   "reader_grade": null,
+   "grade": 3.6,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Book-of-Dragons_23661",
+   "dir": "/home/claude/corpora/books_more/The-Book-of-Dragons_23661",
+   "words": 18425,
+   "fk": 7.9,
+   "reader_grade": null,
+   "grade": 5.3,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Boy-s-King-Arthur-Sir-Thomas-Malory-s-History-of-King-Arthur-and-His-Knights-of-the-Round__66585",
+   "dir": "/home/claude/corpora/books_more/The-Boy-s-King-Arthur-Sir-Thomas-Malory-s-History-of-King-Arthur-and-His-Knights-of-the-Round__66585",
+   "words": 24920,
+   "fk": 11.3,
+   "reader_grade": null,
+   "grade": 7.6,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "The-Brown-Fairy-Book_3282",
+   "dir": "/home/claude/corpora/books_more/The-Brown-Fairy-Book_3282",
+   "words": 37630,
+   "fk": 8.1,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Call-of-the-Wild_215",
+   "dir": "/home/claude/corpora/books_more/The-Call-of-the-Wild_215",
+   "words": 17115,
+   "fk": 6.8,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Children-of-the-New-Forest_21558",
+   "dir": "/home/claude/corpora/books_more/The-Children-of-the-New-Forest_21558",
+   "words": 50126,
+   "fk": 7.8,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Crimson-Fairy-Book_2435",
+   "dir": "/home/claude/corpora/books_more/The-Crimson-Fairy-Book_2435",
+   "words": 38616,
+   "fk": 7.9,
+   "reader_grade": null,
+   "grade": 5.3,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Elson-Readers-Book-5_9106",
+   "dir": "/home/claude/corpora/books_more/The-Elson-Readers-Book-5_9106",
+   "words": 62358,
+   "fk": 6.6,
+   "reader_grade": 5,
+   "grade": 5,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Enchanted-Castle_34219",
+   "dir": "/home/claude/corpora/books_more/The-Enchanted-Castle_34219",
+   "words": 43661,
+   "fk": 6.7,
+   "reader_grade": null,
+   "grade": 4.5,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Gift-of-the-Magi_7256",
+   "dir": "/home/claude/corpora/books_more/The-Gift-of-the-Magi_7256",
+   "words": 1727,
+   "fk": 5.7,
+   "reader_grade": null,
+   "grade": 3.8,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Green-Fairy-Book_7277",
+   "dir": "/home/claude/corpora/books_more/The-Green-Fairy-Book_7277",
+   "words": 40072,
+   "fk": 9.6,
+   "reader_grade": null,
+   "grade": 6.5,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Grey-Fairy-Book_6746",
+   "dir": "/home/claude/corpora/books_more/The-Grey-Fairy-Book_6746",
+   "words": 43595,
+   "fk": 8.9,
+   "reader_grade": null,
+   "grade": 6.0,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Lady-of-the-Lake_28287",
+   "dir": "/home/claude/corpora/books_more/The-Lady-of-the-Lake_28287",
+   "words": 15725,
+   "fk": 7.6,
+   "reader_grade": null,
+   "grade": 5.1,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Life-and-Adventures-of-Robinson-Crusoe_521",
+   "dir": "/home/claude/corpora/books_more/The-Life-and-Adventures-of-Robinson-Crusoe_521",
+   "words": 7615,
+   "fk": 9.1,
+   "reader_grade": null,
+   "grade": 6.1,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Lilac-Fairy-Book_3454",
+   "dir": "/home/claude/corpora/books_more/The-Lilac-Fairy-Book_3454",
+   "words": 39181,
+   "fk": 8.4,
+   "reader_grade": null,
+   "grade": 5.7,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Little-Lame-Prince_496",
+   "dir": "/home/claude/corpora/books_more/The-Little-Lame-Prince_496",
+   "words": 16994,
+   "fk": 8.1,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Lost-Princess-of-Oz_24459",
+   "dir": "/home/claude/corpora/books_more/The-Lost-Princess-of-Oz_24459",
+   "words": 25393,
+   "fk": 9.7,
+   "reader_grade": null,
+   "grade": 6.5,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Magic-of-Oz_50194",
+   "dir": "/home/claude/corpora/books_more/The-Magic-of-Oz_50194",
+   "words": 21366,
+   "fk": 9.4,
+   "reader_grade": null,
+   "grade": 6.3,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Merry-Adventures-of-Robin-Hood_10148",
+   "dir": "/home/claude/corpora/books_more/The-Merry-Adventures-of-Robin-Hood_10148",
+   "words": 41456,
+   "fk": 9.5,
+   "reader_grade": null,
+   "grade": 6.4,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Miraculous-Pitcher-From---A-Wonder-Book-for-Girls-and-Boys--_9258",
+   "dir": "/home/claude/corpora/books_more/The-Miraculous-Pitcher-From---A-Wonder-Book-for-Girls-and-Boys--_9258",
+   "words": 2994,
+   "fk": 9.7,
+   "reader_grade": null,
+   "grade": 6.5,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Olive-Fairy-Book_27826",
+   "dir": "/home/claude/corpora/books_more/The-Olive-Fairy-Book_27826",
+   "words": 34633,
+   "fk": 8.2,
+   "reader_grade": null,
+   "grade": 5.5,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Orange-Fairy-Book_3027",
+   "dir": "/home/claude/corpora/books_more/The-Orange-Fairy-Book_3027",
+   "words": 40770,
+   "fk": 7.7,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Patchwork-Girl-of-Oz_32094",
+   "dir": "/home/claude/corpora/books_more/The-Patchwork-Girl-of-Oz_32094",
+   "words": 35855,
+   "fk": 7.6,
+   "reader_grade": null,
+   "grade": 5.1,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Phoenix-and-the-Carpet_836",
+   "dir": "/home/claude/corpora/books_more/The-Phoenix-and-the-Carpet_836",
+   "words": 36264,
+   "fk": 7.7,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Pilgrim-s-Progress-by-John-Bunyan_39452",
+   "dir": "/home/claude/corpora/books_more/The-Pilgrim-s-Progress-by-John-Bunyan_39452",
+   "words": 35719,
+   "fk": 5.5,
+   "reader_grade": null,
+   "grade": 3.7,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Pink-Fairy-Book_5615",
+   "dir": "/home/claude/corpora/books_more/The-Pink-Fairy-Book_5615",
+   "words": 44842,
+   "fk": 8.0,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Prince-and-the-Pauper_1837",
+   "dir": "/home/claude/corpora/books_more/The-Prince-and-the-Pauper_1837",
+   "words": 29553,
+   "fk": 7.9,
+   "reader_grade": null,
+   "grade": 5.3,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Princess-and-Curdie_36612",
+   "dir": "/home/claude/corpora/books_more/The-Princess-and-Curdie_36612",
+   "words": 27117,
+   "fk": 7.1,
+   "reader_grade": null,
+   "grade": 4.8,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Princess-and-the-Goblin_34339",
+   "dir": "/home/claude/corpora/books_more/The-Princess-and-the-Goblin_34339",
+   "words": 27442,
+   "fk": 7.5,
+   "reader_grade": null,
+   "grade": 5.0,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Railway-Children_1874",
+   "dir": "/home/claude/corpora/books_more/The-Railway-Children_1874",
+   "words": 40334,
+   "fk": 6.2,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Red-Fairy-Book_540",
+   "dir": "/home/claude/corpora/books_more/The-Red-Fairy-Book_540",
+   "words": 53756,
+   "fk": 8.4,
+   "reader_grade": null,
+   "grade": 5.7,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Road-to-Oz_485",
+   "dir": "/home/claude/corpora/books_more/The-Road-to-Oz_485",
+   "words": 20546,
+   "fk": 7.9,
+   "reader_grade": null,
+   "grade": 5.3,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Rover-Boys-Shipwrecked-or-A-Thrilling-Hunt-for-Pirates-Gold_67893",
+   "dir": "/home/claude/corpora/books_more/The-Rover-Boys-Shipwrecked-or-A-Thrilling-Hunt-for-Pirates-Gold_67893",
+   "words": 47260,
+   "fk": 7.5,
+   "reader_grade": null,
+   "grade": 5.0,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Scarecrow-of-Oz_51263",
+   "dir": "/home/claude/corpora/books_more/The-Scarecrow-of-Oz_51263",
+   "words": 25275,
+   "fk": 8.5,
+   "reader_grade": null,
+   "grade": 5.7,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Seven-Little-Sisters-Who-Live-on-the-Round-Ball-That-Floats-in-the-Air_12631",
+   "dir": "/home/claude/corpora/books_more/The-Seven-Little-Sisters-Who-Live-on-the-Round-Ball-That-Floats-in-the-Air_12631",
+   "words": 7085,
+   "fk": 7.8,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Stories-Mother-Nature-Told-Her-Children_5792",
+   "dir": "/home/claude/corpora/books_more/The-Stories-Mother-Nature-Told-Her-Children_5792",
+   "words": 4687,
+   "fk": 7.9,
+   "reader_grade": null,
+   "grade": 5.3,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Story-Girl_5342",
+   "dir": "/home/claude/corpora/books_more/The-Story-Girl_5342",
+   "words": 63905,
+   "fk": 6.3,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Story-of-Doctor-Dolittle_501",
+   "dir": "/home/claude/corpora/books_more/The-Story-of-Doctor-Dolittle_501",
+   "words": 17338,
+   "fk": 5.6,
+   "reader_grade": null,
+   "grade": 3.7,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Story-of-King-Arthur-and-his-Knights_60184",
+   "dir": "/home/claude/corpora/books_more/The-Story-of-King-Arthur-and-his-Knights_60184",
+   "words": 28247,
+   "fk": 11.9,
+   "reader_grade": null,
+   "grade": 8.0,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "The-Story-of-Mankind_754",
+   "dir": "/home/claude/corpora/books_more/The-Story-of-Mankind_754",
+   "words": 55761,
+   "fk": 10.2,
+   "reader_grade": null,
+   "grade": 6.9,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "The-Story-of-the-Amulet_837",
+   "dir": "/home/claude/corpora/books_more/The-Story-of-the-Amulet_837",
+   "words": 46546,
+   "fk": 6.8,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Story-of-the-Treasure-Seekers--13-Being-the-Adventures-of-the-Bastable-Children-in-Search-o__770",
+   "dir": "/home/claude/corpora/books_more/The-Story-of-the-Treasure-Seekers--13-Being-the-Adventures-of-the-Bastable-Children-in-Search-o__770",
+   "words": 29960,
+   "fk": 6.0,
+   "reader_grade": null,
+   "grade": 4.0,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Swiss-Family-Robinson--or-Adventures-in-a-Desert-Island_11703",
+   "dir": "/home/claude/corpora/books_more/The-Swiss-Family-Robinson--or-Adventures-in-a-Desert-Island_11703",
+   "words": 48325,
+   "fk": 7.4,
+   "reader_grade": null,
+   "grade": 5.0,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Tale-of-Benjamin-Bunny_14407",
+   "dir": "/home/claude/corpora/books_more/The-Tale-of-Benjamin-Bunny_14407",
+   "words": 1044,
+   "fk": 5.4,
+   "reader_grade": null,
+   "grade": 3.6,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Tale-of-Jemima-Puddle-Duck_14814",
+   "dir": "/home/claude/corpora/books_more/The-Tale-of-Jemima-Puddle-Duck_14814",
+   "words": 1267,
+   "fk": 5.2,
+   "reader_grade": null,
+   "grade": 3.5,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Tale-of-Mr.-Jeremy-Fisher_15077",
+   "dir": "/home/claude/corpora/books_more/The-Tale-of-Mr.-Jeremy-Fisher_15077",
+   "words": 680,
+   "fk": 4.1,
+   "reader_grade": null,
+   "grade": 2.7,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "The-Tale-of-Mrs.-Tiggy-Winkle_15137",
+   "dir": "/home/claude/corpora/books_more/The-Tale-of-Mrs.-Tiggy-Winkle_15137",
+   "words": 1003,
+   "fk": 5.5,
+   "reader_grade": null,
+   "grade": 3.7,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Tale-of-Squirrel-Nutkin_14872",
+   "dir": "/home/claude/corpora/books_more/The-Tale-of-Squirrel-Nutkin_14872",
+   "words": 940,
+   "fk": 5.4,
+   "reader_grade": null,
+   "grade": 3.6,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Tale-of-Tom-Kitten_14837",
+   "dir": "/home/claude/corpora/books_more/The-Tale-of-Tom-Kitten_14837",
+   "words": 769,
+   "fk": 4.6,
+   "reader_grade": null,
+   "grade": 3.1,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "The-Tale-of-Two-Bad-Mice_45264",
+   "dir": "/home/claude/corpora/books_more/The-Tale-of-Two-Bad-Mice_45264",
+   "words": 784,
+   "fk": 6.8,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Thousand-and-One-Nights-Vol.-I.Commonly-Called-the-Arabian-Nights-Entertainments_34206",
+   "dir": "/home/claude/corpora/books_more/The-Thousand-and-One-Nights-Vol.-I.Commonly-Called-the-Arabian-Nights-Entertainments_34206",
+   "words": 42087,
+   "fk": 8.8,
+   "reader_grade": null,
+   "grade": 5.9,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Tin-Woodman-of-OzScarecrow-of-Oz-and-Polychrome-the-Rainbow-s-Daughter_30852",
+   "dir": "/home/claude/corpora/books_more/The-Tin-Woodman-of-OzScarecrow-of-Oz-and-Polychrome-the-Rainbow-s-Daughter_30852",
+   "words": 23712,
+   "fk": 9.3,
+   "reader_grade": null,
+   "grade": 6.3,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Violet-Fairy-Book_641",
+   "dir": "/home/claude/corpora/books_more/The-Violet-Fairy-Book_641",
+   "words": 47999,
+   "fk": 8.1,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Voyages-of-Doctor-Dolittle_1154",
+   "dir": "/home/claude/corpora/books_more/The-Voyages-of-Doctor-Dolittle_1154",
+   "words": 48869,
+   "fk": 6.1,
+   "reader_grade": null,
+   "grade": 4.1,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Water-Babies_36309",
+   "dir": "/home/claude/corpora/books_more/The-Water-Babies_36309",
+   "words": 18114,
+   "fk": 6.5,
+   "reader_grade": null,
+   "grade": 4.4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Wonder-Clock-or-four-twenty-marvellous-Tales-being-one-for-each-hour-of-the-day_63383",
+   "dir": "/home/claude/corpora/books_more/The-Wonder-Clock-or-four-twenty-marvellous-Tales-being-one-for-each-hour-of-the-day_63383",
+   "words": 33062,
+   "fk": 6.5,
+   "reader_grade": null,
+   "grade": 4.4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Wonderful-Adventures-of-Nils_10935",
+   "dir": "/home/claude/corpora/books_more/The-Wonderful-Adventures-of-Nils_10935",
+   "words": 97552,
+   "fk": 6.3,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Wouldbegoods_32466",
+   "dir": "/home/claude/corpora/books_more/The-Wouldbegoods_32466",
+   "words": 48061,
+   "fk": 6.1,
+   "reader_grade": null,
+   "grade": 4.1,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Yellow-Fairy-Book_28314",
+   "dir": "/home/claude/corpora/books_more/The-Yellow-Fairy-Book_28314",
+   "words": 45983,
+   "fk": 7.7,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Through-the-Looking-Glass_12",
+   "dir": "/home/claude/corpora/books_more/Through-the-Looking-Glass_12",
+   "words": 16849,
+   "fk": 7.3,
+   "reader_grade": null,
+   "grade": 4.9,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Tik-Tok-of-Oz_52176",
+   "dir": "/home/claude/corpora/books_more/Tik-Tok-of-Oz_52176",
+   "words": 27967,
+   "fk": 8.6,
+   "reader_grade": null,
+   "grade": 5.8,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Toby-Tyler--Or-Ten-Weeks-with-a-Circus_7478",
+   "dir": "/home/claude/corpora/books_more/Toby-Tyler--Or-Ten-Weeks-with-a-Circus_7478",
+   "words": 13299,
+   "fk": 9.5,
+   "reader_grade": null,
+   "grade": 6.4,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Tom-Swift-and-His-Airship_3005",
+   "dir": "/home/claude/corpora/books_more/Tom-Swift-and-His-Airship_3005",
+   "words": 31404,
+   "fk": 5.5,
+   "reader_grade": null,
+   "grade": 3.7,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Tom-Swift-and-His-Giant-Telescope_21188",
+   "dir": "/home/claude/corpora/books_more/Tom-Swift-and-His-Giant-Telescope_21188",
+   "words": 13548,
+   "fk": 6.9,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Twilight-Land_47564",
+   "dir": "/home/claude/corpora/books_more/Twilight-Land_47564",
+   "words": 35108,
+   "fk": 7.3,
+   "reader_grade": null,
+   "grade": 4.9,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Uncle-Remus-and-Brer-Rabbit_22282",
+   "dir": "/home/claude/corpora/books_more/Uncle-Remus-and-Brer-Rabbit_22282",
+   "words": 2249,
+   "fk": 7.0,
+   "reader_grade": null,
+   "grade": 4.7,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Uncle-Wiggily-s-Adventures_15281",
+   "dir": "/home/claude/corpora/books_more/Uncle-Wiggily-s-Adventures_15281",
+   "words": 21206,
+   "fk": 6.7,
+   "reader_grade": null,
+   "grade": 4.5,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Understood-Betsy_5347",
+   "dir": "/home/claude/corpora/books_more/Understood-Betsy_5347",
+   "words": 26377,
+   "fk": 7.2,
+   "reader_grade": null,
+   "grade": 4.8,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "What-Katy-Did-Next_8995",
+   "dir": "/home/claude/corpora/books_more/What-Katy-Did-Next_8995",
+   "words": 22803,
+   "fk": 7.6,
+   "reader_grade": null,
+   "grade": 5.1,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "What-Katy-Did_8994",
+   "dir": "/home/claude/corpora/books_more/What-Katy-Did_8994",
+   "words": 30600,
+   "fk": 6.3,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "White-Fang_910",
+   "dir": "/home/claude/corpora/books_more/White-Fang_910",
+   "words": 50022,
+   "fk": 6.1,
+   "reader_grade": null,
+   "grade": 4.1,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "A-Christmas-Carol_46",
+   "dir": "/home/claude/corpora/books_graded/A-Christmas-Carol_46",
+   "words": 14174,
+   "fk": 6.0,
+   "reader_grade": null,
+   "grade": 4.0,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "A-Connecticut-Yankee-in-King-Arthur-s-Court_86",
+   "dir": "/home/claude/corpora/books_graded/A-Connecticut-Yankee-in-King-Arthur-s-Court_86",
+   "words": 51066,
+   "fk": 6.7,
+   "reader_grade": null,
+   "grade": 4.5,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "A-Journey-to-the-Centre-of-the-Earth_18857",
+   "dir": "/home/claude/corpora/books_graded/A-Journey-to-the-Centre-of-the-Earth_18857",
+   "words": 54719,
+   "fk": 8.4,
+   "reader_grade": null,
+   "grade": 5.7,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "A-Study-in-Scarlet_244",
+   "dir": "/home/claude/corpora/books_graded/A-Study-in-Scarlet_244",
+   "words": 27270,
+   "fk": 7.9,
+   "reader_grade": null,
+   "grade": 5.3,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "A-Tale-of-Two-Cities_98",
+   "dir": "/home/claude/corpora/books_graded/A-Tale-of-Two-Cities_98",
+   "words": 62872,
+   "fk": 7.9,
+   "reader_grade": null,
+   "grade": 5.3,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "A-second-reader_68545",
+   "dir": "/home/claude/corpora/books_graded/A-second-reader_68545",
+   "words": 13559,
+   "fk": 2.1,
+   "reader_grade": 2,
+   "grade": 2,
+   "band": "2",
+   "split": "train"
+  },
+  {
+   "name": "Around-the-World-in-Eighty-Days.-Junior-Deluxe-Edition_2154",
+   "dir": "/home/claude/corpora/books_graded/Around-the-World-in-Eighty-Days.-Junior-Deluxe-Edition_2154",
+   "words": 39094,
+   "fk": 8.0,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Captain-Blood_1965",
+   "dir": "/home/claude/corpora/books_graded/Captain-Blood_1965",
+   "words": 66071,
+   "fk": 7.4,
+   "reader_grade": null,
+   "grade": 5.0,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Children-s-Classics-in-Dramatic-Form--13-A-Reader-for-the-Fourth-Grade_10541",
+   "dir": "/home/claude/corpora/books_graded/Children-s-Classics-in-Dramatic-Form--13-A-Reader-for-the-Fourth-Grade_10541",
+   "words": 18095,
+   "fk": 2.5,
+   "reader_grade": 4,
+   "grade": 4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "David-Copperfield_766",
+   "dir": "/home/claude/corpora/books_graded/David-Copperfield_766",
+   "words": 167429,
+   "fk": 7.0,
+   "reader_grade": null,
+   "grade": 4.7,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "De-La-Salle-Fifth-Reader_10811",
+   "dir": "/home/claude/corpora/books_graded/De-La-Salle-Fifth-Reader_10811",
+   "words": 28751,
+   "fk": 6.6,
+   "reader_grade": 5,
+   "grade": 5,
+   "band": "5",
+   "split": "test"
+  },
+  {
+   "name": "Dracula_345",
+   "dir": "/home/claude/corpora/books_graded/Dracula_345",
+   "words": 82289,
+   "fk": 5.8,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Eighth-Reader_30559",
+   "dir": "/home/claude/corpora/books_graded/Eighth-Reader_30559",
+   "words": 22321,
+   "fk": 6.7,
+   "reader_grade": 8,
+   "grade": 8,
+   "band": "7+",
+   "split": "test"
+  },
+  {
+   "name": "Emma_158",
+   "dir": "/home/claude/corpora/books_graded/Emma_158",
+   "words": 73669,
+   "fk": 7.1,
+   "reader_grade": null,
+   "grade": 4.8,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Ethan-Frome_4517",
+   "dir": "/home/claude/corpora/books_graded/Ethan-Frome_4517",
+   "words": 16399,
+   "fk": 7.5,
+   "reader_grade": null,
+   "grade": 5.0,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Far-from-the-Madding-Crowd_27",
+   "dir": "/home/claude/corpora/books_graded/Far-from-the-Madding-Crowd_27",
+   "words": 53937,
+   "fk": 8.0,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Fourth-Reader-The-Alexandra-Readers_51975",
+   "dir": "/home/claude/corpora/books_graded/Fourth-Reader-The-Alexandra-Readers_51975",
+   "words": 35725,
+   "fk": 7.0,
+   "reader_grade": 4,
+   "grade": 4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Frankenstein_84",
+   "dir": "/home/claude/corpora/books_graded/Frankenstein_84",
+   "words": 30659,
+   "fk": 8.4,
+   "reader_grade": null,
+   "grade": 5.7,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Graded-Literature-Readers-Fourth-Book_49339",
+   "dir": "/home/claude/corpora/books_graded/Graded-Literature-Readers-Fourth-Book_49339",
+   "words": 27412,
+   "fk": 5.5,
+   "reader_grade": 4,
+   "grade": 4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Great-Expectations_1400",
+   "dir": "/home/claude/corpora/books_graded/Great-Expectations_1400",
+   "words": 79308,
+   "fk": 8.4,
+   "reader_grade": null,
+   "grade": 5.7,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Heart-of-Darkness_219",
+   "dir": "/home/claude/corpora/books_graded/Heart-of-Darkness_219",
+   "words": 21057,
+   "fk": 6.3,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Ivanhoe_26564",
+   "dir": "/home/claude/corpora/books_graded/Ivanhoe_26564",
+   "words": 46291,
+   "fk": 13.3,
+   "reader_grade": null,
+   "grade": 9.0,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "Jane-Eyre_1260",
+   "dir": "/home/claude/corpora/books_graded/Jane-Eyre_1260",
+   "words": 82409,
+   "fk": 5.8,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Kim_35555",
+   "dir": "/home/claude/corpora/books_graded/Kim_35555",
+   "words": 70643,
+   "fk": 6.4,
+   "reader_grade": null,
+   "grade": 4.3,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "King-Solomon-s-Mines_2166",
+   "dir": "/home/claude/corpora/books_graded/King-Solomon-s-Mines_2166",
+   "words": 33971,
+   "fk": 8.4,
+   "reader_grade": null,
+   "grade": 5.7,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Kittens-and-Cats-A-First-Reader_61852",
+   "dir": "/home/claude/corpora/books_graded/Kittens-and-Cats-A-First-Reader_61852",
+   "words": 3766,
+   "fk": 5.4,
+   "reader_grade": 1,
+   "grade": 1,
+   "band": "1",
+   "split": "train"
+  },
+  {
+   "name": "Les-Mis-rables_135",
+   "dir": "/home/claude/corpora/books_graded/Les-Mis-rables_135",
+   "words": 298346,
+   "fk": 6.8,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Life-on-the-Mississippi_245",
+   "dir": "/home/claude/corpora/books_graded/Life-on-the-Mississippi_245",
+   "words": 59039,
+   "fk": 7.1,
+   "reader_grade": null,
+   "grade": 4.8,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Little-Dorrit_963",
+   "dir": "/home/claude/corpora/books_graded/Little-Dorrit_963",
+   "words": 135922,
+   "fk": 8.8,
+   "reader_grade": null,
+   "grade": 5.9,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Lord-Jim_5658",
+   "dir": "/home/claude/corpora/books_graded/Lord-Jim_5658",
+   "words": 59285,
+   "fk": 6.6,
+   "reader_grade": null,
+   "grade": 4.4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Lorna-Doone--A-Romance-of-Exmoor_840",
+   "dir": "/home/claude/corpora/books_graded/Lorna-Doone--A-Romance-of-Exmoor_840",
+   "words": 73565,
+   "fk": 7.6,
+   "reader_grade": null,
+   "grade": 5.1,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Martin-Eden_1056",
+   "dir": "/home/claude/corpora/books_graded/Martin-Eden_1056",
+   "words": 87531,
+   "fk": 6.9,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "McGuffey-s-Fourth-Eclectic-Reader_14880",
+   "dir": "/home/claude/corpora/books_graded/McGuffey-s-Fourth-Eclectic-Reader_14880",
+   "words": 33645,
+   "fk": 4.9,
+   "reader_grade": 4,
+   "grade": 4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Middlemarch_145",
+   "dir": "/home/claude/corpora/books_graded/Middlemarch_145",
+   "words": 143175,
+   "fk": 8.2,
+   "reader_grade": null,
+   "grade": 5.5,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Moby-Dick--Or-The-Whale_2701",
+   "dir": "/home/claude/corpora/books_graded/Moby-Dick--Or-The-Whale_2701",
+   "words": 69965,
+   "fk": 7.5,
+   "reader_grade": null,
+   "grade": 5.0,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "My-Antonia_242",
+   "dir": "/home/claude/corpora/books_graded/My-Antonia_242",
+   "words": 52885,
+   "fk": 6.3,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "New-National-First-Reader_13853",
+   "dir": "/home/claude/corpora/books_graded/New-National-First-Reader_13853",
+   "words": 5911,
+   "fk": 2.8,
+   "reader_grade": 1,
+   "grade": 1,
+   "band": "1",
+   "split": "test"
+  },
+  {
+   "name": "New-National-Fourth-Reader_15825",
+   "dir": "/home/claude/corpora/books_graded/New-National-Fourth-Reader_15825",
+   "words": 42483,
+   "fk": 6.2,
+   "reader_grade": 4,
+   "grade": 4,
+   "band": "4",
+   "split": "test"
+  },
+  {
+   "name": "Northanger-Abbey_121",
+   "dir": "/home/claude/corpora/books_graded/Northanger-Abbey_121",
+   "words": 30104,
+   "fk": 8.3,
+   "reader_grade": null,
+   "grade": 5.6,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "O-Pioneers-_24",
+   "dir": "/home/claude/corpora/books_graded/O-Pioneers-_24",
+   "words": 38957,
+   "fk": 5.8,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Oliver-Twist_730",
+   "dir": "/home/claude/corpora/books_graded/Oliver-Twist_730",
+   "words": 70881,
+   "fk": 6.5,
+   "reader_grade": null,
+   "grade": 4.4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Parker-s-Second-Reader--13-National-Series-of-Selections-for-Reading-Designed-For-The-Younger__16936",
+   "dir": "/home/claude/corpora/books_graded/Parker-s-Second-Reader--13-National-Series-of-Selections-for-Reading-Designed-For-The-Younger__16936",
+   "words": 13678,
+   "fk": 7.2,
+   "reader_grade": 2,
+   "grade": 2,
+   "band": "2",
+   "split": "train"
+  },
+  {
+   "name": "Persuasion_105",
+   "dir": "/home/claude/corpora/books_graded/Persuasion_105",
+   "words": 29595,
+   "fk": 8.2,
+   "reader_grade": null,
+   "grade": 5.5,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Pride-and-Prejudice_1342",
+   "dir": "/home/claude/corpora/books_graded/Pride-and-Prejudice_1342",
+   "words": 61049,
+   "fk": 7.6,
+   "reader_grade": null,
+   "grade": 5.1,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Robbery-under-Arms--13-A-Story-of-Life-and-Adventure-in-the-Bush-and-in-the-Australian-Goldfie__1198",
+   "dir": "/home/claude/corpora/books_graded/Robbery-under-Arms--13-A-Story-of-Life-and-Adventure-in-the-Bush-and-in-the-Australian-Goldfie__1198",
+   "words": 111188,
+   "fk": 6.1,
+   "reader_grade": null,
+   "grade": 4.1,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Sanders-Union-Fourth-Reader-Embracing-a-Full-Exposition-of-the-Principles-of-Rhetorical-Readin__9078",
+   "dir": "/home/claude/corpora/books_graded/Sanders-Union-Fourth-Reader-Embracing-a-Full-Exposition-of-the-Principles-of-Rhetorical-Readin__9078",
+   "words": 53216,
+   "fk": 4.6,
+   "reader_grade": 4,
+   "grade": 4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "Scaramouche--A-Romance-of-the-French-Revolution_1947",
+   "dir": "/home/claude/corpora/books_graded/Scaramouche--A-Romance-of-the-French-Revolution_1947",
+   "words": 81681,
+   "fk": 7.4,
+   "reader_grade": null,
+   "grade": 5.0,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Sense-and-Sensibility_161",
+   "dir": "/home/claude/corpora/books_graded/Sense-and-Sensibility_161",
+   "words": 42919,
+   "fk": 9.2,
+   "reader_grade": null,
+   "grade": 6.2,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Silas-Marner_550",
+   "dir": "/home/claude/corpora/books_graded/Silas-Marner_550",
+   "words": 21567,
+   "fk": 9.1,
+   "reader_grade": null,
+   "grade": 6.1,
+   "band": "6",
+   "split": "test"
+  },
+  {
+   "name": "Story-Hour-Readers-Book-Three_6685",
+   "dir": "/home/claude/corpora/books_graded/Story-Hour-Readers-Book-Three_6685",
+   "words": 22041,
+   "fk": 5.1,
+   "reader_grade": 3,
+   "grade": 3,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "Tess-of-the-d-Urbervilles--a-Pure-Woman_110",
+   "dir": "/home/claude/corpora/books_graded/Tess-of-the-d-Urbervilles--a-Pure-Woman_110",
+   "words": 67411,
+   "fk": 8.4,
+   "reader_grade": null,
+   "grade": 5.7,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Age-of-Innocence_541",
+   "dir": "/home/claude/corpora/books_graded/The-Age-of-Innocence_541",
+   "words": 44576,
+   "fk": 7.7,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Aldine-Readers-A-First-Reader_65323",
+   "dir": "/home/claude/corpora/books_graded/The-Aldine-Readers-A-First-Reader_65323",
+   "words": 8092,
+   "fk": 1.8,
+   "reader_grade": 1,
+   "grade": 1,
+   "band": "1",
+   "split": "train"
+  },
+  {
+   "name": "The-Beacon-Second-Reader_15659",
+   "dir": "/home/claude/corpora/books_graded/The-Beacon-Second-Reader_15659",
+   "words": 16659,
+   "fk": 6.4,
+   "reader_grade": 2,
+   "grade": 2,
+   "band": "2",
+   "split": "test"
+  },
+  {
+   "name": "The-Black-Arrow--A-Tale-of-Two-Roses_848",
+   "dir": "/home/claude/corpora/books_graded/The-Black-Arrow--A-Tale-of-Two-Roses_848",
+   "words": 41305,
+   "fk": 6.1,
+   "reader_grade": null,
+   "grade": 4.1,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Child-s-WorldThird-Reader_15170",
+   "dir": "/home/claude/corpora/books_graded/The-Child-s-WorldThird-Reader_15170",
+   "words": 30813,
+   "fk": 3.7,
+   "reader_grade": 3,
+   "grade": 3,
+   "band": "3",
+   "split": "test"
+  },
+  {
+   "name": "The-Count-of-Monte-Cristo_1184",
+   "dir": "/home/claude/corpora/books_graded/The-Count-of-Monte-Cristo_1184",
+   "words": 206935,
+   "fk": 8.8,
+   "reader_grade": null,
+   "grade": 5.9,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Cyr-Readers-Book-8-Arranged-by-grades_49358",
+   "dir": "/home/claude/corpora/books_graded/The-Cyr-Readers-Book-8-Arranged-by-grades_49358",
+   "words": 19640,
+   "fk": 8.3,
+   "reader_grade": 8,
+   "grade": 8,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "The-First-Men-in-the-Moon_52501",
+   "dir": "/home/claude/corpora/books_graded/The-First-Men-in-the-Moon_52501",
+   "words": 38929,
+   "fk": 7.9,
+   "reader_grade": null,
+   "grade": 5.3,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Four-Feathers_18883",
+   "dir": "/home/claude/corpora/books_graded/The-Four-Feathers_18883",
+   "words": 67369,
+   "fk": 6.4,
+   "reader_grade": null,
+   "grade": 4.3,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Haliburton-primer_69072",
+   "dir": "/home/claude/corpora/books_graded/The-Haliburton-primer_69072",
+   "words": 9276,
+   "fk": 1.2,
+   "reader_grade": 1,
+   "grade": 1,
+   "band": "1",
+   "split": "train"
+  },
+  {
+   "name": "The-Hound-of-the-Baskervilles_3070",
+   "dir": "/home/claude/corpora/books_graded/The-Hound-of-the-Baskervilles_3070",
+   "words": 37836,
+   "fk": 7.9,
+   "reader_grade": null,
+   "grade": 5.3,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-House-of-Mirth_284",
+   "dir": "/home/claude/corpora/books_graded/The-House-of-Mirth_284",
+   "words": 53979,
+   "fk": 7.7,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-House-of-the-Seven-Gables_77",
+   "dir": "/home/claude/corpora/books_graded/The-House-of-the-Seven-Gables_77",
+   "words": 32454,
+   "fk": 10.6,
+   "reader_grade": null,
+   "grade": 7.2,
+   "band": "7+",
+   "split": "test"
+  },
+  {
+   "name": "The-Innocents-Abroad_3176",
+   "dir": "/home/claude/corpora/books_graded/The-Innocents-Abroad_3176",
+   "words": 73722,
+   "fk": 9.0,
+   "reader_grade": null,
+   "grade": 6.1,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Invisible-Man--A-Grotesque-Romance_5230",
+   "dir": "/home/claude/corpora/books_graded/The-Invisible-Man--A-Grotesque-Romance_5230",
+   "words": 32932,
+   "fk": 6.1,
+   "reader_grade": null,
+   "grade": 4.1,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Island-of-Doctor-Moreau_159",
+   "dir": "/home/claude/corpora/books_graded/The-Island-of-Doctor-Moreau_159",
+   "words": 27471,
+   "fk": 6.7,
+   "reader_grade": null,
+   "grade": 4.5,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Last-Days-of-Pompeii_1565",
+   "dir": "/home/claude/corpora/books_graded/The-Last-Days-of-Pompeii_1565",
+   "words": 62438,
+   "fk": 7.8,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Last-of-the-Mohicans--A-Narrative-of-1757_27681",
+   "dir": "/home/claude/corpora/books_graded/The-Last-of-the-Mohicans--A-Narrative-of-1757_27681",
+   "words": 48437,
+   "fk": 10.6,
+   "reader_grade": null,
+   "grade": 7.2,
+   "band": "7+",
+   "split": "train"
+  },
+  {
+   "name": "The-Literary-World-Seventh-Reader_19721",
+   "dir": "/home/claude/corpora/books_graded/The-Literary-World-Seventh-Reader_19721",
+   "words": 52206,
+   "fk": 7.8,
+   "reader_grade": 7,
+   "grade": 7,
+   "band": "7+",
+   "split": "test"
+  },
+  {
+   "name": "The-Lost-World_139",
+   "dir": "/home/claude/corpora/books_graded/The-Lost-World_139",
+   "words": 39973,
+   "fk": 8.3,
+   "reader_grade": null,
+   "grade": 5.6,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Man-in-the-Iron-Mask_2759",
+   "dir": "/home/claude/corpora/books_graded/The-Man-in-the-Iron-Mask_2759",
+   "words": 93943,
+   "fk": 8.0,
+   "reader_grade": null,
+   "grade": 5.4,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Master-of-Ballantrae--A-Winter-s-Tale_864",
+   "dir": "/home/claude/corpora/books_graded/The-Master-of-Ballantrae--A-Winter-s-Tale_864",
+   "words": 35963,
+   "fk": 6.2,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Memoirs-of-Sherlock-Holmes_834",
+   "dir": "/home/claude/corpora/books_graded/The-Memoirs-of-Sherlock-Holmes_834",
+   "words": 51932,
+   "fk": 8.3,
+   "reader_grade": null,
+   "grade": 5.6,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Mill-on-the-Floss_6688",
+   "dir": "/home/claude/corpora/books_graded/The-Mill-on-the-Floss_6688",
+   "words": 84330,
+   "fk": 7.8,
+   "reader_grade": null,
+   "grade": 5.2,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Mysterious-Island_1268",
+   "dir": "/home/claude/corpora/books_graded/The-Mysterious-Island_1268",
+   "words": 101023,
+   "fk": 9.4,
+   "reader_grade": null,
+   "grade": 6.3,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-New-McGuffey-First-Reader_1489",
+   "dir": "/home/claude/corpora/books_graded/The-New-McGuffey-First-Reader_1489",
+   "words": 8530,
+   "fk": 6.2,
+   "reader_grade": 1,
+   "grade": 1,
+   "band": "1",
+   "split": "train"
+  },
+  {
+   "name": "The-New-McGuffey-Fourth-Reader_1490",
+   "dir": "/home/claude/corpora/books_graded/The-New-McGuffey-Fourth-Reader_1490",
+   "words": 26725,
+   "fk": 6.4,
+   "reader_grade": 4,
+   "grade": 4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Ontario-Readers-Third-Reader_51707",
+   "dir": "/home/claude/corpora/books_graded/The-Ontario-Readers-Third-Reader_51707",
+   "words": 26873,
+   "fk": 6.4,
+   "reader_grade": 3,
+   "grade": 3,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "The-Picture-of-Dorian-Gray_174",
+   "dir": "/home/claude/corpora/books_graded/The-Picture-of-Dorian-Gray_174",
+   "words": 57188,
+   "fk": 5.3,
+   "reader_grade": null,
+   "grade": 3.5,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Prisoner-of-Zenda_95",
+   "dir": "/home/claude/corpora/books_graded/The-Prisoner-of-Zenda_95",
+   "words": 32716,
+   "fk": 5.9,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Red-Badge-of-Courage_73",
+   "dir": "/home/claude/corpora/books_graded/The-Red-Badge-of-Courage_73",
+   "words": 37187,
+   "fk": 5.8,
+   "reader_grade": null,
+   "grade": 3.9,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Return-of-Sherlock-Holmes_108",
+   "dir": "/home/claude/corpora/books_graded/The-Return-of-Sherlock-Holmes_108",
+   "words": 74887,
+   "fk": 6.9,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Return-of-the-Native_17500",
+   "dir": "/home/claude/corpora/books_graded/The-Return-of-the-Native_17500",
+   "words": 81462,
+   "fk": 7.3,
+   "reader_grade": null,
+   "grade": 4.9,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Riddle-of-the-Sands_2360",
+   "dir": "/home/claude/corpora/books_graded/The-Riddle-of-the-Sands_2360",
+   "words": 51703,
+   "fk": 7.4,
+   "reader_grade": null,
+   "grade": 5.0,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Scarlet-Letter_33",
+   "dir": "/home/claude/corpora/books_graded/The-Scarlet-Letter_33",
+   "words": 25154,
+   "fk": 10.4,
+   "reader_grade": null,
+   "grade": 7.0,
+   "band": "7+",
+   "split": "test"
+  },
+  {
+   "name": "The-Sea-Wolf_1074",
+   "dir": "/home/claude/corpora/books_graded/The-Sea-Wolf_1074",
+   "words": 66300,
+   "fk": 6.5,
+   "reader_grade": null,
+   "grade": 4.4,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Sign-of-the-Four_2097",
+   "dir": "/home/claude/corpora/books_graded/The-Sign-of-the-Four_2097",
+   "words": 28570,
+   "fk": 6.8,
+   "reader_grade": null,
+   "grade": 4.6,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Silent-ReadersSixth-Reader_40369",
+   "dir": "/home/claude/corpora/books_graded/The-Silent-ReadersSixth-Reader_40369",
+   "words": 53757,
+   "fk": 6.9,
+   "reader_grade": 6,
+   "grade": 6,
+   "band": "6",
+   "split": "test"
+  },
+  {
+   "name": "The-Strange-Case-of-Dr.-Jekyll-and-Mr.-Hyde_42",
+   "dir": "/home/claude/corpora/books_graded/The-Strange-Case-of-Dr.-Jekyll-and-Mr.-Hyde_42",
+   "words": 10340,
+   "fk": 6.4,
+   "reader_grade": null,
+   "grade": 4.3,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Summers-Readers-First-Reader_67302",
+   "dir": "/home/claude/corpora/books_graded/The-Summers-Readers-First-Reader_67302",
+   "words": 8710,
+   "fk": 2.4,
+   "reader_grade": 1,
+   "grade": 1,
+   "band": "1",
+   "split": "test"
+  },
+  {
+   "name": "The-Summers-readers-primer_68453",
+   "dir": "/home/claude/corpora/books_graded/The-Summers-readers-primer_68453",
+   "words": 5726,
+   "fk": 0.4,
+   "reader_grade": 1,
+   "grade": 1,
+   "band": "1",
+   "split": "train"
+  },
+  {
+   "name": "The-Summers-readers-second-reader_71019",
+   "dir": "/home/claude/corpora/books_graded/The-Summers-readers-second-reader_71019",
+   "words": 18649,
+   "fk": 3.7,
+   "reader_grade": 2,
+   "grade": 2,
+   "band": "2",
+   "split": "train"
+  },
+  {
+   "name": "The-Thirty-Nine-Steps_558",
+   "dir": "/home/claude/corpora/books_graded/The-Thirty-Nine-Steps_558",
+   "words": 29646,
+   "fk": 6.3,
+   "reader_grade": null,
+   "grade": 4.2,
+   "band": "4",
+   "split": "train"
+  },
+  {
+   "name": "The-Three-Musketeers_1257",
+   "dir": "/home/claude/corpora/books_graded/The-Three-Musketeers_1257",
+   "words": 129710,
+   "fk": 7.9,
+   "reader_grade": null,
+   "grade": 5.3,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Time-Machine_35",
+   "dir": "/home/claude/corpora/books_graded/The-Time-Machine_35",
+   "words": 20068,
+   "fk": 7.3,
+   "reader_grade": null,
+   "grade": 4.9,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-Tragedy-of-Pudd-nhead-Wilson_102",
+   "dir": "/home/claude/corpora/books_graded/The-Tragedy-of-Pudd-nhead-Wilson_102",
+   "words": 24775,
+   "fk": 7.3,
+   "reader_grade": null,
+   "grade": 4.9,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "The-War-of-the-Worlds_36",
+   "dir": "/home/claude/corpora/books_graded/The-War-of-the-Worlds_36",
+   "words": 31122,
+   "fk": 8.3,
+   "reader_grade": null,
+   "grade": 5.6,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "The-Wide-Awake-Third-Reader_52044",
+   "dir": "/home/claude/corpora/books_graded/The-Wide-Awake-Third-Reader_52044",
+   "words": 23693,
+   "fk": 5.9,
+   "reader_grade": 3,
+   "grade": 3,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "Third-Reader-The-Alexandra-Readers_51441",
+   "dir": "/home/claude/corpora/books_graded/Third-Reader-The-Alexandra-Readers_51441",
+   "words": 42079,
+   "fk": 6.2,
+   "reader_grade": 3,
+   "grade": 3,
+   "band": "3",
+   "split": "train"
+  },
+  {
+   "name": "Twenty-Thousand-Leagues-under-the-Sea_164",
+   "dir": "/home/claude/corpora/books_graded/Twenty-Thousand-Leagues-under-the-Sea_164",
+   "words": 65298,
+   "fk": 7.5,
+   "reader_grade": null,
+   "grade": 5.0,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Uncle-Tom-s-Cabin_203",
+   "dir": "/home/claude/corpora/books_graded/Uncle-Tom-s-Cabin_203",
+   "words": 87692,
+   "fk": 7.1,
+   "reader_grade": null,
+   "grade": 4.8,
+   "band": "5",
+   "split": "train"
+  },
+  {
+   "name": "Vanity-Fair_599",
+   "dir": "/home/claude/corpora/books_graded/Vanity-Fair_599",
+   "words": 117390,
+   "fk": 8.3,
+   "reader_grade": null,
+   "grade": 5.6,
+   "band": "6",
+   "split": "train"
+  },
+  {
+   "name": "Wuthering-Heights_768",
+   "dir": "/home/claude/corpora/books_graded/Wuthering-Heights_768",
+   "words": 58818,
+   "fk": 5.7,
+   "reader_grade": null,
+   "grade": 3.8,
+   "band": "4",
+   "split": "train"
+  }
+ ]
+}

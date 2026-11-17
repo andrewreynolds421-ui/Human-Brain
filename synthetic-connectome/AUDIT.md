@@ -642,3 +642,13 @@ eight with early stopping) - the 4.9 M networks had not plateaued. The 2.4 M poi
 four (METHODS asks four per claim; it is a trend point only). `train_words` in the 2.4 M result files records
 the full corpus, not the half actually read.
 
+## 34. Follow-up (17 November): Stage 53 — graded teaching
+
+Four networks per regime, 20 M words each. First launch ran out of memory (the test computed the
+probability of every vocabulary word at every position); fixed to score only the actual word before any
+result was recorded. Flesch-Kincaid uses a rule-based syllable count (the dictionary download is blocked);
+calibrated on the 38 readers, r = 0.71. Pass mark (75 %), lesson size, review share (20 %) and plateau rule
+are ASSUMED and not varied; validation for promotion is every 25th sentence of the training books (same
+books, unread sentences). Grade-1 validation has only 136 items (+- 4 points). The machine restarted once
+during the runs; training resumed from 10-minute checkpoints.
+

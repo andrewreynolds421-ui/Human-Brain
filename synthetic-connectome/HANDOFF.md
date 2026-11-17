@@ -379,3 +379,6 @@ Stage 52 (16 Nov): gated memory on 4.9 M words (141 more Gutenberg books in /hom
 learns number (93-97 % without a distractor, BLiMP 64.8 %) but follows the nearest noun when one of the other
 number intervenes (31 % in relative clauses). Next: a subject slot, or far more text. Note: background jobs
 only run while a turn is active; training checkpoints every 10 min (SAVE_MIN).
+Stage 53 (17 Nov): graded teaching vs random order, 282 books (corpora/books_graded added), cloze reading test
+per grade - graded order no better (69.1 vs 69.8 %), slower on the way; no grade passed at 75 %; grade barely
+matters to the model. `scripts/graded_reading.py`; caches in /home/claude/models/graded.

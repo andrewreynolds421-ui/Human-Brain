@@ -3251,6 +3251,55 @@ this; Linzen et al. 2016; Gulordava et al. 2018).
 **Limits.** At most four passes (the 4.9 M networks were still improving slowly: -4.75 -> -4.72 on the
 last pass); 2.4 M point has two networks; result files record the full corpus size for the 2.4 M runs.
 
+## Stage 53: teaching reading grade by grade
+
+**Question (the user's).** Find the grade level the model reads at, give it books at that level until it
+can read the next one, and see if that teaches it better than reading everything at once.
+
+**Books** (`scripts/graded_reading.py`; catalogue in `data/grades/catalogue.json`). 282 Project Gutenberg
+books, 10.6 M words: 38 school readers labelled by grade (McGuffey, New National, Aldine, Summers, Elson,
+Cyr ...), the children's books of Stages 50-52, and 77 classics (Dickens, Austen, Verne, Doyle, Stevenson,
+Twain ...). Other books are graded by Flesch-Kincaid, CALIBRATED on the readers (r = 0.71; the raw formula
+reads two grades high). The calibrated scale puts even the adult classics at grades 6-8, so the top band is
+"7+". Bands 1-3 are small (41 k, 55 k, 176 k words - early readers are short); bands 4-6 hold 8.9 M.
+
+**Reading-level test.** Multiple-choice cloze (Taylor 1953): a content word blanked, 4 choices of the same
+part of speech and frequency, chance 25 %; 600 items per band from 18 books never read (10 school readers
+for grades 1-8, plus Treasure Island, The Secret Garden, Just So Stories, Black Beauty, Silas Marner, The
+Scarlet Letter ...). Training sentences sharing a 6-word run with a test sentence were dropped (9,152).
+Pass mark 75 % (ASSUMED).
+
+**Teaching** (four networks each, 20 M words each, the gated memory of Stages 51-52):
+- *graded*: 200 k-word lessons, 80 % at the current grade and 20 % review; promoted after passing the
+  grade's held-out sentences, or when four lessons bring no gain;
+- *random order* (control): the same books, the same number of words, in random order.
+
+| words read | 2 M | 4 M | 8 M | 12 M | 16 M | 20 M |
+|---|---|---|---|---|---|---|
+| graded (cloze, all grades) | 41.2 % | 49.6 % | 59.9 % | 64.3 % | 66.8 % | **69.1 ± 0.4 %** |
+| random order | 56.8 % | 62.1 % | 66.0 % | 67.5 % | 69.0 % | **69.8 ± 0.5 %** |
+
+Final, by grade (graded / random): grade 1 71.9 / 71.9 %, 2 71.7 / 72.2 %, 3 73.5 / 72.6 %, 4 68.5 / 70.3 %,
+5 64.8 / 67.7 %, 6 66.6 / 67.0 %, 7+ 66.6 / 66.9 %.
+
+- **Graded order did not help.** It ends level with random order (69.1 vs 69.8 %) and lags all the way:
+  the early grades are so small that the graded networks read the grade-1 books ~50 times and the grade 1-3
+  books ~6.8 M words' worth before grade 4. Random order reaches in 4 M words what graded order reaches in
+  10 M. This matches what language-model studies find (curricula by difficulty rarely help; e.g. the BabyLM
+  challenge, Warstadt et al. 2023).
+- **It never passes a grade by the 75 % mark.** Only one network in 28 promotions passed (grade 1); the
+  rest moved up when progress stalled. After 20 M words it fills blanks at ~72 % in grades 1-3 and ~67 % in
+  grades 5-7+.
+- **Grade difficulty barely matters to it.** From grade 1 to 7+ the score drops only 5 points, and its
+  prediction is no worse on grade-7 text than on grade-3. What makes upper-grade text hard for children -
+  decoding long words, vocabulary, knowledge of the world - is not what limits this model; it is limited
+  everywhere by short-range, shallow prediction (Stages 51-52). So "it reads at grade X" is not a meaningful
+  description of it yet: it reads every grade about equally, and none to a passing standard.
+
+**What would help instead.** Not ordering, but what it learns from each sentence: the subject slot from
+Stage 52, and a link from words to meaning (pictures, Stage 45; or Warmind's actions) - children's cloze
+answers rest on knowing what the words refer to, which text alone does not give.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
