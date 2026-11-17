@@ -3300,6 +3300,55 @@ Final, by grade (graded / random): grade 1 71.9 / 71.9 %, 2 71.7 / 72.2 %, 3 73.
 Stage 52, and a link from words to meaning (pictures, Stage 45; or Warmind's actions) - children's cloze
 answers rest on knowing what the words refer to, which text alone does not give.
 
+## Stage 54: a gated slot for the subject
+
+**Question.** Stage 52's memory learned number but followed the nearest noun. Does a separate slot that
+can hold the subject - gated working memory, as basal ganglia gate prefrontal "stripes" in PBWM (Frank,
+Loughry & O'Reilly 2001) - let it find the subject past "that the soldiers saw"?
+
+**Models** (`scripts/subject_slot.py`): the gated memory (256 units) plus two slots (64 units each), each
+with a write gate computed from the memory and the current word; the slots feed back into the memory and
+into the prediction.
+- *learned slot*: the gates learn only from predicting the next word;
+- *taught slot*: slot 1's gate is also told during reading where the main subject is (spaCy's parser;
+  244,191 of 389,639 sentences) - an upper bound, not something children are given;
+- *always-open slot* (control): same size, gates fixed open, so no holding.
+
+Same 4.9 M words as Stage 52, three passes, adaptive softmax; four networks each. The fair comparison is
+among these three (Stage 52's plain memory had four passes and a full softmax; shown for reference only).
+
+| | plain memory (Stage 52, ref.) | always-open slot | learned slot | taught slot |
+|---|---|---|---|---|
+| prediction (log-prob per word) | -4.72 | -4.84 | -4.84 | -4.84 |
+| BLiMP, same pairs | 64.8 % | 63.4 % | 64.4 % | 63.6 % |
+| agreement in book sentences | 86.5 % | 82.0 % | 83.2 % | 83.6 % |
+| "of the" + noun of the other number | 59.4 % | 54.9 ± 12.2 % | 49.6 ± 8.7 % | **64.4 ± 7.4 %** |
+| "the bird that the soldiers saw ___" | 31.1 % | 44.2 ± 5.8 % | 38.0 ± 9.0 % | 44.7 ± 10.2 % |
+
+Where the gates open (built relative-clause sentences, mean of four networks):
+
+| | the | SUBJECT | that | the | noun | verb | IS / ARE |
+|---|---|---|---|---|---|---|---|
+| taught slot 1 | 0.00 | **0.87** | 0.01 | - | 0.05 | 0.00 | 0.00 |
+| learned slot 1 | 0.17 | 0.19 | 0.29 | - | 0.15 | 0.26 | 0.28 |
+
+- **The learned gate never discovers the subject.** It opens a little on every word (and the second slot
+  opens on nearly every word): predicting the next word alone gives no reason to hold the subject, since
+  in almost every sentence the nearest noun works as well.
+- **The taught gate does exactly what it was taught** - opens at the subject and stays shut through the
+  clause - **and agreement past a relative clause still does not improve** (44.7 % vs 44.2 % for the
+  always-open control). After a prepositional phrase it is 9.5 points better than the control, within the
+  networks' spread (n = 4). The subject is in the slot; the model has not learned to read the verb's
+  number from it, for the same reason: the material rarely makes that necessary.
+- (The always-open slot beats Stage 52's plain memory past relative clauses, 44 vs 31 %, but with less
+  training; Stage 52 showed this case getting *worse* with more reading, so it is not a fair comparison.)
+
+**What it means.** Holding the subject is not enough; the model must also *use* it at the verb, and
+predicting the next word in ordinary text rewards that too rarely to learn. Two ways forward: material where
+the nearest noun misleads more often (children hear many such sentences in speech and are corrected), or
+a signal that rewards agreement itself - the reward-gated learning of Stages 27-29, where the basal ganglia
+learn *when* a held memory pays off.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

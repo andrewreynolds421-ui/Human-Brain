@@ -1,0 +1,557 @@
+{
+ "model": "taught",
+ "seed": 2,
+ "training": [
+  {
+   "epoch": 1,
+   "train": 5.601,
+   "val": 5.039,
+   "aux": 0.0852,
+   "minutes": 15.8
+  },
+  {
+   "epoch": 2,
+   "train": 5.229,
+   "val": 4.909,
+   "aux": 0.0714,
+   "minutes": 16.1
+  },
+  {
+   "epoch": 3,
+   "train": 5.117,
+   "val": 4.847,
+   "aux": 0.0688,
+   "minutes": 16.4
+  }
+ ],
+ "val_logp_per_word": -4.847,
+ "C": {
+  "two_neighbours_swapped": 0.9399,
+  "shuffled": 0.9933
+ },
+ "D": {
+  "all": 0.57,
+  "known_words_only": 0.612,
+  "known_to_stage51_vocab": 0.64,
+  "by_phenomenon": {
+   "adjunct_island": {
+    "field": "island_effects",
+    "all": 0.614,
+    "known_pairs": 320,
+    "known": 0.647
+   },
+   "anaphor_gender_agreement": {
+    "field": "anaphor_agreement",
+    "all": 0.616,
+    "known_pairs": 507,
+    "known": 0.781
+   },
+   "anaphor_number_agreement": {
+    "field": "anaphor_agreement",
+    "all": 0.766,
+    "known_pairs": 575,
+    "known": 0.831
+   },
+   "animate_subject_passive": {
+    "field": "s-selection",
+    "all": 0.488,
+    "known_pairs": 307,
+    "known": 0.612
+   },
+   "animate_subject_trans": {
+    "field": "s-selection",
+    "all": 0.785,
+    "known_pairs": 297,
+    "known": 0.751
+   },
+   "causative": {
+    "field": "argument_structure",
+    "all": 0.584,
+    "known_pairs": 290,
+    "known": 0.534
+   },
+   "complex_NP_island": {
+    "field": "island_effects",
+    "all": 0.436,
+    "known_pairs": 166,
+    "known": 0.349
+   },
+   "coordinate_structure_constraint_complex_left_branch": {
+    "field": "island_effects",
+    "all": 0.311,
+    "known_pairs": 235,
+    "known": 0.306
+   },
+   "coordinate_structure_constraint_object_extraction": {
+    "field": "island_effects",
+    "all": 0.279,
+    "known_pairs": 370,
+    "known": 0.284
+   },
+   "determiner_noun_agreement_1": {
+    "field": "determiner_noun_agreement",
+    "all": 0.658,
+    "known_pairs": 359,
+    "known": 0.822
+   },
+   "determiner_noun_agreement_2": {
+    "field": "determiner_noun_agreement",
+    "all": 0.688,
+    "known_pairs": 428,
+    "known": 0.804
+   },
+   "determiner_noun_agreement_irregular_1": {
+    "field": "determiner_noun_agreement",
+    "all": 0.404,
+    "known_pairs": 195,
+    "known": 0.913
+   },
+   "determiner_noun_agreement_irregular_2": {
+    "field": "determiner_noun_agreement",
+    "all": 0.736,
+    "known_pairs": 342,
+    "known": 0.909
+   },
+   "determiner_noun_agreement_with_adj_2": {
+    "field": "determiner_noun_agreement",
+    "all": 0.553,
+    "known_pairs": 402,
+    "known": 0.595
+   },
+   "determiner_noun_agreement_with_adj_irregular_1": {
+    "field": "determiner_noun_agreement",
+    "all": 0.501,
+    "known_pairs": 298,
+    "known": 0.772
+   },
+   "determiner_noun_agreement_with_adj_irregular_2": {
+    "field": "determiner_noun_agreement",
+    "all": 0.632,
+    "known_pairs": 322,
+    "known": 0.708
+   },
+   "determiner_noun_agreement_with_adjective_1": {
+    "field": "determiner_noun_agreement",
+    "all": 0.566,
+    "known_pairs": 370,
+    "known": 0.716
+   },
+   "distractor_agreement_relational_noun": {
+    "field": "subject_verb_agreement",
+    "all": 0.483,
+    "known_pairs": 273,
+    "known": 0.41
+   },
+   "distractor_agreement_relative_clause": {
+    "field": "subject_verb_agreement",
+    "all": 0.482,
+    "known_pairs": 275,
+    "known": 0.455
+   },
+   "drop_argument": {
+    "field": "argument_structure",
+    "all": 0.704,
+    "known_pairs": 422,
+    "known": 0.682
+   },
+   "ellipsis_n_bar_1": {
+    "field": "ellipsis",
+    "all": 0.31,
+    "known_pairs": 154,
+    "known": 0.396
+   },
+   "ellipsis_n_bar_2": {
+    "field": "ellipsis",
+    "all": 0.49,
+    "known_pairs": 156,
+    "known": 0.391
+   },
+   "existential_there_object_raising": {
+    "field": "control_raising",
+    "all": 0.516,
+    "known_pairs": 157,
+    "known": 0.65
+   },
+   "existential_there_quantifiers_1": {
+    "field": "quantifiers",
+    "all": 0.946,
+    "known_pairs": 470,
+    "known": 0.964
+   },
+   "existential_there_quantifiers_2": {
+    "field": "quantifiers",
+    "all": 0.018,
+    "known_pairs": 474,
+    "known": 0.027
+   },
+   "existential_there_subject_raising": {
+    "field": "control_raising",
+    "all": 0.603,
+    "known_pairs": 444,
+    "known": 0.64
+   },
+   "expletive_it_object_raising": {
+    "field": "control_raising",
+    "all": 0.528,
+    "known_pairs": 123,
+    "known": 0.691
+   },
+   "inchoative": {
+    "field": "argument_structure",
+    "all": 0.547,
+    "known_pairs": 470,
+    "known": 0.464
+   },
+   "intransitive": {
+    "field": "argument_structure",
+    "all": 0.682,
+    "known_pairs": 430,
+    "known": 0.598
+   },
+   "irregular_past_participle_adjectives": {
+    "field": "irregular_forms",
+    "all": 0.912,
+    "known_pairs": 759,
+    "known": 0.922
+   },
+   "irregular_past_participle_verbs": {
+    "field": "irregular_forms",
+    "all": 0.793,
+    "known_pairs": 504,
+    "known": 0.905
+   },
+   "irregular_plural_subject_verb_agreement_1": {
+    "field": "subject_verb_agreement",
+    "all": 0.606,
+    "known_pairs": 251,
+    "known": 0.705
+   },
+   "irregular_plural_subject_verb_agreement_2": {
+    "field": "subject_verb_agreement",
+    "all": 0.554,
+    "known_pairs": 496,
+    "known": 0.714
+   },
+   "left_branch_island_echo_question": {
+    "field": "island_effects",
+    "all": 0.451,
+    "known_pairs": 418,
+    "known": 0.586
+   },
+   "left_branch_island_simple_question": {
+    "field": "island_effects",
+    "all": 0.385,
+    "known_pairs": 443,
+    "known": 0.406
+   },
+   "matrix_question_npi_licensor_present": {
+    "field": "npi_licensing",
+    "all": 0.108,
+    "known_pairs": 452,
+    "known": 0.1
+   },
+   "npi_present_1": {
+    "field": "npi_licensing",
+    "all": 0.155,
+    "known_pairs": 421,
+    "known": 0.164
+   },
+   "npi_present_2": {
+    "field": "npi_licensing",
+    "all": 0.21,
+    "known_pairs": 439,
+    "known": 0.23
+   },
+   "only_npi_licensor_present": {
+    "field": "npi_licensing",
+    "all": 0.888,
+    "known_pairs": 405,
+    "known": 0.83
+   },
+   "only_npi_scope": {
+    "field": "npi_licensing",
+    "all": 0.739,
+    "known_pairs": 183,
+    "known": 0.749
+   },
+   "passive_1": {
+    "field": "argument_structure",
+    "all": 0.575,
+    "known_pairs": 193,
+    "known": 0.689
+   },
+   "passive_2": {
+    "field": "argument_structure",
+    "all": 0.568,
+    "known_pairs": 349,
+    "known": 0.708
+   },
+   "principle_A_c_command": {
+    "field": "binding",
+    "all": 0.59,
+    "known_pairs": 411,
+    "known": 0.586
+   },
+   "principle_A_case_1": {
+    "field": "binding",
+    "all": 0.999,
+    "known_pairs": 329,
+    "known": 0.997
+   },
+   "principle_A_case_2": {
+    "field": "binding",
+    "all": 0.415,
+    "known_pairs": 333,
+    "known": 0.477
+   },
+   "principle_A_domain_1": {
+    "field": "binding",
+    "all": 0.975,
+    "known_pairs": 318,
+    "known": 0.978
+   },
+   "principle_A_domain_2": {
+    "field": "binding",
+    "all": 0.483,
+    "known_pairs": 306,
+    "known": 0.418
+   },
+   "principle_A_domain_3": {
+    "field": "binding",
+    "all": 0.381,
+    "known_pairs": 212,
+    "known": 0.481
+   },
+   "principle_A_reconstruction": {
+    "field": "binding",
+    "all": 0.375,
+    "known_pairs": 537,
+    "known": 0.382
+   },
+   "regular_plural_subject_verb_agreement_1": {
+    "field": "subject_verb_agreement",
+    "all": 0.671,
+    "known_pairs": 313,
+    "known": 0.728
+   },
+   "regular_plural_subject_verb_agreement_2": {
+    "field": "subject_verb_agreement",
+    "all": 0.421,
+    "known_pairs": 410,
+    "known": 0.466
+   },
+   "sentential_negation_npi_licensor_present": {
+    "field": "npi_licensing",
+    "all": 1.0,
+    "known_pairs": 437,
+    "known": 1.0
+   },
+   "sentential_negation_npi_scope": {
+    "field": "npi_licensing",
+    "all": 0.351,
+    "known_pairs": 197,
+    "known": 0.345
+   },
+   "sentential_subject_island": {
+    "field": "island_effects",
+    "all": 0.482,
+    "known_pairs": 273,
+    "known": 0.535
+   },
+   "superlative_quantifiers_1": {
+    "field": "quantifiers",
+    "all": 0.506,
+    "known_pairs": 501,
+    "known": 0.507
+   },
+   "superlative_quantifiers_2": {
+    "field": "quantifiers",
+    "all": 0.705,
+    "known_pairs": 523,
+    "known": 0.723
+   },
+   "tough_vs_raising_1": {
+    "field": "control_raising",
+    "all": 0.307,
+    "known_pairs": 526,
+    "known": 0.316
+   },
+   "tough_vs_raising_2": {
+    "field": "control_raising",
+    "all": 0.737,
+    "known_pairs": 314,
+    "known": 0.726
+   },
+   "transitive": {
+    "field": "argument_structure",
+    "all": 0.48,
+    "known_pairs": 208,
+    "known": 0.505
+   },
+   "wh_island": {
+    "field": "island_effects",
+    "all": 0.888,
+    "known_pairs": 475,
+    "known": 0.907
+   },
+   "wh_questions_object_gap": {
+    "field": "filler_gap_dependency",
+    "all": 0.585,
+    "known_pairs": 219,
+    "known": 0.548
+   },
+   "wh_questions_subject_gap": {
+    "field": "filler_gap_dependency",
+    "all": 0.887,
+    "known_pairs": 241,
+    "known": 0.826
+   },
+   "wh_questions_subject_gap_long_distance": {
+    "field": "filler_gap_dependency",
+    "all": 0.98,
+    "known_pairs": 142,
+    "known": 0.986
+   },
+   "wh_vs_that_no_gap": {
+    "field": "filler_gap_dependency",
+    "all": 0.969,
+    "known_pairs": 238,
+    "known": 0.954
+   },
+   "wh_vs_that_no_gap_long_distance": {
+    "field": "filler_gap_dependency",
+    "all": 0.984,
+    "known_pairs": 174,
+    "known": 0.966
+   },
+   "wh_vs_that_with_gap": {
+    "field": "filler_gap_dependency",
+    "all": 0.105,
+    "known_pairs": 391,
+    "known": 0.125
+   },
+   "wh_vs_that_with_gap_long_distance": {
+    "field": "filler_gap_dependency",
+    "all": 0.046,
+    "known_pairs": 279,
+    "known": 0.075
+   }
+  }
+ },
+ "E": {
+  "n": 739,
+  "all": 0.8106,
+  "by_distance": {
+   "0 (next word)": [
+    0.8279,
+    616
+   ],
+   "1-2": [
+    0.7547,
+    53
+   ],
+   "3-5": [
+    0.6596,
+    47
+   ],
+   "6+": [
+    0.7826,
+    23
+   ]
+  },
+  "with_attractor": [
+   0.5263,
+   19
+  ],
+  "no_attractor_distance_1plus": [
+   0.7596,
+   104
+  ],
+  "sensitivity_auc": 0.8449,
+  "sensitivity_auc_distance_1plus": 0.7445
+ },
+ "E2_controlled": {
+  "n": 2919,
+  "all": 0.6286,
+  "sensitivity_auc": 0.6997,
+  "pp_same_number": {
+   "right": 0.7168,
+   "singular_subj": 0.8515,
+   "plural_subj": 0.5762,
+   "sensitivity_auc": 0.7983,
+   "n": 738
+  },
+  "pp_attractor": {
+   "right": 0.6095,
+   "singular_subj": 0.7793,
+   "plural_subj": 0.4519,
+   "sensitivity_auc": 0.6716,
+   "n": 781
+  },
+  "rel_same_number": {
+   "right": 0.7238,
+   "singular_subj": 0.8457,
+   "plural_subj": 0.5948,
+   "sensitivity_auc": 0.8395,
+   "n": 706
+  },
+  "rel_attractor": {
+   "right": 0.4597,
+   "singular_subj": 0.574,
+   "plural_subj": 0.3511,
+   "sensitivity_auc": 0.4545,
+   "n": 694
+  },
+  "examples": [
+   "the bird that the soldiers helped is here",
+   "the horses by the tear are here",
+   "the bears that the cat met are here",
+   "the soldier by the contents was very old",
+   "the pigs that the brother knew were afraid",
+   "the squirrels that the brothers helped were there"
+  ]
+ },
+ "F": {
+  "n": 4000,
+  "more_surprised_by_substitute": 0.8165,
+  "mean_extra_surprise_nats": 2.487,
+  "late_in_sentence_pos8plus": 0.8113,
+  "early_pos3to5": 0.827
+ },
+ "gates": {
+  "pp": {
+   "slot1": {
+    "the": 0.0,
+    "SUBJECT": 0.849,
+    "prep": 0.0,
+    "noun": 0.003,
+    "IS/ARE": 0.0
+   },
+   "slot2": {
+    "the": 0.901,
+    "SUBJECT": 0.856,
+    "prep": 0.9,
+    "noun": 0.907,
+    "IS/ARE": 0.883
+   }
+  },
+  "rel": {
+   "slot1": {
+    "the": 0.0,
+    "SUBJECT": 0.848,
+    "that": 0.015,
+    "noun": 0.025,
+    "verb": 0.0,
+    "IS/ARE": 0.0
+   },
+   "slot2": {
+    "the": 0.878,
+    "SUBJECT": 0.856,
+    "that": 0.887,
+    "noun": 0.88,
+    "verb": 0.953,
+    "IS/ARE": 0.856
+   }
+  }
+ }
+}

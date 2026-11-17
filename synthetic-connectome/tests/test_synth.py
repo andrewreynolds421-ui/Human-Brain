@@ -516,3 +516,16 @@ def test_graded_reading_bands_and_readability():
             "the administration endeavoured to accommodate the extraordinary requirements of the population.")
     assert fk_grade(easy) < 2 < 12 < fk_grade(hard)
     assert [band_of(g) for g in (0.4, 1.4, 3.6, 6.2, 7.0, 11.0)] == ["1", "1", "4", "6", "7+", "7+"]
+
+
+def test_subject_slot_gates():
+    """Stage 54: the always-open control's gates are 1 everywhere; a learned slot's gates lie in (0, 1); one gate
+    value per word per slot."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    from subject_slot import SlotNet, K
+    sents = [["the", "dog", "ran", "home"], ["the", "cats", "sat", "there"]] * 20
+    C = dict(train=sents, val=sents[:2])
+    G_open = SlotNet("open", C, 0).gates_of([sents[0]])[0]
+    G_learn = SlotNet("learned", C, 0).gates_of([sents[0]])[0]
+    assert G_open.shape == (4, K) and np.allclose(G_open, 1.0)
+    assert G_learn.shape == (4, K) and ((G_learn > 0) & (G_learn < 1)).all()

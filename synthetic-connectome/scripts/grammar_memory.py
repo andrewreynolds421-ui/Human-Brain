@@ -272,18 +272,9 @@ class Net:
 
 
 # ---------------------------------------------------------------- tests
-def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--model", choices=("trigram", "srn", "gru"), required=True)
-    ap.add_argument("--seed", type=int, default=0); ap.add_argument("--epochs", type=int, default=8)
-    ap.add_argument("--frac", type=float, default=1.0)
-    ap.add_argument("--corpus", choices=("books", "big"), default="books"); a = ap.parse_args()
-    tag = "" if a.corpus == "books" else "_big"
-    os.makedirs(OUT, exist_ok=True)
-    C = GR.corpus(); tok = Counter(w for s in C["train"] for w in s)       # test items always from the original 32 books
-    Ct = C if a.corpus == "books" else corpus_big(C)
-    t0 = time.time()
-    M = Trigram(Ct, a.seed) if a.model == "trigram" else Net(a.model, Ct, a.seed, a.epochs, frac=a.frac, tag=tag, min_count=3 if a.corpus == "books" else 5)
-    res = dict(model=a.model, seed=a.seed, frac=a.frac, corpus=a.corpus, train_words=sum(map(len, Ct["train"])), train_minutes=round((time.time() - t0) / 60, 1), training=getattr(M, "log", None))
+def evaluate(M, C, tok, seed, res):
+    """the Stage 51 test battery (C word order, D BLiMP, E / E2 agreement, F surprise) for any model with logp,
+    token_logp and vocab"""
     vocab = {w for w, c in tok.items() if c >= 3}
     it = items(C, vocab)
 
@@ -296,7 +287,7 @@ def main():
     # C
     def swapped(s, r):
         i = int(r.integers(0, len(s) - 1)); t = list(s); t[i], t[i + 1] = t[i + 1], t[i]; return t
-    tr_ = np.random.default_rng(2 + 10 * a.seed); test = [s for s in C["test"] if len(set(s)) > 3][:6000]; Cr = {}
+    tr_ = np.random.default_rng(2 + 10 * seed); test = [s for s in C["test"] if len(set(s)) > 3][:6000]; Cr = {}
     for name, make in (("two_neighbours_swapped", lambda s: swapped(s, tr_)), ("shuffled", lambda s: list(tr_.permutation(s)))):
         pairs = [(s, make(s)) for s in test]; pairs = [p for p in pairs if p[0] != p[1]]
         Cr[name] = round(float(pref(pairs).mean()), 4)
@@ -351,8 +342,8 @@ def main():
     res["E2_controlled"] = dict(n=len(E2), all=round(float(ok.mean()), 4), sensitivity_auc=auc(lo_pl[sp], lo_pl[~sp]), **r2, examples=[" ".join(x["good"]) for x in E2[:6]])
     print("E2", {k: v for k, v in res["E2_controlled"].items() if k != "examples"}, res["E2_controlled"]["examples"][:3], flush=True)
     # F
-    subs = substitutions(C, it["nouns_at"], tok, vocab, a.seed)
-    if a.model == "trigram":
+    subs = substitutions(C, it["nouns_at"], tok, vocab, seed)
+    if isinstance(M, Trigram):
         so = np.array([-M.word_logp(s, i) for s, i, _ in subs])
         sw = np.array([-M.word_logp(s[:i] + [w] + s[i + 1:], i) for s, i, w in subs])
     else:
@@ -364,6 +355,22 @@ def main():
                     late_in_sentence_pos8plus=round(float(np.mean((sw > so)[pos >= 8])), 4) if (pos >= 8).sum() else None,
                     early_pos3to5=round(float(np.mean((sw > so)[pos <= 5])), 4))
     print("F", res["F"], flush=True)
+    return res
+
+
+def main():
+    ap = argparse.ArgumentParser(); ap.add_argument("--model", choices=("trigram", "srn", "gru"), required=True)
+    ap.add_argument("--seed", type=int, default=0); ap.add_argument("--epochs", type=int, default=8)
+    ap.add_argument("--frac", type=float, default=1.0)
+    ap.add_argument("--corpus", choices=("books", "big"), default="books"); a = ap.parse_args()
+    tag = "" if a.corpus == "books" else "_big"
+    os.makedirs(OUT, exist_ok=True)
+    C = GR.corpus(); tok = Counter(w for s in C["train"] for w in s)       # test items always from the original 32 books
+    Ct = C if a.corpus == "books" else corpus_big(C)
+    t0 = time.time()
+    M = Trigram(Ct, a.seed) if a.model == "trigram" else Net(a.model, Ct, a.seed, a.epochs, frac=a.frac, tag=tag, min_count=3 if a.corpus == "books" else 5)
+    res = dict(model=a.model, seed=a.seed, frac=a.frac, corpus=a.corpus, train_words=sum(map(len, Ct["train"])), train_minutes=round((time.time() - t0) / 60, 1), training=getattr(M, "log", None))
+    res = evaluate(M, C, tok, a.seed, res)
     json.dump(res, open(os.path.join(OUT, f"{a.model}{tag}{'' if a.frac == 1.0 else f'_f{a.frac}'}_s{a.seed}.json"), "w"), indent=1)
 
 

@@ -1,0 +1,382 @@
+{
+ "plain memory (Stage 52)": {
+  "networks": 4,
+  "val_logp_per_word": [
+   -4.717,
+   0.006,
+   4
+  ],
+  "word_order": [
+   94.6,
+   0.1,
+   4
+  ],
+  "blimp_same_pairs": [
+   64.8,
+   0.9,
+   4
+  ],
+  "books_agreement": [
+   86.5,
+   1.4,
+   4
+  ],
+  "surprise": [
+   84.8,
+   0.5,
+   4
+  ],
+  "pp_same_number": [
+   93.1,
+   2.3,
+   4
+  ],
+  "pp_same_number_plural_right": [
+   49.9,
+   7.7,
+   4
+  ],
+  "pp_attractor": [
+   59.4,
+   5.0,
+   4
+  ],
+  "pp_attractor_plural_right": [
+   19.3,
+   5.1,
+   4
+  ],
+  "rel_same_number": [
+   96.7,
+   3.4,
+   4
+  ],
+  "rel_same_number_plural_right": [
+   52.0,
+   13.5,
+   4
+  ],
+  "rel_attractor": [
+   31.1,
+   9.8,
+   4
+  ],
+  "rel_attractor_plural_right": [
+   5.1,
+   4.4,
+   4
+  ]
+ },
+ "always-open slot": {
+  "networks": 4,
+  "val_logp_per_word": [
+   -4.835,
+   0.008,
+   4
+  ],
+  "word_order": [
+   94.1,
+   0.2,
+   4
+  ],
+  "blimp_same_pairs": [
+   63.4,
+   0.8,
+   4
+  ],
+  "books_agreement": [
+   82.0,
+   2.0,
+   4
+  ],
+  "surprise": [
+   83.0,
+   1.1,
+   4
+  ],
+  "pp_same_number": [
+   79.6,
+   3.4,
+   4
+  ],
+  "pp_same_number_plural_right": [
+   32.1,
+   18.6,
+   4
+  ],
+  "pp_attractor": [
+   54.9,
+   12.2,
+   4
+  ],
+  "pp_attractor_plural_right": [
+   18.3,
+   13.5,
+   4
+  ],
+  "rel_same_number": [
+   85.4,
+   7.6,
+   4
+  ],
+  "rel_same_number_plural_right": [
+   30.8,
+   43.7,
+   4
+  ],
+  "rel_attractor": [
+   44.2,
+   5.8,
+   4
+  ],
+  "rel_attractor_plural_right": [
+   19.5,
+   33.1,
+   4
+  ],
+  "gates": {
+   "pp": {
+    "slot1": {
+     "the": 1.0,
+     "SUBJECT": 1.0,
+     "prep": 1.0,
+     "noun": 1.0,
+     "IS/ARE": 1.0
+    },
+    "slot2": {
+     "the": 1.0,
+     "SUBJECT": 1.0,
+     "prep": 1.0,
+     "noun": 1.0,
+     "IS/ARE": 1.0
+    }
+   },
+   "rel": {
+    "slot1": {
+     "the": 1.0,
+     "SUBJECT": 1.0,
+     "that": 1.0,
+     "noun": 1.0,
+     "verb": 1.0,
+     "IS/ARE": 1.0
+    },
+    "slot2": {
+     "the": 1.0,
+     "SUBJECT": 1.0,
+     "that": 1.0,
+     "noun": 1.0,
+     "verb": 1.0,
+     "IS/ARE": 1.0
+    }
+   }
+  }
+ },
+ "learned slot": {
+  "networks": 4,
+  "val_logp_per_word": [
+   -4.835,
+   0.006,
+   4
+  ],
+  "word_order": [
+   94.3,
+   0.2,
+   4
+  ],
+  "blimp_same_pairs": [
+   64.4,
+   0.8,
+   4
+  ],
+  "books_agreement": [
+   83.2,
+   0.6,
+   4
+  ],
+  "surprise": [
+   83.2,
+   0.8,
+   4
+  ],
+  "pp_same_number": [
+   80.3,
+   3.2,
+   4
+  ],
+  "pp_same_number_plural_right": [
+   32.9,
+   21.6,
+   4
+  ],
+  "pp_attractor": [
+   49.6,
+   8.7,
+   4
+  ],
+  "pp_attractor_plural_right": [
+   15.7,
+   13.1,
+   4
+  ],
+  "rel_same_number": [
+   83.3,
+   10.2,
+   4
+  ],
+  "rel_same_number_plural_right": [
+   34.3,
+   36.8,
+   4
+  ],
+  "rel_attractor": [
+   38.0,
+   9.0,
+   4
+  ],
+  "rel_attractor_plural_right": [
+   17.3,
+   21.6,
+   4
+  ],
+  "gates": {
+   "pp": {
+    "slot1": {
+     "the": 0.15,
+     "SUBJECT": 0.19,
+     "prep": 0.27,
+     "noun": 0.13,
+     "IS/ARE": 0.27
+    },
+    "slot2": {
+     "the": 0.97,
+     "SUBJECT": 0.94,
+     "prep": 0.95,
+     "noun": 0.93,
+     "IS/ARE": 0.92
+    }
+   },
+   "rel": {
+    "slot1": {
+     "the": 0.17,
+     "SUBJECT": 0.19,
+     "that": 0.29,
+     "noun": 0.15,
+     "verb": 0.26,
+     "IS/ARE": 0.28
+    },
+    "slot2": {
+     "the": 0.95,
+     "SUBJECT": 0.94,
+     "that": 0.9,
+     "noun": 0.94,
+     "verb": 0.96,
+     "IS/ARE": 0.95
+    }
+   }
+  }
+ },
+ "taught slot": {
+  "networks": 4,
+  "val_logp_per_word": [
+   -4.844,
+   0.005,
+   4
+  ],
+  "word_order": [
+   94.0,
+   0.5,
+   4
+  ],
+  "blimp_same_pairs": [
+   63.6,
+   1.2,
+   4
+  ],
+  "books_agreement": [
+   83.6,
+   1.6,
+   4
+  ],
+  "surprise": [
+   83.0,
+   1.0,
+   4
+  ],
+  "pp_same_number": [
+   84.3,
+   5.3,
+   4
+  ],
+  "pp_same_number_plural_right": [
+   48.4,
+   12.6,
+   4
+  ],
+  "pp_attractor": [
+   64.4,
+   7.4,
+   4
+  ],
+  "pp_attractor_plural_right": [
+   31.1,
+   11.2,
+   4
+  ],
+  "rel_same_number": [
+   87.2,
+   8.7,
+   4
+  ],
+  "rel_same_number_plural_right": [
+   52.0,
+   27.9,
+   4
+  ],
+  "rel_attractor": [
+   44.7,
+   10.2,
+   4
+  ],
+  "rel_attractor_plural_right": [
+   22.5,
+   11.7,
+   4
+  ],
+  "gates": {
+   "pp": {
+    "slot1": {
+     "the": 0.0,
+     "SUBJECT": 0.87,
+     "prep": 0.0,
+     "noun": 0.0,
+     "IS/ARE": 0.0
+    },
+    "slot2": {
+     "the": 0.83,
+     "SUBJECT": 0.84,
+     "prep": 0.9,
+     "noun": 0.85,
+     "IS/ARE": 0.84
+    }
+   },
+   "rel": {
+    "slot1": {
+     "the": 0.0,
+     "SUBJECT": 0.87,
+     "that": 0.01,
+     "noun": 0.05,
+     "verb": 0.0,
+     "IS/ARE": 0.0
+    },
+    "slot2": {
+     "the": 0.81,
+     "SUBJECT": 0.84,
+     "that": 0.87,
+     "noun": 0.85,
+     "verb": 0.9,
+     "IS/ARE": 0.85
+    }
+   }
+  }
+ }
+}

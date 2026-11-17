@@ -382,3 +382,6 @@ only run while a turn is active; training checkpoints every 10 min (SAVE_MIN).
 Stage 53 (17 Nov): graded teaching vs random order, 282 books (corpora/books_graded added), cloze reading test
 per grade - graded order no better (69.1 vs 69.8 %), slower on the way; no grade passed at 75 %; grade barely
 matters to the model. `scripts/graded_reading.py`; caches in /home/claude/models/graded.
+Stage 54 (17 Nov): gated subject slots - learned gate does not find the subject; taught gate holds it but
+agreement past relative clauses does not improve over an always-open control. `scripts/subject_slot.py`; models in
+/home/claude/models/slot. Next candidates: misleading-noun-rich material, or reward for agreement.

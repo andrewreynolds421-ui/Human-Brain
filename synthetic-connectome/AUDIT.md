@@ -652,3 +652,12 @@ are ASSUMED and not varied; validation for promotion is every 25th sentence of t
 books, unread sentences). Grade-1 validation has only 136 items (+- 4 points). The machine restarted once
 during the runs; training resumed from 10-minute checkpoints.
 
+## 35. Follow-up (17 November): Stage 54 — subject slot
+
+Four networks per model, 4.9 M words, three passes. The Stage 51 test battery was moved into a function
+(grammar_memory.evaluate) and checked against the stored Stage 51 result: identical except 3 of 4,000
+surprise items (thread-count rounding). The taught gate's targets come from spaCy's small parser (main-clause
+nsubj); 79,604 sentences whose tokens did not match the parser's were left without a target. Slot sizes
+(2 x 64), gate bias (-2), auxiliary weight (1.0) are ASSUMED. Stage 52's model is a reference only (different
+passes and output layer).
+
