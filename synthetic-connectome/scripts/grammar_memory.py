@@ -48,6 +48,21 @@ def to_vbz(w):
     return w + "s"
 
 
+MORE_BOOKS = "/home/claude/corpora/books_more"
+
+
+def corpus_big(C):
+    """Stage 52: 141 more children's / young-adult books added to the TRAINING books only. Any sentence sharing a
+    6-word run with a test or validation sentence is dropped (anthologies and readers reprint passages)."""
+    def sh(x): return {tuple(x[i:i + 6]) for i in range(len(x) - 5)}
+    held = set()
+    for x in C["test"] + C["val"]: held |= sh(x)
+    extra = []
+    for d in sorted(glob.glob(os.path.join(MORE_BOOKS, "*"))):
+        extra += [x for x in GR.sentences(GR.book_text(d)) if not (sh(x) & held)]
+    return dict(C, train=C["train"] + extra)
+
+
 # ---------------------------------------------------------------- test items (built once, cached)
 def items(C, vocab):
     path = os.path.join(OUT, "test_items.json")
@@ -156,12 +171,12 @@ class Trigram:
 
 # ---------------------------------------------------------------- recurrent networks
 class Net:
-    def __init__(self, kind, C, seed, epochs=8, hidden=256, emb=128, frac=1.0):
+    def __init__(self, kind, C, seed, epochs=8, hidden=256, emb=128, frac=1.0, tag="", min_count=3):
         import torch, torch.nn as nn
         torch.manual_seed(seed); torch.set_num_threads(int(os.environ.get("THREADS", "2")))
         self.torch = torch
         cnt = Counter(w for s in C["train"] for w in s)
-        self.itos = ["<pad>", "<s>", "</s>", "<unk>"] + sorted(w for w, c in cnt.items() if c >= 3)
+        self.itos = ["<pad>", "<s>", "</s>", "<unk>"] + sorted(w for w, c in cnt.items() if c >= min_count)
         self.stoi = {w: i for i, w in enumerate(self.itos)}; self.vocab = set(self.itos[4:])
         V = len(self.itos)
         rnn = nn.RNN if kind == "srn" else nn.GRU
@@ -174,9 +189,9 @@ class Net:
                 h, _ = s.r(s.d(s.e(x))); return s.o(s.d(h))
         self.m = M()
         os.makedirs(MODELS, exist_ok=True)
-        path = os.path.join(MODELS, f"{kind}{'' if frac == 1.0 else f'_f{frac}'}_s{seed}.pt")
+        path = os.path.join(MODELS, f"{kind}{tag}{'' if frac == 1.0 else f'_f{frac}'}_s{seed}.pt")
         self.log = []
-        if os.path.exists(path):
+        if os.path.exists(path) and os.path.exists(path + ".json"):
             self.m.load_state_dict(torch.load(path)); self.log = json.load(open(path + ".json"))
         else:
             if frac < 1.0:                                   # read only part of the books (random sentences)
@@ -199,27 +214,47 @@ class Net:
             yield g, self.torch.from_numpy(x)
 
     def train(self, C, seed, epochs, path):
+        """resumable: a checkpoint every SAVE_MIN minutes, inside a pass too (the machine restarts about hourly);
+        each pass's batch order is fixed by (seed, pass), so a resumed pass skips the batches already done"""
         torch = self.torch; F = torch.nn.functional
-        opt = torch.optim.Adam(self.m.parameters(), lr=2e-3); rng = np.random.default_rng(seed)
-        best, bad = 1e9, 0
-        for ep in range(epochs):
-            self.m.train(); t0 = time.time(); tot = n = 0
-            for _, x in self.batches(C["train"], 64, rng):
+        opt = torch.optim.Adam(self.m.parameters(), lr=2e-3)
+        best, bad, start, done_b, tot, n = 1e9, 0, 0, 0, 0.0, 0
+        ck = path + ".ckpt"; save_s = 60 * float(os.environ.get("SAVE_MIN", "10"))
+        if os.path.exists(ck):
+            z = torch.load(ck, weights_only=False)
+            self.m.load_state_dict(z["model"]); opt.load_state_dict(z["opt"])
+            best, bad, start, self.log = z["best"], z["bad"], z["epoch"], z["log"]
+            done_b, tot, n = z.get("batch", 0), z.get("tot", 0.0), z.get("n", 0)
+            print("resumed at pass", start + 1, "batch", done_b, flush=True)
+
+        def save(ep, b, tot, n):
+            torch.save(dict(model=self.m.state_dict(), opt=opt.state_dict(), best=best, bad=bad, epoch=ep, log=self.log, batch=b, tot=tot, n=n), ck + ".tmp")
+            os.replace(ck + ".tmp", ck)
+
+        for ep in range(start, epochs):
+            if bad >= 2: break
+            self.m.train(); t0 = time.time(); last = time.time()
+            for b, (_, x) in enumerate(self.batches(C["train"], 64, np.random.default_rng(1000 * seed + ep))):
+                if b < done_b: continue
                 out = self.m(x[:, :-1]); y = x[:, 1:]
                 loss = F.cross_entropy(out.reshape(-1, out.shape[-1]), y.reshape(-1), ignore_index=0)
                 opt.zero_grad(); loss.backward(); torch.nn.utils.clip_grad_norm_(self.m.parameters(), 1.0); opt.step()
                 k = int((y > 0).sum()); tot += float(loss.detach()) * k; n += k
+                if time.time() - last > save_s:
+                    self.m.eval(); save(ep, b + 1, tot, n); self.m.train(); last = time.time()
+            done_b = 0
             self.m.eval()
             val = -np.sum(self.logp(C["val"])) / sum(len(s) + 1 for s in C["val"])
-            self.log.append(dict(epoch=ep + 1, train=round(tot / n, 3), val=round(float(val), 3), minutes=round((time.time() - t0) / 60, 1)))
-            print(self.log[-1], flush=True)
+            self.log.append(dict(epoch=ep + 1, train=round(tot / max(n, 1), 3), val=round(float(val), 3), minutes=round((time.time() - t0) / 60, 1)))
+            print(self.log[-1], flush=True); tot, n = 0.0, 0
             if val < best - 1e-3:
-                best, bad = val, 0; torch.save(self.m.state_dict(), path)
+                best, bad = val, 0; torch.save(self.m.state_dict(), path + ".best")
             else:
                 bad += 1
-                if bad >= 2: break
             for g in opt.param_groups: g["lr"] *= 0.7
-        json.dump(self.log, open(path + ".json", "w"))
+            save(ep + 1, 0, 0.0, 0)
+        os.replace(path + ".best", path); json.dump(self.log, open(path + ".json", "w"))
+        if os.path.exists(ck): os.remove(ck)
         self.m.load_state_dict(torch.load(path))
 
     def token_logp(self, sents):
@@ -240,12 +275,15 @@ class Net:
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--model", choices=("trigram", "srn", "gru"), required=True)
     ap.add_argument("--seed", type=int, default=0); ap.add_argument("--epochs", type=int, default=8)
-    ap.add_argument("--frac", type=float, default=1.0); a = ap.parse_args()
+    ap.add_argument("--frac", type=float, default=1.0)
+    ap.add_argument("--corpus", choices=("books", "big"), default="books"); a = ap.parse_args()
+    tag = "" if a.corpus == "books" else "_big"
     os.makedirs(OUT, exist_ok=True)
-    C = GR.corpus(); tok = Counter(w for s in C["train"] for w in s)
+    C = GR.corpus(); tok = Counter(w for s in C["train"] for w in s)       # test items always from the original 32 books
+    Ct = C if a.corpus == "books" else corpus_big(C)
     t0 = time.time()
-    M = Trigram(C, a.seed) if a.model == "trigram" else Net(a.model, C, a.seed, a.epochs, frac=a.frac)
-    res = dict(model=a.model, seed=a.seed, frac=a.frac, train_minutes=round((time.time() - t0) / 60, 1), training=getattr(M, "log", None))
+    M = Trigram(Ct, a.seed) if a.model == "trigram" else Net(a.model, Ct, a.seed, a.epochs, frac=a.frac, tag=tag, min_count=3 if a.corpus == "books" else 5)
+    res = dict(model=a.model, seed=a.seed, frac=a.frac, corpus=a.corpus, train_words=sum(map(len, Ct["train"])), train_minutes=round((time.time() - t0) / 60, 1), training=getattr(M, "log", None))
     vocab = {w for w, c in tok.items() if c >= 3}
     it = items(C, vocab)
 
@@ -264,15 +302,16 @@ def main():
         Cr[name] = round(float(pref(pairs).mean()), 4)
     res["C"] = Cr; print("C", Cr, flush=True)
     # D
-    D = {}; allk = []
+    D = {}; allk = []; allk_small = []; small_vocab = {w for w, c in tok.items() if c >= 3}
     for f in sorted(glob.glob(os.path.join(GR.BLIMP, "*.jsonl"))):
         rows = [json.loads(l) for l in open(f)]
         P = [(re.findall(r"[a-z]+(?:'[a-z]+)?", x["sentence_good"].lower()), re.findall(r"[a-z]+(?:'[a-z]+)?", x["sentence_bad"].lower())) for x in rows]
         ok = pref(P); kn = np.array([all(w in M.vocab for w in g + b) for g, b in P])
         D[os.path.basename(f)[:-6]] = dict(field=rows[0].get("linguistics_term", "?"), all=round(float(ok.mean()), 3),
                                            known_pairs=int(kn.sum()), known=round(float(ok[kn].mean()), 3) if kn.sum() else None)
-        allk += list(ok[kn])
-    res["D"] = dict(all=round(float(np.mean([v["all"] for v in D.values()])), 3), known_words_only=round(float(np.mean(allk)), 3), by_phenomenon=D)
+        allk += list(ok[kn]); ks = np.array([all(w in small_vocab for w in g + b) for g, b in P]); allk_small += list(ok[ks])
+    res["D"] = dict(all=round(float(np.mean([v["all"] for v in D.values()])), 3), known_words_only=round(float(np.mean(allk)), 3),
+                  known_to_stage51_vocab=round(float(np.mean(allk_small)), 3), by_phenomenon=D)
     print("D", res["D"]["all"], res["D"]["known_words_only"], flush=True)
     def at_verb(X):
         """log P(right verb | words before) - log P(wrong verb | words before), and the plural-minus-singular
@@ -325,7 +364,7 @@ def main():
                     late_in_sentence_pos8plus=round(float(np.mean((sw > so)[pos >= 8])), 4) if (pos >= 8).sum() else None,
                     early_pos3to5=round(float(np.mean((sw > so)[pos <= 5])), 4))
     print("F", res["F"], flush=True)
-    json.dump(res, open(os.path.join(OUT, f"{a.model}{'' if a.frac == 1.0 else f'_f{a.frac}'}_s{a.seed}.json"), "w"), indent=1)
+    json.dump(res, open(os.path.join(OUT, f"{a.model}{tag}{'' if a.frac == 1.0 else f'_f{a.frac}'}_s{a.seed}.json"), "w"), indent=1)
 
 
 if __name__ == "__main__":

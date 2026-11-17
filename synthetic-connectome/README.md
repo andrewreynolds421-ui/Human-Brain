@@ -3204,6 +3204,53 @@ between subject and verb.
 the cheapest test of whether this memory learns to find the subject. A structural alternative is a
 memory that keeps the subject in its own slot (gated, as here) instead of in a single mixed state.
 
+## Stage 52: seven times as much reading
+
+**Question.** Stage 51's gated memory carried number past three words but could not find the subject,
+and every measure was still rising with more text. Does it find the subject if it reads much more?
+
+**Material.** 141 more children's and young-adult books from Project Gutenberg (Little Women, Tom Sawyer,
+Huckleberry Finn, the Anne books, Nesbit, Peter Pan, the rest of Oz, Lang's twelve Fairy Books, Uncle Remus,
+Doctor Dolittle, Burgess, Potter ...), added to the training books only: 4.9 M words in all (Stage 51:
+0.7 M). The four test books stay unread; any new sentence sharing a 6-word run with a test or validation
+sentence was dropped (1,722 sentences - readers and anthologies reprint passages). Same gated memory, same
+tests; at most four passes (one pass already matched Stage 51's final prediction). Four networks on 4.9 M,
+two on half of it (2.4 M). `scripts/grammar_memory.py --corpus big`; `results/grammar_memory/stage52_summary.json`.
+BLiMP is scored on the same 8,581 pairs as Stage 51 (words known to the original books' vocabulary).
+
+| words read | 0.35 M | 0.7 M | 2.4 M (2 networks) | **4.9 M** |
+|---|---|---|---|---|
+| prediction (log-prob per word, validation) | -5.09 | -4.92 | -4.84 | **-4.72** |
+| word order: two neighbours swapped | 90.9 % | 92.0 % | 94.0 % | **94.6 %** |
+| surprise at a noun that does not fit | 75.2 % | 78.2 % | 82.3 % | **84.8 %** |
+| BLiMP, same pairs as Stage 51 | 53.8 % | 57.8 % | 63.3 % | **64.8 ± 0.9 %** |
+| agreement in book sentences (sensitivity) | 69.6 % | 73.8 % | 79.4 % | **86.5 %** |
+| built, "of the" + noun of the same number | 60.2 % | 66.1 % | 76.6 % | **93.1 %** |
+| built, "the birds that the dogs saw ___" | 53.1 % | 69.4 % | 80.1 % | **96.7 %** |
+| built, "of the" + noun of the OTHER number | 48.2 % | 51.3 % | 52.4 % | 59.4 % |
+| built, "the bird that the soldiers saw ___" | 49.0 % | 44.1 % | 45.5 % | **31.1 ± 9.8 %** |
+
+- **It learned number.** With nothing of the other number in between, its expectation of a plural verb
+  now follows the subject almost perfectly (93-97 %), even four words later across a relative clause.
+  Agreement in real book sentences 86.5 %, word order 94.6 %, surprise at a misfit word 84.8 %, BLiMP
+  64.8 % (for scale: a 5-gram model on far more text, 61.2 %; humans 88.6 %).
+- **It still does not know which noun is the subject.** With a noun of the other number in between it is
+  barely above chance after a prepositional phrase (59 %) and *below* chance after a relative clause (31 %):
+  it follows the nearest noun ("the bird that the soldiers saw *are*"), and more strongly with more
+  reading. It learned "the verb agrees with the noun before it" - the rule true in most sentences it read -
+  not "the verb agrees with its subject". People make this attraction error too, but rarely.
+- **The bias toward "is / was" is shrinking**: right verb for plural subjects in the built sentences 6 ->
+  15 -> 22 -> 50 %.
+
+**What it means.** More text was the right next test and it paid on every measure except the one that
+needs structure: telling the subject from another noun. That points to the structural option from Stage 51
+- a memory that holds the subject in its own slot, gated to open at the subject and stay closed through
+the clause - or far more text (networks in the literature need tens to hundreds of millions of words for
+this; Linzen et al. 2016; Gulordava et al. 2018).
+
+**Limits.** At most four passes (the 4.9 M networks were still improving slowly: -4.75 -> -4.72 on the
+last pass); 2.4 M point has two networks; result files record the full corpus size for the 2.4 M runs.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

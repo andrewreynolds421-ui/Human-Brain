@@ -375,3 +375,7 @@ blimp) - not in the repository.
 Stage 51 (16 Nov): recurrent memory over the sentence (simple, gated) vs Stage 50 - carries number past
 three words (69 % vs 50 %), but cannot tell subject from a noun in between; more text helps on every measure.
 `scripts/grammar_memory.py`; trained models in /home/claude/models/grammar_memory (not in the repository).
+Stage 52 (16 Nov): gated memory on 4.9 M words (141 more Gutenberg books in /home/claude/corpora/books_more) -
+learns number (93-97 % without a distractor, BLiMP 64.8 %) but follows the nearest noun when one of the other
+number intervenes (31 % in relative clauses). Next: a subject slot, or far more text. Note: background jobs
+only run while a turn is active; training checkpoints every 10 min (SAVE_MIN).

@@ -632,3 +632,13 @@ the right one (1 of 740) were dropped after a crash. A half-trained model file l
 deleted before reuse. Agreement items are graded with spaCy's small parser (noisy); the built sentences are the
 controlled test. Sizes ASSUMED, not varied.
 
+## 33. Follow-up (16 November): Stage 52 — more text
+
+141 Gutenberg books added to training only; sentences sharing any 6-word run with test or validation
+sentences dropped (1,722). The session's machine stops background work a few minutes after a turn ends,
+which cost ~5 hours and two restarts; training now checkpoints every 10 minutes inside a pass and resumes
+(checked by killing a run mid-pass). Passes capped at four for all big-corpus runs (Stage 51 used up to
+eight with early stopping) - the 4.9 M networks had not plateaued. The 2.4 M point has two networks, not
+four (METHODS asks four per claim; it is a trend point only). `train_words` in the 2.4 M result files records
+the full corpus, not the half actually read.
+
