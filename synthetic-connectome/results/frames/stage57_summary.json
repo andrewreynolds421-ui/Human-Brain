@@ -1,0 +1,431 @@
+{
+ "text": {
+  "networks": 4,
+  "built": {
+   "page_nouns_pp_same": {
+    "right": [
+     99.2,
+     0.6,
+     4
+    ],
+    "plural": [
+     98.6,
+     0.9,
+     4
+    ],
+    "singular": [
+     99.7,
+     0.3,
+     4
+    ]
+   },
+   "page_nouns_pp_attractor": {
+    "right": [
+     91.2,
+     5.3,
+     4
+    ],
+    "plural": [
+     88.9,
+     7.4,
+     4
+    ],
+    "singular": [
+     94.1,
+     7.7,
+     4
+    ]
+   },
+   "page_nouns_rel_same": {
+    "right": [
+     99.5,
+     0.5,
+     4
+    ],
+    "plural": [
+     98.9,
+     1.1,
+     4
+    ],
+    "singular": [
+     100.0,
+     0.0,
+     4
+    ]
+   },
+   "page_nouns_rel_attractor": {
+    "right": [
+     99.5,
+     0.3,
+     4
+    ],
+    "plural": [
+     99.1,
+     0.5,
+     4
+    ],
+    "singular": [
+     100.0,
+     0.0,
+     4
+    ]
+   },
+   "held_out_nouns_pp_same": {
+    "right": [
+     73.5,
+     4.3,
+     4
+    ],
+    "plural": [
+     51.4,
+     8.7,
+     4
+    ],
+    "singular": [
+     93.9,
+     2.3,
+     4
+    ]
+   },
+   "held_out_nouns_pp_attractor": {
+    "right": [
+     57.0,
+     3.6,
+     4
+    ],
+    "plural": [
+     33.4,
+     7.7,
+     4
+    ],
+    "singular": [
+     82.3,
+     5.3,
+     4
+    ]
+   },
+   "held_out_nouns_rel_same": {
+    "right": [
+     62.5,
+     2.4,
+     4
+    ],
+    "plural": [
+     34.1,
+     4.9,
+     4
+    ],
+    "singular": [
+     94.7,
+     1.3,
+     4
+    ]
+   },
+   "held_out_nouns_rel_attractor": {
+    "right": [
+     63.9,
+     1.6,
+     4
+    ],
+    "plural": [
+     35.1,
+     3.7,
+     4
+    ],
+    "singular": [
+     92.3,
+     3.7,
+     4
+    ]
+   }
+  },
+  "blimp": [
+   61.3,
+   1.5,
+   4
+  ],
+  "books_agreement": [
+   87.8,
+   0.6,
+   4
+  ],
+  "E2_sensitivity": {
+   "pp_same_number": [
+    100.0,
+    0.0,
+    4
+   ],
+   "pp_attractor": [
+    99.7,
+    0.3,
+    4
+   ],
+   "rel_same_number": [
+    100.0,
+    0.0,
+    4
+   ],
+   "rel_attractor": [
+    100.0,
+    0.0,
+    4
+   ]
+  },
+  "val_logp": -4.975
+ },
+ "check": {
+  "networks": 4,
+  "built": {
+   "page_nouns_pp_same": {
+    "right": [
+     99.8,
+     0.0,
+     4
+    ],
+    "plural": [
+     99.6,
+     0.3,
+     4
+    ],
+    "singular": [
+     99.9,
+     0.3,
+     4
+    ]
+   },
+   "page_nouns_pp_attractor": {
+    "right": [
+     96.3,
+     2.6,
+     4
+    ],
+    "plural": [
+     94.3,
+     5.2,
+     4
+    ],
+    "singular": [
+     98.9,
+     1.4,
+     4
+    ]
+   },
+   "page_nouns_rel_same": {
+    "right": [
+     100.0,
+     0.0,
+     4
+    ],
+    "plural": [
+     100.0,
+     0.0,
+     4
+    ],
+    "singular": [
+     100.0,
+     0.0,
+     4
+    ]
+   },
+   "page_nouns_rel_attractor": {
+    "right": [
+     99.7,
+     0.1,
+     4
+    ],
+    "plural": [
+     99.4,
+     0.3,
+     4
+    ],
+    "singular": [
+     100.0,
+     0.0,
+     4
+    ]
+   },
+   "held_out_nouns_pp_same": {
+    "right": [
+     76.8,
+     2.5,
+     4
+    ],
+    "plural": [
+     60.5,
+     5.7,
+     4
+    ],
+    "singular": [
+     91.8,
+     2.4,
+     4
+    ]
+   },
+   "held_out_nouns_pp_attractor": {
+    "right": [
+     57.1,
+     3.3,
+     4
+    ],
+    "plural": [
+     39.4,
+     6.8,
+     4
+    ],
+    "singular": [
+     76.0,
+     2.5,
+     4
+    ]
+   },
+   "held_out_nouns_rel_same": {
+    "right": [
+     67.6,
+     2.4,
+     4
+    ],
+    "plural": [
+     49.2,
+     5.0,
+     4
+    ],
+    "singular": [
+     88.5,
+     1.9,
+     4
+    ]
+   },
+   "held_out_nouns_rel_attractor": {
+    "right": [
+     68.4,
+     4.1,
+     4
+    ],
+    "plural": [
+     50.0,
+     5.1,
+     4
+    ],
+    "singular": [
+     86.7,
+     6.2,
+     4
+    ]
+   }
+  },
+  "blimp": [
+   61.6,
+   0.6,
+   4
+  ],
+  "books_agreement": [
+   87.6,
+   0.5,
+   4
+  ],
+  "E2_sensitivity": {
+   "pp_same_number": [
+    100.0,
+    0.0,
+    4
+   ],
+   "pp_attractor": [
+    100.0,
+    0.0,
+    4
+   ],
+   "rel_same_number": [
+    100.0,
+    0.0,
+    4
+   ],
+   "rel_attractor": [
+    100.0,
+    0.0,
+    4
+   ]
+  },
+  "val_logp": -4.98,
+  "guess_number_held_out_nouns": {
+   "simple_same": [
+    72.1,
+    5.9,
+    4
+   ],
+   "simple_attractor": [
+    74.1,
+    5.8,
+    4
+   ],
+   "pp_same": [
+    72.2,
+    2.6,
+    4
+   ],
+   "pp_attractor": [
+    73.0,
+    4.9,
+    4
+   ],
+   "rel_obj_same": [
+    72.9,
+    5.2,
+    4
+   ],
+   "rel_obj_attractor": [
+    72.3,
+    5.1,
+    4
+   ],
+   "rel_subj_same": [
+    72.7,
+    7.2,
+    4
+   ],
+   "rel_subj_attractor": [
+    73.2,
+    4.9,
+    4
+   ],
+   "comp_same": [
+    68.9,
+    4.1,
+    4
+   ],
+   "comp_attractor": [
+    73.5,
+    5.7,
+    4
+   ]
+  }
+ },
+ "stage56_check": {
+  "E2_sensitivity": {
+   "pp_same_number": [
+    100.0,
+    0.0,
+    4
+   ],
+   "pp_attractor": [
+    99.5,
+    0.4,
+    4
+   ],
+   "rel_same_number": [
+    100.0,
+    0.0,
+    4
+   ],
+   "rel_attractor": [
+    100.0,
+    0.0,
+    4
+   ]
+  },
+  "blimp": [
+   61.8,
+   0.8,
+   4
+  ]
+ }
+}

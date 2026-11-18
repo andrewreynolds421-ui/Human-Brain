@@ -390,3 +390,5 @@ the pages' sentences alone teach agreement noun by noun, not the rule. `scripts/
 as feedback after predicting; many-noun pages with held-out nouns; then real illustrated books (user's round 2).
 Stage 56 (18 Nov): 679 page nouns + 218 held out; held-out nouns past a relative clause 60-65 % (first transfer),
 picture check +5; no transfer to "of" (never on pages). `scripts/picture_check.py`. Next: many frames, some held out.
+Stage 57 (18 Nov): varied frames - page nouns agree past misleading nouns in held-out frames 91-100 %; held-out
+nouns limited by knowing their number (no spelling). `scripts/frames.py`. Next: word endings as input.

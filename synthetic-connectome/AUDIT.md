@@ -676,3 +676,10 @@ CRC32 before any run started (a restart would otherwise have changed every noun'
 list comes from spaCy's majority tag and simple plural rules; it contains odd pairs (kept). Held-out nouns are
 rarer on average than page nouns (not matched). The session ended twice during the runs; training resumed.
 
+## 38. Follow-up (18 November): Stage 57 — many frames
+
+Four networks per group. Held-out frame words occur in 6 of 3,000 pages only as nouns ("garden"), never in their
+held-out role (test added). The built test differs from Stage 56's (held-out prepositions and verbs instead of
+"of" and partly-trained verbs), so Stage 56 numbers are a reference, not a matched comparison. Per-preposition
+scores were not kept. The session ended twice during the runs; training resumed.
+

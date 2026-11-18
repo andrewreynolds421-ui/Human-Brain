@@ -3438,6 +3438,40 @@ For comparison, every earlier model past a relative clause with a misleading nou
 **What it means.** Variety is what turns noun-by-noun learning into a rule: many nouns gave the first
 transfer to new nouns. The same should apply to frames - next: many prepositions and verbs, some held out.
 
+## Stage 57: many frames as well as many nouns
+
+**Question.** Stage 56 learned the drilled frames, not "the subject": no transfer to "of the". Does variety
+in frames - as variety in nouns did - turn it into the rule?
+
+**Pages** (`scripts/frames.py`; Stage 56's training otherwise): 28 prepositions, 35 relative-clause verbs,
+20 things to say of the subject, seven sentence types including two phrases deep ("the X by the Y near the
+Z is ...") and a relative clause inside a phrase. HELD OUT of every page: *of, under, across, toward*; *helped,
+loved, met, called*; the endings *here, there, afraid, very happy, quite still, in the garden*. The test uses
+only held-out frames. Same 679 page nouns / 218 held-out nouns; text and check groups, four networks each.
+
+| held-out frames only, text only | text | check |
+|---|---|---|
+| page nouns, "of / under / across / toward the Y" + misleading noun | 91.2 ± 5.3 % | **96.3 ± 2.6 %** |
+| page nouns, "that the Y helped / loved / met / called" + misleading noun | 99.5 % | **99.7 %** |
+| held-out nouns, phrase + misleading noun | 57.0 % | 57.1 % |
+| held-out nouns, phrase, same number | 73.5 % | 76.8 % |
+| held-out nouns, relative clause + misleading noun | 63.9 % | **68.4 ± 4.1 %** |
+| held-out nouns, relative clause, same number | 62.5 % | 67.6 % |
+
+(Stage 56, "of the" + misleading noun, page nouns: 76 / 61 %.)
+
+- **With varied frames, the rule carries to frames it never saw.** Page nouns agree past a misleading noun
+  in held-out phrases 91-96 % of the time and in held-out relative clauses 99.7 %. The verb now follows the
+  subject, not the nearest noun or a memorised frame.
+- **For held-out nouns, structure is no longer the limit - knowing the noun's number is.** In relative
+  clauses they do as well with a misleading noun as without one (68 vs 68 %): what fails is not finding the
+  subject but knowing whether "acquaintances" is plural. The model sees each word whole; it cannot see the
+  *-s*. Children use the ending.
+- The picture check adds a few points where it differs (within about one spread, n = 4).
+
+**Next.** Let it see the word's ending (the letters it learned in Stages 38-42), so the number of a rare or
+new noun can come from its *-s*.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

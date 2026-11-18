@@ -559,3 +559,20 @@ def test_picture_check_nouns_held_out_and_pages_agree():
         assert not set(p["words"]) & heldw
         assert (p["words"][p["verb"]] in ("are", "were")) == bool(p["number"])
     assert np.allclose(look("acquaintance", rng), PC.Look()("acquaintance", rng))
+
+
+def test_frames_pages_use_no_held_out_frames():
+    """Stage 57: pages never use a held-out preposition, relative-clause verb or ending in that role; the verb agrees
+    with the subject's number; the built test uses only held-out frames."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import frames as F, picture_check as PC
+    tr, held = PC.nouns(); look = PC.Look(); rng = np.random.default_rng(2)
+    nounw = {w for p in tr for w in p}
+    for _ in range(500):
+        p = F.make_page(rng, tr, look); w = p["words"]
+        frame_words = [x for x in w if x not in nounw]
+        assert not set(frame_words) & (set(F.HELD_PREPS) | set(F.HELD_REL))
+        assert (w[p["verb"]] in ("are", "were")) == bool(p["number"])
+    T = F.built_tests(tr, held, np.random.default_rng(3), n=50)
+    for x in T["page_nouns"] + T["held_out_nouns"]:
+        assert x["good"][2] in F.HELD_PREPS + ["that"] and (x["kind"] == "pp" or x["good"][5] in F.HELD_REL)
