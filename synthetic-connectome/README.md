@@ -3472,6 +3472,38 @@ only held-out frames. Same 679 page nouns / 218 held-out nouns; text and check g
 **Next.** Let it see the word's ending (the letters it learned in Stages 38-42), so the number of a rare or
 new noun can come from its *-s*.
 
+## Stage 58: seeing the word's ending
+
+**Question.** Stage 57: the verb follows the subject in any frame, but for nouns never drilled the model often
+did not know the noun's number - it saw each word whole, without its *-s*. Does seeing the ending fix that?
+
+**Change** (`scripts/spelling.py`): each word is read as the whole word plus its last one, two and three
+letters (what the letter and word units of Stages 38-42 give). Everything else is Stage 57's check group.
+Four networks.
+
+| held-out frames, text only | whole words (Stage 57) | words + endings |
+|---|---|---|
+| page nouns, phrase + misleading noun | 96.3 % | 90.8 ± 7.7 % |
+| page nouns, relative clause + misleading noun | 99.7 % | 99.7 % |
+| **held-out nouns, phrase + misleading noun** | 57.1 % | **91.6 ± 5.7 %** |
+| **held-out nouns, relative clause + misleading noun** | 68.4 % | **100.0 %** |
+| held-out nouns, nothing misleading | 68-77 % | 99.8-99.9 % |
+| guess of how many are acting, held-out nouns | 72.5 % | 100 % |
+| **agreement in real book sentences** | 87.6 % | **94.7 ± 1.0 %** |
+| BLiMP, same pairs | 61.6 % | 62.6 % |
+
+**The ending is not used as a blind shortcut** (`results/spelling/ending_shortcut_check.json`): singular nouns
+that end in *s* (*princess, glass, dress, class* ...) get a singular verb 92.4 % of the time, plurals without
+*-s* (*men, women, children, feet, mice, teeth*) a plural verb 98.3 % - as well as with whole words alone.
+
+- **Together with Stages 56-57, agreement is learned as a rule**: the verb follows the subject - not the
+  nearest noun, not a memorised frame - in phrases and clauses it never practised, and for nouns it never
+  practised, using the ending for number and its knowledge of each word where the ending misleads.
+- What did it: variety (hundreds of nouns, dozens of frames), sentences where the nearest noun misleads, and
+  seeing word form. Pictures as input were a crutch (Stage 55); as a check they added a few points.
+- BLiMP stays near 62 %: its other phenomena (questions, gaps, negative-polarity words, binding) were not
+  taught and are not helped.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

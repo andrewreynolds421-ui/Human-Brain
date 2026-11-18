@@ -683,3 +683,10 @@ held-out role (test added). The built test differs from Stage 56's (held-out pre
 "of" and partly-trained verbs), so Stage 56 numbers are a reference, not a matched comparison. Per-preposition
 scores were not kept. The session ended twice during the runs; training resumed.
 
+## 39. Follow-up (18 November): Stage 58 — word endings
+
+Four networks. The obvious risk - using "-s = plural" as a shortcut - was checked on the nouns where it misleads
+(9 singulars ending in s, 6 irregular plurals): no loss against whole-word models. Endings are the last 1-3
+letters as given units (no learning of letters from images here; Stages 38-42 showed those can be learned).
+Page-noun phrases with a misleading noun dropped 5 points (96.3 -> 90.8 %, wide spread: one network at 81 %).
+

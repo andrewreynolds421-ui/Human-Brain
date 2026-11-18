@@ -392,3 +392,6 @@ Stage 56 (18 Nov): 679 page nouns + 218 held out; held-out nouns past a relative
 picture check +5; no transfer to "of" (never on pages). `scripts/picture_check.py`. Next: many frames, some held out.
 Stage 57 (18 Nov): varied frames - page nouns agree past misleading nouns in held-out frames 91-100 %; held-out
 nouns limited by knowing their number (no spelling). `scripts/frames.py`. Next: word endings as input.
+Stage 58 (18 Nov): word endings as input - held-out nouns now agree past misleading nouns 92-100 %, book agreement
+94.7 %; not a blind -s shortcut. `scripts/spelling.py`. Agreement counts as learned. Open: other BLiMP phenomena; real
+illustrated books (user's round 2); reward route.

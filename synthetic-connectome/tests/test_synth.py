@@ -576,3 +576,14 @@ def test_frames_pages_use_no_held_out_frames():
     T = F.built_tests(tr, held, np.random.default_rng(3), n=50)
     for x in T["page_nouns"] + T["held_out_nouns"]:
         assert x["good"][2] in F.HELD_PREPS + ["that"] and (x["kind"] == "pp" or x["good"][5] in F.HELD_REL)
+
+
+def test_spelling_endings_shared():
+    """Stage 58: words with the same ending share its units; the reader still runs."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import spelling as SP, picture_check as PC
+    M = PC.CheckNet(["the", "dog", "dogs", "cat", "cats", "box", "boxes", "is", "are"], 0, True); SP.spelled(M)
+    ix = {w: i for i, w in enumerate(M.itos)}; ids = M.m.e.ids
+    assert int(ids[0][ix["dogs"]]) == int(ids[0][ix["cats"]]) != int(ids[0][ix["dog"]])
+    assert int(ids[1][ix["boxes"]]) != int(ids[1][ix["dogs"]])            # "es" vs "gs"
+    assert np.isfinite(M.logp([["the", "boxes", "are"]])[0])
