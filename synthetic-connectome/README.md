@@ -3504,6 +3504,34 @@ that end in *s* (*princess, glass, dress, class* ...) get a singular verb 92.4 %
 - BLiMP stays near 62 %: its other phenomena (questions, gaps, negative-polarity words, binding) were not
   taught and are not helped.
 
+## Stage 59: real illustrated books - the eyes cannot use them
+
+**Question (the user's round 2).** Do real picture books help, the way generated pages did?
+
+**Material** (`scripts/illustrated.py`): 21 illustrated books from Gutenberg's HTML editions (19 Beatrix
+Potter tales, Raggedy Ann, Raggedy Andy, two Three Little Pigs; *Little Black Sambo* left out for its racist
+caricature) - 576 pictures, each paired with its caption and the text up to the next picture. A page "is
+about" the things its text names (of the 34 the picture system knows: rabbit 73 pages, house 101, pig 52,
+cat 47, window 42 ...). Eyes: Stage 45's object cells on the whole picture and five crops.
+
+**Can the eyes tell what a picture shows?** Measured within each book (pages naming the thing vs pages of the
+same book not naming it, so drawing style cannot stand in), area under the curve, 50 % = chance:
+
+| | mean over 15 things |
+|---|---|
+| A: untrained (the emoji-trained prototypes) | 52.1 % |
+| B: learned from the other books' pictures and text | 51.5 % |
+| B control: text labels shuffled | 48.9 % |
+
+**Both at chance.** The illustrations are whole scenes - Peter small in a garden, a cat on a wall in a
+watercolour - while the eyes were built for one emoji-like drawing filling the view. They cannot find the
+rabbit, so nothing in a real picture can tell the reader who is acting or how many.
+
+**What it means.** Real illustrated books can only help through their text, which is already read. For
+pictures to help, the eyes would need what a child's visual system has and this one lacks: finding objects
+in cluttered scenes (figure-ground, many scales, learned from a great deal of seeing). That is a project of
+its own; generated pages (Stages 55-58) gave the grammar what it needed.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

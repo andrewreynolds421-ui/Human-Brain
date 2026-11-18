@@ -690,3 +690,9 @@ Four networks. The obvious risk - using "-s = plural" as a shortcut - was checke
 letters as given units (no learning of letters from images here; Stages 38-42 showed those can be learned).
 Page-noun phrases with a misleading noun dropped 5 points (96.3 -> 90.8 %, wide spread: one network at 81 %).
 
+## 40. Follow-up (18 November): Stage 59 — real illustrated books
+
+576 pairs from 21 books (two books had no usable pairs: images missing from the mirror). Labels are weak: a page
+"has" a thing if its text names it (the picture may not show it, or may show things not named). Within-book AUC
+needs a book with 2+ pages each way, so few books count per thing (2-10). Result at chance in both tests.
+

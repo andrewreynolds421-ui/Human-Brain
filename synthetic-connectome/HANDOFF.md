@@ -395,3 +395,5 @@ nouns limited by knowing their number (no spelling). `scripts/frames.py`. Next: 
 Stage 58 (18 Nov): word endings as input - held-out nouns now agree past misleading nouns 92-100 %, book agreement
 94.7 %; not a blind -s shortcut. `scripts/spelling.py`. Agreement counts as learned. Open: other BLiMP phenomena; real
 illustrated books (user's round 2); reward route.
+Stage 59 (18 Nov): real illustrated books (576 pictures) - the object cells cannot tell what a scene shows
+(chance); real picture books help only through their text. `scripts/illustrated.py`.

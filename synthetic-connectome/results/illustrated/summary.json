@@ -1,0 +1,215 @@
+{
+ "pairs": 576,
+ "books": [
+  "All-About-the-Three-Little-Pigs_32504",
+  "Raggedy-Andy-Stories--13-Introducing-the-Little-Rag-Brother-of-Raggedy-Ann_17371",
+  "Raggedy-Ann-Stories_18190",
+  "The-Story-of-Miss-Moppet_14848",
+  "The-Story-of-a-Fierce-Bad-Rabbit_45265",
+  "The-Story-of-the-Three-Little-Pigs_18155",
+  "The-Tailor-of-Gloucester_14868",
+  "The-Tale-of-Ginger-and-Pickles_14877",
+  "The-Tale-of-Jemima-Puddle-Duck_14814",
+  "The-Tale-of-Johnny-Town-Mouse_15284",
+  "The-Tale-of-Mr.-Jeremy-Fisher_15077",
+  "The-Tale-of-Mr.-Tod_19805",
+  "The-Tale-of-Mrs.-Tittlemouse_17089",
+  "The-Tale-of-Peter-Rabbit_14838",
+  "The-Tale-of-Samuel-Whiskers--13-Or-The-Roly-Poly-Pudding_15575",
+  "The-Tale-of-Squirrel-Nutkin_14872",
+  "The-Tale-of-Timmy-Tiptoes_14797",
+  "The-Tale-of-Tom-Kitten_14837",
+  "The-Tale-of-Two-Bad-Mice_45264",
+  "The-Tale-of-the-Flopsy-Bunnies_14220",
+  "The-Tale-of-the-Pie-and-the-Patty-Pan_15234"
+ ],
+ "A": {
+  "girl": [
+   0.567,
+   6
+  ],
+  "boy": [
+   0.543,
+   5
+  ],
+  "woman": [
+   0.446,
+   5
+  ],
+  "man": [
+   0.516,
+   6
+  ],
+  "dog": [
+   0.494,
+   3
+  ],
+  "cat": [
+   0.467,
+   7
+  ],
+  "rabbit": [
+   0.439,
+   7
+  ],
+  "rat": [
+   0.549,
+   2
+  ],
+  "sun": [
+   0.662,
+   3
+  ],
+  "basket": [
+   0.713,
+   4
+  ],
+  "chair": [
+   0.504,
+   6
+  ],
+  "tree": [
+   0.472,
+   5
+  ],
+  "window": [
+   0.47,
+   7
+  ],
+  "pig": [
+   0.491,
+   3
+  ],
+  "house": [
+   0.481,
+   10
+  ]
+ },
+ "B": {
+  "girl": [
+   0.451,
+   6
+  ],
+  "boy": [
+   0.408,
+   5
+  ],
+  "woman": [
+   0.521,
+   5
+  ],
+  "man": [
+   0.52,
+   6
+  ],
+  "dog": [
+   0.587,
+   3
+  ],
+  "cat": [
+   0.577,
+   7
+  ],
+  "rabbit": [
+   0.435,
+   7
+  ],
+  "rat": [
+   0.153,
+   2
+  ],
+  "sun": [
+   0.747,
+   3
+  ],
+  "basket": [
+   0.687,
+   4
+  ],
+  "chair": [
+   0.567,
+   6
+  ],
+  "tree": [
+   0.52,
+   5
+  ],
+  "window": [
+   0.589,
+   7
+  ],
+  "pig": [
+   0.475,
+   3
+  ],
+  "house": [
+   0.482,
+   10
+  ]
+ },
+ "B_shuffled": {
+  "girl": [
+   0.545,
+   6
+  ],
+  "boy": [
+   0.492,
+   5
+  ],
+  "woman": [
+   0.414,
+   5
+  ],
+  "man": [
+   0.497,
+   6
+  ],
+  "dog": [
+   0.433,
+   3
+  ],
+  "cat": [
+   0.534,
+   7
+  ],
+  "rabbit": [
+   0.518,
+   7
+  ],
+  "rat": [
+   0.444,
+   2
+  ],
+  "sun": [
+   0.505,
+   3
+  ],
+  "basket": [
+   0.458,
+   4
+  ],
+  "chair": [
+   0.414,
+   6
+  ],
+  "tree": [
+   0.483,
+   5
+  ],
+  "window": [
+   0.557,
+   7
+  ],
+  "pig": [
+   0.531,
+   3
+  ],
+  "house": [
+   0.508,
+   10
+  ]
+ },
+ "A_mean": 0.521,
+ "B_mean": 0.515,
+ "B_shuffled_mean": 0.489
+}
