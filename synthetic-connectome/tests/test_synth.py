@@ -545,3 +545,17 @@ def test_picture_pages_agree_with_the_actor():
         assert actor[402 + len(PP.ACTIONS)] == 0.0 and sum(o[402 + len(PP.ACTIONS)] for o in p["objs"]) == 2.0
         others = [o for k, o in enumerate(p["objs"]) if k != p["actor"]]
         assert p["words"][p["verb"] + 1] in PP.ACTIONS
+
+
+def test_picture_check_nouns_held_out_and_pages_agree():
+    """Stage 56: held-out nouns never appear on pages; a page's verb agrees with the acting noun's number;
+    every noun's stand-in look is the same each time (stable across runs)."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import picture_check as PC
+    tr, held = PC.nouns(); assert not set(tr) & set(held) and len(held) > 150
+    look = PC.Look(); rng = np.random.default_rng(0); heldw = {w for p in held for w in p}
+    for _ in range(300):
+        p = PC.make_page(rng, tr, look)
+        assert not set(p["words"]) & heldw
+        assert (p["words"][p["verb"]] in ("are", "were")) == bool(p["number"])
+    assert np.allclose(look("acquaintance", rng), PC.Look()("acquaintance", rng))

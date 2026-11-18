@@ -388,3 +388,5 @@ agreement past relative clauses does not improve over an always-open control. `s
 Stage 55 (17 Nov): generated picture-book pages - perfect with the picture, nothing carries over without it;
 the pages' sentences alone teach agreement noun by noun, not the rule. `scripts/picture_pages.py`. Next: picture
 as feedback after predicting; many-noun pages with held-out nouns; then real illustrated books (user's round 2).
+Stage 56 (18 Nov): 679 page nouns + 218 held out; held-out nouns past a relative clause 60-65 % (first transfer),
+picture check +5; no transfer to "of" (never on pages). `scripts/picture_check.py`. Next: many frames, some held out.

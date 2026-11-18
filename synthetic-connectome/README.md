@@ -3399,6 +3399,45 @@ pairs of things.
    noun learning turns into the rule once there are enough nouns (as children generalise after enough verbs:
    Tomasello's verb islands).
 
+## Stage 56: many nouns, and the picture as a check
+
+**Question.** Stage 55's pages taught agreement only for their 17 nouns, and the picture was a crutch.
+(1) Pages built from ~900 nouns, a quarter held out (never on a page, only in book reading): does the rule
+carry to the held-out nouns? (2) The picture as a check: read with no picture, guess at the verb what the
+picture shows (how many of the acting thing, what it looks like), then see it and learn from the mismatch.
+
+**Set-up** (`scripts/picture_check.py`): 679 nouns on pages, 218 held out (`data/noun_pairs.json`, singular /
+plural forms from the books). Same books, two passes, 150 k pages per pass, five sentence types with
+*by / near / with / behind / beside* and *see / sees / saw*. Look: drawings for the 25 things the picture
+system knows, a fixed random 400-number look for other nouns (MODEL). Groups: *text* (pages, text only) and
+*check*, four networks each. Test: built sentences in NEW frames - "the X of the Y ___" (no "of" on any page)
+and "the X that the Y helped / loved / met ... ___" (verbs never on a page).
+
+| new frames, text only | text | check |
+|---|---|---|
+| page nouns, relative clause + misleading noun | 90.6 ± 12.9 % | **97.7 ± 2.4 %** |
+| page nouns, "of the" + misleading noun | 76.3 % | 60.8 % |
+| **held-out nouns, relative clause + misleading noun** | 60.0 ± 3.6 % | **65.0 ± 4.8 %** |
+| held-out nouns, relative clause, same number | 64.4 % | 68.7 % |
+| held-out nouns, "of the" + misleading noun | 44.1 % | 36.4 % |
+| agreement in book sentences | 87.6 % | 88.4 % |
+| BLiMP, same pairs | 62.4 % | 61.8 % |
+
+For comparison, every earlier model past a relative clause with a misleading noun, for nouns not drilled:
+31-45 %. The check group's guess of how many of the acting thing there are, for held-out nouns: 69-79 %.
+
+- **The rule starts to carry over.** With 679 nouns instead of 17, nouns never drilled reach 60-65 % past
+  a relative clause with a misleading noun - the first time any model here is above chance on that case
+  for nouns it was not drilled on. The picture check adds 5 points (within about one spread; n = 4).
+- **But not to a new kind of phrase.** "of" never appeared on a page, and past "of the" + misleading noun
+  both groups stay at or below chance, even for page nouns. It learned the drilled frames - relative
+  clauses, by / near / with - not "the subject" in general.
+- Held-out nouns are rarer words, and the model is less sure of their number at all (64-69 % with nothing
+  misleading in between), which caps how well it can agree with them.
+
+**What it means.** Variety is what turns noun-by-noun learning into a rule: many nouns gave the first
+transfer to new nouns. The same should apply to frames - next: many prepositions and verbs, some held out.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

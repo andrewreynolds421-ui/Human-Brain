@@ -669,3 +669,10 @@ Question budget 10 % of pages per batch, chosen by attention entropy at the verb
 style and pairs of things never used in training. The built test's attractor nouns are partly picture-book
 nouns. No crashes; no restarts during the runs.
 
+## 37. Follow-up (18 November): Stage 56 — many nouns, picture check
+
+Four networks per group. Noun look codes first used Python's hash(), which changes between runs; replaced with a
+CRC32 before any run started (a restart would otherwise have changed every noun's look mid-training). The noun
+list comes from spaCy's majority tag and simple plural rules; it contains odd pairs (kept). Held-out nouns are
+rarer on average than page nouns (not matched). The session ended twice during the runs; training resumed.
+
