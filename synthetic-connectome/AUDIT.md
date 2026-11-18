@@ -696,3 +696,10 @@ Page-noun phrases with a misleading noun dropped 5 points (96.3 -> 90.8 %, wide 
 "has" a thing if its text names it (the picture may not show it, or may show things not named). Within-book AUC
 needs a book with 2+ pages each way, so few books count per thing (2-10). Result at chance in both tests.
 
+## 41. Follow-up (18 November): Stage 60 — grammar phenomena
+
+Four networks per group. A first version of the built test pairs drew the verb separately for the two members
+of a pair and put past tenses after "didn't"; fixed before any run (test added). The id table for unknown-word
+endings grows during reading and is not saved with the model (rebuilt on loading). Gender lists are short and
+hand-written (17 + 17 nouns). BLiMP was never used for choices.
+

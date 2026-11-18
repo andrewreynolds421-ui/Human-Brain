@@ -587,3 +587,20 @@ def test_spelling_endings_shared():
     assert int(ids[0][ix["dogs"]]) == int(ids[0][ix["cats"]]) != int(ids[0][ix["dog"]])
     assert int(ids[1][ix["boxes"]]) != int(ids[1][ix["dogs"]])            # "es" vs "gs"
     assert np.isfinite(M.logp([["the", "boxes", "are"]])[0])
+
+
+def test_phenomena_pages_and_pairs():
+    """Stage 60: training pages are grammatical by construction (reflexive agrees with its binder; 'any' only after a
+    licensor in the same clause); test pairs differ only where the phenomenon is."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import phenomena as PH, picture_check as PC, frames as FR
+    tr, held = PC.nouns(); rng = np.random.default_rng(4)
+    for _ in range(400):
+        p = PH.phenomenon_page(rng, tr, FR.REL); w = p["words"]
+        if "any" in w:
+            i = w.index("any"); assert set(w[:i]) & {"didn't", "never", "no", "not"}
+            assert "that" not in w[:i] or w[w.index("that") + 1] != "didn't" or w.index("didn't") > w.index("that") + 2
+    T = PH.built_tests(tr, FR.HELD_REL, PH.HELD_ADJ, np.random.default_rng(5), n=50)
+    for k, prs in T.items():
+        for g, b in prs:
+            assert g != b and len(g) == len(b) and (k == "npi_scope" or sum(x != y for x, y in zip(g, b)) <= 2)

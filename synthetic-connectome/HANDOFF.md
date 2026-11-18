@@ -397,3 +397,6 @@ Stage 58 (18 Nov): word endings as input - held-out nouns now agree past mislead
 illustrated books (user's round 2); reward route.
 Stage 59 (18 Nov): real illustrated books (576 pictures) - the object cells cannot tell what a scene shows
 (chance); real picture books help only through their text. `scripts/illustrated.py`.
+Stage 60 (18 Nov): phenomenon pages (determiners, reflexives, NPIs, gaps) - learned as rules on held-out words;
+BLiMP +6 / +5 only, because BLiMP uses constructions the pages lacked (auxiliaries, who-gaps, names, bare plurals).
+`scripts/phenomena.py`.

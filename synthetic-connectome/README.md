@@ -3532,6 +3532,56 @@ pictures to help, the eyes would need what a child's visual system has and this 
 in cluttered scenes (figure-ground, many scales, learned from a great deal of seeing). That is a project of
 its own; generated pages (Stages 55-58) gave the grammar what it needed.
 
+## Stage 60: teaching grammar phenomena (determiners, reflexives, any / ever, gaps)
+
+**Question.** The recipe that taught agreement - many nouns and frames, misleading cases, word form visible,
+grammatical sentences only - applied to four phenomena the model fails on BLiMP.
+
+**Pages** (`scripts/phenomena.py`, 150 k per pass on top of Stage 57-58's agreement pages and the books):
+*this / these* + noun (with adjectives, as subject and object); *himself / herself / itself / themselves*
+agreeing with the subject across phrases and relative clauses, and with the nearest subject across "said
+that"; *any / ever* only after *not / n't / never / no / only* or in a question, *some* otherwise, and a
+negation inside a relative clause not licensing the main clause; *knew what the girl saw ___* vs *knew that
+the girl saw the dog*, also long-distance and subject gaps. Only grammatical sentences. Unknown words now show
+their endings too. Groups: *base* (books + agreement pages) and *phenomena*, four networks each, two passes.
+
+**Built test pairs** (held-out verbs, adjectives and prepositions):
+
+| | base | phenomena |
+|---|---|---|
+| "this / these" + noun, held-out nouns | 59.1 % | **79.1 %** (page nouns 95.6 %) |
+| reflexive across a phrase, held-out nouns | 77.4 % | 82.2 % |
+| "any" scope (negation in the relative clause), held-out nouns | 63.2 ± 37 % | **98.9 %** |
+| "knew what ... ___" vs "knew that ... ___", held-out nouns | 62.0 % | **95.9 %** (page nouns 15.6 -> 100 %) |
+| "knew that ... the dog" vs "what ... the dog", held-out nouns | 54.2 % | 80.1 % |
+
+**BLiMP** (its own vocabulary and sentence patterns), by field:
+
+| | base | phenomena |
+|---|---|---|
+| determiner-noun agreement | 64.6 % | **70.4 ± 1.2 %** |
+| negative-polarity licensing | 46.8 % | **51.9 %** (npi_present 20 -> 30 %, negation scope 25 -> 37 %) |
+| binding | 61.1 % | 62.2 % |
+| filler-gap | 64.3 % | 64.1 % |
+| subject-verb agreement | 60.2 % | 59.8 % |
+| anaphor agreement | 77.2 % | 69.7 % (gender 69 -> 59 %) |
+| fields not taught (control) | 53.9 % | 54.0 % |
+| all | 57.5 % | 58.6 ± 0.1 % |
+
+- **The taught phenomena are learned, as rules**: they hold for verbs, adjectives and prepositions never on
+  a page, and largely for nouns never on a page.
+- **On BLiMP the gains are modest** (+6 determiners, +5 negative polarity) or absent, because BLiMP's sentences
+  are built differently: agreement on *has / have* and plain verbs (*suffer / suffers*), *who* object gaps
+  (*remembered who the actors conceal*), names (*Katherine can't help herself*), auxiliary questions (*Had
+  Bruce ever played?*), bare plurals and quantifiers (*Boys that aren't disturbing Natalie suffer*),
+  contractions. None of these was on the pages; the rule transfers to new words, not to constructions it has
+  never met. Gender agreement and irregular forms fell (69 -> 59 %, 84 -> 78 %): the gender pages used a few
+  dozen common nouns and no names.
+- Untaught fields did not move: no general spill-over.
+
+**Next.** Pages in the constructions adult sentences use: auxiliaries (*has, had, will, can, does* and their
+negations), plain present verbs, *who / which* relatives and gaps, names, bare plurals and quantifiers.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.
