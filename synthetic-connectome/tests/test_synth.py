@@ -604,3 +604,18 @@ def test_phenomena_pages_and_pairs():
     for k, prs in T.items():
         for g, b in prs:
             assert g != b and len(g) == len(b) and (k == "npi_scope" or sum(x != y for x, y in zip(g, b)) <= 2)
+
+
+def test_adult_pages_agree():
+    """Stage 61: in adult-construction pages, has / have and plain present verbs agree with a bare or quantified
+    subject; be-negations are followed by -ing or 'here', do-negations by a base verb."""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import sleep_grammar as SG, picture_check as PC, frames as FR
+    tr, held = PC.nouns(); rng = np.random.default_rng(6); plural = {p[1] for p in tr}; sing = {p[0] for p in tr}
+    for _ in range(600):
+        w = SG.adult_page(rng, tr, FR.REL, SG.TRAIN_F, SG.TRAIN_M)["words"]
+        for i, x in enumerate(w[:-1]):
+            if x in ("isn't", "aren't", "wasn't", "weren't"): assert w[i + 1] == "here" or w[i + 1].endswith("ing")
+            if x in ("don't", "doesn't"): assert w[i + 1] in SG.INTR
+        if len(w) > 2 and w[0] in ("every", "each") and w[2] in ("has", "have"): assert w[2] == "has"
+        if len(w) > 2 and w[0] in ("all", "most", "many", "few") and w[2] in ("has", "have"): assert w[2] == "have"

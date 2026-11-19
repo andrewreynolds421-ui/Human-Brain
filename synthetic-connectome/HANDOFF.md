@@ -400,3 +400,6 @@ Stage 59 (18 Nov): real illustrated books (576 pictures) - the object cells cann
 Stage 60 (18 Nov): phenomenon pages (determiners, reflexives, NPIs, gaps) - learned as rules on held-out words;
 BLiMP +6 / +5 only, because BLiMP uses constructions the pages lacked (auxiliaries, who-gaps, names, bare plurals).
 `scripts/phenomena.py`.
+Stage 61 (18 Nov): adult-construction pages + sleep - sleep ~ no effect (prediction slightly better; matched by
+re-reading on forgetting); BLiMP agreement 60 -> 66-67 %; who-gaps and ever-questions not learned. README has a
+table comparing each skill with children's typical ages. `scripts/sleep_grammar.py`.

@@ -3582,6 +3582,71 @@ their endings too. Groups: *base* (books + agreement pages) and *phenomena*, fou
 **Next.** Pages in the constructions adult sentences use: auxiliaries (*has, had, will, can, does* and their
 negations), plain present verbs, *who / which* relatives and gaps, names, bare plurals and quantifiers.
 
+## Stage 61: adult constructions, and sleep
+
+**Question.** (1) Pages in the constructions BLiMP uses and Stage 60's pages lacked (auxiliaries and
+contractions, plain present verbs, who / which, names, bare plurals and quantifiers, auxiliary questions).
+(2) Sleep: does offline replay prevent the forgetting seen in Stage 60 (irregular forms, gender)?
+
+**Set-up** (`scripts/sleep_grammar.py`): books + agreement pages + phenomenon pages + adult pages (150 k each
+per pass), two passes. *awake*: straight through. *sleep*: each pass four days; after each day a night with no
+new input, replaying sentences from everything read so far that pass (old and new mixed), a quarter as many
+lessons as the day at a third of the step size. *reread* (control): the same number of extra lessons from that
+day's sentences at the day's step size. Four networks each. Held out: helped / loved / met / called and a
+quarter of the names.
+
+| | awake | reread | sleep |
+|---|---|---|---|
+| BLiMP, all | 58.6 % | 58.4 % | 58.6 % |
+| BLiMP subject-verb agreement (Stage 60: 59.8 %) | 66.0 % | 65.3 % | **66.9 %** |
+| BLiMP irregular forms (Stage 60: 77.5 %) | 73.9 % | 76.5 % | 77.2 % |
+| BLiMP anaphor agreement | 72.7 % | 73.5 % | 73.5 % |
+| BLiMP negative polarity | 53.7 % | 49.6 % | 48.7 % |
+| prediction (log-prob per word) | -5.082 | -5.089 | **-5.049** |
+| built: has / have past a *who* clause, held-out nouns | 87.3 % | 66.4 % | 83.8 % |
+| built: plain verb past a relative clause, held-out nouns | 83.6 % | 72.5 % | 75.0 % |
+| built: *remembered who the X call* vs *that* | 18-42 % | 16-44 % | 18-36 % |
+| built: *had Peter ever called* vs *Peter had ever called* | 12.0 % | 16.9 % | 10.8 % |
+| built: held-out name + reflexive (*Clara can't help herself*) | 76.4 % | 71.6 % | 71.5 % |
+
+- **Sleep did no harm and little good.** It predicts text slightly better and restored irregular forms to
+  Stage 60's level (73.9 -> 77.2 %), but extra awake practice restored them as much (76.5 %); on BLiMP and the
+  built tests the three groups are within the networks' spread. As in Stage 48, sleep helps where replay can
+  reorganise (there: merging duplicate words), not where the knowledge is simply contested by new material.
+- **The adult constructions partly took.** Agreement on *has / have* and plain verbs past *who* clauses is
+  learned for nouns never drilled (84-87 %), and BLiMP's own agreement items rose 6-7 points (59.8 -> 66-67 %).
+  Not learned: *who* object gaps (the model keeps preferring *remembered that ...*, which the books are full
+  of), and *ever* in questions - it prefers *Peter had ever called*, because the books are full of *the best
+  he had ever seen*, where *ever* is licensed without a question.
+
+## Where the model stands against children learning English
+
+The model is compared with typical ages from child-language research. The tests differ: children are tested on
+understanding or producing sentences about things they see; the model only judges which of two word sequences
+is more likely. Its input so far is 4.9-10 M words of written text; children hear on the order of 3-11 M words
+a year (Hart & Risley 1995), with meaning attached.
+
+| skill | the model now | typical child |
+|---|---|---|
+| word classes from distribution (Stage 50) | categories 70 % pure | 12-month-olds group new words by frames (Mintz 2006) |
+| basic word order (Stages 50-53) | 94-95 % | about 2-3 years |
+| subject-verb agreement (Stages 51-61) | 95 % in book sentences, ~100 % past misleading nouns in taught frames, BLiMP 66 % | understood in English by about 5 (Johnson, de Villiers & Seymour 2005); attraction errors in production persist into 10-12 (Veenstra et al. 2018) |
+| *this / these* + noun (Stage 60) | 74-91 %, BLiMP 70 % | demonstratives among the first function words, about 2 |
+| reflexives *himself / herself* (Stages 60-61) | number 96-100 %, across phrases 80-92 %, gender with names 72-76 % | near perfect by about 6 (Chien & Wexler 1990) |
+| *any / ever* after negation (Stages 60-61) | 95-100 %, scope 81-99 %; questions 11-17 % | rarely misused in speech; categorical knowledge of some items by 6, some not adult-like at 11-12 |
+| *what* gaps / long-distance questions (Stage 60) | 89-100 % | long-distance wh-questions by about 3-4 (de Villiers & Roeper) |
+| *who* gaps (Stage 61) | 16-44 % (not learned) | as above, about 3-4 |
+| relative clauses (agreement past them) | 99-100 % in taught frames | subject relatives early; object relatives understood around 6 |
+| irregular past forms (BLiMP) | 74-77 % | errors in about 2.5 % of uses from 2 into school age (Marcus et al. 1992) |
+| islands, ellipsis, quantifiers (BLiMP) | 41-50 % (chance or below) | mostly respected by preschool (islands) to school age |
+| reading comprehension (Stage 53) | multiple-choice cloze 66-72 %, about equal at every grade | grade-level texts read by the end of each grade; difficulty rises with grade |
+
+**In short.** The model is uneven in a way no child is. On the rules it was drilled in - agreement,
+reflexive number, *any* after negation, *what* gaps - it performs like a 5-6-year-old or better, even past
+distracting nouns where older children still slip. On things children get early from everyday talk - irregular
+verbs, *who* questions, questions with auxiliaries - it is below a 3-year-old. And it has no meaning: it knows
+which sentences are likely, not what they are about, which is what most of a child's understanding rests on.
+
 ## Open problems found so far
 
 These are the real findings so far. Each is a concrete next task.

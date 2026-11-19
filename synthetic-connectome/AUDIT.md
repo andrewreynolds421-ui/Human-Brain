@@ -703,3 +703,10 @@ of a pair and put past tenses after "didn't"; fixed before any run (test added).
 endings grows during reading and is not saved with the model (rebuilt on loading). Gender lists are short and
 hand-written (17 + 17 nouns). BLiMP was never used for choices.
 
+## 42. Follow-up (18 November): Stage 61 — adult constructions and sleep
+
+Four networks per group (awake / sleep / reread). First version of the adult pages produced "weren't speak"
+and "most lump" (fixed before any run; test added). The machine restarted twice during the runs; training resumed
+from 10-minute checkpoints. Sleep and reread have 25 % more lessons than awake by design. The comparison with
+children uses published ages for different tasks (comprehension, production, judgment) - indicative only.
+
