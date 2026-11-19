@@ -3619,6 +3619,44 @@ quarter of the names.
   of), and *ever* in questions - it prefers *Peter had ever called*, because the books are full of *the best
   he had ever seen*, where *ever* is licensed without a question.
 
+## Stage 62: learning from speech to children (CHILDES)
+
+**Question.** The skills the model lacks (irregular verbs, *who* questions, questions with auxiliaries) are ones
+children pick up early from everyday talk. Does the talk itself, without meaning attached, teach them?
+
+**Set-up** (`scripts/childes.py`): the adult utterances in the CHILDES English transcripts (MacWhinney 2000;
+TalkBank, research use, not copied into this repository): 1.35 M utterances, 7.0 M words, children's own
+speech and transcription codes removed. Stage 61's awake training loop with the same pages, and the reading
+material changed: *books* = Stage 61's books + pages (reference), *speech* = speech in place of the books,
+*books + speech* = both. Four networks each; the tests are unchanged.
+
+| | books | speech | books + speech |
+|---|---|---|---|
+| BLiMP, all | 58.6 % | 57.8 % | **59.7 %** |
+| BLiMP, fields never taught on pages | 53.3 % | 53.6 % | **56.3 %** |
+| BLiMP irregular forms | 73.9 % | 70.7 % | **82.3 %** |
+| BLiMP island effects | 45.1 % | **53.9 %** | 53.3 % |
+| BLiMP quantifiers | 49.9 % | **62.0 %** | 51.8 % |
+| word order | 93.5 % | 88.1 % | 92.7 % |
+| agreement in book sentences | 94.9 % | 90.1 % | 93.4 % |
+| built: *had Peter ever called* vs *Peter had ever called* | 12.0 % | **75.3 %** | 44.2 % |
+| built: *remembered who the X call* vs *that*, page nouns | 41.6 % | 37.9 % | **65.5 %** |
+| built: the same, held-out nouns | 29.6 % | **69.8 %** | 41.9 % |
+| built: held-out name + reflexive | **76.4 %** | 50.0 % | 50.8 % |
+| built: reflexive number across a phrase, held-out nouns | **85.9 %** | 77.0 % | 65.4 % |
+
+- **Speech teaches what books don't.** Questions with *ever* went from 12 % to 75 % on speech alone: talk to
+  children is full of *have you ever ...?*, books are full of *the best he had ever seen*. Islands and
+  quantifiers, at or below chance on books, rose 8-12 points. With both kinds of input, irregular forms reached
+  82 % (from 74 %), the best so far, and the BLiMP fields never taught on pages rose 3 points.
+- **It costs some book skills.** Speech alone is worse on word order, book agreement and several built tests;
+  mixing keeps the book skills mostly but loses some held-out-noun tests (reflexives across phrases, names with
+  reflexives), and the *ever* gain shrinks to 44 % when books outnumber the questions again.
+- **Who gaps are still unsettled.** They improved in some networks and not others (spread 12-38 points); on
+  held-out nouns speech alone does best. Neither mixture learns them reliably.
+- Prediction of book text is worse with speech (-5.95 / -5.35 against -5.08) - expected, since the model spent
+  part of its training on a different kind of language.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
@@ -3633,12 +3671,12 @@ a year (Hart & Risley 1995), with meaning attached.
 | subject-verb agreement (Stages 51-61) | 95 % in book sentences, ~100 % past misleading nouns in taught frames, BLiMP 66 % | understood in English by about 5 (Johnson, de Villiers & Seymour 2005); attraction errors in production persist into 10-12 (Veenstra et al. 2018) |
 | *this / these* + noun (Stage 60) | 74-91 %, BLiMP 70 % | demonstratives among the first function words, about 2 |
 | reflexives *himself / herself* (Stages 60-61) | number 96-100 %, across phrases 80-92 %, gender with names 72-76 % | near perfect by about 6 (Chien & Wexler 1990) |
-| *any / ever* after negation (Stages 60-61) | 95-100 %, scope 81-99 %; questions 11-17 % | rarely misused in speech; categorical knowledge of some items by 6, some not adult-like at 11-12 |
+| *any / ever* after negation (Stages 60-62) | 95-100 %, scope 81-99 %; questions 11-17 %, 44-75 % with speech to children (Stage 62) | rarely misused in speech; categorical knowledge of some items by 6, some not adult-like at 11-12 |
 | *what* gaps / long-distance questions (Stage 60) | 89-100 % | long-distance wh-questions by about 3-4 (de Villiers & Roeper) |
-| *who* gaps (Stage 61) | 16-44 % (not learned) | as above, about 3-4 |
+| *who* gaps (Stages 61-62) | 16-44 % on books; 42-70 % with speech, unstable across networks | as above, about 3-4 |
 | relative clauses (agreement past them) | 99-100 % in taught frames | subject relatives early; object relatives understood around 6 |
-| irregular past forms (BLiMP) | 74-77 % | errors in about 2.5 % of uses from 2 into school age (Marcus et al. 1992) |
-| islands, ellipsis, quantifiers (BLiMP) | 41-50 % (chance or below) | mostly respected by preschool (islands) to school age |
+| irregular past forms (BLiMP) | 74-77 %; 82 % with books + speech (Stage 62) | errors in about 2.5 % of uses from 2 into school age (Marcus et al. 1992) |
+| islands, ellipsis, quantifiers (BLiMP) | 41-50 % on books; islands 53-54 %, quantifiers up to 62 % with speech; ellipsis 40-43 % | mostly respected by preschool (islands) to school age |
 | reading comprehension (Stage 53) | multiple-choice cloze 66-72 %, about equal at every grade | grade-level texts read by the end of each grade; difficulty rises with grade |
 
 **In short.** The model is uneven in a way no child is. On the rules it was drilled in - agreement,

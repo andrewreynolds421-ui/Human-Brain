@@ -403,3 +403,6 @@ BLiMP +6 / +5 only, because BLiMP uses constructions the pages lacked (auxiliari
 Stage 61 (18 Nov): adult-construction pages + sleep - sleep ~ no effect (prediction slightly better; matched by
 re-reading on forgetting); BLiMP agreement 60 -> 66-67 %; who-gaps and ever-questions not learned. README has a
 table comparing each skill with children's typical ages. `scripts/sleep_grammar.py`.
+Stage 62 (19 Nov): CHILDES adult speech (7 M words) instead of / added to books - ever-questions 12 -> 75 % (speech
+only), islands and quantifiers +8-12, irregular forms 82 % with books + speech (best so far); costs some book and
+held-out-noun skills; who-gaps still unstable. `scripts/childes.py`; data in /home/claude/models/childes (not in repo).

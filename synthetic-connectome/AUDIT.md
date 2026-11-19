@@ -710,3 +710,14 @@ and "most lump" (fixed before any run; test added). The machine restarted twice 
 from 10-minute checkpoints. Sleep and reread have 25 % more lessons than awake by design. The comparison with
 children uses published ages for different tasks (comprehension, production, judgment) - indicative only.
 
+
+## 43. Follow-up (19 November): Stage 62 — speech to children (CHILDES)
+
+Source: the CHILDES English transcripts (MacWhinney 2000, TalkBank), taken from a public GitHub copy because
+talkbank.org is not reachable from the workspace. TalkBank rules allow research use with citation; the data
+stays outside the repository (/home/claude/corpora, /home/claude/models/childes) and only code and scores are
+committed. Adult utterances only; the children's own speech and transcription codes were removed. Four networks
+per group; the *books* reference is Stage 61's awake group, not a re-run. The disk filled during preparation;
+11 GB of stale scratch from the earlier Brian2 learner runs (/tmp/learner_*, 2-3 November, outputs already
+summarised in earlier stages) and the pip cache were deleted - that scratch no longer exists. The *who*-gap and
+*ever*-question tests have large spreads between networks (up to 38 points); treat their means as rough.
