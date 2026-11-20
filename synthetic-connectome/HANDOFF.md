@@ -413,3 +413,10 @@ markers (can rules be shared?); who-gaps still open.
 Stage 64 (20 Nov): pages under both markers - page rules now hold under talk as well (any-scope 40 -> 96 %), the
 ever-question switch survives (17 vs 66 %), irregular forms 86 %; BLiMP under talk 60.5 % (NPI / filler-gap give
 back ~4). `scripts/register.py --pages both`. Open: who-gaps, names + reflexives (lost whenever speech is added).
+The model is named VEGA (user's choice, 20 Nov).
+Stage 65 (20 Nov): FLAW in Stages 53-64 - adaptive output layer over an alphabetical vocabulary (most running words
+went through the 20-unit part). Fixed by frequency order (`picture_pages.ORDER`, set by `scripts/output_order.py`);
+use it for everything from here on. Re-run books and Stage 64 mix: BLiMP +1 (best 61.5 %), who-gaps now learned
+(52-82 %), names + reflexives partly back; any-scope erratic, irregular forms 86 -> 77 in the mix, ever switch
+weaker. Models in /home/claude/models/output_order. User's plan next: grade-level test of the fixed model, then
+first steps toward reading for meaning / checking sources.

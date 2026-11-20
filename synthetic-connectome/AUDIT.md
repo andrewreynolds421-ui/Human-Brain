@@ -738,3 +738,15 @@ Four networks, tested under both markers with the same weights; compared with St
 weights, same seeds). The page's marker is a checksum of its words (48-49 % talk), so resumed runs regenerate the
 same assignment. Only one thing differs from Stage 63. The ever-question and what / that tests have spreads of
 20-37 points between networks; their means are rough. No restarts during the runs.
+
+## 46. Follow-up (20 November): Stage 65 — output-layer word order (flaw affecting Stages 53-64)
+
+Found while diagnosing why names with reflexives fell to exactly 50.2 % +/- 0.0 in every speech group: the
+networks preferred *himself* for every female name, drilled names included. Cause: `AdaptiveLogSoftmaxWithLoss`
+with cut-offs [2000, 10000] over an alphabetically sorted vocabulary (graded_reading.py, subject_slot.py,
+picture_pages.py and everything built on it). The author's error; no test covered it (one added). The fix is
+opt-in (`picture_pages.ORDER`) so earlier stages still reproduce as run. Only two groups were re-run with the
+fix (4 networks each); Stages 53-63 keep their original numbers and are flagged in the README. The Stage 62
+report to the user ("names with reflexives are lost whenever speech is added") was this artefact. Not explained:
+why *any*-scope, irregular forms and the *ever* switch are worse with the fix. One interruption of the session
+during the runs; the runs themselves did not restart.

@@ -1,5 +1,7 @@
 # synthetic-connectome
 
+The model is named **VEGA** (named by Andrew, 20 November 2026).
+
 **Goal:** build a statistically faithful model of a human brain from the
 data we actually have (one cubic millimetre of cortex at synapse resolution,
 whole-brain histology atlases, MRI tractography), then let it learn with
@@ -3730,6 +3732,50 @@ half each (fixed per page). Books stay *book*, speech stays *talk*. Four network
   33-37 points). Page sentences under *talk* pull that marker toward page-style language.
 - **Still not learned under any arrangement:** *who* gaps (22-42 %), names with reflexives (50 %).
 
+## Stage 65: the output layer with the words in the right order (a flaw in Stages 53-64)
+
+**The flaw.** The adaptive output layer gives the 2,000 first words a full-size read-out (320 units), the next
+8,000 a quarter (80) and the rest a sixteenth (20), and assumes the words are ordered from most to least common.
+They were in alphabetical order. *the, that, was, who, she, you* sat in the 20-unit part, which carried 58 % of
+all running words with books and 74 % with books + speech. Adding speech also enlarged the vocabulary and moved
+*he, her, herself, himself* from the 80-unit to the 20-unit part: Stage 62-64's networks chose *himself* for
+*Mary* every time, on names drilled on the pages too. Found while diagnosing names with reflexives. Stages 50-52
+used a full output layer and are not affected.
+
+**Set-up** (`scripts/output_order.py`): words ordered by how often they occur in the reading; nothing else
+changed. Re-run: *books* (Stage 61 awake) and *both* (Stage 64: books + speech, two markers, pages under both).
+Four networks each.
+
+| | books, before | books, fixed | mix *book*, before | fixed | mix *talk*, before | fixed |
+|---|---|---|---|---|---|---|
+| BLiMP, all | 58.6 % | 59.3 % | 58.7 % | 60.0 % | 60.5 % | **61.5 %** |
+| prediction of book text (log-prob per word) | -5.08 | **-4.94** | -5.23 | -5.07 | -5.79 | -5.68 |
+| BLiMP anaphor agreement | 72.7 % | 78.1 % | 71.3 % | 80.7 % | 66.8 % | 77.2 % |
+| BLiMP quantifiers | 49.9 % | 53.0 % | 52.4 % | 58.0 % | 55.1 % | 61.8 % |
+| BLiMP irregular forms | 73.9 % | 75.2 % | 85.9 % | 77.7 % | 86.3 % | 76.8 % |
+| built: *who* gap, page nouns | 41.6 % | 77.1 % | 42.1 % | 74.8 % | 23.5 % | **82.4 %** |
+| built: *who* gap, held-out nouns | 29.6 % | 66.1 % | 22.2 % | 52.5 % | 26.7 % | **74.4 %** |
+| built: *this / these*, page nouns | 90.6 % | 98.5 % | 83.0 % | 96.8 % | 87.1 % | 97.4 % |
+| built: *wondered what* vs *that*, held-out nouns | 75.2 % | 95.2 % | 49.5 % | 72.6 % | 46.5 % | 65.3 % |
+| built: held-out name + reflexive | 76.4 % | 76.2 % | 50.2 % | 67.0 % | 50.2 % | 60.3 % |
+| built: *any* scope, page nouns | 96.8 % | 87.2 % | 96.6 % | 56.8 % | 95.6 % | 60.0 % |
+| built: *had Peter ever called* | 12.0 % | 19.9 % | 17.4 % | 6.4 % | 66.3 % | 38.1 % |
+
+- **What the flaw was hiding.** *Who* gaps, "not learned" in Stages 61-64, are learned (52-82 %; they need *who*
+  and *that* told apart, both in the 20-unit part before). Names with reflexives recover from exactly chance in
+  the mix (60-67 %), though not to the books-only level. Anaphor agreement, determiners and *what / that* rise
+  5-20 points; prediction improves in every group.
+- **What it was not.** The overall grammar score moves about one point (best now 61.5 %). The ceiling near 60 %
+  is not this flaw.
+- **What got worse.** *Any*-scope became erratic (57-87 %, spreads 19-42 points between networks); in the mix
+  irregular forms fell back from 86 % to 77 % and the *ever*-question switch weakened (38 % under *talk*, 6 %
+  under *book*). So Stage 64's "best so far" on irregular forms and part of the *ever* result depended on the
+  flawed layout. Why is not known.
+- **Standing of Stages 53-64.** Their numbers are for the handicapped model and were not re-run, except these two
+  groups. Conclusions that were comparisons within one vocabulary (graded vs random order, sleep vs awake, slot vs
+  no slot, pictures, endings) are less exposed than comparisons across vocabularies (Stage 62-63 "costs of
+  speech": names with reflexives was an artefact; the rest is unverified).
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
@@ -3746,7 +3792,7 @@ a year (Hart & Risley 1995), with meaning attached.
 | reflexives *himself / herself* (Stages 60-61) | number 96-100 %, across phrases 80-92 %, gender with names 72-76 % | near perfect by about 6 (Chien & Wexler 1990) |
 | *any / ever* after negation (Stages 60-62) | 95-100 %, scope 81-99 %; questions 11-17 %, 44-75 % with speech to children (Stage 62) | rarely misused in speech; categorical knowledge of some items by 6, some not adult-like at 11-12 |
 | *what* gaps / long-distance questions (Stage 60) | 89-100 % | long-distance wh-questions by about 3-4 (de Villiers & Roeper) |
-| *who* gaps (Stages 61-62) | 16-44 % on books; 42-70 % with speech, unstable across networks | as above, about 3-4 |
+| *who* gaps (Stages 61-65) | 52-82 % once the output layer was fixed (Stage 65); 16-44 % before | as above, about 3-4 |
 | relative clauses (agreement past them) | 99-100 % in taught frames | subject relatives early; object relatives understood around 6 |
 | irregular past forms (BLiMP) | 74-77 %; 82-86 % with books + speech (Stages 62-64) | errors in about 2.5 % of uses from 2 into school age (Marcus et al. 1992) |
 | islands, ellipsis, quantifiers (BLiMP) | 41-50 % on books; islands 53-54 %, quantifiers up to 62 % with speech; ellipsis 40-43 % | mostly respected by preschool (islands) to school age |

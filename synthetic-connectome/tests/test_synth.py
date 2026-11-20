@@ -643,3 +643,16 @@ def test_register_pages_both():
     mk = RG.half_talk(lambda: dict(words=next(it)))
     a = [isinstance(mk()["words"], RG.Talk) for _ in range(400)]; b = [isinstance(mk()["words"], RG.Talk) for _ in range(400)]
     assert a == b and 0.35 < sum(a) / 400 < 0.65
+
+
+def test_output_order_most_common_first():
+    """Stage 65: with ORDER set, the reader's words run from most to least common (what the output layer's cut-offs assume)"""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import picture_pages as PP, phenomena as PH
+    try:
+        PP.ORDER = {"the": 100, "zebra": 70, "dog": 50}
+        M = PH.Reader(["the", "dog", "zebra", "apple"], 0)
+        assert M.itos[4:] == ["the", "zebra", "dog", "apple"]
+    finally:
+        PP.ORDER = None
+    assert PH.Reader(["the", "dog", "zebra", "apple"], 0).itos[4:] == ["apple", "dog", "the", "zebra"]

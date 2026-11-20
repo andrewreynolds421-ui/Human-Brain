@@ -88,12 +88,18 @@ def make_page(rng, bank, styles, pairs=None):
     return dict(words=w, objs=objs, actor=int(np.nonzero(order == 0)[0][0]), verb=w.index(be), tmpl=tmpl, attractor=(na != nb), plural=bool(na), subj=a)
 
 
+ORDER = None
+
+
 class SceneNet:
     def __init__(self, vocab, seed):
         import torch, torch.nn as nn
         torch.manual_seed(seed); torch.set_num_threads(int(os.environ.get("THREADS", "1")))
         self.torch = torch
-        self.itos = ["<pad>", "<s>", "</s>", "<unk>"] + sorted(vocab); self.stoi = {w: i for i, w in enumerate(self.itos)}
+        # ORDER (word -> count): most common words first, which is what the adaptive output layer's cut-offs assume.
+        # Without it (Stages 55-64) the order is alphabetical - see Stage 65.
+        self.itos = ["<pad>", "<s>", "</s>", "<unk>"] + (sorted(vocab, key=lambda w: (-ORDER.get(w, 0), w)) if ORDER else sorted(vocab))
+        self.stoi = {w: i for i, w in enumerate(self.itos)}
         self.vocab = set(vocab); V = len(self.itos)
 
         class M(nn.Module):
