@@ -750,3 +750,9 @@ fix (4 networks each); Stages 53-63 keep their original numbers and are flagged 
 report to the user ("names with reflexives are lost whenever speech is added") was this artefact. Not explained:
 why *any*-scope, irregular forms and the *ever* switch are worse with the fix. One interruption of the session
 during the runs; the runs themselves did not restart.
+
+## 47. Follow-up (20 November): Stage 66 — grade-level reading test of the fixed model
+
+Evaluation only (Stage 65's eight networks). Leakage check by exact sentence match against each network's
+reading; a test book partly present in the reading could still help through familiar names (grade 7+ had 86
+matches, so some overlap of books exists there). The test has no human norms.

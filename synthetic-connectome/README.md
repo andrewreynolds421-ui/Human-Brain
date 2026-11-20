@@ -3776,6 +3776,33 @@ Four networks each.
   no slot, pictures, endings) are less exposed than comparisons across vocabularies (Stage 62-63 "costs of
   speech": names with reflexives was an artefact; the rest is unverified).
 
+## Stage 66: VEGA's reading level, grade by grade
+
+**Question.** Where does the fixed model (Stage 65) read? Stage 53's test: a content word is blanked and the
+model chooses among four words of the same kind and frequency; test books are binned by grade (Flesch-Kincaid).
+Chance is 25 %; "reads at" a grade means 75 % (ASSUMED).
+
+**Set-up** (`scripts/grade_test.py`): Stage 65's eight networks, no further training. Test sentences that occur
+in a network's own reading are dropped (1-6 per grade of ~600; 86 in grade 7+).
+
+| grade of the text | 1 | 2 | 3 | 4 | 5 | 6 | 7+ | mean |
+|---|---|---|---|---|---|---|---|---|
+| books + pages | 73.1 | 73.1 | 72.1 | 67.2 | 63.4 | 68.0 | 63.0 | **68.6 %** |
+| books + speech, *book* marker | 74.2 | 70.0 | 70.8 | 63.0 | 61.3 | 66.6 | 60.9 | 66.7 % |
+| books + speech, *talk* marker | 72.5 | 65.2 | 67.1 | 58.3 | 57.7 | 62.2 | 55.6 | 62.7 % |
+| Stage 53 (20 M words of the graded books) | 71.9 | 71.7 | 73.5 | 68.5 | 64.8 | 66.6 | 66.6 | 69.1 % |
+
+- **No grade is passed.** VEGA is just under the bar on grade 1-3 text (72-73 %) and at 63-68 % above it - the
+  same place as Stage 53, although everything since (agreement, phenomena, speech, the output fix) raised its
+  grammar. Choosing the right content word needs what the sentence is about, and nothing since Stage 53
+  taught that.
+- Verbs and adverbs are easier (74-77 %) than nouns and adjectives (63-65 %): grammar narrows the choice of a
+  verb, not of a noun.
+- Speech to children does not help with book text, and the *talk* marker costs 6 points.
+- Limits: no human has taken this test, so "grade" describes the text, not a norm; 75 % is an assumption; a
+  child at grade level would be expected near the top of such a test. Stage 53's networks had read other
+  sentences of the same books; VEGA had not, apart from the dropped ones.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
@@ -3796,7 +3823,7 @@ a year (Hart & Risley 1995), with meaning attached.
 | relative clauses (agreement past them) | 99-100 % in taught frames | subject relatives early; object relatives understood around 6 |
 | irregular past forms (BLiMP) | 74-77 %; 82-86 % with books + speech (Stages 62-64) | errors in about 2.5 % of uses from 2 into school age (Marcus et al. 1992) |
 | islands, ellipsis, quantifiers (BLiMP) | 41-50 % on books; islands 53-54 %, quantifiers up to 62 % with speech; ellipsis 40-43 % | mostly respected by preschool (islands) to school age |
-| reading comprehension (Stage 53) | multiple-choice cloze 66-72 %, about equal at every grade | grade-level texts read by the end of each grade; difficulty rises with grade |
+| reading comprehension (Stages 53, 66) | multiple-choice cloze 72-73 % on grade 1-3 text, 63-68 % above; no grade passed at 75 % | grade-level texts read by the end of each grade; difficulty rises with grade |
 
 **In short.** The model is uneven in a way no child is. On the rules it was drilled in - agreement,
 reflexive number, *any* after negation, *what* gaps - it performs like a 5-6-year-old or better, even past

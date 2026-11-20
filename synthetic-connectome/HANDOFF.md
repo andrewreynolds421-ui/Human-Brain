@@ -420,3 +420,6 @@ use it for everything from here on. Re-run books and Stage 64 mix: BLiMP +1 (bes
 (52-82 %), names + reflexives partly back; any-scope erratic, irregular forms 86 -> 77 in the mix, ever switch
 weaker. Models in /home/claude/models/output_order. User's plan next: grade-level test of the fixed model, then
 first steps toward reading for meaning / checking sources.
+Stage 66 (20 Nov): grade test of VEGA (Stage 65 nets) - 68.6 % mean, 72-73 % on grades 1-3, no grade passed; same as
+Stage 53. Grammar gains did not raise reading. `scripts/grade_test.py`. Proposed next (user wants research /
+source-checking eventually): memory across sentences of a passage, tested by blanks that need earlier sentences.
