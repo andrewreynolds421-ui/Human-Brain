@@ -427,3 +427,8 @@ Stage 67 (20 Nov): episodic memory (state -> next word; lifelong store of the bo
 grade test 68.7 -> 73.6 %, grades 1-3 passed (78-80 %); control passage from elsewhere gives nothing. 82 MB per
 million words. `scripts/episodic.py` (needs faiss-cpu). User wants the memory to cover everything VEGA experiences
 and mentioned "the segment approach I suggested earlier" for when it gets too big - not found in notes; ask.
+Stage 68 (20 Nov): memory segments (user's idea: skills in folders, switched in per task) - Stage 67 stores saved
+to /home/claude/models/segments/vega_books_s*/{books,speech}. Right segment helps (speech text -4.87 -> -4.43),
+wrong one hurts, both worse than the right one; ~1 ms/word per 400 MB; not usable by another network without
+re-reading the text; no skill transfer (ever-questions). `scripts/segments.py`. Open: VEGA choosing its own
+segment; replaying a segment into the weights (sleep); portable segments.

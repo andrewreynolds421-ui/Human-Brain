@@ -765,3 +765,12 @@ before any full run. Weights fitted per store on the validation items, then both
 all came out at the lowest grid value (0.05). States are stored with 8 bits per number in an approximate index
 (faiss IVF, 16 of 2,048 cells searched), so recall is not exhaustive. The user asked for a memory of everything
 experienced: this holds the books (4.9 M words), not yet pages, speech or anything from Stages 1-49.
+
+## 49. Follow-up (20 November): Stage 68 — memory segments
+
+The user's design (skills saved apart from the network and switched in when needed), explained by him on 20
+November after it could not be found in the notes. Evaluation only; four networks; CHILDES-derived segments stay
+in /home/claude/models/segments (states and word ids, not text; not in the repository). Three runs at once ran
+out of memory and one was killed (re-run alone); a 10-minute tool limit cut two runs (re-run). The
+*ever*-question result has a spread of 4-18 points and is reported as no effect. "Borrowed" = network s loading
+network s'-s books segment with the writer's projection, weight refitted (best was the smallest, 0.05).

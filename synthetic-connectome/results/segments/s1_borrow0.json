@@ -1,0 +1,46 @@
+{
+ "seed": 1,
+ "borrowed_from": 0,
+ "segments": {
+  "books": {
+   "name": "books",
+   "holds": "the books of Stage 65's books group (Project Gutenberg)",
+   "words": 4888835,
+   "written_by": "vega_books_s0",
+   "format": "state (64 of 320 hidden units, PCA) -> next word id",
+   "moments": 5278474,
+   "megabytes": 401.8,
+   "load_seconds": 0.6
+  }
+ },
+ "fitted": {
+  "books": {
+   "weight": 0.05,
+   "sharpness": 0.25,
+   "val_logp": -4.9444,
+   "val_logp_none": -4.9127
+  }
+ },
+ "logp_per_word": {
+  "books": {
+   "none": -5.1034,
+   "books": -5.1339
+  },
+  "speech": {
+   "none": -4.8993,
+   "books": -4.9244
+  }
+ },
+ "built": {
+  "none": 0.0925,
+  "books": 0.18
+ },
+ "ms_per_word": {
+  "none": 0.0,
+  "books": 2.6
+ },
+ "megabytes_active": {
+  "none": 0,
+  "books": 401.8
+ }
+}

@@ -1,0 +1,72 @@
+{
+ "seed": 1,
+ "borrowed_from": null,
+ "segments": {
+  "books": {
+   "name": "books",
+   "holds": "the books of Stage 65's books group (Project Gutenberg)",
+   "words": 4888835,
+   "written_by": "vega_books_s1",
+   "format": "state (64 of 320 hidden units, PCA) -> next word id",
+   "moments": 5278474,
+   "megabytes": 401.8,
+   "load_seconds": 0.16
+  },
+  "speech": {
+   "name": "speech",
+   "holds": "CHILDES adult utterances (MacWhinney 2000), all but the last 20,000",
+   "words": 6911998,
+   "written_by": "vega_books_s1",
+   "format": "state (64 of 320 hidden units, PCA) -> next word id",
+   "moments": 8239113,
+   "megabytes": 626.6,
+   "load_seconds": 0.19
+  }
+ },
+ "fitted": {
+  "books": {
+   "weight": 0.2,
+   "sharpness": 1.0,
+   "val_logp": -4.8201,
+   "val_logp_none": -4.9127
+  },
+  "speech": {
+   "weight": 0.4,
+   "sharpness": 4.0,
+   "val_logp": -4.095,
+   "val_logp_none": -4.8153
+  }
+ },
+ "logp_per_word": {
+  "books": {
+   "none": -5.1034,
+   "books": -5.0077,
+   "speech": -5.3875,
+   "books+speech": -5.3483
+  },
+  "speech": {
+   "none": -4.8993,
+   "books": -4.8656,
+   "speech": -4.4322,
+   "books+speech": -4.4759
+  }
+ },
+ "built": {
+  "none": 0.0925,
+  "books": 0.1225,
+  "speech": 0.2575,
+  "books+speech": 0.3
+ },
+ "ms_per_word": {
+  "none": 0.0,
+  "books": 1.008,
+  "speech": 2.602,
+  "books+speech": 3.665
+ },
+ "megabytes_active": {
+  "none": 0,
+  "books": 401.8,
+  "speech": 626.6,
+  "books+speech": 1028.4
+ }
+}

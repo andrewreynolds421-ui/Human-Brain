@@ -668,3 +668,13 @@ def test_episodic_recall():
     assert EP.knn_share(np.array([7]), D, V, ok, 1.0)[0] > 0.9 > EP.knn_share(np.array([7]), D, V, ok, 100.0)[0] > 0.6
     D0, V0 = EP.passage_search(np.zeros((1, EP.DIM), np.float32), np.zeros((0, EP.DIM), np.float32), np.zeros(0, np.int32))
     assert EP.knn_share(np.array([7]), D0, V0, np.isfinite(D0), 1.0)[0] == 0.0
+
+
+def test_segment_mixing():
+    """Stage 68: an active segment takes its weight from the network's own probability; none active leaves it unchanged"""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import segments as SM
+    lp = np.log(np.array([0.5, 0.1]))
+    assert np.allclose(SM.mixed(lp, []), lp)
+    v = np.exp(SM.mixed(lp, [(0.2, np.array([1.0, 0.0]))]))
+    assert np.allclose(v, [0.8 * 0.5 + 0.2, 0.8 * 0.1])

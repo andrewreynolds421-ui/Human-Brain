@@ -1,0 +1,169 @@
+{
+ "networks": 4,
+ "logp_per_word": {
+  "books": {
+   "none": [
+    -5.106,
+    0.005
+   ],
+   "books": [
+    -5.012,
+    0.005
+   ],
+   "speech": [
+    -5.391,
+    0.007
+   ],
+   "books+speech": [
+    -5.353,
+    0.007
+   ]
+  },
+  "speech": {
+   "none": [
+    -4.872,
+    0.021
+   ],
+   "books": [
+    -4.845,
+    0.015
+   ],
+   "speech": [
+    -4.428,
+    0.006
+   ],
+   "books+speech": [
+    -4.474,
+    0.003
+   ]
+  }
+ },
+ "question_ever": {
+  "none": [
+   19.875,
+   18.068
+  ],
+  "books": [
+   24.25,
+   12.157
+  ],
+  "speech": [
+   25.812,
+   14.16
+  ],
+  "books+speech": [
+   29.875,
+   4.105
+  ]
+ },
+ "ms_per_word": {
+  "none": [
+   0.0,
+   0.0
+  ],
+  "books": [
+   0.927,
+   0.121
+  ],
+  "speech": [
+   2.64,
+   0.142
+  ],
+  "books+speech": [
+   3.62,
+   0.233
+  ]
+ },
+ "megabytes_active": {
+  "none": 0,
+  "books": 401.8,
+  "speech": 626.6,
+  "books+speech": 1028.4
+ },
+ "load_seconds": [
+  [
+   0.43,
+   0.97
+  ],
+  [
+   0.16,
+   0.19
+  ],
+  [
+   0.19,
+   0.2
+  ],
+  [
+   0.58,
+   0.18
+  ]
+ ],
+ "fitted": [
+  {
+   "books": {
+    "weight": 0.2,
+    "sharpness": 1.0,
+    "val_logp": -4.8191,
+    "val_logp_none": -4.915
+   },
+   "speech": {
+    "weight": 0.4,
+    "sharpness": 4.0,
+    "val_logp": -4.0979,
+    "val_logp_none": -4.8021
+   }
+  },
+  {
+   "books": {
+    "weight": 0.2,
+    "sharpness": 1.0,
+    "val_logp": -4.8201,
+    "val_logp_none": -4.9127
+   },
+   "speech": {
+    "weight": 0.4,
+    "sharpness": 4.0,
+    "val_logp": -4.095,
+    "val_logp_none": -4.8153
+   }
+  },
+  {
+   "books": {
+    "weight": 0.2,
+    "sharpness": 1.0,
+    "val_logp": -4.8086,
+    "val_logp_none": -4.9048
+   },
+   "speech": {
+    "weight": 0.4,
+    "sharpness": 4.0,
+    "val_logp": -4.0868,
+    "val_logp_none": -4.7854
+   }
+  },
+  {
+   "books": {
+    "weight": 0.2,
+    "sharpness": 1.0,
+    "val_logp": -4.8303,
+    "val_logp_none": -4.9244
+   },
+   "speech": {
+    "weight": 0.4,
+    "sharpness": 4.0,
+    "val_logp": -4.0973,
+    "val_logp_none": -4.7938
+   }
+  }
+ ],
+ "borrowed_books_segment_on_book_text": {
+  "none": [
+   -5.106,
+   0.005
+  ],
+  "books": [
+   -5.138,
+   0.005
+  ]
+ }
+}

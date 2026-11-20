@@ -3840,6 +3840,44 @@ retraining.
   store holds the books only, not the teaching pages or speech; 30 sentences before may cross into the previous
   book of the same grade in a few items.
 
+## Stage 68: memory in segments (Andrew's idea)
+
+**The idea.** What VEGA has learned is saved in a folder apart from the network; VEGA, or another version of it,
+adds a segment to its active memory when the task needs it and leaves it on disk otherwise - nothing unneeded
+is processed, and the resources are free for other things.
+
+**Set-up** (`scripts/segments.py`). A segment is a Stage 67 store written to a folder (search index, the words
+that followed, the projection, and a description: what it holds, who wrote it, size). Each of Stage 65's four
+*books* networks wrote two, with no retraining: *books* (its training books, 402 MB) and *speech* (speech to
+children, which it never trained on - read once and filed, 627 MB). Tests: held-out book text and held-out
+speech with none / one / the other / both segments active (log-probability per word; higher is better); one
+speech skill the network lacks (*had Peter ever called*); the cost; and another network using the segment.
+
+| active segments | book text | speech | MB in memory | ms per word |
+|---|---|---|---|---|
+| none | -5.106 | -4.872 | 0 | 0 |
+| books | **-5.012** | -4.845 | 402 | 0.9 |
+| speech | -5.391 | **-4.428** | 627 | 2.6 |
+| both | -5.353 | -4.474 | 1,028 | 3.6 |
+| books segment written by another network | -5.138 | | 402 | |
+
+- **The right segment helps, the wrong one costs.** The speech segment makes VEGA predict speech much better
+  (-4.87 -> -4.43: a third less uncertainty per word) without a single weight changed. On book text the same
+  segment hurts (-5.11 -> -5.39), and having both active is worse than the right one alone on either kind of
+  text. So segments should be switched in by task, as proposed - for accuracy as well as for resources.
+- **Cost.** A segment loads in under a second; active, it costs its size in memory and about 1 ms per word per
+  400 MB. On disk it costs nothing but space.
+- **A segment gives familiarity, not yet a skill.** With the speech segment the *ever*-question test moved from
+  20 to 26-30 %, within the spread between networks. Knowing how questions are built still has to be in the
+  weights (Stage 62).
+- **Another version cannot use it as it is.** A segment written by one network makes another network slightly
+  worse (-5.138 against -5.106): the stored states are in the writer's own code. To pass a segment on, it has to
+  carry the text itself (the description names it) and be re-read by the new network - 4-6 minutes here - or the
+  versions need a shared code. Not built yet.
+- Limits: each segment's weight is fixed at the value fitted on its own kind of text (0.2 books, 0.4 speech),
+  which is part of why a wrong segment hurts; choosing the segment is done by hand here - VEGA does not yet
+  decide what a task needs. Code is not tried: VEGA has no vocabulary for it yet.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
