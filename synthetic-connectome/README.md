@@ -3657,6 +3657,46 @@ material changed: *books* = Stage 61's books + pages (reference), *speech* = spe
 - Prediction of book text is worse with speech (-5.95 / -5.35 against -5.08) - expected, since the model spent
   part of its training on a different kind of language.
 
+## Stage 63: telling the model whether it is reading talk or a book
+
+**Question.** Stage 62's mix kept only part of what speech alone taught. The mix was already steady (speech was
+62 % of the sentences in every pass; question-order *ever* outnumbered statement-order *ever* 3 to 1), so the
+two kinds of language interfere. Does it help to tell the model which kind it is reading?
+
+**Set-up** (`scripts/register.py`): Stage 62's books + speech + pages, unchanged, except that every sentence's
+start token is one of two markers: *talk* (CHILDES adult speech) or *book* (books and teaching pages). Control:
+Stage 62's unmarked mix. Each of the four networks is then tested twice, once under each marker (same weights).
+
+| | books | speech | mix, unmarked | marked: *book* | marked: *talk* |
+|---|---|---|---|---|---|
+| BLiMP, all | 58.6 % | 57.8 % | 59.7 % | 58.0 % | **61.1 %** |
+| BLiMP negative polarity | 53.7 % | 53.2 % | 55.2 % | 50.1 % | **62.6 %** |
+| BLiMP filler-gap | 63.1 % | 59.7 % | 60.8 % | 60.4 % | **64.9 %** |
+| BLiMP quantifiers | 49.9 % | 62.0 % | 51.8 % | 50.9 % | 59.4 % |
+| BLiMP islands | 45.1 % | 53.9 % | 53.3 % | 49.2 % | 53.5 % |
+| BLiMP irregular forms | 73.9 % | 70.7 % | 82.3 % | 81.7 % | 82.7 % |
+| BLiMP anaphor agreement | 72.7 % | 70.6 % | 74.2 % | 70.7 % | 57.2 % |
+| prediction of book text (log-prob per word) | -5.08 | -5.95 | -5.35 | **-5.26** | -5.80 |
+| built: *had Peter ever called* vs *Peter had ever called* | 12.0 % | 75.3 % | 44.2 % | 10.9 % | **72.8 %** |
+| built: *any* scope (page rule), page nouns | 96.8 % | 88.3 % | 96.9 % | 96.9 % | 40.1 % |
+| built: reflexive across a phrase, page nouns | 91.3 % | 78.9 % | 90.8 % | 88.9 % | 61.6 % |
+| built: reflexive across a phrase, held-out nouns | 85.9 % | 77.0 % | 65.4 % | 77.4 % | 58.4 % |
+| built: *who* gap, held-out nouns | 29.6 % | 69.8 % | 41.9 % | 26.6 % | 15.5 % |
+
+- **The marker works as a switch.** With the same weights, *ever*-questions are 11 % under *book* and 73 % under
+  *talk* (difference 62 +/- 8 points in every network) - the unmarked mix's 44 % was the two habits averaged.
+  Under *talk* the model has the best BLiMP score so far (61.1 %) and keeps speech-only's gains on quantifiers and
+  islands; under *book* it predicts book text better than the unmarked mix and keeps the page rules.
+- **But the knowledge is filed by marker, not shared.** The teaching pages carried the *book* marker, and their
+  rules largely stay there: under *talk*, *any*-scope falls from 97 % to 40 % and reflexives across a phrase from
+  89 % to 62 %. The model has two grammars side by side, not one grammar with two styles. A person's rules hold
+  in both.
+- **Not fixed by the marker:** *who* gaps (worse under *talk*; speech alone still does best on held-out nouns),
+  names with reflexives (50 % under both, as in the unmarked mix), irregular forms (the same under both - that
+  gain comes from the extra material, not the register).
+- Limit of the test: the pages were only ever read under *book*, so "page rules do not carry to *talk*" is
+  about this arrangement. Pages read under both markers would test whether the rules can be shared.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

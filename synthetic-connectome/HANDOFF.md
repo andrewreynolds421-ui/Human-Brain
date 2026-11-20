@@ -406,3 +406,7 @@ table comparing each skill with children's typical ages. `scripts/sleep_grammar.
 Stage 62 (19 Nov): CHILDES adult speech (7 M words) instead of / added to books - ever-questions 12 -> 75 % (speech
 only), islands and quantifiers +8-12, irregular forms 82 % with books + speech (best so far); costs some book and
 held-out-noun skills; who-gaps still unstable. `scripts/childes.py`; data in /home/claude/models/childes (not in repo).
+Stage 63 (19 Nov): talk / book start markers on the Stage 62 mix - a switch: ever-questions 11 % (book) vs 73 %
+(talk), BLiMP 61.1 % under talk (best so far); but page rules stay with the book marker (any-scope 97 -> 40 % under
+talk). Two grammars, not one. `scripts/register.py`; models in /home/claude/models/register. Next: pages under both
+markers (can rules be shared?); who-gaps still open.

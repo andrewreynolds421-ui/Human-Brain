@@ -619,3 +619,17 @@ def test_adult_pages_agree():
             if x in ("don't", "doesn't"): assert w[i + 1] in SG.INTR
         if len(w) > 2 and w[0] in ("every", "each") and w[2] in ("has", "have"): assert w[2] == "has"
         if len(w) > 2 and w[0] in ("all", "most", "many", "few") and w[2] in ("has", "have"): assert w[2] == "have"
+
+
+def test_register_markers():
+    """Stage 63: speech sentences start with the talk marker, others with the book marker; the test marker switches unmarked ones"""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import register as RG
+    M = RG.Tagged(["the", "dog", "dogs", "runs", "run", "ever", "have", "you"], 0)
+    RG.Tagged.EVAL = "book"
+    assert M.enc(["the", "dog"])[0] == 1 and M.enc(RG.Talk(["have", "you"]))[0] == M.T != 1
+    a = M.logp([["the", "dog", "runs"]])[0]; M.step([dict(words=RG.Talk(["have", "you", "ever"])), dict(words=["the", "dogs", "run"])])
+    RG.Tagged.EVAL = "talk"
+    assert M.enc(["the", "dog"])[0] == M.T and len(M.enc(["the", "dog"])) == 4
+    assert M.logp([["the", "dog", "runs"]])[0] != a
+    RG.Tagged.EVAL = "book"

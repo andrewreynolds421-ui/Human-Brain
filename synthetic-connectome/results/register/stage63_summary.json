@@ -1,0 +1,2966 @@
+{
+ "books": {
+  "networks": 4,
+  "blimp_all": [
+   58.6,
+   0.5,
+   4
+  ],
+  "blimp_taught_fields": [
+   62.9,
+   0.6,
+   4
+  ],
+  "blimp_other_fields": [
+   53.3,
+   0.6,
+   4
+  ],
+  "by_field": {
+   "anaphor_agreement": [
+    72.7,
+    6.6,
+    4
+   ],
+   "argument_structure": [
+    58.7,
+    0.1,
+    4
+   ],
+   "binding": [
+    59.0,
+    1.8,
+    4
+   ],
+   "control_raising": [
+    53.1,
+    0.5,
+    4
+   ],
+   "determiner_noun_agreement": [
+    69.5,
+    1.0,
+    4
+   ],
+   "ellipsis": [
+    41.0,
+    3.1,
+    4
+   ],
+   "filler_gap_dependency": [
+    63.1,
+    0.8,
+    4
+   ],
+   "irregular_forms": [
+    73.9,
+    2.9,
+    4
+   ],
+   "island_effects": [
+    45.1,
+    0.7,
+    4
+   ],
+   "npi_licensing": [
+    53.7,
+    3.8,
+    4
+   ],
+   "quantifiers": [
+    49.9,
+    3.6,
+    4
+   ],
+   "s-selection": [
+    66.2,
+    1.2,
+    4
+   ],
+   "subject_verb_agreement": [
+    66.0,
+    1.5,
+    4
+   ]
+  },
+  "by_phenomenon": {
+   "adjunct_island": [
+    71.4,
+    2.9,
+    4
+   ],
+   "anaphor_gender_agreement": [
+    66.1,
+    9.7,
+    4
+   ],
+   "anaphor_number_agreement": [
+    79.3,
+    3.8,
+    4
+   ],
+   "animate_subject_passive": [
+    52.7,
+    1.2,
+    4
+   ],
+   "animate_subject_trans": [
+    79.8,
+    1.4,
+    4
+   ],
+   "causative": [
+    57.6,
+    1.2,
+    4
+   ],
+   "complex_NP_island": [
+    36.8,
+    3.0,
+    4
+   ],
+   "coordinate_structure_constraint_complex_left_branch": [
+    28.1,
+    3.2,
+    4
+   ],
+   "coordinate_structure_constraint_object_extraction": [
+    19.9,
+    1.5,
+    4
+   ],
+   "determiner_noun_agreement_1": [
+    74.1,
+    1.8,
+    4
+   ],
+   "determiner_noun_agreement_2": [
+    71.6,
+    2.5,
+    4
+   ],
+   "determiner_noun_agreement_irregular_1": [
+    65.8,
+    4.9,
+    4
+   ],
+   "determiner_noun_agreement_irregular_2": [
+    77.0,
+    0.4,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_2": [
+    63.0,
+    1.1,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_irregular_1": [
+    70.3,
+    0.9,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_irregular_2": [
+    69.0,
+    1.2,
+    4
+   ],
+   "determiner_noun_agreement_with_adjective_1": [
+    65.3,
+    1.0,
+    4
+   ],
+   "distractor_agreement_relational_noun": [
+    63.4,
+    2.1,
+    4
+   ],
+   "distractor_agreement_relative_clause": [
+    58.6,
+    2.1,
+    4
+   ],
+   "drop_argument": [
+    70.5,
+    1.7,
+    4
+   ],
+   "ellipsis_n_bar_1": [
+    32.2,
+    6.5,
+    4
+   ],
+   "ellipsis_n_bar_2": [
+    49.8,
+    1.1,
+    4
+   ],
+   "existential_there_object_raising": [
+    52.1,
+    1.0,
+    4
+   ],
+   "existential_there_quantifiers_1": [
+    76.7,
+    3.3,
+    4
+   ],
+   "existential_there_quantifiers_2": [
+    15.7,
+    5.1,
+    4
+   ],
+   "existential_there_subject_raising": [
+    58.9,
+    3.5,
+    4
+   ],
+   "expletive_it_object_raising": [
+    50.2,
+    0.8,
+    4
+   ],
+   "inchoative": [
+    54.3,
+    1.4,
+    4
+   ],
+   "intransitive": [
+    67.5,
+    1.2,
+    4
+   ],
+   "irregular_past_participle_adjectives": [
+    61.5,
+    5.7,
+    4
+   ],
+   "irregular_past_participle_verbs": [
+    86.3,
+    1.2,
+    4
+   ],
+   "irregular_plural_subject_verb_agreement_1": [
+    70.5,
+    1.0,
+    4
+   ],
+   "irregular_plural_subject_verb_agreement_2": [
+    62.7,
+    4.4,
+    4
+   ],
+   "left_branch_island_echo_question": [
+    42.4,
+    5.7,
+    4
+   ],
+   "left_branch_island_simple_question": [
+    34.0,
+    5.2,
+    4
+   ],
+   "matrix_question_npi_licensor_present": [
+    43.6,
+    5.2,
+    4
+   ],
+   "npi_present_1": [
+    27.3,
+    16.4,
+    4
+   ],
+   "npi_present_2": [
+    33.8,
+    10.5,
+    4
+   ],
+   "only_npi_licensor_present": [
+    75.8,
+    6.0,
+    4
+   ],
+   "only_npi_scope": [
+    48.5,
+    9.9,
+    4
+   ],
+   "passive_1": [
+    57.5,
+    1.2,
+    4
+   ],
+   "passive_2": [
+    56.7,
+    1.0,
+    4
+   ],
+   "principle_A_c_command": [
+    60.9,
+    5.6,
+    4
+   ],
+   "principle_A_case_1": [
+    99.0,
+    1.1,
+    4
+   ],
+   "principle_A_case_2": [
+    43.2,
+    4.7,
+    4
+   ],
+   "principle_A_domain_1": [
+    90.8,
+    1.2,
+    4
+   ],
+   "principle_A_domain_2": [
+    42.2,
+    4.2,
+    4
+   ],
+   "principle_A_domain_3": [
+    42.5,
+    0.9,
+    4
+   ],
+   "principle_A_reconstruction": [
+    34.4,
+    3.5,
+    4
+   ],
+   "regular_plural_subject_verb_agreement_1": [
+    77.4,
+    1.6,
+    4
+   ],
+   "regular_plural_subject_verb_agreement_2": [
+    63.5,
+    1.7,
+    4
+   ],
+   "sentential_negation_npi_licensor_present": [
+    98.7,
+    2.1,
+    4
+   ],
+   "sentential_negation_npi_scope": [
+    48.2,
+    9.8,
+    4
+   ],
+   "sentential_subject_island": [
+    36.6,
+    4.0,
+    4
+   ],
+   "superlative_quantifiers_1": [
+    48.6,
+    1.7,
+    4
+   ],
+   "superlative_quantifiers_2": [
+    58.7,
+    9.5,
+    4
+   ],
+   "tough_vs_raising_1": [
+    37.1,
+    0.8,
+    4
+   ],
+   "tough_vs_raising_2": [
+    67.0,
+    1.4,
+    4
+   ],
+   "transitive": [
+    47.1,
+    0.5,
+    4
+   ],
+   "wh_island": [
+    91.3,
+    4.9,
+    4
+   ],
+   "wh_questions_object_gap": [
+    59.2,
+    4.0,
+    4
+   ],
+   "wh_questions_subject_gap": [
+    84.0,
+    1.5,
+    4
+   ],
+   "wh_questions_subject_gap_long_distance": [
+    92.6,
+    1.7,
+    4
+   ],
+   "wh_vs_that_no_gap": [
+    91.9,
+    1.1,
+    4
+   ],
+   "wh_vs_that_no_gap_long_distance": [
+    91.9,
+    1.5,
+    4
+   ],
+   "wh_vs_that_with_gap": [
+    12.2,
+    1.6,
+    4
+   ],
+   "wh_vs_that_with_gap_long_distance": [
+    10.1,
+    1.5,
+    4
+   ]
+  },
+  "built": {
+   "page_nouns_det": [
+    90.6,
+    7.3,
+    4
+   ],
+   "page_nouns_refl_number": [
+    99.7,
+    0.6,
+    4
+   ],
+   "page_nouns_refl_gender": [
+    62.4,
+    8.0,
+    4
+   ],
+   "page_nouns_refl_across": [
+    91.3,
+    3.6,
+    4
+   ],
+   "page_nouns_npi": [
+    100.0,
+    0.0,
+    4
+   ],
+   "page_nouns_npi_scope": [
+    96.8,
+    6.2,
+    4
+   ],
+   "page_nouns_gap_wh": [
+    100.0,
+    0.0,
+    4
+   ],
+   "page_nouns_gap_that": [
+    83.2,
+    13.0,
+    4
+   ],
+   "page_nouns_aux_agree_relative": [
+    99.6,
+    0.8,
+    4
+   ],
+   "page_nouns_verb_agree_relative": [
+    89.8,
+    16.3,
+    4
+   ],
+   "page_nouns_who_gap": [
+    41.6,
+    37.8,
+    4
+   ],
+   "page_nouns_name_reflexive": [
+    76.4,
+    4.1,
+    4
+   ],
+   "page_nouns_question_ever": [
+    12.0,
+    8.5,
+    4
+   ],
+   "held_out_nouns_det": [
+    73.6,
+    6.6,
+    4
+   ],
+   "held_out_nouns_refl_number": [
+    96.4,
+    4.4,
+    4
+   ],
+   "held_out_nouns_refl_gender": [
+    91.2,
+    17.6,
+    4
+   ],
+   "held_out_nouns_refl_across": [
+    85.9,
+    10.2,
+    4
+   ],
+   "held_out_nouns_npi": [
+    95.0,
+    6.6,
+    4
+   ],
+   "held_out_nouns_npi_scope": [
+    88.3,
+    9.7,
+    4
+   ],
+   "held_out_nouns_gap_wh": [
+    93.6,
+    3.1,
+    4
+   ],
+   "held_out_nouns_gap_that": [
+    75.2,
+    12.2,
+    4
+   ],
+   "held_out_nouns_aux_agree_relative": [
+    87.3,
+    10.0,
+    4
+   ],
+   "held_out_nouns_verb_agree_relative": [
+    83.6,
+    6.4,
+    4
+   ],
+   "held_out_nouns_who_gap": [
+    29.6,
+    20.3,
+    4
+   ],
+   "held_out_nouns_name_reflexive": [
+    76.4,
+    4.1,
+    4
+   ],
+   "held_out_nouns_question_ever": [
+    12.0,
+    8.5,
+    4
+   ]
+  },
+  "books_agreement": [
+   94.9,
+   1.5,
+   4
+  ],
+  "word_order": [
+   93.5,
+   0.2,
+   4
+  ],
+  "val_logp": -5.082
+ },
+ "speech": {
+  "networks": 4,
+  "blimp_all": [
+   57.8,
+   0.6,
+   4
+  ],
+  "blimp_taught_fields": [
+   61.2,
+   0.8,
+   4
+  ],
+  "blimp_other_fields": [
+   53.6,
+   0.7,
+   4
+  ],
+  "by_field": {
+   "anaphor_agreement": [
+    70.6,
+    4.2,
+    4
+   ],
+   "argument_structure": [
+    52.0,
+    0.1,
+    4
+   ],
+   "binding": [
+    60.1,
+    1.0,
+    4
+   ],
+   "control_raising": [
+    45.3,
+    0.9,
+    4
+   ],
+   "determiner_noun_agreement": [
+    66.3,
+    1.6,
+    4
+   ],
+   "ellipsis": [
+    39.9,
+    2.4,
+    4
+   ],
+   "filler_gap_dependency": [
+    59.7,
+    1.2,
+    4
+   ],
+   "irregular_forms": [
+    70.7,
+    4.2,
+    4
+   ],
+   "island_effects": [
+    53.9,
+    2.1,
+    4
+   ],
+   "npi_licensing": [
+    53.2,
+    2.2,
+    4
+   ],
+   "quantifiers": [
+    62.0,
+    5.1,
+    4
+   ],
+   "s-selection": [
+    58.9,
+    1.9,
+    4
+   ],
+   "subject_verb_agreement": [
+    63.8,
+    1.4,
+    4
+   ]
+  },
+  "by_phenomenon": {
+   "adjunct_island": [
+    70.5,
+    2.0,
+    4
+   ],
+   "anaphor_gender_agreement": [
+    71.1,
+    3.2,
+    4
+   ],
+   "anaphor_number_agreement": [
+    70.1,
+    5.5,
+    4
+   ],
+   "animate_subject_passive": [
+    45.5,
+    0.7,
+    4
+   ],
+   "animate_subject_trans": [
+    72.3,
+    3.1,
+    4
+   ],
+   "causative": [
+    54.8,
+    0.6,
+    4
+   ],
+   "complex_NP_island": [
+    52.4,
+    3.8,
+    4
+   ],
+   "coordinate_structure_constraint_complex_left_branch": [
+    45.6,
+    6.0,
+    4
+   ],
+   "coordinate_structure_constraint_object_extraction": [
+    31.8,
+    4.5,
+    4
+   ],
+   "determiner_noun_agreement_1": [
+    66.2,
+    3.0,
+    4
+   ],
+   "determiner_noun_agreement_2": [
+    67.0,
+    3.2,
+    4
+   ],
+   "determiner_noun_agreement_irregular_1": [
+    64.1,
+    2.6,
+    4
+   ],
+   "determiner_noun_agreement_irregular_2": [
+    72.5,
+    1.8,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_2": [
+    63.0,
+    2.3,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_irregular_1": [
+    68.2,
+    2.2,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_irregular_2": [
+    67.5,
+    1.6,
+    4
+   ],
+   "determiner_noun_agreement_with_adjective_1": [
+    61.7,
+    2.2,
+    4
+   ],
+   "distractor_agreement_relational_noun": [
+    59.0,
+    5.0,
+    4
+   ],
+   "distractor_agreement_relative_clause": [
+    58.7,
+    3.6,
+    4
+   ],
+   "drop_argument": [
+    65.2,
+    0.3,
+    4
+   ],
+   "ellipsis_n_bar_1": [
+    36.7,
+    4.3,
+    4
+   ],
+   "ellipsis_n_bar_2": [
+    43.0,
+    2.8,
+    4
+   ],
+   "existential_there_object_raising": [
+    37.1,
+    1.2,
+    4
+   ],
+   "existential_there_quantifiers_1": [
+    88.2,
+    2.9,
+    4
+   ],
+   "existential_there_quantifiers_2": [
+    34.0,
+    5.9,
+    4
+   ],
+   "existential_there_subject_raising": [
+    41.7,
+    2.1,
+    4
+   ],
+   "expletive_it_object_raising": [
+    45.7,
+    0.5,
+    4
+   ],
+   "inchoative": [
+    52.1,
+    1.4,
+    4
+   ],
+   "intransitive": [
+    61.8,
+    1.0,
+    4
+   ],
+   "irregular_past_participle_adjectives": [
+    53.2,
+    6.5,
+    4
+   ],
+   "irregular_past_participle_verbs": [
+    88.1,
+    2.5,
+    4
+   ],
+   "irregular_plural_subject_verb_agreement_1": [
+    72.7,
+    1.4,
+    4
+   ],
+   "irregular_plural_subject_verb_agreement_2": [
+    62.4,
+    4.2,
+    4
+   ],
+   "left_branch_island_echo_question": [
+    54.3,
+    5.5,
+    4
+   ],
+   "left_branch_island_simple_question": [
+    57.2,
+    4.5,
+    4
+   ],
+   "matrix_question_npi_licensor_present": [
+    62.1,
+    6.0,
+    4
+   ],
+   "npi_present_1": [
+    25.3,
+    4.7,
+    4
+   ],
+   "npi_present_2": [
+    26.8,
+    5.0,
+    4
+   ],
+   "only_npi_licensor_present": [
+    71.5,
+    10.3,
+    4
+   ],
+   "only_npi_scope": [
+    39.5,
+    11.9,
+    4
+   ],
+   "passive_1": [
+    41.0,
+    0.2,
+    4
+   ],
+   "passive_2": [
+    41.9,
+    0.1,
+    4
+   ],
+   "principle_A_c_command": [
+    52.7,
+    5.5,
+    4
+   ],
+   "principle_A_case_1": [
+    98.8,
+    1.1,
+    4
+   ],
+   "principle_A_case_2": [
+    58.4,
+    4.2,
+    4
+   ],
+   "principle_A_domain_1": [
+    88.5,
+    1.7,
+    4
+   ],
+   "principle_A_domain_2": [
+    41.4,
+    2.2,
+    4
+   ],
+   "principle_A_domain_3": [
+    46.5,
+    1.8,
+    4
+   ],
+   "principle_A_reconstruction": [
+    34.5,
+    2.7,
+    4
+   ],
+   "regular_plural_subject_verb_agreement_1": [
+    70.7,
+    1.7,
+    4
+   ],
+   "regular_plural_subject_verb_agreement_2": [
+    59.5,
+    1.7,
+    4
+   ],
+   "sentential_negation_npi_licensor_present": [
+    82.1,
+    8.8,
+    4
+   ],
+   "sentential_negation_npi_scope": [
+    64.9,
+    6.4,
+    4
+   ],
+   "sentential_subject_island": [
+    37.8,
+    2.5,
+    4
+   ],
+   "superlative_quantifiers_1": [
+    81.0,
+    11.7,
+    4
+   ],
+   "superlative_quantifiers_2": [
+    44.6,
+    8.5,
+    4
+   ],
+   "tough_vs_raising_1": [
+    51.4,
+    3.6,
+    4
+   ],
+   "tough_vs_raising_2": [
+    50.4,
+    3.2,
+    4
+   ],
+   "transitive": [
+    47.5,
+    1.2,
+    4
+   ],
+   "wh_island": [
+    81.2,
+    6.1,
+    4
+   ],
+   "wh_questions_object_gap": [
+    52.7,
+    6.4,
+    4
+   ],
+   "wh_questions_subject_gap": [
+    69.5,
+    2.7,
+    4
+   ],
+   "wh_questions_subject_gap_long_distance": [
+    84.7,
+    1.9,
+    4
+   ],
+   "wh_vs_that_no_gap": [
+    74.3,
+    4.6,
+    4
+   ],
+   "wh_vs_that_no_gap_long_distance": [
+    77.1,
+    4.6,
+    4
+   ],
+   "wh_vs_that_with_gap": [
+    34.2,
+    4.0,
+    4
+   ],
+   "wh_vs_that_with_gap_long_distance": [
+    25.6,
+    4.6,
+    4
+   ]
+  },
+  "built": {
+   "page_nouns_det": [
+    95.2,
+    3.0,
+    4
+   ],
+   "page_nouns_refl_number": [
+    75.2,
+    17.2,
+    4
+   ],
+   "page_nouns_refl_gender": [
+    50.9,
+    1.0,
+    4
+   ],
+   "page_nouns_refl_across": [
+    78.9,
+    12.1,
+    4
+   ],
+   "page_nouns_npi": [
+    100.0,
+    0.0,
+    4
+   ],
+   "page_nouns_npi_scope": [
+    88.3,
+    9.2,
+    4
+   ],
+   "page_nouns_gap_wh": [
+    100.0,
+    0.0,
+    4
+   ],
+   "page_nouns_gap_that": [
+    72.0,
+    26.2,
+    4
+   ],
+   "page_nouns_aux_agree_relative": [
+    99.3,
+    0.6,
+    4
+   ],
+   "page_nouns_verb_agree_relative": [
+    95.3,
+    4.1,
+    4
+   ],
+   "page_nouns_who_gap": [
+    37.9,
+    32.8,
+    4
+   ],
+   "page_nouns_name_reflexive": [
+    50.0,
+    9.8,
+    4
+   ],
+   "page_nouns_question_ever": [
+    75.3,
+    18.6,
+    4
+   ],
+   "held_out_nouns_det": [
+    66.6,
+    5.7,
+    4
+   ],
+   "held_out_nouns_refl_number": [
+    79.9,
+    12.8,
+    4
+   ],
+   "held_out_nouns_refl_gender": [
+    75.0,
+    35.5,
+    4
+   ],
+   "held_out_nouns_refl_across": [
+    77.0,
+    9.8,
+    4
+   ],
+   "held_out_nouns_npi": [
+    96.8,
+    3.3,
+    4
+   ],
+   "held_out_nouns_npi_scope": [
+    60.1,
+    12.2,
+    4
+   ],
+   "held_out_nouns_gap_wh": [
+    98.2,
+    1.2,
+    4
+   ],
+   "held_out_nouns_gap_that": [
+    44.7,
+    18.7,
+    4
+   ],
+   "held_out_nouns_aux_agree_relative": [
+    85.2,
+    2.2,
+    4
+   ],
+   "held_out_nouns_verb_agree_relative": [
+    79.1,
+    8.9,
+    4
+   ],
+   "held_out_nouns_who_gap": [
+    69.8,
+    12.4,
+    4
+   ],
+   "held_out_nouns_name_reflexive": [
+    50.0,
+    9.8,
+    4
+   ],
+   "held_out_nouns_question_ever": [
+    75.3,
+    18.6,
+    4
+   ]
+  },
+  "books_agreement": [
+   90.1,
+   1.0,
+   4
+  ],
+  "word_order": [
+   88.1,
+   0.4,
+   4
+  ],
+  "val_logp": -5.953
+ },
+ "mix": {
+  "networks": 4,
+  "blimp_all": [
+   59.7,
+   0.5,
+   4
+  ],
+  "blimp_taught_fields": [
+   62.5,
+   0.7,
+   4
+  ],
+  "blimp_other_fields": [
+   56.3,
+   0.4,
+   4
+  ],
+  "by_field": {
+   "anaphor_agreement": [
+    74.2,
+    2.7,
+    4
+   ],
+   "argument_structure": [
+    59.4,
+    1.0,
+    4
+   ],
+   "binding": [
+    60.3,
+    2.5,
+    4
+   ],
+   "control_raising": [
+    54.0,
+    0.8,
+    4
+   ],
+   "determiner_noun_agreement": [
+    69.4,
+    0.7,
+    4
+   ],
+   "ellipsis": [
+    43.2,
+    1.1,
+    4
+   ],
+   "filler_gap_dependency": [
+    60.8,
+    0.5,
+    4
+   ],
+   "irregular_forms": [
+    82.3,
+    3.4,
+    4
+   ],
+   "island_effects": [
+    53.3,
+    0.7,
+    4
+   ],
+   "npi_licensing": [
+    55.2,
+    1.1,
+    4
+   ],
+   "quantifiers": [
+    51.8,
+    1.4,
+    4
+   ],
+   "s-selection": [
+    59.2,
+    1.2,
+    4
+   ],
+   "subject_verb_agreement": [
+    62.7,
+    1.3,
+    4
+   ]
+  },
+  "by_phenomenon": {
+   "adjunct_island": [
+    70.1,
+    7.6,
+    4
+   ],
+   "anaphor_gender_agreement": [
+    68.0,
+    2.6,
+    4
+   ],
+   "anaphor_number_agreement": [
+    80.2,
+    5.1,
+    4
+   ],
+   "animate_subject_passive": [
+    43.2,
+    0.3,
+    4
+   ],
+   "animate_subject_trans": [
+    75.2,
+    2.5,
+    4
+   ],
+   "causative": [
+    61.4,
+    0.6,
+    4
+   ],
+   "complex_NP_island": [
+    45.5,
+    1.6,
+    4
+   ],
+   "coordinate_structure_constraint_complex_left_branch": [
+    49.9,
+    3.5,
+    4
+   ],
+   "coordinate_structure_constraint_object_extraction": [
+    22.0,
+    3.8,
+    4
+   ],
+   "determiner_noun_agreement_1": [
+    71.1,
+    1.7,
+    4
+   ],
+   "determiner_noun_agreement_2": [
+    70.9,
+    3.5,
+    4
+   ],
+   "determiner_noun_agreement_irregular_1": [
+    66.5,
+    2.7,
+    4
+   ],
+   "determiner_noun_agreement_irregular_2": [
+    75.2,
+    1.5,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_2": [
+    66.9,
+    1.1,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_irregular_1": [
+    72.1,
+    1.6,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_irregular_2": [
+    70.0,
+    1.2,
+    4
+   ],
+   "determiner_noun_agreement_with_adjective_1": [
+    62.8,
+    1.8,
+    4
+   ],
+   "distractor_agreement_relational_noun": [
+    51.4,
+    5.3,
+    4
+   ],
+   "distractor_agreement_relative_clause": [
+    55.8,
+    6.2,
+    4
+   ],
+   "drop_argument": [
+    74.1,
+    1.7,
+    4
+   ],
+   "ellipsis_n_bar_1": [
+    44.7,
+    1.1,
+    4
+   ],
+   "ellipsis_n_bar_2": [
+    41.7,
+    2.8,
+    4
+   ],
+   "existential_there_object_raising": [
+    52.5,
+    2.4,
+    4
+   ],
+   "existential_there_quantifiers_1": [
+    80.0,
+    4.2,
+    4
+   ],
+   "existential_there_quantifiers_2": [
+    43.6,
+    2.4,
+    4
+   ],
+   "existential_there_subject_raising": [
+    58.0,
+    4.5,
+    4
+   ],
+   "expletive_it_object_raising": [
+    52.8,
+    0.9,
+    4
+   ],
+   "inchoative": [
+    52.9,
+    0.9,
+    4
+   ],
+   "intransitive": [
+    64.5,
+    1.1,
+    4
+   ],
+   "irregular_past_participle_adjectives": [
+    75.9,
+    7.0,
+    4
+   ],
+   "irregular_past_participle_verbs": [
+    88.8,
+    1.1,
+    4
+   ],
+   "irregular_plural_subject_verb_agreement_1": [
+    73.4,
+    1.3,
+    4
+   ],
+   "irregular_plural_subject_verb_agreement_2": [
+    61.5,
+    6.8,
+    4
+   ],
+   "left_branch_island_echo_question": [
+    59.4,
+    3.9,
+    4
+   ],
+   "left_branch_island_simple_question": [
+    57.5,
+    4.5,
+    4
+   ],
+   "matrix_question_npi_licensor_present": [
+    44.5,
+    6.9,
+    4
+   ],
+   "npi_present_1": [
+    28.2,
+    5.4,
+    4
+   ],
+   "npi_present_2": [
+    42.2,
+    2.9,
+    4
+   ],
+   "only_npi_licensor_present": [
+    75.4,
+    4.5,
+    4
+   ],
+   "only_npi_scope": [
+    40.0,
+    5.2,
+    4
+   ],
+   "passive_1": [
+    54.6,
+    2.2,
+    4
+   ],
+   "passive_2": [
+    55.2,
+    1.9,
+    4
+   ],
+   "principle_A_c_command": [
+    49.7,
+    9.7,
+    4
+   ],
+   "principle_A_case_1": [
+    98.7,
+    0.6,
+    4
+   ],
+   "principle_A_case_2": [
+    55.5,
+    3.2,
+    4
+   ],
+   "principle_A_domain_1": [
+    87.3,
+    7.2,
+    4
+   ],
+   "principle_A_domain_2": [
+    45.3,
+    2.8,
+    4
+   ],
+   "principle_A_domain_3": [
+    50.7,
+    0.7,
+    4
+   ],
+   "principle_A_reconstruction": [
+    35.0,
+    5.2,
+    4
+   ],
+   "regular_plural_subject_verb_agreement_1": [
+    73.5,
+    1.5,
+    4
+   ],
+   "regular_plural_subject_verb_agreement_2": [
+    60.4,
+    3.1,
+    4
+   ],
+   "sentential_negation_npi_licensor_present": [
+    97.1,
+    1.5,
+    4
+   ],
+   "sentential_negation_npi_scope": [
+    59.0,
+    6.4,
+    4
+   ],
+   "sentential_subject_island": [
+    35.4,
+    1.8,
+    4
+   ],
+   "superlative_quantifiers_1": [
+    35.9,
+    4.7,
+    4
+   ],
+   "superlative_quantifiers_2": [
+    47.7,
+    3.2,
+    4
+   ],
+   "tough_vs_raising_1": [
+    44.1,
+    2.0,
+    4
+   ],
+   "tough_vs_raising_2": [
+    62.6,
+    1.4,
+    4
+   ],
+   "transitive": [
+    52.8,
+    1.0,
+    4
+   ],
+   "wh_island": [
+    86.2,
+    5.4,
+    4
+   ],
+   "wh_questions_object_gap": [
+    52.1,
+    4.5,
+    4
+   ],
+   "wh_questions_subject_gap": [
+    71.1,
+    2.4,
+    4
+   ],
+   "wh_questions_subject_gap_long_distance": [
+    89.9,
+    2.2,
+    4
+   ],
+   "wh_vs_that_no_gap": [
+    84.3,
+    3.8,
+    4
+   ],
+   "wh_vs_that_no_gap_long_distance": [
+    84.1,
+    1.2,
+    4
+   ],
+   "wh_vs_that_with_gap": [
+    25.2,
+    4.7,
+    4
+   ],
+   "wh_vs_that_with_gap_long_distance": [
+    19.1,
+    2.3,
+    4
+   ]
+  },
+  "built": {
+   "page_nouns_det": [
+    89.6,
+    5.4,
+    4
+   ],
+   "page_nouns_refl_number": [
+    96.0,
+    7.2,
+    4
+   ],
+   "page_nouns_refl_gender": [
+    48.5,
+    2.4,
+    4
+   ],
+   "page_nouns_refl_across": [
+    90.8,
+    3.2,
+    4
+   ],
+   "page_nouns_npi": [
+    100.0,
+    0.0,
+    4
+   ],
+   "page_nouns_npi_scope": [
+    96.9,
+    4.6,
+    4
+   ],
+   "page_nouns_gap_wh": [
+    99.9,
+    0.1,
+    4
+   ],
+   "page_nouns_gap_that": [
+    92.1,
+    7.1,
+    4
+   ],
+   "page_nouns_aux_agree_relative": [
+    90.3,
+    17.1,
+    4
+   ],
+   "page_nouns_verb_agree_relative": [
+    95.2,
+    3.3,
+    4
+   ],
+   "page_nouns_who_gap": [
+    65.5,
+    14.7,
+    4
+   ],
+   "page_nouns_name_reflexive": [
+    50.8,
+    3.3,
+    4
+   ],
+   "page_nouns_question_ever": [
+    44.2,
+    20.6,
+    4
+   ],
+   "held_out_nouns_det": [
+    69.8,
+    9.3,
+    4
+   ],
+   "held_out_nouns_refl_number": [
+    81.7,
+    6.4,
+    4
+   ],
+   "held_out_nouns_refl_gender": [
+    96.9,
+    6.2,
+    4
+   ],
+   "held_out_nouns_refl_across": [
+    65.4,
+    7.8,
+    4
+   ],
+   "held_out_nouns_npi": [
+    99.4,
+    0.8,
+    4
+   ],
+   "held_out_nouns_npi_scope": [
+    74.3,
+    17.9,
+    4
+   ],
+   "held_out_nouns_gap_wh": [
+    91.6,
+    7.8,
+    4
+   ],
+   "held_out_nouns_gap_that": [
+    69.1,
+    6.5,
+    4
+   ],
+   "held_out_nouns_aux_agree_relative": [
+    72.2,
+    10.4,
+    4
+   ],
+   "held_out_nouns_verb_agree_relative": [
+    74.6,
+    9.5,
+    4
+   ],
+   "held_out_nouns_who_gap": [
+    41.9,
+    20.5,
+    4
+   ],
+   "held_out_nouns_name_reflexive": [
+    50.8,
+    3.3,
+    4
+   ],
+   "held_out_nouns_question_ever": [
+    44.2,
+    20.6,
+    4
+   ]
+  },
+  "books_agreement": [
+   93.4,
+   0.4,
+   4
+  ],
+  "word_order": [
+   92.7,
+   0.3,
+   4
+  ],
+  "val_logp": -5.35
+ },
+ "marked_book": {
+  "networks": 4,
+  "blimp_all": [
+   58.0,
+   0.5,
+   4
+  ],
+  "blimp_taught_fields": [
+   60.9,
+   0.7,
+   4
+  ],
+  "blimp_other_fields": [
+   54.4,
+   0.7,
+   4
+  ],
+  "by_field": {
+   "anaphor_agreement": [
+    70.7,
+    2.0,
+    4
+   ],
+   "argument_structure": [
+    57.7,
+    0.5,
+    4
+   ],
+   "binding": [
+    59.4,
+    1.8,
+    4
+   ],
+   "control_raising": [
+    53.1,
+    0.7,
+    4
+   ],
+   "determiner_noun_agreement": [
+    68.3,
+    1.7,
+    4
+   ],
+   "ellipsis": [
+    41.7,
+    2.1,
+    4
+   ],
+   "filler_gap_dependency": [
+    60.4,
+    0.8,
+    4
+   ],
+   "irregular_forms": [
+    81.7,
+    4.4,
+    4
+   ],
+   "island_effects": [
+    49.2,
+    1.1,
+    4
+   ],
+   "npi_licensing": [
+    50.1,
+    4.8,
+    4
+   ],
+   "quantifiers": [
+    50.9,
+    4.9,
+    4
+   ],
+   "s-selection": [
+    59.4,
+    1.9,
+    4
+   ],
+   "subject_verb_agreement": [
+    63.0,
+    2.3,
+    4
+   ]
+  },
+  "by_phenomenon": {
+   "adjunct_island": [
+    69.7,
+    3.4,
+    4
+   ],
+   "anaphor_gender_agreement": [
+    65.0,
+    1.9,
+    4
+   ],
+   "anaphor_number_agreement": [
+    76.5,
+    4.0,
+    4
+   ],
+   "animate_subject_passive": [
+    45.3,
+    0.9,
+    4
+   ],
+   "animate_subject_trans": [
+    73.5,
+    4.2,
+    4
+   ],
+   "causative": [
+    58.0,
+    0.9,
+    4
+   ],
+   "complex_NP_island": [
+    43.3,
+    2.3,
+    4
+   ],
+   "coordinate_structure_constraint_complex_left_branch": [
+    38.2,
+    3.9,
+    4
+   ],
+   "coordinate_structure_constraint_object_extraction": [
+    22.4,
+    4.4,
+    4
+   ],
+   "determiner_noun_agreement_1": [
+    71.8,
+    2.9,
+    4
+   ],
+   "determiner_noun_agreement_2": [
+    70.7,
+    4.2,
+    4
+   ],
+   "determiner_noun_agreement_irregular_1": [
+    63.1,
+    0.7,
+    4
+   ],
+   "determiner_noun_agreement_irregular_2": [
+    74.8,
+    2.5,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_2": [
+    64.7,
+    3.0,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_irregular_1": [
+    69.2,
+    1.9,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_irregular_2": [
+    68.1,
+    2.8,
+    4
+   ],
+   "determiner_noun_agreement_with_adjective_1": [
+    63.9,
+    1.7,
+    4
+   ],
+   "distractor_agreement_relational_noun": [
+    56.5,
+    8.8,
+    4
+   ],
+   "distractor_agreement_relative_clause": [
+    55.5,
+    4.5,
+    4
+   ],
+   "drop_argument": [
+    70.5,
+    2.0,
+    4
+   ],
+   "ellipsis_n_bar_1": [
+    42.9,
+    4.2,
+    4
+   ],
+   "ellipsis_n_bar_2": [
+    40.5,
+    3.1,
+    4
+   ],
+   "existential_there_object_raising": [
+    51.7,
+    2.2,
+    4
+   ],
+   "existential_there_quantifiers_1": [
+    77.1,
+    5.1,
+    4
+   ],
+   "existential_there_quantifiers_2": [
+    37.4,
+    8.2,
+    4
+   ],
+   "existential_there_subject_raising": [
+    56.6,
+    2.0,
+    4
+   ],
+   "expletive_it_object_raising": [
+    51.8,
+    1.0,
+    4
+   ],
+   "inchoative": [
+    52.1,
+    1.0,
+    4
+   ],
+   "intransitive": [
+    64.5,
+    1.2,
+    4
+   ],
+   "irregular_past_participle_adjectives": [
+    73.0,
+    8.5,
+    4
+   ],
+   "irregular_past_participle_verbs": [
+    90.5,
+    2.0,
+    4
+   ],
+   "irregular_plural_subject_verb_agreement_1": [
+    71.5,
+    1.9,
+    4
+   ],
+   "irregular_plural_subject_verb_agreement_2": [
+    60.7,
+    2.2,
+    4
+   ],
+   "left_branch_island_echo_question": [
+    40.6,
+    4.6,
+    4
+   ],
+   "left_branch_island_simple_question": [
+    48.5,
+    4.2,
+    4
+   ],
+   "matrix_question_npi_licensor_present": [
+    44.1,
+    6.0,
+    4
+   ],
+   "npi_present_1": [
+    20.0,
+    6.3,
+    4
+   ],
+   "npi_present_2": [
+    34.8,
+    9.6,
+    4
+   ],
+   "only_npi_licensor_present": [
+    68.3,
+    4.3,
+    4
+   ],
+   "only_npi_scope": [
+    25.3,
+    14.9,
+    4
+   ],
+   "passive_1": [
+    54.4,
+    2.4,
+    4
+   ],
+   "passive_2": [
+    54.3,
+    1.8,
+    4
+   ],
+   "principle_A_c_command": [
+    50.7,
+    6.3,
+    4
+   ],
+   "principle_A_case_1": [
+    97.0,
+    1.0,
+    4
+   ],
+   "principle_A_case_2": [
+    52.8,
+    1.8,
+    4
+   ],
+   "principle_A_domain_1": [
+    86.3,
+    2.6,
+    4
+   ],
+   "principle_A_domain_2": [
+    48.3,
+    2.6,
+    4
+   ],
+   "principle_A_domain_3": [
+    49.6,
+    1.1,
+    4
+   ],
+   "principle_A_reconstruction": [
+    31.1,
+    8.1,
+    4
+   ],
+   "regular_plural_subject_verb_agreement_1": [
+    73.1,
+    2.1,
+    4
+   ],
+   "regular_plural_subject_verb_agreement_2": [
+    60.4,
+    2.6,
+    4
+   ],
+   "sentential_negation_npi_licensor_present": [
+    94.9,
+    2.8,
+    4
+   ],
+   "sentential_negation_npi_scope": [
+    63.2,
+    6.6,
+    4
+   ],
+   "sentential_subject_island": [
+    38.5,
+    5.2,
+    4
+   ],
+   "superlative_quantifiers_1": [
+    37.9,
+    2.9,
+    4
+   ],
+   "superlative_quantifiers_2": [
+    51.1,
+    10.4,
+    4
+   ],
+   "tough_vs_raising_1": [
+    43.9,
+    2.8,
+    4
+   ],
+   "tough_vs_raising_2": [
+    61.6,
+    3.6,
+    4
+   ],
+   "transitive": [
+    49.9,
+    1.4,
+    4
+   ],
+   "wh_island": [
+    92.4,
+    2.4,
+    4
+   ],
+   "wh_questions_object_gap": [
+    52.8,
+    1.0,
+    4
+   ],
+   "wh_questions_subject_gap": [
+    71.7,
+    3.2,
+    4
+   ],
+   "wh_questions_subject_gap_long_distance": [
+    88.6,
+    2.2,
+    4
+   ],
+   "wh_vs_that_no_gap": [
+    82.5,
+    3.2,
+    4
+   ],
+   "wh_vs_that_no_gap_long_distance": [
+    83.8,
+    1.6,
+    4
+   ],
+   "wh_vs_that_with_gap": [
+    22.5,
+    3.8,
+    4
+   ],
+   "wh_vs_that_with_gap_long_distance": [
+    20.9,
+    2.5,
+    4
+   ]
+  },
+  "built": {
+   "page_nouns_det": [
+    90.6,
+    1.5,
+    4
+   ],
+   "page_nouns_refl_number": [
+    96.1,
+    6.1,
+    4
+   ],
+   "page_nouns_refl_gender": [
+    50.4,
+    3.9,
+    4
+   ],
+   "page_nouns_refl_across": [
+    88.9,
+    0.9,
+    4
+   ],
+   "page_nouns_npi": [
+    100.0,
+    0.0,
+    4
+   ],
+   "page_nouns_npi_scope": [
+    96.9,
+    3.4,
+    4
+   ],
+   "page_nouns_gap_wh": [
+    100.0,
+    0.0,
+    4
+   ],
+   "page_nouns_gap_that": [
+    92.9,
+    11.6,
+    4
+   ],
+   "page_nouns_aux_agree_relative": [
+    97.4,
+    3.0,
+    4
+   ],
+   "page_nouns_verb_agree_relative": [
+    77.5,
+    13.9,
+    4
+   ],
+   "page_nouns_who_gap": [
+    47.1,
+    48.4,
+    4
+   ],
+   "page_nouns_name_reflexive": [
+    50.1,
+    1.2,
+    4
+   ],
+   "page_nouns_question_ever": [
+    10.9,
+    11.4,
+    4
+   ],
+   "held_out_nouns_det": [
+    70.7,
+    6.2,
+    4
+   ],
+   "held_out_nouns_refl_number": [
+    83.4,
+    3.2,
+    4
+   ],
+   "held_out_nouns_refl_gender": [
+    94.2,
+    11.5,
+    4
+   ],
+   "held_out_nouns_refl_across": [
+    77.4,
+    7.1,
+    4
+   ],
+   "held_out_nouns_npi": [
+    95.2,
+    4.9,
+    4
+   ],
+   "held_out_nouns_npi_scope": [
+    88.8,
+    8.1,
+    4
+   ],
+   "held_out_nouns_gap_wh": [
+    95.4,
+    3.0,
+    4
+   ],
+   "held_out_nouns_gap_that": [
+    82.9,
+    8.6,
+    4
+   ],
+   "held_out_nouns_aux_agree_relative": [
+    77.3,
+    5.9,
+    4
+   ],
+   "held_out_nouns_verb_agree_relative": [
+    65.0,
+    19.3,
+    4
+   ],
+   "held_out_nouns_who_gap": [
+    26.6,
+    18.8,
+    4
+   ],
+   "held_out_nouns_name_reflexive": [
+    50.1,
+    1.2,
+    4
+   ],
+   "held_out_nouns_question_ever": [
+    10.9,
+    11.4,
+    4
+   ]
+  },
+  "books_agreement": [
+   92.7,
+   1.3,
+   4
+  ],
+  "word_order": [
+   92.8,
+   0.2,
+   4
+  ],
+  "val_logp": -5.263
+ },
+ "marked_talk": {
+  "networks": 4,
+  "blimp_all": [
+   61.1,
+   0.4,
+   4
+  ],
+  "blimp_taught_fields": [
+   64.2,
+   0.6,
+   4
+  ],
+  "blimp_other_fields": [
+   57.2,
+   0.4,
+   4
+  ],
+  "by_field": {
+   "anaphor_agreement": [
+    57.2,
+    4.1,
+    4
+   ],
+   "argument_structure": [
+    60.8,
+    0.5,
+    4
+   ],
+   "binding": [
+    63.9,
+    2.5,
+    4
+   ],
+   "control_raising": [
+    51.9,
+    1.2,
+    4
+   ],
+   "determiner_noun_agreement": [
+    69.5,
+    1.7,
+    4
+   ],
+   "ellipsis": [
+    42.7,
+    3.8,
+    4
+   ],
+   "filler_gap_dependency": [
+    64.9,
+    0.7,
+    4
+   ],
+   "irregular_forms": [
+    82.7,
+    3.2,
+    4
+   ],
+   "island_effects": [
+    53.5,
+    1.4,
+    4
+   ],
+   "npi_licensing": [
+    62.6,
+    2.7,
+    4
+   ],
+   "quantifiers": [
+    59.4,
+    3.0,
+    4
+   ],
+   "s-selection": [
+    57.3,
+    1.1,
+    4
+   ],
+   "subject_verb_agreement": [
+    60.7,
+    0.9,
+    4
+   ]
+  },
+  "by_phenomenon": {
+   "adjunct_island": [
+    74.3,
+    5.0,
+    4
+   ],
+   "anaphor_gender_agreement": [
+    47.5,
+    7.5,
+    4
+   ],
+   "anaphor_number_agreement": [
+    67.0,
+    6.2,
+    4
+   ],
+   "animate_subject_passive": [
+    38.8,
+    0.5,
+    4
+   ],
+   "animate_subject_trans": [
+    75.9,
+    1.8,
+    4
+   ],
+   "causative": [
+    65.2,
+    1.2,
+    4
+   ],
+   "complex_NP_island": [
+    42.7,
+    5.1,
+    4
+   ],
+   "coordinate_structure_constraint_complex_left_branch": [
+    44.9,
+    7.1,
+    4
+   ],
+   "coordinate_structure_constraint_object_extraction": [
+    25.6,
+    3.6,
+    4
+   ],
+   "determiner_noun_agreement_1": [
+    71.8,
+    2.1,
+    4
+   ],
+   "determiner_noun_agreement_2": [
+    72.3,
+    1.7,
+    4
+   ],
+   "determiner_noun_agreement_irregular_1": [
+    65.7,
+    3.2,
+    4
+   ],
+   "determiner_noun_agreement_irregular_2": [
+    76.2,
+    1.3,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_2": [
+    66.8,
+    3.7,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_irregular_1": [
+    69.9,
+    3.2,
+    4
+   ],
+   "determiner_noun_agreement_with_adj_irregular_2": [
+    70.6,
+    2.5,
+    4
+   ],
+   "determiner_noun_agreement_with_adjective_1": [
+    63.0,
+    2.2,
+    4
+   ],
+   "distractor_agreement_relational_noun": [
+    45.6,
+    4.5,
+    4
+   ],
+   "distractor_agreement_relative_clause": [
+    40.8,
+    2.6,
+    4
+   ],
+   "drop_argument": [
+    73.7,
+    0.6,
+    4
+   ],
+   "ellipsis_n_bar_1": [
+    41.5,
+    7.9,
+    4
+   ],
+   "ellipsis_n_bar_2": [
+    43.9,
+    3.4,
+    4
+   ],
+   "existential_there_object_raising": [
+    51.6,
+    2.1,
+    4
+   ],
+   "existential_there_quantifiers_1": [
+    80.1,
+    4.4,
+    4
+   ],
+   "existential_there_quantifiers_2": [
+    63.9,
+    8.4,
+    4
+   ],
+   "existential_there_subject_raising": [
+    52.8,
+    4.0,
+    4
+   ],
+   "expletive_it_object_raising": [
+    50.4,
+    1.0,
+    4
+   ],
+   "inchoative": [
+    55.8,
+    1.4,
+    4
+   ],
+   "intransitive": [
+    65.0,
+    2.1,
+    4
+   ],
+   "irregular_past_participle_adjectives": [
+    77.2,
+    7.4,
+    4
+   ],
+   "irregular_past_participle_verbs": [
+    88.1,
+    1.4,
+    4
+   ],
+   "irregular_plural_subject_verb_agreement_1": [
+    71.5,
+    1.7,
+    4
+   ],
+   "irregular_plural_subject_verb_agreement_2": [
+    66.9,
+    3.8,
+    4
+   ],
+   "left_branch_island_echo_question": [
+    62.7,
+    5.1,
+    4
+   ],
+   "left_branch_island_simple_question": [
+    56.5,
+    2.1,
+    4
+   ],
+   "matrix_question_npi_licensor_present": [
+    51.8,
+    11.0,
+    4
+   ],
+   "npi_present_1": [
+    32.8,
+    3.7,
+    4
+   ],
+   "npi_present_2": [
+    37.6,
+    9.4,
+    4
+   ],
+   "only_npi_licensor_present": [
+    85.2,
+    7.7,
+    4
+   ],
+   "only_npi_scope": [
+    68.6,
+    2.7,
+    4
+   ],
+   "passive_1": [
+    56.1,
+    2.5,
+    4
+   ],
+   "passive_2": [
+    55.7,
+    1.2,
+    4
+   ],
+   "principle_A_c_command": [
+    52.9,
+    8.2,
+    4
+   ],
+   "principle_A_case_1": [
+    100.0,
+    0.1,
+    4
+   ],
+   "principle_A_case_2": [
+    59.2,
+    1.9,
+    4
+   ],
+   "principle_A_domain_1": [
+    98.7,
+    0.8,
+    4
+   ],
+   "principle_A_domain_2": [
+    51.4,
+    1.4,
+    4
+   ],
+   "principle_A_domain_3": [
+    50.2,
+    2.2,
+    4
+   ],
+   "principle_A_reconstruction": [
+    35.0,
+    7.7,
+    4
+   ],
+   "regular_plural_subject_verb_agreement_1": [
+    71.8,
+    1.1,
+    4
+   ],
+   "regular_plural_subject_verb_agreement_2": [
+    67.3,
+    2.1,
+    4
+   ],
+   "sentential_negation_npi_licensor_present": [
+    94.7,
+    3.3,
+    4
+   ],
+   "sentential_negation_npi_scope": [
+    67.7,
+    6.7,
+    4
+   ],
+   "sentential_subject_island": [
+    43.7,
+    4.7,
+    4
+   ],
+   "superlative_quantifiers_1": [
+    37.2,
+    7.7,
+    4
+   ],
+   "superlative_quantifiers_2": [
+    56.4,
+    3.8,
+    4
+   ],
+   "tough_vs_raising_1": [
+    58.7,
+    2.9,
+    4
+   ],
+   "tough_vs_raising_2": [
+    46.0,
+    2.8,
+    4
+   ],
+   "transitive": [
+    54.3,
+    0.2,
+    4
+   ],
+   "wh_island": [
+    77.5,
+    4.7,
+    4
+   ],
+   "wh_questions_object_gap": [
+    60.6,
+    3.9,
+    4
+   ],
+   "wh_questions_subject_gap": [
+    81.2,
+    2.8,
+    4
+   ],
+   "wh_questions_subject_gap_long_distance": [
+    95.2,
+    2.3,
+    4
+   ],
+   "wh_vs_that_no_gap": [
+    84.9,
+    3.5,
+    4
+   ],
+   "wh_vs_that_no_gap_long_distance": [
+    86.7,
+    4.6,
+    4
+   ],
+   "wh_vs_that_with_gap": [
+    25.8,
+    5.7,
+    4
+   ],
+   "wh_vs_that_with_gap_long_distance": [
+    20.1,
+    6.3,
+    4
+   ]
+  },
+  "built": {
+   "page_nouns_det": [
+    87.1,
+    6.0,
+    4
+   ],
+   "page_nouns_refl_number": [
+    79.9,
+    6.9,
+    4
+   ],
+   "page_nouns_refl_gender": [
+    50.6,
+    0.2,
+    4
+   ],
+   "page_nouns_refl_across": [
+    61.6,
+    6.9,
+    4
+   ],
+   "page_nouns_npi": [
+    97.2,
+    4.2,
+    4
+   ],
+   "page_nouns_npi_scope": [
+    40.1,
+    24.0,
+    4
+   ],
+   "page_nouns_gap_wh": [
+    85.1,
+    8.0,
+    4
+   ],
+   "page_nouns_gap_that": [
+    90.2,
+    7.1,
+    4
+   ],
+   "page_nouns_aux_agree_relative": [
+    67.6,
+    14.7,
+    4
+   ],
+   "page_nouns_verb_agree_relative": [
+    73.0,
+    13.6,
+    4
+   ],
+   "page_nouns_who_gap": [
+    14.6,
+    19.9,
+    4
+   ],
+   "page_nouns_name_reflexive": [
+    50.5,
+    0.5,
+    4
+   ],
+   "page_nouns_question_ever": [
+    72.8,
+    12.3,
+    4
+   ],
+   "held_out_nouns_det": [
+    72.4,
+    7.4,
+    4
+   ],
+   "held_out_nouns_refl_number": [
+    72.6,
+    5.9,
+    4
+   ],
+   "held_out_nouns_refl_gender": [
+    96.8,
+    6.4,
+    4
+   ],
+   "held_out_nouns_refl_across": [
+    58.4,
+    5.3,
+    4
+   ],
+   "held_out_nouns_npi": [
+    95.8,
+    3.3,
+    4
+   ],
+   "held_out_nouns_npi_scope": [
+    37.4,
+    23.8,
+    4
+   ],
+   "held_out_nouns_gap_wh": [
+    84.9,
+    9.5,
+    4
+   ],
+   "held_out_nouns_gap_that": [
+    80.4,
+    14.9,
+    4
+   ],
+   "held_out_nouns_aux_agree_relative": [
+    67.1,
+    10.3,
+    4
+   ],
+   "held_out_nouns_verb_agree_relative": [
+    68.8,
+    14.0,
+    4
+   ],
+   "held_out_nouns_who_gap": [
+    15.5,
+    20.1,
+    4
+   ],
+   "held_out_nouns_name_reflexive": [
+    50.5,
+    0.5,
+    4
+   ],
+   "held_out_nouns_question_ever": [
+    72.8,
+    12.3,
+    4
+   ]
+  },
+  "books_agreement": [
+   93.0,
+   1.7,
+   4
+  ],
+  "word_order": [
+   92.1,
+   0.3,
+   4
+  ],
+  "val_logp": -5.797
+ },
+ "talk_minus_book": {
+  "blimp_all": [
+   3.1,
+   0.4,
+   4
+  ],
+  "built": {
+   "page_nouns_det": [
+    -3.5,
+    6.9,
+    4
+   ],
+   "page_nouns_refl_number": [
+    -16.2,
+    4.4,
+    4
+   ],
+   "page_nouns_refl_gender": [
+    0.2,
+    4.1,
+    4
+   ],
+   "page_nouns_refl_across": [
+    -27.3,
+    6.5,
+    4
+   ],
+   "page_nouns_npi": [
+    -2.8,
+    4.2,
+    4
+   ],
+   "page_nouns_npi_scope": [
+    -56.9,
+    26.7,
+    4
+   ],
+   "page_nouns_gap_wh": [
+    -14.9,
+    8.0,
+    4
+   ],
+   "page_nouns_gap_that": [
+    -2.6,
+    7.9,
+    4
+   ],
+   "page_nouns_aux_agree_relative": [
+    -29.8,
+    17.7,
+    4
+   ],
+   "page_nouns_verb_agree_relative": [
+    -4.5,
+    17.0,
+    4
+   ],
+   "page_nouns_who_gap": [
+    -32.5,
+    33.1,
+    4
+   ],
+   "page_nouns_name_reflexive": [
+    0.4,
+    0.9,
+    4
+   ],
+   "page_nouns_question_ever": [
+    61.9,
+    8.0,
+    4
+   ],
+   "held_out_nouns_det": [
+    1.7,
+    2.5,
+    4
+   ],
+   "held_out_nouns_refl_number": [
+    -10.9,
+    7.1,
+    4
+   ],
+   "held_out_nouns_refl_gender": [
+    2.6,
+    14.9,
+    4
+   ],
+   "held_out_nouns_refl_across": [
+    -19.0,
+    3.3,
+    4
+   ],
+   "held_out_nouns_npi": [
+    0.6,
+    4.2,
+    4
+   ],
+   "held_out_nouns_npi_scope": [
+    -51.4,
+    30.1,
+    4
+   ],
+   "held_out_nouns_gap_wh": [
+    -10.5,
+    7.3,
+    4
+   ],
+   "held_out_nouns_gap_that": [
+    -2.4,
+    6.6,
+    4
+   ],
+   "held_out_nouns_aux_agree_relative": [
+    -10.2,
+    9.2,
+    4
+   ],
+   "held_out_nouns_verb_agree_relative": [
+    3.7,
+    14.8,
+    4
+   ],
+   "held_out_nouns_who_gap": [
+    -11.1,
+    8.4,
+    4
+   ],
+   "held_out_nouns_name_reflexive": [
+    0.4,
+    0.9,
+    4
+   ],
+   "held_out_nouns_question_ever": [
+    61.9,
+    8.0,
+    4
+   ]
+  }
+ }
+}

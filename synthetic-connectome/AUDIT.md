@@ -721,3 +721,13 @@ per group; the *books* reference is Stage 61's awake group, not a re-run. The di
 11 GB of stale scratch from the earlier Brian2 learner runs (/tmp/learner_*, 2-3 November, outputs already
 summarised in earlier stages) and the pip cache were deleted - that scratch no longer exists. The *who*-gap and
 *ever*-question tests have large spreads between networks (up to 38 points); treat their means as rough.
+
+## 44. Follow-up (19 November): Stage 63 — register markers
+
+Stage 62's report to the user said the *ever* gain shrank in the mix "once books outnumbered the questions";
+checked afterwards, that was wrong (speech was 62 % of sentences; question-order *ever* 2,035 against 681
+statement-order in the mix). Stage 63 was therefore changed from "a fixed share of speech" (already the case) to
+register markers, and the user was told before the runs. Four networks; each tested under both markers with
+the same weights (differences are within-network). Control is Stage 62's unmarked mix, not a re-run with an
+uninformative marker. Teaching pages always carried the *book* marker - a confound for the "rules do not
+carry over" finding, stated in the README. One machine restart after the runs finished; none during.
