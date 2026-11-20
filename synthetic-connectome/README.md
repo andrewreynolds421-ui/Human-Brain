@@ -3803,6 +3803,43 @@ in a network's own reading are dropped (1-6 per grade of ~600; 86 in grade 7+).
   child at grade level would be expected near the top of such a test. Stage 53's networks had read other
   sentences of the same books; VEGA had not, apart from the dropped ones.
 
+## Stage 67: a memory of everything VEGA has read
+
+**Question.** VEGA kept only what its weights absorbed, and read each sentence alone. Does an episodic record -
+of everything it has read, and of what it has just read - help it understand text?
+
+**Set-up** (`scripts/episodic.py`; MODEL - a stand-in for a hippocampal store, not spiking). At every word it
+reads, the network's state (320 hidden units, reduced to 64 numbers) is filed with the word that came next.
+When reading, it looks up the 32 past moments most like the present one and mixes "what followed then" with its
+own expectation (weight and sharpness FITTED on validation items). Two stores: *lifelong* - every word of the
+books it was trained on (5.28 M moments, 401 MB, i.e. 82 MB per million words read); *passage* - the 30
+sentences before the test sentence in the same book. Control: the passage store filled with 30 sentences from
+elsewhere in the same grade's books. Test: Stage 66's grade-by-grade test. Stage 65's four *books* networks, no
+retraining.
+
+| grade of the text | 1 | 2 | 3 | 4 | 5 | 6 | 7+ | mean |
+|---|---|---|---|---|---|---|---|---|
+| no memory (Stage 66) | 73.1 | 73.1 | 72.1 | 67.2 | 63.4 | 68.0 | 63.0 | 68.7 % |
+| lifelong | 74.8 | 74.0 | 74.0 | 68.8 | 65.2 | 68.5 | 64.8 | 70.1 % |
+| passage | 79.5 | 77.7 | 77.2 | 68.8 | 66.9 | 69.3 | 64.9 | 72.2 % |
+| lifelong + passage | **80.5** | **78.5** | **79.1** | 70.4 | 68.9 | 70.0 | 66.7 | **73.6 %** |
+| control: lifelong + text from elsewhere | 74.8 | 73.5 | 73.9 | 68.8 | 65.0 | 68.1 | 64.6 | 69.9 % |
+
+- **With memory VEGA passes grades 1-3** (78-80 % against the 75 % bar; all four networks) - the first grades
+  passed. Grades 4 and up rise 2-5 points and stay below the bar.
+- **It is what was just read, not the kind of text.** Sentences from elsewhere in the same books give nothing
+  (68.4 % against 68.7 % without). When the missing word occurred in the 30 sentences before (37 % of items) the
+  score goes from 71.4 to 82.4 %; when it did not, the passage store gives nothing (67.0 -> 66.6 %) and only the
+  lifelong store helps (+1.6).
+- **The lifelong store helps a little everywhere** (+1.4 points): remembering similar moments in other books.
+- **What this is and is not.** It is recall of similar moments - "the last times I was in a state like this, the
+  word was *wolf*". It carries who and what a story is about, which is why the early grades (short, repetitive
+  texts) gain most. It is not yet understanding: nothing is inferred, and the store is only consulted, never
+  taught back into the weights (that would be sleep, Stage 48 / 61).
+- Limits: the mixing weights came out at the low edge of the grid (0.05) on small validation sets; the lifelong
+  store holds the books only, not the teaching pages or speech; 30 sentences before may cross into the previous
+  book of the same grade in a few items.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
@@ -3823,7 +3860,7 @@ a year (Hart & Risley 1995), with meaning attached.
 | relative clauses (agreement past them) | 99-100 % in taught frames | subject relatives early; object relatives understood around 6 |
 | irregular past forms (BLiMP) | 74-77 %; 82-86 % with books + speech (Stages 62-64) | errors in about 2.5 % of uses from 2 into school age (Marcus et al. 1992) |
 | islands, ellipsis, quantifiers (BLiMP) | 41-50 % on books; islands 53-54 %, quantifiers up to 62 % with speech; ellipsis 40-43 % | mostly respected by preschool (islands) to school age |
-| reading comprehension (Stages 53, 66) | multiple-choice cloze 72-73 % on grade 1-3 text, 63-68 % above; no grade passed at 75 % | grade-level texts read by the end of each grade; difficulty rises with grade |
+| reading comprehension (Stages 53, 66, 67) | multiple-choice cloze: grades 1-3 passed (78-80 %) with memory of what was just read; 67-70 % above; without memory no grade passed | grade-level texts read by the end of each grade; difficulty rises with grade |
 
 **In short.** The model is uneven in a way no child is. On the rules it was drilled in - agreement,
 reflexive number, *any* after negation, *what* gaps - it performs like a 5-6-year-old or better, even past

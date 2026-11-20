@@ -1,0 +1,109 @@
+{
+ "seed": 1,
+ "moments": 5278474,
+ "megabytes": 401.2,
+ "words_read": 4888835,
+ "fitted": {
+  "lifelong": {
+   "weight": 0.05,
+   "sharpness": 0.25,
+   "val": 0.6816
+  },
+  "passage": {
+   "weight": 0.05,
+   "sharpness": 1.0,
+   "val": 0.6543
+  }
+ },
+ "test": {
+  "1": {
+   "n": 597,
+   "none": 0.7253,
+   "lifelong": 0.7387,
+   "passage": 0.7923,
+   "lifelong+passage": 0.7956,
+   "elsewhere": 0.7219,
+   "lifelong+elsewhere": 0.7337
+  },
+  "2": {
+   "n": 595,
+   "none": 0.7328,
+   "lifelong": 0.7395,
+   "passage": 0.7647,
+   "lifelong+passage": 0.7697,
+   "elsewhere": 0.7244,
+   "lifelong+elsewhere": 0.7294
+  },
+  "3": {
+   "n": 596,
+   "none": 0.693,
+   "lifelong": 0.7315,
+   "passage": 0.7517,
+   "lifelong+passage": 0.7802,
+   "elsewhere": 0.6913,
+   "lifelong+elsewhere": 0.7248
+  },
+  "4": {
+   "n": 597,
+   "none": 0.675,
+   "lifelong": 0.6884,
+   "passage": 0.6884,
+   "lifelong+passage": 0.7085,
+   "elsewhere": 0.6683,
+   "lifelong+elsewhere": 0.6834
+  },
+  "5": {
+   "n": 594,
+   "none": 0.6347,
+   "lifelong": 0.6448,
+   "passage": 0.6717,
+   "lifelong+passage": 0.6886,
+   "elsewhere": 0.633,
+   "lifelong+elsewhere": 0.6431
+  },
+  "6": {
+   "n": 599,
+   "none": 0.6845,
+   "lifelong": 0.6912,
+   "passage": 0.6978,
+   "lifelong+passage": 0.7078,
+   "elsewhere": 0.6761,
+   "lifelong+elsewhere": 0.6828
+  },
+  "7+": {
+   "n": 514,
+   "none": 0.6051,
+   "lifelong": 0.6226,
+   "passage": 0.6226,
+   "lifelong+passage": 0.6381,
+   "elsewhere": 0.6051,
+   "lifelong+elsewhere": 0.6187
+  },
+  "all": {
+   "none": 0.6801,
+   "lifelong": 0.6953,
+   "passage": 0.7146,
+   "lifelong+passage": 0.7287,
+   "elsewhere": 0.6757,
+   "lifelong+elsewhere": 0.6894
+  },
+  "answer_in_passage": {
+   "none": 0.7186,
+   "lifelong": 0.7356,
+   "passage": 0.822,
+   "lifelong+passage": 0.8325,
+   "elsewhere": 0.7134,
+   "lifelong+elsewhere": 0.7284
+  },
+  "answer_not_in_passage": {
+   "none": 0.6572,
+   "lifelong": 0.6712,
+   "passage": 0.6505,
+   "lifelong+passage": 0.6669,
+   "elsewhere": 0.6533,
+   "lifelong+elsewhere": 0.6661
+  }
+ },
+ "val_none": 0.6484,
+ "share_answer_in_passage": 0.3734
+}

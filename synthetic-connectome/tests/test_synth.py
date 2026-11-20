@@ -656,3 +656,15 @@ def test_output_order_most_common_first():
     finally:
         PP.ORDER = None
     assert PH.Reader(["the", "dog", "zebra", "apple"], 0).itos[4:] == ["apple", "dog", "the", "zebra"]
+
+
+def test_episodic_recall():
+    """Stage 67: remembered moments vote for the word that followed them, nearer ones more; an empty passage gives no vote"""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import episodic as EP
+    Kp = np.zeros((3, EP.DIM), np.float32); Kp[1, 0] = 1.0; Kp[2, 0] = 5.0; Vp = np.array([7, 7, 9], np.int32)
+    D, V = EP.passage_search(np.zeros((1, EP.DIM), np.float32), Kp, Vp); ok = np.isfinite(D)
+    assert D.shape == (1, EP.K) and ok.sum() == 3 and list(V[0, :3]) == [7, 7, 9]
+    assert EP.knn_share(np.array([7]), D, V, ok, 1.0)[0] > 0.9 > EP.knn_share(np.array([7]), D, V, ok, 100.0)[0] > 0.6
+    D0, V0 = EP.passage_search(np.zeros((1, EP.DIM), np.float32), np.zeros((0, EP.DIM), np.float32), np.zeros(0, np.int32))
+    assert EP.knn_share(np.array([7]), D0, V0, np.isfinite(D0), 1.0)[0] == 0.0

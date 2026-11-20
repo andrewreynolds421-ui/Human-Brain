@@ -756,3 +756,12 @@ during the runs; the runs themselves did not restart.
 Evaluation only (Stage 65's eight networks). Leakage check by exact sentence match against each network's
 reading; a test book partly present in the reading could still help through familiar names (grade 7+ had 86
 matches, so some overlap of books exists there). The test has no human norms.
+
+## 48. Follow-up (20 November): Stage 67 — episodic memory
+
+Evaluation only (Stage 65's four books networks). First version merged the two stores into one neighbour list;
+the larger store crowded out the passage (trial on a 30,000-sentence store), so each store got its own weight
+before any full run. Weights fitted per store on the validation items, then both used together without refitting;
+all came out at the lowest grid value (0.05). States are stored with 8 bits per number in an approximate index
+(faiss IVF, 16 of 2,048 cells searched), so recall is not exhaustive. The user asked for a memory of everything
+experienced: this holds the books (4.9 M words), not yet pages, speech or anything from Stages 1-49.

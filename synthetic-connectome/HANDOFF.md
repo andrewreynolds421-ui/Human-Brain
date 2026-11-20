@@ -423,3 +423,7 @@ first steps toward reading for meaning / checking sources.
 Stage 66 (20 Nov): grade test of VEGA (Stage 65 nets) - 68.6 % mean, 72-73 % on grades 1-3, no grade passed; same as
 Stage 53. Grammar gains did not raise reading. `scripts/grade_test.py`. Proposed next (user wants research /
 source-checking eventually): memory across sentences of a passage, tested by blanks that need earlier sentences.
+Stage 67 (20 Nov): episodic memory (state -> next word; lifelong store of the books + the 30 sentences just read) -
+grade test 68.7 -> 73.6 %, grades 1-3 passed (78-80 %); control passage from elsewhere gives nothing. 82 MB per
+million words. `scripts/episodic.py` (needs faiss-cpu). User wants the memory to cover everything VEGA experiences
+and mentioned "the segment approach I suggested earlier" for when it gets too big - not found in notes; ask.
