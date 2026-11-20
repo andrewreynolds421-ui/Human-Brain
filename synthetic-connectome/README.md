@@ -3697,6 +3697,39 @@ Stage 62's unmarked mix. Each of the four networks is then tested twice, once un
 - Limit of the test: the pages were only ever read under *book*, so "page rules do not carry to *talk*" is
   about this arrangement. Pages read under both markers would test whether the rules can be shared.
 
+## Stage 64: teaching pages under both markers - the rules become shared
+
+**Question.** In Stage 63 the page rules stayed with the *book* marker, the only one the pages were read under.
+If the pages are read under both, do the rules hold under both while the registers stay apart?
+
+**Set-up** (`scripts/register.py --pages both`): Stage 63, except each teaching page carries *talk* or *book*,
+half each (fixed per page). Books stay *book*, speech stays *talk*. Four networks, each tested under both markers.
+
+| | Stage 63 *book* | Stage 63 *talk* | Stage 64 *book* | Stage 64 *talk* |
+|---|---|---|---|---|
+| built: *any* scope, page nouns | 96.9 % | 40.1 % | 96.6 % | **95.6 %** |
+| built: reflexive across a phrase, page nouns | 88.9 % | 61.6 % | 91.5 % | **92.2 %** |
+| built: reflexive across a phrase, held-out nouns | 77.4 % | 58.4 % | 74.4 % | **82.1 %** |
+| built: *has / have* past a *who* clause, held-out nouns | 77.3 % | 67.1 % | 81.6 % | **87.0 %** |
+| built: *had Peter ever called* vs *Peter had ever called* | 10.9 % | 72.8 % | 17.4 % | 66.3 % |
+| BLiMP, all | 58.0 % | 61.1 % | 58.7 % | 60.5 % |
+| BLiMP irregular forms | 81.7 % | 82.7 % | 85.9 % | **86.3 %** |
+| BLiMP anaphor agreement | 70.7 % | 57.2 % | 71.3 % | 66.8 % |
+| BLiMP negative polarity | 50.1 % | 62.6 % | 52.3 % | 58.6 % |
+| BLiMP filler-gap | 60.4 % | 64.9 % | 59.7 % | 60.4 % |
+| built: *wondered what* vs *that*, page nouns | 92.9 % | 90.2 % | 70.6 % | 61.6 % |
+
+- **The rules are now shared.** Under *talk* the page rules are as good as under *book* (differences within
+  +/- 1-8 points per network, against -16 to -57 in Stage 63), and on held-out nouns *talk* is the better
+  marker. What a rule is filed under follows what it was taught under: one grammar where the teaching was
+  shared, two where it was not.
+- **The register switch survives.** *Ever*-questions are still 17 % under *book* and 66 % under *talk*
+  (49 +/- 21 points; less uniform than Stage 63's 62 +/- 8). Irregular forms reach 86 %, the best so far.
+- **Costs.** BLiMP under *talk* is 0.6 lower than Stage 63's best (60.5 against 61.1 %): negative polarity and
+  filler-gap give back about 4 points each, and the *what / that* gap test fell and became erratic (spread
+  33-37 points). Page sentences under *talk* pull that marker toward page-style language.
+- **Still not learned under any arrangement:** *who* gaps (22-42 %), names with reflexives (50 %).
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
@@ -3715,7 +3748,7 @@ a year (Hart & Risley 1995), with meaning attached.
 | *what* gaps / long-distance questions (Stage 60) | 89-100 % | long-distance wh-questions by about 3-4 (de Villiers & Roeper) |
 | *who* gaps (Stages 61-62) | 16-44 % on books; 42-70 % with speech, unstable across networks | as above, about 3-4 |
 | relative clauses (agreement past them) | 99-100 % in taught frames | subject relatives early; object relatives understood around 6 |
-| irregular past forms (BLiMP) | 74-77 %; 82 % with books + speech (Stage 62) | errors in about 2.5 % of uses from 2 into school age (Marcus et al. 1992) |
+| irregular past forms (BLiMP) | 74-77 %; 82-86 % with books + speech (Stages 62-64) | errors in about 2.5 % of uses from 2 into school age (Marcus et al. 1992) |
 | islands, ellipsis, quantifiers (BLiMP) | 41-50 % on books; islands 53-54 %, quantifiers up to 62 % with speech; ellipsis 40-43 % | mostly respected by preschool (islands) to school age |
 | reading comprehension (Stage 53) | multiple-choice cloze 66-72 %, about equal at every grade | grade-level texts read by the end of each grade; difficulty rises with grade |
 

@@ -410,3 +410,6 @@ Stage 63 (19 Nov): talk / book start markers on the Stage 62 mix - a switch: eve
 (talk), BLiMP 61.1 % under talk (best so far); but page rules stay with the book marker (any-scope 97 -> 40 % under
 talk). Two grammars, not one. `scripts/register.py`; models in /home/claude/models/register. Next: pages under both
 markers (can rules be shared?); who-gaps still open.
+Stage 64 (20 Nov): pages under both markers - page rules now hold under talk as well (any-scope 40 -> 96 %), the
+ever-question switch survives (17 vs 66 %), irregular forms 86 %; BLiMP under talk 60.5 % (NPI / filler-gap give
+back ~4). `scripts/register.py --pages both`. Open: who-gaps, names + reflexives (lost whenever speech is added).

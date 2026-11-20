@@ -7,7 +7,8 @@ RR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "resul
 R = os.path.join(RR, "register")
 PATHS = {"books": os.path.join(RR, "sleep_grammar", "awake_s[0-9].json"), "speech": os.path.join(RR, "childes", "speech", "awake_s[0-9].json"),
          "mix": os.path.join(RR, "childes", "books_speech", "awake_s[0-9].json"),
-         "marked_book": os.path.join(R, "book", "awake_s[0-9].json"), "marked_talk": os.path.join(R, "talk", "awake_s[0-9].json")}
+         "marked_book": os.path.join(R, "book", "awake_s[0-9].json"), "marked_talk": os.path.join(R, "talk", "awake_s[0-9].json"),
+         "both_book": os.path.join(R, "both_book", "awake_s[0-9].json"), "both_talk": os.path.join(R, "both_talk", "awake_s[0-9].json")}   # Stage 64: pages under both markers
 TAUGHT = ("determiner_noun_agreement", "anaphor_agreement", "binding", "npi_licensing", "filler_gap_dependency", "subject_verb_agreement")
 
 
@@ -33,11 +34,12 @@ def main():
                       built={k: ms([r["built"][k] for r in runs]) for k in runs[0]["built"]},
                       books_agreement=ms([r["E"]["sensitivity_auc"] for r in runs]), word_order=ms([r["C"]["two_neighbours_swapped"] for r in runs]),
                       val_logp=round(float(np.mean([r["val_logp_per_word"] for r in runs])), 3))
-    if "marked_book" in out and "marked_talk" in out:          # per network, the difference talk - book marker (same weights)
-        b = {os.path.basename(f): json.load(open(f)) for f in glob.glob(PATHS["marked_book"])}; t = {os.path.basename(f): json.load(open(f)) for f in glob.glob(PATHS["marked_talk"])}
+    for kb, kt, name in (("marked_book", "marked_talk", "talk_minus_book"), ("both_book", "both_talk", "both_talk_minus_book")):   # per network, talk - book marker (same weights)
+        if kb not in out or kt not in out: continue
+        b = {os.path.basename(f): json.load(open(f)) for f in glob.glob(PATHS[kb])}; t = {os.path.basename(f): json.load(open(f)) for f in glob.glob(PATHS[kt])}
         both = sorted(set(b) & set(t))
         if both:
-            out["talk_minus_book"] = dict(blimp_all=ms([t[k]["D"]["all"] - b[k]["D"]["all"] for k in both]),
+            out[name] = dict(blimp_all=ms([t[k]["D"]["all"] - b[k]["D"]["all"] for k in both]),
                                           built={q: ms([t[k]["built"][q] - b[k]["built"][q] for k in both]) for q in b[both[0]]["built"]})
     json.dump(out, open(os.path.join(R, "stage63_summary.json"), "w"), indent=1)
     cs = [c for c in PATHS if c in out]
@@ -48,7 +50,7 @@ def main():
         print(f"{f:42s}", " | ".join(f"{c}: {out[c]['by_field'][f][:2]}" for c in cs))
     print("-- built")
     for k in out[cs[0]]["built"]:
-        print(f"{k:42s}", " | ".join(f"{c}: {out[c]['built'][k][:2]}" for c in cs), "| diff", out.get("talk_minus_book", {}).get("built", {}).get(k, [None])[:2])
+        print(f"{k:42s}", " | ".join(f"{c}: {out[c]['built'][k][:2]}" for c in cs), "| diff", out.get("talk_minus_book", {}).get("built", {}).get(k, [None])[:2], out.get("both_talk_minus_book", {}).get("built", {}).get(k, [None])[:2])
 
 
 if __name__ == "__main__":

@@ -731,3 +731,10 @@ register markers, and the user was told before the runs. Four networks; each tes
 the same weights (differences are within-network). Control is Stage 62's unmarked mix, not a re-run with an
 uninformative marker. Teaching pages always carried the *book* marker - a confound for the "rules do not
 carry over" finding, stated in the README. One machine restart after the runs finished; none during.
+
+## 45. Follow-up (20 November): Stage 64 — pages under both markers
+
+Four networks, tested under both markers with the same weights; compared with Stage 63's networks (different
+weights, same seeds). The page's marker is a checksum of its words (48-49 % talk), so resumed runs regenerate the
+same assignment. Only one thing differs from Stage 63. The ever-question and what / that tests have spreads of
+20-37 points between networks; their means are rough. No restarts during the runs.

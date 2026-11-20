@@ -633,3 +633,13 @@ def test_register_markers():
     assert M.enc(["the", "dog"])[0] == M.T and len(M.enc(["the", "dog"])) == 4
     assert M.logp([["the", "dog", "runs"]])[0] != a
     RG.Tagged.EVAL = "book"
+
+
+def test_register_pages_both():
+    """Stage 64: a wrapped page maker gives about half its pages the talk marker, the same one for the same words"""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import register as RG
+    words = [["the", "dog", str(i)] for i in range(400)]; it = iter(words * 2)
+    mk = RG.half_talk(lambda: dict(words=next(it)))
+    a = [isinstance(mk()["words"], RG.Talk) for _ in range(400)]; b = [isinstance(mk()["words"], RG.Talk) for _ in range(400)]
+    assert a == b and 0.35 < sum(a) / 400 < 0.65
