@@ -436,3 +436,7 @@ Stage 69 (20 Nov): sleep = replaying a segment into the weights (one night, step
 -4.87 -> -3.66 but books and taught rules forgotten. Mixed (speech + books + pages): speech -3.74, books -5.17,
 rules kept, BLiMP 60.9, ever-questions 42 %. Old segments stop helping a slept network (states in old code) -
 segments must be re-written after sleep. `scripts/sleep_replay.py`; models in /home/claude/models/sleep_replay.
+Stage 70 (21 Nov): routine of 4 days (new speech + graded training books, 16.4 M words) with nightly replay
+(today + equal old memory, step 5e-4) - grade test 73.5 % (grades 1-3 passed without episodic memory), BLiMP
+62.6 % (best), taught rules kept; days only forget page rules (who gaps 0 %). `scripts/day_night.py`; models in
+/home/claude/models/day_night/cycle/books. Open: equal-lessons control; who-gaps / ever-questions; grades 4+.

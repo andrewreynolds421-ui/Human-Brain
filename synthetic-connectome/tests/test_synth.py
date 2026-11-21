@@ -687,3 +687,10 @@ def test_sleep_replay_rereads_segment(tmp_path):
     np.save(tmp_path / "next_word.npy", np.array([4, 5, 2, 6, 3, 4, 2], np.int32))
     get, n = SR.sentences_of(str(tmp_path), ["<pad>", "<s>", "</s>", "<unk>", "the", "dog", "cat"])
     assert list(n) == [2, 3] and get(0) == ["the", "dog"] and get(1) == ["cat", "<unk>", "the"]
+
+
+def test_day_night_settings():
+    """Stage 70: nights replay at a smaller step than days"""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import day_night as DN
+    assert DN.NIGHT_STEP < DN.DAY_STEP and DN.DAYS >= 2

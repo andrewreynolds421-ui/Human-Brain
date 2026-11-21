@@ -782,3 +782,11 @@ checkpoints. The night's step size (5e-4) is an assumption, not tuned. Pages in 
 again rather than read from a stored segment (no pages segment exists). Segment sentences are re-read through
 the network's own vocabulary, so rare words in speech come back as "unknown" (4.1 % of speech moments). The
 speech before / after test text is the held-out tail of the CHILDES utterances, not seen in the segment.
+
+## 51. Follow-up (21 November): Stage 70 — days and nights
+
+Four networks per group. Machine restarts / session interruptions during the runs; training resumed from
+10-minute checkpoints (the day / night position is part of the checkpoint). The cycle group gets 3x the lessons
+of the days-only group; the comparison is "routine with nights" vs "the same new reading without", not sleep vs an
+equal amount of awake practice. The grade test drops test sentences that occur in the reading (books + graded
+training books). Step sizes ASSUMED, not tuned.

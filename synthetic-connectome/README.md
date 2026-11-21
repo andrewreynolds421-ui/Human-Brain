@@ -3920,6 +3920,48 @@ Reference: the same networks without sleep, and Stage 65's networks trained on b
 - Limits: one night, one step size; *any*-scope and the *ever* test have spreads of 20-34 points between
   networks; the speech text measured is held out from the segment, but comes from the same corpus.
 
+## Stage 70: days and nights as a routine
+
+**Question.** Stage 69's night moved stored experience into the network and, replayed with old memories, kept
+what was known. Made into a routine - read new things by day, replay by night - does VEGA keep learning without
+forgetting, and does its reading improve?
+
+**Set-up** (`scripts/day_night.py`). Start: Stage 65's four *books* networks. New experience: speech to children
+(1.33 M utterances) and the training books of Stage 53's graded collection (0.78 M sentences; different books
+from the reading test's), 16.4 M words shuffled together and split over 4 days. *awake*: each day read that
+day's quarter once (step 1e-3); no nights. *cycle*: the same days; each night replay that day's experience
+together with as many sentences drawn from older memory (original books, teaching pages, earlier days) at a
+third of the step size. Vocabulary fixed (new words read through their endings). Four networks each.
+
+| | start | days only | days + nights |
+|---|---|---|---|
+| grade test, mean | 68.6 % | 71.0 % | **73.5 %** |
+| grade test, grades 1 / 2 / 3 | 73 / 73 / 72 | 76 / 76 / 75 | **78 / 77 / 78** |
+| grade test, grades 4 / 5 / 6 / 7+ | 67 / 63 / 68 / 63 | 70 / 65 / 71 / 66 | 71 / 68 / 73 / 69 |
+| BLiMP, all | 59.3 % | 61.8 % | **62.6 %** |
+| held-out speech (log-prob per word) | -4.89 | -3.74 | -3.72 |
+| held-out book text | -5.14 | -5.06 | **-4.99** |
+| built: *what* gap, page nouns | 97 % | 43 % | **99 %** |
+| built: *has / have* past a *who* clause, page nouns | 100 % | 58 % | **100 %** |
+| built: reflexive across a phrase, page nouns | 91 % | 64 % | **93 %** |
+| built: names with reflexives | 76 % | 77 % | **89 %** |
+| built: *who* gap, page nouns | 77 % | **0 %** | 52 % |
+| built: *had Peter ever called* | 20 % | 5 % | 11 % |
+
+- **VEGA passes grades 1-3 on its own.** With the nightly routine all four networks clear 75 % on grades 1 and 2
+  and three of four on grade 3 (75.5-79.9 %), without the episodic memory of Stage 67; with days only it sits on
+  the line (73-77 %). Every grade rises 3-6 points from the start. Grades 4 and up remain below.
+- **Days alone learn and forget.** New reading improved speech, book text and BLiMP, but erased much of what the
+  teaching pages taught: *what* gaps 97 -> 43 %, agreement past a *who* clause 100 -> 58 %, *who* gaps 77 -> 0 %.
+- **Nights keep it.** With nights the taught rules stay at or near their start (most within 1-5 points),
+  names with reflexives rise to 89 %, and BLiMP reaches 62.6 % - the best so far. Book text improves most with
+  nights (-4.99): replay of old books is part of each night. The nightly curve shows the pattern of Stage 69 each
+  time - a day pushes speech up and book text down a little, the night brings book text back.
+- **Still not learned or kept:** *who* gaps fall to 52 % (spread 39 points), *ever*-questions to 11 %.
+- Confound: the cycle group has three times the lessons of the days-only group (each night twice a day's size,
+  half of it old material). A days-only group with the same old material mixed into its days would separate
+  "replay at night" from "more old material"; Stage 61 found sleep and extra re-reading about equal.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
@@ -3940,7 +3982,7 @@ a year (Hart & Risley 1995), with meaning attached.
 | relative clauses (agreement past them) | 99-100 % in taught frames | subject relatives early; object relatives understood around 6 |
 | irregular past forms (BLiMP) | 74-77 %; 82-86 % with books + speech (Stages 62-64) | errors in about 2.5 % of uses from 2 into school age (Marcus et al. 1992) |
 | islands, ellipsis, quantifiers (BLiMP) | 41-50 % on books; islands 53-54 %, quantifiers up to 62 % with speech; ellipsis 40-43 % | mostly respected by preschool (islands) to school age |
-| reading comprehension (Stages 53, 66, 67) | multiple-choice cloze: grades 1-3 passed (78-80 %) with memory of what was just read; 67-70 % above; without memory no grade passed | grade-level texts read by the end of each grade; difficulty rises with grade |
+| reading comprehension (Stages 53, 66, 67, 70) | multiple-choice cloze: grades 1-3 passed (76-78 %) after days of new reading with nightly replay (Stage 70), or with memory of what was just read (Stage 67); 68-73 % above | grade-level texts read by the end of each grade; difficulty rises with grade |
 
 **In short.** The model is uneven in a way no child is. On the rules it was drilled in - agreement,
 reflexive number, *any* after negation, *what* gaps - it performs like a 5-6-year-old or better, even past
