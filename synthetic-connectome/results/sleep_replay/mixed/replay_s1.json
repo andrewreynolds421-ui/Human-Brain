@@ -1,0 +1,31 @@
+{
+ "cond": "mixed",
+ "seed": 1,
+ "lessons": 33856,
+ "sentences_replayed": {
+  "speech": 1327115,
+  "books": 389639,
+  "pages": 450000
+ },
+ "minutes_this_run": 57.3,
+ "before": {
+  "books": {
+   "none": -5.1034,
+   "old_segment": -5.0077
+  },
+  "speech": {
+   "none": -4.8993,
+   "old_segment": -4.4331
+  }
+ },
+ "after": {
+  "books": {
+   "none": -5.1825,
+   "old_segment": -5.1028
+  },
+  "speech": {
+   "none": -3.7404,
+   "old_segment": -3.7564
+  }
+ }
+}

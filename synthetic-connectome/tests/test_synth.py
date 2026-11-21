@@ -678,3 +678,12 @@ def test_segment_mixing():
     assert np.allclose(SM.mixed(lp, []), lp)
     v = np.exp(SM.mixed(lp, [(0.2, np.array([1.0, 0.0]))]))
     assert np.allclose(v, [0.8 * 0.5 + 0.2, 0.8 * 0.1])
+
+
+def test_sleep_replay_rereads_segment(tmp_path):
+    """Stage 69: a segment's record of next words is read back into its sentences (id 2 ends a sentence)"""
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "scripts"))
+    import sleep_replay as SR
+    np.save(tmp_path / "next_word.npy", np.array([4, 5, 2, 6, 3, 4, 2], np.int32))
+    get, n = SR.sentences_of(str(tmp_path), ["<pad>", "<s>", "</s>", "<unk>", "the", "dog", "cat"])
+    assert list(n) == [2, 3] and get(0) == ["the", "dog"] and get(1) == ["cat", "<unk>", "the"]

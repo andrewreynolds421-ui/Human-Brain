@@ -432,3 +432,7 @@ to /home/claude/models/segments/vega_books_s*/{books,speech}. Right segment help
 wrong one hurts, both worse than the right one; ~1 ms/word per 400 MB; not usable by another network without
 re-reading the text; no skill transfer (ever-questions). `scripts/segments.py`. Open: VEGA choosing its own
 segment; replaying a segment into the weights (sleep); portable segments.
+Stage 69 (20 Nov): sleep = replaying a segment into the weights (one night, step 5e-4). Speech-only: speech
+-4.87 -> -3.66 but books and taught rules forgotten. Mixed (speech + books + pages): speech -3.74, books -5.17,
+rules kept, BLiMP 60.9, ever-questions 42 %. Old segments stop helping a slept network (states in old code) -
+segments must be re-written after sleep. `scripts/sleep_replay.py`; models in /home/claude/models/sleep_replay.

@@ -3878,6 +3878,48 @@ speech skill the network lacks (*had Peter ever called*); the cost; and another 
   which is part of why a wrong segment hurts; choosing the segment is done by hand here - VEGA does not yet
   decide what a task needs. Code is not tried: VEGA has no vocabulary for it yet.
 
+## Stage 69: sleep - replaying a memory segment into the network
+
+**Question.** Stage 68's speech segment made VEGA predict speech better only while the segment was loaded, and
+taught no skill. If the stored experience is replayed into the network during a night, with no new input, does
+it become part of VEGA - and what is forgotten?
+
+**Set-up** (`scripts/sleep_replay.py`). Start: Stage 65's *books* networks (never trained on speech) and their
+Stage 68 segments. A segment keeps the word that followed every moment in order, so its sentences can be re-read
+from it (words outside the vocabulary come back as "unknown"). One night at a third of the final daytime step
+size (ASSUMED). *speech*: replay the speech segment only (1.33 M sentences). *mixed*: the speech segment, the
+books segment and teaching pages, shuffled together (2.17 M). Four networks each, then the full test battery.
+Reference: the same networks without sleep, and Stage 65's networks trained on books + speech from the start.
+
+| | no sleep | sleep: speech only | sleep: mixed | trained on the mix (*book* / *talk* marker) |
+|---|---|---|---|---|
+| held-out speech (log-prob per word) | -4.87 | **-3.66** | -3.74 | |
+| held-out book text | **-5.11** | -5.87 | -5.17 | |
+| BLiMP, all | 59.3 % | 60.8 % | 60.9 % | 60.0 / 61.5 % |
+| *had Peter ever called* | 20 % | **57 %** | 42 % | 6 / 38 % |
+| *who* gap, page nouns | 77 % | 4 % | **87 %** | 75 / 82 % |
+| reflexive across a phrase, page nouns | 91 % | 54 % | 92 % | 93 / 93 % |
+| *this / these*, page nouns | 99 % | 72 % | 98 % | 97 / 97 % |
+| agreement in book sentences | 95.8 % | 93.6 % | **95.8 %** | 93.5 / 93.0 % |
+| BLiMP negative polarity | 54.6 % | 62.0 % | **62.0 %** | 55.5 / 59.5 % |
+| BLiMP islands | 42.0 % | 49.9 % | 48.8 % | 48.1 / 51.7 % |
+
+- **Sleep moves the memory into the network.** After one night of replay VEGA predicts speech better without
+  the segment (-3.74 to -3.66) than it did with the segment loaded (-4.43). The segment is no longer needed for
+  that - and the old segment no longer helps the changed network (-3.75 with it), because its stored states are
+  in the old network's code.
+- **Replaying one kind of memory overwrites the rest.** Speech-only sleep damaged book text (-5.11 to -5.87)
+  and most taught rules (*who* gaps 77 -> 4 %, *this / these* 99 -> 72 %). This is catastrophic forgetting, the
+  reason the brain is thought to replay old and new memories together.
+- **Replaying old and new together keeps nearly everything.** Mixed sleep cost book text 0.07 per word, kept
+  every taught rule (several slightly higher), and added what speech teaches: *ever*-questions 20 -> 42 %,
+  negative polarity +7, islands +7, BLiMP 59.3 -> 60.9 %. It matches or beats training on the mix from the start
+  on most measures, from a network that had never seen speech.
+- **A skill appeared.** Unlike Stage 68's segment, sleep changed what VEGA knows: *ever*-questions rose with
+  speech-only sleep to 57 %, the best since Stage 63's register marker.
+- Limits: one night, one step size; *any*-scope and the *ever* test have spreads of 20-34 points between
+  networks; the speech text measured is held out from the segment, but comes from the same corpus.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

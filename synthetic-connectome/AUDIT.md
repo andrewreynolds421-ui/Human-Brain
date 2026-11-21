@@ -774,3 +774,11 @@ in /home/claude/models/segments (states and word ids, not text; not in the repos
 out of memory and one was killed (re-run alone); a 10-minute tool limit cut two runs (re-run). The
 *ever*-question result has a spread of 4-18 points and is reported as no effect. "Borrowed" = network s loading
 network s'-s books segment with the writer's projection, weight refitted (best was the smallest, 0.05).
+
+## 50. Follow-up (20 November): Stage 69 — sleep replay of memory segments
+
+Four networks per group. The machine restarted once during the runs; training resumed from 10-minute
+checkpoints. The night's step size (5e-4) is an assumption, not tuned. Pages in the mixed night are generated
+again rather than read from a stored segment (no pages segment exists). Segment sentences are re-read through
+the network's own vocabulary, so rare words in speech come back as "unknown" (4.1 % of speech moments). The
+speech before / after test text is the held-out tail of the CHILDES utterances, not seen in the segment.
