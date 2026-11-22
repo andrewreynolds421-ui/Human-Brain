@@ -5,7 +5,8 @@ import numpy as np
 RR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "results")
 R = os.path.join(RR, "day_night")
 PATHS = {"start": os.path.join(RR, "output_order", "books", "awake_s[0-9].json"), "awake": os.path.join(R, "awake", "books", "awake_s[0-9].json"),
-         "cycle": os.path.join(R, "cycle", "books", "awake_s[0-9].json")}
+         "cycle": os.path.join(R, "cycle", "books", "awake_s[0-9].json"), "interleave": os.path.join(R, "interleave", "books", "awake_s[0-9].json"),
+         "cycle_fullstep": os.path.join(R, "cycle_fullstep", "books", "awake_s[0-9].json")}   # the last two: Stage 71
 GRADE0 = os.path.join(RR, "grade_test", "books_s[0-9].json")
 
 

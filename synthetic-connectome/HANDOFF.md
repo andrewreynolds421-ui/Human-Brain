@@ -440,3 +440,6 @@ Stage 70 (21 Nov): routine of 4 days (new speech + graded training books, 16.4 M
 (today + equal old memory, step 5e-4) - grade test 73.5 % (grades 1-3 passed without episodic memory), BLiMP
 62.6 % (best), taught rules kept; days only forget page rules (who gaps 0 %). `scripts/day_night.py`; models in
 /home/claude/models/day_night/cycle/books. Open: equal-lessons control; who-gaps / ever-questions; grades 4+.
+Stage 71 (21 Nov): equal-lessons controls for Stage 70 - interleave and full-step night equal the gentle cycle on
+reading (73 %), BLiMP (~62.7 %) and taught nouns: the replay of old memories is what matters. Gentle cycle maybe
+better on held-out nouns (71 vs 63 %, post hoc, p 0.03-0.05). Gentle day / night cycle adopted as the method.

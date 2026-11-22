@@ -3962,6 +3962,41 @@ third of the step size. Vocabulary fixed (new words read through their endings).
   half of it old material). A days-only group with the same old material mixed into its days would separate
   "replay at night" from "more old material"; Stage 61 found sleep and extra re-reading about equal.
 
+## Stage 71: equal-lessons controls - is it the night, or the replay?
+
+**Question.** Stage 70's days + nights group had three times the lessons of the days-only group. With the same
+sentences and the same number of lessons, does a separate gentle night matter, or only that old memories are
+replayed at all?
+
+**Set-up** (`scripts/day_night.py`, new conditions). Same start, same days, same old memories (the same sample
+in every group), same total lessons (24,642 a day). *cycle* (Stage 70): read today, then a night replaying today
++ old memories at a third of the step. *interleave*: all of it shuffled into one long day at the daytime step.
+*cycle, full step*: day then night, the night at the daytime step. Four networks each.
+
+| | days only (fewer lessons) | cycle | interleave | cycle, full step |
+|---|---|---|---|---|
+| grade test, mean | 71.0 % | **73.5 %** | 73.1 % | 73.3 % |
+| grade test, grades 1 / 2 / 3 | 76 / 76 / 75 | 78 / 77 / 78 | 78 / 77 / 78 | 78 / 76 / 78 |
+| BLiMP, all | 61.8 % | 62.6 % | 62.7 % | **62.8 %** |
+| held-out book text (end) | -5.06 | **-4.99** | -5.02 | -5.02 |
+| built, page nouns: *what* gap / agreement past *who* clause | 43 / 58 % | 99 / 100 % | 98 / 98 % | 100 / 94 % |
+| built, held-out nouns: *what* gap | 38 % | **90 %** | 73 % | 81 % |
+| built, held-out nouns: agreement past *who* clause | 59 % | **79 %** | 69 % | 71 % |
+| built, held-out nouns: *who* gap | 0 % | **35 %** | 26 % | 12 % |
+| built, held-out nouns: mean of 7 tests (post hoc) | | **71.3 %** | 62.7 % | 63.3 % |
+
+- **It is the replay.** With equal lessons the three arrangements are the same on reading (73.1-73.5 %), BLiMP
+  (62.6-62.8 %), book text and the rules on taught nouns. What protected old skills in Stage 70 was replaying
+  old memories, not doing it at night - consistent with Stage 61 (sleep ~ re-reading).
+- **The gentle night may help with new words.** On rules applied to nouns never drilled, the cycle group is
+  ahead (mean of seven such tests 71 % against 63 %; p = 0.03 against full step, 0.05 against interleave, four
+  networks each). This comparison was chosen after seeing the results and the single tests have large spreads,
+  so it needs repeating before it counts.
+- **Which method is best.** For VEGA the gentle day / night cycle is at least as good as the alternatives on
+  every headline measure and probably better at generalising; it also fits the segment design (collect by day,
+  consolidate at night). It is the method used from here on, with the generalisation advantage marked as
+  unconfirmed.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

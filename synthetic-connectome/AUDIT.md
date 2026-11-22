@@ -790,3 +790,9 @@ Four networks per group. Machine restarts / session interruptions during the run
 of the days-only group; the comparison is "routine with nights" vs "the same new reading without", not sleep vs an
 equal amount of awake practice. The grade test drops test sentences that occur in the reading (books + graded
 training books). Step sizes ASSUMED, not tuned.
+
+## 52. Follow-up (21 November): Stage 71 — equal-lessons controls
+
+Four networks per new group; identical old-memory samples across groups (same random generator per day and
+seed). Several session interruptions; runs resumed from checkpoints. The "held-out nouns, mean of seven tests"
+composite and its t-tests were computed after looking at the per-test table - post hoc, flagged as unconfirmed.

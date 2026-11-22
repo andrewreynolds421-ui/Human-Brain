@@ -9,6 +9,10 @@ training books of Stage 53's graded collection (different books from the grade t
   awake  each day: read that day's new material once (daytime step size); no nights
   cycle  each day the same; each night: replay that day's experience together with as many sentences drawn
          from older memory (the original books, teaching pages, earlier days), at a third of the step size
+Equal-lessons controls (Stage 71): the same sentences and number of lessons as *cycle*, arranged differently
+  interleave      one long day per day: today's material, the night's replay of it and the night's old memories
+                  shuffled together, at the daytime step size; no separate night
+  cycle_fullstep  as *cycle*, but the night at the daytime step size
 
 The vocabulary does not grow: new words are read through their endings (Stage 58) and predicted as "unknown".
 After each day and night: held-out speech and book text (log-prob per word) - a learning / forgetting curve.
@@ -28,7 +32,7 @@ DAYS, DAY_STEP, NIGHT_STEP, BS = 4, 1e-3, 5e-4, 64                 # day step: t
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--cond", choices=("awake", "cycle"), default="cycle"); ap.add_argument("--seed", type=int, default=0)
+    ap = argparse.ArgumentParser(); ap.add_argument("--cond", choices=("awake", "cycle", "interleave", "cycle_fullstep"), default="cycle"); ap.add_argument("--seed", type=int, default=0)
     a = ap.parse_args(); odir = os.path.join(OUT, a.cond); mdir = os.path.join(DATA, a.cond, "books"); os.makedirs(odir, exist_ok=True); os.makedirs(mdir, exist_ok=True)
     path = os.path.join(mdir, f"awake_s{a.seed}.pt"); real_eval, real_corpus = GM.evaluate, GM.corpus_big; seen = {}
 
@@ -54,12 +58,17 @@ def main():
 
         def plan(d, night):
             """the day's or night's lessons: a fixed list of sentence groups (shuffled, similar lengths together)"""
-            r = np.random.default_rng(100 * a.seed + 2 * d + night)
-            if not night: items = [new[i] for i in days[d]]
-            else:
-                today = [new[i] for i in days[d]]; earlier = [new[i] for i in np.concatenate(days[:d])] if d else []
+            today = [new[i] for i in days[d]]
+
+            def night_items():
+                r = np.random.default_rng(100 * a.seed + 2 * d + 1)          # the same old memories in every group that uses them
+                earlier = [new[i] for i in np.concatenate(days[:d])] if d else []
                 pool_n = len(old0) + len(earlier); pick = r.choice(pool_n, len(today), replace=False)
-                items = today + [old0[i] if i < len(old0) else earlier[i - len(old0)] for i in pick]
+                return today + [old0[i] if i < len(old0) else earlier[i - len(old0)] for i in pick]
+            r = np.random.default_rng(100 * a.seed + 2 * d + night)
+            if night: items = night_items()
+            elif a.cond == "interleave": items = today + night_items()
+            else: items = today
             o = np.argsort([len(s) for s in items], kind="stable"); groups = [o[i:i + BS] for i in range(0, len(o), BS)]
             return items, [groups[i] for i in r.permutation(len(groups))]
 
@@ -70,9 +79,9 @@ def main():
             st["curve"].append(dict(when="start", **measure())); print(st["curve"][-1], flush=True)
         last = time.time()
         while st["d"] < DAYS:
-            if st["night"] and a.cond == "awake": st.update(d=st["d"] + 1, night=0, b=0); continue
+            if st["night"] and a.cond in ("awake", "interleave"): st.update(d=st["d"] + 1, night=0, b=0); continue
             items, groups = plan(st["d"], st["night"])
-            for gp in M.opt.param_groups: gp["lr"] = NIGHT_STEP if st["night"] else DAY_STEP
+            for gp in M.opt.param_groups: gp["lr"] = NIGHT_STEP if (st["night"] and a.cond == "cycle") else DAY_STEP
             for bi in range(st["b"], len(groups)):
                 M.step([dict(words=items[j]) for j in groups[bi]]); st["b"] = bi + 1
                 if time.time() - last > 600:

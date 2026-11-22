@@ -1,0 +1,48 @@
+{
+ "cond": "interleave",
+ "seed": 1,
+ "days": 4,
+ "new_sentences": 2102759,
+ "new_words": 16410636,
+ "curve": [
+  {
+   "when": "start",
+   "speech": -4.917,
+   "books": -5.1462
+  },
+  {
+   "when": "day 1",
+   "lessons": 24642,
+   "speech": -3.863,
+   "books": -5.0488
+  },
+  {
+   "when": "day 2",
+   "lessons": 24642,
+   "speech": -3.7842,
+   "books": -5.0337
+  },
+  {
+   "when": "day 3",
+   "lessons": 24642,
+   "speech": -3.7405,
+   "books": -5.0092
+  },
+  {
+   "when": "day 4",
+   "lessons": 24642,
+   "speech": -3.7111,
+   "books": -4.9954
+  }
+ ],
+ "grade": {
+  "1": 0.7923,
+  "2": 0.7782,
+  "3": 0.7768,
+  "4": 0.7085,
+  "5": 0.6818,
+  "6": 0.7279,
+  "7+": 0.7004
+ },
+ "grade_mean": 0.738
+}
