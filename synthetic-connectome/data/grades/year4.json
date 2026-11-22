@@ -1,0 +1,2438 @@
+{
+ "source": "GITenberg mirror of Project Gutenberg (raw.githubusercontent.com/GITenberg)",
+ "calibration": {
+  "slope": 0.682,
+  "intercept": -0.074,
+  "r": 0.691
+ },
+ "kept": [
+  {
+   "name": "Poor-and-Proud-Or-The-Fortunes-of-Katy-Redburn-A-Story-for-Young-Folks_484",
+   "dir": "/home/claude/corpora/books_year4/Poor-and-Proud-Or-The-Fortunes-of-Katy-Redburn-A-Story-for-Young-Folks_484",
+   "fk": 6.43,
+   "grade": 4.3,
+   "band": "4",
+   "words": 48631
+  },
+  {
+   "name": "Tom-Swift-in-the-Land-of-Wonders--Or-The-Underground-Search-for-the-Idol-of-Gold_499",
+   "dir": "/home/claude/corpora/books_year4/Tom-Swift-in-the-Land-of-Wonders--Or-The-Underground-Search-for-the-Idol-of-Gold_499",
+   "fk": 6.65,
+   "grade": 4.5,
+   "band": "4",
+   "words": 44756
+  },
+  {
+   "name": "The-Heroes--Or-Greek-Fairy-Tales-for-My-Children_677",
+   "dir": "/home/claude/corpora/books_year4/The-Heroes--Or-Greek-Fairy-Tales-for-My-Children_677",
+   "fk": 6.95,
+   "grade": 4.7,
+   "band": "5",
+   "words": 48600
+  },
+  {
+   "name": "A-Child-s-History-of-England_699",
+   "dir": "/home/claude/corpora/books_year4/A-Child-s-History-of-England_699",
+   "fk": 9.47,
+   "grade": 6.4,
+   "band": "6",
+   "words": 164934
+  },
+  {
+   "name": "The-Bobbsey-Twins-in-the-Country_714",
+   "dir": "/home/claude/corpora/books_year4/The-Bobbsey-Twins-in-the-Country_714",
+   "fk": 6.04,
+   "grade": 4.0,
+   "band": "4",
+   "words": 41507
+  },
+  {
+   "name": "Tom-Swift-and-His-Air-Glider--Or-Seeking-the-Platinum-Treasure_952",
+   "dir": "/home/claude/corpora/books_year4/Tom-Swift-and-His-Air-Glider--Or-Seeking-the-Platinum-Treasure_952",
+   "fk": 6.1,
+   "grade": 4.1,
+   "band": "4",
+   "words": 42922
+  },
+  {
+   "name": "Tom-Swift-and-His-Aerial-Warship--Or-The-Naval-Terror-of-the-Seas_1281",
+   "dir": "/home/claude/corpora/books_year4/Tom-Swift-and-His-Aerial-Warship--Or-The-Naval-Terror-of-the-Seas_1281",
+   "fk": 6.38,
+   "grade": 4.3,
+   "band": "4",
+   "words": 45782
+  },
+  {
+   "name": "Tom-Swift-and-His-Air-Scout--Or-Uncle-Sam-s-Mastery-of-the-Sky_1284",
+   "dir": "/home/claude/corpora/books_year4/Tom-Swift-and-His-Air-Scout--Or-Uncle-Sam-s-Mastery-of-the-Sky_1284",
+   "fk": 5.95,
+   "grade": 4.0,
+   "band": "4",
+   "words": 47865
+  },
+  {
+   "name": "Tom-Swift-Among-the-Fire-Fighters--Or-Battling-with-Flames-from-the-Air_1363",
+   "dir": "/home/claude/corpora/books_year4/Tom-Swift-Among-the-Fire-Fighters--Or-Battling-with-Flames-from-the-Air_1363",
+   "fk": 6.24,
+   "grade": 4.2,
+   "band": "4",
+   "words": 45100
+  },
+  {
+   "name": "Madam-How-and-Lady-Why--Or-First-Lessons-in-Earth-Lore-for-Children_1697",
+   "dir": "/home/claude/corpora/books_year4/Madam-How-and-Lady-Why--Or-First-Lessons-in-Earth-Lore-for-Children_1697",
+   "fk": 5.98,
+   "grade": 4.0,
+   "band": "4",
+   "words": 75076
+  },
+  {
+   "name": "Boy-Scouts-in-Mexico--Or-On-Guard-with-Uncle-Sam_2191",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-in-Mexico--Or-On-Guard-with-Uncle-Sam_2191",
+   "fk": 7.15,
+   "grade": 4.8,
+   "band": "5",
+   "words": 52533
+  },
+  {
+   "name": "Queer-Little-Folks_2486",
+   "dir": "/home/claude/corpora/books_year4/Queer-Little-Folks_2486",
+   "fk": 8.21,
+   "grade": 5.5,
+   "band": "6",
+   "words": 22262
+  },
+  {
+   "name": "Irish-Fairy-Tales_2892",
+   "dir": "/home/claude/corpora/books_year4/Irish-Fairy-Tales_2892",
+   "fk": 7.58,
+   "grade": 5.1,
+   "band": "5",
+   "words": 67089
+  },
+  {
+   "name": "The-Parent-s-Assistant-Or-Stories-for-Children_3655",
+   "dir": "/home/claude/corpora/books_year4/The-Parent-s-Assistant-Or-Stories-for-Children_3655",
+   "fk": 6.13,
+   "grade": 4.1,
+   "band": "4",
+   "words": 172161
+  },
+  {
+   "name": "Little-Wars--a-game-for-boys-from-twelve-years-of-age-to-one-hundred-and-fifty-and-for-that-mo__3691",
+   "dir": "/home/claude/corpora/books_year4/Little-Wars--a-game-for-boys-from-twelve-years-of-age-to-one-hundred-and-fifty-and-for-that-mo__3691",
+   "fk": 8.85,
+   "grade": 6.0,
+   "band": "6",
+   "words": 15735
+  },
+  {
+   "name": "Tom-Swift-and-His-Electric-Rifle--Or-Daring-Adventures-in-Elephant-Land_3777",
+   "dir": "/home/claude/corpora/books_year4/Tom-Swift-and-His-Electric-Rifle--Or-Daring-Adventures-in-Elephant-Land_3777",
+   "fk": 6.1,
+   "grade": 4.1,
+   "band": "4",
+   "words": 42703
+  },
+  {
+   "name": "Australian-Legendary-Tales--folk-lore-of-the-Noongahburrahs-as-told-to-the-Piccaninnies_3833",
+   "dir": "/home/claude/corpora/books_year4/Australian-Legendary-Tales--folk-lore-of-the-Noongahburrahs-as-told-to-the-Piccaninnies_3833",
+   "fk": 6.78,
+   "grade": 4.5,
+   "band": "4",
+   "words": 33643
+  },
+  {
+   "name": "Japanese-Fairy-Tales_4018",
+   "dir": "/home/claude/corpora/books_year4/Japanese-Fairy-Tales_4018",
+   "fk": 8.12,
+   "grade": 5.5,
+   "band": "6",
+   "words": 71619
+  },
+  {
+   "name": "American-Fairy-Tales_4357",
+   "dir": "/home/claude/corpora/books_year4/American-Fairy-Tales_4357",
+   "fk": 7.13,
+   "grade": 4.8,
+   "band": "5",
+   "words": 32530
+  },
+  {
+   "name": "The-Rover-Boys-in-Business--Or-The-Search-for-the-Missing-Bonds_5002",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-in-Business--Or-The-Search-for-the-Missing-Bonds_5002",
+   "fk": 6.35,
+   "grade": 4.3,
+   "band": "4",
+   "words": 59526
+  },
+  {
+   "name": "The-Children-s-Book-of-Christmas-Stories_5061",
+   "dir": "/home/claude/corpora/books_year4/The-Children-s-Book-of-Christmas-Stories_5061",
+   "fk": 6.42,
+   "grade": 4.3,
+   "band": "4",
+   "words": 80482
+  },
+  {
+   "name": "Four-Little-Blossoms-on-Apple-Tree-Island_5254",
+   "dir": "/home/claude/corpora/books_year4/Four-Little-Blossoms-on-Apple-Tree-Island_5254",
+   "fk": 6.26,
+   "grade": 4.2,
+   "band": "4",
+   "words": 25533
+  },
+  {
+   "name": "The-Boy-Scouts-Patrol_5602",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-Patrol_5602",
+   "fk": 6.61,
+   "grade": 4.4,
+   "band": "4",
+   "words": 32782
+  },
+  {
+   "name": "English-Literature-for-Boys-and-Girls_5725",
+   "dir": "/home/claude/corpora/books_year4/English-Literature-for-Boys-and-Girls_5725",
+   "fk": 7.49,
+   "grade": 5.0,
+   "band": "5",
+   "words": 205273
+  },
+  {
+   "name": "The-Rover-Boys-in-the-Jungle--Or-Stirring-Adventures-in-Africa_5770",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-in-the-Jungle--Or-Stirring-Adventures-in-Africa_5770",
+   "fk": 6.58,
+   "grade": 4.4,
+   "band": "4",
+   "words": 45224
+  },
+  {
+   "name": "The-Rover-Boys-at-School--Or-The-Cadets-of-Putnam-Hall_5780",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-at-School--Or-The-Cadets-of-Putnam-Hall_5780",
+   "fk": 5.99,
+   "grade": 4.0,
+   "band": "4",
+   "words": 50291
+  },
+  {
+   "name": "A-Garland-for-Girls_5830",
+   "dir": "/home/claude/corpora/books_year4/A-Garland-for-Girls_5830",
+   "fk": 8.94,
+   "grade": 6.0,
+   "band": "6",
+   "words": 73521
+  },
+  {
+   "name": "Bimbi-Stories-for-Children_5834",
+   "dir": "/home/claude/corpora/books_year4/Bimbi-Stories-for-Children_5834",
+   "fk": 7.72,
+   "grade": 5.2,
+   "band": "5",
+   "words": 44972
+  },
+  {
+   "name": "The-Rover-Boys-out-West--Or-The-Search-for-a-Lost-Mine_6071",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-out-West--Or-The-Search-for-a-Lost-Mine_6071",
+   "fk": 6.23,
+   "grade": 4.2,
+   "band": "4",
+   "words": 48984
+  },
+  {
+   "name": "Boy-Scouts-in-a-Submarine--Or-Searching-an-Ocean-Floor_6108",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-in-a-Submarine--Or-Searching-an-Ocean-Floor_6108",
+   "fk": 6.95,
+   "grade": 4.7,
+   "band": "5",
+   "words": 42022
+  },
+  {
+   "name": "Healthful-Sports-for-Boys_6129",
+   "dir": "/home/claude/corpora/books_year4/Healthful-Sports-for-Boys_6129",
+   "fk": 7.6,
+   "grade": 5.1,
+   "band": "5",
+   "words": 42729
+  },
+  {
+   "name": "Boy-Scouts-in-the-Coal-Caverns-Or-The-Light-in-Tunnel-Six_6338",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-in-the-Coal-Caverns-Or-The-Light-in-Tunnel-Six_6338",
+   "fk": 7.34,
+   "grade": 4.9,
+   "band": "5",
+   "words": 38817
+  },
+  {
+   "name": "The-Rover-Boys-on-the-Great-Lakes--Or-The-Secret-of-the-Island-Cave_6451",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-on-the-Great-Lakes--Or-The-Secret-of-the-Island-Cave_6451",
+   "fk": 6.04,
+   "grade": 4.0,
+   "band": "4",
+   "words": 48784
+  },
+  {
+   "name": "Haste-and-Waste--Or-the-Young-Pilot-of-Lake-Champlain.-A-Story-for-Young-People_6572",
+   "dir": "/home/claude/corpora/books_year4/Haste-and-Waste--Or-the-Young-Pilot-of-Lake-Champlain.-A-Story-for-Young-People_6572",
+   "fk": 6.13,
+   "grade": 4.1,
+   "band": "4",
+   "words": 50014
+  },
+  {
+   "name": "Types-of-Children-s-Literature-A-Collection-of-the-World-s-Best-Literature-for-Children-For-Us__6588",
+   "dir": "/home/claude/corpora/books_year4/Types-of-Children-s-Literature-A-Collection-of-the-World-s-Best-Literature-for-Children-For-Us__6588",
+   "fk": 7.46,
+   "grade": 5.0,
+   "band": "5",
+   "words": 187477
+  },
+  {
+   "name": "Hold-Up-Your-Heads-Girls-Helps-for-Girls-in-School-and-Out_6636",
+   "dir": "/home/claude/corpora/books_year4/Hold-Up-Your-Heads-Girls-Helps-for-Girls-in-School-and-Out_6636",
+   "fk": 8.33,
+   "grade": 5.6,
+   "band": "6",
+   "words": 39092
+  },
+  {
+   "name": "Boy-Scouts-of-the-Air-on-Lost-Island_6827",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-of-the-Air-on-Lost-Island_6827",
+   "fk": 5.91,
+   "grade": 4.0,
+   "band": "4",
+   "words": 46885
+  },
+  {
+   "name": "Esther---a-book-for-girls_6850",
+   "dir": "/home/claude/corpora/books_year4/Esther---a-book-for-girls_6850",
+   "fk": 6.37,
+   "grade": 4.3,
+   "band": "4",
+   "words": 77801
+  },
+  {
+   "name": "The-Camp-Fire-Girls-Go-Motoring--Or-Along-the-Road-That-Leads-the-Way_6895",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-Go-Motoring--Or-Along-the-Road-That-Leads-the-Way_6895",
+   "fk": 6.98,
+   "grade": 4.7,
+   "band": "5",
+   "words": 58381
+  },
+  {
+   "name": "Boy-Scouts-in-an-Airship--Or-The-Warning-from-the-Sky_6904",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-in-an-Airship--Or-The-Warning-from-the-Sky_6904",
+   "fk": 6.98,
+   "grade": 4.7,
+   "band": "5",
+   "words": 48179
+  },
+  {
+   "name": "The-Bobbsey-Twins-at-the-Seashore_6950",
+   "dir": "/home/claude/corpora/books_year4/The-Bobbsey-Twins-at-the-Seashore_6950",
+   "fk": 6.5,
+   "grade": 4.4,
+   "band": "4",
+   "words": 36105
+  },
+  {
+   "name": "Children-s-Edition-of-Touching-Incidents-and-Remarkable-Answers-to-Prayer_7026",
+   "dir": "/home/claude/corpora/books_year4/Children-s-Edition-of-Touching-Incidents-and-Remarkable-Answers-to-Prayer_7026",
+   "fk": 6.15,
+   "grade": 4.1,
+   "band": "4",
+   "words": 26619
+  },
+  {
+   "name": "Indian-Fairy-Tales_7128",
+   "dir": "/home/claude/corpora/books_year4/Indian-Fairy-Tales_7128",
+   "fk": 6.95,
+   "grade": 4.7,
+   "band": "5",
+   "words": 72437
+  },
+  {
+   "name": "Celtic-Tales-Told-to-the-Children_7488",
+   "dir": "/home/claude/corpora/books_year4/Celtic-Tales-Told-to-the-Children_7488",
+   "fk": 8.67,
+   "grade": 5.8,
+   "band": "6",
+   "words": 22506
+  },
+  {
+   "name": "A-Child-s-Story-Garden_7868",
+   "dir": "/home/claude/corpora/books_year4/A-Child-s-Story-Garden_7868",
+   "fk": 6.7,
+   "grade": 4.5,
+   "band": "4",
+   "words": 21211
+  },
+  {
+   "name": "Dutch-Fairy-Tales-for-Young-Folks_7871",
+   "dir": "/home/claude/corpora/books_year4/Dutch-Fairy-Tales-for-Young-Folks_7871",
+   "fk": 6.62,
+   "grade": 4.4,
+   "band": "4",
+   "words": 50055
+  },
+  {
+   "name": "The-Boy-Scouts-on-Sturgeon-Island--or-Marooned-Among-the-Game-fish-Poachers_8067",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-on-Sturgeon-Island--or-Marooned-Among-the-Game-fish-Poachers_8067",
+   "fk": 8.37,
+   "grade": 5.6,
+   "band": "6",
+   "words": 58191
+  },
+  {
+   "name": "Fairy-Tales-Their-Origin-and-Meaning--With-Some-Account-of-Dwellers-in-Fairyland_8226",
+   "dir": "/home/claude/corpora/books_year4/Fairy-Tales-Their-Origin-and-Meaning--With-Some-Account-of-Dwellers-in-Fairyland_8226",
+   "fk": 8.5,
+   "grade": 5.7,
+   "band": "6",
+   "words": 42965
+  },
+  {
+   "name": "Welsh-Fairy-Tales-and-Other-Stories_8675",
+   "dir": "/home/claude/corpora/books_year4/Welsh-Fairy-Tales-and-Other-Stories_8675",
+   "fk": 7.18,
+   "grade": 4.8,
+   "band": "5",
+   "words": 18546
+  },
+  {
+   "name": "The-Children-s-Own-Longfellow_9080",
+   "dir": "/home/claude/corpora/books_year4/The-Children-s-Own-Longfellow_9080",
+   "fk": 8.44,
+   "grade": 5.7,
+   "band": "6",
+   "words": 15577
+  },
+  {
+   "name": "Welsh-Fairy-Tales_9368",
+   "dir": "/home/claude/corpora/books_year4/Welsh-Fairy-Tales_9368",
+   "fk": 7.07,
+   "grade": 4.8,
+   "band": "5",
+   "words": 43767
+  },
+  {
+   "name": "The-Banner-Boy-Scouts-Afloat--13-Or-The-Secret-of-Cedar-Island_9948",
+   "dir": "/home/claude/corpora/books_year4/The-Banner-Boy-Scouts-Afloat--13-Or-The-Secret-of-Cedar-Island_9948",
+   "fk": 7.2,
+   "grade": 4.8,
+   "band": "5",
+   "words": 67196
+  },
+  {
+   "name": "Boys-and-Girls-from-Thackeray_10111",
+   "dir": "/home/claude/corpora/books_year4/Boys-and-Girls-from-Thackeray_10111",
+   "fk": 8.09,
+   "grade": 5.4,
+   "band": "5",
+   "words": 105925
+  },
+  {
+   "name": "Kalitan-Our-Little-Alaskan-Cousin_10224",
+   "dir": "/home/claude/corpora/books_year4/Kalitan-Our-Little-Alaskan-Cousin_10224",
+   "fk": 7.63,
+   "grade": 5.1,
+   "band": "5",
+   "words": 24170
+  },
+  {
+   "name": "A-Child-s-Anti-Slavery-Bookof-Slave-Life._10464",
+   "dir": "/home/claude/corpora/books_year4/A-Child-s-Anti-Slavery-Bookof-Slave-Life._10464",
+   "fk": 6.67,
+   "grade": 4.5,
+   "band": "4",
+   "words": 23739
+  },
+  {
+   "name": "The-Camp-Fire-Girls-at-Camp-Keewaydin--Or-Paddles-Down_10688",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-at-Camp-Keewaydin--Or-Paddles-Down_10688",
+   "fk": 8.42,
+   "grade": 5.7,
+   "band": "6",
+   "words": 55899
+  },
+  {
+   "name": "Christmas-in-Legend-and-StoryA-Book-for-Boys-and-Girls_11014",
+   "dir": "/home/claude/corpora/books_year4/Christmas-in-Legend-and-StoryA-Book-for-Boys-and-Girls_11014",
+   "fk": 7.18,
+   "grade": 4.8,
+   "band": "5",
+   "words": 49132
+  },
+  {
+   "name": "Deccan-Nursery-Tales--13-or-Fairy-Tales-from-the-South_11167",
+   "dir": "/home/claude/corpora/books_year4/Deccan-Nursery-Tales--13-or-Fairy-Tales-from-the-South_11167",
+   "fk": 7.49,
+   "grade": 5.0,
+   "band": "5",
+   "words": 27471
+  },
+  {
+   "name": "The-Pearl-BoxContaining-One-Hundred-Beautiful-Stories-for-Young-People_11237",
+   "dir": "/home/claude/corpora/books_year4/The-Pearl-BoxContaining-One-Hundred-Beautiful-Stories-for-Young-People_11237",
+   "fk": 7.08,
+   "grade": 4.8,
+   "band": "5",
+   "words": 29145
+  },
+  {
+   "name": "The-Book-of-Enterprise-and-AdventureBeing-an-Excitement-to-Reading.-for-Young-People.-a-New-a__11308",
+   "dir": "/home/claude/corpora/books_year4/The-Book-of-Enterprise-and-AdventureBeing-an-Excitement-to-Reading.-for-Young-People.-a-New-a__11308",
+   "fk": 9.06,
+   "grade": 6.1,
+   "band": "6",
+   "words": 24466
+  },
+  {
+   "name": "Boy-Scouts-on-Motorcycles--Or-With-the-Flying-Squadron_11469",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-on-Motorcycles--Or-With-the-Flying-Squadron_11469",
+   "fk": 6.98,
+   "grade": 4.7,
+   "band": "5",
+   "words": 43627
+  },
+  {
+   "name": "The-Pearl-Box--13-Containing-One-Hundred-Beautiful-Stories-for-Young-People-by-a-Pastor_11595",
+   "dir": "/home/claude/corpora/books_year4/The-Pearl-Box--13-Containing-One-Hundred-Beautiful-Stories-for-Young-People-by-a-Pastor_11595",
+   "fk": 7.01,
+   "grade": 4.7,
+   "band": "5",
+   "words": 27996
+  },
+  {
+   "name": "The-Camp-Fire-Girls-Do-Their-Bit--Or-Over-the-Top-with-the-Winnebagos_11664",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-Do-Their-Bit--Or-Over-the-Top-with-the-Winnebagos_11664",
+   "fk": 8.35,
+   "grade": 5.6,
+   "band": "6",
+   "words": 54327
+  },
+  {
+   "name": "The-Camp-Fire-Girls-at-School--Or-The-Wohelo-Weavers_11718",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-at-School--Or-The-Wohelo-Weavers_11718",
+   "fk": 7.0,
+   "grade": 4.7,
+   "band": "5",
+   "words": 64005
+  },
+  {
+   "name": "Our-Little-Korean-Cousin_12048",
+   "dir": "/home/claude/corpora/books_year4/Our-Little-Korean-Cousin_12048",
+   "fk": 8.27,
+   "grade": 5.6,
+   "band": "6",
+   "words": 15141
+  },
+  {
+   "name": "The-Camp-Fire-Girls-at-Long-Lake--Or-Bessie-King-in-Summer-Camp_12091",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-at-Long-Lake--Or-Bessie-King-in-Summer-Camp_12091",
+   "fk": 6.33,
+   "grade": 4.2,
+   "band": "4",
+   "words": 40741
+  },
+  {
+   "name": "The-Boy-Scouts-of-the-Eagle-Patrol_12112",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-of-the-Eagle-Patrol_12112",
+   "fk": 7.98,
+   "grade": 5.4,
+   "band": "5",
+   "words": 50253
+  },
+  {
+   "name": "Boy-Scouts-in-Northern-Wilds--Or-The-Signal-from-the-Hills_12526",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-in-Northern-Wilds--Or-The-Signal-from-the-Hills_12526",
+   "fk": 7.37,
+   "grade": 5.0,
+   "band": "5",
+   "words": 38478
+  },
+  {
+   "name": "Tiger-and-Tom-and-Other-Stories-for-Boys_12591",
+   "dir": "/home/claude/corpora/books_year4/Tiger-and-Tom-and-Other-Stories-for-Boys_12591",
+   "fk": 6.5,
+   "grade": 4.4,
+   "band": "4",
+   "words": 44373
+  },
+  {
+   "name": "The-Boy-Scouts-of-the-Geological-Survey_12945",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-of-the-Geological-Survey_12945",
+   "fk": 7.63,
+   "grade": 5.1,
+   "band": "5",
+   "words": 23502
+  },
+  {
+   "name": "The-Boy-Scouts-on-Picket-Duty_12946",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-on-Picket-Duty_12946",
+   "fk": 7.6,
+   "grade": 5.1,
+   "band": "5",
+   "words": 22817
+  },
+  {
+   "name": "The-Boy-Scouts-of-the-Flying-Squadron_12947",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-of-the-Flying-Squadron_12947",
+   "fk": 8.74,
+   "grade": 5.9,
+   "band": "6",
+   "words": 28448
+  },
+  {
+   "name": "The-Boy-Scouts-with-the-Motion-Picture-Players_12948",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-with-the-Motion-Picture-Players_12948",
+   "fk": 10.19,
+   "grade": 6.9,
+   "band": "7+",
+   "words": 29491
+  },
+  {
+   "name": "The-King-s-Daughter-and-Other-Stories-for-Girls_13126",
+   "dir": "/home/claude/corpora/books_year4/The-King-s-Daughter-and-Other-Stories-for-Girls_13126",
+   "fk": 6.79,
+   "grade": 4.6,
+   "band": "5",
+   "words": 44484
+  },
+  {
+   "name": "Apples-Ripe-and-Rosy-Sir--13-And-Other-Stories-for-Boys-and-Girls_13324",
+   "dir": "/home/claude/corpora/books_year4/Apples-Ripe-and-Rosy-Sir--13-And-Other-Stories-for-Boys-and-Girls_13324",
+   "fk": 6.93,
+   "grade": 4.7,
+   "band": "5",
+   "words": 54355
+  },
+  {
+   "name": "A-Study-of-Fairy-Tales_13666",
+   "dir": "/home/claude/corpora/books_year4/A-Study-of-Fairy-Tales_13666",
+   "fk": 6.54,
+   "grade": 4.4,
+   "band": "4",
+   "words": 85499
+  },
+  {
+   "name": "The-Children-s-Hour-v-5.-Stories-From-Seven-Old-Favorites_13685",
+   "dir": "/home/claude/corpora/books_year4/The-Children-s-Hour-v-5.-Stories-From-Seven-Old-Favorites_13685",
+   "fk": 9.03,
+   "grade": 6.1,
+   "band": "6",
+   "words": 124520
+  },
+  {
+   "name": "Boy-Scouts-in-Southern-Waters--Or-Spaniard-s-Treasure-Chest_13859",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-in-Southern-Waters--Or-Spaniard-s-Treasure-Chest_13859",
+   "fk": 5.97,
+   "grade": 4.0,
+   "band": "4",
+   "words": 58083
+  },
+  {
+   "name": "The-World-s-Fair--13-Or-Children-s-prize-gift-book-of-the-Great-Exhibition-of-1851---describi__14092",
+   "dir": "/home/claude/corpora/books_year4/The-World-s-Fair--13-Or-Children-s-prize-gift-book-of-the-Great-Exhibition-of-1851---describi__14092",
+   "fk": 6.84,
+   "grade": 4.6,
+   "band": "5",
+   "words": 32748
+  },
+  {
+   "name": "Fifty-Two-Story-Talks-to-Boys-and-Girls_14188",
+   "dir": "/home/claude/corpora/books_year4/Fifty-Two-Story-Talks-to-Boys-and-Girls_14188",
+   "fk": 7.25,
+   "grade": 4.9,
+   "band": "5",
+   "words": 22164
+  },
+  {
+   "name": "More-English-Fairy-Tales_14241",
+   "dir": "/home/claude/corpora/books_year4/More-English-Fairy-Tales_14241",
+   "fk": 6.41,
+   "grade": 4.3,
+   "band": "4",
+   "words": 62097
+  },
+  {
+   "name": "Stray-Thoughts-for-Girls_14679",
+   "dir": "/home/claude/corpora/books_year4/Stray-Thoughts-for-Girls_14679",
+   "fk": 9.96,
+   "grade": 6.7,
+   "band": "7+",
+   "words": 49382
+  },
+  {
+   "name": "Camping-For-Boys_14759",
+   "dir": "/home/claude/corpora/books_year4/Camping-For-Boys_14759",
+   "fk": 6.01,
+   "grade": 4.0,
+   "band": "4",
+   "words": 58979
+  },
+  {
+   "name": "Now-or-Never--13-Or-The-Adventures-of-Bobby-Bright-a-Story-for-Young-Folks_14762",
+   "dir": "/home/claude/corpora/books_year4/Now-or-Never--13-Or-The-Adventures-of-Bobby-Bright-a-Story-for-Young-Folks_14762",
+   "fk": 6.33,
+   "grade": 4.2,
+   "band": "4",
+   "words": 46066
+  },
+  {
+   "name": "My-Book-of-Favourite-Fairy-Tales_15145",
+   "dir": "/home/claude/corpora/books_year4/My-Book-of-Favourite-Fairy-Tales_15145",
+   "fk": 7.64,
+   "grade": 5.1,
+   "band": "5",
+   "words": 35741
+  },
+  {
+   "name": "The-Palace-Beautiful--A-Story-for-Girls_15149",
+   "dir": "/home/claude/corpora/books_year4/The-Palace-Beautiful--A-Story-for-Girls_15149",
+   "fk": 6.99,
+   "grade": 4.7,
+   "band": "5",
+   "words": 100553
+  },
+  {
+   "name": "Uncle-Wiggily-s-Travels_15282",
+   "dir": "/home/claude/corpora/books_year4/Uncle-Wiggily-s-Travels_15282",
+   "fk": 6.42,
+   "grade": 4.3,
+   "band": "4",
+   "words": 43071
+  },
+  {
+   "name": "The-Care-and-Feeding-of-ChildrenA-Catechism-for-the-Use-of-Mothers-and-Children-s-Nurses_15484",
+   "dir": "/home/claude/corpora/books_year4/The-Care-and-Feeding-of-ChildrenA-Catechism-for-the-Use-of-Mothers-and-Children-s-Nurses_15484",
+   "fk": 7.86,
+   "grade": 5.3,
+   "band": "5",
+   "words": 32862
+  },
+  {
+   "name": "The-Life-of-Robert-Louis-Stevenson-for-Boys-and-Girls_15547",
+   "dir": "/home/claude/corpora/books_year4/The-Life-of-Robert-Louis-Stevenson-for-Boys-and-Girls_15547",
+   "fk": 9.03,
+   "grade": 6.1,
+   "band": "6",
+   "words": 30480
+  },
+  {
+   "name": "Old-Fashioned-Fairy-Tales_15592",
+   "dir": "/home/claude/corpora/books_year4/Old-Fashioned-Fairy-Tales_15592",
+   "fk": 7.46,
+   "grade": 5.0,
+   "band": "5",
+   "words": 34843
+  },
+  {
+   "name": "Vocational-Guidance-for-Girls_15595",
+   "dir": "/home/claude/corpora/books_year4/Vocational-Guidance-for-Girls_15595",
+   "fk": 10.06,
+   "grade": 6.8,
+   "band": "7+",
+   "words": 56390
+  },
+  {
+   "name": "Topsy-Turvy-LandArabia-Pictured-for-Children_15658",
+   "dir": "/home/claude/corpora/books_year4/Topsy-Turvy-LandArabia-Pictured-for-Children_15658",
+   "fk": 7.24,
+   "grade": 4.9,
+   "band": "5",
+   "words": 24549
+  },
+  {
+   "name": "The-Rover-Boys-on-Treasure-Isle--Or-The-Strange-Cruise-of-the-Steam-Yacht_15723",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-on-Treasure-Isle--Or-The-Strange-Cruise-of-the-Steam-Yacht_15723",
+   "fk": 6.27,
+   "grade": 4.2,
+   "band": "4",
+   "words": 57403
+  },
+  {
+   "name": "The-Camp-Fire-Girls-on-the-Farm--Or-Bessie-King-s-New-Chum_15726",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-on-the-Farm--Or-Bessie-King-s-New-Chum_15726",
+   "fk": 6.37,
+   "grade": 4.3,
+   "band": "4",
+   "words": 41263
+  },
+  {
+   "name": "In-the-Wars-of-the-Roses--13-A-Story-for-the-Young_15769",
+   "dir": "/home/claude/corpora/books_year4/In-the-Wars-of-the-Roses--13-A-Story-for-the-Young_15769",
+   "fk": 8.39,
+   "grade": 5.6,
+   "band": "6",
+   "words": 60187
+  },
+  {
+   "name": "The-Rover-Boys-in-Camp--or-The-Rivals-of-Pine-Island_15795",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-in-Camp--or-The-Rivals-of-Pine-Island_15795",
+   "fk": 6.16,
+   "grade": 4.1,
+   "band": "4",
+   "words": 50223
+  },
+  {
+   "name": "A-Book-for-the-Young_15820",
+   "dir": "/home/claude/corpora/books_year4/A-Book-for-the-Young_15820",
+   "fk": 7.65,
+   "grade": 5.1,
+   "band": "5",
+   "words": 33909
+  },
+  {
+   "name": "The-Rover-Boys-on-the-River--Or-The-Search-for-the-Missing-Houseboat_15904",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-on-the-River--Or-The-Search-for-the-Missing-Houseboat_15904",
+   "fk": 5.91,
+   "grade": 4.0,
+   "band": "4",
+   "words": 48532
+  },
+  {
+   "name": "Wreaths-of-Friendship--A-Gift-for-the-Young_16073",
+   "dir": "/home/claude/corpora/books_year4/Wreaths-of-Friendship--A-Gift-for-the-Young_16073",
+   "fk": 6.19,
+   "grade": 4.1,
+   "band": "4",
+   "words": 38308
+  },
+  {
+   "name": "The-Rover-Boys-on-Land-and-Sea--The-Crusoes-of-Seven-Islands_16476",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-on-Land-and-Sea--The-Crusoes-of-Seven-Islands_16476",
+   "fk": 5.9,
+   "grade": 4.0,
+   "band": "4",
+   "words": 51660
+  },
+  {
+   "name": "A-Young-Folks-History-of-the-Church-of-Jesus-Christ-of-Latter-day-Saints_16534",
+   "dir": "/home/claude/corpora/books_year4/A-Young-Folks-History-of-the-Church-of-Jesus-Christ-of-Latter-day-Saints_16534",
+   "fk": 6.02,
+   "grade": 4.0,
+   "band": "4",
+   "words": 47740
+  },
+  {
+   "name": "Holiday-Stories-for-Young-People_16648",
+   "dir": "/home/claude/corpora/books_year4/Holiday-Stories-for-Young-People_16648",
+   "fk": 6.71,
+   "grade": 4.5,
+   "band": "4",
+   "words": 69004
+  },
+  {
+   "name": "Young-Folks-History-of-Rome_16667",
+   "dir": "/home/claude/corpora/books_year4/Young-Folks-History-of-Rome_16667",
+   "fk": 9.94,
+   "grade": 6.7,
+   "band": "7+",
+   "words": 63681
+  },
+  {
+   "name": "A-Life-of-St.-John-for-the-Young_17166",
+   "dir": "/home/claude/corpora/books_year4/A-Life-of-St.-John-for-the-Young_17166",
+   "fk": 8.52,
+   "grade": 5.7,
+   "band": "6",
+   "words": 57308
+  },
+  {
+   "name": "The-Tapestry-RoomA-Child-s-Romance_17175",
+   "dir": "/home/claude/corpora/books_year4/The-Tapestry-RoomA-Child-s-Romance_17175",
+   "fk": 7.15,
+   "grade": 4.8,
+   "band": "5",
+   "words": 51035
+  },
+  {
+   "name": "The-Banner-Boy-ScoutsOr-The-Struggle-for-Leadership_17266",
+   "dir": "/home/claude/corpora/books_year4/The-Banner-Boy-ScoutsOr-The-Struggle-for-Leadership_17266",
+   "fk": 6.03,
+   "grade": 4.0,
+   "band": "4",
+   "words": 64922
+  },
+  {
+   "name": "The-Book-of-Art-for-Young-People_17395",
+   "dir": "/home/claude/corpora/books_year4/The-Book-of-Art-for-Young-People_17395",
+   "fk": 9.52,
+   "grade": 6.4,
+   "band": "6",
+   "words": 41837
+  },
+  {
+   "name": "Tom-Swift-and-The-Visitor-from-Planet-X_17985",
+   "dir": "/home/claude/corpora/books_year4/Tom-Swift-and-The-Visitor-from-Planet-X_17985",
+   "fk": 6.28,
+   "grade": 4.2,
+   "band": "4",
+   "words": 35800
+  },
+  {
+   "name": "We-and-the-World-Part-IA-Book-for-Boys_18077",
+   "dir": "/home/claude/corpora/books_year4/We-and-the-World-Part-IA-Book-for-Boys_18077",
+   "fk": 8.8,
+   "grade": 5.9,
+   "band": "6",
+   "words": 50805
+  },
+  {
+   "name": "The-Children-s-Portion_18146",
+   "dir": "/home/claude/corpora/books_year4/The-Children-s-Portion_18146",
+   "fk": 8.04,
+   "grade": 5.4,
+   "band": "5",
+   "words": 59163
+  },
+  {
+   "name": "We-and-the-World-Part-II--13-A-Book-for-Boys_18156",
+   "dir": "/home/claude/corpora/books_year4/We-and-the-World-Part-II--13-A-Book-for-Boys_18156",
+   "fk": 8.67,
+   "grade": 5.8,
+   "band": "6",
+   "words": 57856
+  },
+  {
+   "name": "The-ShipwreckA-Story-for-the-Young_18399",
+   "dir": "/home/claude/corpora/books_year4/The-ShipwreckA-Story-for-the-Young_18399",
+   "fk": 7.4,
+   "grade": 5.0,
+   "band": "5",
+   "words": 23070
+  },
+  {
+   "name": "On-the-Trail--An-Outdoor-Book-for-Girls_18525",
+   "dir": "/home/claude/corpora/books_year4/On-the-Trail--An-Outdoor-Book-for-Girls_18525",
+   "fk": 7.54,
+   "grade": 5.1,
+   "band": "5",
+   "words": 59122
+  },
+  {
+   "name": "The-Good-ShepherdA-Life-of-Christ-for-Children_18558",
+   "dir": "/home/claude/corpora/books_year4/The-Good-ShepherdA-Life-of-Christ-for-Children_18558",
+   "fk": 6.22,
+   "grade": 4.2,
+   "band": "4",
+   "words": 17490
+  },
+  {
+   "name": "The-Child-s-Day_18559",
+   "dir": "/home/claude/corpora/books_year4/The-Child-s-Day_18559",
+   "fk": 5.94,
+   "grade": 4.0,
+   "band": "4",
+   "words": 41553
+  },
+  {
+   "name": "The-Camp-Fire-Girls-in-the-Maine-Woods--Or-The-Winnebagos-Go-Camping_18606",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-in-the-Maine-Woods--Or-The-Winnebagos-Go-Camping_18606",
+   "fk": 7.63,
+   "grade": 5.1,
+   "band": "5",
+   "words": 55682
+  },
+  {
+   "name": "Captain-SamThe-Boy-Scouts-of-1814_18622",
+   "dir": "/home/claude/corpora/books_year4/Captain-SamThe-Boy-Scouts-of-1814_18622",
+   "fk": 7.86,
+   "grade": 5.3,
+   "band": "5",
+   "words": 38647
+  },
+  {
+   "name": "The-Empire-Annual-for-Girls-1911_18661",
+   "dir": "/home/claude/corpora/books_year4/The-Empire-Annual-for-Girls-1911_18661",
+   "fk": 6.78,
+   "grade": 4.5,
+   "band": "4",
+   "words": 122549
+  },
+  {
+   "name": "Boy-Scouts-on-a-Long-Hike--Or-To-the-Rescue-in-the-Black-Water-Swamps_18952",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-on-a-Long-Hike--Or-To-the-Rescue-in-the-Black-Water-Swamps_18952",
+   "fk": 7.72,
+   "grade": 5.2,
+   "band": "5",
+   "words": 39373
+  },
+  {
+   "name": "All-Aboard--A-Story-for-Girls_19001",
+   "dir": "/home/claude/corpora/books_year4/All-Aboard--A-Story-for-Girls_19001",
+   "fk": 8.18,
+   "grade": 5.5,
+   "band": "6",
+   "words": 61686
+  },
+  {
+   "name": "The-Firelight-Fairy-Book_19207",
+   "dir": "/home/claude/corpora/books_year4/The-Firelight-Fairy-Book_19207",
+   "fk": 7.95,
+   "grade": 5.3,
+   "band": "5",
+   "words": 43677
+  },
+  {
+   "name": "Tom-Swift-and-the-Electronic-Hydrolung_19258",
+   "dir": "/home/claude/corpora/books_year4/Tom-Swift-and-the-Electronic-Hydrolung_19258",
+   "fk": 6.21,
+   "grade": 4.2,
+   "band": "4",
+   "words": 33201
+  },
+  {
+   "name": "Six-to-SixteenA-Story-for-Girls_19360",
+   "dir": "/home/claude/corpora/books_year4/Six-to-SixteenA-Story-for-Girls_19360",
+   "fk": 7.54,
+   "grade": 5.1,
+   "band": "5",
+   "words": 66388
+  },
+  {
+   "name": "The-Laughing-Prince--Jugoslav-Folk-and-Fairy-Tales_19713",
+   "dir": "/home/claude/corpora/books_year4/The-Laughing-Prince--Jugoslav-Folk-and-Fairy-Tales_19713",
+   "fk": 6.92,
+   "grade": 4.6,
+   "band": "5",
+   "words": 49787
+  },
+  {
+   "name": "The-Fairy-BookThe-Best-Popular-Stories-Selected-and-Rendered-Anew_19734",
+   "dir": "/home/claude/corpora/books_year4/The-Fairy-BookThe-Best-Popular-Stories-Selected-and-Rendered-Anew_19734",
+   "fk": 8.24,
+   "grade": 5.5,
+   "band": "6",
+   "words": 122464
+  },
+  {
+   "name": "Louis-School-Days--A-Story-for-Boys_19855",
+   "dir": "/home/claude/corpora/books_year4/Louis-School-Days--A-Story-for-Boys_19855",
+   "fk": 7.14,
+   "grade": 4.8,
+   "band": "5",
+   "words": 89481
+  },
+  {
+   "name": "Queer-Stories-for-Boys-and-Girls_19896",
+   "dir": "/home/claude/corpora/books_year4/Queer-Stories-for-Boys-and-Girls_19896",
+   "fk": 6.34,
+   "grade": 4.2,
+   "band": "4",
+   "words": 45371
+  },
+  {
+   "name": "The-Aesop-for-Children--13-With-pictures-by-Milo-Winter_19994",
+   "dir": "/home/claude/corpora/books_year4/The-Aesop-for-Children--13-With-pictures-by-Milo-Winter_19994",
+   "fk": 7.06,
+   "grade": 4.7,
+   "band": "5",
+   "words": 27631
+  },
+  {
+   "name": "Boy-Scouts-in-the-Philippines--Or-The-Key-to-the-Treaty-Box_20208",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-in-the-Philippines--Or-The-Key-to-the-Treaty-Box_20208",
+   "fk": 7.55,
+   "grade": 5.1,
+   "band": "5",
+   "words": 50645
+  },
+  {
+   "name": "Hunter-s-MarjoryA-Story-for-Girls_20258",
+   "dir": "/home/claude/corpora/books_year4/Hunter-s-MarjoryA-Story-for-Girls_20258",
+   "fk": 6.46,
+   "grade": 4.3,
+   "band": "4",
+   "words": 75058
+  },
+  {
+   "name": "The-Boy-Scouts-First-Camp-Fire--or-Scouting-with-the-Silver-Fox-Patrol_20434",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-First-Camp-Fire--or-Scouting-with-the-Silver-Fox-Patrol_20434",
+   "fk": 6.97,
+   "grade": 4.7,
+   "band": "5",
+   "words": 61158
+  },
+  {
+   "name": "Roumanian-Fairy-Tales_20552",
+   "dir": "/home/claude/corpora/books_year4/Roumanian-Fairy-Tales_20552",
+   "fk": 6.92,
+   "grade": 4.6,
+   "band": "5",
+   "words": 64069
+  },
+  {
+   "name": "From-Pole-to-PoleA-Book-for-Young-People_20709",
+   "dir": "/home/claude/corpora/books_year4/From-Pole-to-PoleA-Book-for-Young-People_20709",
+   "fk": 8.26,
+   "grade": 5.6,
+   "band": "6",
+   "words": 165468
+  },
+  {
+   "name": "Favorite-Fairy-Tales_20748",
+   "dir": "/home/claude/corpora/books_year4/Favorite-Fairy-Tales_20748",
+   "fk": 7.01,
+   "grade": 4.7,
+   "band": "5",
+   "words": 40448
+  },
+  {
+   "name": "Aims-and-Aids-for-Girls-and-Young-WomenDuties-To-Young-Men-Marriage-Womanhood-And-Happiness._20819",
+   "dir": "/home/claude/corpora/books_year4/Aims-and-Aids-for-Girls-and-Young-WomenDuties-To-Young-Men-Marriage-Womanhood-And-Happiness._20819",
+   "fk": 6.89,
+   "grade": 4.6,
+   "band": "5",
+   "words": 66024
+  },
+  {
+   "name": "The-Camp-Fire-Girls-on-the-March--Or-Bessie-King-s-Test-of-Friendship_20822",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-on-the-March--Or-Bessie-King-s-Test-of-Friendship_20822",
+   "fk": 6.78,
+   "grade": 4.6,
+   "band": "5",
+   "words": 42098
+  },
+  {
+   "name": "Grandmother-DearA-Book-for-Boys-and-Girls_20963",
+   "dir": "/home/claude/corpora/books_year4/Grandmother-DearA-Book-for-Boys-and-Girls_20963",
+   "fk": 7.2,
+   "grade": 4.8,
+   "band": "5",
+   "words": 56399
+  },
+  {
+   "name": "The-Banner-Boy-Scouts-on-a-Tour---13-or-The-Mystery-of-Rattlesnake-Mountain_20985",
+   "dir": "/home/claude/corpora/books_year4/The-Banner-Boy-Scouts-on-a-Tour---13-or-The-Mystery-of-Rattlesnake-Mountain_20985",
+   "fk": 6.45,
+   "grade": 4.3,
+   "band": "4",
+   "words": 68938
+  },
+  {
+   "name": "Big-Game--A-Story-for-Girls_21109",
+   "dir": "/home/claude/corpora/books_year4/Big-Game--A-Story-for-Girls_21109",
+   "fk": 7.18,
+   "grade": 4.8,
+   "band": "5",
+   "words": 68389
+  },
+  {
+   "name": "Thistle-and-RoseA-Story-for-Girls_21229",
+   "dir": "/home/claude/corpora/books_year4/Thistle-and-RoseA-Story-for-Girls_21229",
+   "fk": 7.26,
+   "grade": 4.9,
+   "band": "5",
+   "words": 36569
+  },
+  {
+   "name": "SusanA-Story-for-Children_21230",
+   "dir": "/home/claude/corpora/books_year4/SusanA-Story-for-Children_21230",
+   "fk": 7.78,
+   "grade": 5.2,
+   "band": "5",
+   "words": 44513
+  },
+  {
+   "name": "Uncle-Rutherford-s-Nieces--A-Story-for-Girls_21666",
+   "dir": "/home/claude/corpora/books_year4/Uncle-Rutherford-s-Nieces--A-Story-for-Girls_21666",
+   "fk": 9.04,
+   "grade": 6.1,
+   "band": "6",
+   "words": 64288
+  },
+  {
+   "name": "The-Boy-Scouts-of-Lenox--Or-The-Hike-Over-Big-Bear-Mountain_21842",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-of-Lenox--Or-The-Hike-Over-Big-Bear-Mountain_21842",
+   "fk": 7.82,
+   "grade": 5.3,
+   "band": "5",
+   "words": 47869
+  },
+  {
+   "name": "Joyce-s-Investments--A-Story-for-Girls_21857",
+   "dir": "/home/claude/corpora/books_year4/Joyce-s-Investments--A-Story-for-Girls_21857",
+   "fk": 6.72,
+   "grade": 4.5,
+   "band": "4",
+   "words": 78447
+  },
+  {
+   "name": "The-Rover-Boys-at-Colby-Hall--or-The-Struggles-of-the-Young-Cadets_21894",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-at-Colby-Hall--or-The-Struggles-of-the-Young-Cadets_21894",
+   "fk": 6.41,
+   "grade": 4.3,
+   "band": "4",
+   "words": 64273
+  },
+  {
+   "name": "Prince-PrigioFrom--His-Own-Fairy-Book-_21935",
+   "dir": "/home/claude/corpora/books_year4/Prince-PrigioFrom--His-Own-Fairy-Book-_21935",
+   "fk": 6.32,
+   "grade": 4.2,
+   "band": "4",
+   "words": 18511
+  },
+  {
+   "name": "The-Rover-Boys-on-a-Hunt--or-The-Mysterious-House-in-the-Woods_22012",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-on-a-Hunt--or-The-Mysterious-House-in-the-Woods_22012",
+   "fk": 6.65,
+   "grade": 4.5,
+   "band": "4",
+   "words": 62153
+  },
+  {
+   "name": "A-Child-s-Book-of-Saints_22112",
+   "dir": "/home/claude/corpora/books_year4/A-Child-s-Book-of-Saints_22112",
+   "fk": 9.64,
+   "grade": 6.5,
+   "band": "6",
+   "words": 62070
+  },
+  {
+   "name": "The-Rover-Boys-on-the-Farm--or-Last-Days-at-Putnam-Hall_22163",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-on-the-Farm--or-Last-Days-at-Putnam-Hall_22163",
+   "fk": 5.95,
+   "grade": 4.0,
+   "band": "4",
+   "words": 50284
+  },
+  {
+   "name": "The-Golden-SpearsAnd-Other-Fairy-Tales_22168",
+   "dir": "/home/claude/corpora/books_year4/The-Golden-SpearsAnd-Other-Fairy-Tales_22168",
+   "fk": 9.51,
+   "grade": 6.4,
+   "band": "6",
+   "words": 37249
+  },
+  {
+   "name": "Stories-from-the-Ballads-Told-to-the-Children_22175",
+   "dir": "/home/claude/corpora/books_year4/Stories-from-the-Ballads-Told-to-the-Children_22175",
+   "fk": 7.01,
+   "grade": 4.7,
+   "band": "5",
+   "words": 20274
+  },
+  {
+   "name": "The-Indian-Fairy-Book--From-the-Original-Legends_22248",
+   "dir": "/home/claude/corpora/books_year4/The-Indian-Fairy-Book--From-the-Original-Legends_22248",
+   "fk": 7.75,
+   "grade": 5.2,
+   "band": "5",
+   "words": 77696
+  },
+  {
+   "name": "Golden-MomentsBright-Stories-for-Young-Folks_22308",
+   "dir": "/home/claude/corpora/books_year4/Golden-MomentsBright-Stories-for-Young-Folks_22308",
+   "fk": 6.49,
+   "grade": 4.4,
+   "band": "4",
+   "words": 41113
+  },
+  {
+   "name": "Russian-Fairy-Tales--A-Choice-Collection-of-Muscovite-Folk-lore_22373",
+   "dir": "/home/claude/corpora/books_year4/Russian-Fairy-Tales--A-Choice-Collection-of-Muscovite-Folk-lore_22373",
+   "fk": 6.72,
+   "grade": 4.5,
+   "band": "4",
+   "words": 132496
+  },
+  {
+   "name": "King-Arthur-s-KnightsThe-Tales-Re-told-for-Boys--amp--Girls_22396",
+   "dir": "/home/claude/corpora/books_year4/King-Arthur-s-KnightsThe-Tales-Re-told-for-Boys--amp--Girls_22396",
+   "fk": 9.67,
+   "grade": 6.5,
+   "band": "6",
+   "words": 112570
+  },
+  {
+   "name": "The-Rover-Boys-on-Treasure-Isle--or-The-Strange-Cruise-of-the-Steam-Yacht_22547",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-on-Treasure-Isle--or-The-Strange-Cruise-of-the-Steam-Yacht_22547",
+   "fk": 6.31,
+   "grade": 4.2,
+   "band": "4",
+   "words": 59855
+  },
+  {
+   "name": "Boy-Scouts-on-Hudson-Bay--Or-The-Disappearing-Fleet_22674",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-on-Hudson-Bay--Or-The-Disappearing-Fleet_22674",
+   "fk": 8.13,
+   "grade": 5.5,
+   "band": "6",
+   "words": 58606
+  },
+  {
+   "name": "The-Apple-Dumpling-and-Other-Stories-for-Young-Boys-and-Girls_22740",
+   "dir": "/home/claude/corpora/books_year4/The-Apple-Dumpling-and-Other-Stories-for-Young-Boys-and-Girls_22740",
+   "fk": 6.08,
+   "grade": 4.1,
+   "band": "4",
+   "words": 18444
+  },
+  {
+   "name": "Electricity-for-Boys_22766",
+   "dir": "/home/claude/corpora/books_year4/Electricity-for-Boys_22766",
+   "fk": 6.86,
+   "grade": 4.6,
+   "band": "5",
+   "words": 38443
+  },
+  {
+   "name": "The-Camp-Fire-Girls-in-the-Outside-World_22938",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-in-the-Outside-World_22938",
+   "fk": 8.04,
+   "grade": 5.4,
+   "band": "5",
+   "words": 45757
+  },
+  {
+   "name": "Boy-Scouts-Mysterious-Signal--Or-Perils-of-the-Black-Bear-Patrol_22991",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-Mysterious-Signal--Or-Perils-of-the-Black-Bear-Patrol_22991",
+   "fk": 7.65,
+   "grade": 5.1,
+   "band": "5",
+   "words": 50849
+  },
+  {
+   "name": "The-Rover-Boys-on-Snowshoe-Island--or-The-Old-Lumberman-s-Treasure-Box_22996",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-on-Snowshoe-Island--or-The-Old-Lumberman-s-Treasure-Box_22996",
+   "fk": 6.84,
+   "grade": 4.6,
+   "band": "5",
+   "words": 65850
+  },
+  {
+   "name": "A-Voyage-round-the-WorldA-book-for-boys_23074",
+   "dir": "/home/claude/corpora/books_year4/A-Voyage-round-the-WorldA-book-for-boys_23074",
+   "fk": 7.4,
+   "grade": 5.0,
+   "band": "5",
+   "words": 140913
+  },
+  {
+   "name": "Our-Little-LadySix-Hundred-Years-Ago_23121",
+   "dir": "/home/claude/corpora/books_year4/Our-Little-LadySix-Hundred-Years-Ago_23121",
+   "fk": 6.23,
+   "grade": 4.2,
+   "band": "4",
+   "words": 31749
+  },
+  {
+   "name": "Uncle-Wiggily-and-Old-Mother-Hubbard--13-Adventures-of-the-Rabbit-Gentleman-with-the-Mother-G__23213",
+   "dir": "/home/claude/corpora/books_year4/Uncle-Wiggily-and-Old-Mother-Hubbard--13-Adventures-of-the-Rabbit-Gentleman-with-the-Mother-G__23213",
+   "fk": 5.95,
+   "grade": 4.0,
+   "band": "4",
+   "words": 32484
+  },
+  {
+   "name": "The-Rover-Boys-Under-Canvas--Or-The-Mystery-of-the-Wrecked-Submarine_23286",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-Under-Canvas--Or-The-Mystery-of-the-Wrecked-Submarine_23286",
+   "fk": 7.04,
+   "grade": 4.7,
+   "band": "5",
+   "words": 65585
+  },
+  {
+   "name": "Quadrupeds-What-They-Are-and-Where-Found--A-Book-of-Zoology-for-Boys_23576",
+   "dir": "/home/claude/corpora/books_year4/Quadrupeds-What-They-Are-and-Where-Found--A-Book-of-Zoology-for-Boys_23576",
+   "fk": 8.96,
+   "grade": 6.0,
+   "band": "6",
+   "words": 46446
+  },
+  {
+   "name": "The-Children-s-Bible_23580",
+   "dir": "/home/claude/corpora/books_year4/The-Children-s-Bible_23580",
+   "fk": 8.56,
+   "grade": 5.8,
+   "band": "6",
+   "words": 139569
+  },
+  {
+   "name": "Strange-Stories-from-History-for-Young-People_23887",
+   "dir": "/home/claude/corpora/books_year4/Strange-Stories-from-History-for-Young-People_23887",
+   "fk": 9.47,
+   "grade": 6.4,
+   "band": "6",
+   "words": 37197
+  },
+  {
+   "name": "The-Torch-Bearer--A-Camp-Fire-Girls-Story_23987",
+   "dir": "/home/claude/corpora/books_year4/The-Torch-Bearer--A-Camp-Fire-Girls-Story_23987",
+   "fk": 6.64,
+   "grade": 4.5,
+   "band": "4",
+   "words": 67719
+  },
+  {
+   "name": "The-Girl-Scouts-Good-Turn_24248",
+   "dir": "/home/claude/corpora/books_year4/The-Girl-Scouts-Good-Turn_24248",
+   "fk": 7.09,
+   "grade": 4.8,
+   "band": "5",
+   "words": 53481
+  },
+  {
+   "name": "Children-s-Rhymes-Children-s-Games-Children-s-Songs-Children-s-StoriesA-Book-for-Bairns-and-B__24271",
+   "dir": "/home/claude/corpora/books_year4/Children-s-Rhymes-Children-s-Games-Children-s-Songs-Children-s-StoriesA-Book-for-Bairns-and-B__24271",
+   "fk": 7.36,
+   "grade": 4.9,
+   "band": "5",
+   "words": 73791
+  },
+  {
+   "name": "The-Science-of-Fairy-TalesAn-Inquiry-into-Fairy-Mythology_24614",
+   "dir": "/home/claude/corpora/books_year4/The-Science-of-Fairy-TalesAn-Inquiry-into-Fairy-Mythology_24614",
+   "fk": 7.26,
+   "grade": 4.9,
+   "band": "5",
+   "words": 129184
+  },
+  {
+   "name": "Hope-and-Haveor-Fanny-Grant-Among-the-Indians-A-Story-for-Young-People_24660",
+   "dir": "/home/claude/corpora/books_year4/Hope-and-Haveor-Fanny-Grant-Among-the-Indians-A-Story-for-Young-People_24660",
+   "fk": 6.55,
+   "grade": 4.4,
+   "band": "4",
+   "words": 49047
+  },
+  {
+   "name": "Fairy-Tales-from-BrazilHow-and-Why-Tales-from-Brazilian-Folk-Lore_24714",
+   "dir": "/home/claude/corpora/books_year4/Fairy-Tales-from-BrazilHow-and-Why-Tales-from-Brazilian-Folk-Lore_24714",
+   "fk": 6.07,
+   "grade": 4.1,
+   "band": "4",
+   "words": 22007
+  },
+  {
+   "name": "Famous-Tales-of-Fact-and-FancyMyths-and-Legends-of-the-Nations-of-the-World-Retold-for-Boys-a__24935",
+   "dir": "/home/claude/corpora/books_year4/Famous-Tales-of-Fact-and-FancyMyths-and-Legends-of-the-Nations-of-the-World-Retold-for-Boys-a__24935",
+   "fk": 8.04,
+   "grade": 5.4,
+   "band": "5",
+   "words": 83909
+  },
+  {
+   "name": "Child-s-Story-of-the-Bible_25309",
+   "dir": "/home/claude/corpora/books_year4/Child-s-Story-of-the-Bible_25309",
+   "fk": 9.63,
+   "grade": 6.5,
+   "band": "6",
+   "words": 84354
+  },
+  {
+   "name": "Edmund-Dulac-s-Fairy-Book--Fairy-Tales-of-the-Allied-Nations_25513",
+   "dir": "/home/claude/corpora/books_year4/Edmund-Dulac-s-Fairy-Book--Fairy-Tales-of-the-Allied-Nations_25513",
+   "fk": 6.78,
+   "grade": 4.6,
+   "band": "5",
+   "words": 59469
+  },
+  {
+   "name": "Anecdotes-for-Boys_25540",
+   "dir": "/home/claude/corpora/books_year4/Anecdotes-for-Boys_25540",
+   "fk": 6.94,
+   "grade": 4.7,
+   "band": "5",
+   "words": 28656
+  },
+  {
+   "name": "Children-s-LiteratureA-Textbook-of-Sources-for-Teachers-and-Teacher-Training-Classes_25545",
+   "dir": "/home/claude/corpora/books_year4/Children-s-LiteratureA-Textbook-of-Sources-for-Teachers-and-Teacher-Training-Classes_25545",
+   "fk": 7.09,
+   "grade": 4.8,
+   "band": "5",
+   "words": 386399
+  },
+  {
+   "name": "Fairy-Tales-of-the-Slav-Peasants-and-Herdsmen_25555",
+   "dir": "/home/claude/corpora/books_year4/Fairy-Tales-of-the-Slav-Peasants-and-Herdsmen_25555",
+   "fk": 7.8,
+   "grade": 5.2,
+   "band": "5",
+   "words": 64736
+  },
+  {
+   "name": "Bird-Stories_25600",
+   "dir": "/home/claude/corpora/books_year4/Bird-Stories_25600",
+   "fk": 6.71,
+   "grade": 4.5,
+   "band": "4",
+   "words": 46881
+  },
+  {
+   "name": "The-Girl-Scouts-at-Bellaire--Or-Maid-Mary-s-Awakening_25626",
+   "dir": "/home/claude/corpora/books_year4/The-Girl-Scouts-at-Bellaire--Or-Maid-Mary-s-Awakening_25626",
+   "fk": 7.43,
+   "grade": 5.0,
+   "band": "5",
+   "words": 46508
+  },
+  {
+   "name": "Stories-of-King-Arthur-s-Knights-Told-to-the-Children-by-Mary-MacGregor_25654",
+   "dir": "/home/claude/corpora/books_year4/Stories-of-King-Arthur-s-Knights-Told-to-the-Children-by-Mary-MacGregor_25654",
+   "fk": 7.0,
+   "grade": 4.7,
+   "band": "5",
+   "words": 20862
+  },
+  {
+   "name": "Boy-Scouts-in-the-North-Sea--Or-The-Mystery-of-a-Sub_25798",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-in-the-North-Sea--Or-The-Mystery-of-a-Sub_25798",
+   "fk": 6.3,
+   "grade": 4.2,
+   "band": "4",
+   "words": 48291
+  },
+  {
+   "name": "The-Girl-Scouts-in-Beechwood-Forest_25801",
+   "dir": "/home/claude/corpora/books_year4/The-Girl-Scouts-in-Beechwood-Forest_25801",
+   "fk": 6.94,
+   "grade": 4.7,
+   "band": "5",
+   "words": 42536
+  },
+  {
+   "name": "The-Children-s-Book-of-London_25804",
+   "dir": "/home/claude/corpora/books_year4/The-Children-s-Book-of-London_25804",
+   "fk": 7.9,
+   "grade": 5.3,
+   "band": "5",
+   "words": 85314
+  },
+  {
+   "name": "Illustrated-Science-for-Boys-and-Girls_25822",
+   "dir": "/home/claude/corpora/books_year4/Illustrated-Science-for-Boys-and-Girls_25822",
+   "fk": 7.25,
+   "grade": 4.9,
+   "band": "5",
+   "words": 39170
+  },
+  {
+   "name": "Beatrice-Leigh-at-CollegeA-Story-for-Girls_25893",
+   "dir": "/home/claude/corpora/books_year4/Beatrice-Leigh-at-CollegeA-Story-for-Girls_25893",
+   "fk": 6.91,
+   "grade": 4.6,
+   "band": "5",
+   "words": 62445
+  },
+  {
+   "name": "Fifty-Two-Stories-For-Girls_25948",
+   "dir": "/home/claude/corpora/books_year4/Fifty-Two-Stories-For-Girls_25948",
+   "fk": 7.4,
+   "grade": 5.0,
+   "band": "5",
+   "words": 155021
+  },
+  {
+   "name": "Two-Little-Travellers--13-A-Story-for-Girls_25972",
+   "dir": "/home/claude/corpora/books_year4/Two-Little-Travellers--13-A-Story-for-Girls_25972",
+   "fk": 7.65,
+   "grade": 5.1,
+   "band": "5",
+   "words": 58408
+  },
+  {
+   "name": "Europa-s-Fairy-Book_26019",
+   "dir": "/home/claude/corpora/books_year4/Europa-s-Fairy-Book_26019",
+   "fk": 7.96,
+   "grade": 5.4,
+   "band": "5",
+   "words": 59513
+  },
+  {
+   "name": "Bird-Stories-from-BurroughsSketches-of-Bird-Life-Taken-from-the-Works-of-John-Burroughs_26046",
+   "dir": "/home/claude/corpora/books_year4/Bird-Stories-from-BurroughsSketches-of-Bird-Life-Taken-from-the-Works-of-John-Burroughs_26046",
+   "fk": 7.68,
+   "grade": 5.2,
+   "band": "5",
+   "words": 36429
+  },
+  {
+   "name": "Robin-RedbreastA-Story-for-Girls_26085",
+   "dir": "/home/claude/corpora/books_year4/Robin-RedbreastA-Story-for-Girls_26085",
+   "fk": 7.65,
+   "grade": 5.1,
+   "band": "5",
+   "words": 81748
+  },
+  {
+   "name": "Stories-of-Siegfried-Told-to-the-Children_26181",
+   "dir": "/home/claude/corpora/books_year4/Stories-of-Siegfried-Told-to-the-Children_26181",
+   "fk": 8.47,
+   "grade": 5.7,
+   "band": "6",
+   "words": 20310
+  },
+  {
+   "name": "The-Rover-Boys-in-Southern-Waters--or-The-Deserted-Steam-Yacht_26193",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-in-Southern-Waters--or-The-Deserted-Steam-Yacht_26193",
+   "fk": 6.0,
+   "grade": 4.0,
+   "band": "4",
+   "words": 49960
+  },
+  {
+   "name": "Girl-Scouts-in-the-Adirondacks_26345",
+   "dir": "/home/claude/corpora/books_year4/Girl-Scouts-in-the-Adirondacks_26345",
+   "fk": 6.14,
+   "grade": 4.1,
+   "band": "4",
+   "words": 53657
+  },
+  {
+   "name": "Laboulaye-s-Fairy-Book_26386",
+   "dir": "/home/claude/corpora/books_year4/Laboulaye-s-Fairy-Book_26386",
+   "fk": 6.76,
+   "grade": 4.5,
+   "band": "4",
+   "words": 47508
+  },
+  {
+   "name": "The-Rover-Boys-at-Big-Horn-Ranch--Or-The-Cowboys-Double-Round-Up_26539",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-at-Big-Horn-Ranch--Or-The-Cowboys-Double-Round-Up_26539",
+   "fk": 6.9,
+   "grade": 4.6,
+   "band": "5",
+   "words": 64544
+  },
+  {
+   "name": "Boy-Scouts-in-the-Canal-Zone--Or-The-Plot-Against-Uncle-Sam_26540",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-in-the-Canal-Zone--Or-The-Plot-Against-Uncle-Sam_26540",
+   "fk": 7.23,
+   "grade": 4.9,
+   "band": "5",
+   "words": 50049
+  },
+  {
+   "name": "Jewish-Fairy-Tales-and-Legends_26711",
+   "dir": "/home/claude/corpora/books_year4/Jewish-Fairy-Tales-and-Legends_26711",
+   "fk": 6.81,
+   "grade": 4.6,
+   "band": "5",
+   "words": 51921
+  },
+  {
+   "name": "The-Captain-s-BunkA-Story-for-Boys_26714",
+   "dir": "/home/claude/corpora/books_year4/The-Captain-s-BunkA-Story-for-Boys_26714",
+   "fk": 6.72,
+   "grade": 4.5,
+   "band": "4",
+   "words": 37677
+  },
+  {
+   "name": "Stories-and-Legends-of-Travel-and-History-for-Children_26735",
+   "dir": "/home/claude/corpora/books_year4/Stories-and-Legends-of-Travel-and-History-for-Children_26735",
+   "fk": 9.98,
+   "grade": 6.7,
+   "band": "7+",
+   "words": 47898
+  },
+  {
+   "name": "Children-s-Books-and-Their-Illustrators_27112",
+   "dir": "/home/claude/corpora/books_year4/Children-s-Books-and-Their-Illustrators_27112",
+   "fk": 8.49,
+   "grade": 5.7,
+   "band": "6",
+   "words": 29095
+  },
+  {
+   "name": "Fairy-Tales-of-Hans-Christian-Andersen_27200",
+   "dir": "/home/claude/corpora/books_year4/Fairy-Tales-of-Hans-Christian-Andersen_27200",
+   "fk": 6.43,
+   "grade": 4.3,
+   "band": "4",
+   "words": 377473
+  },
+  {
+   "name": "Stories-to-Read-or-Tell-from-Fairy-Tales-and-Folklore_27467",
+   "dir": "/home/claude/corpora/books_year4/Stories-to-Read-or-Tell-from-Fairy-Tales-and-Folklore_27467",
+   "fk": 5.92,
+   "grade": 4.0,
+   "band": "4",
+   "words": 28695
+  },
+  {
+   "name": "Betty-Leicester--A-Story-For-Girls_27923",
+   "dir": "/home/claude/corpora/books_year4/Betty-Leicester--A-Story-For-Girls_27923",
+   "fk": 7.75,
+   "grade": 5.2,
+   "band": "5",
+   "words": 58301
+  },
+  {
+   "name": "In-Doublet-and-Hose--A-Story-for-Girls_28037",
+   "dir": "/home/claude/corpora/books_year4/In-Doublet-and-Hose--A-Story-for-Girls_28037",
+   "fk": 6.3,
+   "grade": 4.2,
+   "band": "4",
+   "words": 59110
+  },
+  {
+   "name": "Soap-Bubble-StoriesFor-Children_28263",
+   "dir": "/home/claude/corpora/books_year4/Soap-Bubble-StoriesFor-Children_28263",
+   "fk": 7.86,
+   "grade": 5.3,
+   "band": "5",
+   "words": 49476
+  },
+  {
+   "name": "The-Children-s-Book-of-Christmas-Stories_28308",
+   "dir": "/home/claude/corpora/books_year4/The-Children-s-Book-of-Christmas-Stories_28308",
+   "fk": 6.44,
+   "grade": 4.3,
+   "band": "4",
+   "words": 80844
+  },
+  {
+   "name": "The-Children-s-LongfellowTold-in-Prose_28352",
+   "dir": "/home/claude/corpora/books_year4/The-Children-s-LongfellowTold-in-Prose_28352",
+   "fk": 10.24,
+   "grade": 6.9,
+   "band": "7+",
+   "words": 22848
+  },
+  {
+   "name": "Ned-Bob-and-Jerry-on-the-Firing-Line--Or-The-Motor-Boys-Fighting-for-Uncle-Sam_28442",
+   "dir": "/home/claude/corpora/books_year4/Ned-Bob-and-Jerry-on-the-Firing-Line--Or-The-Motor-Boys-Fighting-for-Uncle-Sam_28442",
+   "fk": 6.98,
+   "grade": 4.7,
+   "band": "5",
+   "words": 54438
+  },
+  {
+   "name": "Scouting-For-Girls-Official-Handbook-of-the-Girl-Scouts_28490",
+   "dir": "/home/claude/corpora/books_year4/Scouting-For-Girls-Official-Handbook-of-the-Girl-Scouts_28490",
+   "fk": 6.63,
+   "grade": 4.4,
+   "band": "4",
+   "words": 145689
+  },
+  {
+   "name": "The-Banner-Boy-Scouts-Snowbound--13-A-Tour-on-Skates-and-Iceboats_28531",
+   "dir": "/home/claude/corpora/books_year4/The-Banner-Boy-Scouts-Snowbound--13-A-Tour-on-Skates-and-Iceboats_28531",
+   "fk": 8.06,
+   "grade": 5.4,
+   "band": "5",
+   "words": 54886
+  },
+  {
+   "name": "The-Boy-Scouts-Book-of-Stories_28726",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-Book-of-Stories_28726",
+   "fk": 6.82,
+   "grade": 4.6,
+   "band": "5",
+   "words": 105770
+  },
+  {
+   "name": "The-Children-s-Book-of-Stars_28853",
+   "dir": "/home/claude/corpora/books_year4/The-Children-s-Book-of-Stars_28853",
+   "fk": 10.29,
+   "grade": 6.9,
+   "band": "7+",
+   "words": 46701
+  },
+  {
+   "name": "The-Girl-Scouts-at-Sea-Crest--Or-the-Wig-Wag-Rescue_28855",
+   "dir": "/home/claude/corpora/books_year4/The-Girl-Scouts-at-Sea-Crest--Or-the-Wig-Wag-Rescue_28855",
+   "fk": 6.74,
+   "grade": 4.5,
+   "band": "4",
+   "words": 46519
+  },
+  {
+   "name": "The-Fairy-Tales-of-Charles-Perrault_29021",
+   "dir": "/home/claude/corpora/books_year4/The-Fairy-Tales-of-Charles-Perrault_29021",
+   "fk": 9.04,
+   "grade": 6.1,
+   "band": "6",
+   "words": 28709
+  },
+  {
+   "name": "Irish-Fairy-Tales_29311",
+   "dir": "/home/claude/corpora/books_year4/Irish-Fairy-Tales_29311",
+   "fk": 9.36,
+   "grade": 6.3,
+   "band": "6",
+   "words": 39391
+  },
+  {
+   "name": "Boys-and-Girls-Bookshelf--Vol-2-of-17-Folk-Lore-Fables-And-Fairy-Tales_29386",
+   "dir": "/home/claude/corpora/books_year4/Boys-and-Girls-Bookshelf--Vol-2-of-17-Folk-Lore-Fables-And-Fairy-Tales_29386",
+   "fk": 6.55,
+   "grade": 4.4,
+   "band": "4",
+   "words": 236853
+  },
+  {
+   "name": "The-Camp-Fire-Girls-in-the-Mountains--Or-Bessie-King-s-Strange-Adventure_29528",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-in-the-Mountains--Or-Bessie-King-s-Strange-Adventure_29528",
+   "fk": 6.81,
+   "grade": 4.6,
+   "band": "5",
+   "words": 42106
+  },
+  {
+   "name": "Boy-Scouts-HandbookThe-First-Edition-1911_29558",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-HandbookThe-First-Edition-1911_29558",
+   "fk": 6.66,
+   "grade": 4.5,
+   "band": "4",
+   "words": 126040
+  },
+  {
+   "name": "Cossack-Fairy-Tales-and-Folk-Tales_29672",
+   "dir": "/home/claude/corpora/books_year4/Cossack-Fairy-Tales-and-Folk-Tales_29672",
+   "fk": 8.0,
+   "grade": 5.4,
+   "band": "5",
+   "words": 62985
+  },
+  {
+   "name": "The-House-in-the-Water--A-Book-of-Animal-Stories_29839",
+   "dir": "/home/claude/corpora/books_year4/The-House-in-the-Water--A-Book-of-Animal-Stories_29839",
+   "fk": 8.07,
+   "grade": 5.4,
+   "band": "5",
+   "words": 52211
+  },
+  {
+   "name": "The-Boy-Scouts-on-Belgian-Battlefields_29991",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-on-Belgian-Battlefields_29991",
+   "fk": 8.25,
+   "grade": 5.6,
+   "band": "6",
+   "words": 56202
+  },
+  {
+   "name": "Old-French-Fairy-Tales_30129",
+   "dir": "/home/claude/corpora/books_year4/Old-French-Fairy-Tales_30129",
+   "fk": 7.57,
+   "grade": 5.1,
+   "band": "5",
+   "words": 52877
+  },
+  {
+   "name": "The-Adventures-of-A-BrownieAs-Told-to-My-Child-by-Miss-Mulock_30494",
+   "dir": "/home/claude/corpora/books_year4/The-Adventures-of-A-BrownieAs-Told-to-My-Child-by-Miss-Mulock_30494",
+   "fk": 6.75,
+   "grade": 4.5,
+   "band": "4",
+   "words": 27497
+  },
+  {
+   "name": "Happy-Days-for-Boys-and-Girls_30720",
+   "dir": "/home/claude/corpora/books_year4/Happy-Days-for-Boys-and-Girls_30720",
+   "fk": 6.84,
+   "grade": 4.6,
+   "band": "5",
+   "words": 149412
+  },
+  {
+   "name": "The-Camp-Fire-Girls-on-Ellen-s-Isle--Or-The-Trail-of-the-Seven-Cedars_30825",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-on-Ellen-s-Isle--Or-The-Trail-of-the-Seven-Cedars_30825",
+   "fk": 7.12,
+   "grade": 4.8,
+   "band": "5",
+   "words": 63069
+  },
+  {
+   "name": "Fairy-Tales-from-the-German-Forests_30834",
+   "dir": "/home/claude/corpora/books_year4/Fairy-Tales-from-the-German-Forests_30834",
+   "fk": 6.1,
+   "grade": 4.1,
+   "band": "4",
+   "words": 55792
+  },
+  {
+   "name": "The-Rover-Boys-in-the-Land-of-Luck--Or-Stirring-Adventures-in-the-Oil-Fields_30841",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-in-the-Land-of-Luck--Or-Stirring-Adventures-in-the-Oil-Fields_30841",
+   "fk": 6.58,
+   "grade": 4.4,
+   "band": "4",
+   "words": 66315
+  },
+  {
+   "name": "The-Boys-and-I--A-Child-s-Story-for-Children_30845",
+   "dir": "/home/claude/corpora/books_year4/The-Boys-and-I--A-Child-s-Story-for-Children_30845",
+   "fk": 6.74,
+   "grade": 4.5,
+   "band": "4",
+   "words": 54736
+  },
+  {
+   "name": "The-Boy-Scout-and-Other-Stories-for-Boys_30953",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scout-and-Other-Stories-for-Boys_30953",
+   "fk": 6.39,
+   "grade": 4.3,
+   "band": "4",
+   "words": 44521
+  },
+  {
+   "name": "Try-Again--Or-the-Trials-and-Triumphs-of-Harry-West.-A-Story-for-Young-Folks_31065",
+   "dir": "/home/claude/corpora/books_year4/Try-Again--Or-the-Trials-and-Triumphs-of-Harry-West.-A-Story-for-Young-Folks_31065",
+   "fk": 6.25,
+   "grade": 4.2,
+   "band": "4",
+   "words": 50351
+  },
+  {
+   "name": "Indian-Fairy-Tales_31209",
+   "dir": "/home/claude/corpora/books_year4/Indian-Fairy-Tales_31209",
+   "fk": 6.46,
+   "grade": 4.3,
+   "band": "4",
+   "words": 115028
+  },
+  {
+   "name": "The-Boy-Scouts-in-the-Maine-Woods--Or-The-New-Test-for-the-Silver-Fox-Patrol_31389",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-in-the-Maine-Woods--Or-The-New-Test-for-the-Silver-Fox-Patrol_31389",
+   "fk": 6.83,
+   "grade": 4.6,
+   "band": "5",
+   "words": 61265
+  },
+  {
+   "name": "The-Camp-Fire-Girls-on-the-Field-of-Honor_31393",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-on-the-Field-of-Honor_31393",
+   "fk": 9.07,
+   "grade": 6.1,
+   "band": "6",
+   "words": 46340
+  },
+  {
+   "name": "Boy-Scouts-on-the-Great-Divide--Or-The-Ending-of-the-Trail_31487",
+   "dir": "/home/claude/corpora/books_year4/Boy-Scouts-on-the-Great-Divide--Or-The-Ending-of-the-Trail_31487",
+   "fk": 7.77,
+   "grade": 5.2,
+   "band": "5",
+   "words": 38028
+  },
+  {
+   "name": "Irish-Fairy-Tales_31763",
+   "dir": "/home/claude/corpora/books_year4/Irish-Fairy-Tales_31763",
+   "fk": 7.71,
+   "grade": 5.2,
+   "band": "5",
+   "words": 36327
+  },
+  {
+   "name": "Yellow-Cap-and-Other-Fairy-Stories-For-Children_31795",
+   "dir": "/home/claude/corpora/books_year4/Yellow-Cap-and-Other-Fairy-Stories-For-Children_31795",
+   "fk": 6.43,
+   "grade": 4.3,
+   "band": "4",
+   "words": 52189
+  },
+  {
+   "name": "The-Travellers--A-Tale-Designed-for-Young-People._31832",
+   "dir": "/home/claude/corpora/books_year4/The-Travellers--A-Tale-Designed-for-Young-People._31832",
+   "fk": 9.62,
+   "grade": 6.5,
+   "band": "6",
+   "words": 28537
+  },
+  {
+   "name": "The-Boy-Scouts-in-A-Trapper-s-Camp_32045",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-in-A-Trapper-s-Camp_32045",
+   "fk": 6.69,
+   "grade": 4.5,
+   "band": "4",
+   "words": 71876
+  },
+  {
+   "name": "The-Irish-Fairy-Book_32202",
+   "dir": "/home/claude/corpora/books_year4/The-Irish-Fairy-Book_32202",
+   "fk": 7.66,
+   "grade": 5.2,
+   "band": "5",
+   "words": 92895
+  },
+  {
+   "name": "Czechoslovak-Fairy-Tales_32217",
+   "dir": "/home/claude/corpora/books_year4/Czechoslovak-Fairy-Tales_32217",
+   "fk": 6.0,
+   "grade": 4.0,
+   "band": "4",
+   "words": 43682
+  },
+  {
+   "name": "The-Boy-Scouts-in-the-Blue-Ridge--Or-Marooned-Among-the-Moonshiners_32240",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-in-the-Blue-Ridge--Or-Marooned-Among-the-Moonshiners_32240",
+   "fk": 7.12,
+   "grade": 4.8,
+   "band": "5",
+   "words": 59784
+  },
+  {
+   "name": "A-Wonder-Book-for-Girls--amp--Boys_32242",
+   "dir": "/home/claude/corpora/books_year4/A-Wonder-Book-for-Girls--amp--Boys_32242",
+   "fk": 8.98,
+   "grade": 6.0,
+   "band": "6",
+   "words": 53532
+  },
+  {
+   "name": "The-Boy-Scouts-in-the-Rockies--Or-The-Secret-of-the-Hidden-Silver-Mine_32354",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-in-the-Rockies--Or-The-Secret-of-the-Hidden-Silver-Mine_32354",
+   "fk": 7.15,
+   "grade": 4.8,
+   "band": "5",
+   "words": 60279
+  },
+  {
+   "name": "Two-Wyoming-Girls-and-Their-Homestead-Claim--A-Story-for-Girls_32383",
+   "dir": "/home/claude/corpora/books_year4/Two-Wyoming-Girls-and-Their-Homestead-Claim--A-Story-for-Girls_32383",
+   "fk": 7.12,
+   "grade": 4.8,
+   "band": "5",
+   "words": 60472
+  },
+  {
+   "name": "Favorite-Fairy-Tales--The-Childhood-Choice-of-Representative-Men-and-Women_32389",
+   "dir": "/home/claude/corpora/books_year4/Favorite-Fairy-Tales--The-Childhood-Choice-of-Representative-Men-and-Women_32389",
+   "fk": 7.58,
+   "grade": 5.1,
+   "band": "5",
+   "words": 59740
+  },
+  {
+   "name": "The-Boy-Scouts-for-Uncle-Sam_32460",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-for-Uncle-Sam_32460",
+   "fk": 6.57,
+   "grade": 4.4,
+   "band": "4",
+   "words": 44157
+  },
+  {
+   "name": "Hans-Andersen-s-Fairy-Tales.-First-Series_32571",
+   "dir": "/home/claude/corpora/books_year4/Hans-Andersen-s-Fairy-Tales.-First-Series_32571",
+   "fk": 6.5,
+   "grade": 4.4,
+   "band": "4",
+   "words": 54718
+  },
+  {
+   "name": "Hans-Andersen-s-Fairy-Tales.-Second-Series_32572",
+   "dir": "/home/claude/corpora/books_year4/Hans-Andersen-s-Fairy-Tales.-Second-Series_32572",
+   "fk": 6.54,
+   "grade": 4.4,
+   "band": "4",
+   "words": 69424
+  },
+  {
+   "name": "The-Child-s-Book-of-American-Biography_32628",
+   "dir": "/home/claude/corpora/books_year4/The-Child-s-Book-of-American-Biography_32628",
+   "fk": 7.3,
+   "grade": 4.9,
+   "band": "5",
+   "words": 46397
+  },
+  {
+   "name": "Five-Young-Men--Messages-of-Yesterday-for-the-Young-Men-of-To-day_33296",
+   "dir": "/home/claude/corpora/books_year4/Five-Young-Men--Messages-of-Yesterday-for-the-Young-Men-of-To-day_33296",
+   "fk": 7.96,
+   "grade": 5.4,
+   "band": "5",
+   "words": 21944
+  },
+  {
+   "name": "The-Camp-Fire-Girls-Behind-the-Lines_33532",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-Behind-the-Lines_33532",
+   "fk": 8.2,
+   "grade": 5.5,
+   "band": "6",
+   "words": 43350
+  },
+  {
+   "name": "The-Camp-Fire-Girls-Across-the-Seas_33806",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-Across-the-Seas_33806",
+   "fk": 9.22,
+   "grade": 6.2,
+   "band": "6",
+   "words": 44433
+  },
+  {
+   "name": "Dress-as-a-Fine-ArtWith-Suggestions-on-Children-s-Dress_34092",
+   "dir": "/home/claude/corpora/books_year4/Dress-as-a-Fine-ArtWith-Suggestions-on-Children-s-Dress_34092",
+   "fk": 8.86,
+   "grade": 6.0,
+   "band": "6",
+   "words": 27230
+  },
+  {
+   "name": "The-Camp-Fire-Girls-at-the-Seashore--Or-Bessie-King-s-Happiness_34443",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-at-the-Seashore--Or-Bessie-King-s-Happiness_34443",
+   "fk": 6.56,
+   "grade": 4.4,
+   "band": "4",
+   "words": 40699
+  },
+  {
+   "name": "Twenty-Four-Unusual-Stories-for-Boys-and-Girls_34618",
+   "dir": "/home/claude/corpora/books_year4/Twenty-Four-Unusual-Stories-for-Boys-and-Girls_34618",
+   "fk": 6.87,
+   "grade": 4.6,
+   "band": "5",
+   "words": 56686
+  },
+  {
+   "name": "Russian-Fairy-TalesFrom-the-Skazki-of-Polevoi_34705",
+   "dir": "/home/claude/corpora/books_year4/Russian-Fairy-TalesFrom-the-Skazki-of-Polevoi_34705",
+   "fk": 7.45,
+   "grade": 5.0,
+   "band": "5",
+   "words": 64424
+  },
+  {
+   "name": "The-Camp-Fire-Girls-in-After-Years_34926",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-in-After-Years_34926",
+   "fk": 8.38,
+   "grade": 5.6,
+   "band": "6",
+   "words": 44097
+  },
+  {
+   "name": "Fairy-Tales-From-all-Nations_34956",
+   "dir": "/home/claude/corpora/books_year4/Fairy-Tales-From-all-Nations_34956",
+   "fk": 9.16,
+   "grade": 6.2,
+   "band": "6",
+   "words": 80980
+  },
+  {
+   "name": "Boys-and-Girls-Biography-of-Abraham-Lincoln_35009",
+   "dir": "/home/claude/corpora/books_year4/Boys-and-Girls-Biography-of-Abraham-Lincoln_35009",
+   "fk": 6.77,
+   "grade": 4.5,
+   "band": "4",
+   "words": 20278
+  },
+  {
+   "name": "The-Boy-Scouts-On-The-Range_35071",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-On-The-Range_35071",
+   "fk": 6.86,
+   "grade": 4.6,
+   "band": "5",
+   "words": 52059
+  },
+  {
+   "name": "The-Boys-And-Girls-Library_35149",
+   "dir": "/home/claude/corpora/books_year4/The-Boys-And-Girls-Library_35149",
+   "fk": 6.79,
+   "grade": 4.6,
+   "band": "5",
+   "words": 53059
+  },
+  {
+   "name": "A-Wonder-Book-and-Tanglewood-TalesFor-girls-and-boys_35377",
+   "dir": "/home/claude/corpora/books_year4/A-Wonder-Book-and-Tanglewood-TalesFor-girls-and-boys_35377",
+   "fk": 9.28,
+   "grade": 6.3,
+   "band": "6",
+   "words": 119456
+  },
+  {
+   "name": "The-Green-Forest-Fairy-Book_35458",
+   "dir": "/home/claude/corpora/books_year4/The-Green-Forest-Fairy-Book_35458",
+   "fk": 7.0,
+   "grade": 4.7,
+   "band": "5",
+   "words": 52965
+  },
+  {
+   "name": "The-Basket-Woman--A-Book-of-Indian-Tales-for-Children_35502",
+   "dir": "/home/claude/corpora/books_year4/The-Basket-Woman--A-Book-of-Indian-Tales-for-Children_35502",
+   "fk": 7.82,
+   "grade": 5.3,
+   "band": "5",
+   "words": 37499
+  },
+  {
+   "name": "Wonder-Stories--The-Best-Myths-for-Boys-and-Girls_35704",
+   "dir": "/home/claude/corpora/books_year4/Wonder-Stories--The-Best-Myths-for-Boys-and-Girls_35704",
+   "fk": 8.58,
+   "grade": 5.8,
+   "band": "6",
+   "words": 63803
+  },
+  {
+   "name": "The-Boy-Scouts-of-the-Air-in-Indian-Land_35808",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-of-the-Air-in-Indian-Land_35808",
+   "fk": 6.63,
+   "grade": 4.4,
+   "band": "4",
+   "words": 43002
+  },
+  {
+   "name": "Celtic-Folk-and-Fairy-Tales_35862",
+   "dir": "/home/claude/corpora/books_year4/Celtic-Folk-and-Fairy-Tales_35862",
+   "fk": 7.0,
+   "grade": 4.7,
+   "band": "5",
+   "words": 76970
+  },
+  {
+   "name": "Amy-in-Acadia--A-Story-for-Girls_35985",
+   "dir": "/home/claude/corpora/books_year4/Amy-in-Acadia--A-Story-for-Girls_35985",
+   "fk": 8.12,
+   "grade": 5.5,
+   "band": "6",
+   "words": 85006
+  },
+  {
+   "name": "The-Story-of-Lewis-CarrollTold-for-Young-People-by-the-Real-Alice-in-Wonderland_35990",
+   "dir": "/home/claude/corpora/books_year4/The-Story-of-Lewis-CarrollTold-for-Young-People-by-the-Real-Alice-in-Wonderland_35990",
+   "fk": 7.61,
+   "grade": 5.1,
+   "band": "5",
+   "words": 19004
+  },
+  {
+   "name": "Heroines-That-Every-Child-Should-KnowTales-for-Young-People-of-the-World-s-Heroines-of-All-Ag__35994",
+   "dir": "/home/claude/corpora/books_year4/Heroines-That-Every-Child-Should-KnowTales-for-Young-People-of-the-World-s-Heroines-of-All-Ag__35994",
+   "fk": 8.26,
+   "grade": 5.6,
+   "band": "6",
+   "words": 80886
+  },
+  {
+   "name": "The-Boy-Scouts-Under-Fire-in-Mexico_36000",
+   "dir": "/home/claude/corpora/books_year4/The-Boy-Scouts-Under-Fire-in-Mexico_36000",
+   "fk": 8.29,
+   "grade": 5.6,
+   "band": "6",
+   "words": 62960
+  },
+  {
+   "name": "The-Blue-Rose-Fairy-Book_36008",
+   "dir": "/home/claude/corpora/books_year4/The-Blue-Rose-Fairy-Book_36008",
+   "fk": 7.93,
+   "grade": 5.3,
+   "band": "5",
+   "words": 42974
+  },
+  {
+   "name": "Hope-BenhamA-Story-for-Girls_36105",
+   "dir": "/home/claude/corpora/books_year4/Hope-BenhamA-Story-for-Girls_36105",
+   "fk": 8.53,
+   "grade": 5.7,
+   "band": "6",
+   "words": 67431
+  },
+  {
+   "name": "The-Parent-s-AssistantStories-for-Children_36132",
+   "dir": "/home/claude/corpora/books_year4/The-Parent-s-AssistantStories-for-Children_36132",
+   "fk": 6.31,
+   "grade": 4.2,
+   "band": "4",
+   "words": 175492
+  },
+  {
+   "name": "The-Rover-Boys-on-a-Tour--or-Last-Days-at-Brill-College_36179",
+   "dir": "/home/claude/corpora/books_year4/The-Rover-Boys-on-a-Tour--or-Last-Days-at-Brill-College_36179",
+   "fk": 6.63,
+   "grade": 4.5,
+   "band": "4",
+   "words": 69356
+  },
+  {
+   "name": "The-Camp-Fire-Girls-Careers_36229",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-Careers_36229",
+   "fk": 8.35,
+   "grade": 5.6,
+   "band": "6",
+   "words": 44973
+  },
+  {
+   "name": "Canadian-Fairy-Tales_36241",
+   "dir": "/home/claude/corpora/books_year4/Canadian-Fairy-Tales_36241",
+   "fk": 7.42,
+   "grade": 5.0,
+   "band": "5",
+   "words": 53984
+  },
+  {
+   "name": "Lost-in-the-JungleNarrated-for-Young-People_36324",
+   "dir": "/home/claude/corpora/books_year4/Lost-in-the-JungleNarrated-for-Young-People_36324",
+   "fk": 6.53,
+   "grade": 4.4,
+   "band": "4",
+   "words": 69337
+  },
+  {
+   "name": "Gunpowder-Treason-and-Plot-and-Other-Stories-for-Boys_36341",
+   "dir": "/home/claude/corpora/books_year4/Gunpowder-Treason-and-Plot-and-Other-Stories-for-Boys_36341",
+   "fk": 7.71,
+   "grade": 5.2,
+   "band": "5",
+   "words": 37816
+  },
+  {
+   "name": "Randy-s-Summer--A-Story-for-Girls_36429",
+   "dir": "/home/claude/corpora/books_year4/Randy-s-Summer--A-Story-for-Girls_36429",
+   "fk": 7.62,
+   "grade": 5.1,
+   "band": "5",
+   "words": 40833
+  },
+  {
+   "name": "Top-of-the-World-Stories-for-Boys-and-GirlsTranslated-from-the-Scandinavian-Languages_36465",
+   "dir": "/home/claude/corpora/books_year4/Top-of-the-World-Stories-for-Boys-and-GirlsTranslated-from-the-Scandinavian-Languages_36465",
+   "fk": 6.56,
+   "grade": 4.4,
+   "band": "4",
+   "words": 34833
+  },
+  {
+   "name": "The-Camp-Fire-Girls-on-the-Open-Road--Or-Glorify-Work_36485",
+   "dir": "/home/claude/corpora/books_year4/The-Camp-Fire-Girls-on-the-Open-Road--Or-Glorify-Work_36485",
+   "fk": 6.94,
+   "grade": 4.7,
+   "band": "5",
+   "words": 51709
+  },
+  {
+   "name": "Peggy-Owen-Patriot--A-Story-for-Girls_36740",
+   "dir": "/home/claude/corpora/books_year4/Peggy-Owen-Patriot--A-Story-for-Girls_36740",
+   "fk": 5.99,
+   "grade": 4.0,
+   "band": "4",
+   "words": 76102
+  }
+ ],
+ "dropped": {
+  "The-Bobbsey-Twins-at-School_737": "grade 3.0",
+  "Tom-Swift-and-His-Submarine-Boat--Or-Under-the-Ocean-for-Sunken-Treasure_949": "grade 3.8",
+  "Tom-Swift-and-His-Electric-Runabout--Or-The-Speediest-Car-on-the-Road_950": "grade 3.5",
+  "Tom-Swift-and-His-Sky-Racer--Or-The-Quickest-Flight-on-Record_951": "grade 3.3",
+  "Tom-Swift-and-His-Big-Tunnel--Or-The-Hidden-City-of-the-Andes_953": "grade 3.9",
+  "Tom-Swift-and-His-War-Tank--Or-Doing-His-Bit-for-Uncle-Sam_954": "grade 3.9",
+  "Tom-Swift-Among-the-Diamond-Makers--Or-The-Secret-of-Phantom-Mountain_1282": "grade 3.5",
+  "Tom-Swift-and-His-Wizard-Camera--Or-Thrilling-Adventures-While-Taking-Moving-Pictures_1283": "grade 3.8",
+  "Tom-Swift-and-His-Giant-Cannon--Or-The-Longest-Shots-on-Record_1361": "grade 3.9",
+  "Tom-Swift-and-His-Undersea-Search--Or-the-Treasure-on-the-Floor-of-the-Atlantic_1362": "grade 3.9",
+  "Tom-Swift-and-His-Electric-Locomotive--Or-Two-Miles-a-Minute-on-the-Rails_1364": "grade 3.9",
+  "Tom-Swift-and-His-Motor-Boat--Or-The-Rivals-of-Lake-Carlopa_2273": "grade 3.7",
+  "The-Boys-and-Girls-Plutarch--13-Being-Parts-of-the--Lives--of-Plutarch-Edited-for-Boys-and-Gir__2484": "grade 8.7",
+  "Tom-Swift-in-the-Caves-of-Ice-or-the-Wreck-of-the-Airship_3734": "grade 3.7",
+  "Tom-Swift-and-His-Wireless-Message--Or-The-Castaways-of-Earthquake-Island_4227": "grade 3.6",
+  "Tom-Swift-and-His-Motor-Cycle--Or-Fun-and-Adventures-on-the-Road_4230": "grade 3.5",
+  "Tom-Swift-and-His-Photo-Telephone-or-the-Picture-That-Saved-a-Fortune_4532": "grade 3.3",
+  "Tom-Swift-in-Captivity-Or-A-Daring-Escape-By-Airship_4608": "grade 3.9",
+  "Tom-Swift-and-His-Great-Searchlight--or-on-the-border-for-Uncle-Sam_4635": "grade 3.4",
+  "Tom-Swift-in-the-City-of-Gold--Or-Marvelous-Adventures-Underground_4711": "grade 3.9",
+  "The-Rover-Boys-in-New-York--Or-Saving-Their-Father-s-Honor_5003": "grade 3.8",
+  "The-Motor-Boys-on-the-Pacific-Or-the-Young-Derelict-Hunters_5004": "grade 3.8",
+  "Children-s-Internet-Protection-Act-CIPA-Ruling_5180": "grade 8.3",
+  "The-Rover-Boys-on-the-Ocean--Or-A-chase-for-a-fortune_5875": "grade 3.9",
+  "The-Bobbsey-Twins-on-a-Houseboat_5948": "grade 2.7",
+  "The-Bobbsey-Twins-in-the-Great-West_5952": "grade 3.1",
+  "The-Boy-Scouts-in-Front-of-Warsaw--Or-In-the-Wake-of-War_5981": "grade 3.6",
+  "The-Bobbsey-Twins-at-Snow-Lodge_6055": "grade 2.9",
+  "The-Bobbsey-Twins-at-School_6063": "grade 3.1",
+  "The-Boy-Scouts-on-a-Submarine_6339": "grade 3.0",
+  "The-Bobbsey-Twins-at-Meadow-Brook_6576": "grade 2.9",
+  "The-Curlytops-at-Uncle-Frank-s-Ranch--Or-Little-Folks-on-Ponyback_6814": "grade 3.4",
+  "The-Children-s-Pilgrimage_6899": "grade 3.9",
+  "A-Primary-Reader-Old-time-Stories-Fairy-Tales-and-Myths-Retold-by-Children_7841": "short",
+  "Fairy-Tales-from-the-Arabian-Nights_8599": "grade 7.0",
+  "The-Camp-Fire-Girls-at-Sunrise-Hill_8662": "grade 7.5",
+  "The-Gorgon-s-Head-From---A-Wonder-Book-for-Girls-and-Boys--_9255": "short",
+  "The-Paradise-of-Children-From---A-Wonder-Book-for-Girls-and-Boys--_9256": "short",
+  "The-Three-Golden-Apples-From---A-Wonder-Book-for-Girls-and-Boys--_9257": "short",
+  "The-Rover-Boys-at-College--Or-The-Right-Road-and-the-Wrong_10323": "grade 3.7",
+  "Children-s-Rights--A-Book-of-Nursery-Logic_10335": "grade 7.4",
+  "Uncle-Tom-s-Cabin-Young-Folks-Edition_11171": "grade 2.7",
+  "Little-Folks-Astray_11257": "grade 3.2",
+  "The-Rover-Boys-In-The-Mountains--Or-A-Hunt-for-Fun-and-Fortune_13455": "grade 3.9",
+  "Bertha--13-Our-Little-German-Cousin_13470": "grade 3.4",
+  "Youth-and-Sex--Dangers-and-Safeguards-for-Girls-and-Boys_13722": "grade 8.1",
+  "The-Children-s-Six-Minutes_14411": "grade 3.5",
+  "Daddy-Takes-Us-to-the-GardenThe-Daddy-Series-for-Little-Folks_14859": "grade 3.7",
+  "The-Bobbsey-Twins-in-a-Great-City_15169": "grade 3.4",
+  "Four-Little-Blossoms-and-Their-Winter-Fun_15655": "grade 3.9",
+  "The-Summer-Holidays--A-Story-for-Children_15684": "short",
+  "Children-s-Classics-in-Dramatic-FormBook-Two_16379": "grade 0.6",
+  "The-Boy-Scouts-In-Russia_16544": "grade 3.9",
+  "Verses-for-Childrenand-Songs-for-Music_16686": "grade 3.4",
+  "Hymns-Songs-and-Fables-for-Young-People_16688": "grade 2.8",
+  "The-Bobbsey-Twins-at-the-County-Fair_16756": "grade 2.8",
+  "The-Story-of-the-Red-Cross-as-told-to-The-Little-Colonel_17094": "short",
+  "The-Bobbsey-Twins--13-Or-Merry-Days-Indoors-and-Out_17412": "grade 3.3",
+  "Uncle-Wiggily-in-the-Woods_17807": "grade 3.9",
+  "Patriotic-Plays-and-Pageants-for-Young-People_18163": "grade 2.8",
+  "Lucy-RaymondOr-The-Children-s-Watchword_18248": "grade 7.2",
+  "The-Bobbsey-Twins-at-Home_18420": "grade 2.7",
+  "Troublesome-ComfortsA-Story-for-Children_18437": "grade 3.7",
+  "Sex-in-Educationor-A-Fair-Chance-for-Girls_18504": "grade 7.2",
+  "A-Mother-s-List-of-Books-for-Children_19157": "grade 3.5",
+  "Lyra-Heroica--A-Book-of-Verse-for-Boys_19316": "grade 3.9",
+  "The-Rover-Boys-in-the-Air--Or-From-College-Campus-to-the-Clouds_20053": "grade 3.7",
+  "Daybreak--A-Story-for-Girls_20260": "short",
+  "The-Bobbsey-Twins-on-Blueberry-Island_20311": "grade 3.3",
+  "The-Boy-Scouts-on-the-Trail_20327": "grade 3.4",
+  "Pluck-on-the-Long-Trail--Or-Boy-Scouts-in-the-Rockies_20710": "grade 2.7",
+  "A-Campfire-Girl-s-First-Council-FireThe-Camp-Fire-Girls-In-the-Woods_20713": "grade 3.9",
+  "The-Girl-Scouts-at-Home---13-or-Rosanna-s-Beautiful-Day_20736": "grade 3.5",
+  "Carpentry-for-BoysIllustrations_20763": "grade 3.8",
+  "Carry-s-Rose---13-or-the-Magic-of-Kindness.-A-Tale-for-the-Young_20896": "short",
+  "Brave-and-TrueShort-stories-for-children-by-G.-M.-Fenn-and-Others_21292": "short",
+  "The-Barbadoes-GirlA-Tale-for-Young-People_21975": "grade 7.7",
+  "A-Modern-Tomboy--A-Story-for-Girls_22164": "grade 3.8",
+  "Practical-Mechanics-for-Boys_22298": "grade 3.4",
+  "An-American-Robinson-Crusoe-for-American-Boys-and-Girls_22309": "grade 3.2",
+  "The-Posy-Ring--A-Book-of-Verse-for-Children_22922": "grade 2.9",
+  "The-Strange-Little-GirlA-Story-for-Children_23671": "short",
+  "Proud-and-LazyA-Story-for-Little-Folks_24415": "grade 3.3",
+  "The-Cat-and-the-Mouse--13-A-Book-of-Persian-Fairy-Tales_24473": "short",
+  "Hildegarde-s-Holiday--A-Story-for-Girls_24826": "grade 3.7",
+  "Light-On-the-Child-s-Path_25205": "short",
+  "The-Cities-of-Refuge--or-The-Name-of-JesusA-Sunday-book-for-the-young_25459": "short",
+  "Little-Folks-Handy-Book_25462": "grade 3.6",
+  "The-Boy-Artist.A-Tale-for-the-Young_25478": "grade 3.6",
+  "Child-s-Health-Primer-For-Primary-Classes--13-With-Special-Reference-to-the-Effects-of-Alcoho__25646": "grade 2.7",
+  "The-Gold-ThreadA-Story-for-the-Young_26039": "short",
+  "The-Rover-Boys-on-the-Plains--Or-The-Mystery-of-Red-Rock-Ranch_26182": "grade 3.6",
+  "The-Boy-Scouts-on-the-Yukon_26257": "grade 7.8",
+  "The-Boy-Scouts-Book-of-Campfire-Stories_26475": "grade 3.9",
+  "The-Island-HouseA-Tale-for-the-Young-Folks_26627": "short",
+  "The-Children-s-Book-of-Celebrated-Pictures_26703": "grade 3.5",
+  "The-Rover-Boys-in-Alaska--or-Lost-in-the-Fields-of-Ice_26902": "grade 3.6",
+  "Fairy-Book_27321": "grade 3.6",
+  "Fireside-Stories-for-Girls-in-Their-Teens_27343": "grade 3.4",
+  "The-Children-s-Garland-from-the-Best-Poets_27441": "grade 3.3",
+  "The-Blue-Bird-for-ChildrenThe-Wonderful-Adventures-of-Tyltyl-and-Mytyl-in-Search-of-Happiness_27991": "grade 3.5",
+  "Friends-in-Feathers-and-Fur-and-Other-Neighbors--For-Young-Folks_28077": "grade 2.5",
+  "Aunt-Fanny-s-Story-Book-for-Little-Boys-and-Girls_28703": "grade 3.0",
+  "Four-Little-Blossoms-at-Oak-Hill-School_28878": "grade 3.9",
+  "Hurlbut-s-Bible-Lessons-for-Boys-and-Girls_29067": "grade 3.2",
+  "Billy-Topsail--amp--Company--A-Story-for-Boys_29130": "grade 3.5",
+  "Our-Young-Folks-at-Home-and-Abroad_29357": "grade 3.5",
+  "Four-Little-Blossoms-at-Brookside-Farm_29598": "grade 3.7",
+  "The-Mother-s-Manual-of-Children-s-Diseases_29701": "grade 8.7",
+  "The-Chinese-Fairy-Book_29939": "grade 3.9",
+  "Twenty-four-Little-French-Dinners-and-How-to-Cook-and-Serve-Them_29970": "grade 7.0",
+  "Evangelists-of-ArtPicture-Sermons-for-Children_30220": "short",
+  "Very-Short-Stories-and-Verses-For-Children_30272": "grade 3.8",
+  "Stories-of-Boys-and-Girls-Who-Loved-the-SaviourA-Token-for-Children_30645": "short",
+  "The-Wolf-PatrolA-Tale-of-Baden-Powell-s-Boy-Scouts_30810": "grade 3.7",
+  "Mother-Truth-s-Melodies.-Common-Sense-For-Children.-A-Kindergarten_31388": "grade 3.8",
+  "Children-s-Stories-in-American-Literature-1660-1860_32172": "grade 8.4",
+  "Keep-Well-Stories-for-Little-Folks_32521": "grade 3.4",
+  "The-Curlytops-at-Uncle-Frank-s-Ranch--Or-Little-Folks-on-Ponyback_32525": "grade 3.4",
+  "The-Story-of-John-Wesley-Told-to-Boys-and-Girls_32669": "grade 3.1",
+  "The-Shoemaker-s-Apron--A-Second-Book-of-Czechoslovak-Fairy-Tales-and-Folk-Tales_33002": "grade 3.7",
+  "The-Fun-of-Cooking--A-Story-for-Girls-and-Boys_33213": "grade 3.5",
+  "The-Boy-Scouts-of-Bob-s-HillA-Sequel-to-The-Bob-s-Hill-Braves-_34394": "grade 3.5",
+  "The-Islands-of-MagicLegends-Folk-and-Fairy-Tales-from-the-Azores_34431": "grade 3.8",
+  "Handicraft-for-Girlsand-Home-Decoration-and-Care_34854": "grade 3.7",
+  "Stories-of-the-Nibelungen-for-Young-People_35108": "short",
+  "Literature-for-Children_35138": "grade 3.1",
+  "Japanese-Fairy-Tales_35853": "grade 3.7",
+  "Dr.-Hardhack-s-PrescriptionA-Play-for-Children-in-Four-Acts_36195": "short",
+  "Polish-Fairy-Tales_36668": "grade 3.8"
+ }
+}

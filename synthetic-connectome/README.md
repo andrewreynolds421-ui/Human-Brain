@@ -4014,6 +4014,44 @@ use Stage 67's memory (the lifelong store and the 30 sentences just read)? Evalu
   stage so far - the grade labels come from a readability formula, not from human norms.)
 - The two improvements add up: days / nights gave about +5 points, memory about +4 on top.
 
+## Stage 73: a grade 4-6 school year
+
+**Question.** VEGA reads at grade 4 only with its memory (Stage 72). Does a school year of new grade 4-6 books,
+read in the day / night routine, move it up - and is it the new books or just more practice?
+
+**Set-up.** New books (`scripts/year4_books.py`): titles in the GITenberg list (Project Gutenberg on GitHub)
+that look written for children, not already read or in the test; 287 kept as English and grade 4.0-6.9 on Stage
+53's calibrated readability scale (`data/grades/year4.json`); after dropping every sentence sharing a 6-word
+run with the grade test, 643 k sentences, 8.3 M words. Start: Stage 70's four day / night networks. *year 4-6*:
+4 days of the new books, each night replaying the day with as much older memory (now including Stage 70's
+experience), gentle step (`scripts/day_night.py --start day_night/cycle --new year4`). Control *re-read*: the same
+routine and lessons, but each day re-reads as many sentences of earlier experience (`--new reread`).
+
+| grade of the text | 1 | 2 | 3 | 4 | 5 | 6 | 7+ | mean |
+|---|---|---|---|---|---|---|---|---|
+| start (Stage 70) | 78.4 | 76.5 | 77.9 | 71.4 | 67.8 | 73.4 | 68.8 | 73.5 % |
+| re-read (control) | 78.9 | 76.3 | 78.3 | 71.2 | 67.2 | 72.1 | 68.2 | 73.2 % |
+| school year, grades 4-6 | 79.5 | 80.0 | 81.4 | **76.7** | 70.8 | 74.9 | 71.7 | 76.4 % |
+| school year + memory (Stage 67) | 84.1 | 83.2 | 85.3 | **77.8** | 74.2 | **76.6** | 74.1 | 79.4 % |
+| networks passing with memory (of 4) | 4 | 4 | 4 | 4 | 1 | 3 | 1 | |
+
+| | start | re-read | school year |
+|---|---|---|---|
+| BLiMP, all | 62.6 % | 62.7 % | **64.1 %** |
+| agreement in book sentences | 95.8 % | 95.4 % | **97.1 %** |
+| BLiMP quantifiers / anaphor agreement | 62.2 / 85.8 % | 63.0 / 86.5 % | **68.9 / 89.0 %** |
+| held-out speech (log-prob per word, end) | -3.72 | -3.71 | -3.89 |
+
+- **VEGA reads at grade 4.** All four networks pass grade 4 on their own (mean 76.7 %, +5.3), and with memory
+  grade 6 too (3 of 4). Grade 5 (one network) and 7+ (one) are the next line.
+- **It is the new books.** Re-reading the same amount of old material changed nothing (73.2 against 73.5 %);
+  the new books raised every grade, the early grades included, and gave the best grammar so far (BLiMP 64.1 %).
+- Costs: speech prediction fell a little (-3.72 to -3.89; the nights hold it, the days pull it), and two built
+  tests on taught pages fell (agreement of a plain verb past a relative clause 82 -> 67 %, *ever*-questions to
+  6 %); *who* gaps and *any*-scope stay erratic.
+- Limits: the grade labels are a readability formula, not human norms; grade 5's test books are harder for VEGA
+  than grade 6's in every stage.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
@@ -4034,7 +4072,7 @@ a year (Hart & Risley 1995), with meaning attached.
 | relative clauses (agreement past them) | 99-100 % in taught frames | subject relatives early; object relatives understood around 6 |
 | irregular past forms (BLiMP) | 74-77 %; 82-86 % with books + speech (Stages 62-64) | errors in about 2.5 % of uses from 2 into school age (Marcus et al. 1992) |
 | islands, ellipsis, quantifiers (BLiMP) | 41-50 % on books; islands 53-54 %, quantifiers up to 62 % with speech; ellipsis 40-43 % | mostly respected by preschool (islands) to school age |
-| reading comprehension (Stages 53, 66, 67, 70) | multiple-choice cloze: grades 1-3 passed (76-78 %) after days of new reading with nightly replay (Stage 70), or with memory of what was just read (Stage 67); 68-73 % above | grade-level texts read by the end of each grade; difficulty rises with grade |
+| reading comprehension (Stages 53-73) | multiple-choice cloze: grades 1-4 passed after a grade 4-6 school year with nightly replay (Stage 73; grade 4 76.7 %), grade 6 too with memory; grades 5 and 7+ at 71-74 % | grade-level texts read by the end of each grade; difficulty rises with grade |
 
 **In short.** The model is uneven in a way no child is. On the rules it was drilled in - agreement,
 reflexive number, *any* after negation, *what* gaps - it performs like a 5-6-year-old or better, even past

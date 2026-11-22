@@ -1,0 +1,46 @@
+"""Stage 73 summary: a grade 4-6 school year (new books) vs re-reading (equal lessons), both from Stage 70 cycle networks."""
+import glob, json, os
+from collections import defaultdict
+import numpy as np
+RR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "results")
+R = os.path.join(RR, "day_night")
+PATHS = {"start": os.path.join(R, "cycle", "books", "awake_s[0-9].json"), "reread": os.path.join(R, "reread_cycle", "books", "awake_s[0-9].json"),
+         "year4": os.path.join(R, "year4_cycle", "books", "awake_s[0-9].json")}
+GRADE0 = ""
+
+
+def ms(v, k=100):
+    v = k * np.asarray(v, float); return [round(float(v.mean()), 1 if k == 100 else 3), round(float(v.std(ddof=1)), 1 if k == 100 else 3) if len(v) > 1 else None, len(v)]
+
+
+def main():
+    out = {}
+    for c, p in PATHS.items():
+        runs = [json.load(open(f)) for f in sorted(glob.glob(p))]
+        if not runs: continue
+        field = defaultdict(list)
+        for r in runs:
+            per = defaultdict(list)
+            for k, v in r["D"]["by_phenomenon"].items(): per[v["field"]].append(v["all"])
+            for f, v in per.items(): field[f].append(np.mean(v))
+        out[c] = dict(blimp_all=ms([r["D"]["all"] for r in runs]), by_field={f: ms(v) for f, v in sorted(field.items())}, built={k: ms([r["built"][k] for r in runs]) for k in runs[0]["built"]},
+                      books_agreement=ms([r["E"]["sensitivity_auc"] for r in runs]), word_order=ms([r["C"]["two_neighbours_swapped"] for r in runs]))
+        life = [json.load(open(f)) for f in sorted(glob.glob(os.path.join(R, {"start": "cycle", "reread": "reread_cycle", "year4": "year4_cycle"}[c], "life_s[0-9].json")))]
+        if life:
+            out[c]["grade"] = {b: ms([l["grade"][b] for l in life]) for b in life[0]["grade"]}; out[c]["grade_mean"] = ms([l["grade_mean"] for l in life])
+            out[c]["curve"] = [dict(when=e["when"], speech=ms([l["curve"][i]["speech"] for l in life], 1), books=ms([l["curve"][i]["books"] for l in life], 1)) for i, e in enumerate(life[0]["curve"])]
+    g0 = []
+    if g0 and "start" in out:
+        out["start"]["grade"] = {b: ms([g["book"][b] for g in g0]) for b in g0[0]["book"]}; out["start"]["grade_mean"] = ms([np.mean(list(g["book"].values())) for g in g0])
+    json.dump(out, open(os.path.join(R, "stage73_summary.json"), "w"), indent=1)
+    cs = list(out)
+    for c in cs:
+        if "curve" in out[c]: print(c, [(e["when"], e["speech"][0], e["books"][0]) for e in out[c]["curve"]])
+    for c in cs: print(c, "grade", {b: v[0] for b, v in out[c].get("grade", {}).items()}, out[c].get("grade_mean"))
+    for k in ("blimp_all", "books_agreement", "word_order"): print(f"{k:38s}", " | ".join(f"{c}: {out[c][k][:2]}" for c in cs))
+    for f in out[cs[0]]["by_field"]: print(f"{f:38s}", " | ".join(f"{c}: {out[c]['by_field'][f][:2]}" for c in cs))
+    for k in out[cs[0]]["built"]: print(f"{k:38s}", " | ".join(f"{c}: {out[c]['built'][k][:2]}" for c in cs))
+
+
+if __name__ == "__main__":
+    main()

@@ -18,7 +18,13 @@ The vocabulary does not grow: new words are read through their endings (Stage 58
 After each day and night: held-out speech and book text (log-prob per word) - a learning / forgetting curve.
 At the end: the full test battery (BLiMP, built pairs, agreement, word order) and Stage 66's grade test.
 
+Stage 73 (a grade 4-6 school year): --start day_night/cycle --new year4 starts from Stage 70's cycle networks and
+gives each day new grade 4-6 books (scripts/year4_books.py; sentences sharing a 6-word run with the grade test
+dropped); old memory for the nights then also holds Stage 70's experience. --new reread: the same routine, but
+each day re-reads as many sentences of Stage 70's experience instead (control: practice without new books).
+
     python scripts/day_night.py --cond cycle --seed 0
+    python scripts/day_night.py --cond cycle --start day_night/cycle --new year4 --tag year4 --seed 0
 """
 import argparse, json, os, pickle, sys, time
 import numpy as np
@@ -31,9 +37,22 @@ DATA = "/home/claude/models/day_night"
 DAYS, DAY_STEP, NIGHT_STEP, BS = 4, 1e-3, 5e-4, 64                 # day step: the next pass's size in Stages 61-65 (2e-3 * 0.7^2 ~ 1e-3); night a third of that (ASSUMED)
 
 
+def year4_sentences(G):
+    """sentences of the grade 4-6 books, without any sharing a 6-word run with the grade test's sentences (cached)"""
+    cache = "/home/claude/models/year4/sentences.pkl"
+    if os.path.exists(cache): return pickle.load(open(cache, "rb"))
+    import grammar as GR
+    books = json.load(open(os.path.join(ROOT, "data", "grades", "year4.json")))["kept"]
+    sh = lambda x: {tuple(x[i:i + 6]) for i in range(len(x) - 5)}
+    held = set().union(*[sh(s) for b in GD.BANDS for s in G["S"]["test"][b]])
+    out = [s for b in books for s in GR.sentences(GR.book_text(b["dir"])) if len(s) >= 2 and not (sh(s) & held)]
+    os.makedirs(os.path.dirname(cache), exist_ok=True); pickle.dump(out, open(cache, "wb")); return out
+
+
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--cond", choices=("awake", "cycle", "interleave", "cycle_fullstep"), default="cycle"); ap.add_argument("--seed", type=int, default=0)
-    a = ap.parse_args(); odir = os.path.join(OUT, a.cond); mdir = os.path.join(DATA, a.cond, "books"); os.makedirs(odir, exist_ok=True); os.makedirs(mdir, exist_ok=True)
+    ap.add_argument("--start", default=""); ap.add_argument("--new", choices=("first", "year4", "reread"), default="first"); ap.add_argument("--tag", default="")
+    a = ap.parse_args(); grp = (a.tag + "_" if a.tag else "") + a.cond; odir = os.path.join(OUT, grp); mdir = os.path.join(DATA, grp, "books"); os.makedirs(odir, exist_ok=True); os.makedirs(mdir, exist_ok=True)
     path = os.path.join(mdir, f"awake_s{a.seed}.pt"); real_eval, real_corpus = GM.evaluate, GM.corpus_big; seen = {}
 
     def corpus_seen(f):
@@ -46,11 +65,16 @@ def main():
         speech = pickle.load(open(os.path.join(CH.DATA, "adult_speech.pkl"), "rb")); held = speech[-20000:]; speech = speech[:-20000]
         G = pickle.load(open("/home/claude/models/graded/data.pkl", "rb")); graded = [s for b in GD.BANDS for s in G["S"]["train"][b]]
         new = speech + graded; new = [new[i] for i in rng.permutation(len(new)) if len(new[i]) >= 2]
+        lived = []
+        if a.new != "first":                                     # Stage 70's experience is now old memory
+            lived = new; y4 = year4_sentences(G); graded = graded + y4
+            new = y4 if a.new == "year4" else [lived[i] for i in rng.choice(len(lived), len(y4), replace=False)]
+            new = [new[i] for i in rng.permutation(len(new))]
         days = np.array_split(np.arange(len(new)), DAYS)
         tn, _ = PC.nouns(); look = PC.Look()
         pages = [FR.make_page(rng, tn, look)["words"] for _ in range(150_000)] + [PH.phenomenon_page(rng, tn, FR.REL)["words"] for _ in range(150_000)] + \
                 [SG.adult_page(rng, tn, FR.REL, SG.TRAIN_F, SG.TRAIN_M)["words"] for _ in range(150_000)]
-        old0 = seen["s"] + pages
+        old0 = seen["s"] + pages + lived
         probe = dict(speech=held[5000:6500], books=C["test"][:1500])
 
         def measure():
@@ -94,7 +118,7 @@ def main():
         grade = {}
         for b in GD.BANDS:
             its = [it for it in G["items"]["test"][b] if tuple(it["sent"]) not in had]; grade[b] = round(GT.cloze(M, its), 4)
-        out = dict(cond=a.cond, seed=a.seed, days=DAYS, new_sentences=len(new), new_words=int(sum(map(len, new))), curve=st["curve"], grade=grade,
+        out = dict(cond=a.cond, start=a.start or "Stage 65 books", new=a.new, seed=a.seed, days=DAYS, new_sentences=len(new), new_words=int(sum(map(len, new))), curve=st["curve"], grade=grade,
                    grade_mean=round(float(np.mean(list(grade.values()))), 4))
         json.dump(out, open(os.path.join(odir, f"life_s{a.seed}.json"), "w"), indent=1); print(out, flush=True)
         torch.save(M.m.state_dict(), path); json.dump(dict(ep=2, b=0, log=[dict(life=a.cond)]), open(path + ".json", "w"))
@@ -103,10 +127,11 @@ def main():
 
     if not os.path.exists(path + ".json"):
         GM.evaluate = live; GM.corpus_big = corpus_seen(real_corpus); OO.OUT = "/tmp/day_night_scratch"
+        if a.start: OO.DATA = os.path.join("/home/claude/models", a.start)
         try: OO.run(argparse.Namespace(cond="books", seed=a.seed))
         except SystemExit: pass
     GM.evaluate = real_eval; GM.corpus_big = real_corpus                 # the full battery on the network after its days (and nights)
-    OO.DATA = os.path.join(DATA, a.cond); OO.OUT = odir
+    OO.DATA = os.path.join(DATA, grp); OO.OUT = odir
     OO.run(argparse.Namespace(cond="books", seed=a.seed))
 
 

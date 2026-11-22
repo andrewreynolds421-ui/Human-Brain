@@ -446,3 +446,8 @@ better on held-out nouns (71 vs 63 %, post hoc, p 0.03-0.05). Gentle day / night
 Stage 72 (21 Nov): Stage 70 cycle networks + Stage 67 memory - grade test 77.4 %; grades 1-3 pass (81-84 %), grade 4
 and 6 at 75.0 % (3 of 4 networks), grades 5 and 7+ not. Next (user): grade 4+ curriculum following Texas TEKS
 (Northwest ISD) - research strand: grade 4 primary vs secondary sources, grade 5 credibility of sources.
+Stage 73 (22 Nov): grade 4-6 school year (287 new GITenberg books, 8.3 M words; `scripts/year4_books.py`, data in
+/home/claude/corpora/books_year4, list data/grades/year4.json) on Stage 70 cycle networks - grade 4 passed by all
+four without memory (76.7 %), grade 6 with memory; re-read control no gain; BLiMP 64.1 %. Models:
+/home/claude/models/day_night/year4_cycle/books (current best VEGA). User's next: understanding (proposed: small
+simulated world + story-tracking memory), then the research loop.
