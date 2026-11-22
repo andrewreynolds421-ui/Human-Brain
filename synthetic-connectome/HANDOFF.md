@@ -443,3 +443,6 @@ Stage 70 (21 Nov): routine of 4 days (new speech + graded training books, 16.4 M
 Stage 71 (21 Nov): equal-lessons controls for Stage 70 - interleave and full-step night equal the gentle cycle on
 reading (73 %), BLiMP (~62.7 %) and taught nouns: the replay of old memories is what matters. Gentle cycle maybe
 better on held-out nouns (71 vs 63 %, post hoc, p 0.03-0.05). Gentle day / night cycle adopted as the method.
+Stage 72 (21 Nov): Stage 70 cycle networks + Stage 67 memory - grade test 77.4 %; grades 1-3 pass (81-84 %), grade 4
+and 6 at 75.0 % (3 of 4 networks), grades 5 and 7+ not. Next (user): grade 4+ curriculum following Texas TEKS
+(Northwest ISD) - research strand: grade 4 primary vs secondary sources, grade 5 credibility of sources.

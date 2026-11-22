@@ -1,0 +1,182 @@
+{
+ "networks": 4,
+ "models": "Stage 70 cycle",
+ "test": {
+  "1": {
+   "none": [
+    78.4,
+    1.6
+   ],
+   "lifelong": [
+    79.6,
+    0.8
+   ],
+   "passage": [
+    82.6,
+    2.1
+   ],
+   "lifelong+passage": [
+    83.7,
+    1.7
+   ],
+   "lifelong+elsewhere": [
+    79.5,
+    0.4
+   ]
+  },
+  "2": {
+   "none": [
+    76.5,
+    0.7
+   ],
+   "lifelong": [
+    77.8,
+    0.7
+   ],
+   "passage": [
+    79.6,
+    1.4
+   ],
+   "lifelong+passage": [
+    80.8,
+    1.9
+   ],
+   "lifelong+elsewhere": [
+    76.8,
+    0.9
+   ]
+  },
+  "3": {
+   "none": [
+    77.9,
+    2.0
+   ],
+   "lifelong": [
+    79.5,
+    1.7
+   ],
+   "passage": [
+    82.3,
+    1.9
+   ],
+   "lifelong+passage": [
+    83.0,
+    1.6
+   ],
+   "lifelong+elsewhere": [
+    79.6,
+    1.8
+   ]
+  },
+  "4": {
+   "none": [
+    71.4,
+    2.5
+   ],
+   "lifelong": [
+    73.9,
+    1.4
+   ],
+   "passage": [
+    72.1,
+    2.1
+   ],
+   "lifelong+passage": [
+    75.0,
+    1.1
+   ],
+   "lifelong+elsewhere": [
+    74.0,
+    1.1
+   ]
+  },
+  "5": {
+   "none": [
+    67.8,
+    1.3
+   ],
+   "lifelong": [
+    69.0,
+    1.4
+   ],
+   "passage": [
+    70.3,
+    2.3
+   ],
+   "lifelong+passage": [
+    71.5,
+    2.4
+   ],
+   "lifelong+elsewhere": [
+    68.8,
+    1.6
+   ]
+  },
+  "6": {
+   "none": [
+    73.4,
+    1.0
+   ],
+   "lifelong": [
+    73.5,
+    0.4
+   ],
+   "passage": [
+    74.7,
+    1.0
+   ],
+   "lifelong+passage": [
+    75.0,
+    0.6
+   ],
+   "lifelong+elsewhere": [
+    73.5,
+    0.5
+   ]
+  },
+  "7+": {
+   "none": [
+    68.8,
+    1.4
+   ],
+   "lifelong": [
+    71.5,
+    1.1
+   ],
+   "passage": [
+    69.9,
+    1.1
+   ],
+   "lifelong+passage": [
+    72.5,
+    1.2
+   ],
+   "lifelong+elsewhere": [
+    71.7,
+    1.2
+   ]
+  },
+  "all": {
+   "none": [
+    73.6,
+    0.8
+   ],
+   "lifelong": [
+    75.0,
+    0.6
+   ],
+   "passage": [
+    76.0,
+    0.8
+   ],
+   "lifelong+passage": [
+    77.4,
+    1.1
+   ],
+   "lifelong+elsewhere": [
+    74.9,
+    0.7
+   ]
+  }
+ }
+}

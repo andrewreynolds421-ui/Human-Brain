@@ -139,7 +139,7 @@ def score(rec, cond, par):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--limit", type=int, default=0)
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--limit", type=int, default=0); ap.add_argument("--models", default=""); ap.add_argument("--tag", default="")
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True)
     G = pickle.load(open("/home/claude/models/graded/data.pkl", "rb")); seen = {}
 
@@ -172,10 +172,11 @@ def main():
         for c in conds:
             h = np.concatenate(allhit[c]); out["test"].setdefault("all", {})[c] = round(float(h.mean()), 4)
             out["test"].setdefault("answer_in_passage", {})[c] = round(float(h[inp].mean()), 4); out["test"].setdefault("answer_not_in_passage", {})[c] = round(float(h[~inp].mean()), 4)
-        json.dump(out, open(os.path.join(OUT, f"s{a.seed}{'_limit' if a.limit else ''}.json"), "w"), indent=1); print(json.dumps(out), flush=True)
+        json.dump(out, open(os.path.join(OUT, f"{a.tag}s{a.seed}{'_limit' if a.limit else ''}.json"), "w"), indent=1); print(json.dumps(out), flush=True)
         raise SystemExit
 
     GM.evaluate = test; GM.corpus_big = corpus_seen(GM.corpus_big); OO.OUT = "/tmp/episodic_scratch"
+    if a.models: OO.DATA = a.models                             # e.g. Stage 70's networks after their days and nights
     OO.run(argparse.Namespace(cond="books", seed=a.seed))
 
 

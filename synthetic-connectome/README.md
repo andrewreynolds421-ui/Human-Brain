@@ -3997,6 +3997,23 @@ in every group), same total lessons (24,642 a day). *cycle* (Stage 70): read tod
   consolidate at night). It is the method used from here on, with the generalisation advantage marked as
   unconfirmed.
 
+## Stage 72: grade 4 - the day / night networks with memory
+
+**Question.** Before building a grade 4+ curriculum: where do Stage 70's day / night networks read when they also
+use Stage 67's memory (the lifelong store and the 30 sentences just read)? Evaluation only
+(`scripts/episodic.py --models /home/claude/models/day_night/cycle --tag cycle_`), four networks.
+
+| grade of the text | 1 | 2 | 3 | 4 | 5 | 6 | 7+ | mean |
+|---|---|---|---|---|---|---|---|---|
+| Stage 70 networks, no memory | 78.4 | 76.5 | 77.9 | 71.4 | 67.8 | 73.4 | 68.8 | 73.6 % |
+| with lifelong + just-read memory | **83.7** | **80.8** | **83.0** | **75.0** | 71.5 | **75.0** | 72.5 | 77.4 % |
+| networks passing (of 4) | 4 | 4 | 4 | 3 | 0 | 3 | 0 | |
+
+- **Grade 4 is on the line**: 75.0 % on average, three of four networks pass (73.5-76.2 %). Grade 6 the same;
+  grade 5 (71.5 %) and 7+ (72.5 %) do not. (Grade 5's test books are harder for VEGA than grade 6's in every
+  stage so far - the grade labels come from a readability formula, not from human norms.)
+- The two improvements add up: days / nights gave about +5 points, memory about +4 on top.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
