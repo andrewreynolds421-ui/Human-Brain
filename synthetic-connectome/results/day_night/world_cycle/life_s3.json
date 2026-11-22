@@ -1,0 +1,74 @@
+{
+ "cond": "cycle",
+ "start": "day_night/year4_cycle",
+ "new": "world",
+ "seed": 3,
+ "days": 4,
+ "new_sentences": 120000,
+ "new_words": 9323263,
+ "curve": [
+  {
+   "when": "start",
+   "speech": -3.9171,
+   "books": -4.8466
+  },
+  {
+   "when": "day 1",
+   "lessons": 469,
+   "speech": -5.8981,
+   "books": -6.778
+  },
+  {
+   "when": "night 1",
+   "lessons": 938,
+   "speech": -3.9734,
+   "books": -5.0276
+  },
+  {
+   "when": "day 2",
+   "lessons": 469,
+   "speech": -4.5246,
+   "books": -5.4126
+  },
+  {
+   "when": "night 2",
+   "lessons": 938,
+   "speech": -3.9362,
+   "books": -5.0001
+  },
+  {
+   "when": "day 3",
+   "lessons": 469,
+   "speech": -4.4672,
+   "books": -5.3212
+  },
+  {
+   "when": "night 3",
+   "lessons": 938,
+   "speech": -3.9158,
+   "books": -5.009
+  },
+  {
+   "when": "day 4",
+   "lessons": 469,
+   "speech": -4.3807,
+   "books": -5.2944
+  },
+  {
+   "when": "night 4",
+   "lessons": 938,
+   "speech": -3.9128,
+   "books": -4.9973
+  }
+ ],
+ "grade": {
+  "1": 0.7672,
+  "2": 0.7546,
+  "3": 0.7685,
+  "4": 0.7219,
+  "5": 0.7003,
+  "6": 0.7346,
+  "7+": 0.679
+ },
+ "grade_mean": 0.7323
+}

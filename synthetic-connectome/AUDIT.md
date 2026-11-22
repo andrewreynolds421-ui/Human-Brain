@@ -805,3 +805,10 @@ title keywords and a readability formula, so some kept books may be for adults; 
 sharing a 6-word run with any grade-test sentence were dropped before training (as in Stage 53). Four networks
 per group; control has identical routine, step sizes and lesson counts. One session interruption; no restart
 of the runs. Stage 67 memory test re-run on the school-year networks (`--tag year4_`).
+
+## 54. Follow-up (22 November): Stage 74 — a small world
+
+Four networks. The first launch ran two networks at once and both were killed for memory repeatedly (old-memory
+pool now ~3 M sentences in memory per process); runs were restarted one at a time (runner SLOTS=1). Test sets were
+first built with natural question mix; a surface cue then scored 83 %, so before any trained network was tested
+the sets were rebuilt with half carried-object items (cue 51-56 %). The surface-cue heuristic is approximate.

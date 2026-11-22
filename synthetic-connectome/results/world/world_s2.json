@@ -1,0 +1,48 @@
+{
+ "tag": "world",
+ "seed": 2,
+ "same": {
+  "n": 1000,
+  "all": 0.387,
+  "where_person": 0.352,
+  "where_object": 0.36,
+  "who_has": 0.476,
+  "carried_objects": 0.36,
+  "n_carried": 500,
+  "surface_cue_right": 0.545,
+  "when_cue_wrong": 0.3846
+ },
+ "held_names": {
+  "n": 1000,
+  "all": 0.347,
+  "where_person": 0.368,
+  "where_object": 0.326,
+  "who_has": 0.368,
+  "carried_objects": 0.326,
+  "n_carried": 500,
+  "surface_cue_right": 0.563,
+  "when_cue_wrong": 0.3501
+ },
+ "held_objects_places": {
+  "n": 1000,
+  "all": 0.295,
+  "where_person": 0.252,
+  "where_object": 0.238,
+  "who_has": 0.452,
+  "carried_objects": 0.238,
+  "n_carried": 500,
+  "surface_cue_right": 0.558,
+  "when_cue_wrong": 0.2986
+ },
+ "long": {
+  "n": 1000,
+  "all": 0.369,
+  "where_person": 0.376,
+  "where_object": 0.32,
+  "who_has": 0.46,
+  "carried_objects": 0.32,
+  "n_carried": 500,
+  "surface_cue_right": 0.508,
+  "when_cue_wrong": 0.3455
+ }
+}

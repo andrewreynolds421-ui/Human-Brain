@@ -51,7 +51,7 @@ def year4_sentences(G):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--cond", choices=("awake", "cycle", "interleave", "cycle_fullstep"), default="cycle"); ap.add_argument("--seed", type=int, default=0)
-    ap.add_argument("--start", default=""); ap.add_argument("--new", choices=("first", "year4", "reread"), default="first"); ap.add_argument("--tag", default="")
+    ap.add_argument("--start", default=""); ap.add_argument("--new", choices=("first", "year4", "reread", "world"), default="first"); ap.add_argument("--tag", default="")
     a = ap.parse_args(); grp = (a.tag + "_" if a.tag else "") + a.cond; odir = os.path.join(OUT, grp); mdir = os.path.join(DATA, grp, "books"); os.makedirs(odir, exist_ok=True); os.makedirs(mdir, exist_ok=True)
     path = os.path.join(mdir, f"awake_s{a.seed}.pt"); real_eval, real_corpus = GM.evaluate, GM.corpus_big; seen = {}
 
@@ -68,7 +68,11 @@ def main():
         lived = []
         if a.new != "first":                                     # Stage 70's experience is now old memory
             lived = new; y4 = year4_sentences(G); graded = graded + y4
-            new = y4 if a.new == "year4" else [lived[i] for i in rng.choice(len(lived), len(y4), replace=False)]
+            if a.new == "world":                                 # Stage 74: the school year is old memory too; days read world stories
+                import world as W
+                lived = lived + y4; new = [W.training_story(rng) for _ in range(W.TRAIN_STORIES)]
+            else:
+                new = y4 if a.new == "year4" else [lived[i] for i in rng.choice(len(lived), len(y4), replace=False)]
             new = [new[i] for i in rng.permutation(len(new))]
         days = np.array_split(np.arange(len(new)), DAYS)
         tn, _ = PC.nouns(); look = PC.Look()

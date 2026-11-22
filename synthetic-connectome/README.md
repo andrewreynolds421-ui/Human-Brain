@@ -4052,6 +4052,37 @@ routine and lessons, but each day re-reads as many sentences of earlier experien
 - Limits: the grade labels are a readability formula, not human norms; grade 5's test books are harder for VEGA
   than grade 6's in every stage.
 
+## Stage 74: a small world - VEGA does not build a model of what happens
+
+**Question.** Does VEGA track what a story is about - who is where, who has what - or only which words are
+likely? And can reading such stories teach it to?
+
+**Set-up** (`scripts/world.py`). A small world: people move between places and pick up, put down and give
+objects. Stories of 4-10 events; the test asks a final statement with four choices (*the ball is in the X*,
+*X has the ball*, *mary is in the X*). Half of each test set is the hard case: an object that moved only because
+the person holding it walked away. Test sets: same kind, held-out names, held-out objects and places, long
+stories (14-18 events). Chance 25 %. A surface cue (the place said nearest after the name) gets 51-56 % right.
+Training: Stage 73's networks, 4 days of 120,000 stories ending in two true statements, gentle nights replaying
+all older memory (`scripts/day_night.py --start day_night/year4_cycle --new world`). Four networks.
+
+| | before | after 120,000 stories |
+|---|---|---|
+| world test, same kind | 26.7 % | 37.4 % |
+| held-out names / held-out objects and places | 27.9 / 28.1 % | 34.5 / 29.4 % |
+| long stories | 29.0 % | 34.7 % |
+| items where the surface cue is wrong | 28.4 % | 36.5 % |
+| grade test, mean / grade 4 | 76.4 / 76.7 % | 72.9 / 72.1 % |
+| BLiMP | 64.1 % | 62.0 % |
+
+- **VEGA tracks nothing.** Before training it is at chance on every question, even "where is Mary" with her
+  last move in plain view: it knows how sentences go, not what is true in them.
+- **Reading stories barely teaches it**, and at a cost. After 120,000 stories it is at 37 % (below the surface
+  cue's 55 %), with little transfer to new objects and places (29 %); and the repetitive stories pulled its
+  reading down (grade 4 76.7 -> 72.1 %, BLiMP 64.1 -> 62.0 %) despite nightly replay.
+- **Conclusion (negative).** A next-word reader does not turn into a world model by reading about a world. The
+  brain keeps track of situations in a separate system (the hippocampus binds who, what and where); VEGA needs
+  one too, alongside the reading network rather than inside it. Stage 73's networks remain the current VEGA.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

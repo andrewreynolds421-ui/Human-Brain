@@ -451,3 +451,8 @@ Stage 73 (22 Nov): grade 4-6 school year (287 new GITenberg books, 8.3 M words; 
 four without memory (76.7 %), grade 6 with memory; re-read control no gain; BLiMP 64.1 %. Models:
 /home/claude/models/day_night/year4_cycle/books (current best VEGA). User's next: understanding (proposed: small
 simulated world + story-tracking memory), then the research loop.
+Stage 74 (22 Nov): small world (`scripts/world.py`) - VEGA at chance tracking who/what/where; 120 k stories in the
+day/night routine -> 37 % and reading worse (grade 4 72 %). Negative: needs a separate situation memory. Current
+best VEGA stays /home/claude/models/day_night/year4_cycle. Borrowed models: YOLOv8n (ultralytics, GitHub release)
+works; Silero VAD, PocketSphinx via pip; CLIP / Whisper blocked - user asked how to supply them (via the Data
+release on GitHub). Runner now SLOTS=1 by default (memory).

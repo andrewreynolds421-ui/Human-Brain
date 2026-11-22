@@ -1,0 +1,214 @@
+{
+ "start": {
+  "same": {
+   "all": [
+    26.7,
+    0.6
+   ],
+   "where_person": [
+    23.6,
+    1.8
+   ],
+   "where_object": [
+    26.1,
+    0.9
+   ],
+   "who_has": [
+    30.9,
+    0.8
+   ],
+   "when_cue_wrong": [
+    28.4,
+    1.2
+   ],
+   "surface_cue_right": [
+    54.5,
+    0.0
+   ]
+  },
+  "held_names": {
+   "all": [
+    27.9,
+    1.1
+   ],
+   "where_person": [
+    28.1,
+    1.2
+   ],
+   "where_object": [
+    23.0,
+    0.9
+   ],
+   "who_has": [
+    37.4,
+    3.2
+   ],
+   "when_cue_wrong": [
+    28.9,
+    1.8
+   ],
+   "surface_cue_right": [
+    56.3,
+    0.0
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    28.1,
+    1.7
+   ],
+   "where_person": [
+    26.5,
+    2.0
+   ],
+   "where_object": [
+    24.8,
+    1.8
+   ],
+   "who_has": [
+    36.1,
+    2.6
+   ],
+   "when_cue_wrong": [
+    29.0,
+    2.3
+   ],
+   "surface_cue_right": [
+    55.8,
+    0.0
+   ]
+  },
+  "long": {
+   "all": [
+    29.0,
+    0.7
+   ],
+   "where_person": [
+    24.7,
+    2.5
+   ],
+   "where_object": [
+    28.1,
+    1.1
+   ],
+   "who_has": [
+    35.0,
+    1.2
+   ],
+   "when_cue_wrong": [
+    30.7,
+    0.5
+   ],
+   "surface_cue_right": [
+    50.8,
+    0.0
+   ]
+  }
+ },
+ "world": {
+  "same": {
+   "all": [
+    37.4,
+    1.2
+   ],
+   "where_person": [
+    34.0,
+    1.8
+   ],
+   "where_object": [
+    34.1,
+    1.4
+   ],
+   "who_has": [
+    47.6,
+    1.4
+   ],
+   "when_cue_wrong": [
+    36.5,
+    1.5
+   ],
+   "surface_cue_right": [
+    54.5,
+    0.0
+   ]
+  },
+  "held_names": {
+   "all": [
+    34.5,
+    2.0
+   ],
+   "where_person": [
+    33.7,
+    4.0
+   ],
+   "where_object": [
+    33.8,
+    2.8
+   ],
+   "who_has": [
+    36.8,
+    1.2
+   ],
+   "when_cue_wrong": [
+    33.8,
+    2.6
+   ],
+   "surface_cue_right": [
+    56.3,
+    0.0
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    29.4,
+    0.5
+   ],
+   "where_person": [
+    25.0,
+    1.3
+   ],
+   "where_object": [
+    24.3,
+    0.5
+   ],
+   "who_has": [
+    43.7,
+    1.8
+   ],
+   "when_cue_wrong": [
+    30.5,
+    0.7
+   ],
+   "surface_cue_right": [
+    55.8,
+    0.0
+   ]
+  },
+  "long": {
+   "all": [
+    34.7,
+    1.6
+   ],
+   "where_person": [
+    31.5,
+    4.8
+   ],
+   "where_object": [
+    32.0,
+    0.3
+   ],
+   "who_has": [
+    43.1,
+    3.3
+   ],
+   "when_cue_wrong": [
+    34.4,
+    1.1
+   ],
+   "surface_cue_right": [
+    50.8,
+    0.0
+   ]
+  }
+ }
+}
