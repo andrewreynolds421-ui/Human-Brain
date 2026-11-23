@@ -456,3 +456,7 @@ day/night routine -> 37 % and reading worse (grade 4 72 %). Negative: needs a se
 best VEGA stays /home/claude/models/day_night/year4_cycle. Borrowed models: YOLOv8n (ultralytics, GitHub release)
 works; Silero VAD, PocketSphinx via pip; CLIP / Whisper blocked - user asked how to supply them (via the Data
 release on GitHub). Runner now SLOTS=1 by default (memory).
+Stage 75 (23 Nov): hippocampus beside the frozen reader (`scripts/hippocampus.py`: EC in, DG kWTA + perforant path,
+CA3 fast delta-rule synapses, 2-step recall, CA1 read-out) - world test 55 % (control 39 %), carried objects 67 %,
+held-out names 52 %, long 47 %; no transfer to new objects/places (store word representations next). DG = no-DG.
+Stage 76 (hippo_sleep.py, days + nights of episode replay vs awake vs equal-lesson reread) queued.

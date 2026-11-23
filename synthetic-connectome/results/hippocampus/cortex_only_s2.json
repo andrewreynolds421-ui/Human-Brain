@@ -1,0 +1,69 @@
+{
+ "cond": "cortex_only",
+ "seed": 2,
+ "training": [
+  {
+   "stories": 16000,
+   "val": 0.36,
+   "minutes": 0.6
+  },
+  {
+   "stories": 32000,
+   "val": 0.355,
+   "minutes": 1.2
+  },
+  {
+   "stories": 48000,
+   "val": 0.39,
+   "minutes": 1.7
+  },
+  {
+   "stories": 64000,
+   "val": 0.3975,
+   "minutes": 2.3
+  },
+  {
+   "stories": 80000,
+   "val": 0.36,
+   "minutes": 2.9
+  },
+  {
+   "stories": 96000,
+   "val": 0.4025,
+   "minutes": 3.5
+  },
+  {
+   "stories": 100000,
+   "val": 0.4225,
+   "minutes": 3.6
+  }
+ ],
+ "same": {
+  "all": 0.412,
+  "where_person": 0.352,
+  "who_has": 0.404,
+  "carried_objects": 0.446,
+  "when_cue_wrong": 0.4352
+ },
+ "held_names": {
+  "all": 0.369,
+  "where_person": 0.3,
+  "who_has": 0.316,
+  "carried_objects": 0.43,
+  "when_cue_wrong": 0.4119
+ },
+ "held_objects_places": {
+  "all": 0.286,
+  "where_person": 0.284,
+  "who_has": 0.368,
+  "carried_objects": 0.246,
+  "when_cue_wrong": 0.267
+ },
+ "long": {
+  "all": 0.367,
+  "where_person": 0.328,
+  "who_has": 0.38,
+  "carried_objects": 0.38,
+  "when_cue_wrong": 0.374
+ }
+}

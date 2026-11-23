@@ -1,0 +1,69 @@
+{
+ "cond": "no_dg",
+ "seed": 0,
+ "training": [
+  {
+   "stories": 16000,
+   "val": 0.5425,
+   "minutes": 8.9
+  },
+  {
+   "stories": 32000,
+   "val": 0.5475,
+   "minutes": 18.1
+  },
+  {
+   "stories": 48000,
+   "val": 0.5175,
+   "minutes": 26.7
+  },
+  {
+   "stories": 64000,
+   "val": 0.53,
+   "minutes": 35.2
+  },
+  {
+   "stories": 80000,
+   "val": 0.58,
+   "minutes": 43.9
+  },
+  {
+   "stories": 96000,
+   "val": 0.5475,
+   "minutes": 52.6
+  },
+  {
+   "stories": 100000,
+   "val": 0.5225,
+   "minutes": 54.6
+  }
+ ],
+ "same": {
+  "all": 0.552,
+  "where_person": 0.412,
+  "who_has": 0.412,
+  "carried_objects": 0.692,
+  "when_cue_wrong": 0.5604
+ },
+ "held_names": {
+  "all": 0.488,
+  "where_person": 0.42,
+  "who_has": 0.26,
+  "carried_objects": 0.636,
+  "when_cue_wrong": 0.5149
+ },
+ "held_objects_places": {
+  "all": 0.319,
+  "where_person": 0.264,
+  "who_has": 0.388,
+  "carried_objects": 0.312,
+  "when_cue_wrong": 0.3145
+ },
+ "long": {
+  "all": 0.468,
+  "where_person": 0.404,
+  "who_has": 0.368,
+  "carried_objects": 0.55,
+  "when_cue_wrong": 0.4695
+ }
+}

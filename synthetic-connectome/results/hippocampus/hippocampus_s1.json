@@ -1,0 +1,69 @@
+{
+ "cond": "hippocampus",
+ "seed": 1,
+ "training": [
+  {
+   "stories": 16000,
+   "val": 0.5225,
+   "minutes": 9.1
+  },
+  {
+   "stories": 32000,
+   "val": 0.5175,
+   "minutes": 17.5
+  },
+  {
+   "stories": 48000,
+   "val": 0.5475,
+   "minutes": 26.7
+  },
+  {
+   "stories": 64000,
+   "val": 0.4975,
+   "minutes": 36.4
+  },
+  {
+   "stories": 80000,
+   "val": 0.5275,
+   "minutes": 46.0
+  },
+  {
+   "stories": 96000,
+   "val": 0.5125,
+   "minutes": 56.0
+  },
+  {
+   "stories": 100000,
+   "val": 0.5375,
+   "minutes": 58.5
+  }
+ ],
+ "same": {
+  "all": 0.544,
+  "where_person": 0.428,
+  "who_has": 0.44,
+  "carried_objects": 0.654,
+  "when_cue_wrong": 0.5495
+ },
+ "held_names": {
+  "all": 0.53,
+  "where_person": 0.44,
+  "who_has": 0.376,
+  "carried_objects": 0.652,
+  "when_cue_wrong": 0.524
+ },
+ "held_objects_places": {
+  "all": 0.304,
+  "where_person": 0.284,
+  "who_has": 0.424,
+  "carried_objects": 0.254,
+  "when_cue_wrong": 0.2986
+ },
+ "long": {
+  "all": 0.498,
+  "where_person": 0.42,
+  "who_has": 0.388,
+  "carried_objects": 0.592,
+  "when_cue_wrong": 0.5061
+ }
+}

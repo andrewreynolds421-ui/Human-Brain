@@ -812,3 +812,11 @@ Four networks. The first launch ran two networks at once and both were killed fo
 pool now ~3 M sentences in memory per process); runs were restarted one at a time (runner SLOTS=1). Test sets were
 first built with natural question mix; a surface cue then scored 83 %, so before any trained network was tested
 the sets were rebuilt with half carried-object items (cue 51-56 %). The surface-cue heuristic is approximate.
+
+## 55. Follow-up (23 November): Stage 75 — hippocampus
+
+Four networks per group, each on one of Stage 73's reading networks (frozen). The first version (no perforant
+path) was found to equal the control on two networks each; it was stopped, its results kept apart, and all
+hippocampus and no-DG runs redone with the fix (the cortex-only control did not change). Training uses the last
+weights, not the best validation point. Validation (400 items) is noisy. Not spiking, not connectome-based;
+sizes (1,024 DG cells, 5 % active, 64-dim keys / values, two recall steps) are ASSUMED.

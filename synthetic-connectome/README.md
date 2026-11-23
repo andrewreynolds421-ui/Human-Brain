@@ -4083,6 +4083,44 @@ all older memory (`scripts/day_night.py --start day_night/year4_cycle --new worl
   brain keeps track of situations in a separate system (the hippocampus binds who, what and where); VEGA needs
   one too, alongside the reading network rather than inside it. Stage 73's networks remain the current VEGA.
 
+## Stage 75: a hippocampus beside the reading network
+
+**Question.** Stage 74: the reading network does not keep track of a story, and training it on stories hurt its
+reading. Does a separate circuit wired after the hippocampus - binding who, what and where in one exposure -
+let VEGA answer what is true at the end of a story, while its reading network stays untouched?
+
+**Set-up** (`scripts/hippocampus.py`; MODEL - a rate model after the hippocampal circuit, not spiking, wiring
+from textbook anatomy, not a connectome). From the frozen reading network's state at each word, entorhinal
+input gives a "what" key, a value and an encoding strength. CA3 is addressed by the direct entorhinal path
+(perforant path, learned) plus a fixed sparse dentate-gyrus expansion (1,024 cells, 5 % active); its fast
+synapses are written during the story (reset per story) by the difference between the new value and what CA3
+already recalls (the CA1 comparison). A question cue recalls twice (pattern completion: "ball" -> "with Fred" ->
+"in the barn"); CA1 / entorhinal output picks among the offered words. Trained on 100,000 world stories
+(Stage 74's world); four networks per group. Control *cortex only*: the same read-out and training from the
+reading network's own state. First version without the perforant path: recall was empty (sparse codes of cue
+and memory never overlapped) and it scored exactly as the control; kept in `results/hippocampus/first_version`.
+
+| | cortex only | hippocampus without dentate gyrus | hippocampus |
+|---|---|---|---|
+| world test, same kind | 39.0 % | 54.1 % | **54.9 %** |
+| objects carried away by someone | 41.6 % | 66.6 % | **67.2 %** |
+| held-out names | 35.8 % | 51.5 % | **51.8 %** |
+| long stories (14-18 events) | 35.4 % | 46.8 % | **47.4 %** |
+| held-out objects and places | 29.9 % | 30.1 % | 28.4 % |
+| reading (grade test, BLiMP) | unchanged | unchanged | unchanged |
+
+- **The hippocampus tracks the story.** It answers 55 % (chance 25 %; the reading network after 120,000 stories
+  in Stage 74: 37 %), and 67 % on the hardest case, an object carried away by the person holding it - which
+  needs two recalls. It works with names it never saw in a story (52 %) and on stories twice as long as any it
+  trained on (47 %). The reading network is untouched, so reading loses nothing.
+- **Pattern separation did not matter here** (54.9 against 54.1 %, p = 0.6): the stories have three people and
+  three objects, too few to make memories interfere. It should matter when many similar episodes pile up.
+- **No transfer to new objects and places (28-30 %, chance).** What is stored for "garden" is learned for the
+  trained places only; a place never seen in a story cannot be read back. In the brain the stored content is
+  the cortex's own representation of the thing; the next version should store the reading network's word
+  representation itself, so any word can be recalled.
+- Where a person is (42 %) and who has what (43 %) are learned less well than carried objects.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

@@ -1,0 +1,272 @@
+{
+ "cortex_only": {
+  "same": {
+   "all": [
+    39.0,
+    1.6
+   ],
+   "where_person": [
+    32.8,
+    2.4
+   ],
+   "who_has": [
+    40.2,
+    2.3
+   ],
+   "carried_objects": [
+    41.6,
+    3.5
+   ],
+   "when_cue_wrong": [
+    40.1,
+    2.5
+   ]
+  },
+  "held_names": {
+   "all": [
+    35.8,
+    1.0
+   ],
+   "where_person": [
+    29.7,
+    1.7
+   ],
+   "who_has": [
+    34.1,
+    3.2
+   ],
+   "carried_objects": [
+    39.6,
+    2.5
+   ],
+   "when_cue_wrong": [
+    38.2,
+    2.3
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    29.9,
+    0.9
+   ],
+   "where_person": [
+    27.8,
+    1.0
+   ],
+   "who_has": [
+    38.9,
+    2.6
+   ],
+   "carried_objects": [
+    26.4,
+    1.3
+   ],
+   "when_cue_wrong": [
+    30.1,
+    2.5
+   ]
+  },
+  "long": {
+   "all": [
+    35.4,
+    2.3
+   ],
+   "where_person": [
+    32.5,
+    4.6
+   ],
+   "who_has": [
+    38.6,
+    2.8
+   ],
+   "carried_objects": [
+    35.4,
+    2.2
+   ],
+   "when_cue_wrong": [
+    35.5,
+    1.6
+   ]
+  }
+ },
+ "no_dg": {
+  "same": {
+   "all": [
+    54.1,
+    1.8
+   ],
+   "where_person": [
+    42.8,
+    1.8
+   ],
+   "who_has": [
+    40.3,
+    2.7
+   ],
+   "carried_objects": [
+    66.6,
+    3.8
+   ],
+   "when_cue_wrong": [
+    54.4,
+    3.5
+   ]
+  },
+  "held_names": {
+   "all": [
+    51.5,
+    3.3
+   ],
+   "where_person": [
+    41.8,
+    2.6
+   ],
+   "who_has": [
+    34.3,
+    6.0
+   ],
+   "carried_objects": [
+    65.0,
+    3.7
+   ],
+   "when_cue_wrong": [
+    53.1,
+    3.6
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    30.1,
+    2.6
+   ],
+   "where_person": [
+    28.0,
+    1.1
+   ],
+   "who_has": [
+    41.1,
+    2.8
+   ],
+   "carried_objects": [
+    25.6,
+    5.2
+   ],
+   "when_cue_wrong": [
+    30.4,
+    3.7
+   ]
+  },
+  "long": {
+   "all": [
+    46.8,
+    2.6
+   ],
+   "where_person": [
+    38.0,
+    4.3
+   ],
+   "who_has": [
+    37.7,
+    1.3
+   ],
+   "carried_objects": [
+    55.7,
+    3.2
+   ],
+   "when_cue_wrong": [
+    47.4,
+    2.4
+   ]
+  }
+ },
+ "hippocampus": {
+  "same": {
+   "all": [
+    54.9,
+    2.2
+   ],
+   "where_person": [
+    42.2,
+    5.3
+   ],
+   "who_has": [
+    43.0,
+    4.7
+   ],
+   "carried_objects": [
+    67.2,
+    3.7
+   ],
+   "when_cue_wrong": [
+    55.8,
+    2.1
+   ]
+  },
+  "held_names": {
+   "all": [
+    51.8,
+    3.2
+   ],
+   "where_person": [
+    41.3,
+    2.9
+   ],
+   "who_has": [
+    35.7,
+    5.2
+   ],
+   "carried_objects": [
+    65.1,
+    4.3
+   ],
+   "when_cue_wrong": [
+    53.3,
+    3.8
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    28.4,
+    2.7
+   ],
+   "where_person": [
+    24.6,
+    2.7
+   ],
+   "who_has": [
+    41.9,
+    8.7
+   ],
+   "carried_objects": [
+    23.6,
+    4.2
+   ],
+   "when_cue_wrong": [
+    28.7,
+    3.1
+   ]
+  },
+  "long": {
+   "all": [
+    47.4,
+    2.0
+   ],
+   "where_person": [
+    37.9,
+    5.8
+   ],
+   "who_has": [
+    39.5,
+    5.4
+   ],
+   "carried_objects": [
+    56.1,
+    3.7
+   ],
+   "when_cue_wrong": [
+    48.4,
+    1.8
+   ]
+  }
+ }
+}
