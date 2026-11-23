@@ -1,0 +1,70 @@
+{
+ "cond": "sleep",
+ "seed": 3,
+ "curve": [
+  {
+   "when": "day 1",
+   "val": 0.555,
+   "minutes": 18.8
+  },
+  {
+   "when": "night 1",
+   "val": 0.5825,
+   "minutes": 36.5
+  },
+  {
+   "when": "day 2",
+   "val": 0.6175,
+   "minutes": 55.4
+  },
+  {
+   "when": "night 2",
+   "val": 0.6675,
+   "minutes": 74.3
+  },
+  {
+   "when": "day 3",
+   "val": 0.6475,
+   "minutes": 93.1
+  },
+  {
+   "when": "night 3",
+   "val": 0.6475,
+   "minutes": 112.7
+  },
+  {
+   "when": "day 4",
+   "val": 0.61,
+   "minutes": 129.7
+  },
+  {
+   "when": "night 4",
+   "val": 0.665,
+   "minutes": 146.4
+  }
+ ],
+ "same": {
+  "all": 0.692,
+  "where_person": 0.464,
+  "who_has": 0.856,
+  "carried_objects": 0.724
+ },
+ "held_names": {
+  "all": 0.592,
+  "where_person": 0.492,
+  "who_has": 0.476,
+  "carried_objects": 0.7
+ },
+ "held_objects_places": {
+  "all": 0.502,
+  "where_person": 0.332,
+  "who_has": 0.852,
+  "carried_objects": 0.412
+ },
+ "long": {
+  "all": 0.623,
+  "where_person": 0.456,
+  "who_has": 0.772,
+  "carried_objects": 0.632
+ }
+}

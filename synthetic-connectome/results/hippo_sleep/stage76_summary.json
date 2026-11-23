@@ -1,0 +1,224 @@
+{
+ "awake": {
+  "same": {
+   "all": [
+    54.3,
+    8.6
+   ],
+   "where_person": [
+    39.6,
+    4.9
+   ],
+   "who_has": [
+    51.5,
+    20.0
+   ],
+   "carried_objects": [
+    63.0,
+    10.0
+   ]
+  },
+  "held_names": {
+   "all": [
+    48.2,
+    8.3
+   ],
+   "where_person": [
+    38.0,
+    3.2
+   ],
+   "who_has": [
+    38.8,
+    6.0
+   ],
+   "carried_objects": [
+    58.0,
+    13.9
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    32.6,
+    9.0
+   ],
+   "where_person": [
+    24.9,
+    3.1
+   ],
+   "who_has": [
+    49.8,
+    19.9
+   ],
+   "carried_objects": [
+    27.9,
+    8.3
+   ]
+  },
+  "long": {
+   "all": [
+    46.8,
+    8.3
+   ],
+   "where_person": [
+    37.2,
+    5.6
+   ],
+   "who_has": [
+    47.2,
+    14.1
+   ],
+   "carried_objects": [
+    51.3,
+    9.5
+   ]
+  }
+ },
+ "reread": {
+  "same": {
+   "all": [
+    56.8,
+    7.7
+   ],
+   "where_person": [
+    44.3,
+    11.2
+   ],
+   "who_has": [
+    51.7,
+    11.1
+   ],
+   "carried_objects": [
+    65.7,
+    9.3
+   ]
+  },
+  "held_names": {
+   "all": [
+    50.9,
+    8.3
+   ],
+   "where_person": [
+    42.9,
+    7.9
+   ],
+   "who_has": [
+    40.6,
+    5.8
+   ],
+   "carried_objects": [
+    60.0,
+    13.0
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    32.2,
+    5.4
+   ],
+   "where_person": [
+    25.6,
+    3.4
+   ],
+   "who_has": [
+    49.3,
+    10.2
+   ],
+   "carried_objects": [
+    26.9,
+    6.1
+   ]
+  },
+  "long": {
+   "all": [
+    49.9,
+    6.7
+   ],
+   "where_person": [
+    42.1,
+    10.0
+   ],
+   "who_has": [
+    48.5,
+    9.4
+   ],
+   "carried_objects": [
+    54.6,
+    8.5
+   ]
+  }
+ },
+ "sleep": {
+  "same": {
+   "all": [
+    62.8,
+    4.4
+   ],
+   "where_person": [
+    48.7,
+    2.5
+   ],
+   "who_has": [
+    57.2,
+    19.2
+   ],
+   "carried_objects": [
+    72.8,
+    0.7
+   ]
+  },
+  "held_names": {
+   "all": [
+    56.4,
+    2.0
+   ],
+   "where_person": [
+    46.6,
+    2.0
+   ],
+   "who_has": [
+    40.6,
+    5.8
+   ],
+   "carried_objects": [
+    69.3,
+    0.7
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    36.6,
+    9.2
+   ],
+   "where_person": [
+    28.4,
+    3.9
+   ],
+   "who_has": [
+    58.0,
+    19.8
+   ],
+   "carried_objects": [
+    30.1,
+    7.6
+   ]
+  },
+  "long": {
+   "all": [
+    55.0,
+    5.1
+   ],
+   "where_person": [
+    47.4,
+    3.4
+   ],
+   "who_has": [
+    51.0,
+    17.7
+   ],
+   "carried_objects": [
+    60.8,
+    2.3
+   ]
+  }
+ }
+}

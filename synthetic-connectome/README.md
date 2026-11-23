@@ -4121,6 +4121,35 @@ and memory never overlapped) and it scored exactly as the control; kept in `resu
   representation itself, so any word can be recalled.
 - Where a person is (42 %) and who has what (43 %) are learned less well than carried objects.
 
+## Stage 76: the hippocampus with sleep
+
+**Question.** Stage 75's hippocampus learned from 100,000 stories in one go. If the same stories come in days,
+are kept as episodes, and are replayed at night with no new input, does it learn better - and is that sleep, or
+just more practice?
+
+**Set-up** (`scripts/hippo_sleep.py`). Same reading networks (frozen) and the same 100,000 stories, in 4 days.
+*awake*: days only. *sleep*: after each day a night replaying as many stored episodes as the day had - half that
+day's, half earlier days' - at a third of the step size. *reread* (control): the same replays shuffled into the
+day at the daytime step (equal lessons). Four networks each.
+
+| | awake | same replays while awake | sleep |
+|---|---|---|---|
+| world test, same kind | 54.3 +/- 8.6 % | 56.8 +/- 7.7 % | **62.8 +/- 4.4 %** |
+| objects carried away by someone | 63.0 % | 65.7 % | **72.8 %** |
+| held-out names | 48.2 % | 50.9 % | **56.4 %** |
+| long stories | 46.8 % | 49.9 % | **55.0 %** |
+| held-out objects and places (where-questions) | 25-28 % | 26-27 % | 28-30 % |
+
+- **Sleep comes out ahead on every test with trained words** (+6 points over the same replays while awake, +8
+  over days only) and is more consistent between networks (spread 4 against 8-9 points). With four networks the
+  difference is **not significant** (p = 0.22 against re-reading, 0.13 against awake): two awake / re-read
+  networks did as well as the sleep ones. A trend, not a result; eight networks per group would settle it.
+- **No transfer to new objects and places.** An interim report said sleep lifted this set above chance; that
+  was the *who has* questions, whose answers are trained names. The where-questions about new places stay at
+  chance in every group - the limit found in Stage 75 is about what is stored, and sleep does not change it.
+- Possible confound: the nights run at a smaller step; part of a sleep advantage could be the smaller step (a
+  learning-rate effect) rather than the timing. A re-read control at the night's step size would separate them.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

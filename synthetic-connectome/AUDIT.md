@@ -820,3 +820,10 @@ path) was found to equal the control on two networks each; it was stopped, its r
 hippocampus and no-DG runs redone with the fix (the cortex-only control did not change). Training uses the last
 weights, not the best validation point. Validation (400 items) is noisy. Not spiking, not connectome-based;
 sizes (1,024 DG cells, 5 % active, 64-dim keys / values, two recall steps) are ASSUMED.
+
+## 56. Follow-up (23 November): Stage 76 — hippocampus with sleep
+
+Four networks per group; no checkpoints inside these runs (each 1.5-3 h) - no restarts occurred. The interim
+message to the user (three re-read / awake networks) reported sleep +8 points and "new objects and places above
+chance for the first time"; with all four networks the gap shrank and is not significant, and the held-out set's
+gain came from who-has items (trained names as answers) - corrected in the README and to the user.

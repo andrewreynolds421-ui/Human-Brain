@@ -1,0 +1,50 @@
+{
+ "cond": "reread",
+ "seed": 3,
+ "curve": [
+  {
+   "when": "day 1",
+   "val": 0.4975,
+   "minutes": 34.9
+  },
+  {
+   "when": "day 2",
+   "val": 0.5225,
+   "minutes": 70.4
+  },
+  {
+   "when": "day 3",
+   "val": 0.5475,
+   "minutes": 105.0
+  },
+  {
+   "when": "day 4",
+   "val": 0.555,
+   "minutes": 138.3
+  }
+ ],
+ "same": {
+  "all": 0.62,
+  "where_person": 0.428,
+  "who_has": 0.668,
+  "carried_objects": 0.692
+ },
+ "held_names": {
+  "all": 0.568,
+  "where_person": 0.468,
+  "who_has": 0.464,
+  "carried_objects": 0.67
+ },
+ "held_objects_places": {
+  "all": 0.4,
+  "where_person": 0.272,
+  "who_has": 0.624,
+  "carried_objects": 0.352
+ },
+ "long": {
+  "all": 0.531,
+  "where_person": 0.38,
+  "who_has": 0.612,
+  "carried_objects": 0.566
+ }
+}

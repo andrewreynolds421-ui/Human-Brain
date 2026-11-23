@@ -460,3 +460,6 @@ Stage 75 (23 Nov): hippocampus beside the frozen reader (`scripts/hippocampus.py
 CA3 fast delta-rule synapses, 2-step recall, CA1 read-out) - world test 55 % (control 39 %), carried objects 67 %,
 held-out names 52 %, long 47 %; no transfer to new objects/places (store word representations next). DG = no-DG.
 Stage 76 (hippo_sleep.py, days + nights of episode replay vs awake vs equal-lesson reread) queued.
+Stage 76 (23 Nov): hippocampus days + nights (`scripts/hippo_sleep.py`) - sleep 62.8 % vs equal-lesson re-read
+56.8 % vs awake 54.3 % (trend, p 0.13-0.22, 4 nets); no transfer to new places in any group. Next: store the
+reading network's word representation in CA3 (fix transfer); optionally 8 nets + small-step re-read control.

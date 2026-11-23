@@ -1,0 +1,50 @@
+{
+ "cond": "awake",
+ "seed": 0,
+ "curve": [
+  {
+   "when": "day 1",
+   "val": 0.4425,
+   "minutes": 16.4
+  },
+  {
+   "when": "day 2",
+   "val": 0.465,
+   "minutes": 34.7
+  },
+  {
+   "when": "day 3",
+   "val": 0.53,
+   "minutes": 52.1
+  },
+  {
+   "when": "day 4",
+   "val": 0.5375,
+   "minutes": 70.0
+  }
+ ],
+ "same": {
+  "all": 0.533,
+  "where_person": 0.36,
+  "who_has": 0.38,
+  "carried_objects": 0.696
+ },
+ "held_names": {
+  "all": 0.518,
+  "where_person": 0.392,
+  "who_has": 0.42,
+  "carried_objects": 0.63
+ },
+ "held_objects_places": {
+  "all": 0.255,
+  "where_person": 0.22,
+  "who_has": 0.4,
+  "carried_objects": 0.2
+ },
+ "long": {
+  "all": 0.484,
+  "where_person": 0.368,
+  "who_has": 0.44,
+  "carried_objects": 0.564
+ }
+}
