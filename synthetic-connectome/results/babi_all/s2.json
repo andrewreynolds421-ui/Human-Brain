@@ -1,0 +1,76 @@
+{
+ "seed": 2,
+ "questions": 120000,
+ "training": [
+  {
+   "questions": 16000,
+   "minutes": 15.8,
+   "loss": 2.559
+  },
+  {
+   "questions": 32000,
+   "minutes": 30.4,
+   "loss": 2.486
+  },
+  {
+   "questions": 48000,
+   "minutes": 44.9,
+   "loss": 1.215
+  },
+  {
+   "questions": 64000,
+   "minutes": 59.5,
+   "loss": 1.316
+  },
+  {
+   "questions": 80000,
+   "minutes": 74.6,
+   "loss": 0.277
+  },
+  {
+   "questions": 96000,
+   "minutes": 88.4,
+   "loss": 1.177
+  },
+  {
+   "questions": 112000,
+   "minutes": 101.8,
+   "loss": 0.678
+  },
+  {
+   "questions": 120000,
+   "minutes": 108.4,
+   "loss": 1.223
+  }
+ ],
+ "tasks": {
+  "qa1_single-supporting-fact": 0.49,
+  "qa2_two-supporting-facts": 0.426,
+  "qa3_three-supporting-facts": 0.355,
+  "qa4_two-arg-relations": 0.586,
+  "qa5_three-arg-relations": 0.792,
+  "qa6_yes-no-questions": 0.553,
+  "qa7_counting": 0.803,
+  "qa8_lists-sets": 0.843,
+  "qa9_simple-negation": 0.684,
+  "qa10_indefinite-knowledge": 0.482,
+  "qa11_basic-coreference": 0.706,
+  "qa12_conjunction": 0.758,
+  "qa13_compound-coreference": 0.944,
+  "qa14_time-reasoning": 0.446,
+  "qa15_basic-deduction": 0.536,
+  "qa16_basic-induction": 0.506,
+  "qa17_positional-reasoning": 0.543,
+  "qa18_size-reasoning": 0.897,
+  "qa19_path-finding": 0.094,
+  "qa20_agents-motivations": 0.96
+ },
+ "passed_95": 1,
+ "mean_error": 37.98,
+ "world": {
+  "same": 0.683,
+  "held_names": 0.65,
+  "held_objects_places": 0.626,
+  "long": 0.628
+ }
+}

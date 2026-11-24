@@ -4204,6 +4204,41 @@ Published figures: Weston et al. 2015 (LSTM) and Sukhbaatar et al. 2015 (MemN2N)
 - Not compared: the reading network itself (Stage 73, grade 4; grade 6 with memory) - the hippocampus answers
   questions about situations, it does not change how VEGA predicts book text, so the grade test is unchanged.
 
+## Stage 79: how far does the comprehension go? All 20 bAbI tasks
+
+**Question.** Stage 78: VEGA's hippocampus solved bAbI task 1 and not task 2. Across all 20 bAbI tasks -
+tracking, giving, yes / no, counting, lists, negation, uncertainty, pronouns, time order, deduction, induction,
+left / right, sizes, paths, motives - how far does VEGA's story comprehension go?
+
+**Set-up** (`scripts/hippo_babi.py`). Stage 77's hippocampus plus: recall while storing (the recalled word can be
+what is stored - "mary dropped the milk" files the milk under where Mary is), three recall steps and a second
+question cue, and a CA1 decision path (comparison features for yes / no; recall strength for counting). One network
+for all 20 tasks (joint), 120,000 training questions drawn from the 10k sets (a fifth VEGA's world stories),
+stories cut to the last 50 sentences, reading network frozen. Test: each task's 1,000 questions; passed at 95 %.
+Four networks (one at a time, ~2 h each).
+
+| | VEGA (best / median of 4) | LSTM, 10k joint | memory network MemN2N, 10k joint |
+|---|---|---|---|
+| tasks passed (of 20) | **8** / 6.5 | 4 | 14 |
+| mean error | 23.9 % / 25 % | 36.4 % | 7.5 % |
+
+Published: Sukhbaatar et al. 2015, as tabulated in Pavez et al. 2018.
+
+| VEGA per task (four networks) | |
+|---|---|
+| passed by the good networks | 1 single fact (100), 5 giving (95-98), 6 yes / no (92-96), 9 negation (96-97), 11 pronoun (95-97), 12 "and" (99), 13 "they" (96-99), 20 motives (95-100) |
+| near | 18 sizes (90-92), 10 "maybe" (75-86), 8 lists (69-84), 7 counting (76-80) |
+| failed | 2 two facts (58-72), 4 relations (59-72), 14 time order (45-65), 3 three facts (36-41), 15 deduction (54-58), 16 induction (47-51), 17 left / right (52-62, chance), 19 path finding (8-10, chance) |
+
+- **Where comprehension holds:** who did what, who has what, what was given to whom, yes / no about it, "not",
+  "he / she / they", "and". The world test stays at 88-92 %.
+- **Where it stops:** anything that needs the past rather than the present (time order, three facts - the memory
+  keeps the latest fact about each thing; "where was it before?" is overwritten), and anything that needs a rule
+  applied to facts (deduction "sheep fear wolves; Gertrude is a sheep", induction, left / right, path finding).
+  That is reasoning, not reading: the hippocampus binds and recalls; nothing in VEGA chains rules yet.
+- **Training is unstable**: one of four networks failed to learn even task 1 (49 %) and passed 1 task; loss spiked
+  in all runs. The best network's 8 is VEGA's ceiling with this circuit so far, not its average.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

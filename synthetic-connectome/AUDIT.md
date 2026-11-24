@@ -836,3 +836,11 @@ its other runs, the failed run kept in results/hippocampus/look_back_unscaled. T
 Stage 78: bAbI v1.2 from a GitHub copy (booydar/babilong, data/tasks_1-20_v1-2.zip) - the official hosts are
 unreachable; files not committed. Published numbers are quoted from secondary tables (LSTM 50 / 20 % from Weston
 et al. as cited in the Keras example; MemN2N 1k 100 / 91.7 % as tabulated in Liu & Perez 2017), not re-run here.
+
+## 58. Follow-up (24 November): Stage 79 — all 20 bAbI tasks
+
+Four networks, one at a time; 10-minute checkpoints; session interruptions, no lost runs. Joint training on a
+budget of 120,000 questions (the published 10k results train for many passes over 200,000) - VEGA saw fewer
+examples. Stories cut to the last 50 sentences. Published comparison (LSTM 4 passed / 36.4 % mean error; MemN2N
+14 / 7.5 %) from Pavez et al. 2018 Table 1, quoting Sukhbaatar et al. 2015. One network (s2) trained badly
+(task 1 49 %); reported, not dropped.

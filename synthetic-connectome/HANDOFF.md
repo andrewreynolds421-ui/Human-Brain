@@ -467,3 +467,6 @@ Stage 77 (24 Nov): hippocampus storing the reader's word representations (`scrip
 94 %, held-out objects/places 92 %, long 90 %; look-back control 60-65 %. Models /home/claude/models/hippocampus/
 pointer_s*.pt (use these). Stage 78: bAbI (`scripts/babi_eval.py`, data /home/claude/corpora/babi) - task 1 99.7 %
 (83 % zero-shot), task 2 57 % (MemN2N 92 %). Runner: hippo_pointer needs SLOTS=1 (memory).
+Stage 79 (24 Nov): all 20 bAbI tasks jointly (`scripts/hippo_babi.py`) - best network 8/20 passed (LSTM 4, MemN2N 14),
+mean error 24 %; fails time order, 3 facts, deduction, induction, left/right, paths (reasoning, history). Unstable
+training (1 of 4 failed). Models /home/claude/models/babi_all/s*.pt. User's next: research.
