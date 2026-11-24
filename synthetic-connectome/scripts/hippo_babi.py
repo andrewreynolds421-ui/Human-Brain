@@ -17,7 +17,15 @@ Answers are chosen among the task's answer words seen in training (single words,
 by closeness to the produced representation. The reading network (Stage 73) stays frozen. VEGA's world stories
 (Stage 74, including long ones) are mixed in, a fifth of the lessons, so that skill is kept.
 
+Stage 80 (--episodes): an episode record beside CA3 - every stored event is kept in order, not overwritten (as
+the hippocampus records sequences of events: time cells, sequence replay). Four extra recalls: the latest event
+about the question's word; the event where it was with the second question word; what was true just before that
+("where was the apple before the bathroom"); and the latest event about what was recalled (chaining). A count of
+the events matching the question word goes to CA1. Learning steps clipped and a smaller step size (one Stage 79
+network failed to learn). 160,000 training questions.
+
     python scripts/hippo_babi.py --seed 0
+    QUESTIONS=160000 python scripts/hippo_babi.py --episodes --seed 0
 """
 import argparse, json, os, re, sys, time
 import numpy as np
@@ -30,6 +38,7 @@ OUT = os.environ.get("BABI_OUT", os.path.join(ROOT, "results", "babi_all"))
 DATA = os.environ.get("BABI_DATA", "/home/claude/models/babi_all")
 WIN, N_DG, ACTIVE, D_KEY, BS, MAX_SENT = 8, 512, 0.05, 64, 16, 50
 QUESTIONS = int(os.environ.get("QUESTIONS", 120_000))
+EPISODES = False                                                        # Stage 80: the episode record (set by --episodes)
 
 
 def words(s):
@@ -88,7 +97,9 @@ def build(M, seed):
             super().__init__()
             s.pick_k = nn.Linear(H, WIN); s.pick_r = nn.Linear(H, WIN); s.pick_v = nn.Linear(H, WIN + 1); s.gate = nn.Linear(H, 1)
             s.wk = nn.Linear(E, D_KEY); s.pp = nn.Linear(D_KEY, N_DG); s.q1 = nn.Linear(H, E); s.q2 = nn.Linear(H, E)
-            s.mix = nn.Linear(H, 6); s.dec = nn.Sequential(nn.Linear(H + 6 * E + 4, 256), nn.Tanh(), nn.Linear(256, E)); s.temp = nn.Parameter(torch.tensor(5.0))
+            n_ep = 4 if EPISODES else 0
+            s.mix = nn.Linear(H, 6 + n_ep); s.dec = nn.Sequential(nn.Linear(H + (6 + n_ep) * E + 4 + (3 if EPISODES else 0), 256), nn.Tanh(), nn.Linear(256, E)); s.temp = nn.Parameter(torch.tensor(5.0))
+            if EPISODES: s.beta = nn.Parameter(torch.tensor(10.0)); s.tw = nn.Parameter(torch.zeros(5, 3))      # per episode read: weights of recency, "just before", value match
             g = torch.Generator().manual_seed(77 + seed); s.register_buffer("dg", torch.randn(D_KEY, N_DG, generator=g) / D_KEY ** 0.5)
 
         def code(s, e):
@@ -100,10 +111,10 @@ def build(M, seed):
             pad = torch.cat([torch.zeros(B, WIN - 1, Ed), es], 1); win = torch.stack([pad[:, j:j + T] for j in range(WIN)], 2)
             ak = torch.softmax(s.pick_k(hs), -1); ar = torch.softmax(s.pick_r(hs), -1); av = torch.softmax(s.pick_v(hs), -1)
             keys = s.code((ak[..., None] * win).sum(2)); rkeys = s.code((ar[..., None] * win).sum(2)); g = torch.sigmoid(s.gate(hs)) * mask[..., None]
-            Mem = torch.zeros(B, N_DG, Ed)
+            Mem = torch.zeros(B, N_DG, Ed); vals = []
             for t in range(T):
                 rec = torch.einsum("bn,bne->be", rkeys[:, t], Mem)                                  # recall while storing
-                opts = torch.cat([win[:, t], rec[:, None]], 1); v = (av[:, t, :, None] * opts).sum(1)
+                opts = torch.cat([win[:, t], rec[:, None]], 1); v = (av[:, t, :, None] * opts).sum(1); vals.append(v)
                 c = keys[:, t]; old = torch.einsum("bn,bne->be", c, Mem)
                 Mem = Mem + g[:, t, :, None] * c[:, :, None] * (v - old)[:, None, :]
             read = lambda e: torch.einsum("bn,bne->be", s.code(e), Mem)
@@ -113,19 +124,38 @@ def build(M, seed):
             r1 = read(c1); r2 = read(r1); r3 = read(r2); s1 = read(c2)
             cos = lambda a, b: (a * b).sum(-1, keepdim=True) / (a.norm(dim=-1, keepdim=True) * b.norm(dim=-1, keepdim=True) + 1e-6)
             feats = torch.cat([cos(r1, c2), cos(r2, c2), cos(r3, c2), r1.norm(dim=-1, keepdim=True)], -1)
-            w = torch.softmax(s.mix(q), -1); opts = [r1, r2, r3, s1, c2]
-            z = sum(w[:, i:i + 1] * o for i, o in enumerate(opts)) + w[:, 5:6] * s.dec(torch.cat([q, r1, r2, r3, s1, c1, c2, feats], -1))
+            opts = [r1, r2, r3, s1, c2]; extra = []
+            if EPISODES:                                                                          # the episode record: every stored event, in order
+                V = torch.stack(vals, 1); tpos = torch.arange(T, dtype=torch.float32)[None] / max(T, 1)
+                logg = torch.log(g[..., 0] + 1e-6) + torch.log(mask + 1e-9)
+                Vn = V / (V.norm(dim=-1, keepdim=True) + 1e-6)
+
+                def ep(i, cue, val=None, tau=None):
+                    sc = s.beta * (keys * s.code(cue)[:, None]).sum(-1) + logg + s.tw[i, 0] * 10 * tpos
+                    if val is not None: sc = sc + s.tw[i, 2] * 10 * (Vn * (val / (val.norm(dim=-1, keepdim=True) + 1e-6))[:, None]).sum(-1)
+                    if tau is not None: sc = sc - 1e4 * (tpos >= tau[:, None] - 1e-6) + s.tw[i, 1] * 10 * tpos     # only events before tau
+                    a = torch.softmax(sc, -1); return (a[..., None] * V).sum(1), (a * tpos).sum(-1)
+                A, tA = ep(0, c1)                                    # the latest event about the question's word
+                F, tF = ep(1, c1, val=c2)                            # the event where it was with the second question word ("... the bathroom")
+                Cb, _ = ep(2, c1, tau=tF)                            # what was true just before that
+                D, _ = ep(3, A)                                      # chain: the latest event about what was recalled
+                count = (torch.sigmoid(s.beta * (keys * s.code(c1)[:, None]).sum(-1) - 5) * g[..., 0]).sum(-1, keepdim=True)
+                opts += [A, Cb, D, F]; extra = [A, Cb, D, F, count, cos(A, c2), cos(D, c2)]
+            w = torch.softmax(s.mix(q), -1)
+            z = sum(w[:, i:i + 1] * o for i, o in enumerate(opts)) + w[:, len(opts):len(opts) + 1] * s.dec(torch.cat([q, r1, r2, r3, s1, c1, c2, feats] + extra, -1))
             return z
     return Hippo2()
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true")
+    a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
+    global EPISODES; EPISODES = a.episodes; tag = "episodes_" if a.episodes else ""
 
     def run(M, C, tok, seed, res):
         torch = M.torch; M.m.eval()
         for p in M.m.parameters(): p.requires_grad_(False)
-        net = build(M, a.seed); opt = torch.optim.Adam(net.parameters(), lr=1e-3); cache = {}
+        net = build(M, a.seed); opt = torch.optim.Adam(net.parameters(), lr=5e-4 if a.episodes else 1e-3); cache = {}
 
         def emb(c):
             if c not in cache:
@@ -156,7 +186,7 @@ def main():
             net.train(); return float(np.concatenate(hit).mean())
 
         tasks = load_all(); rng = np.random.default_rng(700 + a.seed); T = sorted(tasks)
-        path = os.path.join(DATA, f"s{a.seed}.pt"); ck = path + ".ckpt"; start = 0; log = []; t0 = time.time(); last = time.time()
+        path = os.path.join(DATA, f"{tag}s{a.seed}.pt"); ck = path + ".ckpt"; start = 0; log = []; t0 = time.time(); last = time.time()
         if os.path.exists(ck):
             z = torch.load(ck, weights_only=False); net.load_state_dict(z["net"]); opt.load_state_dict(z["opt"]); start = z["step"]; log = z["log"]; rng.bit_generator.state = z["rng"]
             print("resumed at step", start, flush=True)
@@ -168,7 +198,9 @@ def main():
                 else:
                     t = T[int(rng.integers(len(T)))]; tr = tasks[t]["train"]; items = [tr[i] for i in rng.choice(len(tr), BS, replace=False)]
                 b = list(batch(items)); y = torch.tensor([i["y"] for i in items])
-                loss = torch.nn.functional.cross_entropy(logits(b), y); opt.zero_grad(); loss.backward(); opt.step()
+                loss = torch.nn.functional.cross_entropy(logits(b), y); opt.zero_grad(); loss.backward()
+                if a.episodes: torch.nn.utils.clip_grad_norm_(net.parameters(), 1.0)               # Stage 80: steadier learning
+                opt.step()
                 if (step + 1) % 1000 == 0 or step + 1 == QUESTIONS // BS:
                     log.append(dict(questions=(step + 1) * BS, minutes=round((time.time() - t0) / 60, 1), loss=round(float(loss.detach()), 3))); print(log[-1], flush=True)
             torch.save(net.state_dict(), path)
@@ -179,7 +211,7 @@ def main():
             acc = accuracy(tasks[t]["test"]); out["tasks"][tasks[t]["name"]] = round(acc, 4); print(tasks[t]["name"], round(acc, 4), flush=True)
         out["passed_95"] = int(sum(v >= 0.95 for v in out["tasks"].values())); out["mean_error"] = round(100 * (1 - np.mean(list(out["tasks"].values()))), 2)
         out["world"] = {k: round(accuracy(world_items(None, 0, v)), 4) for k, v in W.test_sets(seed=0).items()}
-        json.dump(out, open(os.path.join(OUT, f"s{a.seed}.json"), "w"), indent=1); print(json.dumps(out), flush=True)
+        json.dump(out, open(os.path.join(OUT, f"{tag}s{a.seed}.json"), "w"), indent=1); print(json.dumps(out), flush=True)
         raise SystemExit
 
     GM.evaluate = run; OO.DATA = "/home/claude/models/day_night/year4_cycle"; OO.OUT = "/tmp/hippo_scratch"; os.makedirs(OO.OUT, exist_ok=True)
