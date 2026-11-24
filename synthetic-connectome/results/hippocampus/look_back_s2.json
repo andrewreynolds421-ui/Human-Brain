@@ -1,0 +1,69 @@
+{
+ "cond": "look_back",
+ "seed": 2,
+ "training": [
+  {
+   "stories": 16000,
+   "val": 0.61,
+   "minutes": 0.7
+  },
+  {
+   "stories": 32000,
+   "val": 0.6075,
+   "minutes": 1.4
+  },
+  {
+   "stories": 48000,
+   "val": 0.595,
+   "minutes": 2.1
+  },
+  {
+   "stories": 64000,
+   "val": 0.6175,
+   "minutes": 2.8
+  },
+  {
+   "stories": 80000,
+   "val": 0.605,
+   "minutes": 3.5
+  },
+  {
+   "stories": 96000,
+   "val": 0.6175,
+   "minutes": 4.2
+  },
+  {
+   "stories": 100000,
+   "val": 0.59,
+   "minutes": 4.4
+  }
+ ],
+ "same": {
+  "all": 0.625,
+  "where_person": 0.496,
+  "who_has": 0.648,
+  "carried_objects": 0.678,
+  "when_cue_wrong": 0.6418
+ },
+ "held_names": {
+  "all": 0.597,
+  "where_person": 0.496,
+  "who_has": 0.6,
+  "carried_objects": 0.646,
+  "when_cue_wrong": 0.6133
+ },
+ "held_objects_places": {
+  "all": 0.57,
+  "where_person": 0.376,
+  "who_has": 0.648,
+  "carried_objects": 0.628,
+  "when_cue_wrong": 0.6222
+ },
+ "long": {
+  "all": 0.515,
+  "where_person": 0.424,
+  "who_has": 0.54,
+  "carried_objects": 0.548,
+  "when_cue_wrong": 0.5346
+ }
+}

@@ -827,3 +827,12 @@ Four networks per group; no checkpoints inside these runs (each 1.5-3 h) - no re
 message to the user (three re-read / awake networks) reported sleep +8 points and "new objects and places above
 chance for the first time"; with all four networks the gap shrank and is not significant, and the held-out set's
 gain came from who-has items (trained names as answers) - corrected in the README and to the user.
+
+## 57. Follow-up (24 November): Stages 77-78 — hippocampus with cortical content; bAbI
+
+Stage 77: the look-back control's first run did not learn (unscaled attention saturated); fixed by scaling before
+its other runs, the failed run kept in results/hippocampus/look_back_unscaled. Two runs at once ran out of memory
+(48 restarts unnoticed for ~1 h); then one at a time, and 10-minute checkpoints after a machine restart lost a run.
+Stage 78: bAbI v1.2 from a GitHub copy (booydar/babilong, data/tasks_1-20_v1-2.zip) - the official hosts are
+unreachable; files not committed. Published numbers are quoted from secondary tables (LSTM 50 / 20 % from Weston
+et al. as cited in the Keras example; MemN2N 1k 100 / 91.7 % as tabulated in Liu & Perez 2017), not re-run here.

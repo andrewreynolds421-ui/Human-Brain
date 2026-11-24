@@ -463,3 +463,7 @@ Stage 76 (hippo_sleep.py, days + nights of episode replay vs awake vs equal-less
 Stage 76 (23 Nov): hippocampus days + nights (`scripts/hippo_sleep.py`) - sleep 62.8 % vs equal-lesson re-read
 56.8 % vs awake 54.3 % (trend, p 0.13-0.22, 4 nets); no transfer to new places in any group. Next: store the
 reading network's word representation in CA3 (fix transfer); optionally 8 nets + small-step re-read control.
+Stage 77 (24 Nov): hippocampus storing the reader's word representations (`scripts/hippo_pointer.py`) - world test
+94 %, held-out objects/places 92 %, long 90 %; look-back control 60-65 %. Models /home/claude/models/hippocampus/
+pointer_s*.pt (use these). Stage 78: bAbI (`scripts/babi_eval.py`, data /home/claude/corpora/babi) - task 1 99.7 %
+(83 % zero-shot), task 2 57 % (MemN2N 92 %). Runner: hippo_pointer needs SLOTS=1 (memory).

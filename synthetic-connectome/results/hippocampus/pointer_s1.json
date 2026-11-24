@@ -1,0 +1,69 @@
+{
+ "cond": "pointer",
+ "seed": 1,
+ "training": [
+  {
+   "stories": 16000,
+   "val": 0.94,
+   "minutes": 16.9
+  },
+  {
+   "stories": 32000,
+   "val": 0.95,
+   "minutes": 33.9
+  },
+  {
+   "stories": 48000,
+   "val": 0.96,
+   "minutes": 50.4
+  },
+  {
+   "stories": 64000,
+   "val": 0.9375,
+   "minutes": 65.7
+  },
+  {
+   "stories": 80000,
+   "val": 0.95,
+   "minutes": 81.6
+  },
+  {
+   "stories": 96000,
+   "val": 0.9625,
+   "minutes": 97.4
+  },
+  {
+   "stories": 100000,
+   "val": 0.96,
+   "minutes": 101.7
+  }
+ ],
+ "same": {
+  "all": 0.953,
+  "where_person": 0.988,
+  "who_has": 0.9,
+  "carried_objects": 0.962,
+  "when_cue_wrong": 0.9319
+ },
+ "held_names": {
+  "all": 0.868,
+  "where_person": 0.856,
+  "who_has": 0.892,
+  "carried_objects": 0.862,
+  "when_cue_wrong": 0.8604
+ },
+ "held_objects_places": {
+  "all": 0.946,
+  "where_person": 0.98,
+  "who_has": 0.912,
+  "carried_objects": 0.946,
+  "when_cue_wrong": 0.9253
+ },
+ "long": {
+  "all": 0.923,
+  "where_person": 0.992,
+  "who_has": 0.84,
+  "carried_objects": 0.93,
+  "when_cue_wrong": 0.9065
+ }
+}

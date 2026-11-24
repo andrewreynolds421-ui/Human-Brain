@@ -4150,6 +4150,60 @@ day at the daytime step (equal lessons). Four networks each.
 - Possible confound: the nights run at a smaller step; part of a sleep advantage could be the smaller step (a
   learning-rate effect) rather than the timing. A re-read control at the night's step size would separate them.
 
+## Stage 77: the hippocampus stores the cortex's own word representations
+
+**Question.** Stages 75-76: the hippocampus tracked stories but could not answer about places and objects never
+met in a story - it stored its own learned code. In the brain the hippocampus is thought to keep an index to the
+cortex's own representation of a thing, which the cortex reinstates on recall (indexing theory, Teyler &
+DiScenna 1986). Does storing VEGA's own word representations fix it?
+
+**Set-up** (`scripts/hippo_pointer.py`). What CA3 stores and recalls is the reading network's own representation
+of a word (the one it reads with, frozen), chosen from the last six words by attention from the reading state
+("garden" in "mary went to the garden"; "fred" when "fred took the lamp"); keys likewise, mapped into CA3 by the
+perforant path and dentate gyrus. A question's key word ("ball") is recalled, then the recalled word is used as
+the next cue ("ball" -> fred -> barn); the recalled representation is matched against the offered words'
+(cosine) - nothing word-specific is learned on the way out. Control *look back*: no memory; the question attends
+directly over the story's words and states (a reader looking back over the page). 100,000 stories, four networks
+each (each run one at a time: two at once ran out of memory; 10-minute checkpoints added after a machine restart).
+
+| | cortex only (S75) | hippocampus (S75) | look back | **hippocampus with cortical content** |
+|---|---|---|---|---|
+| world test, same kind | 39.0 % | 54.9 % | 64.6 % | **93.8 +/- 6.3 %** |
+| objects carried away by someone | 41.6 % | 67.2 % | 70.6 % | **92.2 %** |
+| held-out names | 35.8 % | 51.8 % | 59.8 % | **84.7 %** |
+| held-out objects and places | 29.9 % | 28.4 % | 60.2 % | **92.2 %** |
+| long stories (14-18 events) | 35.4 % | 47.4 % | 53.6 % | **89.6 %** |
+
+- **VEGA now follows the stories.** 94 % on the world questions (best network 99.7 %), and the same on objects
+  and places it never met in a story (92 %, from chance) - because what is stored is VEGA's own representation of
+  the word, recall works for any word it can read. It also holds up on stories twice as long as any it trained on.
+- **It is the binding, not looking back.** A reader that looks back over the text with the same training gets
+  60-65 %; the hippocampus is 25-35 points better on every set, most on long stories.
+- Spread between networks is larger (6-9 points; one network at 80-90 %, three at 93-99 %).
+
+## Stage 78: an outside test - the bAbI tasks
+
+**Question.** How does VEGA's story tracking compare with published systems? bAbI (Weston et al. 2015; v1.2,
+English, 1k) task 1 ("Where is Mary?", one fact needed) and task 2 ("Where is the milk?", two facts: who took it
+and where they went). Its wording differs from VEGA's world ("journeyed", "went back to", "got the milk there",
+"discarded"; hallway, bathroom; Sandra, Daniel) and its task-2 stories are long (median 72 words, up to 464).
+`scripts/babi_eval.py`: Stage 77's four networks, zero-shot and after the task's 1,000 training questions (5
+passes, reading network frozen); answer = the closest of bAbI's six places (open choice, as published).
+
+| | VEGA zero-shot | VEGA after 1k | LSTM, 1k (published) | memory network MemN2N, 1k (published) |
+|---|---|---|---|---|
+| task 1: one supporting fact | 82.9 % | **99.7 %** | 50 % | 100 % |
+| task 2: two supporting facts | 35.6 % | 56.7 +/- 8.0 % | 20 % | 91.7 % |
+
+Published figures: Weston et al. 2015 (LSTM) and Sukhbaatar et al. 2015 (MemN2N), as tabulated by later papers.
+- **Task 1 is solved** (99.7 %, as memory networks), and 83 % with no bAbI training at all - VEGA's world taught
+  it something that carries to text written differently.
+- **Task 2 is not.** 57 % after training (an LSTM: 20 %; a memory network: 92 %); 36 % zero-shot. The stories are
+  far longer than any VEGA trained on and say *got the milk there*, where "there" must be resolved to the place
+  last mentioned for that person; the hippocampus's one-story memory and two recalls do not yet handle that.
+- Not compared: the reading network itself (Stage 73, grade 4; grade 6 with memory) - the hippocampus answers
+  questions about situations, it does not change how VEGA predicts book text, so the grade test is unchanged.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

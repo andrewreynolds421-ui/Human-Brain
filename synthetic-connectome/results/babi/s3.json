@@ -1,0 +1,17 @@
+{
+ "seed": 3,
+ "tasks": {
+  "qa1_single-supporting-fact": {
+   "n_test": 1000,
+   "story_words_max": 55,
+   "zero_shot": 0.812,
+   "trained_1k": 1.0
+  },
+  "qa2_two-supporting-facts": {
+   "n_test": 1000,
+   "story_words_max": 464,
+   "zero_shot": 0.398,
+   "trained_1k": 0.448
+  }
+ }
+}

@@ -1,0 +1,362 @@
+{
+ "pointer": {
+  "same": {
+   "all": [
+    93.8,
+    6.3
+   ],
+   "where_person": [
+    99.2,
+    0.6
+   ],
+   "who_has": [
+    91.9,
+    4.9
+   ],
+   "carried_objects": [
+    92.2,
+    10.8
+   ],
+   "when_cue_wrong": [
+    91.2,
+    9.1
+   ]
+  },
+  "held_names": {
+   "all": [
+    84.7,
+    9.4
+   ],
+   "where_person": [
+    81.9,
+    11.2
+   ],
+   "who_has": [
+    89.6,
+    5.6
+   ],
+   "carried_objects": [
+    83.6,
+    11.1
+   ],
+   "when_cue_wrong": [
+    84.1,
+    10.8
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    92.2,
+    6.1
+   ],
+   "where_person": [
+    99.2,
+    1.0
+   ],
+   "who_has": [
+    91.3,
+    2.2
+   ],
+   "carried_objects": [
+    89.1,
+    11.4
+   ],
+   "when_cue_wrong": [
+    89.0,
+    8.9
+   ]
+  },
+  "long": {
+   "all": [
+    89.6,
+    8.5
+   ],
+   "where_person": [
+    99.6,
+    0.3
+   ],
+   "who_has": [
+    87.0,
+    5.9
+   ],
+   "carried_objects": [
+    85.9,
+    15.9
+   ],
+   "when_cue_wrong": [
+    85.9,
+    13.6
+   ]
+  }
+ },
+ "look_back": {
+  "same": {
+   "all": [
+    64.6,
+    1.6
+   ],
+   "where_person": [
+    50.6,
+    1.0
+   ],
+   "who_has": [
+    66.5,
+    2.7
+   ],
+   "carried_objects": [
+    70.6,
+    1.9
+   ],
+   "when_cue_wrong": [
+    67.6,
+    2.4
+   ]
+  },
+  "held_names": {
+   "all": [
+    59.8,
+    0.7
+   ],
+   "where_person": [
+    47.2,
+    2.1
+   ],
+   "who_has": [
+    58.4,
+    4.0
+   ],
+   "carried_objects": [
+    66.9,
+    1.5
+   ],
+   "when_cue_wrong": [
+    62.4,
+    1.6
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    60.2,
+    3.8
+   ],
+   "where_person": [
+    42.8,
+    6.5
+   ],
+   "who_has": [
+    67.7,
+    1.9
+   ],
+   "carried_objects": [
+    65.1,
+    3.7
+   ],
+   "when_cue_wrong": [
+    64.3,
+    4.6
+   ]
+  },
+  "long": {
+   "all": [
+    53.6,
+    1.9
+   ],
+   "where_person": [
+    44.7,
+    2.5
+   ],
+   "who_has": [
+    55.4,
+    1.3
+   ],
+   "carried_objects": [
+    57.0,
+    2.3
+   ],
+   "when_cue_wrong": [
+    53.6,
+    0.7
+   ]
+  }
+ },
+ "hippocampus": {
+  "same": {
+   "all": [
+    54.9,
+    2.2
+   ],
+   "where_person": [
+    42.2,
+    5.3
+   ],
+   "who_has": [
+    43.0,
+    4.7
+   ],
+   "carried_objects": [
+    67.2,
+    3.7
+   ],
+   "when_cue_wrong": [
+    55.8,
+    2.1
+   ]
+  },
+  "held_names": {
+   "all": [
+    51.8,
+    3.2
+   ],
+   "where_person": [
+    41.3,
+    2.9
+   ],
+   "who_has": [
+    35.7,
+    5.2
+   ],
+   "carried_objects": [
+    65.1,
+    4.3
+   ],
+   "when_cue_wrong": [
+    53.3,
+    3.8
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    28.4,
+    2.7
+   ],
+   "where_person": [
+    24.6,
+    2.7
+   ],
+   "who_has": [
+    41.9,
+    8.7
+   ],
+   "carried_objects": [
+    23.6,
+    4.2
+   ],
+   "when_cue_wrong": [
+    28.7,
+    3.1
+   ]
+  },
+  "long": {
+   "all": [
+    47.4,
+    2.0
+   ],
+   "where_person": [
+    37.9,
+    5.8
+   ],
+   "who_has": [
+    39.5,
+    5.4
+   ],
+   "carried_objects": [
+    56.1,
+    3.7
+   ],
+   "when_cue_wrong": [
+    48.4,
+    1.8
+   ]
+  }
+ },
+ "cortex_only": {
+  "same": {
+   "all": [
+    39.0,
+    1.6
+   ],
+   "where_person": [
+    32.8,
+    2.4
+   ],
+   "who_has": [
+    40.2,
+    2.3
+   ],
+   "carried_objects": [
+    41.6,
+    3.5
+   ],
+   "when_cue_wrong": [
+    40.1,
+    2.5
+   ]
+  },
+  "held_names": {
+   "all": [
+    35.8,
+    1.0
+   ],
+   "where_person": [
+    29.7,
+    1.7
+   ],
+   "who_has": [
+    34.1,
+    3.2
+   ],
+   "carried_objects": [
+    39.6,
+    2.5
+   ],
+   "when_cue_wrong": [
+    38.2,
+    2.3
+   ]
+  },
+  "held_objects_places": {
+   "all": [
+    29.9,
+    0.9
+   ],
+   "where_person": [
+    27.8,
+    1.0
+   ],
+   "who_has": [
+    38.9,
+    2.6
+   ],
+   "carried_objects": [
+    26.4,
+    1.3
+   ],
+   "when_cue_wrong": [
+    30.1,
+    2.5
+   ]
+  },
+  "long": {
+   "all": [
+    35.4,
+    2.3
+   ],
+   "where_person": [
+    32.5,
+    4.6
+   ],
+   "who_has": [
+    38.6,
+    2.8
+   ],
+   "carried_objects": [
+    35.4,
+    2.2
+   ],
+   "when_cue_wrong": [
+    35.5,
+    1.6
+   ]
+  }
+ }
+}
