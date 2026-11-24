@@ -15,6 +15,7 @@ representation is closest to the recalled one - an open choice over all places, 
 The reading network stays frozen in both.
 
     python scripts/babi_eval.py --seed 0
+    python scripts/babi_eval.py --seed 0 --tasks 1      # one task only
 """
 import argparse, json, os, re, sys, time
 import numpy as np
@@ -48,7 +49,7 @@ def load(task, split):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); a = ap.parse_args(); os.makedirs(OUT, exist_ok=True)
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--tasks", default="1,2"); a = ap.parse_args(); os.makedirs(OUT, exist_ok=True)
 
     def run(M, C, tok, seed, res):
         torch = M.torch; M.m.eval()
@@ -78,7 +79,7 @@ def main():
             return float(np.concatenate(hit).mean())
 
         out = dict(seed=a.seed, tasks={})
-        for t in TASKS:
+        for t in [int(x) for x in a.tasks.split(",")]:
             train, test = load(t, "train"), load(t, "test"); r = dict(n_test=len(test), story_words_max=max(len(i["story"]) for i in test))
             net = PT.build(M, a.seed); net.load_state_dict(torch.load(os.path.join(PT.DATA, f"pointer_s{a.seed}.pt")))
             r["zero_shot"] = round(accuracy(net, test), 4); print(t, "zero-shot", r["zero_shot"], flush=True)
@@ -92,7 +93,7 @@ def main():
                     loss = torch.nn.functional.cross_entropy(logits(net, b), target); opt.zero_grad(); loss.backward(); opt.step()
             r["trained_1k"] = round(accuracy(net, test), 4); print(t, "trained", r["trained_1k"], flush=True)
             out["tasks"][TASKS[t]] = r
-        json.dump(out, open(os.path.join(OUT, f"s{a.seed}.json"), "w"), indent=1); print(json.dumps(out), flush=True)
+        json.dump(out, open(os.path.join(OUT, f"s{a.seed}{'' if a.tasks == '1,2' else '_tasks' + a.tasks.replace(',', '-')}.json"), "w"), indent=1); print(json.dumps(out), flush=True)
         raise SystemExit
 
     GM.evaluate = run; OO.DATA = "/home/claude/models/day_night/year4_cycle"; OO.OUT = "/tmp/hippo_scratch"; os.makedirs(OO.OUT, exist_ok=True)
