@@ -1,70 +1,28 @@
 [
  {
-  "name": "concepts_s1",
-  "flags": "--concepts",
-  "seed": 1,
-  "questions": 160000,
-  "env": ""
- },
- {
-  "name": "concepts_s2",
-  "flags": "--concepts",
-  "seed": 2,
-  "questions": 160000,
-  "env": ""
- },
- {
-  "name": "concepts_s3",
-  "flags": "--concepts",
-  "seed": 3,
-  "questions": 160000,
-  "env": ""
- },
- {
-  "name": "controller_s1",
-  "flags": "--controller",
-  "seed": 1,
-  "questions": 160000,
-  "env": ""
- },
- {
-  "name": "controller_s2",
-  "flags": "--controller",
-  "seed": 2,
-  "questions": 160000,
-  "env": ""
- },
- {
-  "name": "controller_s3",
-  "flags": "--controller",
-  "seed": 3,
-  "questions": 160000,
-  "env": ""
- },
- {
-  "name": "steady_s0",
-  "flags": "--steady",
+  "name": "controller2_s0",
+  "flags": "--ctrl-only",
   "seed": 0,
   "questions": 160000,
   "env": ""
  },
  {
-  "name": "steady_s1",
-  "flags": "--steady",
+  "name": "controller2_s1",
+  "flags": "--ctrl-only",
   "seed": 1,
   "questions": 160000,
   "env": ""
  },
  {
-  "name": "steady_s2",
-  "flags": "--steady",
+  "name": "controller2_s2",
+  "flags": "--ctrl-only",
   "seed": 2,
   "questions": 160000,
   "env": ""
  },
  {
-  "name": "steady_s3",
-  "flags": "--steady",
+  "name": "controller2_s3",
+  "flags": "--ctrl-only",
   "seed": 3,
   "questions": 160000,
   "env": ""
