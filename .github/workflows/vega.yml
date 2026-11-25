@@ -1,0 +1,59 @@
+# VEGA training runs on GitHub's machines: one network per job, all jobs at once.
+# Triggered by pushing a change to runs/jobs.json on this branch. Each job unpacks the VEGA bundle (vega-bundle
+# branch: reading networks, bAbI, code), lays this branch's current code over it, trains one network with
+# scripts/hippo_babi.py, and pushes the result + model (or the log, if it failed) to runs/<name>/ here.
+name: vega-runs
+on:
+  push:
+    branches: [vega-runs]
+    paths: [runs/jobs.json]
+permissions:
+  contents: write
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    outputs:
+      jobs: ${{ steps.p.outputs.jobs }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: p
+        run: echo "jobs=$(python3 -c 'import json;print(json.dumps(json.load(open("runs/jobs.json"))))')" >> "$GITHUB_OUTPUT"
+  train:
+    needs: plan
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    strategy:
+      fail-fast: false
+      matrix:
+        job: ${{ fromJson(needs.plan.outputs.jobs) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: libraries
+        run: |
+          pip install -q torch --index-url https://download.pytorch.org/whl/cpu
+          pip install -q numpy pandas scikit-learn spacy
+          pip install -q https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
+      - name: unpack the VEGA bundle at /home/claude, then this branch's code over it
+        run: |
+          git fetch -q --depth 1 origin vega-bundle && mkdir -p /tmp/b && git archive FETCH_HEAD | tar x -C /tmp/b
+          cd /tmp/b && sha256sum -c vega_hippo_bundle.tar.gz.sha256 --ignore-missing && cat vega_hippo_bundle.tar.gz.part* > b.tgz
+          sudo mkdir -p /home/claude && sudo chown "$USER" /home/claude && tar xzf b.tgz -C / && rm b.tgz
+          cp -r "$GITHUB_WORKSPACE/synthetic-connectome/scripts" "$GITHUB_WORKSPACE/synthetic-connectome/synth" /home/claude/synthetic-connectome/
+      - name: train ${{ matrix.job.name }}
+        working-directory: /home/claude/synthetic-connectome
+        run: |
+          mkdir -p /home/claude/out
+          ${{ matrix.job.env }} QUESTIONS=${{ matrix.job.questions }} BABI_OUT=/home/claude/out BABI_DATA=/home/claude/out PYTHONPATH=. THREADS=4 \
+            python scripts/hippo_babi.py ${{ matrix.job.flags }} --seed ${{ matrix.job.seed }} > /home/claude/out/train.log 2>&1
+      - name: push the result (or the log)
+        if: always()
+        run: |
+          D="runs/${{ matrix.job.name }}"; mkdir -p "$D"
+          cp /home/claude/out/*.json /home/claude/out/*.pt "$D"/ 2>/dev/null || true
+          tail -c 200000 /home/claude/out/train.log > "$D/train.log" 2>/dev/null || echo "no log" > "$D/train.log"
+          echo "${{ job.status }}" > "$D/status.txt"
+          git config user.name "vega-runs"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$D" && git commit -q -m "run ${{ matrix.job.name }}: ${{ job.status }}"
+          for i in 1 2 3 4 5 6 7 8; do git pull -q --rebase origin vega-runs && git push -q origin HEAD:vega-runs && break; sleep $((RANDOM % 20 + 5)); done
