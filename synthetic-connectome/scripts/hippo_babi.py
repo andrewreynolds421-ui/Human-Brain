@@ -26,6 +26,14 @@ network failed to learn). 160,000 training questions.
 
     python scripts/hippo_babi.py --seed 0
     QUESTIONS=160000 python scripts/hippo_babi.py --episodes --seed 0
+
+Stage 82 (--concepts, includes the episode record): (1) CA1's output and the answer words pass through one learned
+concept map (starts as identity) before they are compared - VEGA's reading network keeps "wolves" nearer "cats"
+than "wolf" (number before meaning), so a correctly recalled "mice" could not be matched to the answer "mouse";
+(2) reverse recall: from a recalled word to whose event had it as content ("swan" -> lily), then the latest event
+about that one (induction: "lily is a swan, lily is white, bernhard is a swan - what colour is bernhard?").
+
+    QUESTIONS=160000 python scripts/hippo_babi.py --concepts --seed 0
 """
 import argparse, json, os, re, sys, time
 import numpy as np
@@ -39,6 +47,7 @@ DATA = os.environ.get("BABI_DATA", "/home/claude/models/babi_all")
 WIN, N_DG, ACTIVE, D_KEY, BS, MAX_SENT = 8, 512, 0.05, 64, 16, 50
 QUESTIONS = int(os.environ.get("QUESTIONS", 120_000))
 EPISODES = False                                                        # Stage 80: the episode record (set by --episodes)
+CONCEPTS = False                                                        # Stage 82: concept map + reverse recall (set by --concepts)
 
 
 def words(s):
@@ -97,9 +106,12 @@ def build(M, seed):
             super().__init__()
             s.pick_k = nn.Linear(H, WIN); s.pick_r = nn.Linear(H, WIN); s.pick_v = nn.Linear(H, WIN + 1); s.gate = nn.Linear(H, 1)
             s.wk = nn.Linear(E, D_KEY); s.pp = nn.Linear(D_KEY, N_DG); s.q1 = nn.Linear(H, E); s.q2 = nn.Linear(H, E)
-            n_ep = 4 if EPISODES else 0
+            n_ep = (4 if EPISODES else 0) + (2 if CONCEPTS else 0)
             s.mix = nn.Linear(H, 6 + n_ep); s.dec = nn.Sequential(nn.Linear(H + (6 + n_ep) * E + 4 + (3 if EPISODES else 0), 256), nn.Tanh(), nn.Linear(256, E)); s.temp = nn.Parameter(torch.tensor(5.0))
             if EPISODES: s.beta = nn.Parameter(torch.tensor(10.0)); s.tw = nn.Parameter(torch.zeros(5, 3))      # per episode read: weights of recency, "just before", value match
+            if CONCEPTS:                                                                          # CA1 output -> concepts: one map for every word form, learned, starts as identity
+                s.cmap = nn.Linear(E, E); s.beta_inv = nn.Parameter(torch.tensor(10.0))
+                with torch.no_grad(): s.cmap.weight.copy_(torch.eye(E)); s.cmap.bias.zero_()
             g = torch.Generator().manual_seed(77 + seed); s.register_buffer("dg", torch.randn(D_KEY, N_DG, generator=g) / D_KEY ** 0.5)
 
         def code(s, e):
@@ -141,6 +153,13 @@ def build(M, seed):
                 D, _ = ep(3, A)                                      # chain: the latest event about what was recalled
                 count = (torch.sigmoid(s.beta * (keys * s.code(c1)[:, None]).sum(-1) - 5) * g[..., 0]).sum(-1, keepdim=True)
                 opts += [A, Cb, D, F]; extra = [A, Cb, D, F, count, cos(A, c2), cos(D, c2)]
+                if CONCEPTS:                                                                      # reverse recall: whose event had this as its content ("swan" -> lily)
+                    KW = (ak[..., None] * win).sum(2); KWn = KW / (KW.norm(dim=-1, keepdim=True) + 1e-6)
+                    own = (KWn * (c1 / (c1.norm(dim=-1, keepdim=True) + 1e-6))[:, None]).sum(-1)          # not the question's own subject
+                    sc = s.beta_inv * (Vn * (A / (A.norm(dim=-1, keepdim=True) + 1e-6))[:, None]).sum(-1) + logg - 10 * own
+                    I = (torch.softmax(sc, -1)[..., None] * KW).sum(1)
+                    Ia, _ = ep(4, I)                                                              # then: the latest event about that one
+                    opts += [I, Ia]; extra += [I, Ia]
             w = torch.softmax(s.mix(q), -1)
             z = sum(w[:, i:i + 1] * o for i, o in enumerate(opts)) + w[:, len(opts):len(opts) + 1] * s.dec(torch.cat([q, r1, r2, r3, s1, c1, c2, feats] + extra, -1))
             return z
@@ -148,9 +167,10 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true")
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true")
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
-    global EPISODES; EPISODES = a.episodes; tag = "episodes_" if a.episodes else ""
+    global EPISODES, CONCEPTS; CONCEPTS = a.concepts; EPISODES = a.episodes or a.concepts; a.episodes = EPISODES
+    tag = "concepts_" if a.concepts else "episodes_" if a.episodes else ""
 
     def run(M, C, tok, seed, res):
         torch = M.torch; M.m.eval()
@@ -176,6 +196,7 @@ def main():
 
         def logits(b):
             z = net(*b[:6]); ce = b[6]
+            if CONCEPTS: z = net.cmap(z); ce = net.cmap(ce)
             return net.temp * torch.einsum("be,bce->bc", z / (z.norm(dim=-1, keepdim=True) + 1e-6), ce / (ce.norm(dim=-1, keepdim=True) + 1e-6))
 
         def accuracy(items):

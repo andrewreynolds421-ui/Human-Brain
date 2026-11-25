@@ -4239,6 +4239,50 @@ Published: Sukhbaatar et al. 2015, as tabulated in Pavez et al. 2018.
 - **Training is unstable**: one of four networks failed to learn even task 1 (49 %) and passed 1 task; loss spiked
   in all runs. The best network's 8 is VEGA's ceiling with this circuit so far, not its average.
 
+## Stage 80: an episode record - remembering the past, not only the present
+
+**Question.** Stage 79 failed where a question needs an earlier fact ("where was the apple before the kitchen?",
+three supporting facts, time order): CA3's fast weights keep only the latest fact about each thing. The
+hippocampus also keeps *sequences* of events (time cells, sequence replay). Does a time-ordered episode record fix
+those tasks?
+
+**Set-up** (`scripts/hippo_babi.py --episodes`). Stage 79's circuit plus a record of every stored event, in order,
+and four learned reads from it: the latest event about the question's word; the event where it was with the second
+question word; what was true just before that; and a chain (the latest event about what was recalled). Also a
+count feature. Training: learning rate 5e-4 (was 1e-3) and gradient clipping, because Stage 79's training was
+unstable. Same four reading networks, 160,000 questions (Stage 79: 120,000), same tests.
+
+| | Stage 80 (4 networks) | Stage 79 (same 4 reading networks) | LSTM | MemN2N |
+|---|---|---|---|---|
+| tasks passed (of 20) | **8, 8, 8, 8** | 8, 7, 1, 6 | 4 | 14 |
+| mean error | **21.3-24.8 %** (mean 22.5) | 23.9-38.0 % (mean 27.9) | 36.4 % | 7.5 % |
+
+Mean error lower in 4 / 4 networks (by 2.2-13.2 points).
+
+| task (mean of 4) | Stage 80 | Stage 79 | |
+|---|---|---|---|
+| 10 "maybe" | 92.3 | 73.0 | +19 |
+| 6 yes / no | 99.3 | 84.2 | +15 |
+| 2 two facts | 69.4 | 60.8 | +9 |
+| 3 three facts | 46.3 | 38.1 | +8 |
+| 14 time order | 65.2 | 58.3 | +7 |
+| 17 left / right | 60.9 | 55.5 | +5 (chance is 50) |
+| 8 lists | 69.5 | 77.0 | -7.5 |
+| 15 deduction | 56.2 | 55.8 | 0 |
+| 16 induction | 48.8 | 49.4 | 0 |
+| 19 path finding | 10.7 | 8.9 | 0 (chance) |
+
+- **The record helps where it was aimed, but not enough to pass:** two facts, three facts and time order all rise
+  7-9 points and stay far below 95 %. "Before" is now readable; picking *which* past event answers the question is
+  still mostly wrong.
+- **Training is now stable**: no network failed (Stage 79's network 2 failed at 1 / 20; here 8 / 20). This is
+  **confounded**: the learning rate, clipping and longer training changed together with the record, so the
+  stability (and part of the gains) may come from the optimiser, not the record. Not separated (no control run).
+- **Deduction and induction did not move at all.** Diagnosis: VEGA's reading network groups words by number before
+  meaning - "wolves" is closer to "cats" (0.50) than to "wolf" (0.13); "mice" to "mouse" 0.29. A rule learned as
+  "sheep are afraid of wolves" cannot be matched to the answer "wolf". Stage 82 tests this.
+- World test 77-97 % (network 2 lowest; Stage 79 88-92 %).
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

@@ -470,6 +470,10 @@ pointer_s*.pt (use these). Stage 78: bAbI (`scripts/babi_eval.py`, data /home/cl
 Stage 79 (24 Nov): all 20 bAbI tasks jointly (`scripts/hippo_babi.py`) - best network 8/20 passed (LSTM 4, MemN2N 14),
 mean error 24 %; fails time order, 3 facts, deduction, induction, left/right, paths (reasoning, history). Unstable
 training (1 of 4 failed). Models /home/claude/models/babi_all/s*.pt. User's next: research.
+Stage 80 (25 Nov): episode record (`hippo_babi.py --episodes`) - 8/20 in all 4 networks (Stage 79: 8,7,1,6), mean
+error 22.5 % (27.9); two/three facts, time order +7-9 but still failing; deduction/induction unchanged. Confound:
+lr/clipping changed too. Models /home/claude/models/babi_all/episodes_s*.pt. Stage 82 queued (`--concepts`: concept
+map on CA1 output and answers + reverse recall for induction).
 Stage 81 (24 Nov): hippocampus wired from data (`scripts/hippo_wired.py`; world: `hippo_wired_world.py`, bAbI:
 `hippo_wired_babi.py`): populations from human counts (DG 1,471 / CA3 265 / CA1 1,569 / SUB 441 at EC II = 64),
 46 mossy-fibre inputs per CA3 cell, PP-only recall cue + CA3 recurrent completion, Schaffer delta rule vs EC III

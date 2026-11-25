@@ -844,3 +844,12 @@ budget of 120,000 questions (the published 10k results train for many passes ove
 examples. Stories cut to the last 50 sentences. Published comparison (LSTM 4 passed / 36.4 % mean error; MemN2N
 14 / 7.5 %) from Pavez et al. 2018 Table 1, quoting Sukhbaatar et al. 2015. One network (s2) trained badly
 (task 1 49 %); reported, not dropped.
+
+## 59. Follow-up (25 November): Stage 80 — episode record
+
+Four networks, one at a time, 160,000 questions each, 10-minute checkpoints (two resumed after restarts). Paired
+with Stage 79 by reading network. Confound recorded: learning rate (1e-3 -> 5e-4), gradient clipping and question
+budget (120k -> 160k) changed with the episode record; no optimiser-only control, so "stable training" is not
+attributed to the record. Result files results/babi_all/episodes_s*.json; summary stage80_summary.json
+(`scripts/analysis/stage80.py`). Lists task fell 7.5 points on average (per network +4.5, -15.3, -18.7, -0.5): a real loss in two networks, reported.
+
