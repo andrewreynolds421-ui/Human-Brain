@@ -486,3 +486,9 @@ takes the storage route (DG + mossy fibres).
 Stage 81 follow-up (25 Nov): --cond shared (recall cue through DG + mossy fibres + PP, the storage route): worse -
 world 71 % (separate routes 84 %), crowded 48 %, bAbI 0/20 (51.1 %). DG pattern separation breaks near-identical
 cues; recall should bypass the DG (Treves & Rolls 1992). Remaining suspects: CA3 size (265), learned output loop.
+Stage 81 follow-up 2 (25 Nov): CA3_SIZE=1060 (4x human ratio) and more seeds (4 runs on separate cloud machines via
+one-off scheduled tasks, results first pushed to branches stage81-*). World standard: old 94 % (85-100, 4 seeds),
+wired CA3 265 75 % (69-84, 3 seeds), wired CA3 1060 83 % (69-100, 4 seeds: 100 / 71 / 69 / 91). Bimodal: a run
+either finds two-step recall for carried objects (>90 %) or plateaus ~67 %; one-step questions ~99 % everywhere.
+Output loop checked (`scripts/hippo_wired_diag.py`): decoded answer = CA1 answer, not the bottleneck. bAbI cut-down
+with CA3 1060: 0/20 (50.5 %). Next: make the two-step strategy findable (curriculum) or best-of-seeds.

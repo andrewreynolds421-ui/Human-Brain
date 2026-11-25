@@ -1,0 +1,265 @@
+{
+ "cond": "wired",
+ "seed": 1,
+ "stories": 100000,
+ "training": [
+  {
+   "stories": 8000,
+   "val": 0.6175,
+   "minutes": 9.0,
+   "sparsity": {
+    "DG": 0.02005438506603241,
+    "CA3": 0.05047169700264931
+   },
+   "train": 0.611,
+   "diag": {
+    "gate": 0.338,
+    "mix1": 0.993,
+    "cue_store": 0.72,
+    "mf_gain": 3.02
+   }
+  },
+  {
+   "stories": 16000,
+   "val": 0.6225,
+   "minutes": 17.1,
+   "sparsity": {
+    "DG": 0.02022433653473854,
+    "CA3": 0.05058962106704712
+   },
+   "train": 0.653,
+   "diag": {
+    "gate": 0.316,
+    "mix1": 0.998,
+    "cue_store": 0.762,
+    "mf_gain": 3.05
+   }
+  },
+  {
+   "stories": 24000,
+   "val": 0.6425,
+   "minutes": 26.1,
+   "sparsity": {
+    "DG": 0.02005438506603241,
+    "CA3": 0.05070754885673523
+   },
+   "train": 0.662,
+   "diag": {
+    "gate": 0.309,
+    "mix1": 0.999,
+    "cue_store": 0.874,
+    "mf_gain": 3.08
+   }
+  },
+  {
+   "stories": 32000,
+   "val": 0.63,
+   "minutes": 34.7,
+   "sparsity": {
+    "DG": 0.02005438506603241,
+    "CA3": 0.05070754885673523
+   },
+   "train": 0.687,
+   "diag": {
+    "gate": 0.331,
+    "mix1": 0.999,
+    "cue_store": 0.903,
+    "mf_gain": 3.11
+   }
+  },
+  {
+   "stories": 40000,
+   "val": 0.6825,
+   "minutes": 43.3,
+   "sparsity": {
+    "DG": 0.02005438506603241,
+    "CA3": 0.05047169700264931
+   },
+   "train": 0.681,
+   "diag": {
+    "gate": 0.307,
+    "mix1": 0.999,
+    "cue_store": 0.926,
+    "mf_gain": 3.14
+   }
+  },
+  {
+   "stories": 48000,
+   "val": 0.665,
+   "minutes": 52.8,
+   "sparsity": {
+    "DG": 0.019714480265975,
+    "CA3": 0.050235848873853683
+   },
+   "train": 0.693,
+   "diag": {
+    "gate": 0.3,
+    "mix1": 0.999,
+    "cue_store": 0.919,
+    "mf_gain": 3.17
+   }
+  },
+  {
+   "stories": 56000,
+   "val": 0.6575,
+   "minutes": 62.4,
+   "sparsity": {
+    "DG": 0.02005438506603241,
+    "CA3": 0.05000000074505806
+   },
+   "train": 0.7,
+   "diag": {
+    "gate": 0.302,
+    "mix1": 0.999,
+    "cue_store": 0.932,
+    "mf_gain": 3.19
+   }
+  },
+  {
+   "stories": 64000,
+   "val": 0.675,
+   "minutes": 71.5,
+   "sparsity": {
+    "DG": 0.019714480265975,
+    "CA3": 0.05070754885673523
+   },
+   "train": 0.689,
+   "diag": {
+    "gate": 0.332,
+    "mix1": 1.0,
+    "cue_store": 0.909,
+    "mf_gain": 3.23
+   }
+  },
+  {
+   "stories": 72000,
+   "val": 0.645,
+   "minutes": 79.8,
+   "sparsity": {
+    "DG": 0.020351801067590714,
+    "CA3": 0.05047169700264931
+   },
+   "train": 0.684,
+   "diag": {
+    "gate": 0.299,
+    "mix1": 1.0,
+    "cue_store": 0.877,
+    "mf_gain": 3.25
+   }
+  },
+  {
+   "stories": 80000,
+   "val": 0.6525,
+   "minutes": 88.3,
+   "sparsity": {
+    "DG": 0.02022433653473854,
+    "CA3": 0.05047169700264931
+   },
+   "train": 0.672,
+   "diag": {
+    "gate": 0.315,
+    "mix1": 1.0,
+    "cue_store": 0.845,
+    "mf_gain": 3.28
+   }
+  },
+  {
+   "stories": 88000,
+   "val": 0.6825,
+   "minutes": 96.8,
+   "sparsity": {
+    "DG": 0.02022433653473854,
+    "CA3": 0.049764152616262436
+   },
+   "train": 0.698,
+   "diag": {
+    "gate": 0.31,
+    "mix1": 1.0,
+    "cue_store": 0.924,
+    "mf_gain": 3.29
+   }
+  },
+  {
+   "stories": 96000,
+   "val": 0.675,
+   "minutes": 104.9,
+   "sparsity": {
+    "DG": 0.019714480265975,
+    "CA3": 0.05094339698553085
+   },
+   "train": 0.696,
+   "diag": {
+    "gate": 0.337,
+    "mix1": 1.0,
+    "cue_store": 0.941,
+    "mf_gain": 3.33
+   }
+  },
+  {
+   "stories": 100000,
+   "val": 0.695,
+   "minutes": 108.9,
+   "sparsity": {
+    "DG": 0.02022433653473854,
+    "CA3": 0.05070754885673523
+   },
+   "train": 0.716,
+   "diag": {
+    "gate": 0.362,
+    "mix1": 1.0,
+    "cue_store": 0.94,
+    "mf_gain": 3.34
+   }
+  }
+ ],
+ "provenance": {
+  "sizes": "human counts West & Gundersen 1990 (DG, CA3-2, CA1, subiculum) and Gomez-Isla 1996 / Insausti (EC II 652,500, EC III 3,590,500), scaled to EC II = 64",
+  "mf_in": "46 mossy-fibre inputs per CA3 cell, rat (Amaral et al. 1990)",
+  "pp_rc": "perforant path ~3,750 and recurrent ~12,000 synapses per CA3 cell (rat) exceed the scaled populations, so both are dense here",
+  "dg_active": "2 % (model literature); CA3 5 % ASSUMED; inhibition by a basket-cell feedback loop",
+  "neurons": "rate model, not spiking"
+ },
+ "sizes": {
+  "EC2": 64,
+  "EC3": 352,
+  "DG": 1471,
+  "CA3": 1060,
+  "CA1": 1569,
+  "SUB": 441
+ },
+ "same": {
+  "all": 0.711,
+  "where_person": 0.488,
+  "who_has": 0.896,
+  "carried_objects": 0.73,
+  "when_cue_wrong": 0.756
+ },
+ "held_names": {
+  "all": 0.675,
+  "where_person": 0.48,
+  "who_has": 0.784,
+  "carried_objects": 0.718,
+  "when_cue_wrong": 0.7254
+ },
+ "held_objects_places": {
+  "all": 0.677,
+  "where_person": 0.496,
+  "who_has": 0.86,
+  "carried_objects": 0.676,
+  "when_cue_wrong": 0.7262
+ },
+ "long": {
+  "all": 0.628,
+  "where_person": 0.456,
+  "who_has": 0.824,
+  "carried_objects": 0.616,
+  "when_cue_wrong": 0.6565
+ },
+ "crowded": {
+  "all": 0.471,
+  "where_person": 0.396,
+  "who_has": 0.552,
+  "carried_objects": 0.468,
+  "when_cue_wrong": 0.4954
+ }
+}
