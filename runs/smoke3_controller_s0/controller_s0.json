@@ -1,0 +1,123 @@
+{
+ "seed": 0,
+ "questions": 600,
+ "training": [
+  {
+   "questions": 592,
+   "minutes": 0.3,
+   "loss": 1.625
+  }
+ ],
+ "tasks": {
+  "qa1_single-supporting-fact": 0.498,
+  "qa2_two-supporting-facts": 0.384,
+  "qa3_three-supporting-facts": 0.152,
+  "qa4_two-arg-relations": 0.223,
+  "qa5_three-arg-relations": 0.292,
+  "qa6_yes-no-questions": 0.472,
+  "qa7_counting": 0.526,
+  "qa8_lists-sets": 0.282,
+  "qa9_simple-negation": 0.644,
+  "qa10_indefinite-knowledge": 0.485,
+  "qa11_basic-coreference": 0.231,
+  "qa12_conjunction": 0.603,
+  "qa13_compound-coreference": 0.127,
+  "qa14_time-reasoning": 0.248,
+  "qa15_basic-deduction": 0.181,
+  "qa16_basic-induction": 0.452,
+  "qa17_positional-reasoning": 0.508,
+  "qa18_size-reasoning": 0.467,
+  "qa19_path-finding": 0.073,
+  "qa20_agents-motivations": 0.122
+ },
+ "passed_95": 0,
+ "mean_error": 65.15,
+ "controller": {
+  "qa1_single-supporting-fact": {
+   "steps": 1.15,
+   "weight": 0.07
+  },
+  "qa2_two-supporting-facts": {
+   "steps": 1.2,
+   "weight": 0.063
+  },
+  "qa3_three-supporting-facts": {
+   "steps": 1.17,
+   "weight": 0.068
+  },
+  "qa4_two-arg-relations": {
+   "steps": 1.46,
+   "weight": 0.081
+  },
+  "qa5_three-arg-relations": {
+   "steps": 1.31,
+   "weight": 0.059
+  },
+  "qa6_yes-no-questions": {
+   "steps": 1.17,
+   "weight": 0.071
+  },
+  "qa7_counting": {
+   "steps": 1.41,
+   "weight": 0.059
+  },
+  "qa8_lists-sets": {
+   "steps": 1.31,
+   "weight": 0.056
+  },
+  "qa9_simple-negation": {
+   "steps": 1.19,
+   "weight": 0.071
+  },
+  "qa10_indefinite-knowledge": {
+   "steps": 1.26,
+   "weight": 0.072
+  },
+  "qa11_basic-coreference": {
+   "steps": 1.17,
+   "weight": 0.069
+  },
+  "qa12_conjunction": {
+   "steps": 1.14,
+   "weight": 0.067
+  },
+  "qa13_compound-coreference": {
+   "steps": 1.16,
+   "weight": 0.069
+  },
+  "qa14_time-reasoning": {
+   "steps": 1.21,
+   "weight": 0.074
+  },
+  "qa15_basic-deduction": {
+   "steps": 1.6,
+   "weight": 0.096
+  },
+  "qa16_basic-induction": {
+   "steps": 1.28,
+   "weight": 0.061
+  },
+  "qa17_positional-reasoning": {
+   "steps": 1.51,
+   "weight": 0.062
+  },
+  "qa18_size-reasoning": {
+   "steps": 1.31,
+   "weight": 0.069
+  },
+  "qa19_path-finding": {
+   "steps": 1.22,
+   "weight": 0.056
+  },
+  "qa20_agents-motivations": {
+   "steps": 1.36,
+   "weight": 0.065
+  }
+ },
+ "world": {
+  "same": 0.515,
+  "held_names": 0.5,
+  "held_objects_places": 0.572,
+  "long": 0.49
+ }
+}
