@@ -35,7 +35,7 @@ def main():
     for t in tasks:
         n = [pct(new[s]["tasks"][t]) for s in paired]; o = [pct(old[s]["tasks"][t]) for s in paired]
         summ["tasks"][t]["change"] = round(float(np.mean(np.subtract(n, o))), 1)
-    json.dump(summ, open(os.path.join(R, f"stage{80 if NEW == "episodes_" else 82}_summary.json"), "w"), indent=1)
+    json.dump(summ, open(os.path.join(R, f"stage{80 if NEW == 'episodes_' else 82}_summary.json"), "w"), indent=1)
     print("passed", summ["passed"], "was", summ["passed_old"]); print("mean error", summ["mean_error"], "was", summ["mean_error_old"], summ["error_drop_paired"])
     for t, v in summ["tasks"].items(): print(f"{t:32s} {np.mean(v['new']):6.1f}  was {np.mean(v['old']) if v['old'] else float('nan'):6.1f}  change {v['change']:+5.1f}  {v['new']}")
     print("world", summ["world"])
