@@ -77,6 +77,7 @@ def build_core(torch, E, seed, mode="wired"):
             s.ta = nn.Linear(S["EC3"], S["CA1"])                                                             # temporoammonic EC III -> CA1
             s.sub = nn.Linear(S["CA1"], S["SUB"]); s.out = nn.Linear(S["SUB"], E)                            # CA1 -> subiculum -> EC V -> cortex
             s.sparsity = {}
+            if os.environ.get("BIG_LOOP") == "1": s.ec5_ec2 = nn.Linear(S["SUB"], S["EC2"])                 # deep -> superficial entorhinal (the big loop)
 
         def dg(s, k):
             d = inhibit(torch.relu(k @ s.pp_dg), DG_ACTIVE); s.sparsity["DG"] = float((d > 0).float().mean()); return unit(d)
@@ -130,6 +131,16 @@ def build_core(torch, E, seed, mode="wired"):
             if mode != "no_rc" and mem["C"]:
                 for _ in range(RC_STEPS): c = unit(inhibit(s.rc_gain * s.apply(mem, "eR", c) + s.cue_gain * unit(c0), CA3_ACTIVE))
             return c
+
+        def recall_full(s, mem, cue_e=None, ec2=None):
+            """recall from a cortical word (cue_e) or straight from an entorhinal layer II pattern (ec2, big loop);
+            returns the decoded word, the CA3 pattern and the entorhinal layer V output (subiculum)"""
+            k = s.ec2(cue_e) if ec2 is None else ec2; c0 = s.pp3(k); c = unit(inhibit(c0, CA3_ACTIVE))
+            if mode != "no_rc" and mem["C"]:
+                for _ in range(RC_STEPS): c = unit(inhibit(s.rc_gain * s.apply(mem, "eR", c) + s.cue_gain * unit(c0), CA3_ACTIVE))
+            a = s.apply(mem, "eS", c)
+            if a is None: a = torch.zeros(c.shape[0], SIZE["CA1"])
+            ec5 = torch.relu(s.sub(a)); return s.out(ec5), c, ec5
 
         def recall(s, mem, cue_e):
             c = s.ca3_cue_mem(cue_e, mem); a = s.apply(mem, "eS", c)

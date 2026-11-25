@@ -8,6 +8,7 @@ recurrent collaterals and Schaffer synapses (hippo_wired.WiredCore).
 
 Conditions: wired (full) | no_rc (no recurrent completion) | dense_mf (mossy fibres all-to-all and weak)
             | old (evaluate the Stage 77 pointer_s*.pt models here, no training)
+BIG_LOOP=1: the second recall is cued from entorhinal layer V output (via EC V -> EC II), not the decoded word.
 CURRICULUM=1: one-step questions first, then short stories with carried objects, then the normal mix.
 Tests: Stage 74/77's four sets, plus *crowded*: 7 people and 7 objects in 4 places, 20-27 events - many similar
 memories, where pattern separation should matter.
@@ -69,7 +70,10 @@ def build(M, seed, mode):
             for t in range(T): s.core.store(mem, kw[:, t], v[:, t], g[:, t])
             sc = (qe * s.qproj(q)[:, None, :]).sum(-1) + torch.log(qmask + 1e-9)
             qw = (torch.softmax(sc, -1)[..., None] * qe).sum(1)
-            r1, c1 = s.core.recall(mem, qw); r2, _ = s.core.recall(mem, r1)
+            if os.environ.get("BIG_LOOP") == "1":                 # second recall cued from the entorhinal output itself (CA1 -> SUB -> EC V -> EC II)
+                r1, c1, ec5 = s.core.recall_full(mem, qw); r2, _, _ = s.core.recall_full(mem, ec2=s.core.ec5_ec2(ec5))
+            else:
+                r1, c1 = s.core.recall(mem, qw); r2, _ = s.core.recall(mem, r1)
             w = torch.softmax(s.mix(q), -1)
             with torch.no_grad():
                 cs = s.core.ca3_store(qw); s.diag = dict(gate=round(float(g.sum() / mask.sum()), 3), mix1=round(float(w[:, 0].mean()), 3),
