@@ -1,30 +1,58 @@
 [
  {
-  "name": "controller2_s0",
-  "flags": "--ctrl-only",
+  "name": "loop_s0",
+  "flags": "--loop",
   "seed": 0,
   "questions": 160000,
-  "env": ""
+  "env": "DUMP=15,16,3"
  },
  {
-  "name": "controller2_s1",
-  "flags": "--ctrl-only",
+  "name": "loop_s1",
+  "flags": "--loop",
   "seed": 1,
   "questions": 160000,
-  "env": ""
+  "env": "DUMP=15,16,3"
  },
  {
-  "name": "controller2_s2",
-  "flags": "--ctrl-only",
+  "name": "loop_s2",
+  "flags": "--loop",
   "seed": 2,
   "questions": 160000,
-  "env": ""
+  "env": "DUMP=15,16,3"
  },
  {
-  "name": "controller2_s3",
-  "flags": "--ctrl-only",
+  "name": "loop_s3",
+  "flags": "--loop",
   "seed": 3,
   "questions": 160000,
-  "env": ""
+  "env": "DUMP=15,16,3"
+ },
+ {
+  "name": "loop_controller_s0",
+  "flags": "--loop --controller",
+  "seed": 0,
+  "questions": 160000,
+  "env": "DUMP=15,16,3"
+ },
+ {
+  "name": "loop_controller_s1",
+  "flags": "--loop --controller",
+  "seed": 1,
+  "questions": 160000,
+  "env": "DUMP=15,16,3"
+ },
+ {
+  "name": "loop_controller_s2",
+  "flags": "--loop --controller",
+  "seed": 2,
+  "questions": 160000,
+  "env": "DUMP=15,16,3"
+ },
+ {
+  "name": "loop_controller_s3",
+  "flags": "--loop --controller",
+  "seed": 3,
+  "questions": 160000,
+  "env": "DUMP=15,16,3"
  }
 ]

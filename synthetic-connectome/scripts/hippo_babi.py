@@ -43,6 +43,12 @@ or recall again (at most 6 steps; a small cost per step, ASSUMED 0.003). Logs me
 --steady: control - Stage 79's circuit with only Stage 80's learning settings (lr 5e-4, clipping).
 
     QUESTIONS=160000 python scripts/hippo_babi.py --controller --seed 0
+
+Stage 84 (--loop, includes the episode record; with --controller the controller's recalls re-enter too): chained
+recall goes through a learned re-entry map (CA1 -> deep EC -> superficial EC; "big-loop recurrence", Kumaran &
+McClelland 2012) instead of reusing the recalled word as the next cue unchanged. Starts as an exact copy (Stage 80).
+
+    QUESTIONS=160000 python scripts/hippo_babi.py --loop --seed 0
 """
 import argparse, json, os, re, sys, time
 import numpy as np
@@ -58,6 +64,7 @@ QUESTIONS = int(os.environ.get("QUESTIONS", 120_000))
 EPISODES = False                                                        # Stage 80: the episode record (set by --episodes)
 CONTROLLER = False                                                      # controller: prefrontal working memory + basal-ganglia recall loop (set by --controller)
 K_STEPS = 6; PONDER = 0.003; CTRL_ONLY = False                         # --ctrl-only: the controller is the only way to chain recalls; step cost phased in                                             # most recall steps; cost per step (ASSUMED)
+LOOP = False                                                            # Stage 84: learned big-loop re-entry (CA1 -> EC deep -> EC superficial) for chained recall (--loop)
 CONCEPTS = False                                                        # Stage 82: concept map + reverse recall (set by --concepts)
 
 
@@ -129,6 +136,9 @@ def build(M, seed):
                 s.stop = nn.Linear(P, 1)                                                          # basal ganglia: answer now, or recall again
                 s.out = nn.Sequential(nn.Linear(P + E, 256), nn.Tanh(), nn.Linear(256, E))
                 with torch.no_grad(): s.stop.bias.fill_(-1.0)
+            if LOOP:                                                                              # re-entry: recalled content -> next cue; starts as a plain copy
+                s.reent = nn.Sequential(nn.Linear(E + H, 256), nn.Tanh(), nn.Linear(256, E))
+                with torch.no_grad(): s.reent[2].weight.zero_(); s.reent[2].bias.zero_()
             g = torch.Generator().manual_seed(77 + seed); s.register_buffer("dg", torch.randn(D_KEY, N_DG, generator=g) / D_KEY ** 0.5)
 
         def code(s, e):
@@ -150,7 +160,8 @@ def build(M, seed):
             lm = torch.log(qmask + 1e-9)
             c1 = (torch.softmax((qe * s.q1(q)[:, None]).sum(-1) / Ed ** 0.5 + lm, -1)[..., None] * qe).sum(1)
             c2 = (torch.softmax((qe * s.q2(q)[:, None]).sum(-1) / Ed ** 0.5 + lm, -1)[..., None] * qe).sum(1)
-            r1 = read(c1); r2 = read(r1); r3 = read(r2); s1 = read(c2)
+            R = (lambda x: x + s.reent(torch.cat([x, q], -1))) if LOOP else (lambda x: x)        # Kumaran & McClelland 2012: recurrence through EC
+            r1 = read(c1); r2 = read(R(r1)); r3 = read(R(r2)); s1 = read(c2)
             if CTRL_ONLY: r2 = torch.zeros_like(r1); r3 = torch.zeros_like(r1)                  # no fixed second / third step
             cos = lambda a, b: (a * b).sum(-1, keepdim=True) / (a.norm(dim=-1, keepdim=True) * b.norm(dim=-1, keepdim=True) + 1e-6)
             feats = torch.cat([cos(r1, c2), cos(r2, c2), cos(r3, c2), r1.norm(dim=-1, keepdim=True)], -1)
@@ -168,7 +179,7 @@ def build(M, seed):
                 A, tA = ep(0, c1)                                    # the latest event about the question's word
                 F, tF = ep(1, c1, val=c2)                            # the event where it was with the second question word ("... the bathroom")
                 Cb, _ = ep(2, c1, tau=tF)                            # what was true just before that
-                D, _ = ep(3, A)                                      # chain: the latest event about what was recalled
+                D, _ = ep(3, R(A))                                   # chain: the latest event about what was recalled
                 if CTRL_ONLY: D = torch.zeros_like(A); Cb = torch.zeros_like(A)
                 count = (torch.sigmoid(s.beta * (keys * s.code(c1)[:, None]).sum(-1) - 5) * g[..., 0]).sum(-1, keepdim=True)
                 opts += [A, Cb, D, F]; extra = [A, Cb, D, F, count, cos(A, c2), cos(D, c2)]
@@ -190,7 +201,7 @@ def build(M, seed):
                             acts.append((torch.softmax(sc, -1)[..., None] * KW).sum(1))
                         pa = torch.softmax(s.act(hp), -1); r = sum(pa[:, i:i + 1] * x for i, x in enumerate(acts))
                         tau = pa[:, 0] * tau + pa[:, 1] * t1 + pa[:, 2] * t2 + (pa[:, 3] * tau if CONCEPTS else 0)   # the time pointer moves with episode reads
-                        hp = s.pfc(torch.cat([r, cue, cos(r, c1), cos(r, c2), r.norm(dim=-1, keepdim=True)], -1), hp); found.append(r)
+                        hp = s.pfc(torch.cat([r, cue, cos(r, c1), cos(r, c2), r.norm(dim=-1, keepdim=True)], -1), hp); found.append(R(r))
                         p = torch.sigmoid(s.stop(hp))[:, 0] if k < K_STEPS - 1 else torch.ones(B)
                         zc = zc + (remain * p)[:, None] * s.out(torch.cat([hp, r], -1)); steps = steps + remain; remain = remain * (1 - p)
                     s.steps = steps; opts += [zc]; extra += [zc]
@@ -201,10 +212,11 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true")   # control: Stage 79 circuit, Stage 80 learning settings only
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true")   # control: Stage 79 circuit, Stage 80 learning settings only
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
-    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
+    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP; LOOP = a.loop; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
     if a.steady: tag = "steady_"
+    elif a.loop: tag = "loop_" + ("controller_" if a.controller else "")
     else: tag = ("controller2_" if a.ctrl_only else "controller_" if a.controller else "") + ("concepts_" if a.concepts else "" if a.controller else "episodes_" if a.episodes else "")
 
     def run(M, C, tok, seed, res):
@@ -241,7 +253,7 @@ def main():
             with torch.no_grad():
                 for k in range(0, len(items), 32):
                     it = items[k:k + 32]; pr = logits(batch(it)).argmax(1).numpy(); hit.append(pr == np.array([i["y"] for i in it]))
-                    if DUMP and name: dump.setdefault(name, []).extend(dict(story=" ".join(" ".join(x) if isinstance(x, (list, tuple)) else str(x) for x in i["story"][-80:]), q=" ".join(map(str, i["q"])), y=" ".join(map(str, i["cands"][i["y"]])), p=" ".join(map(str, i["cands"][j]))) for i, j in zip(it, pr))
+                    if DUMP and name and (DUMP == "1" or any(name.startswith(f"qa{n}_") for n in DUMP.split(","))): dump.setdefault(name, []).extend(dict(story=" ".join(" ".join(x) if isinstance(x, (list, tuple)) else str(x) for x in i["story"][-80:]), q=" ".join(map(str, i["q"])), y=" ".join(map(str, i["cands"][i["y"]])), p=" ".join(map(str, i["cands"][j]))) for i, j in zip(it, pr))
                     if CONTROLLER: st.append(net.steps.numpy()); wc.append(net.w[:, -2].numpy())      # recall steps taken; weight on the controller's answer
             if CONTROLLER and name: how[name] = dict(steps=round(float(np.concatenate(st).mean()), 2), weight=round(float(np.concatenate(wc).mean()), 3))
             net.train(); return float(np.concatenate(hit).mean())
