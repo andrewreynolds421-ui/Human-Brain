@@ -504,3 +504,7 @@ time order +10) but stops after ~1 step; --ctrl-only takes more steps on countin
 All at 8 passed: retrieval works, composition does not (answer of recall 1 must become the cue of recall 2) - same
 conclusion as the wired line. Summary results/babi_all/stage83_summary.json. Models /home/claude/models/babi_all/.
 
+Stage 81 follow-up 4 (25 Nov): BIG_LOOP=1 (second recall cued from EC V -> EC II, not the decoded word), 8 runs on
+cloud machines: CA3 265 2/4 past 85 % (mean 80 %; was 0/3, 75 %), CA3 1060 2/4 (81 %). Stalled runs now fail
+one-step questions (where-person ~49 %) while carried objects reach 71 %: they always use the second recall. Next:
+the per-question choice between first and second recall (mix), e.g. score both recalls during training.
