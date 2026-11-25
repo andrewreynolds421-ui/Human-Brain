@@ -32,11 +32,13 @@ jobs:
         with: {python-version: "3.12"}
       - name: libraries
         run: |
+          mkdir -p /tmp/out; exec > >(tee -a /tmp/out/setup.txt) 2>&1
           pip install -q torch --index-url https://download.pytorch.org/whl/cpu
           pip install -q numpy pandas scikit-learn spacy
           pip install -q https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
       - name: unpack the VEGA bundle at /home/claude, then this branch's code over it
         run: |
+          exec > >(tee -a /tmp/out/setup.txt) 2>&1; set -x
           git fetch -q --depth 1 origin vega-bundle && mkdir -p /tmp/b && git archive FETCH_HEAD | tar x -C /tmp/b
           cd /tmp/b && sha256sum -c vega_hippo_bundle.tar.gz.sha256 --ignore-missing && cat vega_hippo_bundle.tar.gz.part* > b.tgz
           sudo mkdir -p /home/claude && sudo chown "$USER" /home/claude && tar xzf b.tgz -C / && rm b.tgz
@@ -44,15 +46,15 @@ jobs:
       - name: train ${{ matrix.job.name }}
         working-directory: /home/claude/synthetic-connectome
         run: |
-          mkdir -p /home/claude/out
-          ${{ matrix.job.env }} QUESTIONS=${{ matrix.job.questions }} BABI_OUT=/home/claude/out BABI_DATA=/home/claude/out PYTHONPATH=. THREADS=4 \
-            python scripts/hippo_babi.py ${{ matrix.job.flags }} --seed ${{ matrix.job.seed }} > /home/claude/out/train.log 2>&1
+          ${{ matrix.job.env }} QUESTIONS=${{ matrix.job.questions }} BABI_OUT=/tmp/out BABI_DATA=/tmp/out PYTHONPATH=. THREADS=4 \
+            python scripts/hippo_babi.py ${{ matrix.job.flags }} --seed ${{ matrix.job.seed }} > /tmp/out/train.txt 2>&1
       - name: push the result (or the log)
         if: always()
         run: |
           D="runs/${{ matrix.job.name }}"; mkdir -p "$D"
-          cp /home/claude/out/*.json /home/claude/out/*.pt "$D"/ 2>/dev/null || true
-          tail -c 200000 /home/claude/out/train.log > "$D/train.log" 2>/dev/null || echo "no log" > "$D/train.log"
+          cp /tmp/out/*.json /tmp/out/*.pt "$D"/ 2>/dev/null || true
+          for f in setup train; do tail -c 200000 /tmp/out/$f.txt > "$D/$f.txt" 2>/dev/null || echo "none" > "$D/$f.txt"; done
+          df -h / > "$D/machine.txt"; nproc >> "$D/machine.txt"; free -m >> "$D/machine.txt"
           echo "${{ job.status }}" > "$D/status.txt"
           git config user.name "vega-runs"; git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$D" && git commit -q -m "run ${{ matrix.job.name }}: ${{ job.status }}"
