@@ -34,6 +34,15 @@ than "wolf" (number before meaning), so a correctly recalled "mice" could not be
 about that one (induction: "lily is a swan, lily is white, bernhard is a swan - what colour is bernhard?").
 
     QUESTIONS=160000 python scripts/hippo_babi.py --concepts --seed 0
+
+Stage 83 (--controller, includes the episode record; compare with Stage 80): a recall loop instead of fixed steps.
+Prefrontal working memory (GRU, MODEL) holds the question and everything recalled so far; each step it forms a cue
+(attention over the question words and earlier recalls), the basal ganglia (MODEL) choose how to ask the
+hippocampus (CA3 lookup / latest event about the cue / the event before the last one found) and whether to answer
+or recall again (at most 6 steps; a small cost per step, ASSUMED 0.003). Logs mean steps per task.
+--steady: control - Stage 79's circuit with only Stage 80's learning settings (lr 5e-4, clipping).
+
+    QUESTIONS=160000 python scripts/hippo_babi.py --controller --seed 0
 """
 import argparse, json, os, re, sys, time
 import numpy as np
@@ -47,6 +56,8 @@ DATA = os.environ.get("BABI_DATA", "/home/claude/models/babi_all")
 WIN, N_DG, ACTIVE, D_KEY, BS, MAX_SENT = 8, 512, 0.05, 64, 16, 50
 QUESTIONS = int(os.environ.get("QUESTIONS", 120_000))
 EPISODES = False                                                        # Stage 80: the episode record (set by --episodes)
+CONTROLLER = False                                                      # controller: prefrontal working memory + basal-ganglia recall loop (set by --controller)
+K_STEPS = 6; PONDER = 0.003                                             # most recall steps; cost per step (ASSUMED)
 CONCEPTS = False                                                        # Stage 82: concept map + reverse recall (set by --concepts)
 
 
@@ -106,12 +117,18 @@ def build(M, seed):
             super().__init__()
             s.pick_k = nn.Linear(H, WIN); s.pick_r = nn.Linear(H, WIN); s.pick_v = nn.Linear(H, WIN + 1); s.gate = nn.Linear(H, 1)
             s.wk = nn.Linear(E, D_KEY); s.pp = nn.Linear(D_KEY, N_DG); s.q1 = nn.Linear(H, E); s.q2 = nn.Linear(H, E)
-            n_ep = (4 if EPISODES else 0) + (2 if CONCEPTS else 0)
+            n_ep = (4 if EPISODES else 0) + (2 if CONCEPTS else 0) + (1 if CONTROLLER else 0)
             s.mix = nn.Linear(H, 6 + n_ep); s.dec = nn.Sequential(nn.Linear(H + (6 + n_ep) * E + 4 + (3 if EPISODES else 0), 256), nn.Tanh(), nn.Linear(256, E)); s.temp = nn.Parameter(torch.tensor(5.0))
-            if EPISODES: s.beta = nn.Parameter(torch.tensor(10.0)); s.tw = nn.Parameter(torch.zeros(5, 3))      # per episode read: weights of recency, "just before", value match
+            if EPISODES: s.beta = nn.Parameter(torch.tensor(10.0)); s.tw = nn.Parameter(torch.zeros(8 if CONTROLLER else 5, 3))      # per episode read: weights of recency, "just before", value match
             if CONCEPTS:                                                                          # CA1 output -> concepts: one map for every word form, learned, starts as identity
                 s.cmap = nn.Linear(E, E); s.beta_inv = nn.Parameter(torch.tensor(10.0))
                 with torch.no_grad(): s.cmap.weight.copy_(torch.eye(E)); s.cmap.bias.zero_()
+            if CONTROLLER:                                                                        # PFC: working memory of the question and what was recalled
+                P = 256; s.pfc0 = nn.Linear(H, P); s.pfc = nn.GRUCell(2 * E + 3, P); s.cue_q = nn.Linear(P, E)
+                s.act = nn.Linear(P, 4 if CONCEPTS else 3)                                        # basal ganglia: which way to ask the hippocampus
+                s.stop = nn.Linear(P, 1)                                                          # basal ganglia: answer now, or recall again
+                s.out = nn.Sequential(nn.Linear(P + E, 256), nn.Tanh(), nn.Linear(256, E))
+                with torch.no_grad(): s.stop.bias.fill_(-1.0)
             g = torch.Generator().manual_seed(77 + seed); s.register_buffer("dg", torch.randn(D_KEY, N_DG, generator=g) / D_KEY ** 0.5)
 
         def code(s, e):
@@ -160,22 +177,38 @@ def build(M, seed):
                     I = (torch.softmax(sc, -1)[..., None] * KW).sum(1)
                     Ia, _ = ep(4, I)                                                              # then: the latest event about that one
                     opts += [I, Ia]; extra += [I, Ia]
-            w = torch.softmax(s.mix(q), -1)
+                if CONTROLLER:                                                                    # recall loop: cue -> chosen read -> working memory -> stop?
+                    hp = torch.tanh(s.pfc0(q)); found = []; tau = torch.full((B,), 1.01); remain = torch.ones(B); zc = 0; steps = torch.zeros(B)
+                    for k in range(K_STEPS):
+                        S = torch.cat([qe] + [f[:, None] for f in found], 1); Sm = torch.cat([qmask] + [torch.ones(B, 1)] * len(found), 1)
+                        cue = (torch.softmax((S * s.cue_q(hp)[:, None]).sum(-1) / Ed ** 0.5 + torch.log(Sm + 1e-9), -1)[..., None] * S).sum(1)
+                        r0 = read(cue); r1e, t1 = ep(5, cue); r2e, t2 = ep(6, cue, tau=tau); acts = [r0, r1e, r2e]
+                        if CONCEPTS:
+                            sc = s.beta_inv * (Vn * (cue / (cue.norm(dim=-1, keepdim=True) + 1e-6))[:, None]).sum(-1) + logg - 10 * own
+                            acts.append((torch.softmax(sc, -1)[..., None] * KW).sum(1))
+                        pa = torch.softmax(s.act(hp), -1); r = sum(pa[:, i:i + 1] * x for i, x in enumerate(acts))
+                        tau = pa[:, 0] * tau + pa[:, 1] * t1 + pa[:, 2] * t2 + (pa[:, 3] * tau if CONCEPTS else 0)   # the time pointer moves with episode reads
+                        hp = s.pfc(torch.cat([r, cue, cos(r, c1), cos(r, c2), r.norm(dim=-1, keepdim=True)], -1), hp); found.append(r)
+                        p = torch.sigmoid(s.stop(hp))[:, 0] if k < K_STEPS - 1 else torch.ones(B)
+                        zc = zc + (remain * p)[:, None] * s.out(torch.cat([hp, r], -1)); steps = steps + remain; remain = remain * (1 - p)
+                    s.steps = steps; opts += [zc]; extra += [zc]
+            w = torch.softmax(s.mix(q), -1); s.w = w
             z = sum(w[:, i:i + 1] * o for i, o in enumerate(opts)) + w[:, len(opts):len(opts) + 1] * s.dec(torch.cat([q, r1, r2, r3, s1, c1, c2, feats] + extra, -1))
             return z
     return Hippo2()
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true")
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true")   # control: Stage 79 circuit, Stage 80 learning settings only
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
-    global EPISODES, CONCEPTS; CONCEPTS = a.concepts; EPISODES = a.episodes or a.concepts; a.episodes = EPISODES
-    tag = "concepts_" if a.concepts else "episodes_" if a.episodes else ""
+    global EPISODES, CONCEPTS, CONTROLLER; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
+    if a.steady: tag = "steady_"
+    else: tag = ("controller_" if a.controller else "") + ("concepts_" if a.concepts else "" if a.controller else "episodes_" if a.episodes else "")
 
     def run(M, C, tok, seed, res):
         torch = M.torch; M.m.eval()
         for p in M.m.parameters(): p.requires_grad_(False)
-        net = build(M, a.seed); opt = torch.optim.Adam(net.parameters(), lr=5e-4 if a.episodes else 1e-3); cache = {}
+        net = build(M, a.seed); opt = torch.optim.Adam(net.parameters(), lr=5e-4 if (a.episodes or a.steady) else 1e-3); cache = {}
 
         def emb(c):
             if c not in cache:
@@ -199,11 +232,15 @@ def main():
             if CONCEPTS: z = net.cmap(z); ce = net.cmap(ce)
             return net.temp * torch.einsum("be,bce->bc", z / (z.norm(dim=-1, keepdim=True) + 1e-6), ce / (ce.norm(dim=-1, keepdim=True) + 1e-6))
 
-        def accuracy(items):
-            net.eval(); hit = []
+        how = {}
+
+        def accuracy(items, name=None):
+            net.eval(); hit = []; st = []; wc = []
             with torch.no_grad():
                 for k in range(0, len(items), 32):
                     it = items[k:k + 32]; hit.append((logits(batch(it)).argmax(1).numpy() == np.array([i["y"] for i in it])))
+                    if CONTROLLER: st.append(net.steps.numpy()); wc.append(net.w[:, -2].numpy())      # recall steps taken; weight on the controller's answer
+            if CONTROLLER and name: how[name] = dict(steps=round(float(np.concatenate(st).mean()), 2), weight=round(float(np.concatenate(wc).mean()), 3))
             net.train(); return float(np.concatenate(hit).mean())
 
         tasks = load_all(); rng = np.random.default_rng(700 + a.seed); T = sorted(tasks)
@@ -219,8 +256,10 @@ def main():
                 else:
                     t = T[int(rng.integers(len(T)))]; tr = tasks[t]["train"]; items = [tr[i] for i in rng.choice(len(tr), BS, replace=False)]
                 b = list(batch(items)); y = torch.tensor([i["y"] for i in items])
-                loss = torch.nn.functional.cross_entropy(logits(b), y); opt.zero_grad(); loss.backward()
-                if a.episodes: torch.nn.utils.clip_grad_norm_(net.parameters(), 1.0)               # Stage 80: steadier learning
+                loss = torch.nn.functional.cross_entropy(logits(b), y)
+                if CONTROLLER: loss = loss + PONDER * net.steps.mean()                            # thinking costs time
+                opt.zero_grad(); loss.backward()
+                if a.episodes or a.steady: torch.nn.utils.clip_grad_norm_(net.parameters(), 1.0)               # Stage 80: steadier learning
                 opt.step()
                 if (step + 1) % 1000 == 0 or step + 1 == QUESTIONS // BS:
                     log.append(dict(questions=(step + 1) * BS, minutes=round((time.time() - t0) / 60, 1), loss=round(float(loss.detach()), 3))); print(log[-1], flush=True)
@@ -229,8 +268,9 @@ def main():
         else: net.load_state_dict(torch.load(path))
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={})
         for t in T:
-            acc = accuracy(tasks[t]["test"]); out["tasks"][tasks[t]["name"]] = round(acc, 4); print(tasks[t]["name"], round(acc, 4), flush=True)
+            acc = accuracy(tasks[t]["test"], tasks[t]["name"]); out["tasks"][tasks[t]["name"]] = round(acc, 4); print(tasks[t]["name"], round(acc, 4), flush=True)
         out["passed_95"] = int(sum(v >= 0.95 for v in out["tasks"].values())); out["mean_error"] = round(100 * (1 - np.mean(list(out["tasks"].values()))), 2)
+        out["controller"] = how
         out["world"] = {k: round(accuracy(world_items(None, 0, v)), 4) for k, v in W.test_sets(seed=0).items()}
         json.dump(out, open(os.path.join(OUT, f"{tag}s{a.seed}.json"), "w"), indent=1); print(json.dumps(out), flush=True)
         raise SystemExit
