@@ -25,12 +25,13 @@ model literature (DG ~2 %, Treves & Rolls 1992), CA3 5 % ASSUMED. Rate neurons, 
 
 WiredCore is the drop-in: store(key_emb, content_emb, gate) per event; recall(cue_emb) -> content_emb.
 """
-import math
+import math, os
 import numpy as np
 
 EC2 = 64
 HUMAN = dict(EC2=652_500, EC3=3_590_500, DG=15_000_000, CA3=2_700_000, CA1=16_000_000, SUB=4_500_000)
 SIZE = {k: int(round(v * EC2 / HUMAN["EC2"])) for k, v in HUMAN.items()}           # EC2 64, EC3 352, DG 1472, CA3 265, CA1 1569, SUB 441
+if os.environ.get("CA3_SIZE"): SIZE["CA3"] = int(os.environ["CA3_SIZE"])                 # test: a larger CA3 (breaks the human ratio)
 MF_IN = 46            # granule inputs per CA3 pyramid (rat; Amaral et al. 1990)
 DG_ACTIVE = 0.02      # Treves & Rolls 1992 worked example; DG "ultra-sparse" (Diamantaki et al. 2016)   LITERATURE MODEL VALUE
 CA3_ACTIVE = 0.05     # ASSUMED
