@@ -64,6 +64,7 @@ QUESTIONS = int(os.environ.get("QUESTIONS", 120_000))
 EPISODES = False                                                        # Stage 80: the episode record (set by --episodes)
 CONTROLLER = False                                                      # controller: prefrontal working memory + basal-ganglia recall loop (set by --controller)
 K_STEPS = 6; PONDER = 0.003; CTRL_ONLY = False                         # --ctrl-only: the controller is the only way to chain recalls; step cost phased in                                             # most recall steps; cost per step (ASSUMED)
+ALLCUES = False                                                         # Stage 84b: chain from every question word in parallel (--allcues)
 LOOP = False                                                            # Stage 84: learned big-loop re-entry (CA1 -> EC deep -> EC superficial) for chained recall (--loop)
 CONCEPTS = False                                                        # Stage 82: concept map + reverse recall (set by --concepts)
 
@@ -124,7 +125,7 @@ def build(M, seed):
             super().__init__()
             s.pick_k = nn.Linear(H, WIN); s.pick_r = nn.Linear(H, WIN); s.pick_v = nn.Linear(H, WIN + 1); s.gate = nn.Linear(H, 1)
             s.wk = nn.Linear(E, D_KEY); s.pp = nn.Linear(D_KEY, N_DG); s.q1 = nn.Linear(H, E); s.q2 = nn.Linear(H, E)
-            n_ep = (4 if EPISODES else 0) + (2 if CONCEPTS else 0) + (1 if CONTROLLER else 0)
+            n_ep = (4 if EPISODES else 0) + (2 if CONCEPTS else 0) + (1 if CONTROLLER else 0) + (2 if ALLCUES else 0)
             s.mix = nn.Linear(H, 6 + n_ep); s.dec = nn.Sequential(nn.Linear(H + (6 + n_ep) * E + 4 + (3 if EPISODES else 0), 256), nn.Tanh(), nn.Linear(256, E)); s.temp = nn.Parameter(torch.tensor(5.0))
             if EPISODES: s.beta = nn.Parameter(torch.tensor(10.0)); s.tw = nn.Parameter(torch.zeros(8 if CONTROLLER else 5, 3))      # per episode read: weights of recency, "just before", value match
             if CONCEPTS:                                                                          # CA1 output -> concepts: one map for every word form, learned, starts as identity
@@ -136,6 +137,7 @@ def build(M, seed):
                 s.stop = nn.Linear(P, 1)                                                          # basal ganglia: answer now, or recall again
                 s.out = nn.Sequential(nn.Linear(P + E, 256), nn.Tanh(), nn.Linear(256, E))
                 with torch.no_grad(): s.stop.bias.fill_(-1.0)
+            if ALLCUES: s.qa = nn.Linear(H, E)                                                    # which question word's chain to trust
             if LOOP:                                                                              # re-entry: recalled content -> next cue; starts as a plain copy
                 s.reent = nn.Sequential(nn.Linear(E + H, 256), nn.Tanh(), nn.Linear(256, E))
                 with torch.no_grad(): s.reent[2].weight.zero_(); s.reent[2].bias.zero_()
@@ -162,10 +164,18 @@ def build(M, seed):
             c2 = (torch.softmax((qe * s.q2(q)[:, None]).sum(-1) / Ed ** 0.5 + lm, -1)[..., None] * qe).sum(1)
             R = (lambda x: x + s.reent(torch.cat([x, q], -1))) if LOOP else (lambda x: x)        # Kumaran & McClelland 2012: recurrence through EC
             r1 = read(c1); r2 = read(R(r1)); r3 = read(R(r2)); s1 = read(c2)
+            s.trace = dict(cue1=c1, cue2=c2, r1=r1, R_r1=R(r1), r2=r2, r3=r3, s1=s1)                 # for probing (PROBE=1)
+            allc = []
+            if ALLCUES:                                                                           # every question word starts its own two-step chain
+                X1 = torch.einsum("bln,bne->ble", s.code(qe), Mem); Lq = qe.shape[1]
+                X1R = X1 + s.reent(torch.cat([X1, q[:, None].expand(-1, Lq, -1)], -1)) if LOOP else X1
+                X2 = torch.einsum("bln,bne->ble", s.code(X1R), Mem)
+                aq = torch.softmax((qe * s.qa(q)[:, None]).sum(-1) / Ed ** 0.5 + lm, -1)[..., None]
+                ch1 = (aq * X1).sum(1); ch2 = (aq * X2).sum(1); allc = [ch1, ch2]; s.trace.update(chain1=ch1, chain2=ch2)
             if CTRL_ONLY: r2 = torch.zeros_like(r1); r3 = torch.zeros_like(r1)                  # no fixed second / third step
             cos = lambda a, b: (a * b).sum(-1, keepdim=True) / (a.norm(dim=-1, keepdim=True) * b.norm(dim=-1, keepdim=True) + 1e-6)
             feats = torch.cat([cos(r1, c2), cos(r2, c2), cos(r3, c2), r1.norm(dim=-1, keepdim=True)], -1)
-            opts = [r1, r2, r3, s1, c2]; extra = []
+            opts = [r1, r2, r3, s1, c2] + allc; extra = list(allc)
             if EPISODES:                                                                          # the episode record: every stored event, in order
                 V = torch.stack(vals, 1); tpos = torch.arange(T, dtype=torch.float32)[None] / max(T, 1)
                 logg = torch.log(g[..., 0] + 1e-6) + torch.log(mask + 1e-9)
@@ -182,7 +192,8 @@ def build(M, seed):
                 D, _ = ep(3, R(A))                                   # chain: the latest event about what was recalled
                 if CTRL_ONLY: D = torch.zeros_like(A); Cb = torch.zeros_like(A)
                 count = (torch.sigmoid(s.beta * (keys * s.code(c1)[:, None]).sum(-1) - 5) * g[..., 0]).sum(-1, keepdim=True)
-                opts += [A, Cb, D, F]; extra = [A, Cb, D, F, count, cos(A, c2), cos(D, c2)]
+                s.trace.update(A=A, F=F, Cb=Cb, D=D)
+                opts += [A, Cb, D, F]; extra += [A, Cb, D, F, count, cos(A, c2), cos(D, c2)]
                 if CONCEPTS:                                                                      # reverse recall: whose event had this as its content ("swan" -> lily)
                     KW = (ak[..., None] * win).sum(2); KWn = KW / (KW.norm(dim=-1, keepdim=True) + 1e-6)
                     own = (KWn * (c1 / (c1.norm(dim=-1, keepdim=True) + 1e-6))[:, None]).sum(-1)          # not the question's own subject
@@ -212,11 +223,11 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true")   # control: Stage 79 circuit, Stage 80 learning settings only
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true"); ap.add_argument("--allcues", action="store_true")   # control: Stage 79 circuit, Stage 80 learning settings only
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
-    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP; LOOP = a.loop; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
+    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP; LOOP = a.loop; ALLCUES = a.allcues; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
     if a.steady: tag = "steady_"
-    elif a.loop: tag = "loop_" + ("controller_" if a.controller else "")
+    elif a.loop: tag = "loop_" + ("allcues_" if a.allcues else "") + ("concepts_" if a.concepts else "") + ("controller_" if a.controller else "")
     else: tag = ("controller2_" if a.ctrl_only else "controller_" if a.controller else "") + ("concepts_" if a.concepts else "" if a.controller else "episodes_" if a.episodes else "")
 
     def run(M, C, tok, seed, res):
@@ -281,6 +292,19 @@ def main():
             torch.save(net.state_dict(), path)
             if os.path.exists(ck): os.remove(ck)
         else: net.load_state_dict(torch.load(path))
+        if os.environ.get("PROBE"):                                                           # what is recalled at each step, as the nearest words
+            words = sorted({w for t in T for it in tasks[t]["test"][:300] for w in it["story"] + it["q"] if isinstance(w, str)})
+            WE = torch.stack([emb((w,)) for w in words]); WEn = WE / (WE.norm(dim=-1, keepdim=True) + 1e-6); net.eval()
+            for t in T:
+                if not any(tasks[t]["name"].startswith(f"qa{n}_") for n in os.environ["PROBE"].split(",")): continue
+                for it in tasks[t]["test"][:int(os.environ.get("PROBE_N", "6"))]:
+                    with torch.no_grad(): z = logits(batch([it]))
+                    print("\nSTORY:", " ".join(it["story"][-60:]), "| Q:", " ".join(it["q"]), "| answer", it["cands"][it["y"]], "| said", it["cands"][int(z.argmax())])
+                    for k, v in net.trace.items():
+                        v = v[0] / (v[0].norm() + 1e-6); sim = WEn @ v; top = sim.topk(3)
+                        print(f"   {k:6s}", ", ".join(f"{words[i]} {x:.2f}" for x, i in zip(top.values.tolist(), top.indices.tolist())))
+                    print("   mix   ", " ".join(f"{x:.2f}" for x in net.w[0].tolist()))
+            raise SystemExit
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={})
         for t in T:
             if ONLY and not any(tasks[t]["name"].startswith(f"qa{n}_") for n in ONLY.split(",")): continue
