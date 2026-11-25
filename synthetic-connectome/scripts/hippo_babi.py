@@ -172,6 +172,7 @@ def build(M, seed):
                 X2 = torch.einsum("bln,bne->ble", s.code(X1R), Mem)
                 aq = torch.softmax((qe * s.qa(q)[:, None]).sum(-1) / Ed ** 0.5 + lm, -1)[..., None]
                 ch1 = (aq * X1).sum(1); ch2 = (aq * X2).sum(1); allc = [ch1, ch2]; s.trace.update(chain1=ch1, chain2=ch2)
+                if os.environ.get("PROBE"): s.trace.update({f"w{j}_1": X1[:, j] for j in range(Lq)}); s.trace.update({f"w{j}_2": X2[:, j] for j in range(Lq)}); s.trace["trust"] = aq[..., 0]
             if CTRL_ONLY: r2 = torch.zeros_like(r1); r3 = torch.zeros_like(r1)                  # no fixed second / third step
             cos = lambda a, b: (a * b).sum(-1, keepdim=True) / (a.norm(dim=-1, keepdim=True) * b.norm(dim=-1, keepdim=True) + 1e-6)
             feats = torch.cat([cos(r1, c2), cos(r2, c2), cos(r3, c2), r1.norm(dim=-1, keepdim=True)], -1)
@@ -225,7 +226,7 @@ def build(M, seed):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true"); ap.add_argument("--allcues", action="store_true")   # control: Stage 79 circuit, Stage 80 learning settings only
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
-    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP; LOOP = a.loop; ALLCUES = a.allcues; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
+    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP, ALLCUES; LOOP = a.loop; ALLCUES = a.allcues; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
     if a.steady: tag = "steady_"
     elif a.loop: tag = "loop_" + ("allcues_" if a.allcues else "") + ("concepts_" if a.concepts else "") + ("controller_" if a.controller else "")
     else: tag = ("controller2_" if a.ctrl_only else "controller_" if a.controller else "") + ("concepts_" if a.concepts else "" if a.controller else "episodes_" if a.episodes else "")
@@ -301,11 +302,13 @@ def main():
                     with torch.no_grad(): z = logits(batch([it]))
                     print("\nSTORY:", " ".join(it["story"][-60:]), "| Q:", " ".join(it["q"]), "| answer", it["cands"][it["y"]], "| said", it["cands"][int(z.argmax())])
                     for k, v in net.trace.items():
+                        if k == "trust": print("   trust ", " ".join(f"{w}:{x:.2f}" for w, x in zip(it["q"], v[0].tolist()))); continue
                         v = v[0] / (v[0].norm() + 1e-6); sim = WEn @ v; top = sim.topk(3)
                         print(f"   {k:6s}", ", ".join(f"{words[i]} {x:.2f}" for x, i in zip(top.values.tolist(), top.indices.tolist())))
                     print("   mix   ", " ".join(f"{x:.2f}" for x in net.w[0].tolist()))
             raise SystemExit
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={})
+        out["config"] = dict(EPISODES=EPISODES, CONCEPTS=CONCEPTS, CONTROLLER=CONTROLLER, CTRL_ONLY=CTRL_ONLY, LOOP=LOOP, ALLCUES=ALLCUES, tag=tag, n_params=sum(p.numel() for p in net.parameters()))   # what was actually on
         for t in T:
             if ONLY and not any(tasks[t]["name"].startswith(f"qa{n}_") for n in ONLY.split(",")): continue
             acc = accuracy(tasks[t]["test"], tasks[t]["name"]); out["tasks"][tasks[t]["name"]] = round(acc, 4); print(tasks[t]["name"], round(acc, 4), flush=True)
