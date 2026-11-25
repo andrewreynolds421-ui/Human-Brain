@@ -1,0 +1,35 @@
+{
+ "seed": 0,
+ "questions": 32000,
+ "training": [],
+ "tasks": {
+  "qa1_single-supporting-fact": 0.872,
+  "qa2_two-supporting-facts": 0.388,
+  "qa3_three-supporting-facts": 0.168,
+  "qa4_two-arg-relations": 0.583,
+  "qa5_three-arg-relations": 0.349,
+  "qa6_yes-no-questions": 0.503,
+  "qa7_counting": 0.479,
+  "qa8_lists-sets": 0.336,
+  "qa9_simple-negation": 0.393,
+  "qa10_indefinite-knowledge": 0.413,
+  "qa11_basic-coreference": 0.758,
+  "qa12_conjunction": 0.833,
+  "qa13_compound-coreference": 0.906,
+  "qa14_time-reasoning": 0.259,
+  "qa15_basic-deduction": 0.219,
+  "qa16_basic-induction": 0.433,
+  "qa17_positional-reasoning": 0.52,
+  "qa18_size-reasoning": 0.469,
+  "qa19_path-finding": 0.088,
+  "qa20_agents-motivations": 0.731
+ },
+ "passed_95": 0,
+ "mean_error": 51.5,
+ "world": {
+  "same": 0.598,
+  "held_names": 0.547,
+  "held_objects_places": 0.383,
+  "long": 0.561
+ }
+}

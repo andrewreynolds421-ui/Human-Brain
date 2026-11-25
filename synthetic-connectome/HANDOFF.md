@@ -470,3 +470,12 @@ pointer_s*.pt (use these). Stage 78: bAbI (`scripts/babi_eval.py`, data /home/cl
 Stage 79 (24 Nov): all 20 bAbI tasks jointly (`scripts/hippo_babi.py`) - best network 8/20 passed (LSTM 4, MemN2N 14),
 mean error 24 %; fails time order, 3 facts, deduction, induction, left/right, paths (reasoning, history). Unstable
 training (1 of 4 failed). Models /home/claude/models/babi_all/s*.pt. User's next: research.
+Stage 81 (24 Nov): hippocampus wired from data (`scripts/hippo_wired.py`; world: `hippo_wired_world.py`, bAbI:
+`hippo_wired_babi.py`): populations from human counts (DG 1,471 / CA3 265 / CA1 1,569 / SUB 441 at EC II = 64),
+46 mossy-fibre inputs per CA3 cell, PP-only recall cue + CA3 recurrent completion, Schaffer delta rule vs EC III
+(CA1 comparison), subiculum output, feedback inhibition (settles 2.0 % DG / 5.0 % CA3), EC III-CA1-SUB loop
+pre-trained on the vocabulary (without it: stuck at 53 %). World (seed 0): standard 84 % vs Stage 77 94 % (4 seeds,
+85-100 %), crowded (7 people, 7 objects) 61 % vs 78 %; no CA3 recurrence 71 %. bAbI cut down (32 k questions, last
+20 sentences, 2-CPU machine; old re-run at the same budget): old 3/20 (38.7 % error), wired 0/20 (51.5 %). Negative
+overall; recurrence helps. Models in /home/claude/models/hippo_wired*. Next (running): --cond shared, recall cue
+takes the storage route (DG + mossy fibres).
