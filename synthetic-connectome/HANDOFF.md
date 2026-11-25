@@ -492,3 +492,7 @@ wired CA3 265 75 % (69-84, 3 seeds), wired CA3 1060 83 % (69-100, 4 seeds: 100 /
 either finds two-step recall for carried objects (>90 %) or plateaus ~67 %; one-step questions ~99 % everywhere.
 Output loop checked (`scripts/hippo_wired_diag.py`): decoded answer = CA1 answer, not the bottleneck. bAbI cut-down
 with CA3 1060: 0/20 (50.5 %). Next: make the two-step strategy findable (curriculum) or best-of-seeds.
+Stage 81 follow-up 3 (25 Nov): CURRICULUM=1 (one-step questions first 20 %, carried objects in short stories to 50 %,
+then normal), 8 runs on separate cloud machines: CA3 265 1/4 past 85 % (mean 77 %), CA3 1060 0/4 (72 %); without
+curriculum 0/3 and 2/4. No help. Stalled runs plateau ~70 % from early on. Likely cause: the second recall is cued by
+the first recall decoded to a word and re-encoded. Next idea: cue the second hop from CA1/EC output directly.
