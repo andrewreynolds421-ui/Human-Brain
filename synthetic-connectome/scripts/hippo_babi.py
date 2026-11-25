@@ -232,13 +232,14 @@ def main():
             if CONCEPTS: z = net.cmap(z); ce = net.cmap(ce)
             return net.temp * torch.einsum("be,bce->bc", z / (z.norm(dim=-1, keepdim=True) + 1e-6), ce / (ce.norm(dim=-1, keepdim=True) + 1e-6))
 
-        how = {}
+        how = {}; dump = {}; DUMP = os.environ.get("DUMP"); ONLY = os.environ.get("ONLY_TASKS")   # diagnosis: record every answer; test only some tasks
 
         def accuracy(items, name=None):
             net.eval(); hit = []; st = []; wc = []
             with torch.no_grad():
                 for k in range(0, len(items), 32):
-                    it = items[k:k + 32]; hit.append((logits(batch(it)).argmax(1).numpy() == np.array([i["y"] for i in it])))
+                    it = items[k:k + 32]; pr = logits(batch(it)).argmax(1).numpy(); hit.append(pr == np.array([i["y"] for i in it]))
+                    if DUMP and name: dump.setdefault(name, []).extend(dict(story=" ".join(" ".join(x) if isinstance(x, (list, tuple)) else str(x) for x in i["story"][-80:]), q=" ".join(map(str, i["q"])), y=" ".join(map(str, i["cands"][i["y"]])), p=" ".join(map(str, i["cands"][j]))) for i, j in zip(it, pr))
                     if CONTROLLER: st.append(net.steps.numpy()); wc.append(net.w[:, -2].numpy())      # recall steps taken; weight on the controller's answer
             if CONTROLLER and name: how[name] = dict(steps=round(float(np.concatenate(st).mean()), 2), weight=round(float(np.concatenate(wc).mean()), 3))
             net.train(); return float(np.concatenate(hit).mean())
@@ -268,9 +269,12 @@ def main():
         else: net.load_state_dict(torch.load(path))
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={})
         for t in T:
+            if ONLY and not any(tasks[t]["name"].startswith(f"qa{n}_") for n in ONLY.split(",")): continue
             acc = accuracy(tasks[t]["test"], tasks[t]["name"]); out["tasks"][tasks[t]["name"]] = round(acc, 4); print(tasks[t]["name"], round(acc, 4), flush=True)
         out["passed_95"] = int(sum(v >= 0.95 for v in out["tasks"].values())); out["mean_error"] = round(100 * (1 - np.mean(list(out["tasks"].values()))), 2)
         out["controller"] = how
+        if DUMP: out["dump"] = dump
+        if ONLY: json.dump(out, open(os.path.join(OUT, f"{tag}s{a.seed}.json"), "w"), indent=1); raise SystemExit
         out["world"] = {k: round(accuracy(world_items(None, 0, v)), 4) for k, v in W.test_sets(seed=0).items()}
         json.dump(out, open(os.path.join(OUT, f"{tag}s{a.seed}.json"), "w"), indent=1); print(json.dumps(out), flush=True)
         raise SystemExit

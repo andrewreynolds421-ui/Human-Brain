@@ -853,3 +853,10 @@ budget (120k -> 160k) changed with the episode record; no optimiser-only control
 attributed to the record. Result files results/babi_all/episodes_s*.json; summary stage80_summary.json
 (`scripts/analysis/stage80.py`). Lists task fell 7.5 points on average (per network +4.5, -15.3, -18.7, -0.5): a real loss in two networks, reported.
 
+## 60. Follow-up (25 November): a machine-dependent input found by running elsewhere
+
+Running on GitHub's machines rebuilt a vocabulary 2 words larger (21,871 vs 21,869). Cause: `grammar.book_text`
+read the first `.txt` file `glob` listed; one book (Queen Zixi of Ix, 55737) has two copies (-0 UTF-8, -8
+Latin-1) and `glob` order depends on the filesystem. Every result so far used the -0 copy (this machine's order);
+the list is now sorted, which keeps -0 everywhere. No earlier result changes.
+

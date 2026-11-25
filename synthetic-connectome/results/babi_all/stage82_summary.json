@@ -1,0 +1,222 @@
+{
+ "new": "concepts_",
+ "old": "episodes_",
+ "seeds": [
+  0
+ ],
+ "passed": [
+  8
+ ],
+ "passed_old": [
+  8
+ ],
+ "mean_error": [
+  20.57
+ ],
+ "mean_error_old": [
+  21.68
+ ],
+ "tasks": {
+  "qa1_single-supporting-fact": {
+   "new": [
+    100.0
+   ],
+   "old": [
+    100.0
+   ],
+   "change": 0.0
+  },
+  "qa2_two-supporting-facts": {
+   "new": [
+    70.8
+   ],
+   "old": [
+    77.3
+   ],
+   "change": -6.5
+  },
+  "qa3_three-supporting-facts": {
+   "new": [
+    42.2
+   ],
+   "old": [
+    46.6
+   ],
+   "change": -4.4
+  },
+  "qa4_two-arg-relations": {
+   "new": [
+    86.5
+   ],
+   "old": [
+    74.0
+   ],
+   "change": 12.5
+  },
+  "qa5_three-arg-relations": {
+   "new": [
+    97.4
+   ],
+   "old": [
+    97.9
+   ],
+   "change": -0.5
+  },
+  "qa6_yes-no-questions": {
+   "new": [
+    96.1
+   ],
+   "old": [
+    99.8
+   ],
+   "change": -3.7
+  },
+  "qa7_counting": {
+   "new": [
+    82.3
+   ],
+   "old": [
+    72.9
+   ],
+   "change": 9.4
+  },
+  "qa8_lists-sets": {
+   "new": [
+    84.9
+   ],
+   "old": [
+    74.7
+   ],
+   "change": 10.2
+  },
+  "qa9_simple-negation": {
+   "new": [
+    97.6
+   ],
+   "old": [
+    100.0
+   ],
+   "change": -2.4
+  },
+  "qa10_indefinite-knowledge": {
+   "new": [
+    89.1
+   ],
+   "old": [
+    94.6
+   ],
+   "change": -5.5
+  },
+  "qa11_basic-coreference": {
+   "new": [
+    96.3
+   ],
+   "old": [
+    96.2
+   ],
+   "change": 0.1
+  },
+  "qa12_conjunction": {
+   "new": [
+    100.0
+   ],
+   "old": [
+    100.0
+   ],
+   "change": 0.0
+  },
+  "qa13_compound-coreference": {
+   "new": [
+    99.0
+   ],
+   "old": [
+    98.6
+   ],
+   "change": 0.4
+  },
+  "qa14_time-reasoning": {
+   "new": [
+    74.8
+   ],
+   "old": [
+    68.9
+   ],
+   "change": 5.9
+  },
+  "qa15_basic-deduction": {
+   "new": [
+    55.4
+   ],
+   "old": [
+    56.2
+   ],
+   "change": -0.8
+  },
+  "qa16_basic-induction": {
+   "new": [
+    48.4
+   ],
+   "old": [
+    48.5
+   ],
+   "change": -0.1
+  },
+  "qa17_positional-reasoning": {
+   "new": [
+    58.6
+   ],
+   "old": [
+    60.8
+   ],
+   "change": -2.2
+  },
+  "qa18_size-reasoning": {
+   "new": [
+    91.0
+   ],
+   "old": [
+    90.5
+   ],
+   "change": 0.5
+  },
+  "qa19_path-finding": {
+   "new": [
+    18.2
+   ],
+   "old": [
+    8.9
+   ],
+   "change": 9.3
+  },
+  "qa20_agents-motivations": {
+   "new": [
+    100.0
+   ],
+   "old": [
+    100.0
+   ],
+   "change": 0.0
+  }
+ },
+ "world": {
+  "same": [
+   93.1
+  ],
+  "held_names": [
+   85.9
+  ],
+  "held_objects_places": [
+   91.1
+  ],
+  "long": [
+   88.2
+  ]
+ },
+ "error_drop_paired": {
+  "mean": 1.11,
+  "each": [
+   1.11
+  ],
+  "better_in": "1/1"
+ }
+}
