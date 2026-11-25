@@ -8,6 +8,7 @@ recurrent collaterals and Schaffer synapses (hippo_wired.WiredCore).
 
 Conditions: wired (full) | no_rc (no recurrent completion) | dense_mf (mossy fibres all-to-all and weak)
             | old (evaluate the Stage 77 pointer_s*.pt models here, no training)
+CURRICULUM=1: one-step questions first, then short stories with carried objects, then the normal mix.
 Tests: Stage 74/77's four sets, plus *crowded*: 7 people and 7 objects in 4 places, 20-27 events - many similar
 memories, where pattern separation should matter.
 
@@ -32,6 +33,19 @@ def crowded_set(seed=0, n=1000):
             it = W.question(rng, *W.story(rng, W.NAMES, W.OBJECTS, W.PLACES, int(rng.integers(20, 28)), n_people=7, n_obj=7), W.PLACES, want)
             if it: items.append(it); got += 1
     return items
+
+
+def curriculum_items(rng, n, frac):
+    """CURRICULUM=1: stage 1 (first 20 % of training) one-step questions only (where a person is, who has what) in
+    short stories (4-6 events); stage 2 (20-50 %) all kinds incl. carried objects (two-step) in short stories;
+    stage 3 the normal mix (HP.make_items, 4-10 events)"""
+    if frac >= 0.5: return HP.make_items(rng, n)
+    kinds = ("where_person", "who_has") if frac < 0.2 else ("carried", "who_has", "where_person", "carried")
+    out = []
+    while len(out) < n:
+        it = W.question(rng, *W.story(rng, W.NAMES, W.OBJECTS, W.PLACES, int(rng.integers(4, 7))), W.PLACES, kinds[len(out) % len(kinds)])
+        if it: out.append(it)
+    return out
 
 
 def build(M, seed, mode):
@@ -116,7 +130,8 @@ def main():
             for step in range(start, stories // HP.BS):
                 if time.time() - last > 600:
                     torch.save(dict(net=net.state_dict(), opt=opt.state_dict(), step=step, log=log, rng=rng.bit_generator.state), ck + ".tmp"); os.replace(ck + ".tmp", ck); last = time.time()
-                items = HP.make_items(rng, HP.BS); b = list(batch(items))
+                frac = step / max(stories // HP.BS, 1)
+                items = curriculum_items(rng, HP.BS, frac) if os.environ.get("CURRICULUM") == "1" else HP.make_items(rng, HP.BS); b = list(batch(items))
                 perm = torch.tensor(np.array([rng.permutation(4) for _ in items]))
                 b[6] = torch.gather(b[6], 1, perm[..., None].expand(-1, -1, b[6].shape[-1])); target = (perm == 0).float().argmax(1)
                 lg = logits(b); tr_acc.append(float((lg.argmax(1) == target).float().mean())); loss = torch.nn.functional.cross_entropy(lg, target); opt.zero_grad(); loss.backward()
