@@ -42,7 +42,7 @@ S, E, UNK = "<s>", "</s>", "<unk>"
 
 
 def book_text(d):
-    fs = [f for f in glob.glob(os.path.join(d, "*.txt")) if not re.search(r"-(8|0)\.txt$", f)] or glob.glob(os.path.join(d, "*.txt"))
+    fs = sorted(f for f in glob.glob(os.path.join(d, "*.txt")) if not re.search(r"-(8|0)\.txt$", f)) or sorted(glob.glob(os.path.join(d, "*.txt")))   # sorted: glob order differs between machines (one book has -0 and -8 copies)
     t = open(fs[0], encoding="latin-1").read()
     a = re.search(r"\*\*\* ?START OF (THE|THIS) PROJECT GUTENBERG[^\n]*\n", t); b = re.search(r"\*\*\* ?END OF (THE|THIS) PROJECT GUTENBERG", t)
     if a: t = t[a.end():]
