@@ -479,3 +479,6 @@ pre-trained on the vocabulary (without it: stuck at 53 %). World (seed 0): stand
 20 sentences, 2-CPU machine; old re-run at the same budget): old 3/20 (38.7 % error), wired 0/20 (51.5 %). Negative
 overall; recurrence helps. Models in /home/claude/models/hippo_wired*. Next (running): --cond shared, recall cue
 takes the storage route (DG + mossy fibres).
+Stage 81 follow-up (25 Nov): --cond shared (recall cue through DG + mossy fibres + PP, the storage route): worse -
+world 71 % (separate routes 84 %), crowded 48 %, bAbI 0/20 (51.1 %). DG pattern separation breaks near-identical
+cues; recall should bypass the DG (Treves & Rolls 1992). Remaining suspects: CA3 size (265), learned output loop.
