@@ -496,3 +496,11 @@ Stage 81 follow-up 3 (25 Nov): CURRICULUM=1 (one-step questions first 20 %, carr
 then normal), 8 runs on separate cloud machines: CA3 265 1/4 past 85 % (mean 77 %), CA3 1060 0/4 (72 %); without
 curriculum 0/3 and 2/4. No help. Stalled runs plateau ~70 % from early on. Likely cause: the second recall is cued by
 the first recall decoded to a word and re-encoded. Next idea: cue the second hop from CA1/EC output directly.
+Stages 82-83 (25 Nov; `hippo_babi.py --concepts / --controller / --ctrl-only / --steady`): 4 networks each, most on
+GitHub runners (branch vega-runs, edit runs/jobs.json to launch; ~45 min per network). Optimiser-only control:
+8x4 passed, 22.6 % = Stage 80 (episode record adds nothing; README corrected). Concept map 21.3 % (induction +8,
+paths +8; "wolves/wolf" hypothesis refuted by sheep test). Controller 21.0 % (best, 4/4 > control; relations +17,
+time order +10) but stops after ~1 step; --ctrl-only takes more steps on counting/lists only, world falls to ~80 %.
+All at 8 passed: retrieval works, composition does not (answer of recall 1 must become the cue of recall 2) - same
+conclusion as the wired line. Summary results/babi_all/stage83_summary.json. Models /home/claude/models/babi_all/.
+

@@ -4275,13 +4275,58 @@ Mean error lower in 4 / 4 networks (by 2.2-13.2 points).
 - **The record helps where it was aimed, but not enough to pass:** two facts, three facts and time order all rise
   7-9 points and stay far below 95 %. "Before" is now readable; picking *which* past event answers the question is
   still mostly wrong.
-- **Training is now stable**: no network failed (Stage 79's network 2 failed at 1 / 20; here 8 / 20). This is
-  **confounded**: the learning rate, clipping and longer training changed together with the record, so the
-  stability (and part of the gains) may come from the optimiser, not the record. Not separated (no control run).
+- **Training is now stable**: no network failed (Stage 79's network 2 failed at 1 / 20; here 8 / 20).
+- **Correction (Stage 83 control):** Stage 79's circuit with only Stage 80's learning settings (lr 5e-4, clipping,
+  160,000 questions; `--steady`) does as well: 8, 8, 8, 8 passed, mean error 22.6 % (Stage 80: 22.5 %). The
+  stability and the gains above came from the learning settings, **not the episode record**; per task the record
+  beats the control in only 2 / 4 networks on two facts and time order, and loses 8 points on lists.
 - **Deduction and induction did not move at all.** Diagnosis: VEGA's reading network groups words by number before
   meaning - "wolves" is closer to "cats" (0.50) than to "wolf" (0.13); "mice" to "mouse" 0.29. A rule learned as
   "sheep are afraid of wolves" cannot be matched to the answer "wolf". Stage 82 tests this.
 - World test 77-97 % (network 2 lowest; Stage 79 88-92 %).
+
+## Stages 82-83: word meaning, a recall controller - and a control that changed the story
+
+All five variants below ran four networks each on the same reading networks and tests; most of them on GitHub's
+machines (branch `vega-runs`, `.github/workflows/vega.yml`: one network per job, all at once, ~45 min each), the
+rest here. Compared with **the control**: Stage 79's circuit with Stage 80's learning settings (`--steady`).
+
+| (4 networks each) | passed | mean error | better than control |
+|---|---|---|---|
+| control (`--steady`) | 8, 8, 8, 8 | 22.6 % | - |
+| Stage 80 episode record | 8, 8, 8, 8 | 22.5 % | 2 / 4 |
+| Stage 82 concept map + reverse recall (`--concepts`) | 8, 7, 8, 6 | 21.3 % | 3 / 4 |
+| Stage 83 recall controller (`--controller`) | 9, 8, 8, 8 | **21.0 %** | **4 / 4** |
+| Stage 83b controller is the only route to chain recalls (`--ctrl-only`) | 9, 8, 7, 8 | 21.3 % | 4 / 4 |
+
+| task (mean of 4) | control | Stage 82 | Stage 83 | Stage 83b |
+|---|---|---|---|---|
+| 4 relations | 67.6 | 77.7 (4/4 up) | 84.2 (4/4) | 86.5 (4/4) |
+| 14 time order | 63.5 | 65.8 | 73.2 (4/4) | 74.2 (4/4) |
+| 16 induction | 48.4 | **56.6 (4/4)** | 48.6 | 48.3 |
+| 19 path finding | 10.3 | **18.0 (4/4)** | 10.6 | 11.6 |
+| 15 deduction | 56.0 | 57.3 | 56.9 | 56.9 |
+| 3 three facts | 46.2 | 46.7 | 50.6 | 44.2 |
+
+**Stage 82** (concept map on CA1's answer and the candidate words; reverse recall "swan" -> Lily). Prediction
+tested and **refuted**: if "wolves" vs "wolf" blocked deduction, questions about sheep (same form in both facts)
+would be answered better - they are not (48-53 % vs 49-72 %; `DUMP=1` diagnosis, /home/claude/diag). Deduction
+errors are first-step answers: ~40 % of wrong answers name the person's own animal ("Gertrude is a wolf" ->
+"wolf") - recall stopped one step early. The reverse recall did move induction (+8, 4 / 4) and path finding.
+
+**Stage 83** (prefrontal working memory + basal-ganglia choice of how to ask the hippocampus and whether to recall
+again; small cost per step). Best variant, 4 / 4 networks better than the control (relations, time order). But it
+**did not learn to think in steps**: it stopped after one step on nearly every task (mean 1.0-1.5), and its answer
+carried 2-20 % of the final vote - the fixed recall paths already answered and steps cost time.
+**Stage 83b** removed those fixed second / third steps and phased the step cost in. Now it does take more steps,
+on the tasks that need enumeration - counting 4.0, lists 3.0, "maybe" 2.0 - but still ~1.5 on deduction, three
+facts and time order, and 1.1 on path finding. And the world test fell (77-83 % vs 88-93 %): the controller does
+not replace the fixed second step for carried objects.
+
+- **What this says:** every variant lands at 8 passed / 21-23 %. Recall, word meaning and step count are not the
+  ceiling. VEGA retrieves facts; it does not yet *compose* them - "Gertrude is a wolf" + "wolves fear mice" needs the
+  answer of one recall to become the cue of the next, trained by more than the final answer.
+- Negative results kept: the episode record (Stage 80) adds nothing over its control; the controller's collapse.
 
 ## Where the model stands against children learning English
 

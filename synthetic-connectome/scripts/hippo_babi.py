@@ -57,7 +57,7 @@ WIN, N_DG, ACTIVE, D_KEY, BS, MAX_SENT = 8, 512, 0.05, 64, 16, 50
 QUESTIONS = int(os.environ.get("QUESTIONS", 120_000))
 EPISODES = False                                                        # Stage 80: the episode record (set by --episodes)
 CONTROLLER = False                                                      # controller: prefrontal working memory + basal-ganglia recall loop (set by --controller)
-K_STEPS = 6; PONDER = 0.003                                             # most recall steps; cost per step (ASSUMED)
+K_STEPS = 6; PONDER = 0.003; CTRL_ONLY = False                         # --ctrl-only: the controller is the only way to chain recalls; step cost phased in                                             # most recall steps; cost per step (ASSUMED)
 CONCEPTS = False                                                        # Stage 82: concept map + reverse recall (set by --concepts)
 
 
@@ -151,6 +151,7 @@ def build(M, seed):
             c1 = (torch.softmax((qe * s.q1(q)[:, None]).sum(-1) / Ed ** 0.5 + lm, -1)[..., None] * qe).sum(1)
             c2 = (torch.softmax((qe * s.q2(q)[:, None]).sum(-1) / Ed ** 0.5 + lm, -1)[..., None] * qe).sum(1)
             r1 = read(c1); r2 = read(r1); r3 = read(r2); s1 = read(c2)
+            if CTRL_ONLY: r2 = torch.zeros_like(r1); r3 = torch.zeros_like(r1)                  # no fixed second / third step
             cos = lambda a, b: (a * b).sum(-1, keepdim=True) / (a.norm(dim=-1, keepdim=True) * b.norm(dim=-1, keepdim=True) + 1e-6)
             feats = torch.cat([cos(r1, c2), cos(r2, c2), cos(r3, c2), r1.norm(dim=-1, keepdim=True)], -1)
             opts = [r1, r2, r3, s1, c2]; extra = []
@@ -168,6 +169,7 @@ def build(M, seed):
                 F, tF = ep(1, c1, val=c2)                            # the event where it was with the second question word ("... the bathroom")
                 Cb, _ = ep(2, c1, tau=tF)                            # what was true just before that
                 D, _ = ep(3, A)                                      # chain: the latest event about what was recalled
+                if CTRL_ONLY: D = torch.zeros_like(A); Cb = torch.zeros_like(A)
                 count = (torch.sigmoid(s.beta * (keys * s.code(c1)[:, None]).sum(-1) - 5) * g[..., 0]).sum(-1, keepdim=True)
                 opts += [A, Cb, D, F]; extra = [A, Cb, D, F, count, cos(A, c2), cos(D, c2)]
                 if CONCEPTS:                                                                      # reverse recall: whose event had this as its content ("swan" -> lily)
@@ -199,11 +201,11 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true")   # control: Stage 79 circuit, Stage 80 learning settings only
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true")   # control: Stage 79 circuit, Stage 80 learning settings only
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
-    global EPISODES, CONCEPTS, CONTROLLER; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
+    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
     if a.steady: tag = "steady_"
-    else: tag = ("controller_" if a.controller else "") + ("concepts_" if a.concepts else "" if a.controller else "episodes_" if a.episodes else "")
+    else: tag = ("controller2_" if a.ctrl_only else "controller_" if a.controller else "") + ("concepts_" if a.concepts else "" if a.controller else "episodes_" if a.episodes else "")
 
     def run(M, C, tok, seed, res):
         torch = M.torch; M.m.eval()
@@ -258,7 +260,7 @@ def main():
                     t = T[int(rng.integers(len(T)))]; tr = tasks[t]["train"]; items = [tr[i] for i in rng.choice(len(tr), BS, replace=False)]
                 b = list(batch(items)); y = torch.tensor([i["y"] for i in items])
                 loss = torch.nn.functional.cross_entropy(logits(b), y)
-                if CONTROLLER: loss = loss + PONDER * net.steps.mean()                            # thinking costs time
+                if CONTROLLER: loss = loss + PONDER * (min(1.0, step / (QUESTIONS // BS / 2)) if CTRL_ONLY else 1.0) * net.steps.mean()                            # thinking costs time
                 opt.zero_grad(); loss.backward()
                 if a.episodes or a.steady: torch.nn.utils.clip_grad_norm_(net.parameters(), 1.0)               # Stage 80: steadier learning
                 opt.step()

@@ -860,3 +860,14 @@ read the first `.txt` file `glob` listed; one book (Queen Zixi of Ix, 55737) has
 Latin-1) and `glob` order depends on the filesystem. Every result so far used the -0 copy (this machine's order);
 the list is now sorted, which keeps -0 everywhere. No earlier result changes.
 
+## 61. Follow-up (25 November): Stages 82-83, the optimiser control, GitHub runs
+
+Twenty networks (five variants x four). Fourteen trained on GitHub-hosted runners (4 CPU, 16 GB; THREADS=4) from the
+public bundle (vega-bundle branch; no CHILDES data) with the current code laid over it; the vocabulary matched
+after the AUDIT 60 fix (the saved reading networks load only if it does). Runner results are committed to
+`vega-runs/runs/<name>/` (result, model, log tail, status) and copied into results/babi_all. Same seeds, same tests.
+The optimiser-only control (`--steady`) overturns Stage 80's attribution (README corrected). Stage 82's hypothesis
+(word-form mismatch blocks deduction) tested with a pre-stated prediction (sheep questions better) and refuted.
+Summary: results/babi_all/stage83_summary.json. Stage numbering: another session's "Stage 81" is the wired
+hippocampus; this line's concept map is Stage 82.
+
