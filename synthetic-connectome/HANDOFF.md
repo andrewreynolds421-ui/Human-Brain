@@ -521,3 +521,11 @@ alone 4/8). Best human-proportioned run so far: CA3 265 seed 0 (99.6 / 78.4 / 98
 cloud machine only - rerun scoreboth_ca3_265 seed 0 to rebuild it). Stalled runs fail where-person (~46 %) with both
 recalls scored, so the fault is the storage policy (what is stored per sentence), not the chooser. Practical: best of
 several seeds; research: fix what gets stored.
+Stages 85-86 (26 Nov). 85 `--pattern` (event store, pattern completion): net 0 19.0 %; + concepts 18.2-22.1 %
+(deduction up to 67 %); first recall now right (gertrude -> wolf), second hop fails (loop collapsed). Nets 1-3 of
+--pattern resumed after the 6-h limit (relaunch the same job names with a new batch label to continue).
+86 `--routine joint|awake|sleep|reread` + `PASSAGES=data/passages.json.gz` (real-book passage test by grade):
+awake forgets (day-1 96 -> 41 %, bAbI 53 %); sleep and reread keep it (96-98 %); reread slightly better on bAbI
+(best 19.5 %), sleep better on real books in 8/8 networks; memory + reader 46-51 % (grade 1-2) -> 33-35 % (7+);
+adults on the CBT 81.6 %. Stage 87 `--ckey` (concept keys) running. Summary results/stage86/stage86_summary.json.
+

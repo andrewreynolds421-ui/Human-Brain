@@ -1,0 +1,544 @@
+{
+ "loop+allcues / awake": {
+  "networks": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "passed": [
+   0,
+   0,
+   0,
+   0
+  ],
+  "mean_error": 53.0,
+  "world": 45.4,
+  "passages": {
+   "1": 37.0,
+   "2": 36.4,
+   "3": 35.5,
+   "4": 35.4,
+   "5": 32.4,
+   "6": 32.8,
+   "7+": 28.0
+  },
+  "passages_reader": {
+   "1": 41.7,
+   "2": 41.3,
+   "3": 35.9,
+   "4": 37.8,
+   "5": 27.6,
+   "6": 33.6,
+   "7+": 29.7
+  },
+  "passages_both": {
+   "1": 48.4,
+   "2": 47.2,
+   "3": 41.0,
+   "4": 42.0,
+   "5": 34.2,
+   "6": 38.6,
+   "7+": 33.5
+  },
+  "curve": {
+   "day 1": {
+    "day1 tasks": 96.5,
+    "day2 tasks": 20.9,
+    "day3 tasks": 29.2,
+    "passages": 15.1,
+    "world": 67.2
+   },
+   "day 2": {
+    "day1 tasks": 63.3,
+    "day2 tasks": 76.9,
+    "day3 tasks": 30.6,
+    "passages": 13.2,
+    "world": 44.5
+   },
+   "day 3": {
+    "day1 tasks": 45.6,
+    "day2 tasks": 56.5,
+    "day3 tasks": 61.3,
+    "passages": 14.6,
+    "world": 39.2
+   },
+   "day 4": {
+    "day1 tasks": 40.5,
+    "day2 tasks": 50.3,
+    "day3 tasks": 53.5,
+    "passages": 35.0,
+    "world": 51.5
+   }
+  }
+ },
+ "loop+allcues / joint": {
+  "networks": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "passed": [
+   7,
+   6,
+   7,
+   4
+  ],
+  "mean_error": 24.6,
+  "world": 67.6,
+  "passages": {
+   "1": 36.3,
+   "2": 40.2,
+   "3": 36.3,
+   "4": 34.5,
+   "5": 33.6,
+   "6": 31.2,
+   "7+": 31.8
+  },
+  "passages_reader": {
+   "1": 41.7,
+   "2": 41.3,
+   "3": 35.9,
+   "4": 37.8,
+   "5": 27.6,
+   "6": 33.6,
+   "7+": 29.7
+  },
+  "passages_both": {
+   "1": 47.0,
+   "2": 46.9,
+   "3": 40.9,
+   "4": 42.2,
+   "5": 34.2,
+   "6": 37.2,
+   "7+": 33.8
+  },
+  "curve": {
+   "day 4": {
+    "day1 tasks": 94.1,
+    "day2 tasks": 67.7,
+    "day3 tasks": 60.7,
+    "passages": 36.1,
+    "world": 62.8
+   }
+  }
+ },
+ "loop+allcues / reread": {
+  "networks": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "passed": [
+   8,
+   8,
+   7,
+   8
+  ],
+  "mean_error": 19.5,
+  "world": 81.0,
+  "passages": {
+   "1": 29.7,
+   "2": 27.9,
+   "3": 27.0,
+   "4": 27.2,
+   "5": 24.3,
+   "6": 24.9,
+   "7+": 20.7
+  },
+  "passages_reader": {
+   "1": 41.7,
+   "2": 41.3,
+   "3": 35.9,
+   "4": 37.8,
+   "5": 27.6,
+   "6": 33.6,
+   "7+": 29.7
+  },
+  "passages_both": {
+   "1": 45.4,
+   "2": 45.3,
+   "3": 40.0,
+   "4": 39.1,
+   "5": 30.8,
+   "6": 36.2,
+   "7+": 32.0
+  },
+  "curve": {
+   "day 1": {
+    "day1 tasks": 98.5,
+    "day2 tasks": 25.8,
+    "day3 tasks": 27.5,
+    "passages": 12.8,
+    "world": 83.0
+   },
+   "day 2": {
+    "day1 tasks": 97.9,
+    "day2 tasks": 81.5,
+    "day3 tasks": 31.2,
+    "passages": 11.3,
+    "world": 77.0
+   },
+   "day 3": {
+    "day1 tasks": 97.2,
+    "day2 tasks": 78.6,
+    "day3 tasks": 62.5,
+    "passages": 11.1,
+    "world": 75.5
+   },
+   "day 4": {
+    "day1 tasks": 97.8,
+    "day2 tasks": 79.2,
+    "day3 tasks": 62.1,
+    "passages": 25.9,
+    "world": 72.2
+   }
+  }
+ },
+ "loop+allcues / sleep": {
+  "networks": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "passed": [
+   8,
+   8,
+   7,
+   8
+  ],
+  "mean_error": 20.2,
+  "world": 66.6,
+  "passages": {
+   "1": 35.1,
+   "2": 35.9,
+   "3": 32.7,
+   "4": 32.2,
+   "5": 31.2,
+   "6": 28.4,
+   "7+": 29.9
+  },
+  "passages_reader": {
+   "1": 41.7,
+   "2": 41.3,
+   "3": 35.9,
+   "4": 37.8,
+   "5": 27.6,
+   "6": 33.6,
+   "7+": 29.7
+  },
+  "passages_both": {
+   "1": 51.2,
+   "2": 47.8,
+   "3": 40.7,
+   "4": 41.0,
+   "5": 34.3,
+   "6": 39.1,
+   "7+": 34.7
+  },
+  "curve": {
+   "day 1 + night": {
+    "day1 tasks": 99.1,
+    "day2 tasks": 20.9,
+    "day3 tasks": 29.3,
+    "passages": 13.7,
+    "world": 71.5
+   },
+   "day 2 + night": {
+    "day1 tasks": 97.9,
+    "day2 tasks": 81.3,
+    "day3 tasks": 31.2,
+    "passages": 13.0,
+    "world": 64.0
+   },
+   "day 3 + night": {
+    "day1 tasks": 97.6,
+    "day2 tasks": 79.6,
+    "day3 tasks": 63.8,
+    "passages": 12.2,
+    "world": 64.0
+   },
+   "day 4 + night": {
+    "day1 tasks": 96.9,
+    "day2 tasks": 76.4,
+    "day3 tasks": 63.0,
+    "passages": 32.8,
+    "world": 61.8
+   }
+  }
+ },
+ "loop+controller / awake": {
+  "networks": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "passed": [
+   0,
+   0,
+   0,
+   1
+  ],
+  "mean_error": 54.3,
+  "world": 44.7,
+  "passages": {
+   "1": 36.7,
+   "2": 36.7,
+   "3": 34.8,
+   "4": 34.2,
+   "5": 33.1,
+   "6": 31.8,
+   "7+": 32.5
+  },
+  "passages_reader": {
+   "1": 41.7,
+   "2": 41.3,
+   "3": 35.9,
+   "4": 37.8,
+   "5": 27.6,
+   "6": 33.6,
+   "7+": 29.7
+  },
+  "passages_both": {
+   "1": 47.0,
+   "2": 48.0,
+   "3": 40.7,
+   "4": 40.8,
+   "5": 33.1,
+   "6": 37.8,
+   "7+": 34.1
+  },
+  "curve": {
+   "day 1": {
+    "day1 tasks": 95.3,
+    "day2 tasks": 21.0,
+    "day3 tasks": 28.2,
+    "passages": 14.7,
+    "world": 67.2
+   },
+   "day 2": {
+    "day1 tasks": 67.6,
+    "day2 tasks": 78.0,
+    "day3 tasks": 31.6,
+    "passages": 12.2,
+    "world": 53.8
+   },
+   "day 3": {
+    "day1 tasks": 50.3,
+    "day2 tasks": 50.6,
+    "day3 tasks": 63.0,
+    "passages": 13.4,
+    "world": 48.2
+   },
+   "day 4": {
+    "day1 tasks": 41.6,
+    "day2 tasks": 41.6,
+    "day3 tasks": 55.8,
+    "passages": 35.5,
+    "world": 49.2
+   }
+  }
+ },
+ "loop+controller / joint": {
+  "networks": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "passed": [
+   8,
+   6,
+   4,
+   6
+  ],
+  "mean_error": 23.0,
+  "world": 68.9,
+  "passages": {
+   "1": 38.3,
+   "2": 36.1,
+   "3": 36.4,
+   "4": 34.4,
+   "5": 33.2,
+   "6": 32.8,
+   "7+": 31.5
+  },
+  "passages_reader": {
+   "1": 41.7,
+   "2": 41.3,
+   "3": 35.9,
+   "4": 37.8,
+   "5": 27.6,
+   "6": 33.6,
+   "7+": 29.7
+  },
+  "passages_both": {
+   "1": 47.3,
+   "2": 47.1,
+   "3": 41.3,
+   "4": 42.7,
+   "5": 34.0,
+   "6": 37.7,
+   "7+": 35.0
+  },
+  "curve": {
+   "day 4": {
+    "day1 tasks": 95.6,
+    "day2 tasks": 71.8,
+    "day3 tasks": 61.8,
+    "passages": 35.1,
+    "world": 64.0
+   }
+  }
+ },
+ "loop+controller / reread": {
+  "networks": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "passed": [
+   8,
+   8,
+   7,
+   7
+  ],
+  "mean_error": 20.5,
+  "world": 70.4,
+  "passages": {
+   "1": 32.2,
+   "2": 30.0,
+   "3": 31.0,
+   "4": 27.7,
+   "5": 27.3,
+   "6": 25.2,
+   "7+": 24.2
+  },
+  "passages_reader": {
+   "1": 41.7,
+   "2": 41.3,
+   "3": 35.9,
+   "4": 37.8,
+   "5": 27.6,
+   "6": 33.6,
+   "7+": 29.7
+  },
+  "passages_both": {
+   "1": 46.2,
+   "2": 44.9,
+   "3": 40.7,
+   "4": 40.2,
+   "5": 32.8,
+   "6": 35.6,
+   "7+": 32.8
+  },
+  "curve": {
+   "day 1": {
+    "day1 tasks": 97.9,
+    "day2 tasks": 22.8,
+    "day3 tasks": 30.0,
+    "passages": 12.8,
+    "world": 71.2
+   },
+   "day 2": {
+    "day1 tasks": 95.2,
+    "day2 tasks": 80.7,
+    "day3 tasks": 32.2,
+    "passages": 12.9,
+    "world": 62.2
+   },
+   "day 3": {
+    "day1 tasks": 96.6,
+    "day2 tasks": 77.7,
+    "day3 tasks": 61.3,
+    "passages": 13.4,
+    "world": 58.0
+   },
+   "day 4": {
+    "day1 tasks": 96.8,
+    "day2 tasks": 78.1,
+    "day3 tasks": 62.5,
+    "passages": 28.5,
+    "world": 63.2
+   }
+  }
+ },
+ "loop+controller / sleep": {
+  "networks": [
+   0,
+   1,
+   2,
+   3
+  ],
+  "passed": [
+   7,
+   6,
+   5,
+   7
+  ],
+  "mean_error": 21.1,
+  "world": 69.5,
+  "passages": {
+   "1": 37.8,
+   "2": 34.6,
+   "3": 35.4,
+   "4": 30.7,
+   "5": 30.7,
+   "6": 28.2,
+   "7+": 29.7
+  },
+  "passages_reader": {
+   "1": 41.7,
+   "2": 41.3,
+   "3": 35.9,
+   "4": 37.8,
+   "5": 27.6,
+   "6": 33.6,
+   "7+": 29.7
+  },
+  "passages_both": {
+   "1": 48.2,
+   "2": 47.4,
+   "3": 42.2,
+   "4": 41.8,
+   "5": 33.9,
+   "6": 37.8,
+   "7+": 33.6
+  },
+  "curve": {
+   "day 1 + night": {
+    "day1 tasks": 98.9,
+    "day2 tasks": 20.9,
+    "day3 tasks": 29.9,
+    "passages": 13.4,
+    "world": 68.0
+   },
+   "day 2 + night": {
+    "day1 tasks": 97.0,
+    "day2 tasks": 80.8,
+    "day3 tasks": 30.7,
+    "passages": 11.1,
+    "world": 67.0
+   },
+   "day 3 + night": {
+    "day1 tasks": 96.9,
+    "day2 tasks": 79.3,
+    "day3 tasks": 62.7,
+    "passages": 12.3,
+    "world": 71.5
+   },
+   "day 4 + night": {
+    "day1 tasks": 95.6,
+    "day2 tasks": 76.6,
+    "day3 tasks": 62.4,
+    "passages": 32.7,
+    "world": 66.5
+   }
+  }
+ }
+}

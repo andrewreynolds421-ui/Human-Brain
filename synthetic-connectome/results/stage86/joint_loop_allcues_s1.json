@@ -1,0 +1,147 @@
+{
+ "seed": 1,
+ "questions": 96000,
+ "training": [
+  {
+   "step": 1000,
+   "kind": "mixed",
+   "minutes": 11.0,
+   "loss": 1.897
+  },
+  {
+   "step": 2000,
+   "kind": "mixed",
+   "minutes": 21.8,
+   "loss": 1.089
+  },
+  {
+   "step": 3000,
+   "kind": "mixed",
+   "minutes": 32.8,
+   "loss": 1.697
+  },
+  {
+   "step": 4000,
+   "kind": "mixed",
+   "minutes": 43.3,
+   "loss": 0.389
+  },
+  {
+   "step": 5000,
+   "kind": "mixed",
+   "minutes": 54.0,
+   "loss": 0.053
+  },
+  {
+   "step": 6000,
+   "kind": "mixed",
+   "minutes": 65.0,
+   "loss": 0.024
+  }
+ ],
+ "tasks": {
+  "qa1_single-supporting-fact": 1.0,
+  "qa2_two-supporting-facts": 0.474,
+  "qa3_three-supporting-facts": 0.349,
+  "qa4_two-arg-relations": 0.666,
+  "qa5_three-arg-relations": 0.973,
+  "qa6_yes-no-questions": 0.957,
+  "qa7_counting": 0.673,
+  "qa8_lists-sets": 0.748,
+  "qa9_simple-negation": 0.974,
+  "qa10_indefinite-knowledge": 0.828,
+  "qa11_basic-coreference": 0.897,
+  "qa12_conjunction": 1.0,
+  "qa13_compound-coreference": 0.919,
+  "qa14_time-reasoning": 0.647,
+  "qa15_basic-deduction": 0.581,
+  "qa16_basic-induction": 0.505,
+  "qa17_positional-reasoning": 0.597,
+  "qa18_size-reasoning": 0.916,
+  "qa19_path-finding": 0.127,
+  "qa20_agents-motivations": 1.0
+ },
+ "config": {
+  "EPISODES": true,
+  "CONCEPTS": false,
+  "CONTROLLER": false,
+  "CTRL_ONLY": false,
+  "LOOP": true,
+  "ALLCUES": true,
+  "PATTERN": false,
+  "ROUTINE": "joint",
+  "tag": "joint_loop_allcues_",
+  "n_params": 834935
+ },
+ "passed_95": 6,
+ "mean_error": 25.85,
+ "controller": {},
+ "curve": [
+  {
+   "after": "day 4",
+   "minutes": 65.0,
+   "qa1": 1.0,
+   "qa2": 0.52,
+   "qa3": 0.31,
+   "qa4": 0.63,
+   "qa5": 0.95,
+   "qa6": 0.98,
+   "qa7": 0.67,
+   "qa8": 0.69,
+   "qa9": 0.96,
+   "qa10": 0.76,
+   "qa11": 0.88,
+   "qa12": 1.0,
+   "qa13": 0.92,
+   "qa14": 0.59,
+   "qa15": 0.54,
+   "qa16": 0.45,
+   "qa17": 0.6,
+   "qa18": 0.92,
+   "qa19": 0.16,
+   "qa20": 1.0,
+   "p1": 0.29,
+   "p2": 0.46,
+   "p3": 0.38,
+   "p4": 0.27,
+   "p5": 0.41,
+   "p6": 0.34,
+   "p7+": 0.31,
+   "world": 0.56
+  }
+ ],
+ "routine": "joint",
+ "passages": {
+  "1": 0.3218,
+  "2": 0.4262,
+  "3": 0.3533,
+  "4": 0.31,
+  "5": 0.3133,
+  "6": 0.3133,
+  "7+": 0.34
+ },
+ "passages_reader": {
+  "1": 0.4176,
+  "2": 0.4221,
+  "3": 0.3533,
+  "4": 0.3933,
+  "5": 0.2733,
+  "6": 0.33,
+  "7+": 0.2933
+ },
+ "passages_both": {
+  "1": 0.4751,
+  "2": 0.4795,
+  "3": 0.41,
+  "4": 0.43,
+  "5": 0.3333,
+  "6": 0.35,
+  "7+": 0.3433
+ },
+ "world": {
+  "same": 0.662,
+  "held_names": 0.63,
+  "held_objects_places": 0.643,
+  "long": 0.646
+ }
+}

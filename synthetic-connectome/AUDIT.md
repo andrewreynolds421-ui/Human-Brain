@@ -882,3 +882,14 @@ job lists now carry a batch label and launches are checked through the commit's 
 before the runs (deduction > 65 %) refuted. Diagnosis by probing recalls at each step on qa15 test stories
 (nearest words among the test vocabulary) and by accuracy per name; summary results/babi_all/stage84_summary.json.
 
+## 63. Follow-up (26 November): Stages 85-87 overnight
+
+Stage 85: 3 of 4 `--pattern` networks stopped at GitHub's 6-hour job limit (results lost); jobs are now resumable
+(checkpoint pushed at the limit, picked up on relaunch); interim table reported as such. Stage 86: 32 networks; the
+first launch failed in all jobs (the workflow edit that copies the passage file had been swept away by a `git stash`
+before it was committed - pulls now use --autostash); the reread routine had a bug (a replay before the day's first
+lesson had nothing to replay; 8 runs failed) - fixed, rerun as r86b_ (the other routines never reach that line).
+Passage test: test books only, items dropped when the blanked sentence shares a 6-word run with the reading
+network's reading (34-63 per band); human / model comparison from Hill et al. 2016 Table 2 (different books - similar,
+not identical, test). Results: results/stage86/ (summary stage86_summary.json, `scripts/analysis/stage86.py`).
+

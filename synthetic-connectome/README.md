@@ -4360,6 +4360,90 @@ training). Four networks each, all on GitHub runners; compared with the optimise
 - **Bug, reported:** the first "every question word" batch never had the option on (a missing `global`); its 8 runs
   were removed and rerun, and every result now records which options were on (`config`).
 
+## Stage 85: an event store with pattern completion (interim: 5 of 8 networks)
+
+**Question.** Stage 84's trace: "Emily is a cat" was filed under "is", not under Emily. The hippocampus stores an
+event as a whole, and any part of it recalls the rest (pattern completion). Store each event under all its words?
+
+**Set-up** (`hippo_babi.py --pattern`; includes the loop and the chains from every question word). A learned
+boundary gate decides when an event ends (in bAbI the full stop is given as a hint; world stories have none); the
+event is then filed under every one of its words - how strongly from the word's role in the sentence, its content
+weighted by learned importance (so "is", "a" count little). Checked untrained: recall from "emily" -> "a, cat, is",
+from "cat" -> "emily" (reverse recall for free). Networks 1-3 of `--pattern` hit GitHub's 6-hour limit and are
+being resumed from checkpoints (jobs are now resumable).
+
+| (event store) | passed | mean error | world |
+|---|---|---|---|
+| event store, network 0 | 8 | 19.0 % | 90 % |
+| event store + concept map, 4 networks | 9, 6, 5, 8 | 18.5, 22.0, 22.1, 18.2 % | 82-90 % |
+
+- The two best networks VEGA has had (18.2 %, 18.5 %), and two weak ones: unstable.
+- **Deduction moves for the first time** (up to 67 %, one network; 61 % in network 0), lists 79-90 % and path
+  finding 17-18 % (control 9-15) in all four concept-map networks.
+- **Trace (event store + concept map, network 2):** the first recall now works - "gertrude" -> wolf 0.90,
+  "winona" -> sheep 0.93, "emily" -> cat 0.89 - and the person's name is now the first cue. The second hop fails:
+  the learned loop has collapsed to one constant output ("discarded, took, from" for every question), so "wolf"
+  never reaches "wolves are afraid of mice" (filed under "wolves"; the reading network puts wolf / wolves at 0.13).
+  Stage 87 (running) files and looks up memories through a learned concept map.
+
+## Stage 86: days and nights - sleep, and reading real books grade by grade
+
+**Question** (the user's): take the best variants, train them with and without a sleep cycle, and test them on
+bAbI, on grade level, and on comprehension of what they read.
+
+**Set-up.** The two best Stage 84 variants (loop + controller; loop + chains from every question word), 4 networks
+each, all on GitHub runners, 96,000 day questions each, experience in four **days** (ASSUMED order): 1 single facts,
+yes / no, negation, pronouns + VEGA's world; 2 several facts, counting, lists, time order; 3 deduction, induction,
+positions, sizes, paths, motives; 4 **real book passages**. Routines:
+- **joint** - everything mixed from the start (reference; same lessons as awake)
+- **awake** - the days in order, no replay
+- **sleep** - after each day a night: replay of stored episodes (half that day's, half earlier days'), as many as the
+  day had, at a third of the step size (Stage 70 / 76)
+- **reread** - the same replays shuffled into the day at the day's step: **equal lessons** to sleep (control)
+
+**The passage test** (`scripts/passage_test.py`, Children's Book Test style, Hill et al. 2016): 20 sentences of a
+real book, then a noun blanked in the 21st, 10 candidate nouns from the passage (chance 10 %). Books of Stage 53's
+graded collection, bands 1-6 and 7+; test items only from the test books, and dropped if the blanked sentence
+shares a 6-word run with anything VEGA's reading network read (34-63 per band). Training items from other books.
+Scored three ways: **memory** (the hippocampus), **reader** (the reading network alone: the candidate that makes the
+sentence most probable), **both** (equal-weight sum, ASSUMED).
+
+| bAbI (4 networks each) | joint | awake | sleep | reread |
+|---|---|---|---|---|
+| loop + controller: passed / error | 8,6,4,6 / 23.0 % | 0,0,0,1 / 54.3 % | 7,6,5,7 / 21.1 % | 8,8,7,7 / 20.5 % |
+| loop + every-word chains | 7,6,7,4 / 24.6 % | 0,0,0,0 / 53.0 % | 8,8,7,8 / 20.2 % | **8,8,7,8 / 19.5 %** |
+
+**Forgetting** (loop + every-word chains; accuracy on day-1 skills after each day):
+
+| after | day 1 | day 2 | day 3 | day 4 |
+|---|---|---|---|---|
+| awake | 96.5 | 63.3 | 45.6 | **40.5** |
+| sleep | 99.1 | 97.9 | 97.6 | **96.9** |
+| reread | 98.5 | 97.9 | 97.2 | **97.8** |
+
+**Passages by grade band** (loop + every-word chains, sleep; % correct, chance 10):
+
+| band | 1 | 2 | 3 | 4 | 5 | 6 | 7+ |
+|---|---|---|---|---|---|---|---|
+| memory | 35.1 | 35.9 | 32.7 | 32.2 | 31.2 | 28.4 | 29.9 |
+| reading network alone | 41.7 | 41.3 | 35.9 | 37.8 | 27.6 | 33.6 | 29.7 |
+| **both** | **51.2** | 47.8 | 40.7 | 41.0 | 34.3 | 39.1 | 34.7 |
+
+- **Without sleep VEGA forgets** (catastrophic interference): day-1 skills fall from 96 % to 41 % by day 4, bAbI
+  error 53-54 %, nothing passes. Replay - asleep or awake - keeps them at 96-98 %.
+- **Sleep vs equal awake rehearsal**, paired by network: rehearsal is slightly better on bAbI (0.6-0.7 points, 3 / 4
+  networks); **sleep is better on real books in every network** - memory +4.2 / +6.2 points, memory + reader +1.7 /
+  +2.9 (4 / 4, both variants). Gentle replay (a third of the step) keeps the old without overwriting the newest day.
+  With every-word chains, rehearsal kept the world stories better (81 % vs 67 %, 4 / 4).
+- Both replay routines beat joint training on bAbI (4 / 4) - but they had twice the lessons; joint and awake are the
+  equal-lesson pair.
+- **Comprehension:** memory and the reading network add up - together 46-51 % on grade 1-2 books against 41 % for
+  the reading network alone, falling steadily to 33-35 % at grade 7+. Published adults on the Children's Book Test
+  (common nouns): 81.6 % with the passage, 64.4 % from the last sentence alone; best LSTM 58.2 %, memory network
+  63.0 % (Hill et al. 2016; their books, a similar but not identical test). **VEGA's comprehension of real books is
+  well below an adult's even on first-grade books**, and no band reaches the 75 % "reads at" level of the grade test
+  (where VEGA's reading network alone reads at grade 4, grade 6 with its episodic memory - Stages 66, 69).
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
