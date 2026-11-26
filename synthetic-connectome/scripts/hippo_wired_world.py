@@ -126,7 +126,50 @@ def main():
             net.train(); return np.concatenate(hits)
 
         log = []; t0 = time.time(); tr_acc = []
-        if a.cond != "old":
+
+        def train_step(items, lr, rng):
+            for g in opt.param_groups: g["lr"] = lr
+            b = list(batch(items)); perm = torch.tensor(np.array([rng.permutation(4) for _ in items]))
+            b[6] = torch.gather(b[6], 1, perm[..., None].expand(-1, -1, b[6].shape[-1])); target = (perm == 0).float().argmax(1)
+            lg = logits(b); loss = torch.nn.functional.cross_entropy(lg, target)
+            if os.environ.get("SCORE_BOTH") == "1":
+                r1, r2, ml = net.last; ce = b[6] / (b[6].norm(dim=-1, keepdim=True) + 1e-6)
+                per = torch.stack([torch.nn.functional.cross_entropy(net.temp * torch.einsum("be,bce->bc", r / (r.norm(dim=-1, keepdim=True) + 1e-6), ce), target, reduction="none") for r in (r1, r2)], 1)
+                loss = loss + per.min(1).values.mean() + torch.nn.functional.cross_entropy(ml, per.detach().argmin(1))
+            opt.zero_grad(); loss.backward(); torch.nn.utils.clip_grad_norm_(net.parameters(), 1.0); opt.step()
+
+        sleep_mode = os.environ.get("SLEEP_MODE")
+        if sleep_mode and a.cond != "old":
+            # SLEEP_MODE=awake|sleep|reread, INIT_MODEL=<trained .pt>: continue training in DAYS days of new stories
+            # (stories / DAYS each). sleep: after each day a night replays as many stored episodes (half that day's,
+            # half earlier days') at a third of the step size, with no new input (Stage 76). reread: the same extra
+            # lessons shuffled into the day at the day's step size (equal-lessons control). awake: days only.
+            days = int(os.environ.get("DAYS", 4)); per_day = stories // days; DAY_LR, NIGHT_LR = 1e-3, 1e-3 / 3
+            path = os.path.join(DATA, f"{sleep_mode}_s{a.seed}.pt"); ck = path + ".ckpt"
+            net.load_state_dict(torch.load(os.environ["INIT_MODEL"])); rng = np.random.default_rng(900 + a.seed)
+            val = HP.make_items(np.random.default_rng(99), 400); episodes = []; d0 = 0
+            log.append(dict(when="start", val=round(float(predict(val).mean()), 4)))
+            if os.path.exists(ck):
+                z = torch.load(ck, weights_only=False); net.load_state_dict(z["net"]); opt.load_state_dict(z["opt"]); d0 = z["day"]
+                log = z["log"]; episodes = z["episodes"]; rng.bit_generator.state = z["rng"]; print("resumed after day", d0, flush=True)
+            for d in range(d0, days):
+                today = HP.make_items(rng, per_day)
+                replay = []
+                if sleep_mode != "awake":
+                    old_eps = episodes if episodes else today
+                    replay = [today[i] for i in rng.choice(len(today), per_day // 2, replace=False)] + [old_eps[i] for i in rng.choice(len(old_eps), per_day - per_day // 2, replace=len(old_eps) < per_day)]
+                lessons = today + replay if sleep_mode == "reread" else list(today)
+                order = rng.permutation(len(lessons))
+                for k in range(0, len(order) - HP.BS + 1, HP.BS): train_step([lessons[i] for i in order[k:k + HP.BS]], DAY_LR, rng)
+                log.append(dict(when=f"day {d + 1}", val=round(float(predict(val).mean()), 4), minutes=round((time.time() - t0) / 60, 1))); print(log[-1], flush=True)
+                if sleep_mode == "sleep":
+                    order = rng.permutation(len(replay))
+                    for k in range(0, len(order) - HP.BS + 1, HP.BS): train_step([replay[i] for i in order[k:k + HP.BS]], NIGHT_LR, rng)
+                    log.append(dict(when=f"night {d + 1}", val=round(float(predict(val).mean()), 4), minutes=round((time.time() - t0) / 60, 1))); print(log[-1], flush=True)
+                episodes += today
+                torch.save(dict(net=net.state_dict(), opt=opt.state_dict(), day=d + 1, log=log, episodes=episodes, rng=rng.bit_generator.state), ck + ".tmp"); os.replace(ck + ".tmp", ck)
+            torch.save(net.state_dict(), path)
+        elif a.cond != "old":
             path = os.path.join(DATA, f"{a.cond}_s{a.seed}.pt"); ck = path + ".ckpt"; start = 0; last = time.time()
             rng = np.random.default_rng(500 + a.seed); val = HP.make_items(np.random.default_rng(99), 400)
             if os.path.exists(path): net.load_state_dict(torch.load(path)); start = stories // HP.BS
@@ -153,14 +196,14 @@ def main():
                                     sparsity=dict(net.core.sparsity), train=round(float(np.mean(tr_acc[-50:])), 3), diag=dict(net.diag))); print(log[-1], flush=True)
             torch.save(net.state_dict(), path)
             if os.path.exists(ck): os.remove(ck)
-        out = dict(cond=a.cond, seed=a.seed, stories=stories, training=log, provenance=HW.PROVENANCE, sizes=HW.SIZE)
+        out = dict(cond=a.cond, sleep_mode=sleep_mode, init_model=os.environ.get("INIT_MODEL"), seed=a.seed, stories=stories, training=log, provenance=HW.PROVENANCE, sizes=HW.SIZE)
         sets = W.test_sets(seed=0); sets["crowded"] = crowded_set(0)
         for name, items in sets.items():
             hit = predict(items); r = dict(all=round(float(hit.mean()), 4))
             for k in ("where_person", "who_has"): m = np.array([it["kind"] == k for it in items]); r[k] = round(float(hit[m].mean()), 4)
             car = np.array([it["carried"] for it in items]); r["carried_objects"] = round(float(hit[car].mean()), 4)
             cue = np.array([W.last_mention(it) for it in items]); r["when_cue_wrong"] = round(float(hit[~cue].mean()), 4); out[name] = r
-        json.dump(out, open(os.path.join(OUT, f"{a.cond}_s{a.seed}.json"), "w"), indent=1); print(json.dumps({k: v for k, v in out.items() if k not in ("training", "provenance")}), flush=True)
+        json.dump(out, open(os.path.join(OUT, f"{sleep_mode or a.cond}_s{a.seed}.json"), "w"), indent=1); print(json.dumps({k: v for k, v in out.items() if k not in ("training", "provenance")}), flush=True)
         raise SystemExit
 
     GM.evaluate = run; OO.DATA = "/home/claude/models/day_night/year4_cycle"; OO.OUT = "/tmp/hippo_scratch"; os.makedirs(OO.OUT, exist_ok=True)
