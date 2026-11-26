@@ -38,6 +38,9 @@ DATA = os.environ.get("EV_DATA", "/home/claude/models/events")
 HOPS, N_DG, ACTIVE, D_KEY, BS, MAX_SENT = 3, 512, 0.05, 64, 16, 50
 QUESTIONS = int(os.environ.get("QUESTIONS", 160_000))
 SUP_W = 1.0                                                              # weight of the step teaching (ASSUMED)
+ROLES = False        # Stage 90b: role-aware recall - read one word of the recalled event by its role in the sentence
+SEM = False          # Stage 90a: word meaning from the semantic cortex (scripts/semantic_cortex.py) joined to every word
+D_SEM = 128
 P_WORLD, P_PASS = 0.15, 0.25                                             # share of training batches (ASSUMED)
 
 
@@ -95,18 +98,19 @@ def passage_item(it):
 
 
 def build(M, seed):
-    torch = M.torch; nn = torch.nn; torch.manual_seed(8900 + seed); H = 320; E = M.m.e.base.embedding_dim; P, D = 256, 128
+    torch = M.torch; nn = torch.nn; torch.manual_seed(8900 + seed); H = 320; E = M.m.e.base.embedding_dim + (D_SEM if SEM else 0); P, D = 256, 128; NR = 2 if ROLES else 1
 
     class EventMemory(nn.Module):
         def __init__(s):
             super().__init__()
             s.wk = nn.Linear(E, D_KEY); s.pp = nn.Linear(D_KEY, N_DG)                              # EC -> DG / CA3 key (as Stage 75)
             s.ksal = nn.Linear(H, 1); s.sal = nn.Linear(E, 1); s.sproj = nn.Linear(H, D)           # key strength (role), importance, event gist
-            s.pfc0 = nn.Linear(H, P); s.pfc = nn.GRUCell(2 * E + D, P)                             # prefrontal working memory
+            s.pfc0 = nn.Linear(H, P); s.pfc = nn.GRUCell((1 + NR) * E + D, P)                             # prefrontal working memory
             s.cue_q = nn.Linear(P, E); s.qs = nn.Linear(P, D); s.tw = nn.Linear(P, 3)              # cue word, gist cue, time (recency / before / after)
             s.beta = nn.Parameter(torch.tensor(10.0)); s.temp = nn.Parameter(torch.tensor(5.0))
             s.reent = nn.Sequential(nn.Linear(E + P, 256), nn.Tanh(), nn.Linear(256, E))           # big loop (Stage 84); starts as a copy
-            s.mix = nn.Linear(H, HOPS + 1); s.dec = nn.Sequential(nn.Linear(P + H + HOPS * E + HOPS + 1, 256), nn.Tanh(), nn.Linear(256, E))
+            s.mix = nn.Linear(H, NR * HOPS + 1); s.dec = nn.Sequential(nn.Linear(P + H + NR * HOPS * E + HOPS + 1, 256), nn.Tanh(), nn.Linear(256, E))
+            if ROLES: s.hproj = nn.Linear(H, D); s.rq = nn.Linear(P + E, D)                          # a word's role (from its context) / the role asked for
             s.recw = nn.Linear(H, HOPS + 1)                                                        # recognition gains; start at zero
             with torch.no_grad():
                 s.reent[2].weight.zero_(); s.reent[2].bias.zero_(); s.recw.weight.zero_(); s.recw.bias.zero_(); s.tw.weight.zero_(); s.tw.bias.zero_()
@@ -123,7 +127,8 @@ def build(M, seed):
             send = torch.gather(hs, 1, ends[..., None].expand(-1, -1, hs.shape[-1])) * smask[..., None]; ssum = s.sproj(send)
             tpos = (torch.arange(S, dtype=torch.float32)[None] + 1) / smask.sum(1, keepdim=True).clamp(min=1)
             lsm = torch.log(smask + 1e-9); lm = torch.log(qmask + 1e-9)
-            st = torch.tanh(s.pfc0(q)); tau = torch.ones(B); found, rs, scs, atts, counts = [], [], [], [], []
+            st = torch.tanh(s.pfc0(q)); tau = torch.ones(B); found, rs, scs, atts, counts, rr = [], [], [], [], [], []
+            if ROLES: hrole = s.hproj(hs); lmask = torch.log(mask + 1e-9)
             for k in range(HOPS):
                 Sq = torch.cat([qe] + [f[:, None] for f in found], 1); Sm = torch.cat([lm] + [torch.zeros(B, 1)] * len(found), 1)
                 cue = (torch.softmax((Sq * s.cue_q(st)[:, None]).sum(-1) / Ed ** 0.5 + Sm, -1)[..., None] * Sq).sum(1)
@@ -136,10 +141,17 @@ def build(M, seed):
                 ww = torch.einsum("bs,bst->bt", a, Mh) * imp * (1 - wm.clamp(0, 1))                  # the rest of the event (not the cue word itself)
                 r = (ww[..., None] * es).sum(1) / (ww.sum(1, keepdim=True) + 1e-3)
                 tau = (a * tpos).sum(-1); counts.append((torch.sigmoid(s.beta * sm - 5) * smask).sum(-1, keepdim=True))
-                st = s.pfc(torch.cat([r, cue, (a[..., None] * ssum).sum(1)], -1), st)
+                extra = []
+                if ROLES:                                                                            # which word of the recalled event: the one in the role asked for
+                    wsc = (hrole * s.rq(torch.cat([st, cue], -1))[:, None]).sum(-1) / D ** 0.5
+                    w2 = torch.softmax(torch.log(torch.einsum("bs,bst->bt", a, Mh) + 1e-9) + wsc + lmask, -1)
+                    r2 = (w2[..., None] * es).sum(1); extra = [r2]; rr.append(r2)
+                st = s.pfc(torch.cat([r, cue] + extra + [(a[..., None] * ssum).sum(1)], -1), st)
+                found += extra
                 found.append(r + s.reent(torch.cat([r, st], -1))); rs.append(r); scs.append(torch.log_softmax(sc, -1)); atts.append(a)
             w = torch.softmax(s.mix(q), -1)
-            z = sum(w[:, k:k + 1] * rs[k] for k in range(HOPS)) + w[:, HOPS:] * s.dec(torch.cat([st, q] + rs + counts + [rs[0].norm(dim=-1, keepdim=True)], -1))
+            outs = rs + rr
+            z = sum(w[:, k:k + 1] * outs[k] for k in range(len(outs))) + w[:, len(outs):] * s.dec(torch.cat([st, q] + outs + counts + [rs[0].norm(dim=-1, keepdim=True)], -1))
             lg = s.temp * torch.einsum("be,bce->bc", z / (z.norm(dim=-1, keepdim=True) + 1e-6), ce / (ce.norm(dim=-1, keepdim=True) + 1e-6))
             wmc = torch.sigmoid(s.beta * torch.einsum("btn,bcn->bct", keys, s.code(ce)) - 5) * kstr[:, None]     # recognition: each candidate as a cue
             g = s.recw(q); lg = lg + g[:, :1] * wmc.sum(-1)
@@ -149,23 +161,34 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); a = ap.parse_args()
-    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + os.environ.get("EV_TAG", "")
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); a = ap.parse_args()
+    global ROLES, SEM; ROLES = a.roles; SEM = a.sem
+    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + os.environ.get("EV_TAG", "")
 
     def run(M, C, tok, seed, res):
         torch = M.torch; torch.set_num_threads(int(os.environ.get("THREADS", 2))); M.m.eval()
         for p in M.m.parameters(): p.requires_grad_(False)
         net = build(M, a.seed); opt = torch.optim.Adam(net.parameters(), lr=5e-4); cache = {}
+        if SEM:
+            import semantic_cortex as SC
+            SV = SC.load(); scale = float(M.m.e.base.weight.norm(dim=1).mean()); zero = np.zeros(D_SEM, np.float32)     # meaning vectors at the size of the reader's own
+            sem = lambda ws: torch.tensor(np.stack([SV.get(str(w), zero) for w in ws]) * scale) if len(ws) else torch.zeros(0, D_SEM)
 
         def emb(c):                                                                           # an answer of several words: all of them, earlier words weigh more
             if c not in cache:
-                with torch.no_grad(): e = M.m.e(torch.tensor([[M.enc([w])[1] for w in c]]))[0]; cache[c] = sum(e[i] * 0.5 ** i for i in range(len(c)))
+                with torch.no_grad(): e = M.m.e(torch.tensor([[M.enc([w])[1] for w in c]]))[0]
+                if SEM: e = torch.cat([e, sem(list(c))], -1)
+                cache[c] = sum(e[i] * 0.5 ** i for i in range(len(c)))
             return cache[c]
 
         def batch(items):
             flat = [[w for s in it["sents"] for w in s] for it in items]; spos = [len(f) for f in flat]; ql = [len(it["q"]) for it in items]
             x, objs, om = M.batch([dict(words=f + it["q"]) for f, it in zip(flat, items)])
             with torch.no_grad(): o, _ = M.m(x, objs, om); e = M.m.e(x)
+            if SEM:
+                sv = torch.zeros(e.shape[0], e.shape[1], D_SEM)
+                for i, (f, it) in enumerate(zip(flat, items)): ws = f + it["q"]; sv[i, 1:1 + len(ws)] = sem(ws)[:e.shape[1] - 1]
+                e = torch.cat([e, sv], -1)
             T = max(spos); L = max(ql); B = len(items); S = max(len(it["sents"]) for it in items)
             mask = torch.zeros(B, T); qmask = torch.zeros(B, L); qe = torch.zeros(B, L, e.shape[-1]); sid = torch.full((B, T), -1, dtype=torch.long)
             ends = torch.zeros(B, S, dtype=torch.long); smask = torch.zeros(B, S)
@@ -228,7 +251,7 @@ def main():
             if os.path.exists(ck): os.remove(ck)
         else: net.load_state_dict(torch.load(path))
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={}, step_hits={},
-                   config=dict(sup=a.sup, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
+                   config=dict(sup=a.sup, roles=ROLES, sem=SEM, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
         for t in T:
             hops = []; acc = accuracy(tasks[t]["test"][:NT], hops); out["tasks"][tasks[t]["name"]] = round(acc, 4)
             if hops: out["step_hits"][tasks[t]["name"]] = [round(float(np.mean([h[j] for h in hops if len(h) > j])), 3) for j in range(max(map(len, hops)))]   # does recall step j land on supporting sentence j?

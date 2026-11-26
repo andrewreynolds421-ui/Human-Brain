@@ -1,110 +1,146 @@
 [
  {
-  "name": "events_sup1_s0",
+  "name": "events_sup1_roles_s0",
   "script": "hippo_events.py",
-  "flags": "--sup 1",
+  "flags": "--sup 1 --roles",
   "seed": 0,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  },
  {
-  "name": "events_sup0_s0",
+  "name": "events_sup1_sem_s0",
   "script": "hippo_events.py",
-  "flags": "--sup 0",
+  "flags": "--sup 1 --sem",
   "seed": 0,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  },
  {
-  "name": "events_sup1_long_s0",
+  "name": "events_sup1_roles_sem_s0",
   "script": "hippo_events.py",
-  "flags": "--sup 1",
+  "flags": "--sup 1 --roles --sem",
+  "seed": 0,
+  "questions": 160000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "90-2026-11-26"
+ },
+ {
+  "name": "events_sup1_roles_sem_long_s0",
+  "script": "hippo_events.py",
+  "flags": "--sup 1 --roles --sem",
   "seed": 0,
   "questions": 480000,
   "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  },
  {
-  "name": "events_sup1_s1",
+  "name": "events_sup1_roles_s1",
   "script": "hippo_events.py",
-  "flags": "--sup 1",
+  "flags": "--sup 1 --roles",
   "seed": 1,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  },
  {
-  "name": "events_sup0_s1",
+  "name": "events_sup1_sem_s1",
   "script": "hippo_events.py",
-  "flags": "--sup 0",
+  "flags": "--sup 1 --sem",
   "seed": 1,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  },
  {
-  "name": "events_sup1_long_s1",
+  "name": "events_sup1_roles_sem_s1",
   "script": "hippo_events.py",
-  "flags": "--sup 1",
+  "flags": "--sup 1 --roles --sem",
+  "seed": 1,
+  "questions": 160000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "90-2026-11-26"
+ },
+ {
+  "name": "events_sup1_roles_sem_long_s1",
+  "script": "hippo_events.py",
+  "flags": "--sup 1 --roles --sem",
   "seed": 1,
   "questions": 480000,
   "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  },
  {
-  "name": "events_sup1_s2",
+  "name": "events_sup1_roles_s2",
   "script": "hippo_events.py",
-  "flags": "--sup 1",
+  "flags": "--sup 1 --roles",
   "seed": 2,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  },
  {
-  "name": "events_sup0_s2",
+  "name": "events_sup1_sem_s2",
   "script": "hippo_events.py",
-  "flags": "--sup 0",
+  "flags": "--sup 1 --sem",
   "seed": 2,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  },
  {
-  "name": "events_sup1_long_s2",
+  "name": "events_sup1_roles_sem_s2",
   "script": "hippo_events.py",
-  "flags": "--sup 1",
+  "flags": "--sup 1 --roles --sem",
+  "seed": 2,
+  "questions": 160000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "90-2026-11-26"
+ },
+ {
+  "name": "events_sup1_roles_sem_long_s2",
+  "script": "hippo_events.py",
+  "flags": "--sup 1 --roles --sem",
   "seed": 2,
   "questions": 480000,
   "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  },
  {
-  "name": "events_sup1_s3",
+  "name": "events_sup1_roles_s3",
   "script": "hippo_events.py",
-  "flags": "--sup 1",
+  "flags": "--sup 1 --roles",
   "seed": 3,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  },
  {
-  "name": "events_sup0_s3",
+  "name": "events_sup1_sem_s3",
   "script": "hippo_events.py",
-  "flags": "--sup 0",
+  "flags": "--sup 1 --sem",
   "seed": 3,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  },
  {
-  "name": "events_sup1_long_s3",
+  "name": "events_sup1_roles_sem_s3",
   "script": "hippo_events.py",
-  "flags": "--sup 1",
+  "flags": "--sup 1 --roles --sem",
+  "seed": 3,
+  "questions": 160000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "90-2026-11-26"
+ },
+ {
+  "name": "events_sup1_roles_sem_long_s3",
+  "script": "hippo_events.py",
+  "flags": "--sup 1 --roles --sem",
   "seed": 3,
   "questions": 480000,
   "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "89-2026-11-26"
+  "batch": "90-2026-11-26"
  }
 ]

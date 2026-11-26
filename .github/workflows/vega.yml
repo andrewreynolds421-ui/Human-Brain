@@ -47,7 +47,7 @@ jobs:
         working-directory: /home/claude/synthetic-connectome
         timeout-minutes: 335
         run: |
-          cp "$GITHUB_WORKSPACE/synthetic-connectome/data/passages.json.gz" /home/claude/synthetic-connectome/data/
+          cp "$GITHUB_WORKSPACE/synthetic-connectome/data/passages.json.gz" "$GITHUB_WORKSPACE/synthetic-connectome/data/semantic_vectors.npz" /home/claude/synthetic-connectome/data/
           cp "$GITHUB_WORKSPACE/runs/${{ matrix.job.name }}/"*.ckpt /tmp/out/ 2>/dev/null && echo "resuming from a pushed checkpoint" || true
           ${{ matrix.job.env }} QUESTIONS=${{ matrix.job.questions }} BABI_OUT=/tmp/out BABI_DATA=/tmp/out EV_OUT=/tmp/out EV_DATA=/tmp/out PYTHONPATH=. THREADS=4 \
             python scripts/${{ matrix.job.script || 'hippo_babi.py' }} ${{ matrix.job.flags }} --seed ${{ matrix.job.seed }} > /tmp/out/train.txt 2>&1
