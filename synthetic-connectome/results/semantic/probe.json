@@ -1,0 +1,77 @@
+{
+ "sentences": 1032938,
+ "words": 13179180,
+ "vocabulary": 36998,
+ "plural_pairs": 931,
+ "plural_is_nearest": 0.149,
+ "plural_in_top10": 0.48,
+ "median_rank": 12.0,
+ "cosines": {
+  "wolf-wolves": 0.43,
+  "wolves-cats": 0.65,
+  "mouse-mice": 0.63,
+  "mice-cats": 0.64,
+  "cat-cats": 0.61,
+  "sheep-wolf": 0.31,
+  "kitchen-garden": 0.34,
+  "kitchen-wolf": 0.08
+ },
+ "nearest": {
+  "wolf": [
+   "im",
+   "rabbit",
+   "fox",
+   "lak",
+   "tuck'n",
+   "den"
+  ],
+  "mouse": [
+   "chipmunk",
+   "squirrel",
+   "danny",
+   "hare",
+   "frog",
+   "johnny"
+  ],
+  "kitchen": [
+   "room",
+   "pantry",
+   "dining",
+   "parlor",
+   "upstairs",
+   "parlour"
+  ],
+  "afraid": [
+   "sorry",
+   "sure",
+   "because",
+   "really",
+   "i'm",
+   "glad"
+  ],
+  "gave": [
+   "giving",
+   "took",
+   "brought",
+   "made",
+   "give",
+   "cry"
+  ],
+  "queen": [
+   "king",
+   "princess",
+   "prince",
+   "daughter",
+   "lady",
+   "king's"
+  ],
+  "ship": [
+   "vessel",
+   "sail",
+   "boat",
+   "schooner",
+   "steamer",
+   "sails"
+  ]
+ }
+}
