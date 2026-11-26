@@ -516,3 +516,8 @@ familiarity ruled out. Next: store each event so any of its words recalls it (pa
 key per sentence. Launch GitHub runs by changing runs/jobs.json (add a batch label); watch with
 `gh api repos/andrewreynolds421-ui/Human-Brain/commits/<sha>/check-runs`.
 
+Stage 81 follow-up 5 (26 Nov): SCORE_BOTH=1 + BIG_LOOP=1, 8 cloud runs: CA3 265 1/4 past 85 %, CA3 1060 2/4 (big loop
+alone 4/8). Best human-proportioned run so far: CA3 265 seed 0 (99.6 / 78.4 / 98.7 / 99.5 / 98.6 %; model on that
+cloud machine only - rerun scoreboth_ca3_265 seed 0 to rebuild it). Stalled runs fail where-person (~46 %) with both
+recalls scored, so the fault is the storage policy (what is stored per sentence), not the chooser. Practical: best of
+several seeds; research: fix what gets stored.
