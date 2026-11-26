@@ -166,7 +166,9 @@ def main():
     os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + os.environ.get("EV_TAG", "")
 
     def run(M, C, tok, seed, res):
-        torch = M.torch; torch.set_num_threads(int(os.environ.get("THREADS", 2))); M.m.eval()
+        torch = M.torch; torch.set_num_threads(int(os.environ.get("THREADS", 2)))
+        if os.environ.get("STORY_READER"): M.m.load_state_dict(torch.load(os.environ["STORY_READER"]), strict=False); print("reading network:", os.environ["STORY_READER"], flush=True)   # Stage 91
+        M.m.eval()
         for p in M.m.parameters(): p.requires_grad_(False)
         net = build(M, a.seed); opt = torch.optim.Adam(net.parameters(), lr=5e-4); cache = {}
         if SEM:
@@ -251,7 +253,7 @@ def main():
             if os.path.exists(ck): os.remove(ck)
         else: net.load_state_dict(torch.load(path))
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={}, step_hits={},
-                   config=dict(sup=a.sup, roles=ROLES, sem=SEM, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
+                   config=dict(reader=os.path.basename(os.environ.get("STORY_READER", "")) or "stage 73", sup=a.sup, roles=ROLES, sem=SEM, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
         for t in T:
             hops = []; acc = accuracy(tasks[t]["test"][:NT], hops); out["tasks"][tasks[t]["name"]] = round(acc, 4)
             if hops: out["step_hits"][tasks[t]["name"]] = [round(float(np.mean([h[j] for h in hops if len(h) > j])), 3) for j in range(max(map(len, hops)))]   # does recall step j land on supporting sentence j?
@@ -269,8 +271,13 @@ def main():
                 flat = [[w for s in it["sents"] for w in s] for it in its]
                 out["passages"][bd] = round(float(np.mean(hz.argmax(1) == y)), 4); out["passages_reader"][bd] = round(float(np.mean(lp.argmax(1) == y)), 4)
                 out["passages_both"][bd] = round(float(np.mean((hz + lp - lp.max(1, keepdims=True)).argmax(1) == y)), 4)
+                if os.environ.get("STORY_READER"):                                                # the reading network after reading the passage (Stage 91)
+                    import story_reader as SR
+                    lc = SR.context_logp(M, [f for f, it in zip(flat, its) for _ in it["cands"]], [it["sent"][:it["pos"]] + [c[0]] + it["sent"][it["pos"] + 1:] for it in its for c in it["cands"]]).reshape(len(its), -1)
+                    out.setdefault("passages_reader_context", {})[bd] = round(float(np.mean(lc.argmax(1) == y)), 4)
+                    out.setdefault("passages_both_context", {})[bd] = round(float(np.mean((hz + lc - lc.max(1, keepdims=True)).argmax(1) == y)), 4)
                 out["passages_most_frequent"][bd] = round(float(np.mean([max(range(len(it["cands"])), key=lambda j: (f.count(it["cands"][j][0]), -j)) == it["y"] for it, f in zip(its, flat)])), 4)
-            print({k: out[k] for k in ("passages", "passages_reader", "passages_both", "passages_most_frequent")}, flush=True)
+            print({k: out[k] for k in out if k.startswith("passages")}, flush=True)
         json.dump(out, open(os.path.join(OUT, f"{tag}s{a.seed}.json"), "w"), indent=1); print(json.dumps({k: v for k, v in out.items() if k != "training"})[:3000], flush=True)
         raise SystemExit
 
