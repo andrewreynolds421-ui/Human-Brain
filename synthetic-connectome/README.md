@@ -4223,6 +4223,9 @@ Four networks (one at a time, ~2 h each).
 | mean error | 23.9 % / 25 % | 36.4 % | 7.5 % |
 
 Published: Sukhbaatar et al. 2015, as tabulated in Pavez et al. 2018.
+**Caveat found later (AUDIT 64):** VEGA answers each task from that task's own answer list; the published models
+choose from the whole vocabulary. With one list for all tasks the same kind of network scores clearly lower (see
+AUDIT 64 and the one-list rerun) - the comparison in this table and in Stages 80-87 is not like for like.
 
 | VEGA per task (four networks) | |
 |---|---|
@@ -4473,6 +4476,9 @@ sentence most probable), **both** (equal-weight sum, ASSUMED).
   63.0 % (Hill et al. 2016; their books, a similar but not identical test). **VEGA's comprehension of real books is
   well below an adult's even on first-grade books**, and no band reaches the 75 % "reads at" level of the grade test
   (where VEGA reads at grade 4, and grade 6 with its episodic memory - Stage 73).
+- **Check (AUDIT 64):** picking the candidate that occurs most often in the passage, with no learning, scores
+  18-32 % (mean 27 %). VEGA's memory (28-38 %) is only ~5 points above that; the gain over the reading network comes
+  from adding the two, not from remembering the story.
 - **Two different tests, not a drop.** The grade test (Stage 53) blanks a word in ONE sentence and offers 4 words
   of the same part of speech (chance 25 %) - sentence-level language sense; VEGA reads at grade 4 there (76.7 %,
   Stage 73), unchanged. The passage test offers 10 nouns that all occur in the passage and all fit the sentence

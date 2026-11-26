@@ -543,3 +543,14 @@ Stage 81 follow-up 6 (26 Nov): best of 8 seeds (CA3 265 + BIG_LOOP + SCORE_BOTH)
 10 k stories from each: s0 94.3 / 94.5 / 94.6; s7 85.1 / 88.9 / 80.6; s5 76.1 / 80.4 / 75.0. Sleep best or tied on
 all three; equal-lessons re-read worst on two -> nightly replay at lower step size, not extra lessons, is what helps.
 Continued models on branches stage81z-<mode>-from<seed>. Best overall still s0 before extra training.
+REVIEW (26 Nov, AUDIT 64) - read before trusting earlier numbers. (1) bAbI comparison with LSTM / MemN2N is not like
+for like: per-task answer lists; same network with one list of 60 answers: 6 passed / 32.4 % vs 8 / 19.9 %
+(`AUDIT=1` prints this). One-list retraining (`--onelist`, runs onelist_loop_controller_s*) gives the fair figure.
+(2) Passage test: "most frequent candidate in the passage" baseline is 18-32 % (mean 27 %); the memory's 28-38 % is
+barely above it. (3) FOR THE STAGE 81 SESSION: `hippo_wired_babi.py` does not run against the current
+`hippo_babi.py` on this branch - `patched_main` asserts on a source line that changed at Stage 83 (the loss line is
+now followed by the controller / plural terms; patch after `loss = torch.nn.functional.cross_entropy(logits(b), y)`
+only), and from Stage 85 until this commit `logits()` passed `bnd=` to every network (fixed here: only with
+--pattern). If your bAbI runs used this branch after 25 Nov 20:52 they crashed or ran an older copy - check.
+(4) Stage 81 sleep claim rests on one run per seed and mode in a model that varies by tens of points per seed.
+

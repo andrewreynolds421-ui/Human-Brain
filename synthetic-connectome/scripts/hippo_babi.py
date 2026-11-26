@@ -72,6 +72,7 @@ QUESTIONS = int(os.environ.get("QUESTIONS", 120_000))
 EPISODES = False                                                        # Stage 80: the episode record (set by --episodes)
 CONTROLLER = False                                                      # controller: prefrontal working memory + basal-ganglia recall loop (set by --controller)
 K_STEPS = 6; PONDER = 0.003; CTRL_ONLY = False                         # --ctrl-only: the controller is the only way to chain recalls; step cost phased in                                             # most recall steps; cost per step (ASSUMED)
+ONELIST = False                                                         # AUDIT 64: --onelist: one answer list for all 20 tasks (as published models: no task hint from the candidates)
 PLURALS = None                                                          # Stage 88: --plurals all | heldout: teach the concept keys that a noun and its plural are one concept
 CKEY = False                                                            # Stage 87: memories filed and looked up by concept (--ckey): a learned map before the key code
 ROUTINE = None                                                          # Stage 86: --routine joint | awake | sleep | reread (days of experience; nights replay)
@@ -111,6 +112,11 @@ def load_all():
         cands = sorted({it["ans"] for it in tr})
         for it in tr + te: it["cands"] = cands; it["y"] = cands.index(it["ans"]) if it["ans"] in cands else -1
         tasks[t] = dict(name=name, train=tr, test=te, cands=cands)
+    if ONELIST:
+        allc = sorted({c for t in tasks for c in tasks[t]["cands"]})
+        for t in tasks:
+            tasks[t]["cands"] = allc
+            for it in tasks[t]["train"] + tasks[t]["test"]: it["cands"] = allc; it["y"] = allc.index(it["ans"]) if it["ans"] in allc else -1
     return tasks
 
 
@@ -263,13 +269,14 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true"); ap.add_argument("--allcues", action="store_true"); ap.add_argument("--pattern", action="store_true"); ap.add_argument("--ckey", action="store_true"); ap.add_argument("--plurals", choices=("all", "heldout")); ap.add_argument("--routine", choices=("joint", "awake", "sleep", "reread"))   # control: Stage 79 circuit, Stage 80 learning settings only
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true"); ap.add_argument("--allcues", action="store_true"); ap.add_argument("--pattern", action="store_true"); ap.add_argument("--ckey", action="store_true"); ap.add_argument("--onelist", action="store_true"); ap.add_argument("--plurals", choices=("all", "heldout")); ap.add_argument("--routine", choices=("joint", "awake", "sleep", "reread"))   # control: Stage 79 circuit, Stage 80 learning settings only
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
-    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP, ALLCUES, PATTERN, ROUTINE, CKEY, PLURALS; ROUTINE = a.routine; PLURALS = a.plurals; a.ckey = a.ckey or bool(a.plurals); CKEY = a.ckey; PATTERN = a.pattern; a.loop = a.loop or a.pattern; a.allcues = a.allcues or a.pattern; LOOP = a.loop; ALLCUES = a.allcues; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
+    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP, ALLCUES, PATTERN, ROUTINE, CKEY, PLURALS, ONELIST; ONELIST = a.onelist; ROUTINE = a.routine; PLURALS = a.plurals; a.ckey = a.ckey or bool(a.plurals); CKEY = a.ckey; PATTERN = a.pattern; a.loop = a.loop or a.pattern; a.allcues = a.allcues or a.pattern; LOOP = a.loop; ALLCUES = a.allcues; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
     if a.steady: tag = "steady_"
     elif a.pattern: tag = "pattern_" + (f"plurals{a.plurals}_" if a.plurals else "") + ("ckey_" if a.ckey else "") + ("concepts_" if a.concepts else "") + ("controller_" if a.controller else "")
     elif a.loop: tag = "loop_" + ("allcues_" if a.allcues else "") + ("concepts_" if a.concepts else "") + ("controller_" if a.controller else "")
     else: tag = ("controller2_" if a.ctrl_only else "controller_" if a.controller else "") + ("concepts_" if a.concepts else "" if a.controller else "episodes_" if a.episodes else "")
+    if a.onelist: tag = "onelist_" + tag
     if a.routine: tag = f"{a.routine}_" + tag                                       # Stage 86
 
     def run(M, C, tok, seed, res):
@@ -299,7 +306,7 @@ def main():
             return hs * mask[..., None], es * mask[..., None], mask, q, qe, qmask, ce, bnd
 
         def logits(b):
-            z = net(*b[:6], bnd=b[7]); ce = b[6]
+            z = net(*b[:6], bnd=b[7]) if PATTERN else net(*b[:6]); ce = b[6]             # other networks built on this script (hippo_wired_babi) take six inputs
             if CONCEPTS: z = net.cmap(z); ce = net.cmap(ce)
             return net.temp * torch.einsum("be,bce->bc", z / (z.norm(dim=-1, keepdim=True) + 1e-6), ce / (ce.norm(dim=-1, keepdim=True) + 1e-6))
 
@@ -396,6 +403,18 @@ def main():
             torch.save(net.state_dict(), path)
             if os.path.exists(ck): os.remove(ck)
         else: net.load_state_dict(torch.load(path))
+        if os.environ.get("AUDIT"):                                                           # checks of the test itself (AUDIT 64)
+            ar = np.random.default_rng(64); res = {}
+            for k, v in W.test_sets(seed=0).items():                                          # 1. world tests list the true answer first: shuffle and compare
+                its = world_items(None, 0, v); sh = []
+                for it in its:
+                    o = ar.permutation(len(it["cands"])); sh.append(dict(it, cands=[it["cands"][j] for j in o], y=int(np.nonzero(o == 0)[0][0])))
+                res[f"world_{k}"] = dict(true_first=round(accuracy(its), 4), shuffled=round(accuracy(sh), 4))
+            allc = sorted({c for t in T for c in tasks[t]["cands"]})                            # 2. bAbI with one answer list for all tasks (no task hint)
+            for t in T:
+                its = [dict(it, cands=allc, y=allc.index(it["ans"])) for it in tasks[t]["test"][:500]]
+                res[tasks[t]["name"]] = dict(own_list=round(accuracy(tasks[t]["test"][:500]), 4), one_list=round(accuracy(its), 4), n_own=len(tasks[t]["cands"]))
+            res["n_one_list"] = len(allc); print("AUDIT", json.dumps(res), flush=True); raise SystemExit
         if os.environ.get("PROBE"):                                                           # what is recalled at each step, as the nearest words
             words = sorted({w for t in T for it in tasks[t]["test"][:300] for w in it["story"] + it["q"] if isinstance(w, str)})
             WE = torch.stack([emb((w,)) for w in words]); WEn = WE / (WE.norm(dim=-1, keepdim=True) + 1e-6); net.eval()
@@ -418,7 +437,7 @@ def main():
                         print("   store ", " ".join(f"{w}[k{k:.2f} i{m:.2f}{' END' if g > 0.5 else ''}]" for w, k, m, g in zip(it["story"], ks, im, gt)))
             raise SystemExit
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={})
-        out["config"] = dict(EPISODES=EPISODES, CONCEPTS=CONCEPTS, CONTROLLER=CONTROLLER, CTRL_ONLY=CTRL_ONLY, LOOP=LOOP, ALLCUES=ALLCUES, PATTERN=PATTERN, ROUTINE=ROUTINE, CKEY=CKEY, PLURALS=PLURALS, tag=tag, n_params=sum(p.numel() for p in net.parameters()))   # what was actually on
+        out["config"] = dict(EPISODES=EPISODES, CONCEPTS=CONCEPTS, CONTROLLER=CONTROLLER, CTRL_ONLY=CTRL_ONLY, LOOP=LOOP, ALLCUES=ALLCUES, PATTERN=PATTERN, ROUTINE=ROUTINE, CKEY=CKEY, PLURALS=PLURALS, ONELIST=ONELIST, tag=tag, n_params=sum(p.numel() for p in net.parameters()))   # what was actually on
         for t in T:
             if ONLY and not any(tasks[t]["name"].startswith(f"qa{n}_") for n in ONLY.split(",")): continue
             acc = accuracy(tasks[t]["test"], tasks[t]["name"]); out["tasks"][tasks[t]["name"]] = round(acc, 4); print(tasks[t]["name"], round(acc, 4), flush=True)

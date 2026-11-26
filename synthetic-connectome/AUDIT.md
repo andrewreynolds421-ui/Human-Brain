@@ -893,3 +893,51 @@ Passage test: test books only, items dropped when the blanked sentence shares a 
 network's reading (34-63 per band); human / model comparison from Hill et al. 2016 Table 2 (different books - similar,
 not identical, test). Results: results/stage86/ (summary stage86_summary.json, `scripts/analysis/stage86.py`).
 
+## 64. Review (26 November): code and reasoning of both hippocampus lines, re-read end to end
+
+Asked for by the user. Both lines were read in full (`hippo_babi.py`, Stages 79-88; `hippo_wired.py`,
+`hippo_wired_world.py`, `hippo_wired_babi.py`, `hippo_wired_diag.py`, Stage 81, written by another session) and
+the tests themselves were tested.
+
+**Found in this line (hippo_babi.py)**
+1. **The bAbI comparison favours VEGA.** Each task is answered from its own list of answers (2-16 candidates:
+   yes / no for task 6, four animals for task 15 ...), which tells the network which task it is in and removes most
+   wrong answers. Published LSTM / MemN2N results choose from the whole vocabulary. Measured on the best variant
+   (loop + controller, network 0, first 500 questions per task), the same trained network asked with ONE list of
+   all 60 answers: 6 tasks passed and 32.4 % mean error, against 8 and 19.9 % with its own lists (tasks 17 and 19
+   fall to 0 %, deduction to 18 %, counting to 38 %). That network was never trained with one list, so this is a
+   lower bound; four networks are being retrained with one list (`--onelist`) for the fair figure. Until then
+   "9 of 20, between LSTM and MemN2N" is not established.
+2. **The passage test's memory score is close to a no-learning baseline.** Choosing the candidate that occurs most
+   often in the passage scores 18-32 % by band (mean 26.8 %); most recent 21-26 %. VEGA's memory scores 28-38 %
+   (sleep, mean 32 %): about 5 points above counting words. The reading network alone (28-42 %) and the sum (33-51 %)
+   stand, but "memory of the story" is mostly frequency. Not reported in Stage 86; added.
+3. Stage 86: sleep and reread had twice the lessons of joint and awake (stated); the sleep-vs-reread difference on
+   passages is a recency effect - passages were the last day, and reread mixes old tasks in at the full step while
+   the night uses a third - not evidence about sleep beyond that.
+4. Lists (task 8): three-item answers are represented by their first two words; 6 pairs of candidates cannot be
+   told apart (67 of 1,000 test answers) - a ceiling of about 96.6 % at best, in practice lower.
+5. Event store (`--pattern`): a window of 8 words; sentences of tasks 10, 17, 18 run to 9-11 words, so their first
+   words are not in the stored event (task 17, positions: the subject is cut).
+6. Checked and fine: no answer-position bias (world tests list the true answer first; shuffled candidates give the
+   same accuracy to 3 decimals on all four sets); every test answer is among its task's candidates; the reading
+   network cannot see the question while reading the story (one direction); checkpoints restore the data stream
+   (not the plural-pair stream of Stage 88 - a resumed run draws different pairs; harmless); every flag now
+   reaches the model (`config` in each result; the one flag that did not, Stage 84b, was rerun).
+7. Earlier wrong readings, already corrected in place: Stage 80 (gain was the optimiser), Stage 82 hypothesis
+   (word form), Stage 87 ("rules hardly stored").
+
+**Found in the other line (Stage 81, wired hippocampus)** - code is sound: the fast-weight memory kept as its update
+history gives the same numbers as the matrices; the delta rule, inhibition and both recall routes do what the
+docstrings say; equal-lesson sleep / reread schedule is correct.
+1. Docstring sizes (DG 1,472, CA1 1,576, SUB 442) differ from what the code computes and reports (1,471, 1,569, 441).
+2. "Best of 8 seeds" (95.0 %) is chosen by test score: an upper end of a bimodal spread (58-95 %), not a typical run.
+3. **"Sleep best or tied on all three ... nightly replay at lower step size, not extra lessons, is what helps" is not
+   supported.** One run per seed and mode (s0 94.3 / 94.5 / 94.6, s7 85.1 / 88.9 / 80.6, s5 76.1 / 80.4 / 75.0);
+   runs of this model differ by tens of points between seeds; on s7 "sleep" only keeps the starting score (88.9)
+   while the other two lose points; and the days are all the same kind of story, so there is nothing old to protect
+   - what differs is the step size of half the lessons. Needs repeats and a low-step awake control.
+4. The logged CA3 / DG sparsity is that of the question cue (the diagnostic call overwrites it), not of the story.
+5. Its fairness is good where it matters: "old" was rerun at the same cut-down budget for the 3 / 20 vs 0 / 20
+   comparison; negative results are reported as such.
+
