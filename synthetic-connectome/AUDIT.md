@@ -906,8 +906,10 @@ the tests themselves were tested.
    (loop + controller, network 0, first 500 questions per task), the same trained network asked with ONE list of
    all 60 answers: 6 tasks passed and 32.4 % mean error, against 8 and 19.9 % with its own lists (tasks 17 and 19
    fall to 0 %, deduction to 18 %, counting to 38 %). That network was never trained with one list, so this is a
-   lower bound; four networks are being retrained with one list (`--onelist`) for the fair figure. Until then
-   "9 of 20, between LSTM and MemN2N" is not established.
+   lower bound. **Retrained with one list** (`--onelist`, four networks, same reading networks and budget):
+   **8, 5, 7, 8 tasks passed, mean error 24.7 %** (21.1, 30.3, 25.1, 22.5), against 9, 9, 8, 9 and 20.6 % with
+   per-task lists - about one task and 1-3 points worse in three networks, and one network (1) trained badly
+   (30.3 %). The like-for-like statement is: VEGA 5-8 of 20 at ~25 % error; LSTM 4 at 36.4 %; MemN2N 14 at 7.5 %.
 2. **The passage test's memory score is close to a no-learning baseline.** Choosing the candidate that occurs most
    often in the passage scores 18-32 % by band (mean 26.8 %); most recent 21-26 %. VEGA's memory scores 28-38 %
    (sleep, mean 32 %): about 5 points above counting words. The reading network alone (28-42 %) and the sum (33-51 %)

@@ -553,4 +553,6 @@ now followed by the controller / plural terms; patch after `loss = torch.nn.func
 only), and from Stage 85 until this commit `logits()` passed `bnd=` to every network (fixed here: only with
 --pattern). If your bAbI runs used this branch after 25 Nov 20:52 they crashed or ran an older copy - check.
 (4) Stage 81 sleep claim rests on one run per seed and mode in a model that varies by tens of points per seed.
+One-list retraining done: loop+controller --onelist 8, 5, 7, 8 passed, 24.7 % (own lists 9, 9, 8, 9, 20.6 %). Use
+--onelist for any future comparison with published bAbI numbers.
 

@@ -4224,8 +4224,10 @@ Four networks (one at a time, ~2 h each).
 
 Published: Sukhbaatar et al. 2015, as tabulated in Pavez et al. 2018.
 **Caveat found later (AUDIT 64):** VEGA answers each task from that task's own answer list; the published models
-choose from the whole vocabulary. With one list for all tasks the same kind of network scores clearly lower (see
-AUDIT 64 and the one-list rerun) - the comparison in this table and in Stages 80-87 is not like for like.
+choose from the whole vocabulary. Retrained with one list of all 60 answers (`--onelist`), the best variant (loop +
+controller, Stage 84) passes **8, 5, 7, 8** tasks at **24.7 %** mean error (per-task lists: 9, 9, 8, 9 at 20.6 %).
+That is the like-for-like figure against LSTM (4, 36.4 %) and MemN2N (14, 7.5 %); the numbers in this table and in
+Stages 80-87 are 1-4 points too favourable.
 
 | VEGA per task (four networks) | |
 |---|---|

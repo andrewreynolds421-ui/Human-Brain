@@ -1,0 +1,183 @@
+{
+ "seed": 1,
+ "questions": 160000,
+ "training": [
+  {
+   "questions": 16000,
+   "minutes": 6.5,
+   "loss": 1.208
+  },
+  {
+   "questions": 32000,
+   "minutes": 13.2,
+   "loss": 2.29
+  },
+  {
+   "questions": 48000,
+   "minutes": 19.7,
+   "loss": 0.732
+  },
+  {
+   "questions": 64000,
+   "minutes": 26.1,
+   "loss": 0.824
+  },
+  {
+   "questions": 80000,
+   "minutes": 32.4,
+   "loss": 0.254
+  },
+  {
+   "questions": 96000,
+   "minutes": 38.9,
+   "loss": 0.784
+  },
+  {
+   "questions": 112000,
+   "minutes": 45.3,
+   "loss": 1.512
+  },
+  {
+   "questions": 128000,
+   "minutes": 51.7,
+   "loss": 0.321
+  },
+  {
+   "questions": 144000,
+   "minutes": 58.3,
+   "loss": 0.852
+  },
+  {
+   "questions": 160000,
+   "minutes": 64.9,
+   "loss": 0.524
+  }
+ ],
+ "tasks": {
+  "qa1_single-supporting-fact": 0.983,
+  "qa2_two-supporting-facts": 0.407,
+  "qa3_three-supporting-facts": 0.422,
+  "qa4_two-arg-relations": 0.664,
+  "qa5_three-arg-relations": 0.976,
+  "qa6_yes-no-questions": 0.826,
+  "qa7_counting": 0.776,
+  "qa8_lists-sets": 0.669,
+  "qa9_simple-negation": 0.781,
+  "qa10_indefinite-knowledge": 0.624,
+  "qa11_basic-coreference": 0.821,
+  "qa12_conjunction": 0.976,
+  "qa13_compound-coreference": 0.951,
+  "qa14_time-reasoning": 0.445,
+  "qa15_basic-deduction": 0.568,
+  "qa16_basic-induction": 0.505,
+  "qa17_positional-reasoning": 0.589,
+  "qa18_size-reasoning": 0.904,
+  "qa19_path-finding": 0.086,
+  "qa20_agents-motivations": 0.975
+ },
+ "config": {
+  "EPISODES": true,
+  "CONCEPTS": false,
+  "CONTROLLER": true,
+  "CTRL_ONLY": false,
+  "LOOP": true,
+  "ALLCUES": false,
+  "PATTERN": false,
+  "ROUTINE": null,
+  "CKEY": false,
+  "PLURALS": null,
+  "ONELIST": true,
+  "tag": "onelist_loop_controller_",
+  "n_params": 1405379
+ },
+ "passed_95": 5,
+ "mean_error": 30.26,
+ "controller": {
+  "qa1_single-supporting-fact": {
+   "steps": 1.0,
+   "weight": 0.036
+  },
+  "qa2_two-supporting-facts": {
+   "steps": 1.0,
+   "weight": 0.029
+  },
+  "qa3_three-supporting-facts": {
+   "steps": 1.02,
+   "weight": 0.1
+  },
+  "qa4_two-arg-relations": {
+   "steps": 1.03,
+   "weight": 0.092
+  },
+  "qa5_three-arg-relations": {
+   "steps": 1.18,
+   "weight": 0.068
+  },
+  "qa6_yes-no-questions": {
+   "steps": 1.01,
+   "weight": 0.056
+  },
+  "qa7_counting": {
+   "steps": 1.0,
+   "weight": 0.069
+  },
+  "qa8_lists-sets": {
+   "steps": 1.04,
+   "weight": 0.054
+  },
+  "qa9_simple-negation": {
+   "steps": 1.01,
+   "weight": 0.057
+  },
+  "qa10_indefinite-knowledge": {
+   "steps": 1.02,
+   "weight": 0.051
+  },
+  "qa11_basic-coreference": {
+   "steps": 1.0,
+   "weight": 0.036
+  },
+  "qa12_conjunction": {
+   "steps": 1.0,
+   "weight": 0.035
+  },
+  "qa13_compound-coreference": {
+   "steps": 1.0,
+   "weight": 0.033
+  },
+  "qa14_time-reasoning": {
+   "steps": 1.02,
+   "weight": 0.109
+  },
+  "qa15_basic-deduction": {
+   "steps": 1.5,
+   "weight": 0.069
+  },
+  "qa16_basic-induction": {
+   "steps": 1.0,
+   "weight": 0.065
+  },
+  "qa17_positional-reasoning": {
+   "steps": 1.0,
+   "weight": 0.077
+  },
+  "qa18_size-reasoning": {
+   "steps": 1.02,
+   "weight": 0.095
+  },
+  "qa19_path-finding": {
+   "steps": 1.0,
+   "weight": 0.06
+  },
+  "qa20_agents-motivations": {
+   "steps": 1.28,
+   "weight": 0.208
+  }
+ },
+ "world": {
+  "same": 0.701,
+  "held_names": 0.68,
+  "held_objects_places": 0.688,
+  "long": 0.65
+ }
+}
