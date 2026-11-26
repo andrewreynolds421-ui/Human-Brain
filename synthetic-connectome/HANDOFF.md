@@ -534,3 +534,9 @@ stored - recall from them returns a generic verb blend; the store files events u
 results/babi_all/stage85_87_summary.json. Grade note for the user: grade test (1 sentence, 4 options) = grade 4,
 unchanged; the passage test (20 sentences, 10 nouns from the passage) is a different, harder memory test.
 
+Stage 81 follow-up 6 (26 Nov): best of 8 seeds (CA3 265 + BIG_LOOP + SCORE_BOTH): seed 0 95.0 % avg of 5 world tests
+(reproduced exactly), seed 7 88.9 %, seed 5 74.5 %, rest 58-70 %. Models on branches stage81k-s<seed>
+(synthetic-connectome/models/hippo_wired/best265/wired_s<seed>.pt). Then SLEEP_MODE awake / sleep / reread, 4 days x
+10 k stories from each: s0 94.3 / 94.5 / 94.6; s7 85.1 / 88.9 / 80.6; s5 76.1 / 80.4 / 75.0. Sleep best or tied on
+all three; equal-lessons re-read worst on two -> nightly replay at lower step size, not extra lessons, is what helps.
+Continued models on branches stage81z-<mode>-from<seed>. Best overall still s0 before extra training.
