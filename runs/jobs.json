@@ -1,34 +1,10 @@
 [
  {
-  "name": "pattern_ckey_concepts_s0",
-  "flags": "--pattern --concepts --ckey",
-  "seed": 0,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "87-2026-11-26T03:55"
- },
- {
-  "name": "pattern_ckey_concepts_s1",
-  "flags": "--pattern --concepts --ckey",
+  "name": "pattern_s1",
+  "flags": "--pattern",
   "seed": 1,
   "questions": 160000,
   "env": "DUMP=15,16,3",
-  "batch": "87-2026-11-26T03:55"
- },
- {
-  "name": "pattern_ckey_concepts_s2",
-  "flags": "--pattern --concepts --ckey",
-  "seed": 2,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "87-2026-11-26T03:55"
- },
- {
-  "name": "pattern_ckey_concepts_s3",
-  "flags": "--pattern --concepts --ckey",
-  "seed": 3,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "87-2026-11-26T03:55"
+  "batch": "85-resume-2"
  }
 ]
