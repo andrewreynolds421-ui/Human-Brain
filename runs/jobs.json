@@ -5,7 +5,7 @@
   "seed": 0,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_joint_loopctl_s1",
@@ -13,7 +13,7 @@
   "seed": 1,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_joint_loopctl_s2",
@@ -21,7 +21,7 @@
   "seed": 2,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_joint_loopctl_s3",
@@ -29,7 +29,7 @@
   "seed": 3,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_awake_loopctl_s0",
@@ -37,7 +37,7 @@
   "seed": 0,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_awake_loopctl_s1",
@@ -45,7 +45,7 @@
   "seed": 1,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_awake_loopctl_s2",
@@ -53,7 +53,7 @@
   "seed": 2,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_awake_loopctl_s3",
@@ -61,7 +61,7 @@
   "seed": 3,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_sleep_loopctl_s0",
@@ -69,7 +69,7 @@
   "seed": 0,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_sleep_loopctl_s1",
@@ -77,7 +77,7 @@
   "seed": 1,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_sleep_loopctl_s2",
@@ -85,7 +85,7 @@
   "seed": 2,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_sleep_loopctl_s3",
@@ -93,7 +93,7 @@
   "seed": 3,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_reread_loopctl_s0",
@@ -101,7 +101,7 @@
   "seed": 0,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_reread_loopctl_s1",
@@ -109,7 +109,7 @@
   "seed": 1,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_reread_loopctl_s2",
@@ -117,7 +117,7 @@
   "seed": 2,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_reread_loopctl_s3",
@@ -125,7 +125,7 @@
   "seed": 3,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_joint_allcues_s0",
@@ -133,7 +133,7 @@
   "seed": 0,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_joint_allcues_s1",
@@ -141,7 +141,7 @@
   "seed": 1,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_joint_allcues_s2",
@@ -149,7 +149,7 @@
   "seed": 2,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_joint_allcues_s3",
@@ -157,7 +157,7 @@
   "seed": 3,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_awake_allcues_s0",
@@ -165,7 +165,7 @@
   "seed": 0,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_awake_allcues_s1",
@@ -173,7 +173,7 @@
   "seed": 1,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_awake_allcues_s2",
@@ -181,7 +181,7 @@
   "seed": 2,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_awake_allcues_s3",
@@ -189,7 +189,7 @@
   "seed": 3,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_sleep_allcues_s0",
@@ -197,7 +197,7 @@
   "seed": 0,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_sleep_allcues_s1",
@@ -205,7 +205,7 @@
   "seed": 1,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_sleep_allcues_s2",
@@ -213,7 +213,7 @@
   "seed": 2,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_sleep_allcues_s3",
@@ -221,7 +221,7 @@
   "seed": 3,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_reread_allcues_s0",
@@ -229,7 +229,7 @@
   "seed": 0,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_reread_allcues_s1",
@@ -237,7 +237,7 @@
   "seed": 1,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_reread_allcues_s2",
@@ -245,7 +245,7 @@
   "seed": 2,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  },
  {
   "name": "r86_reread_allcues_s3",
@@ -253,6 +253,6 @@
   "seed": 3,
   "questions": 96000,
   "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86-2026-11-25T23:35"
+  "batch": "86-2026-11-26T00:30"
  }
 ]

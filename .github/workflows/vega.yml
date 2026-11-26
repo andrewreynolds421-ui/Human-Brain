@@ -45,7 +45,9 @@ jobs:
           cp -r "$GITHUB_WORKSPACE/synthetic-connectome/scripts" "$GITHUB_WORKSPACE/synthetic-connectome/synth" /home/claude/synthetic-connectome/
       - name: train ${{ matrix.job.name }}
         working-directory: /home/claude/synthetic-connectome
+        timeout-minutes: 335
         run: |
+          cp "$GITHUB_WORKSPACE/synthetic-connectome/data/passages.json.gz" /home/claude/synthetic-connectome/data/
           ${{ matrix.job.env }} QUESTIONS=${{ matrix.job.questions }} BABI_OUT=/tmp/out BABI_DATA=/tmp/out PYTHONPATH=. THREADS=4 \
             python scripts/hippo_babi.py ${{ matrix.job.flags }} --seed ${{ matrix.job.seed }} > /tmp/out/train.txt 2>&1
       - name: push the result (or the log)
