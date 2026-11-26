@@ -1,0 +1,83 @@
+{
+ "cond": "wired",
+ "sleep_mode": "reread",
+ "init_model": "/tmp/init/synthetic-connectome/models/hippo_wired/best265/wired_s0.pt",
+ "seed": 0,
+ "stories": 40000,
+ "training": [
+  {
+   "when": "start",
+   "val": 0.9975
+  },
+  {
+   "when": "day 1",
+   "val": 0.9975,
+   "minutes": 13.3
+  },
+  {
+   "when": "day 2",
+   "val": 1.0,
+   "minutes": 27.0
+  },
+  {
+   "when": "day 3",
+   "val": 1.0,
+   "minutes": 40.4
+  },
+  {
+   "when": "day 4",
+   "val": 0.9925,
+   "minutes": 54.5
+  }
+ ],
+ "provenance": {
+  "sizes": "human counts West & Gundersen 1990 (DG, CA3-2, CA1, subiculum) and Gomez-Isla 1996 / Insausti (EC II 652,500, EC III 3,590,500), scaled to EC II = 64",
+  "mf_in": "46 mossy-fibre inputs per CA3 cell, rat (Amaral et al. 1990)",
+  "pp_rc": "perforant path ~3,750 and recurrent ~12,000 synapses per CA3 cell (rat) exceed the scaled populations, so both are dense here",
+  "dg_active": "2 % (model literature); CA3 5 % ASSUMED; inhibition by a basket-cell feedback loop",
+  "neurons": "rate model, not spiking"
+ },
+ "sizes": {
+  "EC2": 64,
+  "EC3": 352,
+  "DG": 1471,
+  "CA3": 265,
+  "CA1": 1569,
+  "SUB": 441
+ },
+ "same": {
+  "all": 0.997,
+  "where_person": 1.0,
+  "who_has": 1.0,
+  "carried_objects": 0.994,
+  "when_cue_wrong": 0.9978
+ },
+ "held_names": {
+  "all": 0.787,
+  "where_person": 0.828,
+  "who_has": 0.968,
+  "carried_objects": 0.676,
+  "when_cue_wrong": 0.7712
+ },
+ "held_objects_places": {
+  "all": 0.957,
+  "where_person": 0.98,
+  "who_has": 0.972,
+  "carried_objects": 0.938,
+  "when_cue_wrong": 0.9434
+ },
+ "long": {
+  "all": 0.997,
+  "where_person": 0.996,
+  "who_has": 1.0,
+  "carried_objects": 0.996,
+  "when_cue_wrong": 0.9959
+ },
+ "crowded": {
+  "all": 0.994,
+  "where_person": 0.984,
+  "who_has": 1.0,
+  "carried_objects": 0.996,
+  "when_cue_wrong": 0.9982
+ }
+}
