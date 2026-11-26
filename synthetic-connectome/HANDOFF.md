@@ -561,4 +561,9 @@ only 27.3 %. Deduction 100 %, induction 96-98 %. Still failing: left/right (chan
 sentences are recalled - events come back as bags of words (no roles / order); three facts 75 %; paths 27 %.
 Passages unchanged (memory 32 %, baseline 27 %). Next (user's item 1): meaning in the cortex's word representations;
 and role-bound event content. Launch: runs/jobs.json entries with "script": "hippo_events.py".
+Stage 90 (26 Nov; `hippo_events.py --roles --sem`, `semantic_cortex.py` -> data/semantic_vectors.npz): roles: giving
+83 -> 99 %, world 92 -> 98 %; meaning: passage memory 31.8 -> 35.5 %; bAbI unchanged (14.0-14.7 %); combined long 11.6 %
+(2 nets) vs Stage 89 long 10.8 %. Open: left/right (needs spatial composition), three facts (third step 70 %), paths,
+counting 83 %; real-book comprehension (41.7 % with reader; adults 82 %). Ideas: a spatial map (entorhinal grid-like
+coordinates) for 17/19; retrain the reading network with a meaning objective instead of adding vectors beside it.
 

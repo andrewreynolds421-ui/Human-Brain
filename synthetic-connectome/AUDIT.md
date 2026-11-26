@@ -952,3 +952,11 @@ Supervision is "strong" in the sense of Weston et al. 2015 - stated in the READM
 answer-only training. `world.py` now records sentence ends; stories and test sets verified identical before and
 after. Passage result reported with its most-frequent baseline (no gain). Summary results/events/stage89_summary.json.
 
+## 66. Follow-up (26 November): Stage 90 — semantic cortex, role-aware recall
+
+Meaning vectors are computed from the reading network's own training text only (books, extra books, year-4 books;
+the passage-test books are not in it beyond what the reader had read) and committed (data/semantic_vectors.npz,
+float16). Sixteen networks on GitHub runners; the 3x-longer combined model had 2 of 4 networks finished when written
+up (marked). Stage 88 (plural keys, old design) still running; superseded by Stage 89. Summary
+results/events/stage90_summary.json.
+

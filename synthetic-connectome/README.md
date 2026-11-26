@@ -4536,6 +4536,43 @@ from the start. **Like for like:** one answer list (60 answers) for all tasks. F
   40.6 % against the reader's 35.4 %. Storing sentences and training on passages from the start changed nothing:
   the limit is what the events are made of (word embeddings that carry form more than meaning), which is item 1.
 
+## Stage 90: word meaning from VEGA's own reading, and role-aware recall
+
+**Question.** Stage 89 left two faults: recalled events are bags of words (giving 83 %, left / right at chance), and
+real-book memory is no better than counting words - the reading network's word representations carry form more
+than meaning. (a) Give words meaning; (b) recall a word by its role in the event.
+
+**Set-up.** (a) `scripts/semantic_cortex.py`: from the 1,032,938 sentences (13.2 million words) VEGA's reading
+network read, which words occur within 5 words of each other -> positive PMI -> 128 dimensions (SVD). No other text.
+Probe: nearest to "queen": king, princess, prince; "ship": vessel, sail, boat; "kitchen": room, pantry, dining. It
+gives the *kind* of thing, not the word's identity: a noun's plural is its nearest word for 15 % of 931 pairs (top
+ten: 48 %), and "wolves" is still nearer "cats" (0.65) than "wolf" (0.43). `--sem` joins these vectors to every
+word the hippocampus stores, cues with and answers with. (b) `--roles`: at each recall step the working memory also
+reads ONE word of the recalled event, chosen by the word's context (the reading network's state there - its role).
+Stage 89's taught model, one answer list, four networks each, GitHub runners.
+
+| 4 networks | passed | bAbI error | giving (5) | world stories | book passages: memory / + reader |
+|---|---|---|---|---|---|
+| Stage 89 taught | 8, 7, 9, 11 | 14.5 % | 82.8 | 92.4 | 31.8 / 40.6 |
+| + roles | 9, 7, 10, 9 | 14.0 % | **99.1** | **97.6** | 31.6 / 40.3 |
+| + meaning | 9, 9, 9, 8 | 14.4 % | 82.3 | 92.5 | **35.5** / 41.7 |
+| + both | 9, 9, 9, 10 | 14.7 % | 99.3 | 97.3 | 34.2 / 41.4 |
+| Stage 89, 3x longer | 11, 10, 11, 10 | **10.8 %** | 85.4 | 94.6 | 31.1 / 40.8 |
+| + both, 3x longer (2 networks so far) | 11, 11 | 11.6 % | 99.2 | 98.0 | 33.2 / 41.6 |
+
+(passages: reading network alone 35.4 %, most-frequent-word baseline 26.8 %, chance 10 %)
+
+- **Roles fix what they were for:** giving 83 -> 99 % and VEGA's world stories 92 -> 98 % (new names 85 -> 92 %, long
+  stories 86 -> 93 %) in every network. Left / right stays at chance (50-52 %): there the answer needs the two
+  recalled facts combined in space, which nothing in VEGA does (the published supervised memory networks fail it too).
+- **Meaning helps real books a little:** memory 31.8 -> 35.5 % (+3.7; now level with the reading network, 9 points
+  above counting words), memory + reader 41.7 %. It does nothing for bAbI. Small, because co-occurrence gives topic,
+  not identity or relations; still far from the adult 82 %.
+- **No gain overall on bAbI** (14.0-14.7 % vs 14.5 %); with longer training the combined model is slightly worse
+  than Stage 89 alone (11.6 vs 10.8 %: three facts 68 vs 75, time order 92 vs 97, paths 19 vs 26) - the extra reads
+  are not free. Passed counts are steadier (9-10 in 7 of 8 networks).
+- Best to date: bAbI 10.8 % / 10-11 tasks (Stage 89 long); world stories 98 % and giving 99 % (with roles).
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
