@@ -508,3 +508,11 @@ Stage 81 follow-up 4 (25 Nov): BIG_LOOP=1 (second recall cued from EC V -> EC II
 cloud machines: CA3 265 2/4 past 85 % (mean 80 %; was 0/3, 75 %), CA3 1060 2/4 (81 %). Stalled runs now fail
 one-step questions (where-person ~49 %) while carried objects reach 71 %: they always use the second recall. Next:
 the per-question choice between first and second recall (mix), e.g. score both recalls during training.
+Stage 84 (25 Nov; `hippo_babi.py --loop [--controller | --allcues [--concepts]]`): learned big-loop re-entry, 4 nets
+each on GitHub runners. Loop: 21.0 % (two facts 80, time 74, relations 79; 4/4 > control); loop+controller 20.6 %,
+9/9/8/9 passed (best). Deduction unchanged everywhere (54-60 %). Probe (`PROBE=15`): the FIRST recall fails - "X is
+a Y" facts are filed under "is", not the person (recall from "is" = cat/mouse/sheep; from "emily" = blur); name
+familiarity ruled out. Next: store each event so any of its words recalls it (pattern completion), not one learned
+key per sentence. Launch GitHub runs by changing runs/jobs.json (add a batch label); watch with
+`gh api repos/andrewreynolds421-ui/Human-Brain/commits/<sha>/check-runs`.
+

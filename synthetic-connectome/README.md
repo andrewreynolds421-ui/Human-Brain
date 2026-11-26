@@ -4328,6 +4328,38 @@ not replace the fixed second step for carried objects.
   answer of one recall to become the cue of the next, trained by more than the final answer.
 - Negative results kept: the episode record (Stage 80) adds nothing over its control; the controller's collapse.
 
+## Stage 84: a learned loop back into the hippocampus - and where deduction really breaks
+
+**Question.** Stages 82-83: VEGA retrieves facts but does not chain them. In the hippocampus, CA1's output returns
+through deep entorhinal cortex and re-enters as the next cue ("big-loop recurrence", Kumaran & McClelland 2012). In
+VEGA that loop was a plain copy (the recalled word, unchanged). Does a **learned** loop let recalls chain?
+
+**Set-up** (`hippo_babi.py --loop`; `--loop --controller`; `--loop --allcues` adds a two-step chain from every
+question word in parallel; `+ --concepts`). The loop starts as an exact copy (outputs identical to Stage 80 before
+training). Four networks each, all on GitHub runners; compared with the optimiser-only control.
+
+| (4 networks each) | passed | mean error | better than control | world |
+|---|---|---|---|---|
+| control | 8, 8, 8, 8 | 22.6 % | - | 93 % |
+| loop | 8, 8, 8, 8 | 21.0 % | 4 / 4 | 93 % |
+| **loop + controller** | **9, 9, 8, 9** | **20.6 %** | 4 / 4 | 92 % |
+| loop + chains from every question word | 8, 8, 8, 8 | 20.6 % | 4 / 4 | 94 % |
+| ... + concept map | 7, 8, 8, 8 | 21.0 % | 4 / 4 | 89 % |
+
+- **The loop chains facts that share a word:** two facts 66 -> 80 % (4 / 4 networks), time order 64 -> 74 % (4 / 4),
+  relations 68 -> 79 % (4 / 4). With the controller: VEGA's best so far, 9 tasks passed in 3 of 4 networks.
+- **Deduction did not move in any variant (54-60 %)** - predictions stated before each run (> 65 %) refuted twice.
+- **Where it breaks, found by tracing the recall at each step** (`PROBE=15`): not the second step but the first.
+  For "what is Emily afraid of?", recall cued by "emily" returns a blur of animals (cats 0.75, mice 0.74), cued by
+  "winona" returns junk ("afraid", "wolves", "is") - but recall cued by **"is"** returns "cat, mouse, sheep".
+  The "X is a Y" facts are filed under the verb, not the person, and pile on each other; so the network learns to
+  ignore the name and guess from "afraid" (trust on the "afraid" chain 1.00). Each network ends with a favourite
+  animal it gives ~40 % of the time.
+- **Ruled out:** unfamiliar names - names VEGA never read (Jessica, Winona: 0 times in its books) score the same as
+  familiar ones (Emily 197, Gertrude 101): 56-59 % all; induction likewise.
+- **Bug, reported:** the first "every question word" batch never had the option on (a missing `global`); its 8 runs
+  were removed and rerun, and every result now records which options were on (`config`).
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

@@ -1,0 +1,465 @@
+{
+ "loop_": {
+  "passed": [
+   8,
+   8,
+   8,
+   8
+  ],
+  "mean_error": 21.01,
+  "each": [
+   21.05,
+   20.47,
+   22.05,
+   20.49
+  ],
+  "better_than_control": "4/4",
+  "tasks": {
+   "qa1_single-supporting-fact": {
+    "mean": 100.0,
+    "control": 100.0,
+    "up_in": "0/4"
+   },
+   "qa2_two-supporting-facts": {
+    "mean": 79.9,
+    "control": 65.6,
+    "up_in": "4/4"
+   },
+   "qa3_three-supporting-facts": {
+    "mean": 44.1,
+    "control": 46.2,
+    "up_in": "0/4"
+   },
+   "qa4_two-arg-relations": {
+    "mean": 79.4,
+    "control": 67.6,
+    "up_in": "4/4"
+   },
+   "qa5_three-arg-relations": {
+    "mean": 97.5,
+    "control": 97.8,
+    "up_in": "2/4"
+   },
+   "qa6_yes-no-questions": {
+    "mean": 99.2,
+    "control": 98.8,
+    "up_in": "2/4"
+   },
+   "qa7_counting": {
+    "mean": 78.6,
+    "control": 78.9,
+    "up_in": "2/4"
+   },
+   "qa8_lists-sets": {
+    "mean": 77.6,
+    "control": 77.5,
+    "up_in": "3/4"
+   },
+   "qa9_simple-negation": {
+    "mean": 98.6,
+    "control": 99.5,
+    "up_in": "1/4"
+   },
+   "qa10_indefinite-knowledge": {
+    "mean": 89.9,
+    "control": 92.2,
+    "up_in": "0/4"
+   },
+   "qa11_basic-coreference": {
+    "mean": 97.2,
+    "control": 96.2,
+    "up_in": "3/4"
+   },
+   "qa12_conjunction": {
+    "mean": 99.8,
+    "control": 100.0,
+    "up_in": "0/4"
+   },
+   "qa13_compound-coreference": {
+    "mean": 97.3,
+    "control": 98.2,
+    "up_in": "1/4"
+   },
+   "qa14_time-reasoning": {
+    "mean": 73.6,
+    "control": 63.5,
+    "up_in": "4/4"
+   },
+   "qa15_basic-deduction": {
+    "mean": 56.1,
+    "control": 56.0,
+    "up_in": "3/4"
+   },
+   "qa16_basic-induction": {
+    "mean": 48.8,
+    "control": 48.4,
+    "up_in": "3/4"
+   },
+   "qa17_positional-reasoning": {
+    "mean": 61.0,
+    "control": 61.0,
+    "up_in": "2/4"
+   },
+   "qa18_size-reasoning": {
+    "mean": 90.5,
+    "control": 90.6,
+    "up_in": "2/4"
+   },
+   "qa19_path-finding": {
+    "mean": 10.7,
+    "control": 10.3,
+    "up_in": "2/4"
+   },
+   "qa20_agents-motivations": {
+    "mean": 100.0,
+    "control": 99.9,
+    "up_in": "3/4"
+   }
+  },
+  "world": 93.3
+ },
+ "loop_controller_": {
+  "passed": [
+   9,
+   9,
+   8,
+   9
+  ],
+  "mean_error": 20.56,
+  "each": [
+   20.0,
+   20.28,
+   21.88,
+   20.08
+  ],
+  "better_than_control": "4/4",
+  "tasks": {
+   "qa1_single-supporting-fact": {
+    "mean": 100.0,
+    "control": 100.0,
+    "up_in": "0/4"
+   },
+   "qa2_two-supporting-facts": {
+    "mean": 69.6,
+    "control": 65.6,
+    "up_in": "3/4"
+   },
+   "qa3_three-supporting-facts": {
+    "mean": 48.8,
+    "control": 46.2,
+    "up_in": "4/4"
+   },
+   "qa4_two-arg-relations": {
+    "mean": 89.6,
+    "control": 67.6,
+    "up_in": "4/4"
+   },
+   "qa5_three-arg-relations": {
+    "mean": 97.7,
+    "control": 97.8,
+    "up_in": "2/4"
+   },
+   "qa6_yes-no-questions": {
+    "mean": 99.2,
+    "control": 98.8,
+    "up_in": "3/4"
+   },
+   "qa7_counting": {
+    "mean": 79.3,
+    "control": 78.9,
+    "up_in": "3/4"
+   },
+   "qa8_lists-sets": {
+    "mean": 79.8,
+    "control": 77.5,
+    "up_in": "3/4"
+   },
+   "qa9_simple-negation": {
+    "mean": 99.2,
+    "control": 99.5,
+    "up_in": "1/4"
+   },
+   "qa10_indefinite-knowledge": {
+    "mean": 90.2,
+    "control": 92.2,
+    "up_in": "1/4"
+   },
+   "qa11_basic-coreference": {
+    "mean": 97.2,
+    "control": 96.2,
+    "up_in": "3/4"
+   },
+   "qa12_conjunction": {
+    "mean": 99.8,
+    "control": 100.0,
+    "up_in": "0/4"
+   },
+   "qa13_compound-coreference": {
+    "mean": 97.5,
+    "control": 98.2,
+    "up_in": "3/4"
+   },
+   "qa14_time-reasoning": {
+    "mean": 74.3,
+    "control": 63.5,
+    "up_in": "4/4"
+   },
+   "qa15_basic-deduction": {
+    "mean": 57.1,
+    "control": 56.0,
+    "up_in": "3/4"
+   },
+   "qa16_basic-induction": {
+    "mean": 48.4,
+    "control": 48.4,
+    "up_in": "2/4"
+   },
+   "qa17_positional-reasoning": {
+    "mean": 59.7,
+    "control": 61.0,
+    "up_in": "2/4"
+   },
+   "qa18_size-reasoning": {
+    "mean": 90.4,
+    "control": 90.6,
+    "up_in": "1/4"
+   },
+   "qa19_path-finding": {
+    "mean": 11.2,
+    "control": 10.3,
+    "up_in": "2/4"
+   },
+   "qa20_agents-motivations": {
+    "mean": 99.8,
+    "control": 99.9,
+    "up_in": "2/4"
+   }
+  },
+  "world": 91.7
+ },
+ "loop_allcues_": {
+  "passed": [
+   8,
+   8,
+   8,
+   8
+  ],
+  "mean_error": 20.64,
+  "each": [
+   21.25,
+   19.39,
+   20.26,
+   21.66
+  ],
+  "better_than_control": "4/4",
+  "tasks": {
+   "qa1_single-supporting-fact": {
+    "mean": 100.0,
+    "control": 100.0
+   },
+   "qa2_two-supporting-facts": {
+    "mean": 77.9,
+    "control": 65.6
+   },
+   "qa3_three-supporting-facts": {
+    "mean": 48.9,
+    "control": 46.2
+   },
+   "qa4_two-arg-relations": {
+    "mean": 81.8,
+    "control": 67.6
+   },
+   "qa5_three-arg-relations": {
+    "mean": 97.3,
+    "control": 97.8
+   },
+   "qa6_yes-no-questions": {
+    "mean": 99.8,
+    "control": 98.8
+   },
+   "qa7_counting": {
+    "mean": 79.5,
+    "control": 78.9
+   },
+   "qa8_lists-sets": {
+    "mean": 78.6,
+    "control": 77.5
+   },
+   "qa9_simple-negation": {
+    "mean": 99.8,
+    "control": 99.5
+   },
+   "qa10_indefinite-knowledge": {
+    "mean": 90.8,
+    "control": 92.2
+   },
+   "qa11_basic-coreference": {
+    "mean": 97.7,
+    "control": 96.2
+   },
+   "qa12_conjunction": {
+    "mean": 99.9,
+    "control": 100.0
+   },
+   "qa13_compound-coreference": {
+    "mean": 98.0,
+    "control": 98.2
+   },
+   "qa14_time-reasoning": {
+    "mean": 70.9,
+    "control": 63.5
+   },
+   "qa15_basic-deduction": {
+    "mean": 57.2,
+    "control": 56.0
+   },
+   "qa16_basic-induction": {
+    "mean": 48.9,
+    "control": 48.4
+   },
+   "qa17_positional-reasoning": {
+    "mean": 59.5,
+    "control": 61.0
+   },
+   "qa18_size-reasoning": {
+    "mean": 90.2,
+    "control": 90.6
+   },
+   "qa19_path-finding": {
+    "mean": 10.7,
+    "control": 10.3
+   },
+   "qa20_agents-motivations": {
+    "mean": 100.0,
+    "control": 99.9
+   }
+  },
+  "world": 93.6,
+  "config": {
+   "EPISODES": true,
+   "CONCEPTS": false,
+   "CONTROLLER": false,
+   "CTRL_ONLY": false,
+   "LOOP": true,
+   "ALLCUES": true,
+   "tag": "loop_allcues_",
+   "n_params": 834935
+  }
+ },
+ "loop_allcues_concepts_": {
+  "passed": [
+   7,
+   8,
+   8,
+   8
+  ],
+  "mean_error": 21.03,
+  "each": [
+   21.53,
+   21.67,
+   19.6,
+   21.3
+  ],
+  "better_than_control": "4/4",
+  "tasks": {
+   "qa1_single-supporting-fact": {
+    "mean": 100.0,
+    "control": 100.0
+   },
+   "qa2_two-supporting-facts": {
+    "mean": 67.7,
+    "control": 65.6
+   },
+   "qa3_three-supporting-facts": {
+    "mean": 42.6,
+    "control": 46.2
+   },
+   "qa4_two-arg-relations": {
+    "mean": 85.6,
+    "control": 67.6
+   },
+   "qa5_three-arg-relations": {
+    "mean": 97.2,
+    "control": 97.8
+   },
+   "qa6_yes-no-questions": {
+    "mean": 97.8,
+    "control": 98.8
+   },
+   "qa7_counting": {
+    "mean": 80.3,
+    "control": 78.9
+   },
+   "qa8_lists-sets": {
+    "mean": 83.1,
+    "control": 77.5
+   },
+   "qa9_simple-negation": {
+    "mean": 99.0,
+    "control": 99.5
+   },
+   "qa10_indefinite-knowledge": {
+    "mean": 90.6,
+    "control": 92.2
+   },
+   "qa11_basic-coreference": {
+    "mean": 97.3,
+    "control": 96.2
+   },
+   "qa12_conjunction": {
+    "mean": 99.9,
+    "control": 100.0
+   },
+   "qa13_compound-coreference": {
+    "mean": 97.8,
+    "control": 98.2
+   },
+   "qa14_time-reasoning": {
+    "mean": 67.8,
+    "control": 63.5
+   },
+   "qa15_basic-deduction": {
+    "mean": 57.9,
+    "control": 56.0
+   },
+   "qa16_basic-induction": {
+    "mean": 49.2,
+    "control": 48.4
+   },
+   "qa17_positional-reasoning": {
+    "mean": 58.8,
+    "control": 61.0
+   },
+   "qa18_size-reasoning": {
+    "mean": 90.7,
+    "control": 90.6
+   },
+   "qa19_path-finding": {
+    "mean": 16.1,
+    "control": 10.3
+   },
+   "qa20_agents-motivations": {
+    "mean": 100.0,
+    "control": 99.9
+   }
+  },
+  "world": 88.8,
+  "config": {
+   "EPISODES": true,
+   "CONCEPTS": true,
+   "CONTROLLER": false,
+   "CTRL_ONLY": false,
+   "LOOP": true,
+   "ALLCUES": true,
+   "tag": "loop_allcues_concepts_",
+   "n_params": 917626
+  }
+ },
+ "deduction_by_name": {
+  "emily (197 in books)": 56.0,
+  "jessica (0)": 57.5,
+  "gertrude (101)": 59.0,
+  "winona (0)": 55.8
+ },
+ "note": "First 84b batch invalid (ALLCUES not declared global; never on) - removed; rerun results carry config."
+}

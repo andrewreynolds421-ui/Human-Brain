@@ -871,3 +871,14 @@ The optimiser-only control (`--steady`) overturns Stage 80's attribution (README
 Summary: results/babi_all/stage83_summary.json. Stage numbering: another session's "Stage 81" is the wired
 hippocampus; this line's concept map is Stage 82.
 
+
+
+## 62. Follow-up (25 November): Stage 84 — learned re-entry loop
+
+Twenty networks on GitHub runners (four per variant; first --allcues batch invalid and removed: ALLCUES was assigned
+in main() without `global`, so the flag was silently off - found by the probe showing 10 mix weights instead of 12;
+all results now carry `config`). A relaunch with an unchanged job list did not start the workflow (paths filter);
+job lists now carry a batch label and launches are checked through the commit's check runs. Predictions stated
+before the runs (deduction > 65 %) refuted. Diagnosis by probing recalls at each step on qa15 test stories
+(nearest words among the test vocabulary) and by accuracy per name; summary results/babi_all/stage84_summary.json.
+
