@@ -1,0 +1,9 @@
+built {'page_nouns_det': 0.9625, 'page_nouns_refl_number': 1.0, 'page_nouns_refl_gender': 0.9525, 'page_nouns_refl_across': 0.97, 'page_nouns_npi': 1.0, 'page_nouns_npi_scope': 0.9475, 'page_nouns_gap_wh': 0.9975, 'page_nouns_gap_that': 0.935, 'page_nouns_aux_agree_relative': 0.9975, 'page_nouns_verb_agree_relative': 0.5025, 'page_nouns_who_gap': 0.145, 'page_nouns_name_reflexive': 0.865, 'page_nouns_question_ever': 0.035, 'held_out_nouns_det': 0.79, 'held_out_nouns_refl_number': 0.9775, 'held_out_nouns_refl_gender': 1.0, 'held_out_nouns_refl_across': 0.925, 'held_out_nouns_npi': 1.0, 'held_out_nouns_npi_scope': 0.555, 'held_out_nouns_gap_wh': 0.7475, 'held_out_nouns_gap_that': 0.85, 'held_out_nouns_aux_agree_relative': 0.925, 'held_out_nouns_verb_agree_relative': 0.31, 'held_out_nouns_who_gap': 0.05, 'held_out_nouns_name_reflexive': 0.865, 'held_out_nouns_question_ever': 0.035}
+{'questions': 16000, 'minutes': 37.9, 'loss': 2.59}
+{'questions': 32000, 'minutes': 75.3, 'loss': 2.445}
+{'questions': 48000, 'minutes': 113.6, 'loss': 1.013}
+{'questions': 64000, 'minutes': 154.6, 'loss': 0.651}
+{'questions': 80000, 'minutes': 194.2, 'loss': 0.019}
+{'questions': 96000, 'minutes': 229.4, 'loss': 1.076}
+{'questions': 112000, 'minutes': 266.5, 'loss': 0.265}
+{'questions': 128000, 'minutes': 302.2, 'loss': 0.368}
