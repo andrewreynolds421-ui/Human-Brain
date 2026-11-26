@@ -49,9 +49,9 @@ def story(rng, names, objects, places, n_events, n_people=3, n_obj=3):
     P = list(rng.choice(names, n_people, replace=False)); O = list(rng.choice(objects, n_obj, replace=False)); L = list(rng.choice(places, min(4, len(places)), replace=False))
     where = {p: str(rng.choice(L)) for p in P}; obj = {o: [str(rng.choice(L)), None] for o in O}
     hist = {x: [] for x in P + O}; carried = {o: False for o in O}
-    w = []
-    for p in P: w += [p, "was", "in", "the", where[p]]
-    for o in O: w += ["the", o, "was", "in", "the", obj[o][0]]
+    w = []; ends = []                                                   # ends: index of each sentence's last word (Stage 89)
+    for p in P: w += [p, "was", "in", "the", where[p]]; ends.append(len(w) - 1)
+    for o in O: w += ["the", o, "was", "in", "the", obj[o][0]]; ends.append(len(w) - 1)
     for _ in range(n_events):
         for _try in range(20):
             k = int(rng.integers(4)); p = str(rng.choice(P))
@@ -59,16 +59,16 @@ def story(rng, names, objects, places, n_events, n_people=3, n_obj=3):
                 to = str(rng.choice([l for l in L if l != where[p]])); hist[p].append(where[p]); where[p] = to
                 for o in O:
                     if obj[o][1] == p: hist[o].append(obj[o][0]); obj[o][0] = to; carried[o] = True
-                w += [p] + str(rng.choice(MOVE)).split() + [to]; break
+                w += [p] + str(rng.choice(MOVE)).split() + [to]; ends.append(len(w) - 1); break
             here = [o for o in O if obj[o][1] is None and obj[o][0] == where[p]]; mine = [o for o in O if obj[o][1] == p]
             if k == 1 and here:
-                o = str(rng.choice(here)); obj[o][1] = p; w += [p] + str(rng.choice(TAKE)).split() + [o]; break
+                o = str(rng.choice(here)); obj[o][1] = p; w += [p] + str(rng.choice(TAKE)).split() + [o]; ends.append(len(w) - 1); break
             if k == 2 and mine:
-                o = str(rng.choice(mine)); obj[o][1] = None; carried[o] = False; w += [p] + str(rng.choice(DROP)).split() + [o]; break
+                o = str(rng.choice(mine)); obj[o][1] = None; carried[o] = False; w += [p] + str(rng.choice(DROP)).split() + [o]; ends.append(len(w) - 1); break
             others = [q for q in P if q != p and where[q] == where[p]]
             if k == 3 and mine and others:
-                o = str(rng.choice(mine)); q = str(rng.choice(others)); obj[o][1] = q; w += [p, "gave", "the", o, "to", q]; break
-    return w, dict(where=where, obj=obj, hist=hist, carried=carried, people=P, objects=O, places=L)
+                o = str(rng.choice(mine)); q = str(rng.choice(others)); obj[o][1] = q; w += [p, "gave", "the", o, "to", q]; ends.append(len(w) - 1); break
+    return w, dict(where=where, obj=obj, hist=hist, carried=carried, people=P, objects=O, places=L, ends=ends)
 
 
 def statements(st):
@@ -102,7 +102,7 @@ def question(rng, w, st, places, want=None):
     opts = opts[:4]
     while len(opts) < 4: opts.append(opts[-1])
     moved = bool(st["hist"][subj]) if kind != "who_has" else False
-    return dict(story=w, options=opts, kind=kind, carried=bool(kind == "where_object" and st["carried"][subj]), moved=moved,
+    return dict(story=w, ends=list(st.get("ends", [])), options=opts, kind=kind, carried=bool(kind == "where_object" and st["carried"][subj]), moved=moved,
                 previous_offered=bool(kind != "who_has" and st["hist"][subj] and st["hist"][subj][-1] in [o[-1] for o in opts[1:]]))
 
 
