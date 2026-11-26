@@ -8,6 +8,8 @@ recurrent collaterals and Schaffer synapses (hippo_wired.WiredCore).
 
 Conditions: wired (full) | no_rc (no recurrent completion) | dense_mf (mossy fibres all-to-all and weak)
             | old (evaluate the Stage 77 pointer_s*.pt models here, no training)
+SCORE_BOTH=1: each recall is also scored on its own (the better one takes the credit) and the chooser (mix) is
+trained to pick the recall that answered better.
 BIG_LOOP=1: the second recall is cued from entorhinal layer V output (via EC V -> EC II), not the decoded word.
 CURRICULUM=1: one-step questions first, then short stories with carried objects, then the normal mix.
 Tests: Stage 74/77's four sets, plus *crowded*: 7 people and 7 objects in 4 places, 20-27 events - many similar
@@ -74,7 +76,7 @@ def build(M, seed, mode):
                 r1, c1, ec5 = s.core.recall_full(mem, qw); r2, _, _ = s.core.recall_full(mem, ec2=s.core.ec5_ec2(ec5))
             else:
                 r1, c1 = s.core.recall(mem, qw); r2, _ = s.core.recall(mem, r1)
-            w = torch.softmax(s.mix(q), -1)
+            ml = s.mix(q); w = torch.softmax(ml, -1); s.last = (r1, r2, ml)
             with torch.no_grad():
                 cs = s.core.ca3_store(qw); s.diag = dict(gate=round(float(g.sum() / mask.sum()), 3), mix1=round(float(w[:, 0].mean()), 3),
                     cue_store=round(float((c1 * cs).sum(-1).mean()), 3), mf_gain=round(float(s.core.mf_gain), 2))
@@ -138,7 +140,12 @@ def main():
                 items = curriculum_items(rng, HP.BS, frac) if os.environ.get("CURRICULUM") == "1" else HP.make_items(rng, HP.BS); b = list(batch(items))
                 perm = torch.tensor(np.array([rng.permutation(4) for _ in items]))
                 b[6] = torch.gather(b[6], 1, perm[..., None].expand(-1, -1, b[6].shape[-1])); target = (perm == 0).float().argmax(1)
-                lg = logits(b); tr_acc.append(float((lg.argmax(1) == target).float().mean())); loss = torch.nn.functional.cross_entropy(lg, target); opt.zero_grad(); loss.backward()
+                lg = logits(b); tr_acc.append(float((lg.argmax(1) == target).float().mean())); loss = torch.nn.functional.cross_entropy(lg, target)
+                if os.environ.get("SCORE_BOTH") == "1" and a.cond != "old":       # score each recall on its own; the chooser learns which one answered
+                    r1, r2, ml = net.last; ce = b[6] / (b[6].norm(dim=-1, keepdim=True) + 1e-6)
+                    per = torch.stack([torch.nn.functional.cross_entropy(net.temp * torch.einsum("be,bce->bc", r / (r.norm(dim=-1, keepdim=True) + 1e-6), ce), target, reduction="none") for r in (r1, r2)], 1)
+                    loss = loss + per.min(1).values.mean() + torch.nn.functional.cross_entropy(ml, per.detach().argmin(1))
+                opt.zero_grad(); loss.backward()
                 gn = torch.nn.utils.clip_grad_norm_(net.parameters(), 1.0); opt.step()
                 if os.environ.get("DEBUG") and step < 5: print("step", step, "loss", float(loss), "gradnorm", float(gn), {n: (None if p.grad is None else round(float(p.grad.abs().sum()), 4)) for n, p in net.named_parameters()}, flush=True)
                 if (step + 1) % int(os.environ.get('LOG_EVERY', 250)) == 0 or step + 1 == stories // HP.BS:
