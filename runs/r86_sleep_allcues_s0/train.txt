@@ -1,0 +1,40 @@
+built {'page_nouns_det': 0.975, 'page_nouns_refl_number': 0.9975, 'page_nouns_refl_gender': 1.0, 'page_nouns_refl_across': 0.985, 'page_nouns_npi': 1.0, 'page_nouns_npi_scope': 0.055, 'page_nouns_gap_wh': 0.99, 'page_nouns_gap_that': 1.0, 'page_nouns_aux_agree_relative': 0.9575, 'page_nouns_verb_agree_relative': 0.7075, 'page_nouns_who_gap': 0.735, 'page_nouns_name_reflexive': 0.9625, 'page_nouns_question_ever': 0.0325, 'held_out_nouns_det': 0.8825, 'held_out_nouns_refl_number': 0.98, 'held_out_nouns_refl_gender': 1.0, 'held_out_nouns_refl_across': 0.8725, 'held_out_nouns_npi': 1.0, 'held_out_nouns_npi_scope': 0.31, 'held_out_nouns_gap_wh': 0.9525, 'held_out_nouns_gap_that': 0.98, 'held_out_nouns_aux_agree_relative': 0.825, 'held_out_nouns_verb_agree_relative': 0.7025, 'held_out_nouns_who_gap': 0.535, 'held_out_nouns_name_reflexive': 0.9625, 'held_out_nouns_question_ever': 0.0325}
+{'step': 1000, 'kind': 'day', 'minutes': 3.4, 'loss': 0.063}
+{'step': 2000, 'kind': 'night', 'minutes': 6.7, 'loss': 0.008}
+{'step': 3000, 'kind': 'night', 'minutes': 10.0, 'loss': 0.013}
+{'after': 'day 1 + night', 'minutes': 10.0, 'qa1': 1.0, 'qa2': 0.4, 'qa3': 0.14, 'qa4': 0.17, 'qa5': 0.11, 'qa6': 0.97, 'qa7': 0.19, 'qa8': 0.13, 'qa9': 1.0, 'qa10': 0.96, 'qa11': 1.0, 'qa12': 1.0, 'qa13': 0.99, 'qa14': 0.24, 'qa15': 0.33, 'qa16': 0.28, 'qa17': 0.52, 'qa18': 0.38, 'qa19': 0.11, 'qa20': 0.01, 'p1': 0.2, 'p2': 0.19, 'p3': 0.16, 'p4': 0.09, 'p5': 0.1, 'p6': 0.16, 'p7+': 0.09, 'world': 0.61}
+{'step': 4000, 'kind': 'day', 'minutes': 18.0, 'loss': 1.164}
+{'step': 5000, 'kind': 'night', 'minutes': 24.8, 'loss': 0.289}
+{'step': 6000, 'kind': 'night', 'minutes': 30.2, 'loss': 0.024}
+{'after': 'day 2 + night', 'minutes': 30.2, 'qa1': 1.0, 'qa2': 0.71, 'qa3': 0.67, 'qa4': 1.0, 'qa5': 0.99, 'qa6': 0.98, 'qa7': 0.79, 'qa8': 0.94, 'qa9': 1.0, 'qa10': 0.92, 'qa11': 0.99, 'qa12': 1.0, 'qa13': 0.95, 'qa14': 0.68, 'qa15': 0.34, 'qa16': 0.25, 'qa17': 0.58, 'qa18': 0.34, 'qa19': 0.08, 'qa20': 0.12, 'p1': 0.17, 'p2': 0.16, 'p3': 0.12, 'p4': 0.07, 'p5': 0.12, 'p6': 0.1, 'p7+': 0.1, 'world': 0.57}
+{'step': 7000, 'kind': 'day', 'minutes': 32.8, 'loss': 0.708}
+{'step': 8000, 'kind': 'night', 'minutes': 36.0, 'loss': 0.046}
+{'step': 9000, 'kind': 'night', 'minutes': 39.9, 'loss': 0.273}
+{'after': 'day 3 + night', 'minutes': 40.0, 'qa1': 1.0, 'qa2': 0.63, 'qa3': 0.67, 'qa4': 1.0, 'qa5': 0.97, 'qa6': 0.95, 'qa7': 0.79, 'qa8': 0.9, 'qa9': 1.0, 'qa10': 0.92, 'qa11': 0.96, 'qa12': 1.0, 'qa13': 0.97, 'qa14': 0.7, 'qa15': 0.54, 'qa16': 0.49, 'qa17': 0.57, 'qa18': 0.92, 'qa19': 0.11, 'qa20': 1.0, 'p1': 0.23, 'p2': 0.12, 'p3': 0.13, 'p4': 0.11, 'p5': 0.1, 'p6': 0.1, 'p7+': 0.11, 'world': 0.62}
+{'step': 10000, 'kind': 'day', 'minutes': 61.3, 'loss': 1.662}
+{'step': 11000, 'kind': 'night', 'minutes': 78.1, 'loss': 0.027}
+{'step': 12000, 'kind': 'night', 'minutes': 91.0, 'loss': 0.294}
+{'after': 'day 4 + night', 'minutes': 91.1, 'qa1': 1.0, 'qa2': 0.57, 'qa3': 0.51, 'qa4': 1.0, 'qa5': 0.96, 'qa6': 0.95, 'qa7': 0.77, 'qa8': 0.9, 'qa9': 0.98, 'qa10': 0.93, 'qa11': 0.96, 'qa12': 1.0, 'qa13': 0.95, 'qa14': 0.69, 'qa15': 0.56, 'qa16': 0.49, 'qa17': 0.65, 'qa18': 0.91, 'qa19': 0.09, 'qa20': 1.0, 'p1': 0.35, 'p2': 0.35, 'p3': 0.33, 'p4': 0.38, 'p5': 0.3, 'p6': 0.34, 'p7+': 0.27, 'world': 0.59}
+qa1_single-supporting-fact 1.0
+qa2_two-supporting-facts 0.476
+qa3_three-supporting-facts 0.501
+qa4_two-arg-relations 1.0
+qa5_three-arg-relations 0.971
+qa6_yes-no-questions 0.961
+qa7_counting 0.829
+qa8_lists-sets 0.882
+qa9_simple-negation 0.993
+qa10_indefinite-knowledge 0.907
+qa11_basic-coreference 0.942
+qa12_conjunction 1.0
+qa13_compound-coreference 0.959
+qa14_time-reasoning 0.729
+qa15_basic-deduction 0.606
+qa16_basic-induction 0.474
+qa17_positional-reasoning 0.614
+qa18_size-reasoning 0.904
+qa19_path-finding 0.118
+qa20_agents-motivations 1.0
+passages {'1': 0.3678, '2': 0.3689, '3': 0.3467, '4': 0.3867, '5': 0.3133, '6': 0.3167, '7+': 0.32}
+passages, reader alone {'1': 0.4215, '2': 0.4139, '3': 0.36, '4': 0.38, '5': 0.28, '6': 0.32, '7+': 0.3133}
+{"seed": 0, "questions": 96000, "training": [{"step": 1000, "kind": "day", "minutes": 3.4, "loss": 0.063}, {"step": 2000, "kind": "night", "minutes": 6.7, "loss": 0.008}, {"step": 3000, "kind": "night", "minutes": 10.0, "loss": 0.013}, {"step": 4000, "kind": "day", "minutes": 18.0, "loss": 1.164}, {"step": 5000, "kind": "night", "minutes": 24.8, "loss": 0.289}, {"step": 6000, "kind": "night", "minutes": 30.2, "loss": 0.024}, {"step": 7000, "kind": "day", "minutes": 32.8, "loss": 0.708}, {"step": 8000, "kind": "night", "minutes": 36.0, "loss": 0.046}, {"step": 9000, "kind": "night", "minutes": 39.9, "loss": 0.273}, {"step": 10000, "kind": "day", "minutes": 61.3, "loss": 1.662}, {"step": 11000, "kind": "night", "minutes": 78.1, "loss": 0.027}, {"step": 12000, "kind": "night", "minutes": 91.0, "loss": 0.294}], "tasks": {"qa1_single-supporting-fact": 1.0, "qa2_two-supporting-facts": 0.476, "qa3_three-supporting-facts": 0.501, "qa4_two-arg-relations": 1.0, "qa5_three-arg-relations": 0.971, "qa6_yes-no-questions": 0.961, "qa7_counting": 0.829, "qa8_lists-sets": 0.882, "qa9_simple-negation": 0.993, "qa10_indefinite-knowledge": 0.907, "qa11_basic-coreference": 0.942, "qa12_conjunction": 1.0, "qa13_compound-coreference": 0.959, "qa14_time-reasoning": 0.729, "qa15_basic-deduction": 0.606, "qa16_basic-induction": 0.474, "qa17_positional-reasoning": 0.614, "qa18_size-reasoning": 0.904, "qa19_path-finding": 0.118, "qa20_agents-motivations": 1.0}, "config": {"EPISODES": true, "CONCEPTS": false, "CONTROLLER": false, "CTRL_ONLY": false, "LOOP": true, "ALLCUES": true, "PATTERN": false, "ROUTINE": "sleep", "tag": "sleep_loop_allcues_", "n_params": 834935}, "passed_95": 8, "mean_error": 20.67, "controller": {}, "curve": [{"after": "day 1 + night", "minutes": 10.0, "qa1": 1.0, "qa2": 0.4, "qa3": 0.14, "qa4": 0.17, "qa5": 0.11, "qa6": 0.97, "qa7": 0.19, "qa8": 0.13, "qa9": 1.0, "qa10": 0.96, "qa11": 1.0, "qa12": 1.0, "qa13": 0.99, "qa14": 0.24, "qa15": 0.33, "qa16": 0.28, "qa17": 0.52, "qa18": 0.38, "qa19": 0.11, "qa20": 0.01, "p1": 0.2, "p2": 0.19, "p3": 0.16, "p4": 0.09, "p5": 0.1, "p6": 0.16, "p7+": 0.09, "world": 0.61}, {"after": "day 2 + night", "minutes": 30.2, "qa1": 1.0, "qa2": 0.71, "qa3": 0.67, "qa4": 1.0, "qa5": 0.99, "qa6": 0.98, "qa7": 0.79, "qa8": 0.94, "qa9": 1.0, "qa10": 0.92, "qa11": 0.99, "qa12": 1.0, "qa13": 0.95, "qa14": 0.68, "qa15": 0.34, "qa16": 0.25, "qa17": 0.58, "qa18": 0.34, "qa19": 0.08, "qa20": 0.12, "p1": 0.17, "p2": 0.16, "p3": 0.12, "p4": 0.07, "p5": 0.12, "p6": 0.1, "p7+": 0.1, "world": 0.57}, {"after": "day 3 + night", "minutes": 40.0, "qa1": 1.0, "qa2": 0.63, "qa3": 0.67, "qa4": 1.0, "qa5": 0.97, "qa6": 0.95, "qa7": 0.79, "qa8": 0.9, "qa9": 1.0, "qa10": 0.92, "qa11": 0.96, "qa12": 1.0, "qa13": 0.97, "qa14": 0.7, "qa15": 0.54, "qa16": 0.49, "qa17": 0.57, "qa18": 0.92, "qa19": 0.11, "qa20": 1.0, "p1": 0.23, "p2": 0.12, "p3": 0.13, "p4": 0.11, "p5": 0.1, "p6": 0.1, "p7+": 0.11, "world": 0.62}, {"after": "day 4 + night", "minutes": 91.1, "qa1": 1.0, "qa2": 0.57, "qa3": 0.51, "qa4": 1.0, "qa5": 0.96, "qa6": 0.95, "qa7": 0.77, "qa8": 0.9, "qa9": 0.98, "qa10": 0.93, "qa11": 0.96, "qa12": 1.0, "qa13": 0.95, "qa14": 0.69, "qa15": 0.56, "qa16": 0.49, "qa17": 0.65, "qa18": 0.91, "qa19": 0.09, "qa20": 1.0, "p1": 0.35, "p2": 0.35, "p3": 0.33, "p4": 0.38, "p5": 0.3, "p6": 0.34, "p7+": 0.27, "world": 0.59}], "routine": "sleep", "passages": {"1": 0.3678, "2": 0.3689, "3": 0.3467, "4": 0.3867, "5": 0.3133, "6": 0.3167, "7+": 0.32}, "passages_reader": {"1": 0.4215, "2": 0.4139, "3": 0.36, "4": 0.38, "5": 0.28, "6": 0.32, "7+": 0.3133}, "passages_both": {"1": 0.5057, "2": 0.4549, "3": 0.4133, "4": 0.4067, "5": 0.3533, "6": 0.3767, "7+": 0.36}, "world": {"same": 0.621, "held_names": 0.556, "held_objects_places": 0.603, "long": 0.587}}
