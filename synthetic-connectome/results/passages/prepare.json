@@ -1,0 +1,59 @@
+{
+ "test_dropped": {
+  "1": 34,
+  "2": 47,
+  "3": 63,
+  "4": 38,
+  "5": 50,
+  "6": 50,
+  "7+": 175
+ },
+ "n": {
+  "1": {
+   "test": 261,
+   "train": 753
+  },
+  "2": {
+   "test": 244,
+   "train": 887
+  },
+  "3": {
+   "test": 300,
+   "train": 2500
+  },
+  "4": {
+   "test": 300,
+   "train": 2500
+  },
+  "5": {
+   "test": 300,
+   "train": 2500
+  },
+  "6": {
+   "test": 300,
+   "train": 2500
+  },
+  "7+": {
+   "test": 300,
+   "train": 2500
+  }
+ },
+ "books": {
+  "1": 2,
+  "2": 1,
+  "3": 2,
+  "4": 4,
+  "5": 2,
+  "6": 3,
+  "7+": 5
+ },
+ "examples": {
+  "1": "the woods with a gun he tried to shoot the dove the ant passed by and saw him oh the poor dove said the ant || how can i help her she ran to the something and bit his foot  [pine, glass, man, tree, woods, water, day, nest, needles, leaves] answer: man",
+  "2": "from him hoeing is fit for squaws not for warriors he shouted he had learned this from the indian boys the old men were pleased || they thought something would make a fine warrior  [warriors, men, squaws, stick, piece, women, sticks, john, heads, boys] answer: john",
+  "3": "morrow you go with father and i will take care of things the next morning every one on the place was up before the sun || robert was so impatient to start to something that he could scarcely eat any breakfast  [nahum, deed, times, town, boy, home, house, prince, things, place] answer: town",
+  "4": "behind me the murderers before me this lurking nondescript and immediately i began to prefer the dangers that i knew to those i knew not || instantly the something reappeared and making a wide circuit began to head me off  [bear, heart, nondescript, rapidity, snipe, knowledge, monkey, tell, figure, people] answer: figure",
+  "5": "with a new force and significance i had heard them hundreds of times before with only a sense of amusement this time they sounded solemn || there is no calling out of terms no noisy auctioneer no something but nevertheless the time is going  [night, worm, hammer, iron, windows, jack, rap, summit, gin, kind] answer: hammer",
+  "6": "on this page when alice lived glance at the first part of the story and see see if you can tell why she thought so || something laid down her book with a sigh  [list, house, betty, picture, wonderland, larders, selection, place, arms, piece] answer: betty",
+  "7+": "molten glass andrey buttoning his coat said with a grimace well yakovlev the mines are behind us but what are we going to do now || this region is full of reefs and sandbanks replied something  [line, andrey, submarine, telephone, veins, bomb, waiting, man, ease, yakovlev] answer: yakovlev"
+ }
+}

@@ -72,6 +72,9 @@ QUESTIONS = int(os.environ.get("QUESTIONS", 120_000))
 EPISODES = False                                                        # Stage 80: the episode record (set by --episodes)
 CONTROLLER = False                                                      # controller: prefrontal working memory + basal-ganglia recall loop (set by --controller)
 K_STEPS = 6; PONDER = 0.003; CTRL_ONLY = False                         # --ctrl-only: the controller is the only way to chain recalls; step cost phased in                                             # most recall steps; cost per step (ASSUMED)
+ROUTINE = None                                                          # Stage 86: --routine joint | awake | sleep | reread (days of experience; nights replay)
+DAY_GROUPS = [[1, 6, 9, 10, 11, 12, 13, "world"], [2, 3, 4, 5, 7, 8, 14], [15, 16, 17, 18, 19, 20], ["passages"]]   # day 1..4 (ASSUMED order: simple facts -> several facts -> rules -> real books)
+NIGHT_LR = 1 / 3                                                        # nights at a third of the day step (Stage 70 / 76)
 PATTERN = False                                                         # Stage 85: event store with pattern completion (--pattern; implies --loop --allcues)
 ALLCUES = False                                                         # Stage 84b: chain from every question word in parallel (--allcues)
 LOOP = False                                                            # Stage 84: learned big-loop re-entry (CA1 -> EC deep -> EC superficial) for chained recall (--loop)
@@ -89,7 +92,7 @@ def load_task(path):
         if n == "1": story = []
         if "\t" in rest:
             q, ans, _ = rest.split("\t")
-            kept = story[-MAX_SENT:]; ends = list(np.cumsum([len(x) for x in kept]) - 1)          # Stage 85: where each sentence ends (the full stop)
+            kept = story[-MAX_SENT:]; ends = [int(x) for x in np.cumsum([len(x) for x in kept]) - 1]          # Stage 85: where each sentence ends (the full stop)
             items.append(dict(story=[w for s in kept for w in s], q=words(q), ans=tuple(words(ans.replace(",", " "))), ends=ends))
         else:
             story.append(words(rest))
@@ -254,13 +257,14 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true"); ap.add_argument("--allcues", action="store_true"); ap.add_argument("--pattern", action="store_true")   # control: Stage 79 circuit, Stage 80 learning settings only
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true"); ap.add_argument("--allcues", action="store_true"); ap.add_argument("--pattern", action="store_true"); ap.add_argument("--routine", choices=("joint", "awake", "sleep", "reread"))   # control: Stage 79 circuit, Stage 80 learning settings only
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
-    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP, ALLCUES, PATTERN; PATTERN = a.pattern; a.loop = a.loop or a.pattern; a.allcues = a.allcues or a.pattern; LOOP = a.loop; ALLCUES = a.allcues; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
+    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP, ALLCUES, PATTERN, ROUTINE; ROUTINE = a.routine; PATTERN = a.pattern; a.loop = a.loop or a.pattern; a.allcues = a.allcues or a.pattern; LOOP = a.loop; ALLCUES = a.allcues; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
     if a.steady: tag = "steady_"
     elif a.pattern: tag = "pattern_" + ("concepts_" if a.concepts else "") + ("controller_" if a.controller else "")
     elif a.loop: tag = "loop_" + ("allcues_" if a.allcues else "") + ("concepts_" if a.concepts else "") + ("controller_" if a.controller else "")
     else: tag = ("controller2_" if a.ctrl_only else "controller_" if a.controller else "") + ("concepts_" if a.concepts else "" if a.controller else "episodes_" if a.episodes else "")
+    if a.routine: tag = f"{a.routine}_" + tag                                       # Stage 86
 
     def run(M, C, tok, seed, res):
         torch = M.torch; M.m.eval()
@@ -310,6 +314,50 @@ def main():
         if os.path.exists(ck):
             z = torch.load(ck, weights_only=False); net.load_state_dict(z["net"]); opt.load_state_dict(z["opt"]); start = z["step"]; log = z["log"]; rng.bit_generator.state = z["rng"]
             print("resumed at step", start, flush=True)
+        PASS = None
+        if os.environ.get("PASSAGES"):                                                        # Stage 86: real-book passages (scripts/passage_test.py)
+            import gzip; PASS = json.load(gzip.open(os.environ["PASSAGES"], "rt"))
+            for sp in PASS:
+                for bd in PASS[sp]:
+                    for it in PASS[sp][bd]: it["cands"] = [tuple(c) for c in it["cands"]]
+
+        def draw(src, r):                                                                     # one batch from a source: a task, the world, or real-book passages
+            if src == "world": return world_items(r, BS)
+            if src == "passages":
+                bd = list(PASS["train"])[int(r.integers(len(PASS["train"])))]; tr = PASS["train"][bd]
+            else: tr = tasks[src]["train"]
+            return [tr[i] for i in r.choice(len(tr), BS, replace=False)]
+
+        def quick(n=100):                                                                     # short test after each day / night (forgetting curve)
+            q = {tasks[t]["name"].split("_")[0]: round(accuracy(tasks[t]["test"][:n]), 3) for t in T}
+            if PASS: q.update({f"p{bd}": round(accuracy(PASS["test"][bd][:n]), 3) for bd in PASS["test"]})
+            q["world"] = round(accuracy(world_items(None, 0, W.test_sets(seed=0)["same"])[:n]), 3); return q
+        curve = []
+        if ROUTINE and not os.path.exists(path):                                              # Stage 86: experience in days; sleep = nights of replay
+            S = QUESTIONS // BS; per = S // 4; srng = np.random.default_rng(900 + a.seed); sched = []
+            for k in range(4):
+                day = [("day", k)] * per
+                if ROUTINE == "reread": day = day + [("replay", k)] * per; day = [day[i] for i in srng.permutation(len(day))]
+                sched += day
+                if ROUTINE == "sleep": sched += [("night", k)] * per
+                sched.append(("test", k))
+            if ROUTINE == "joint": sched = [("mixed", -1)] * S + [("test", 3)]
+            seen = [[] for _ in range(4)]; base = opt.param_groups[0]["lr"]
+            for step, (kind, k) in enumerate(sched):
+                if kind == "test":
+                    curve.append(dict(after=f"day {k + 1}" + (" + night" if ROUTINE == "sleep" else ""), minutes=round((time.time() - t0) / 60, 1), **quick())); print(curve[-1], flush=True); continue
+                if kind in ("day", "mixed"):
+                    g = DAY_GROUPS[k] if kind == "day" else DAY_GROUPS[int(rng.integers(4))]
+                    items = draw(g[int(rng.integers(len(g)))], rng); seen[max(k, 0)].append(items)
+                else:                                                                         # replay stored episodes: half today's, half earlier days'
+                    pool = seen[k] if (k == 0 or rng.random() < 0.5) else seen[int(rng.integers(k))]
+                    items = pool[int(rng.integers(len(pool)))]
+                for pg in opt.param_groups: pg["lr"] = base * (NIGHT_LR if kind == "night" else 1.0)
+                b = list(batch(items)); y = torch.tensor([i["y"] for i in items]); loss = torch.nn.functional.cross_entropy(logits(b), y)
+                if CONTROLLER: loss = loss + PONDER * net.steps.mean()
+                opt.zero_grad(); loss.backward(); torch.nn.utils.clip_grad_norm_(net.parameters(), 1.0); opt.step()
+                if (step + 1) % 1000 == 0: log.append(dict(step=step + 1, kind=kind, minutes=round((time.time() - t0) / 60, 1), loss=round(float(loss.detach()), 3))); print(log[-1], flush=True)
+            torch.save(net.state_dict(), path)
         if not os.path.exists(path):
             for step in range(start, QUESTIONS // BS):
                 if time.time() - last > 600:
@@ -343,12 +391,28 @@ def main():
                     print("   mix   ", " ".join(f"{x:.2f}" for x in net.w[0].tolist()))
             raise SystemExit
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={})
-        out["config"] = dict(EPISODES=EPISODES, CONCEPTS=CONCEPTS, CONTROLLER=CONTROLLER, CTRL_ONLY=CTRL_ONLY, LOOP=LOOP, ALLCUES=ALLCUES, PATTERN=PATTERN, tag=tag, n_params=sum(p.numel() for p in net.parameters()))   # what was actually on
+        out["config"] = dict(EPISODES=EPISODES, CONCEPTS=CONCEPTS, CONTROLLER=CONTROLLER, CTRL_ONLY=CTRL_ONLY, LOOP=LOOP, ALLCUES=ALLCUES, PATTERN=PATTERN, ROUTINE=ROUTINE, tag=tag, n_params=sum(p.numel() for p in net.parameters()))   # what was actually on
         for t in T:
             if ONLY and not any(tasks[t]["name"].startswith(f"qa{n}_") for n in ONLY.split(",")): continue
             acc = accuracy(tasks[t]["test"], tasks[t]["name"]); out["tasks"][tasks[t]["name"]] = round(acc, 4); print(tasks[t]["name"], round(acc, 4), flush=True)
         out["passed_95"] = int(sum(v >= 0.95 for v in out["tasks"].values())); out["mean_error"] = round(100 * (1 - np.mean(list(out["tasks"].values()))), 2)
         out["controller"] = how
+        if ROUTINE: out["curve"] = curve; out["routine"] = ROUTINE
+        if PASS:
+            out["passages"] = {bd: round(accuracy(PASS["test"][bd]), 4) for bd in PASS["test"]}; print("passages", out["passages"], flush=True)
+            try:                                                                              # the reading network alone: the candidate that makes sentence 21 most probable
+                out["passages_reader"] = {}
+                for bd, its in PASS["test"].items():
+                    sents = [it["sent"][:it["pos"]] + [c[0]] + it["sent"][it["pos"] + 1:] for it in its for c in it["cands"]]
+                    lp = np.array(M.logp(sents)).reshape(len(its), -1); out["passages_reader"][bd] = round(float(np.mean(lp.argmax(1) == np.array([it["y"] for it in its]))), 4)
+                    net.eval(); hz = []
+                    with torch.no_grad():
+                        for k0 in range(0, len(its), 32): hz.append(torch.log_softmax(logits(batch(its[k0:k0 + 32])), -1).numpy())
+                    net.train(); hz = np.concatenate(hz); both = hz + (lp - lp.max(1, keepdims=True))     # memory + language sense, equal weight (ASSUMED)
+                    out.setdefault("passages_both", {})[bd] = round(float(np.mean(both.argmax(1) == np.array([it["y"] for it in its]))), 4)
+                print("passages, reader alone", out["passages_reader"], flush=True)
+            except Exception as e: out["passages_reader"] = "not run: " + repr(e)
+
         if DUMP: out["dump"] = dump
         if ONLY: json.dump(out, open(os.path.join(OUT, f"{tag}s{a.seed}.json"), "w"), indent=1); raise SystemExit
         out["world"] = {k: round(accuracy(world_items(None, 0, v)), 4) for k, v in W.test_sets(seed=0).items()}
