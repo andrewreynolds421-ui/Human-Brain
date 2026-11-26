@@ -72,6 +72,7 @@ QUESTIONS = int(os.environ.get("QUESTIONS", 120_000))
 EPISODES = False                                                        # Stage 80: the episode record (set by --episodes)
 CONTROLLER = False                                                      # controller: prefrontal working memory + basal-ganglia recall loop (set by --controller)
 K_STEPS = 6; PONDER = 0.003; CTRL_ONLY = False                         # --ctrl-only: the controller is the only way to chain recalls; step cost phased in                                             # most recall steps; cost per step (ASSUMED)
+CKEY = False                                                            # Stage 87: memories filed and looked up by concept (--ckey): a learned map before the key code
 ROUTINE = None                                                          # Stage 86: --routine joint | awake | sleep | reread (days of experience; nights replay)
 DAY_GROUPS = [[1, 6, 9, 10, 11, 12, 13, "world"], [2, 3, 4, 5, 7, 8, 14], [15, 16, 17, 18, 19, 20], ["passages"]]   # day 1..4 (ASSUMED order: simple facts -> several facts -> rules -> real books)
 NIGHT_LR = 1 / 3                                                        # nights at a third of the day step (Stage 70 / 76)
@@ -157,9 +158,13 @@ def build(M, seed):
             if LOOP:                                                                              # re-entry: recalled content -> next cue; starts as a plain copy
                 s.reent = nn.Sequential(nn.Linear(E + H, 256), nn.Tanh(), nn.Linear(256, E))
                 with torch.no_grad(): s.reent[2].weight.zero_(); s.reent[2].bias.zero_()
+            if CKEY:
+                s.ckey = nn.Sequential(nn.Linear(E, 256), nn.Tanh(), nn.Linear(256, E))
+                with torch.no_grad(): s.ckey[2].weight.zero_(); s.ckey[2].bias.zero_()
             g = torch.Generator().manual_seed(77 + seed); s.register_buffer("dg", torch.randn(D_KEY, N_DG, generator=g) / D_KEY ** 0.5)
 
         def code(s, e):
+            if CKEY: e = e + s.ckey(e)                                                             # concept key: "wolf" and "wolves" may come to share a key
             k = s.wk(e); a = s.pp(k); d = torch.relu(k @ s.dg); kth = d.topk(int(ACTIVE * N_DG), dim=-1).values[..., -1:]
             d = d * (d >= kth); a = a + d / (d.norm(dim=-1, keepdim=True) + 1e-6); return a / (a.norm(dim=-1, keepdim=True) + 1e-6)
 
@@ -257,11 +262,11 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true"); ap.add_argument("--allcues", action="store_true"); ap.add_argument("--pattern", action="store_true"); ap.add_argument("--routine", choices=("joint", "awake", "sleep", "reread"))   # control: Stage 79 circuit, Stage 80 learning settings only
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true"); ap.add_argument("--allcues", action="store_true"); ap.add_argument("--pattern", action="store_true"); ap.add_argument("--ckey", action="store_true"); ap.add_argument("--routine", choices=("joint", "awake", "sleep", "reread"))   # control: Stage 79 circuit, Stage 80 learning settings only
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
-    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP, ALLCUES, PATTERN, ROUTINE; ROUTINE = a.routine; PATTERN = a.pattern; a.loop = a.loop or a.pattern; a.allcues = a.allcues or a.pattern; LOOP = a.loop; ALLCUES = a.allcues; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
+    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP, ALLCUES, PATTERN, ROUTINE, CKEY; ROUTINE = a.routine; CKEY = a.ckey; PATTERN = a.pattern; a.loop = a.loop or a.pattern; a.allcues = a.allcues or a.pattern; LOOP = a.loop; ALLCUES = a.allcues; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
     if a.steady: tag = "steady_"
-    elif a.pattern: tag = "pattern_" + ("concepts_" if a.concepts else "") + ("controller_" if a.controller else "")
+    elif a.pattern: tag = "pattern_" + ("ckey_" if a.ckey else "") + ("concepts_" if a.concepts else "") + ("controller_" if a.controller else "")
     elif a.loop: tag = "loop_" + ("allcues_" if a.allcues else "") + ("concepts_" if a.concepts else "") + ("controller_" if a.controller else "")
     else: tag = ("controller2_" if a.ctrl_only else "controller_" if a.controller else "") + ("concepts_" if a.concepts else "" if a.controller else "episodes_" if a.episodes else "")
     if a.routine: tag = f"{a.routine}_" + tag                                       # Stage 86
@@ -391,7 +396,7 @@ def main():
                     print("   mix   ", " ".join(f"{x:.2f}" for x in net.w[0].tolist()))
             raise SystemExit
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={})
-        out["config"] = dict(EPISODES=EPISODES, CONCEPTS=CONCEPTS, CONTROLLER=CONTROLLER, CTRL_ONLY=CTRL_ONLY, LOOP=LOOP, ALLCUES=ALLCUES, PATTERN=PATTERN, ROUTINE=ROUTINE, tag=tag, n_params=sum(p.numel() for p in net.parameters()))   # what was actually on
+        out["config"] = dict(EPISODES=EPISODES, CONCEPTS=CONCEPTS, CONTROLLER=CONTROLLER, CTRL_ONLY=CTRL_ONLY, LOOP=LOOP, ALLCUES=ALLCUES, PATTERN=PATTERN, ROUTINE=ROUTINE, CKEY=CKEY, tag=tag, n_params=sum(p.numel() for p in net.parameters()))   # what was actually on
         for t in T:
             if ONLY and not any(tasks[t]["name"].startswith(f"qa{n}_") for n in ONLY.split(",")): continue
             acc = accuracy(tasks[t]["test"], tasks[t]["name"]); out["tasks"][tasks[t]["name"]] = round(acc, 4); print(tasks[t]["name"], round(acc, 4), flush=True)
