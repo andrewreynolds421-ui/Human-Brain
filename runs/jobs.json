@@ -1,66 +1,66 @@
 [
  {
-  "name": "loop_allcues_s0",
-  "flags": "--loop --allcues",
+  "name": "pattern_s0",
+  "flags": "--pattern",
   "seed": 0,
   "questions": 160000,
   "env": "DUMP=15,16,3",
-  "batch": "84b-rerun-2026-11-25T19:20"
+  "batch": "85-2026-11-25T21:00"
  },
  {
-  "name": "loop_allcues_s1",
-  "flags": "--loop --allcues",
+  "name": "pattern_s1",
+  "flags": "--pattern",
   "seed": 1,
   "questions": 160000,
   "env": "DUMP=15,16,3",
-  "batch": "84b-rerun-2026-11-25T19:20"
+  "batch": "85-2026-11-25T21:00"
  },
  {
-  "name": "loop_allcues_s2",
-  "flags": "--loop --allcues",
+  "name": "pattern_s2",
+  "flags": "--pattern",
   "seed": 2,
   "questions": 160000,
   "env": "DUMP=15,16,3",
-  "batch": "84b-rerun-2026-11-25T19:20"
+  "batch": "85-2026-11-25T21:00"
  },
  {
-  "name": "loop_allcues_s3",
-  "flags": "--loop --allcues",
+  "name": "pattern_s3",
+  "flags": "--pattern",
   "seed": 3,
   "questions": 160000,
   "env": "DUMP=15,16,3",
-  "batch": "84b-rerun-2026-11-25T19:20"
+  "batch": "85-2026-11-25T21:00"
  },
  {
-  "name": "loop_allcues_concepts_s0",
-  "flags": "--loop --allcues --concepts",
+  "name": "pattern_concepts_s0",
+  "flags": "--pattern --concepts",
   "seed": 0,
   "questions": 160000,
   "env": "DUMP=15,16,3",
-  "batch": "84b-rerun-2026-11-25T19:20"
+  "batch": "85-2026-11-25T21:00"
  },
  {
-  "name": "loop_allcues_concepts_s1",
-  "flags": "--loop --allcues --concepts",
+  "name": "pattern_concepts_s1",
+  "flags": "--pattern --concepts",
   "seed": 1,
   "questions": 160000,
   "env": "DUMP=15,16,3",
-  "batch": "84b-rerun-2026-11-25T19:20"
+  "batch": "85-2026-11-25T21:00"
  },
  {
-  "name": "loop_allcues_concepts_s2",
-  "flags": "--loop --allcues --concepts",
+  "name": "pattern_concepts_s2",
+  "flags": "--pattern --concepts",
   "seed": 2,
   "questions": 160000,
   "env": "DUMP=15,16,3",
-  "batch": "84b-rerun-2026-11-25T19:20"
+  "batch": "85-2026-11-25T21:00"
  },
  {
-  "name": "loop_allcues_concepts_s3",
-  "flags": "--loop --allcues --concepts",
+  "name": "pattern_concepts_s3",
+  "flags": "--pattern --concepts",
   "seed": 3,
   "questions": 160000,
   "env": "DUMP=15,16,3",
-  "batch": "84b-rerun-2026-11-25T19:20"
+  "batch": "85-2026-11-25T21:00"
  }
 ]

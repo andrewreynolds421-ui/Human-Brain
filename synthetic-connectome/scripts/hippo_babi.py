@@ -64,6 +64,7 @@ QUESTIONS = int(os.environ.get("QUESTIONS", 120_000))
 EPISODES = False                                                        # Stage 80: the episode record (set by --episodes)
 CONTROLLER = False                                                      # controller: prefrontal working memory + basal-ganglia recall loop (set by --controller)
 K_STEPS = 6; PONDER = 0.003; CTRL_ONLY = False                         # --ctrl-only: the controller is the only way to chain recalls; step cost phased in                                             # most recall steps; cost per step (ASSUMED)
+PATTERN = False                                                         # Stage 85: event store with pattern completion (--pattern; implies --loop --allcues)
 ALLCUES = False                                                         # Stage 84b: chain from every question word in parallel (--allcues)
 LOOP = False                                                            # Stage 84: learned big-loop re-entry (CA1 -> EC deep -> EC superficial) for chained recall (--loop)
 CONCEPTS = False                                                        # Stage 82: concept map + reverse recall (set by --concepts)
@@ -80,7 +81,8 @@ def load_task(path):
         if n == "1": story = []
         if "\t" in rest:
             q, ans, _ = rest.split("\t")
-            items.append(dict(story=[w for s in story[-MAX_SENT:] for w in s], q=words(q), ans=tuple(words(ans.replace(",", " ")))))
+            kept = story[-MAX_SENT:]; ends = list(np.cumsum([len(x) for x in kept]) - 1)          # Stage 85: where each sentence ends (the full stop)
+            items.append(dict(story=[w for s in kept for w in s], q=words(q), ans=tuple(words(ans.replace(",", " "))), ends=ends))
         else:
             story.append(words(rest))
     return items
@@ -137,7 +139,10 @@ def build(M, seed):
                 s.stop = nn.Linear(P, 1)                                                          # basal ganglia: answer now, or recall again
                 s.out = nn.Sequential(nn.Linear(P + E, 256), nn.Tanh(), nn.Linear(256, E))
                 with torch.no_grad(): s.stop.bias.fill_(-1.0)
-            if ALLCUES: s.qa = nn.Linear(H, E)                                                    # which question word's chain to trust
+            if ALLCUES: s.qa = nn.Linear(H, E)
+            if PATTERN:                                                                           # event store: boundary gate, word importance
+                s.bgate = nn.Linear(H, 1); s.bw = nn.Parameter(torch.tensor(4.0)); s.sal = nn.Linear(E, 1); s.ksal = nn.Linear(H, 1)   # importance as content; strength as a key (from context: role in the sentence)
+                with torch.no_grad(): s.bgate.bias.fill_(-3.0)                                                    # which question word's chain to trust
             if LOOP:                                                                              # re-entry: recalled content -> next cue; starts as a plain copy
                 s.reent = nn.Sequential(nn.Linear(E + H, 256), nn.Tanh(), nn.Linear(256, E))
                 with torch.no_grad(): s.reent[2].weight.zero_(); s.reent[2].bias.zero_()
@@ -147,7 +152,7 @@ def build(M, seed):
             k = s.wk(e); a = s.pp(k); d = torch.relu(k @ s.dg); kth = d.topk(int(ACTIVE * N_DG), dim=-1).values[..., -1:]
             d = d * (d >= kth); a = a + d / (d.norm(dim=-1, keepdim=True) + 1e-6); return a / (a.norm(dim=-1, keepdim=True) + 1e-6)
 
-        def forward(s, hs, es, mask, q, qe, qmask):
+        def forward(s, hs, es, mask, q, qe, qmask, bnd=None):
             B, T, _ = hs.shape; Ed = es.shape[-1]
             pad = torch.cat([torch.zeros(B, WIN - 1, Ed), es], 1); win = torch.stack([pad[:, j:j + T] for j in range(WIN)], 2)
             ak = torch.softmax(s.pick_k(hs), -1); ar = torch.softmax(s.pick_r(hs), -1); av = torch.softmax(s.pick_v(hs), -1)
@@ -159,6 +164,22 @@ def build(M, seed):
                 c = keys[:, t]; old = torch.einsum("bn,bne->be", c, Mem)
                 Mem = Mem + g[:, t, :, None] * c[:, :, None] * (v - old)[:, None, :]
             read = lambda e: torch.einsum("bn,bne->be", s.code(e), Mem)
+            if PATTERN:                                                                           # Stage 85: store each event so any of its words recalls the rest
+                bnd = torch.zeros(B, T) if bnd is None else bnd[:, :T]
+                seg = torch.cumsum(bnd, 1) - bnd                                                  # sentence number of each word (an end belongs to its sentence)
+                spad = torch.cat([torch.full((B, WIN - 1), -1.0), seg], 1); sw = torch.stack([spad[:, j:j + T] for j in range(WIN)], 2)
+                inc = (sw == seg[..., None]).float()                                              # window words from the same sentence
+                imp = torch.sigmoid(s.sal(win))[..., 0] * inc                                     # learned importance ("is", "a" should be low)
+                tot = (imp[..., None] * win).sum(2, keepdim=True)
+                vals_ev = (tot - imp[..., None] * win) / ((imp.sum(2, keepdim=True) - imp)[..., None] + 1e-3)   # value for each word = the rest of its event
+                hpad = torch.cat([torch.zeros(B, WIN - 1, hs.shape[-1]), hs], 1); hwin = torch.stack([hpad[:, j:j + T] for j in range(WIN)], 2)
+                kstr = torch.sigmoid(s.ksal(hwin))[..., 0] * inc                                  # how strongly each word files the event (subject vs object)
+                ckeys = s.code(win); gate_ev = torch.sigmoid(s.bgate(hs)[..., 0] + s.bw * bnd) * mask
+                Mem2 = torch.zeros(B, N_DG, Ed)
+                for t in range(T):
+                    c = ckeys[:, t]; old = torch.einsum("bjn,bne->bje", c, Mem2); wgt = (gate_ev[:, t, None] * kstr[:, t])[..., None, None]
+                    Mem2 = Mem2 + (wgt * c[..., None] * (vals_ev[:, t] - old)[:, :, None, :]).sum(1)
+                s.ev = dict(gate=gate_ev, imp=imp, kstr=kstr); s.Mem2 = Mem2
             lm = torch.log(qmask + 1e-9)
             c1 = (torch.softmax((qe * s.q1(q)[:, None]).sum(-1) / Ed ** 0.5 + lm, -1)[..., None] * qe).sum(1)
             c2 = (torch.softmax((qe * s.q2(q)[:, None]).sum(-1) / Ed ** 0.5 + lm, -1)[..., None] * qe).sum(1)
@@ -167,9 +188,10 @@ def build(M, seed):
             s.trace = dict(cue1=c1, cue2=c2, r1=r1, R_r1=R(r1), r2=r2, r3=r3, s1=s1)                 # for probing (PROBE=1)
             allc = []
             if ALLCUES:                                                                           # every question word starts its own two-step chain
-                X1 = torch.einsum("bln,bne->ble", s.code(qe), Mem); Lq = qe.shape[1]
+                MemC = Mem2 if PATTERN else Mem                                                   # Stage 85: chains read the event store
+                X1 = torch.einsum("bln,bne->ble", s.code(qe), MemC); Lq = qe.shape[1]
                 X1R = X1 + s.reent(torch.cat([X1, q[:, None].expand(-1, Lq, -1)], -1)) if LOOP else X1
-                X2 = torch.einsum("bln,bne->ble", s.code(X1R), Mem)
+                X2 = torch.einsum("bln,bne->ble", s.code(X1R), MemC)
                 aq = torch.softmax((qe * s.qa(q)[:, None]).sum(-1) / Ed ** 0.5 + lm, -1)[..., None]
                 ch1 = (aq * X1).sum(1); ch2 = (aq * X2).sum(1); allc = [ch1, ch2]; s.trace.update(chain1=ch1, chain2=ch2)
                 if os.environ.get("PROBE"): s.trace.update({f"w{j}_1": X1[:, j] for j in range(Lq)}); s.trace.update({f"w{j}_2": X2[:, j] for j in range(Lq)}); s.trace["trust"] = aq[..., 0]
@@ -224,10 +246,11 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true"); ap.add_argument("--allcues", action="store_true")   # control: Stage 79 circuit, Stage 80 learning settings only
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--episodes", action="store_true"); ap.add_argument("--concepts", action="store_true"); ap.add_argument("--controller", action="store_true"); ap.add_argument("--steady", action="store_true"); ap.add_argument("--ctrl-only", action="store_true"); ap.add_argument("--loop", action="store_true"); ap.add_argument("--allcues", action="store_true"); ap.add_argument("--pattern", action="store_true")   # control: Stage 79 circuit, Stage 80 learning settings only
     a = ap.parse_args(); os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True)
-    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP, ALLCUES; LOOP = a.loop; ALLCUES = a.allcues; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
+    global EPISODES, CONCEPTS, CONTROLLER, CTRL_ONLY, LOOP, ALLCUES, PATTERN; PATTERN = a.pattern; a.loop = a.loop or a.pattern; a.allcues = a.allcues or a.pattern; LOOP = a.loop; ALLCUES = a.allcues; a.episodes = a.episodes or a.loop; CTRL_ONLY = a.ctrl_only; a.controller = a.controller or a.ctrl_only; CONCEPTS = a.concepts; CONTROLLER = a.controller; EPISODES = a.episodes or a.concepts or a.controller; a.episodes = EPISODES
     if a.steady: tag = "steady_"
+    elif a.pattern: tag = "pattern_" + ("concepts_" if a.concepts else "") + ("controller_" if a.controller else "")
     elif a.loop: tag = "loop_" + ("allcues_" if a.allcues else "") + ("concepts_" if a.concepts else "") + ("controller_" if a.controller else "")
     else: tag = ("controller2_" if a.ctrl_only else "controller_" if a.controller else "") + ("concepts_" if a.concepts else "" if a.controller else "episodes_" if a.episodes else "")
 
@@ -251,10 +274,14 @@ def main():
             hs = o[:, 1:T + 1]; es = e[:, 1:T + 1]
             if hs.shape[1] < T: hs = torch.nn.functional.pad(hs, (0, 0, 0, T - hs.shape[1])); es = torch.nn.functional.pad(es, (0, 0, 0, T - es.shape[1]))
             ce = torch.stack([torch.stack([emb(c) for c in it["cands"]]) for it in items])
-            return hs * mask[..., None], es * mask[..., None], mask, q, qe, qmask, ce
+            bnd = torch.zeros(B, T)
+            for i, it in enumerate(items):
+                for k in it.get("ends", []):
+                    if k < T: bnd[i, k] = 1
+            return hs * mask[..., None], es * mask[..., None], mask, q, qe, qmask, ce, bnd
 
         def logits(b):
-            z = net(*b[:6]); ce = b[6]
+            z = net(*b[:6], bnd=b[7]); ce = b[6]
             if CONCEPTS: z = net.cmap(z); ce = net.cmap(ce)
             return net.temp * torch.einsum("be,bce->bc", z / (z.norm(dim=-1, keepdim=True) + 1e-6), ce / (ce.norm(dim=-1, keepdim=True) + 1e-6))
 
@@ -308,7 +335,7 @@ def main():
                     print("   mix   ", " ".join(f"{x:.2f}" for x in net.w[0].tolist()))
             raise SystemExit
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={})
-        out["config"] = dict(EPISODES=EPISODES, CONCEPTS=CONCEPTS, CONTROLLER=CONTROLLER, CTRL_ONLY=CTRL_ONLY, LOOP=LOOP, ALLCUES=ALLCUES, tag=tag, n_params=sum(p.numel() for p in net.parameters()))   # what was actually on
+        out["config"] = dict(EPISODES=EPISODES, CONCEPTS=CONCEPTS, CONTROLLER=CONTROLLER, CTRL_ONLY=CTRL_ONLY, LOOP=LOOP, ALLCUES=ALLCUES, PATTERN=PATTERN, tag=tag, n_params=sum(p.numel() for p in net.parameters()))   # what was actually on
         for t in T:
             if ONLY and not any(tasks[t]["name"].startswith(f"qa{n}_") for n in ONLY.split(",")): continue
             acc = accuracy(tasks[t]["test"], tasks[t]["name"]); out["tasks"][tasks[t]["name"]] = round(acc, 4); print(tasks[t]["name"], round(acc, 4), flush=True)
