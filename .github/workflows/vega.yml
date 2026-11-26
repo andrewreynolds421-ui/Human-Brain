@@ -48,6 +48,7 @@ jobs:
         timeout-minutes: 335
         run: |
           cp "$GITHUB_WORKSPACE/synthetic-connectome/data/passages.json.gz" /home/claude/synthetic-connectome/data/
+          cp "$GITHUB_WORKSPACE/runs/${{ matrix.job.name }}/"*.ckpt /tmp/out/ 2>/dev/null && echo "resuming from a pushed checkpoint" || true
           ${{ matrix.job.env }} QUESTIONS=${{ matrix.job.questions }} BABI_OUT=/tmp/out BABI_DATA=/tmp/out PYTHONPATH=. THREADS=4 \
             python scripts/hippo_babi.py ${{ matrix.job.flags }} --seed ${{ matrix.job.seed }} > /tmp/out/train.txt 2>&1
       - name: push the result (or the log)
@@ -55,6 +56,7 @@ jobs:
         run: |
           D="runs/${{ matrix.job.name }}"; mkdir -p "$D"
           cp /tmp/out/*.json /tmp/out/*.pt "$D"/ 2>/dev/null || true
+          rm -f "$D"/*.ckpt; cp /tmp/out/*.ckpt "$D"/ 2>/dev/null || true          # a run stopped at the time limit continues when relaunched
           for f in setup train; do tail -c 200000 /tmp/out/$f.txt > "$D/$f.txt" 2>/dev/null || echo "none" > "$D/$f.txt"; done
           df -h / > "$D/machine.txt"; nproc >> "$D/machine.txt"; free -m >> "$D/machine.txt"
           echo "${{ job.status }}" > "$D/status.txt"

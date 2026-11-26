@@ -1,66 +1,26 @@
 [
  {
-  "name": "r86b_reread_loopctl_s0",
-  "flags": "--loop --controller --routine reread",
-  "seed": 0,
-  "questions": 96000,
-  "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86b-2026-11-26T00:50"
- },
- {
-  "name": "r86b_reread_loopctl_s1",
-  "flags": "--loop --controller --routine reread",
+  "name": "pattern_s1",
+  "flags": "--pattern",
   "seed": 1,
-  "questions": 96000,
-  "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86b-2026-11-26T00:50"
+  "questions": 160000,
+  "env": "DUMP=15,16,3",
+  "batch": "85-resume-1"
  },
  {
-  "name": "r86b_reread_loopctl_s2",
-  "flags": "--loop --controller --routine reread",
+  "name": "pattern_s2",
+  "flags": "--pattern",
   "seed": 2,
-  "questions": 96000,
-  "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86b-2026-11-26T00:50"
+  "questions": 160000,
+  "env": "DUMP=15,16,3",
+  "batch": "85-resume-1"
  },
  {
-  "name": "r86b_reread_loopctl_s3",
-  "flags": "--loop --controller --routine reread",
+  "name": "pattern_s3",
+  "flags": "--pattern",
   "seed": 3,
-  "questions": 96000,
-  "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86b-2026-11-26T00:50"
- },
- {
-  "name": "r86b_reread_allcues_s0",
-  "flags": "--loop --allcues --routine reread",
-  "seed": 0,
-  "questions": 96000,
-  "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86b-2026-11-26T00:50"
- },
- {
-  "name": "r86b_reread_allcues_s1",
-  "flags": "--loop --allcues --routine reread",
-  "seed": 1,
-  "questions": 96000,
-  "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86b-2026-11-26T00:50"
- },
- {
-  "name": "r86b_reread_allcues_s2",
-  "flags": "--loop --allcues --routine reread",
-  "seed": 2,
-  "questions": 96000,
-  "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86b-2026-11-26T00:50"
- },
- {
-  "name": "r86b_reread_allcues_s3",
-  "flags": "--loop --allcues --routine reread",
-  "seed": 3,
-  "questions": 96000,
-  "env": "PASSAGES=data/passages.json.gz",
-  "batch": "86b-2026-11-26T00:50"
+  "questions": 160000,
+  "env": "DUMP=15,16,3",
+  "batch": "85-resume-1"
  }
 ]
