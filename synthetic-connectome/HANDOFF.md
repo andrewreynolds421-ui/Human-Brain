@@ -528,4 +528,9 @@ Stages 85-86 (26 Nov). 85 `--pattern` (event store, pattern completion): net 0 1
 awake forgets (day-1 96 -> 41 %, bAbI 53 %); sleep and reread keep it (96-98 %); reread slightly better on bAbI
 (best 19.5 %), sleep better on real books in 8/8 networks; memory + reader 46-51 % (grade 1-2) -> 33-35 % (7+);
 adults on the CBT 81.6 %. Stage 87 `--ckey` (concept keys) running. Summary results/stage86/stage86_summary.json.
+Stages 85/87 final (26 Nov): event store 20.9 % (3/4 > control), + concept map 20.2 % (4/4), + concept keys (87,
+`--ckey`) 20.4 % (4/4) - no gain; deduction 57-67 %. Trace: rule sentences ("wolves are afraid of mice") are hardly
+stored - recall from them returns a generic verb blend; the store files events under people. Summary
+results/babi_all/stage85_87_summary.json. Grade note for the user: grade test (1 sentence, 4 options) = grade 4,
+unchanged; the passage test (20 sentences, 10 nouns from the passage) is a different, harder memory test.
 

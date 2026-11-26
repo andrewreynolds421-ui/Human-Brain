@@ -4360,7 +4360,7 @@ training). Four networks each, all on GitHub runners; compared with the optimise
 - **Bug, reported:** the first "every question word" batch never had the option on (a missing `global`); its 8 runs
   were removed and rerun, and every result now records which options were on (`config`).
 
-## Stage 85: an event store with pattern completion (interim: 5 of 8 networks)
+## Stage 85: an event store with pattern completion
 
 **Question.** Stage 84's trace: "Emily is a cat" was filed under "is", not under Emily. The hippocampus stores an
 event as a whole, and any part of it recalls the rest (pattern completion). Store each event under all its words?
@@ -4369,15 +4369,17 @@ event as a whole, and any part of it recalls the rest (pattern completion). Stor
 boundary gate decides when an event ends (in bAbI the full stop is given as a hint; world stories have none); the
 event is then filed under every one of its words - how strongly from the word's role in the sentence, its content
 weighted by learned importance (so "is", "a" count little). Checked untrained: recall from "emily" -> "a, cat, is",
-from "cat" -> "emily" (reverse recall for free). Networks 1-3 of `--pattern` hit GitHub's 6-hour limit and are
-being resumed from checkpoints (jobs are now resumable).
+from "cat" -> "emily" (reverse recall for free). (Three networks hit GitHub's 6-hour job limit and were
+rerun; jobs are now resumable from checkpoints.)
 
 | (event store) | passed | mean error | world |
 |---|---|---|---|
-| event store, network 0 | 8 | 19.0 % | 90 % |
-| event store + concept map, 4 networks | 9, 6, 5, 8 | 18.5, 22.0, 22.1, 18.2 % | 82-90 % |
+| control (same networks) | 8, 8, 8, 8 | 22.6 % | 93 % |
+| event store, 4 networks | 8, 6, 5, 8 | 19.0, 23.9, 22.4, 18.4 % (mean 20.9; 3 / 4 better) | 82-90 % |
+| event store + concept map, 4 networks | 9, 6, 5, 8 | 18.5, 22.0, 22.1, 18.2 % (mean 20.2; 4 / 4 better) | 82-90 % |
 
-- The two best networks VEGA has had (18.2 %, 18.5 %), and two weak ones: unstable.
+- The best single networks VEGA has had (18.2-19.0 %) and weak ones on the same reading networks (1, 2): unstable;
+  on average no better than Stage 84's loop + controller (20.6 %).
 - **Deduction moves for the first time** (up to 67 %, one network; 61 % in network 0), lists 79-90 % and path
   finding 17-18 % (control 9-15) in all four concept-map networks.
 - **Trace (event store + concept map, network 2):** the first recall now works - "gertrude" -> wolf 0.90,
@@ -4385,6 +4387,29 @@ being resumed from checkpoints (jobs are now resumable).
   the learned loop has collapsed to one constant output ("discarded, took, from" for every question), so "wolf"
   never reaches "wolves are afraid of mice" (filed under "wolves"; the reading network puts wolf / wolves at 0.13).
   Stage 87 (running) files and looks up memories through a learned concept map.
+
+## Stage 87: concept keys - and where the second step really fails
+
+**Question.** Stage 85's trace: the first recall is right (gertrude -> wolf), the second ("wolf" -> "wolves are
+afraid of mice") fails. Is it the word form - the rule filed under "wolves", the cue "wolf"?
+
+**Set-up** (`--pattern --concepts --ckey`): every word goes through one learned map before it is filed or used as a
+cue, so "wolf" and "wolves" may come to share a key (starts as an exact copy - outputs identical before training).
+Four networks on GitHub runners (three resumed from checkpoints past the 6-hour limit).
+
+| (4 networks each) | passed | mean error | better than control | deduction | world |
+|---|---|---|---|---|---|
+| event store (85) | 8, 6, 5, 8 | 20.9 % | 3 / 4 | 57-62 % | 82-90 % |
+| + concept map (85) | 9, 6, 5, 8 | 20.2 % | 4 / 4 | 57-67 % | 82-90 % |
+| + concept keys (87) | 6, 8, 5, 7 | 20.4 % | 4 / 4 | 58-63 % | 81-100 % |
+
+- **No gain** over the event store with the concept map; deduction stays at 58-63 %. Path finding 17-22 % (all 4).
+- **Trace (network 1):** first recall still right (emily -> cat 0.90, winona -> sheep 0.88); the second returns the
+  same verb blend ("gave, took, passed") that recall cued by "afraid" returns - what an empty part of memory gives
+  back. The rule sentences ("wolves are afraid of mice") are hardly stored at all: the event store learned to file
+  events under people (nearly every bAbI sentence is about a person), so the word form was not the problem.
+- Next: look at what the store does with sentences whose subject is not a person (its boundary gate and key
+  strength on "wolves are afraid of mice"), and make filing depend less on what is usual.
 
 ## Stage 86: days and nights - sleep, and reading real books grade by grade
 
@@ -4442,7 +4467,12 @@ sentence most probable), **both** (equal-weight sum, ASSUMED).
   (common nouns): 81.6 % with the passage, 64.4 % from the last sentence alone; best LSTM 58.2 %, memory network
   63.0 % (Hill et al. 2016; their books, a similar but not identical test). **VEGA's comprehension of real books is
   well below an adult's even on first-grade books**, and no band reaches the 75 % "reads at" level of the grade test
-  (where VEGA's reading network alone reads at grade 4, grade 6 with its episodic memory - Stages 66, 69).
+  (where VEGA reads at grade 4, and grade 6 with its episodic memory - Stage 73).
+- **Two different tests, not a drop.** The grade test (Stage 53) blanks a word in ONE sentence and offers 4 words
+  of the same part of speech (chance 25 %) - sentence-level language sense; VEGA reads at grade 4 there (76.7 %,
+  Stage 73), unchanged. The passage test offers 10 nouns that all occur in the passage and all fit the sentence
+  (chance 10 %) - the right one needs memory of what happened. VEGA's language sense is at grade 4; its memory of a
+  real story is far weaker.
 
 ## Where the model stands against children learning English
 
