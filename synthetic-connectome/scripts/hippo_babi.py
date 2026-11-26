@@ -351,7 +351,7 @@ def main():
                     items = draw(g[int(rng.integers(len(g)))], rng); seen[max(k, 0)].append(items)
                 else:                                                                         # replay stored episodes: half today's, half earlier days'
                     pool = seen[k] if (k == 0 or rng.random() < 0.5) else seen[int(rng.integers(k))]
-                    items = pool[int(rng.integers(len(pool)))]
+                    items = pool[int(rng.integers(len(pool)))] if pool else draw(DAY_GROUPS[k][int(rng.integers(len(DAY_GROUPS[k])))], rng)   # nothing stored yet (reread: a replay before the day's first lesson)
                 for pg in opt.param_groups: pg["lr"] = base * (NIGHT_LR if kind == "night" else 1.0)
                 b = list(batch(items)); y = torch.tensor([i["y"] for i in items]); loss = torch.nn.functional.cross_entropy(logits(b), y)
                 if CONTROLLER: loss = loss + PONDER * net.steps.mean()
