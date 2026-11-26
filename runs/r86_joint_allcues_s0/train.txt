@@ -1,0 +1,31 @@
+built {'page_nouns_det': 0.975, 'page_nouns_refl_number': 0.9975, 'page_nouns_refl_gender': 1.0, 'page_nouns_refl_across': 0.985, 'page_nouns_npi': 1.0, 'page_nouns_npi_scope': 0.055, 'page_nouns_gap_wh': 0.99, 'page_nouns_gap_that': 1.0, 'page_nouns_aux_agree_relative': 0.9575, 'page_nouns_verb_agree_relative': 0.7075, 'page_nouns_who_gap': 0.735, 'page_nouns_name_reflexive': 0.9625, 'page_nouns_question_ever': 0.0325, 'held_out_nouns_det': 0.8825, 'held_out_nouns_refl_number': 0.98, 'held_out_nouns_refl_gender': 1.0, 'held_out_nouns_refl_across': 0.8725, 'held_out_nouns_npi': 1.0, 'held_out_nouns_npi_scope': 0.31, 'held_out_nouns_gap_wh': 0.9525, 'held_out_nouns_gap_that': 0.98, 'held_out_nouns_aux_agree_relative': 0.825, 'held_out_nouns_verb_agree_relative': 0.7025, 'held_out_nouns_who_gap': 0.535, 'held_out_nouns_name_reflexive': 0.9625, 'held_out_nouns_question_ever': 0.0325}
+{'step': 1000, 'kind': 'mixed', 'minutes': 9.9, 'loss': 2.168}
+{'step': 2000, 'kind': 'mixed', 'minutes': 19.8, 'loss': 0.68}
+{'step': 3000, 'kind': 'mixed', 'minutes': 29.8, 'loss': 0.438}
+{'step': 4000, 'kind': 'mixed', 'minutes': 38.9, 'loss': 0.047}
+{'step': 5000, 'kind': 'mixed', 'minutes': 48.7, 'loss': 0.759}
+{'step': 6000, 'kind': 'mixed', 'minutes': 58.3, 'loss': 0.048}
+{'after': 'day 4', 'minutes': 58.3, 'qa1': 1.0, 'qa2': 0.67, 'qa3': 0.43, 'qa4': 0.9, 'qa5': 0.97, 'qa6': 0.98, 'qa7': 0.74, 'qa8': 0.8, 'qa9': 0.98, 'qa10': 0.86, 'qa11': 0.97, 'qa12': 0.98, 'qa13': 0.96, 'qa14': 0.61, 'qa15': 0.59, 'qa16': 0.45, 'qa17': 0.57, 'qa18': 0.94, 'qa19': 0.07, 'qa20': 1.0, 'p1': 0.41, 'p2': 0.44, 'p3': 0.33, 'p4': 0.34, 'p5': 0.36, 'p6': 0.27, 'p7+': 0.29, 'world': 0.62}
+qa1_single-supporting-fact 1.0
+qa2_two-supporting-facts 0.647
+qa3_three-supporting-facts 0.437
+qa4_two-arg-relations 0.907
+qa5_three-arg-relations 0.968
+qa6_yes-no-questions 0.979
+qa7_counting 0.766
+qa8_lists-sets 0.789
+qa9_simple-negation 0.99
+qa10_indefinite-knowledge 0.884
+qa11_basic-coreference 0.932
+qa12_conjunction 0.987
+qa13_compound-coreference 0.959
+qa14_time-reasoning 0.743
+qa15_basic-deduction 0.579
+qa16_basic-induction 0.49
+qa17_positional-reasoning 0.586
+qa18_size-reasoning 0.898
+qa19_path-finding 0.098
+qa20_agents-motivations 1.0
+passages {'1': 0.3831, '2': 0.418, '3': 0.3467, '4': 0.35, '5': 0.3367, '6': 0.31, '7+': 0.3}
+passages, reader alone {'1': 0.4215, '2': 0.4139, '3': 0.36, '4': 0.38, '5': 0.28, '6': 0.32, '7+': 0.3133}
+{"seed": 0, "questions": 96000, "training": [{"step": 1000, "kind": "mixed", "minutes": 9.9, "loss": 2.168}, {"step": 2000, "kind": "mixed", "minutes": 19.8, "loss": 0.68}, {"step": 3000, "kind": "mixed", "minutes": 29.8, "loss": 0.438}, {"step": 4000, "kind": "mixed", "minutes": 38.9, "loss": 0.047}, {"step": 5000, "kind": "mixed", "minutes": 48.7, "loss": 0.759}, {"step": 6000, "kind": "mixed", "minutes": 58.3, "loss": 0.048}], "tasks": {"qa1_single-supporting-fact": 1.0, "qa2_two-supporting-facts": 0.647, "qa3_three-supporting-facts": 0.437, "qa4_two-arg-relations": 0.907, "qa5_three-arg-relations": 0.968, "qa6_yes-no-questions": 0.979, "qa7_counting": 0.766, "qa8_lists-sets": 0.789, "qa9_simple-negation": 0.99, "qa10_indefinite-knowledge": 0.884, "qa11_basic-coreference": 0.932, "qa12_conjunction": 0.987, "qa13_compound-coreference": 0.959, "qa14_time-reasoning": 0.743, "qa15_basic-deduction": 0.579, "qa16_basic-induction": 0.49, "qa17_positional-reasoning": 0.586, "qa18_size-reasoning": 0.898, "qa19_path-finding": 0.098, "qa20_agents-motivations": 1.0}, "config": {"EPISODES": true, "CONCEPTS": false, "CONTROLLER": false, "CTRL_ONLY": false, "LOOP": true, "ALLCUES": true, "PATTERN": false, "ROUTINE": "joint", "tag": "joint_loop_allcues_", "n_params": 834935}, "passed_95": 7, "mean_error": 21.81, "controller": {}, "curve": [{"after": "day 4", "minutes": 58.3, "qa1": 1.0, "qa2": 0.67, "qa3": 0.43, "qa4": 0.9, "qa5": 0.97, "qa6": 0.98, "qa7": 0.74, "qa8": 0.8, "qa9": 0.98, "qa10": 0.86, "qa11": 0.97, "qa12": 0.98, "qa13": 0.96, "qa14": 0.61, "qa15": 0.59, "qa16": 0.45, "qa17": 0.57, "qa18": 0.94, "qa19": 0.07, "qa20": 1.0, "p1": 0.41, "p2": 0.44, "p3": 0.33, "p4": 0.34, "p5": 0.36, "p6": 0.27, "p7+": 0.29, "world": 0.62}], "routine": "joint", "passages": {"1": 0.3831, "2": 0.418, "3": 0.3467, "4": 0.35, "5": 0.3367, "6": 0.31, "7+": 0.3}, "passages_reader": {"1": 0.4215, "2": 0.4139, "3": 0.36, "4": 0.38, "5": 0.28, "6": 0.32, "7+": 0.3133}, "passages_both": {"1": 0.4521, "2": 0.4631, "3": 0.4, "4": 0.4067, "5": 0.3667, "6": 0.3633, "7+": 0.34}, "world": {"same": 0.674, "held_names": 0.539, "held_objects_places": 0.652, "long": 0.597}}
