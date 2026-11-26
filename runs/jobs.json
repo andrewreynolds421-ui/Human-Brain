@@ -1,66 +1,34 @@
 [
  {
-  "name": "pattern_pluralsall_s0",
-  "flags": "--pattern --concepts --plurals all",
+  "name": "onelist_loop_controller_s0",
+  "flags": "--loop --controller --onelist",
   "seed": 0,
   "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "88-2026-11-26T13:20"
+  "env": "",
+  "batch": "audit64-onelist"
  },
  {
-  "name": "pattern_pluralsall_s1",
-  "flags": "--pattern --concepts --plurals all",
+  "name": "onelist_loop_controller_s1",
+  "flags": "--loop --controller --onelist",
   "seed": 1,
   "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "88-2026-11-26T13:20"
+  "env": "",
+  "batch": "audit64-onelist"
  },
  {
-  "name": "pattern_pluralsall_s2",
-  "flags": "--pattern --concepts --plurals all",
+  "name": "onelist_loop_controller_s2",
+  "flags": "--loop --controller --onelist",
   "seed": 2,
   "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "88-2026-11-26T13:20"
+  "env": "",
+  "batch": "audit64-onelist"
  },
  {
-  "name": "pattern_pluralsall_s3",
-  "flags": "--pattern --concepts --plurals all",
+  "name": "onelist_loop_controller_s3",
+  "flags": "--loop --controller --onelist",
   "seed": 3,
   "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "88-2026-11-26T13:20"
- },
- {
-  "name": "pattern_pluralsheldout_s0",
-  "flags": "--pattern --concepts --plurals heldout",
-  "seed": 0,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "88-2026-11-26T13:20"
- },
- {
-  "name": "pattern_pluralsheldout_s1",
-  "flags": "--pattern --concepts --plurals heldout",
-  "seed": 1,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "88-2026-11-26T13:20"
- },
- {
-  "name": "pattern_pluralsheldout_s2",
-  "flags": "--pattern --concepts --plurals heldout",
-  "seed": 2,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "88-2026-11-26T13:20"
- },
- {
-  "name": "pattern_pluralsheldout_s3",
-  "flags": "--pattern --concepts --plurals heldout",
-  "seed": 3,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "88-2026-11-26T13:20"
+  "env": "",
+  "batch": "audit64-onelist"
  }
 ]
