@@ -1,34 +1,110 @@
 [
  {
-  "name": "onelist_loop_controller_s0",
-  "flags": "--loop --controller --onelist",
+  "name": "events_sup1_s0",
+  "script": "hippo_events.py",
+  "flags": "--sup 1",
   "seed": 0,
   "questions": 160000,
-  "env": "",
-  "batch": "audit64-onelist"
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "89-2026-11-26"
  },
  {
-  "name": "onelist_loop_controller_s1",
-  "flags": "--loop --controller --onelist",
+  "name": "events_sup0_s0",
+  "script": "hippo_events.py",
+  "flags": "--sup 0",
+  "seed": 0,
+  "questions": 160000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "89-2026-11-26"
+ },
+ {
+  "name": "events_sup1_long_s0",
+  "script": "hippo_events.py",
+  "flags": "--sup 1",
+  "seed": 0,
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "89-2026-11-26"
+ },
+ {
+  "name": "events_sup1_s1",
+  "script": "hippo_events.py",
+  "flags": "--sup 1",
   "seed": 1,
   "questions": 160000,
-  "env": "",
-  "batch": "audit64-onelist"
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "89-2026-11-26"
  },
  {
-  "name": "onelist_loop_controller_s2",
-  "flags": "--loop --controller --onelist",
+  "name": "events_sup0_s1",
+  "script": "hippo_events.py",
+  "flags": "--sup 0",
+  "seed": 1,
+  "questions": 160000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "89-2026-11-26"
+ },
+ {
+  "name": "events_sup1_long_s1",
+  "script": "hippo_events.py",
+  "flags": "--sup 1",
+  "seed": 1,
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "89-2026-11-26"
+ },
+ {
+  "name": "events_sup1_s2",
+  "script": "hippo_events.py",
+  "flags": "--sup 1",
   "seed": 2,
   "questions": 160000,
-  "env": "",
-  "batch": "audit64-onelist"
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "89-2026-11-26"
  },
  {
-  "name": "onelist_loop_controller_s3",
-  "flags": "--loop --controller --onelist",
+  "name": "events_sup0_s2",
+  "script": "hippo_events.py",
+  "flags": "--sup 0",
+  "seed": 2,
+  "questions": 160000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "89-2026-11-26"
+ },
+ {
+  "name": "events_sup1_long_s2",
+  "script": "hippo_events.py",
+  "flags": "--sup 1",
+  "seed": 2,
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "89-2026-11-26"
+ },
+ {
+  "name": "events_sup1_s3",
+  "script": "hippo_events.py",
+  "flags": "--sup 1",
   "seed": 3,
   "questions": 160000,
-  "env": "",
-  "batch": "audit64-onelist"
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "89-2026-11-26"
+ },
+ {
+  "name": "events_sup0_s3",
+  "script": "hippo_events.py",
+  "flags": "--sup 0",
+  "seed": 3,
+  "questions": 160000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "89-2026-11-26"
+ },
+ {
+  "name": "events_sup1_long_s3",
+  "script": "hippo_events.py",
+  "flags": "--sup 1",
+  "seed": 3,
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "89-2026-11-26"
  }
 ]

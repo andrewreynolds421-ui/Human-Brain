@@ -306,7 +306,7 @@ def main():
             return hs * mask[..., None], es * mask[..., None], mask, q, qe, qmask, ce, bnd
 
         def logits(b):
-            z = net(*b[:6], bnd=b[7]); ce = b[6]
+            z = net(*b[:6], bnd=b[7]) if PATTERN else net(*b[:6]); ce = b[6]             # other networks built on this script (hippo_wired_babi) take six inputs
             if CONCEPTS: z = net.cmap(z); ce = net.cmap(ce)
             return net.temp * torch.einsum("be,bce->bc", z / (z.norm(dim=-1, keepdim=True) + 1e-6), ce / (ce.norm(dim=-1, keepdim=True) + 1e-6))
 
