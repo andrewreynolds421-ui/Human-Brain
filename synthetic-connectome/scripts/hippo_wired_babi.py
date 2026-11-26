@@ -59,10 +59,12 @@ def patched_main():
     that answered best) and gradient clipping always on"""
     import inspect
     src = inspect.getsource(HB.main)
-    old = "loss = torch.nn.functional.cross_entropy(logits(b), y); opt.zero_grad(); loss.backward()"
-    assert old in src
-    new = ("loss = torch.nn.functional.cross_entropy(logits(b), y)\n"
-           "                if os.environ.get('SCORE_BOTH') == '1' and hasattr(net, 'last'):\n"
+    old = ("opt.zero_grad(); loss.backward()\n"
+           "                if a.episodes or a.steady: torch.nn.utils.clip_grad_norm_(net.parameters(), 1.0)")
+    if old not in src: old = "loss = torch.nn.functional.cross_entropy(logits(b), y); opt.zero_grad(); loss.backward()"   # older hippo_babi layout
+    assert src.count(old) == 1
+    new = (("" if old.startswith("opt.") else "loss = torch.nn.functional.cross_entropy(logits(b), y)\n                ") +
+           "if os.environ.get('SCORE_BOTH') == '1' and hasattr(net, 'last'):\n"
            "                    opts, ml = net.last; ce = b[6] / (b[6].norm(dim=-1, keepdim=True) + 1e-6)\n"
            "                    per = torch.stack([torch.nn.functional.cross_entropy(net.temp * torch.einsum('be,bce->bc', o / (o.norm(dim=-1, keepdim=True) + 1e-6), ce), y, reduction='none') for o in opts], 1)\n"
            "                    loss = loss + per.min(1).values.mean() + torch.nn.functional.cross_entropy(ml, per.detach().argmin(1))\n"
