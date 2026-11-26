@@ -4404,12 +4404,17 @@ Four networks on GitHub runners (three resumed from checkpoints past the 6-hour 
 | + concept keys (87) | 6, 8, 5, 7 | 20.4 % | 4 / 4 | 58-63 % | 81-100 % |
 
 - **No gain** over the event store with the concept map; deduction stays at 58-63 %. Path finding 17-22 % (all 4).
-- **Trace (network 1):** first recall still right (emily -> cat 0.90, winona -> sheep 0.88); the second returns the
-  same verb blend ("gave, took, passed") that recall cued by "afraid" returns - what an empty part of memory gives
-  back. The rule sentences ("wolves are afraid of mice") are hardly stored at all: the event store learned to file
-  events under people (nearly every bAbI sentence is about a person), so the word form was not the problem.
-- Next: look at what the store does with sentences whose subject is not a person (its boundary gate and key
-  strength on "wolves are afraid of mice"), and make filing depend less on what is usual.
+- **Trace (network 1):** first recall still right (emily -> cat 0.90, winona -> sheep 0.88); the second returns a
+  verb blend ("gave, took, passed"). A first reading - "rule sentences are hardly stored" - was **wrong**: measured
+  directly (`PROBE_STORE=1`), "wolves" in "wolves are afraid of mice" files its event as strongly as the names do
+  (key strength 0.49 vs 0.41-0.45), every sentence end is stored. Asking the store directly (`PROBE_WORDS=`):
+  **by the plural the rules come back** - "wolves" -> mouse 0.61, "mice" -> cats 0.61 - **by the singular the
+  membership fact comes back** - "cat" -> emily 0.71, "mouse" -> jessica 0.65, "wolf" -> "is, was". The chain asks
+  with the singular, so it gets "gertrude is a wolf" back, never the rule; the concept keys did not learn that wolf
+  and wolves are one kind (the learning trap: no reward until both steps work). Also seen: "wolves" is filed again as
+  the object of "cats are afraid of wolves" (0.29), partly overwriting its rule.
+- Stage 88 (running): teach the concept keys English plurals (`data/noun_pairs.json`, 931 pairs - children know
+  plurals by 4-5, Berko 1958), all pairs or with every bAbI word held out.
 
 ## Stage 86: days and nights - sleep, and reading real books grade by grade
 

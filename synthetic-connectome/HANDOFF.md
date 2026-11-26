@@ -533,6 +533,9 @@ Stages 85/87 final (26 Nov): event store 20.9 % (3/4 > control), + concept map 2
 stored - recall from them returns a generic verb blend; the store files events under people. Summary
 results/babi_all/stage85_87_summary.json. Grade note for the user: grade test (1 sentence, 4 options) = grade 4,
 unchanged; the passage test (20 sentences, 10 nouns from the passage) is a different, harder memory test.
+Correction (26 Nov): rule sentences ARE stored (PROBE_STORE: "wolves" key strength 0.49 ~ names); PROBE_WORDS shows
+plural cues recall the rules ("wolves" -> mouse), singular cues recall membership ("cat" -> emily). Stage 88
+(`--plurals all|heldout`, contrastive plural loss on the concept keys, weight 0.2) running on vega-runs.
 
 Stage 81 follow-up 6 (26 Nov): best of 8 seeds (CA3 265 + BIG_LOOP + SCORE_BOTH): seed 0 95.0 % avg of 5 world tests
 (reproduced exactly), seed 7 88.9 %, seed 5 74.5 %, rest 58-70 %. Models on branches stage81k-s<seed>
