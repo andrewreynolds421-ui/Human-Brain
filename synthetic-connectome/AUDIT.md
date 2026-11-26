@@ -943,3 +943,12 @@ docstrings say; equal-lesson sleep / reread schedule is correct.
 5. Its fairness is good where it matters: "old" was rerun at the same cut-down budget for the 3 / 20 vs 0 / 20
    comparison; negative results are reported as such.
 
+## 65. Follow-up (26 November): Stage 89 — sentence events, taught recall steps
+
+New script `hippo_events.py`; 12 networks on GitHub runners (4 answer-only control, 4 taught, 4 taught at 3x the
+questions - 3 finished when written up). One answer list throughout (60 answers). Supporting-sentence labels are
+bAbI's own (training set only; test labels used only to report where each step landed, never for the answer).
+Supervision is "strong" in the sense of Weston et al. 2015 - stated in the README; not comparable with MemN2N's
+answer-only training. `world.py` now records sentence ends; stories and test sets verified identical before and
+after. Passage result reported with its most-frequent baseline (no gain). Summary results/events/stage89_summary.json.
+

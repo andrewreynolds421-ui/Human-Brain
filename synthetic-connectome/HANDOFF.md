@@ -555,4 +555,10 @@ only), and from Stage 85 until this commit `logits()` passed `bnd=` to every net
 (4) Stage 81 sleep claim rests on one run per seed and mode in a model that varies by tens of points per seed.
 One-list retraining done: loop+controller --onelist 8, 5, 7, 8 passed, 24.7 % (own lists 9, 9, 8, 9, 20.6 %). Use
 --onelist for any future comparison with published bAbI numbers.
+Stage 89 (26 Nov; `scripts/hippo_events.py --sup 1|0`, env PASSAGES, EV_TAG, QUESTIONS; 20 min per network): sentence
+events + taught recall steps, one answer list. Taught: 8,7,9,11 passed, 14.5 %; 3x longer 11,10,11, 10.7 %; answer
+only 27.3 %. Deduction 100 %, induction 96-98 %. Still failing: left/right (chance) and giving (86 %) though the right
+sentences are recalled - events come back as bags of words (no roles / order); three facts 75 %; paths 27 %.
+Passages unchanged (memory 32 %, baseline 27 %). Next (user's item 1): meaning in the cortex's word representations;
+and role-bound event content. Launch: runs/jobs.json entries with "script": "hippo_events.py".
 

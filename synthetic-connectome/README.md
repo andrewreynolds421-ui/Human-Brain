@@ -4487,6 +4487,55 @@ sentence most probable), **both** (equal-weight sum, ASSUMED).
   (chance 10 %) - the right one needs memory of what happened. VEGA's language sense is at grade 4; its memory of a
   real story is far weaker.
 
+## Stage 89: sentences as events, and every recall step taught
+
+**Question.** The review (AUDIT 64) left two faults in VEGA's hippocampus: it does not chain recalls (a two-step
+strategy pays only when both steps work, so training settles for guessing), and its memory of real books hardly
+beats counting words. Does teaching each recall step fix the first, and storing whole sentences the second?
+
+**Set-up** (`scripts/hippo_events.py`, a new, smaller model). Each sentence is one stored event (its words under
+their dentate codes with a learned key strength, plus the reading network's state at the sentence end); recall is
+pattern completion over events (attention - one step of a modern Hopfield network), with learned recency and
+"before / after the last recalled event"; what returns is the rest of the event. Three recall steps, a prefrontal
+working memory, the learned re-entry loop of Stage 84, and recognition (each candidate answer offered as a cue).
+**Step teaching (`--sup 1`):** bAbI marks the sentences that support each answer, in reasoning order; recall step k
+is rewarded for landing on supporting sentence k. `--sup 0` is the control. Real-book passages are 25 % of training
+from the start. **Like for like:** one answer list (60 answers) for all tasks. Four networks each, GitHub runners,
+20 minutes per network (Stage 84-88: 1-6 hours).
+
+| one answer list, 4 networks | passed (of 20) | mean error | world |
+|---|---|---|---|
+| Stage 84 loop + controller | 8, 5, 7, 8 | 24.7 % | - |
+| Stage 89, answer only (`--sup 0`) | 5, 4, 6, 4 | 27.3 % | 84 % |
+| **Stage 89, steps taught** | **8, 7, 9, 11** | **14.5 %** | 92 % |
+| **... trained 3x longer (3 networks so far)** | **11, 10, 11** | **10.7 %** | 95 % |
+| published: LSTM / MemN2N (answer only) | 4 / 14 | 36.4 % / 7.5 % | |
+
+| task (mean) | answer only | steps taught | 3x longer | step 1 / 2 / 3 lands on the right sentence |
+|---|---|---|---|---|
+| 15 deduction | 49.7 | **99.8** | 99.5 | 1.00 / 1.00 |
+| 16 induction | 48.1 | **95.7** | 98.4 | 1.00 / 0.96 / 0.97 |
+| 2 two facts | 38.9 | 88.3 | 91.9 | 0.97 / 0.90 |
+| 3 three facts | 27.6 | 65.2 | 74.8 | 0.98 / 0.82 / 0.70 |
+| 14 time order | 65.3 | 90.9 | 97.1 | 0.97 / 0.96 |
+| 8 lists | 69.8 | 86.1 | 93.1 | |
+| 4 relations | 79.2 | 79.6 | 93.7 | 0.92 |
+| 5 giving | 81.6 | 82.8 | 86.0 | 0.99 |
+| 17 left / right | 52.0 | 50.1 | 54.9 | 0.98 / 0.97 |
+| 19 path finding | 11.2 | 15.0 | 27.4 | 0.60 / 0.90 |
+
+- **Teaching the steps is what was missing.** Same model, same data: 27.3 % -> 14.5 % error, deduction 50 -> 100 %,
+  induction 48 -> 96 % in every network; all four networks land within 1.6 points of each other (the instability of
+  Stages 79-88 is gone). Without it this model is no better than the old one: the event store alone does nothing.
+- **This is stronger teaching than MemN2N had** (it learns from answers only). The fair published comparison is the
+  strongly supervised memory network (Weston et al. 2015), which passes 16 or more of the 20; VEGA is at 11.
+- **What still fails, with the right sentences found:** left / right (steps 0.98 / 0.97 right, answer 55 % = chance) and
+  giving (0.99, 86 %): the recalled event comes back as a bag of words, without who did what to whom or what is
+  left of what. Three facts: the third step lands 70 %. Path finding 27 % (was 8-18).
+- **Real books: no gain.** Memory 31.9 % (Stage 86: 32 %; most-frequent-word baseline 26.8 %), memory + reader
+  40.6 % against the reader's 35.4 %. Storing sentences and training on passages from the start changed nothing:
+  the limit is what the events are made of (word embeddings that carry form more than meaning), which is item 1.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
