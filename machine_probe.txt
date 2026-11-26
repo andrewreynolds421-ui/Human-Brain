@@ -1,0 +1,8 @@
+2
+               total        used        free      shared  buff/cache   available
+Mem:            8023         532        7047          12         665        7491
+Swap:              0           0           0
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda        252G   13G   30G  30% /
+/dev/vda        252G   13G   30G  30% /
+Python 3.13.18
