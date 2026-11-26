@@ -6,7 +6,7 @@
   "seed": 0,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz STEPS=6000",
-  "batch": "91-2026-11-26"
+  "batch": "91b"
  },
  {
   "name": "reader_single_s0",
@@ -15,7 +15,7 @@
   "seed": 0,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz STEPS=6000",
-  "batch": "91-2026-11-26"
+  "batch": "91b"
  },
  {
   "name": "reader_story_s1",
@@ -24,7 +24,7 @@
   "seed": 1,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz STEPS=6000",
-  "batch": "91-2026-11-26"
+  "batch": "91b"
  },
  {
   "name": "reader_single_s1",
@@ -33,7 +33,7 @@
   "seed": 1,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz STEPS=6000",
-  "batch": "91-2026-11-26"
+  "batch": "91b"
  },
  {
   "name": "reader_story_s2",
@@ -42,7 +42,7 @@
   "seed": 2,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz STEPS=6000",
-  "batch": "91-2026-11-26"
+  "batch": "91b"
  },
  {
   "name": "reader_single_s2",
@@ -51,7 +51,7 @@
   "seed": 2,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz STEPS=6000",
-  "batch": "91-2026-11-26"
+  "batch": "91b"
  },
  {
   "name": "reader_story_s3",
@@ -60,7 +60,7 @@
   "seed": 3,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz STEPS=6000",
-  "batch": "91-2026-11-26"
+  "batch": "91b"
  },
  {
   "name": "reader_single_s3",
@@ -69,6 +69,6 @@
   "seed": 3,
   "questions": 160000,
   "env": "PASSAGES=data/passages.json.gz STEPS=6000",
-  "batch": "91-2026-11-26"
+  "batch": "91b"
  }
 ]
