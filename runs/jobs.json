@@ -1,66 +1,258 @@
 [
  {
-  "name": "pattern_s0",
-  "flags": "--pattern",
+  "name": "r86_joint_loopctl_s0",
+  "flags": "--loop --controller --routine joint",
   "seed": 0,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "85-2026-11-25T21:00"
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
  },
  {
-  "name": "pattern_s1",
-  "flags": "--pattern",
+  "name": "r86_joint_loopctl_s1",
+  "flags": "--loop --controller --routine joint",
   "seed": 1,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "85-2026-11-25T21:00"
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
  },
  {
-  "name": "pattern_s2",
-  "flags": "--pattern",
+  "name": "r86_joint_loopctl_s2",
+  "flags": "--loop --controller --routine joint",
   "seed": 2,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "85-2026-11-25T21:00"
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
  },
  {
-  "name": "pattern_s3",
-  "flags": "--pattern",
+  "name": "r86_joint_loopctl_s3",
+  "flags": "--loop --controller --routine joint",
   "seed": 3,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "85-2026-11-25T21:00"
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
  },
  {
-  "name": "pattern_concepts_s0",
-  "flags": "--pattern --concepts",
+  "name": "r86_awake_loopctl_s0",
+  "flags": "--loop --controller --routine awake",
   "seed": 0,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "85-2026-11-25T21:00"
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
  },
  {
-  "name": "pattern_concepts_s1",
-  "flags": "--pattern --concepts",
+  "name": "r86_awake_loopctl_s1",
+  "flags": "--loop --controller --routine awake",
   "seed": 1,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "85-2026-11-25T21:00"
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
  },
  {
-  "name": "pattern_concepts_s2",
-  "flags": "--pattern --concepts",
+  "name": "r86_awake_loopctl_s2",
+  "flags": "--loop --controller --routine awake",
   "seed": 2,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "85-2026-11-25T21:00"
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
  },
  {
-  "name": "pattern_concepts_s3",
-  "flags": "--pattern --concepts",
+  "name": "r86_awake_loopctl_s3",
+  "flags": "--loop --controller --routine awake",
   "seed": 3,
-  "questions": 160000,
-  "env": "DUMP=15,16,3",
-  "batch": "85-2026-11-25T21:00"
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_sleep_loopctl_s0",
+  "flags": "--loop --controller --routine sleep",
+  "seed": 0,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_sleep_loopctl_s1",
+  "flags": "--loop --controller --routine sleep",
+  "seed": 1,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_sleep_loopctl_s2",
+  "flags": "--loop --controller --routine sleep",
+  "seed": 2,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_sleep_loopctl_s3",
+  "flags": "--loop --controller --routine sleep",
+  "seed": 3,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_reread_loopctl_s0",
+  "flags": "--loop --controller --routine reread",
+  "seed": 0,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_reread_loopctl_s1",
+  "flags": "--loop --controller --routine reread",
+  "seed": 1,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_reread_loopctl_s2",
+  "flags": "--loop --controller --routine reread",
+  "seed": 2,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_reread_loopctl_s3",
+  "flags": "--loop --controller --routine reread",
+  "seed": 3,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_joint_allcues_s0",
+  "flags": "--loop --allcues --routine joint",
+  "seed": 0,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_joint_allcues_s1",
+  "flags": "--loop --allcues --routine joint",
+  "seed": 1,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_joint_allcues_s2",
+  "flags": "--loop --allcues --routine joint",
+  "seed": 2,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_joint_allcues_s3",
+  "flags": "--loop --allcues --routine joint",
+  "seed": 3,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_awake_allcues_s0",
+  "flags": "--loop --allcues --routine awake",
+  "seed": 0,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_awake_allcues_s1",
+  "flags": "--loop --allcues --routine awake",
+  "seed": 1,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_awake_allcues_s2",
+  "flags": "--loop --allcues --routine awake",
+  "seed": 2,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_awake_allcues_s3",
+  "flags": "--loop --allcues --routine awake",
+  "seed": 3,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_sleep_allcues_s0",
+  "flags": "--loop --allcues --routine sleep",
+  "seed": 0,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_sleep_allcues_s1",
+  "flags": "--loop --allcues --routine sleep",
+  "seed": 1,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_sleep_allcues_s2",
+  "flags": "--loop --allcues --routine sleep",
+  "seed": 2,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_sleep_allcues_s3",
+  "flags": "--loop --allcues --routine sleep",
+  "seed": 3,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_reread_allcues_s0",
+  "flags": "--loop --allcues --routine reread",
+  "seed": 0,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_reread_allcues_s1",
+  "flags": "--loop --allcues --routine reread",
+  "seed": 1,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_reread_allcues_s2",
+  "flags": "--loop --allcues --routine reread",
+  "seed": 2,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
+ },
+ {
+  "name": "r86_reread_allcues_s3",
+  "flags": "--loop --allcues --routine reread",
+  "seed": 3,
+  "questions": 96000,
+  "env": "PASSAGES=data/passages.json.gz",
+  "batch": "86-2026-11-25T23:35"
  }
 ]
