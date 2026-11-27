@@ -1,0 +1,11 @@
+built {'page_nouns_det': 0.975, 'page_nouns_refl_number': 0.9975, 'page_nouns_refl_gender': 1.0, 'page_nouns_refl_across': 0.985, 'page_nouns_npi': 1.0, 'page_nouns_npi_scope': 0.055, 'page_nouns_gap_wh': 0.99, 'page_nouns_gap_that': 1.0, 'page_nouns_aux_agree_relative': 0.9575, 'page_nouns_verb_agree_relative': 0.7075, 'page_nouns_who_gap': 0.735, 'page_nouns_name_reflexive': 0.9625, 'page_nouns_question_ever': 0.0325, 'held_out_nouns_det': 0.8825, 'held_out_nouns_refl_number': 0.98, 'held_out_nouns_refl_gender': 1.0, 'held_out_nouns_refl_across': 0.8725, 'held_out_nouns_npi': 1.0, 'held_out_nouns_npi_scope': 0.31, 'held_out_nouns_gap_wh': 0.9525, 'held_out_nouns_gap_that': 0.98, 'held_out_nouns_aux_agree_relative': 0.825, 'held_out_nouns_verb_agree_relative': 0.7025, 'held_out_nouns_who_gap': 0.535, 'held_out_nouns_name_reflexive': 0.9625, 'held_out_nouns_question_ever': 0.0325}
+plural pairs 931
+{'questions': 16000, 'minutes': 35.1, 'loss': 0.932}
+{'questions': 32000, 'minutes': 69.8, 'loss': 0.147}
+{'questions': 48000, 'minutes': 102.6, 'loss': 0.308}
+{'questions': 64000, 'minutes': 136.6, 'loss': 0.134}
+{'questions': 80000, 'minutes': 169.1, 'loss': 1.165}
+{'questions': 96000, 'minutes': 204.3, 'loss': 0.893}
+{'questions': 112000, 'minutes': 237.5, 'loss': 1.041}
+{'questions': 128000, 'minutes': 270.7, 'loss': 0.347}
+{'questions': 144000, 'minutes': 303.3, 'loss': 0.206}
