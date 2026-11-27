@@ -103,7 +103,7 @@ def passage_item(it):
 
 
 def build(M, seed):
-    torch = M.torch; nn = torch.nn; torch.manual_seed(8900 + seed); H = 320; E = M.m.e.base.embedding_dim + (D_SEM if SEM else 0); P, D = 256, 128; NR = 2 if ROLES else 1
+    torch = M.torch; nn = torch.nn; torch.manual_seed(8900 + seed); H = getattr(M, "H", 320); E = M.m.e.base.embedding_dim + (D_SEM if SEM else 0); P, D = 256, 128; NR = 2 if ROLES else 1
 
     class EventMemory(nn.Module):
         def __init__(s):
@@ -200,10 +200,13 @@ def build(M, seed):
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); ap.add_argument("--space", action="store_true"); ap.add_argument("--space-sup", action="store_true"); ap.add_argument("--entities", action="store_true"); a = ap.parse_args()
     global ROLES, SEM, SPACE, SPACE_SUP, ENTITIES; ENTITIES = a.entities; ROLES = a.roles; SEM = a.sem; SPACE_SUP = a.space_sup; SPACE = a.space or a.space_sup
-    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + ("spacesup_" if a.space_sup else "space_" if a.space else "") + ("entities_" if a.entities else "") + os.environ.get("EV_TAG", "")
+    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + ("spacesup_" if a.space_sup else "space_" if a.space else "") + ("entities_" if a.entities else "") + ("bigreader_" if os.environ.get("BIG_READER") else "") + os.environ.get("EV_TAG", "")
 
     def run(M, C, tok, seed, res):
         torch = M.torch; torch.set_num_threads(int(os.environ.get("THREADS", 2)))
+        if os.environ.get("BIG_READER"):                                                      # Stage 95: a Stage 94 reading network in the old one's place
+            import reader_adapter as RA
+            M = RA.BigM(torch, os.environ["BIG_READER"]); print("reading network:", M.name, "width", M.H, flush=True)
         if os.environ.get("STORY_READER"): M.m.load_state_dict(torch.load(os.environ["STORY_READER"]), strict=False); print("reading network:", os.environ["STORY_READER"], flush=True)   # Stage 91
         M.m.eval()
         for p in M.m.parameters(): p.requires_grad_(False)
@@ -215,14 +218,14 @@ def main():
 
         def emb(c):                                                                           # an answer of several words: all of them, earlier words weigh more
             if c not in cache:
-                with torch.no_grad(): e = M.m.e(torch.tensor([[M.enc([w])[1] for w in c]]))[0]
+                with torch.no_grad(): e = M.word_emb(c) if hasattr(M, "word_emb") else M.m.e(torch.tensor([[M.enc([w])[1] for w in c]]))[0]
                 if SEM: e = torch.cat([e, sem(list(c))], -1)
                 cache[c] = sum(e[i] * 0.5 ** i for i in range(len(c)))
             return cache[c]
 
         def batch(items):
             flat = [[w for s in it["sents"] for w in s] for it in items]; spos = [len(f) for f in flat]; ql = [len(it["q"]) for it in items]
-            x, objs, om = M.batch([dict(words=f + it["q"]) for f, it in zip(flat, items)])
+            x, objs, om = M.batch([dict(words=f + it["q"], ends=[int(v) - 1 for v in np.cumsum([len(sn) for sn in it["sents"]])]) for f, it in zip(flat, items)])
             with torch.no_grad(): o, _ = M.m(x, objs, om); e = M.m.e(x)
             if SEM:
                 sv = torch.zeros(e.shape[0], e.shape[1], D_SEM)
@@ -307,7 +310,7 @@ def main():
                     for sn, g, d in zip(it["sents"], net.space["gate"][0].tolist(), net.space["d"][0].tolist()): print(f"    gate {g:.2f} d ({d[0]:+.2f}, {d[1]:+.2f})  {' '.join(sn)}")
             raise SystemExit
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={}, step_hits={},
-                   config=dict(reader=os.path.basename(os.environ.get("STORY_READER", "")) or "stage 73", sup=a.sup, roles=ROLES, sem=SEM, space=SPACE, space_sup=SPACE_SUP, entities=ENTITIES, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
+                   config=dict(reader=os.path.basename(os.environ.get("BIG_READER", "") or os.environ.get("STORY_READER", "")) or "stage 73", sup=a.sup, roles=ROLES, sem=SEM, space=SPACE, space_sup=SPACE_SUP, entities=ENTITIES, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
         for t in T:
             hops = []; acc = accuracy(tasks[t]["test"][:NT], hops); out["tasks"][tasks[t]["name"]] = round(acc, 4)
             if hops: out["step_hits"][tasks[t]["name"]] = [round(float(np.mean([h[j] for h in hops if len(h) > j])), 3) for j in range(max(map(len, hops)))]   # does recall step j land on supporting sentence j?
@@ -325,6 +328,12 @@ def main():
                 flat = [[w for s in it["sents"] for w in s] for it in its]
                 out["passages"][bd] = round(float(np.mean(hz.argmax(1) == y)), 4); out["passages_reader"][bd] = round(float(np.mean(lp.argmax(1) == y)), 4)
                 out["passages_both"][bd] = round(float(np.mean((hz + lp - lp.max(1, keepdims=True)).argmax(1) == y)), 4)
+                if hasattr(M, "score"):                                                           # Stage 95: the big reader after reading the passage (sentences end-marked)
+                    ctx = []
+                    for it in its: ctx += [[w for sn in it["sents"] for w in sn + ["</s>"]]] * len(it["cands"])
+                    lc = M.score(ctx, [it["sent"][:it["pos"]] + [c[0]] + it["sent"][it["pos"] + 1:] for it in its for c in it["cands"]]).reshape(len(its), -1)
+                    out.setdefault("passages_reader_context", {})[bd] = round(float(np.mean(lc.argmax(1) == y)), 4)
+                    out.setdefault("passages_both_context", {})[bd] = round(float(np.mean((hz + lc - lc.max(1, keepdims=True)).argmax(1) == y)), 4)
                 if os.environ.get("STORY_READER"):                                                # the reading network after reading the passage (Stage 91)
                     import story_reader as SR
                     lc = SR.context_logp(M, [f for f, it in zip(flat, its) for _ in it["cands"]], [it["sent"][:it["pos"]] + [c[0]] + it["sent"][it["pos"] + 1:] for it in its for c in it["cands"]]).reshape(len(its), -1)

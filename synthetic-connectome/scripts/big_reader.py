@@ -47,6 +47,7 @@ def books(P):
     for bd in P["test"]:
         for it in P["test"][bd]: held |= grams(it["sent"])
     cat = [c for c in json.load(open(os.path.join(ROOT, "data", "grades", "catalogue.json")))["books"] if c["split"] == "train" and os.path.isdir(c["dir"])]
+    if os.environ.get("READER_BOOKS") == "bundle": cat = [c for c in cat if "/books_graded/" not in c["dir"]]     # the books the GitHub runners have (Stage 94's readers)
     train, heldout = [], []
     for c in cat:
         ss = [s for s in GR.sentences(GR.book_text(c["dir"])) if not (grams(s) & held)]; k = max(30, len(ss) // 20)
