@@ -1,0 +1,28 @@
+{'kind': 'gru', 'width': 256, 'layers': 1, 'parameters': 7618272, 'books': 159, 'train_words': 4614242, 'vocabulary': 21198, 'words_budget': 40000000}
+{'step': 250, 'words': 1536000, 'minutes': 2.5, 'loss': 5.831}
+{'step': 500, 'words': 3072000, 'minutes': 4.6, 'loss': 5.413}
+{'step': 750, 'words': 4608000, 'minutes': 6.8, 'loss': 5.236}
+{'step': 1000, 'words': 6144000, 'minutes': 8.9, 'loss': 5.143}
+{'step': 1250, 'words': 7680000, 'minutes': 11.0, 'loss': 5.13}
+{'step': 1500, 'words': 9216000, 'minutes': 13.1, 'loss': 4.952}
+{'step': 1750, 'words': 10752000, 'minutes': 15.2, 'loss': 4.825}
+{'step': 2000, 'words': 12288000, 'minutes': 17.3, 'loss': 4.915}
+{'step': 2250, 'words': 13824000, 'minutes': 19.5, 'loss': 4.835}
+{'step': 2500, 'words': 15360000, 'minutes': 21.6, 'loss': 4.884}
+{'step': 2750, 'words': 16896000, 'minutes': 23.7, 'loss': 4.795}
+{'step': 3000, 'words': 18432000, 'minutes': 25.8, 'loss': 4.786}
+{'step': 3250, 'words': 19968000, 'minutes': 27.9, 'loss': 4.755}
+{'step': 3500, 'words': 21504000, 'minutes': 30.0, 'loss': 4.812}
+{'step': 3750, 'words': 23040000, 'minutes': 32.1, 'loss': 4.824}
+{'step': 4000, 'words': 24576000, 'minutes': 34.2, 'loss': 4.784}
+{'step': 4250, 'words': 26112000, 'minutes': 36.3, 'loss': 4.727}
+{'step': 4500, 'words': 27648000, 'minutes': 38.4, 'loss': 4.698}
+{'step': 4750, 'words': 29184000, 'minutes': 40.5, 'loss': 4.741}
+{'step': 5000, 'words': 30720000, 'minutes': 42.6, 'loss': 4.514}
+{'step': 5250, 'words': 32256000, 'minutes': 44.7, 'loss': 4.606}
+{'step': 5500, 'words': 33792000, 'minutes': 46.8, 'loss': 4.602}
+{'step': 5750, 'words': 35328000, 'minutes': 48.9, 'loss': 4.703}
+{'step': 6000, 'words': 36864000, 'minutes': 51.0, 'loss': 4.741}
+{'step': 6250, 'words': 38400000, 'minutes': 53.1, 'loss': 4.647}
+{'step': 6500, 'words': 39936000, 'minutes': 55.2, 'loss': 4.767}
+{"seed": 0, "kind": "gru", "width": 256, "layers": 1, "parameters": 7618272, "books": 159, "train_words": 4614242, "vocabulary": 21198, "words_budget": 40000000, "finished": true, "words_read": 39936000, "heldout_logp_per_word": {"alone": -5.0245, "in_context": -4.8111}, "passages": {"alone": {"1": 0.3831, "2": 0.3852, "3": 0.3467, "4": 0.3933, "5": 0.3067, "6": 0.35, "7+": 0.3167}, "in_context": {"1": 0.387, "2": 0.418, "3": 0.3867, "4": 0.4, "5": 0.3033, "6": 0.3667, "7+": 0.33}, "most_frequent": {"1": 0.1762, "2": 0.2869, "3": 0.2967, "4": 0.2833, "5": 0.2367, "6": 0.3233, "7+": 0.2733}, "alone_mean": 0.3545, "in_context_mean": 0.3702, "most_frequent_mean": 0.2681}}
