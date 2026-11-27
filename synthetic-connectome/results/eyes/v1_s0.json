@@ -1,0 +1,52 @@
+{
+ "rate": 0.08,
+ "learned": {
+  "live": 84,
+  "median_selectivity": 0.6747158765792847,
+  "share_selective_over_0.3": 0.8809523582458496,
+  "median_f1f0": 1.725139856338501,
+  "pref_hist_6": [
+   19,
+   2,
+   23,
+   16,
+   2,
+   22
+  ],
+  "sf_hist": [
+   0,
+   3,
+   18,
+   27,
+   36
+  ]
+ },
+ "random": {
+  "live": 96,
+  "median_selectivity": 0.5057456493377686,
+  "share_selective_over_0.3": 0.8020833134651184,
+  "median_f1f0": 1.8486292362213135,
+  "pref_hist_6": [
+   15,
+   12,
+   18,
+   13,
+   25,
+   13
+  ],
+  "sf_hist": [
+   0,
+   2,
+   8,
+   29,
+   57
+  ]
+ },
+ "weight_share": {
+  "midget": 0.6041503548622131,
+  "parasol": 0.2854420244693756,
+  "blue_yellow": 0.11040756851434708
+ },
+ "red_green_cells": 5,
+ "blue_yellow_cells": 8
+}

@@ -991,3 +991,24 @@ first column is context, not a control - the control is the 256-unit reader trai
 reader's context failure is attributed to lesson length without a test (marked "probable"). Grade test and BLiMP not
 yet run on the new readers. Summary results/big_reader/stage94_summary.json.
 
+## 71. Follow-up (27 November): Stage 96 — reward and correction
+Reward alone (hard sampled recall, one reward per question) is the worst of six conditions; correction + reward is
+worse than correction alone. Limits: one form of reward only (per question, policy gradient, fixed entropy bonus);
+"right sentence found" for the answer-only rows is measured against bAbI's supporting facts, which those models
+were never shown. Not a test of dopamine in general.
+
+## 72. Follow-up (27 November): Stage 97 — eyes
+The controls decide the reading: wrong-pairs at chance (the test is sound), random V1 = learned V1, raw pixels
+better than the retina + V1 front end. So the claim is "words can be grounded in VEGA's own visual pathway", not
+"the retina/V1 model helps". The orientation-selectivity statistic is dominated by the firing threshold (random
+cells 0.36-0.49). Retina constants are round numbers from the literature, not fitted. The same 1,000 test
+photographs were used while developing on one local network (seed 0, full); no settings were tuned on them
+after the first full run, but there is no separate untouched set. Picture choice counts a photo as right if the
+word is in 2+ of its 5 captions and wrong photos have it in none: easier than open naming.
+
+## 73. Follow-up (27 November): Stage 98 — VEGA in RASPUTIN
+The decision layer was trained and scored on the router's own seed phrases (118); those are invented examples,
+not real use. Confidence is temperature-scaled on held-out folds of the same phrases. The live learning rule
+(step 0.5 x (0.25 + |surprise|), weights only) is a MODEL choice checked only for not disturbing other answers
+on those phrases. VEGA's generated sentences are samples from a network raised on children's books and say
+nothing reliable. The reading network itself is not changed by RASPUTIN.

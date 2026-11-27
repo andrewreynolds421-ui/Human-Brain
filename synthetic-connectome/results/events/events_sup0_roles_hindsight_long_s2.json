@@ -1,0 +1,316 @@
+{
+ "seed": 2,
+ "questions": 480000,
+ "training": [
+  {
+   "questions": 16000,
+   "minutes": 2.2,
+   "loss": 3.414
+  },
+  {
+   "questions": 32000,
+   "minutes": 4.4,
+   "loss": 0.831
+  },
+  {
+   "questions": 48000,
+   "minutes": 6.6,
+   "loss": 1.802
+  },
+  {
+   "questions": 64000,
+   "minutes": 8.7,
+   "loss": 0.227
+  },
+  {
+   "questions": 80000,
+   "minutes": 10.8,
+   "loss": 2.363
+  },
+  {
+   "questions": 96000,
+   "minutes": 13.0,
+   "loss": 0.969
+  },
+  {
+   "questions": 112000,
+   "minutes": 15.2,
+   "loss": 0.021
+  },
+  {
+   "questions": 128000,
+   "minutes": 17.3,
+   "loss": 2.608
+  },
+  {
+   "questions": 144000,
+   "minutes": 19.4,
+   "loss": 0.702
+  },
+  {
+   "questions": 160000,
+   "minutes": 21.5,
+   "loss": 3.493
+  },
+  {
+   "questions": 176000,
+   "minutes": 23.7,
+   "loss": 0.67
+  },
+  {
+   "questions": 192000,
+   "minutes": 25.8,
+   "loss": 0.554
+  },
+  {
+   "questions": 208000,
+   "minutes": 28.0,
+   "loss": 1.296
+  },
+  {
+   "questions": 224000,
+   "minutes": 30.1,
+   "loss": 3.316
+  },
+  {
+   "questions": 240000,
+   "minutes": 32.3,
+   "loss": 1.316
+  },
+  {
+   "questions": 256000,
+   "minutes": 34.4,
+   "loss": 1.191
+  },
+  {
+   "questions": 272000,
+   "minutes": 36.4,
+   "loss": 0.008
+  },
+  {
+   "questions": 288000,
+   "minutes": 38.7,
+   "loss": 0.02
+  },
+  {
+   "questions": 304000,
+   "minutes": 40.7,
+   "loss": 0.005
+  },
+  {
+   "questions": 320000,
+   "minutes": 42.9,
+   "loss": 0.541
+  },
+  {
+   "questions": 336000,
+   "minutes": 45.0,
+   "loss": 1.019
+  },
+  {
+   "questions": 352000,
+   "minutes": 47.1,
+   "loss": 0.106
+  },
+  {
+   "questions": 368000,
+   "minutes": 49.2,
+   "loss": 1.17
+  },
+  {
+   "questions": 384000,
+   "minutes": 51.4,
+   "loss": 0.594
+  },
+  {
+   "questions": 400000,
+   "minutes": 53.5,
+   "loss": 1.842
+  },
+  {
+   "questions": 416000,
+   "minutes": 55.6,
+   "loss": 0.003
+  },
+  {
+   "questions": 432000,
+   "minutes": 57.7,
+   "loss": 0.629
+  },
+  {
+   "questions": 448000,
+   "minutes": 59.9,
+   "loss": 2.726
+  },
+  {
+   "questions": 464000,
+   "minutes": 62.0,
+   "loss": 0.778
+  },
+  {
+   "questions": 480000,
+   "minutes": 64.1,
+   "loss": 0.026
+  }
+ ],
+ "tasks": {
+  "qa1_single-supporting-fact": 0.991,
+  "qa2_two-supporting-facts": 0.39,
+  "qa3_three-supporting-facts": 0.343,
+  "qa4_two-arg-relations": 0.63,
+  "qa5_three-arg-relations": 0.98,
+  "qa6_yes-no-questions": 0.996,
+  "qa7_counting": 0.885,
+  "qa8_lists-sets": 0.917,
+  "qa9_simple-negation": 0.992,
+  "qa10_indefinite-knowledge": 0.934,
+  "qa11_basic-coreference": 0.966,
+  "qa12_conjunction": 0.995,
+  "qa13_compound-coreference": 0.982,
+  "qa14_time-reasoning": 0.754,
+  "qa15_basic-deduction": 0.51,
+  "qa16_basic-induction": 0.456,
+  "qa17_positional-reasoning": 0.617,
+  "qa18_size-reasoning": 0.912,
+  "qa19_path-finding": 0.105,
+  "qa20_agents-motivations": 1.0
+ },
+ "step_hits": {
+  "qa1_single-supporting-fact": [
+   0.582
+  ],
+  "qa2_two-supporting-facts": [
+   0.008,
+   0.19
+  ],
+  "qa3_three-supporting-facts": [
+   0.0,
+   0.016,
+   0.121
+  ],
+  "qa4_two-arg-relations": [
+   0.498
+  ],
+  "qa5_three-arg-relations": [
+   0.392
+  ],
+  "qa6_yes-no-questions": [
+   0.149
+  ],
+  "qa7_counting": [
+   0.661,
+   0.542,
+   0.895
+  ],
+  "qa8_lists-sets": [
+   0.972,
+   0.695,
+   0.871
+  ],
+  "qa9_simple-negation": [
+   0.198
+  ],
+  "qa10_indefinite-knowledge": [
+   0.232
+  ],
+  "qa11_basic-coreference": [
+   0.766,
+   0.829
+  ],
+  "qa12_conjunction": [
+   0.271
+  ],
+  "qa13_compound-coreference": [
+   0.783,
+   0.916
+  ],
+  "qa14_time-reasoning": [
+   0.239,
+   0.464
+  ],
+  "qa15_basic-deduction": [
+   0.111,
+   0.0
+  ],
+  "qa16_basic-induction": [
+   0.0,
+   0.0,
+   0.277
+  ],
+  "qa17_positional-reasoning": [
+   0.51,
+   0.495
+  ],
+  "qa18_size-reasoning": [
+   0.176,
+   0.226
+  ],
+  "qa19_path-finding": [
+   0.198,
+   0.281
+  ],
+  "qa20_agents-motivations": [
+   0.689
+  ]
+ },
+ "config": {
+  "reader": "stage 73",
+  "sup": 0,
+  "roles": true,
+  "sem": false,
+  "space": false,
+  "space_sup": false,
+  "entities": false,
+  "reward": false,
+  "hindsight": true,
+  "passages": true,
+  "one_answer_list": 60,
+  "hops": 3,
+  "tag": "events_sup0_roles_hindsight_long_",
+  "n_params": 1426770
+ },
+ "passed_95": 8,
+ "mean_error": 23.22,
+ "world": {
+  "same": 0.844,
+  "held_names": 0.745,
+  "held_objects_places": 0.803,
+  "long": 0.792
+ },
+ "passages": {
+  "1": 0.341,
+  "2": 0.3689,
+  "3": 0.31,
+  "4": 0.34,
+  "5": 0.32,
+  "6": 0.2567,
+  "7+": 0.2767
+ },
+ "passages_reader": {
+  "1": 0.41,
+  "2": 0.4139,
+  "3": 0.3533,
+  "4": 0.3667,
+  "5": 0.29,
+  "6": 0.3433,
+  "7+": 0.2867
+ },
+ "passages_both": {
+  "1": 0.4866,
+  "2": 0.4713,
+  "3": 0.4233,
+  "4": 0.4433,
+  "5": 0.33,
+  "6": 0.3867,
+  "7+": 0.3533
+ },
+ "passages_most_frequent": {
+  "1": 0.1762,
+  "2": 0.2869,
+  "3": 0.2967,
+  "4": 0.2833,
+  "5": 0.2367,
+  "6": 0.3233,
+  "7+": 0.2733
+ }
+}

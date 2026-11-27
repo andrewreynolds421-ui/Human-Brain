@@ -1,0 +1,30 @@
+{
+ "1": {
+  "letters_logreg (current router)": 0.28,
+  "gru1024x2": 0.285,
+  "gru256x1": 0.251,
+  "meaning": 0.234,
+  "gru1024x2 + letters": 0.303
+ },
+ "2": {
+  "letters_logreg (current router)": 0.4,
+  "gru1024x2": 0.382,
+  "gru256x1": 0.342,
+  "meaning": 0.388,
+  "gru1024x2 + letters": 0.436
+ },
+ "4": {
+  "letters_logreg (current router)": 0.521,
+  "gru1024x2": 0.469,
+  "gru256x1": 0.438,
+  "meaning": 0.478,
+  "gru1024x2 + letters": 0.542
+ },
+ "8": {
+  "letters_logreg (current router)": 0.623,
+  "gru1024x2": 0.513,
+  "gru256x1": 0.517,
+  "meaning": 0.565,
+  "gru1024x2 + letters": 0.637
+ }
+}

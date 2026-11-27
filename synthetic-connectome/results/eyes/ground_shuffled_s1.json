@@ -1,0 +1,171 @@
+{
+ "config": {
+  "seed": 1,
+  "cond": "shuffled",
+  "epochs": 30,
+  "train_photos": 6000,
+  "words": 776,
+  "minutes": 19.3
+ },
+ "picture_choice_taught_words": {
+  "accuracy": 0.232,
+  "chance": 0.25,
+  "words": 300
+ },
+ "picture_choice_untaught_words": {
+  "accuracy": 0.25425,
+  "chance": 0.25,
+  "words": 17,
+  "per_word": {
+   "after": 0.15,
+   "arms": 0.05,
+   "bench": 0.2,
+   "each": 0.28,
+   "face": 0.17,
+   "fence": 0.23,
+   "mountain": 0.2,
+   "pants": 0.25,
+   "picture": 0.28,
+   "pink": 0.34,
+   "racing": 0.6,
+   "shorts": 0.35,
+   "smiles": 0.01,
+   "snowy": 0.24,
+   "stairs": 0.16,
+   "swings": 0.48,
+   "uniforms": 0.35
+  }
+ },
+ "caption_to_photo_of_10": {
+  "accuracy": 0.10166666666666667,
+  "chance": 0.1
+ },
+ "photo_to_caption_of_10": {
+  "accuracy": 0.099,
+  "chance": 0.1
+ },
+ "best_words": [
+  [
+   "fire",
+   0.69
+  ],
+  [
+   "all",
+   0.6
+  ],
+  [
+   "number",
+   0.56
+  ],
+  [
+   "tall",
+   0.55
+  ],
+  [
+   "sunset",
+   0.47
+  ],
+  [
+   "ready",
+   0.47
+  ],
+  [
+   "trick",
+   0.47
+  ],
+  [
+   "playing",
+   0.47
+  ],
+  [
+   "cliff",
+   0.44
+  ],
+  [
+   "riding",
+   0.44
+  ],
+  [
+   "glasses",
+   0.44
+  ],
+  [
+   "walks",
+   0.43
+  ],
+  [
+   "jacket",
+   0.43
+  ],
+  [
+   "running",
+   0.41
+  ],
+  [
+   "board",
+   0.41
+  ]
+ ],
+ "worst_words": [
+  [
+   "play",
+   0.07
+  ],
+  [
+   "leash",
+   0.07
+  ],
+  [
+   "helmet",
+   0.07
+  ],
+  [
+   "fishing",
+   0.07
+  ],
+  [
+   "baby",
+   0.07
+  ],
+  [
+   "hands",
+   0.06
+  ],
+  [
+   "beside",
+   0.06
+  ],
+  [
+   "ball",
+   0.06
+  ],
+  [
+   "catching",
+   0.05
+  ],
+  [
+   "yard",
+   0.0
+  ],
+  [
+   "team",
+   0.0
+  ],
+  [
+   "shaking",
+   0.0
+  ],
+  [
+   "ride",
+   0.0
+  ],
+  [
+   "group",
+   0.0
+  ],
+  [
+   "children",
+   0.0
+  ]
+ ]
+}

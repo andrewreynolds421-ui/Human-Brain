@@ -610,3 +610,17 @@ Runs events_{sup0_roles, sup0_roles_hindsight, sup0_roles_reward, sup0_roles_rew
 (480k questions, old reader, one answer list). Reference: fully taught roles long 13,12,13,12 / 10.4 %.
 
 PLAN.md (27 Nov): research review of similar projects (Spaun, PBWM, CLS, TEM / clone graphs, EntNet, BabyLM, child-view learning, Monty, LeCun, connectome-constrained nets) and the proposed order of work - read it before choosing the next stage.
+
+Stage 96 DONE (27 Nov): results/events/stage96_summary.json. reward alone 2,0,1,1 / 35.5 %; hindsight 8,6,8,5 / 23.8 %;
+reward+hindsight 2,3,5,6 / 30.9 %; answer only 9,9,9,8 / 21.1 %; correction+reward 8,10,10,10 / 12.9 % vs correction 10.4 %.
+Stage 95 still open at 12:45 CST: gru1024_long s0-3 and attn384_long s2-3 running (workflow run 46011480894). Interim:
+gru1024 1x 8,6,6,5 / 21.1 %, passages both-in-context 43.7 %; gru256_long 7,9,11,8 / 15.7 %; attn384_long 6,6 / 18.8 %.
+Stage 97 DONE: scripts/eyes.py (prep | v1 | ground --cond full|pixels|randv1|shuffled). Photos at /home/claude/corpora/flickr8k
+(research-use, never in the repo; runners fetch from the public source). Result: full 48.3 %, randv1 49.1 %, pixels 50.5 %,
+shuffled 24.3 % (chance 25). Front end does not help yet. Ideas from the user, not built: learn from first-person walking
+video (they will upload; YouTube unreachable from here), several glances per photo, surprise-driven questions, Ray-Ban Meta
+glasses via Meta's Device Access Toolkit (Gen 3 not on the supported list as of 27 Nov).
+Stage 98 DONE: scripts/export_rasputin.py -> warmind-backend (private repo, clone /home/claude/warmind-backend): vega.py, vega/,
+tests/test_vega.py, docs/VEGA.md; merged as PR #2; live on Render with VEGA_SHADOW=1, VEGA_LEARN=1, Postgres (Neon) since
+27 Nov. PR #3 (Android build workflow, release android-latest) open. Next there: read /api/vega/status once real requests exist;
+retrain the decision layer on real tool_calls.

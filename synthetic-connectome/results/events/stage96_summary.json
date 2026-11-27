@@ -1,0 +1,128 @@
+{
+ "sup0_roles_long": {
+  "networks": 4,
+  "passed": [
+   9,
+   9,
+   9,
+   8
+  ],
+  "mean_error": 21.1,
+  "deduction": 0.516,
+  "induction": 0.484,
+  "two facts": 0.613,
+  "three facts": 0.44,
+  "left/right": 0.578,
+  "paths": 0.113,
+  "right_sentence_found": 0.485,
+  "world": 0.9,
+  "passages_memory": 0.302,
+  "passages_memory_reader": 0.405,
+  "most_frequent": 0.268
+ },
+ "sup0_roles_hindsight_long": {
+  "networks": 4,
+  "passed": [
+   8,
+   6,
+   8,
+   5
+  ],
+  "mean_error": 23.8,
+  "deduction": 0.5,
+  "induction": 0.475,
+  "two facts": 0.392,
+  "three facts": 0.347,
+  "left/right": 0.615,
+  "paths": 0.116,
+  "right_sentence_found": 0.422,
+  "world": 0.801,
+  "passages_memory": 0.304,
+  "passages_memory_reader": 0.409,
+  "most_frequent": 0.268
+ },
+ "sup0_roles_reward_long": {
+  "networks": 4,
+  "passed": [
+   2,
+   0,
+   1,
+   1
+  ],
+  "mean_error": 35.5,
+  "deduction": 0.513,
+  "induction": 0.465,
+  "two facts": 0.405,
+  "three facts": 0.292,
+  "left/right": 0.569,
+  "paths": 0.095,
+  "right_sentence_found": 0.13,
+  "world": 0.635,
+  "passages_memory": 0.253,
+  "passages_memory_reader": 0.381,
+  "most_frequent": 0.268
+ },
+ "sup0_roles_reward_hindsight_long": {
+  "networks": 4,
+  "passed": [
+   2,
+   3,
+   5,
+   6
+  ],
+  "mean_error": 30.9,
+  "deduction": 0.499,
+  "induction": 0.487,
+  "two facts": 0.385,
+  "three facts": 0.307,
+  "left/right": 0.546,
+  "paths": 0.089,
+  "right_sentence_found": 0.315,
+  "world": 0.747,
+  "passages_memory": 0.282,
+  "passages_memory_reader": 0.387,
+  "most_frequent": 0.268
+ },
+ "sup1_roles_reward_long": {
+  "networks": 4,
+  "passed": [
+   8,
+   10,
+   10,
+   10
+  ],
+  "mean_error": 12.9,
+  "deduction": 1.0,
+  "induction": 0.926,
+  "two facts": 0.858,
+  "three facts": 0.671,
+  "left/right": 0.524,
+  "paths": 0.182,
+  "right_sentence_found": 0.903,
+  "world": 0.879,
+  "passages_memory": 0.258,
+  "passages_memory_reader": 0.384,
+  "most_frequent": 0.268
+ },
+ "sup1_roles_long": {
+  "networks": 4,
+  "passed": [
+   13,
+   12,
+   13,
+   12
+  ],
+  "mean_error": 10.4,
+  "deduction": 1.0,
+  "induction": 0.974,
+  "two facts": 0.923,
+  "three facts": 0.713,
+  "left/right": 0.588,
+  "paths": 0.223,
+  "right_sentence_found": 0.93,
+  "world": 0.954,
+  "passages_memory": 0.296,
+  "passages_memory_reader": 0.401,
+  "most_frequent": 0.268
+ }
+}

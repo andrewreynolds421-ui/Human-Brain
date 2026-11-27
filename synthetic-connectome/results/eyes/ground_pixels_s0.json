@@ -1,0 +1,171 @@
+{
+ "config": {
+  "seed": 0,
+  "cond": "pixels",
+  "epochs": 30,
+  "train_photos": 6000,
+  "words": 776,
+  "minutes": 12.4
+ },
+ "picture_choice_taught_words": {
+  "accuracy": 0.5135,
+  "chance": 0.25,
+  "words": 300
+ },
+ "picture_choice_untaught_words": {
+  "accuracy": 0.452,
+  "chance": 0.25,
+  "words": 17,
+  "per_word": {
+   "after": 0.58,
+   "arms": 0.27,
+   "bench": 0.51,
+   "each": 0.44,
+   "face": 0.48,
+   "fence": 0.46,
+   "mountain": 0.75,
+   "pants": 0.21,
+   "picture": 0.47,
+   "pink": 0.31,
+   "racing": 0.45,
+   "shorts": 0.26,
+   "smiles": 0.64,
+   "snowy": 0.86,
+   "stairs": 0.57,
+   "swings": 0.03,
+   "uniforms": 0.35
+  }
+ },
+ "caption_to_photo_of_10": {
+  "accuracy": 0.5043333333333333,
+  "chance": 0.1
+ },
+ "photo_to_caption_of_10": {
+  "accuracy": 0.5096666666666667,
+  "chance": 0.1
+ },
+ "best_words": [
+  [
+   "football",
+   0.94
+  ],
+  [
+   "bird",
+   0.89
+  ],
+  [
+   "hill",
+   0.88
+  ],
+  [
+   "forest",
+   0.88
+  ],
+  [
+   "shaking",
+   0.87
+  ],
+  [
+   "mountains",
+   0.87
+  ],
+  [
+   "ocean",
+   0.84
+  ],
+  [
+   "cliff",
+   0.84
+  ],
+  [
+   "beach",
+   0.83
+  ],
+  [
+   "trick",
+   0.82
+  ],
+  [
+   "glasses",
+   0.81
+  ],
+  [
+   "sunset",
+   0.79
+  ],
+  [
+   "dirt",
+   0.75
+  ],
+  [
+   "suit",
+   0.74
+  ],
+  [
+   "shore",
+   0.73
+  ]
+ ],
+ "worst_words": [
+  [
+   "them",
+   0.27
+  ],
+  [
+   "bridge",
+   0.27
+  ],
+  [
+   "riding",
+   0.25
+  ],
+  [
+   "walks",
+   0.24
+  ],
+  [
+   "pushes",
+   0.22
+  ],
+  [
+   "play",
+   0.2
+  ],
+  [
+   "fishing",
+   0.2
+  ],
+  [
+   "looking",
+   0.19
+  ],
+  [
+   "steps",
+   0.17
+  ],
+  [
+   "open",
+   0.17
+  ],
+  [
+   "ball",
+   0.12
+  ],
+  [
+   "striped",
+   0.11
+  ],
+  [
+   "away",
+   0.07
+  ],
+  [
+   "around",
+   0.06
+  ],
+  [
+   "slides",
+   0.06
+  ]
+ ]
+}

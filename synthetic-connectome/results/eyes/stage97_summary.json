@@ -1,0 +1,136 @@
+{
+ "full": {
+  "networks": 4,
+  "picture_choice_taught": [
+   0.485,
+   0.48,
+   0.483,
+   0.48
+  ],
+  "picture_choice_untaught": [
+   0.387,
+   0.359,
+   0.42,
+   0.37
+  ],
+  "caption_to_photo_of_10": [
+   0.431,
+   0.438,
+   0.438,
+   0.418
+  ],
+  "photo_to_caption_of_10": [
+   0.435,
+   0.434,
+   0.45,
+   0.425
+  ]
+ },
+ "pixels": {
+  "networks": 4,
+  "picture_choice_taught": [
+   0.513,
+   0.495,
+   0.51,
+   0.503
+  ],
+  "picture_choice_untaught": [
+   0.452,
+   0.403,
+   0.433,
+   0.392
+  ],
+  "caption_to_photo_of_10": [
+   0.504,
+   0.492,
+   0.495,
+   0.494
+  ],
+  "photo_to_caption_of_10": [
+   0.51,
+   0.5,
+   0.501,
+   0.5
+  ]
+ },
+ "randv1": {
+  "networks": 4,
+  "picture_choice_taught": [
+   0.488,
+   0.495,
+   0.491,
+   0.487
+  ],
+  "picture_choice_untaught": [
+   0.405,
+   0.362,
+   0.369,
+   0.367
+  ],
+  "caption_to_photo_of_10": [
+   0.433,
+   0.427,
+   0.437,
+   0.434
+  ],
+  "photo_to_caption_of_10": [
+   0.441,
+   0.42,
+   0.441,
+   0.448
+  ]
+ },
+ "shuffled": {
+  "networks": 4,
+  "picture_choice_taught": [
+   0.25,
+   0.232,
+   0.254,
+   0.235
+  ],
+  "picture_choice_untaught": [
+   0.231,
+   0.254,
+   0.249,
+   0.247
+  ],
+  "caption_to_photo_of_10": [
+   0.11,
+   0.102,
+   0.109,
+   0.118
+  ],
+  "photo_to_caption_of_10": [
+   0.093,
+   0.099,
+   0.11,
+   0.113
+  ]
+ },
+ "chance": {
+  "picture_choice": 0.25,
+  "of_10": 0.1
+ },
+ "v1_selectivity": {
+  "learned_median": [
+   0.66,
+   0.66,
+   0.67,
+   0.7,
+   0.67,
+   0.66,
+   0.67,
+   0.71
+  ],
+  "random_same_rate_median": [
+   0.49,
+   0.36,
+   0.39,
+   0.39,
+   0.49,
+   0.36,
+   0.39,
+   0.39
+  ]
+ }
+}

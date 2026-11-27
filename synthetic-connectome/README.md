@@ -4702,6 +4702,108 @@ layers. Tested on held-out ends of the books and on Stage 86's passage test (tes
 - Still far from adults (82 % on the published test). Next: the large reader under the hippocampus (it needs an
   adapter - different sizes and sentence marks), the grade test on it, and ten times more passage training.
 
+## Stage 96: reward and punishment for recall (dopamine), with and without correction
+
+Question (the user's): would a reward-and-punishment signal help VEGA keep its attention on the right sentence,
+and does it work better together with correction, so that it knows why it was rewarded?
+
+`hippo_events.py --reward`: each recall step is a hard, sampled choice of one sentence. A critic predicts the
+reward from the question; the choice is strengthened or weakened by reward minus prediction (reward prediction
+error; entropy bonus 0.01; best sentence at test). `--hindsight`: some recall step should land on a sentence that
+contains the revealed answer word. MODEL (a policy-gradient reading of dopamine; not fitted to data). Old reading
+network, role-aware cue, one answer list, 480,000 questions, four networks each.
+
+| teaching | bAbI passed (of 20) | mean error | right sentence found | two facts | three facts | world stories |
+|---|---|---|---|---|---|---|
+| answer only | 9, 9, 9, 8 | 21.1 % | 49 % | 61 % | 44 % | 90 % |
+| answer + hindsight | 8, 6, 8, 5 | 23.8 % | 42 % | 39 % | 35 % | 80 % |
+| answer + reward | 2, 0, 1, 1 | 35.5 % | 13 % | 41 % | 29 % | 64 % |
+| answer + reward + hindsight | 2, 3, 5, 6 | 30.9 % | 32 % | 39 % | 31 % | 75 % |
+| correction (each step taught) | 13, 12, 13, 12 | 10.4 % | 93 % | 92 % | 71 % | 95 % |
+| correction + reward | 8, 10, 10, 10 | 12.9 % | 90 % | 86 % | 67 % | 88 % |
+
+What this shows:
+- **Reward alone is the worst condition** (0-2 tasks). With a hard choice and one bit of reward per question the
+  right sentence is found 13 % of the time, against 49 % when the choice is soft and trained from the answer alone.
+- **Hindsight partly rescues reward** (2-6 tasks) but hurts the soft model.
+- **Correction + reward is worse than correction alone** (12.9 % against 10.4 % error; 8-10 tasks against 12-13).
+  The user's intuition that reward needs correction is right in direction (35.5 % -> 12.9 %), but in this form
+  the reward adds nothing once correction is there.
+- Left/right and paths stay at chance in every condition (52-62 %, 9-22 %).
+Not tested: reward given per recall step rather than per question; reward on the soft choice; a learning-rate
+schedule for the critic. Results: `results/events/stage96_summary.json`.
+
+## Stage 97: VEGA's own eyes (retina from the literature, V1 learned from photographs, words grounded in pictures)
+
+The user chose to build VEGA's vision from what is known about eyes rather than borrow a trained vision model.
+`scripts/eyes.py`:
+- **Retina (FIXED, ASSUMED from the literature):** linear light -> L, M, S cones (Hunt-Pointer-Estevez);
+  light adaptation (each cone divided by itself plus the local mean, Naka-Rushton form); three 64x64 maps around
+  the fixation point at full, 1/2 and 1/3 sampling (acuity falling with eccentricity); centre-surround ganglion
+  cells split into ON and OFF: midget (one cone type in the centre), parasol (L+M, larger, ON fields larger than
+  OFF), small bistratified (blue against yellow). The sizes are round numbers, not fitted to recordings.
+- **V1 simple cells (LEARNED, no labels):** 96 cells, a sparse code of 9x9 ganglion patches from the training
+  photographs, each cell's threshold set by homeostasis to fire for 8 % of patches (FITTED choice; 5 % and 15 %
+  also give oriented cells). Complex cells: local energy pooling (FIXED).
+- **Higher areas and words (LEARNED):** two more layers shared across eccentricities; a photograph and the
+  content words of one of its captions are pulled together (contrastive), words entering through the meaning
+  vectors VEGA already has from reading (Stage 90). Data: Flickr8k, 6,000 photographs to learn from, 1,000
+  never seen for the tests (research-use; fetched from its public source at run time, never copied here).
+
+**V1.** The learned cells are localised edge and bar detectors plus colour-opponent patches
+(`results/eyes/v1_cells_s0.png`), with more cells preferring horizontal and vertical than oblique. The
+orientation-selectivity number does not prove much on its own: median 0.66-0.71 for learned cells against
+0.36-0.49 for random cells given the same firing rate, so most of that number comes from the threshold.
+
+**Words to pictures, on 1,000 unseen photographs (four networks each):**
+
+| eyes | word -> photo, of 4 | untaught words, of 4 | caption -> photo, of 10 | photo -> caption, of 10 |
+|---|---|---|---|---|
+| full (retina + learned V1) | 48.5, 48.0, 48.3, 48.0 | 38.4 | 43.1 | 43.6 |
+| V1 not learned (random, same firing rate) | 48.8, 49.5, 49.1, 48.7 | 37.6 | 43.3 | 43.7 |
+| raw pixels (no retina, first layer trained with the rest) | 51.3, 49.5, 51.0, 50.3 | 42.0 | 49.6 | 50.3 |
+| captions paired with the wrong photographs | 25.0, 23.2, 25.4, 23.5 | 24.6 | 11.0 | 10.4 |
+| chance | 25 | 25 | 10 | 10 |
+
+What this shows:
+- VEGA matches words to photographs it has never seen at about twice chance, and the wrong-pairs control sits
+  at chance, so the link is learned from the pairing.
+- 30 words were kept out of all picture teaching; their photographs are still found above chance (38 %),
+  through word meanings learned from reading alone ("snowy", "mountain", "bench" 63-67 % in the first network).
+- **The biologically built front end does not help on this test.** Learned V1 is no better than random V1
+  with the same thresholds, and raw pixels with an ordinary trained first layer are 2-6 points better. The
+  retina and V1 are faithful in form; they are not yet earning their place in performance. Likely reasons
+  (untested): the front end is frozen while the pixel model's first layer is trained for the task; 96 cells
+  at one scale; 6,000 photographs.
+- Scores are far from useful sight: one glance at 192 pixels, scenes ("beach", "mountains") much better than
+  parts ("legs", "jacket").
+Results: `results/eyes/stage97_summary.json`, `results/eyes/ground_*_s*.json`.
+
+## Stage 98: VEGA inside RASPUTIN (shadow decisions, reward from RASPUTIN, a VEGA node)
+
+`scripts/export_rasputin.py` packages the Stage 94 large reading network (gru1024x2) for the Warmind backend
+(private repository `warmind-backend`, `vega.py` + `vega/`, merged 27 November). There VEGA runs in plain numpy
+(checked against the PyTorch model to 3 decimal places):
+- **Shadow:** it reads each request and records which of RASPUTIN's ten routing destinations it would choose.
+  Nothing acts on it. `/api/vega/status` scores it against the tool RASPUTIN really used.
+- **Reward and correction:** after each turn RASPUTIN's real choice is the answer key for a learning copy of
+  the decision layer (reward 1/0; correction toward the right destination; step size set by reward minus
+  VEGA's own confidence). A fixed copy is kept as the control and both are scored.
+- **A VEGA node:** the user can talk to VEGA with no language model: its decision, the words it has never
+  read, a sentence generated by its own network, and learning from "right" / "wrong".
+
+Baseline on the router's 118 seed phrases (held-out phrases, mean of 10 splits; `results/rasputin_shadow_bench.json`):
+
+| phrases per destination | letters router in use | VEGA reader | VEGA + letters |
+|---|---|---|---|
+| 1 | 28.0 % | 28.5 % | 30.3 % |
+| 2 | 40.0 % | 38.2 % | 43.6 % |
+| 4 | 52.1 % | 46.9 % | 54.2 % |
+| 8 | 62.3 % | 51.3 % | 63.7 % |
+
+VEGA alone is behind the router it would replace; 18 % of the words in those phrases are words it has never
+read. That is why it only observes. No live agreement numbers exist yet (the database was empty at setup).
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
