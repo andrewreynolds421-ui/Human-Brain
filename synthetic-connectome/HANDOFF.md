@@ -582,4 +582,11 @@ and displacement for every sentence; taught from path answers it collapses to ze
 unchanged. Best model to date: `--sup 1 --roles`, QUESTIONS=480000: 13, 12 passed, 10.4 % (2 nets; runs
 events_sup1_roles_long_s*; rest and spacesup_long still running on vega-runs when written). Ideas: teach
 per-sentence displacement, pre-train the map alone, read the direction word.
+IN PROGRESS (26 Nov evening), all on vega-runs: Stage 93 `hippo_events.py --entities` (running situation-model
+cells, EntNet-style) and 10x longer training (QUESTIONS=1600000; runs events_sup1_roles[_entities]_{long,xlong}_s*);
+Stage 94 `scripts/big_reader.py` (readers from scratch on connected text: gru256x1 control, gru1024x2, attn384x6;
+WORDS=40M, TIME_LIMIT=265 min then clean stop with .ckpt - relaunch the same job names with a new batch label to
+continue; runs bigreader_*). After Stage 94: put the best reader under the hippocampus (needs an adapter: M.batch /
+M.m / M.m.e / logp, hidden size from the model) and rerun the grade test locally. Research notes behind this plan:
+EntNet (Henaff 2017), AS Reader / BookTest (Kadlec 2016, Bajgar 2016), TEM (Whittington 2020), BabyLM findings.
 
