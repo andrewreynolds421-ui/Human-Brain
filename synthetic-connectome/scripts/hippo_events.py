@@ -38,6 +38,8 @@ DATA = os.environ.get("EV_DATA", "/home/claude/models/events")
 HOPS, N_DG, ACTIVE, D_KEY, BS, MAX_SENT = 3, 512, 0.05, 64, 16, 50
 QUESTIONS = int(os.environ.get("QUESTIONS", 160_000))
 SUP_W = 1.0                                                              # weight of the step teaching (ASSUMED)
+ENTITIES = False     # Stage 93: a running situation model - memory cells updated sentence by sentence while reading (Henaff et al. 2017; Zwaan & Radvansky 1998)
+N_CELLS, D_ENT = 20, 128
 SPACE_SUP = False    # Stage 92b: the map is taught - for path questions the answer's moves give the displacement it should read (training answers only)
 MOVES = {"n": (0.0, 1.0), "s": (0.0, -1.0), "e": (1.0, 0.0), "w": (-1.0, 0.0)}
 SPACE = False        # Stage 92: a spatial map - things are placed in 2-D so that the stated relations agree (path integration)
@@ -112,7 +114,7 @@ def build(M, seed):
             s.cue_q = nn.Linear(P, E); s.qs = nn.Linear(P, D); s.tw = nn.Linear(P, 3)              # cue word, gist cue, time (recency / before / after)
             s.beta = nn.Parameter(torch.tensor(10.0)); s.temp = nn.Parameter(torch.tensor(5.0))
             s.reent = nn.Sequential(nn.Linear(E + P, 256), nn.Tanh(), nn.Linear(256, E))           # big loop (Stage 84); starts as a copy
-            s.mix = nn.Linear(H, NR * HOPS + 1); s.dec = nn.Sequential(nn.Linear(P + H + NR * HOPS * E + HOPS + 1 + (64 if SPACE else 0), 256), nn.Tanh(), nn.Linear(256, E))
+            s.mix = nn.Linear(H, NR * HOPS + 1 + (1 if ENTITIES else 0)); s.dec = nn.Sequential(nn.Linear(P + H + NR * HOPS * E + HOPS + 1 + (64 if SPACE else 0) + (D_ENT if ENTITIES else 0), 256), nn.Tanh(), nn.Linear(256, E))
             if ROLES: s.hproj = nn.Linear(H, D); s.rq = nn.Linear(P + E, D)                          # a word's role (from its context) / the role asked for
             if SPACE:                                                                              # entorhinal-like map (MODEL)
                 s.sp_h = nn.Linear(H, D); s.sp_u = nn.Parameter(torch.randn(2, D) * 0.1)             # which two things a sentence relates (by role)
@@ -120,6 +122,10 @@ def build(M, seed):
                 s.sp_q = nn.Linear(H, 2 * E); s.sp_out = nn.Sequential(nn.Linear(10, 64), nn.Tanh())  # the two things asked about; what is read off the map
                 with torch.no_grad(): s.sp_g.bias.fill_(-2.0)                                        # sentences are not spatial until learned otherwise
                 s.register_buffer("dirs", torch.tensor([[1.0, 0.0], [-1.0, 0.0], [0.0, 1.0], [0.0, -1.0]]))
+            if ENTITIES:                                                                           # the state of the story, kept up while reading (MODEL)
+                s.en_keys = nn.Parameter(torch.randn(N_CELLS, D_ENT) * 0.1); s.en_s = nn.Linear(H + E, D_ENT)   # what each cell is about; a sentence as read
+                s.en_U = nn.Linear(D_ENT, D_ENT, bias=False); s.en_V = nn.Linear(D_ENT, D_ENT, bias=False); s.en_W = nn.Linear(D_ENT, D_ENT, bias=False); s.en_a = nn.PReLU()
+                s.en_q = nn.Linear(H, D_ENT); s.en_o = nn.Sequential(nn.Linear(2 * D_ENT, D_ENT), nn.PReLU()); s.en_e = nn.Linear(D_ENT, E)
             s.recw = nn.Linear(H, HOPS + 1)                                                        # recognition gains; start at zero
             with torch.no_grad():
                 s.reent[2].weight.zero_(); s.reent[2].bias.zero_(); s.recw.weight.zero_(); s.recw.bias.zero_(); s.tw.weight.zero_(); s.tw.bias.zero_()
@@ -171,9 +177,18 @@ def build(M, seed):
                 pq = torch.einsum("brn,bnk->brk", s.code(torch.einsum("brl,ble->bre", aq, qe)), Pm)  # where the two things asked about are
                 occ = [torch.tanh((torch.exp(-((pq[:, r, None, None, :] + s.dirs[None, :, None, :] - allp[:, None]) ** 2).sum(-1) / 0.25) * allg[:, None]).sum(-1)) for r in (0, 1)]   # is something one step away, in each direction?
                 spf = [s.sp_out(torch.cat([pq[:, 1] - pq[:, 0]] + occ, -1))]; s.space = dict(delta=pq[:, 1] - pq[:, 0], gate=g[..., 0], d=d)
+            if ENTITIES:
+                bag = torch.einsum("bst,bte->bse", Mh * imp[:, None], es) / (torch.einsum("bst,bt->bs", Mh, imp)[..., None] + 1e-3)
+                sv = s.en_s(torch.cat([send, bag], -1)); hc = torch.zeros(B, N_CELLS, D_ENT); wk = s.en_keys[None].expand(B, -1, -1)
+                for j in range(S):                                                                  # read on: each cell decides whether this sentence concerns it
+                    sj = sv[:, j, None]; gt = torch.sigmoid((sj * hc).sum(-1) + (sj * wk).sum(-1))[..., None] * smask[:, j, None, None]
+                    hn = hc + gt * s.en_a(s.en_U(hc) + s.en_V(wk) + s.en_W(sj)); hc = hn / (hn.norm(dim=-1, keepdim=True).clamp(min=1.0))
+                qd = s.en_q(q); pe = torch.softmax((hc * qd[:, None]).sum(-1), -1); ue = s.en_o(torch.cat([(pe[..., None] * hc).sum(1), qd], -1)); spf = spf + [ue]
             w = torch.softmax(s.mix(q), -1)
             outs = rs + rr
-            z = sum(w[:, k:k + 1] * outs[k] for k in range(len(outs))) + w[:, len(outs):] * s.dec(torch.cat([st, q] + outs + counts + [rs[0].norm(dim=-1, keepdim=True)] + spf, -1))
+            recalled = list(outs)
+            if ENTITIES: outs = outs + [s.en_e(ue)]
+            z = sum(w[:, k:k + 1] * outs[k] for k in range(len(outs))) + w[:, len(outs):] * s.dec(torch.cat([st, q] + recalled + counts + [rs[0].norm(dim=-1, keepdim=True)] + spf, -1))
             lg = s.temp * torch.einsum("be,bce->bc", z / (z.norm(dim=-1, keepdim=True) + 1e-6), ce / (ce.norm(dim=-1, keepdim=True) + 1e-6))
             wmc = torch.sigmoid(s.beta * torch.einsum("btn,bcn->bct", keys, s.code(ce)) - 5) * kstr[:, None]     # recognition: each candidate as a cue
             g = s.recw(q); lg = lg + g[:, :1] * wmc.sum(-1)
@@ -183,9 +198,9 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); ap.add_argument("--space", action="store_true"); ap.add_argument("--space-sup", action="store_true"); a = ap.parse_args()
-    global ROLES, SEM, SPACE, SPACE_SUP; ROLES = a.roles; SEM = a.sem; SPACE_SUP = a.space_sup; SPACE = a.space or a.space_sup
-    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + ("spacesup_" if a.space_sup else "space_" if a.space else "") + os.environ.get("EV_TAG", "")
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); ap.add_argument("--space", action="store_true"); ap.add_argument("--space-sup", action="store_true"); ap.add_argument("--entities", action="store_true"); a = ap.parse_args()
+    global ROLES, SEM, SPACE, SPACE_SUP, ENTITIES; ENTITIES = a.entities; ROLES = a.roles; SEM = a.sem; SPACE_SUP = a.space_sup; SPACE = a.space or a.space_sup
+    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + ("spacesup_" if a.space_sup else "space_" if a.space else "") + ("entities_" if a.entities else "") + os.environ.get("EV_TAG", "")
 
     def run(M, C, tok, seed, res):
         torch = M.torch; torch.set_num_threads(int(os.environ.get("THREADS", 2)))
@@ -279,6 +294,12 @@ def main():
         else: net.load_state_dict(torch.load(path))
         if os.environ.get("PROBE_SPACE") and SPACE:                                          # what the map made of each sentence
             net.eval()
+            err = []
+            for k in range(0, 400, 32):                                                       # does the map read the path's displacement?
+                its = tasks[19]["test"][k:k + 32]
+                with torch.no_grad(): net(*batch(its))
+                err += ((net.space["delta"] - torch.tensor([np.sum([MOVES[w] for w in it["ans"]], 0) for it in its], dtype=torch.float32)).abs() < 0.5).all(-1).tolist()
+            print("path questions where the map's displacement is within half a step of the true one:", round(float(np.mean(err)), 3))
             for t in (17, 19, 1):
                 for it in tasks[t]["test"][:2]:
                     with torch.no_grad(): lg, _ = net(*batch([it]))
@@ -286,7 +307,7 @@ def main():
                     for sn, g, d in zip(it["sents"], net.space["gate"][0].tolist(), net.space["d"][0].tolist()): print(f"    gate {g:.2f} d ({d[0]:+.2f}, {d[1]:+.2f})  {' '.join(sn)}")
             raise SystemExit
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={}, step_hits={},
-                   config=dict(reader=os.path.basename(os.environ.get("STORY_READER", "")) or "stage 73", sup=a.sup, roles=ROLES, sem=SEM, space=SPACE, space_sup=SPACE_SUP, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
+                   config=dict(reader=os.path.basename(os.environ.get("STORY_READER", "")) or "stage 73", sup=a.sup, roles=ROLES, sem=SEM, space=SPACE, space_sup=SPACE_SUP, entities=ENTITIES, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
         for t in T:
             hops = []; acc = accuracy(tasks[t]["test"][:NT], hops); out["tasks"][tasks[t]["name"]] = round(acc, 4)
             if hops: out["step_hits"][tasks[t]["name"]] = [round(float(np.mean([h[j] for h in hops if len(h) > j])), 3) for j in range(max(map(len, hops)))]   # does recall step j land on supporting sentence j?
