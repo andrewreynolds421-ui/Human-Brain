@@ -1,146 +1,47 @@
 [
  {
-  "name": "eyes_full_s0",
-  "script": "eyes.py",
-  "flags": "ground --cond full --epochs 30",
+  "name": "events_sup1_roles_bigreader_gru1024_long_s0",
+  "script": "hippo_events.py",
+  "flags": "--sup 1 --roles",
   "seed": 0,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_long_",
+  "batch": "95b-2026-11-27"
  },
  {
-  "name": "eyes_full_s1",
-  "script": "eyes.py",
-  "flags": "ground --cond full --epochs 30",
+  "name": "events_sup1_roles_bigreader_gru1024_long_s1",
+  "script": "hippo_events.py",
+  "flags": "--sup 1 --roles",
   "seed": 1,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_long_",
+  "batch": "95b-2026-11-27"
  },
  {
-  "name": "eyes_full_s2",
-  "script": "eyes.py",
-  "flags": "ground --cond full --epochs 30",
+  "name": "events_sup1_roles_bigreader_gru1024_long_s2",
+  "script": "hippo_events.py",
+  "flags": "--sup 1 --roles",
   "seed": 2,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_long_",
+  "batch": "95b-2026-11-27"
  },
  {
-  "name": "eyes_full_s3",
-  "script": "eyes.py",
-  "flags": "ground --cond full --epochs 30",
-  "seed": 3,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
- },
- {
-  "name": "eyes_pixels_s0",
-  "script": "eyes.py",
-  "flags": "ground --cond pixels --epochs 30",
-  "seed": 0,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
- },
- {
-  "name": "eyes_pixels_s1",
-  "script": "eyes.py",
-  "flags": "ground --cond pixels --epochs 30",
-  "seed": 1,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
- },
- {
-  "name": "eyes_pixels_s2",
-  "script": "eyes.py",
-  "flags": "ground --cond pixels --epochs 30",
+  "name": "events_sup1_roles_bigreader_attn384_long_s2",
+  "script": "hippo_events.py",
+  "flags": "--sup 1 --roles",
   "seed": 2,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_attn384x6_s0/bigreader_attn384x6_s0.pt EV_TAG=attn384_long_",
+  "batch": "95b-2026-11-27"
  },
  {
-  "name": "eyes_pixels_s3",
-  "script": "eyes.py",
-  "flags": "ground --cond pixels --epochs 30",
+  "name": "events_sup1_roles_bigreader_gru1024_long_s3",
+  "script": "hippo_events.py",
+  "flags": "--sup 1 --roles",
   "seed": 3,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
- },
- {
-  "name": "eyes_randv1_s0",
-  "script": "eyes.py",
-  "flags": "ground --cond randv1 --epochs 30",
-  "seed": 0,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
- },
- {
-  "name": "eyes_randv1_s1",
-  "script": "eyes.py",
-  "flags": "ground --cond randv1 --epochs 30",
-  "seed": 1,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
- },
- {
-  "name": "eyes_randv1_s2",
-  "script": "eyes.py",
-  "flags": "ground --cond randv1 --epochs 30",
-  "seed": 2,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
- },
- {
-  "name": "eyes_randv1_s3",
-  "script": "eyes.py",
-  "flags": "ground --cond randv1 --epochs 30",
-  "seed": 3,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
- },
- {
-  "name": "eyes_shuffled_s0",
-  "script": "eyes.py",
-  "flags": "ground --cond shuffled --epochs 30",
-  "seed": 0,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
- },
- {
-  "name": "eyes_shuffled_s1",
-  "script": "eyes.py",
-  "flags": "ground --cond shuffled --epochs 30",
-  "seed": 1,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
- },
- {
-  "name": "eyes_shuffled_s2",
-  "script": "eyes.py",
-  "flags": "ground --cond shuffled --epochs 30",
-  "seed": 2,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
- },
- {
-  "name": "eyes_shuffled_s3",
-  "script": "eyes.py",
-  "flags": "ground --cond shuffled --epochs 30",
-  "seed": 3,
-  "questions": 0,
-  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
-  "batch": "97-2026-11-27"
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_long_",
+  "batch": "95b-2026-11-27"
  }
 ]
