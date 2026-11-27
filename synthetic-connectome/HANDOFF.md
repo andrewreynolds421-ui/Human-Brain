@@ -603,4 +603,9 @@ Stage 95 (27 Nov, running): `scripts/reader_adapter.py` puts a big_reader model 
 events_sup1_roles_bigreader_{gru1024,gru256,attn384}_[long_]s0-3 on vega-runs. Grade test on new readers
 (`python scripts/reader_adapter.py <.pt>...`, results/big_reader/grade_test.json): large 75.8, attention 77.0,
 control 73.6, old 76.4 (mean of bands). Both large readers finished: passages in context 41.7 / 42.4.
+Stage 96 (27 Nov, running; user's idea: correction AND dopamine): `hippo_events.py --reward` (each recall = a sampled
+choice of one event; critic on the question state; policy term weighted by reward prediction error; entropy 0.01;
+argmax at test) and `--hindsight` (some recall step should land on a sentence containing the revealed answer word).
+Runs events_{sup0_roles, sup0_roles_hindsight, sup0_roles_reward, sup0_roles_reward_hindsight, sup1_roles_reward}_long_s0-3
+(480k questions, old reader, one answer list). Reference: fully taught roles long 13,12,13,12 / 10.4 %.
 

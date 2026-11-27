@@ -38,6 +38,9 @@ DATA = os.environ.get("EV_DATA", "/home/claude/models/events")
 HOPS, N_DG, ACTIVE, D_KEY, BS, MAX_SENT = 3, 512, 0.05, 64, 16, 50
 QUESTIONS = int(os.environ.get("QUESTIONS", 160_000))
 SUP_W = 1.0                                                              # weight of the step teaching (ASSUMED)
+REWARD = False       # Stage 96: dopamine - each recall is a CHOICE of one event (sampled); a critic predicts success; choices that did
+                     # better than predicted are strengthened, worse weakened (reward prediction error; Schultz et al. 1997)
+HINDSIGHT = False    # Stage 96: after the answer is given, the sentences that mention it are where recall should have gone (no labels needed)
 ENTITIES = False     # Stage 93: a running situation model - memory cells updated sentence by sentence while reading (Henaff et al. 2017; Zwaan & Radvansky 1998)
 N_CELLS, D_ENT = 20, 128
 SPACE_SUP = False    # Stage 92b: the map is taught - for path questions the answer's moves give the displacement it should read (training answers only)
@@ -126,6 +129,7 @@ def build(M, seed):
                 s.en_keys = nn.Parameter(torch.randn(N_CELLS, D_ENT) * 0.1); s.en_s = nn.Linear(H + E, D_ENT)   # what each cell is about; a sentence as read
                 s.en_U = nn.Linear(D_ENT, D_ENT, bias=False); s.en_V = nn.Linear(D_ENT, D_ENT, bias=False); s.en_W = nn.Linear(D_ENT, D_ENT, bias=False); s.en_a = nn.PReLU()
                 s.en_q = nn.Linear(H, D_ENT); s.en_o = nn.Sequential(nn.Linear(2 * D_ENT, D_ENT), nn.PReLU()); s.en_e = nn.Linear(D_ENT, E)
+            if REWARD: s.critic = nn.Linear(H, 1)                                                  # expected success, from the question
             s.recw = nn.Linear(H, HOPS + 1)                                                        # recognition gains; start at zero
             with torch.no_grad():
                 s.reent[2].weight.zero_(); s.reent[2].bias.zero_(); s.recw.weight.zero_(); s.recw.bias.zero_(); s.tw.weight.zero_(); s.tw.bias.zero_()
@@ -142,7 +146,7 @@ def build(M, seed):
             send = torch.gather(hs, 1, ends[..., None].expand(-1, -1, hs.shape[-1])) * smask[..., None]; ssum = s.sproj(send)
             tpos = (torch.arange(S, dtype=torch.float32)[None] + 1) / smask.sum(1, keepdim=True).clamp(min=1)
             lsm = torch.log(smask + 1e-9); lm = torch.log(qmask + 1e-9)
-            st = torch.tanh(s.pfc0(q)); tau = torch.ones(B); found, rs, scs, atts, counts, rr = [], [], [], [], [], []
+            st = torch.tanh(s.pfc0(q)); tau = torch.ones(B); found, rs, scs, atts, counts, rr = [], [], [], [], [], []; pol = torch.zeros(B); ent = torch.zeros(B)
             if ROLES: hrole = s.hproj(hs); lmask = torch.log(mask + 1e-9)
             for k in range(HOPS):
                 Sq = torch.cat([qe] + [f[:, None] for f in found], 1); Sm = torch.cat([lm] + [torch.zeros(B, 1)] * len(found), 1)
@@ -153,6 +157,9 @@ def build(M, seed):
                 sc = (s.beta * sm + (ssum * s.qs(st)[:, None]).sum(-1) / D ** 0.5 + 10 * tw[:, :1] * tpos
                       + 10 * tw[:, 1:2] * torch.sigmoid(20 * (tau[:, None] - tpos)) + 10 * tw[:, 2:3] * torch.sigmoid(20 * (tpos - tau[:, None])) + lsm)
                 a = torch.softmax(sc, -1)                                                            # pattern completion over events
+                if REWARD:                                                                           # commit to ONE event: explore while learning, the strongest when tested
+                    jk = torch.multinomial(a, 1)[:, 0] if s.training else a.argmax(-1); lsel = torch.log_softmax(sc, -1)
+                    pol = pol + lsel.gather(1, jk[:, None])[:, 0]; ent = ent - (a * lsel.clamp(min=-30)).sum(-1); a = torch.nn.functional.one_hot(jk, S).float()
                 ww = torch.einsum("bs,bst->bt", a, Mh) * imp * (1 - wm.clamp(0, 1))                  # the rest of the event (not the cue word itself)
                 r = (ww[..., None] * es).sum(1) / (ww.sum(1, keepdim=True) + 1e-3)
                 tau = (a * tpos).sum(-1); counts.append((torch.sigmoid(s.beta * sm - 5) * smask).sum(-1, keepdim=True))
@@ -184,6 +191,7 @@ def build(M, seed):
                     sj = sv[:, j, None]; gt = torch.sigmoid((sj * hc).sum(-1) + (sj * wk).sum(-1))[..., None] * smask[:, j, None, None]
                     hn = hc + gt * s.en_a(s.en_U(hc) + s.en_V(wk) + s.en_W(sj)); hc = hn / (hn.norm(dim=-1, keepdim=True).clamp(min=1.0))
                 qd = s.en_q(q); pe = torch.softmax((hc * qd[:, None]).sum(-1), -1); ue = s.en_o(torch.cat([(pe[..., None] * hc).sum(1), qd], -1)); spf = spf + [ue]
+            if REWARD: s.rl = dict(pol=pol, ent=ent, value=torch.sigmoid(s.critic(q))[:, 0])
             w = torch.softmax(s.mix(q), -1)
             outs = rs + rr
             recalled = list(outs)
@@ -198,9 +206,9 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); ap.add_argument("--space", action="store_true"); ap.add_argument("--space-sup", action="store_true"); ap.add_argument("--entities", action="store_true"); a = ap.parse_args()
-    global ROLES, SEM, SPACE, SPACE_SUP, ENTITIES; ENTITIES = a.entities; ROLES = a.roles; SEM = a.sem; SPACE_SUP = a.space_sup; SPACE = a.space or a.space_sup
-    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + ("spacesup_" if a.space_sup else "space_" if a.space else "") + ("entities_" if a.entities else "") + ("bigreader_" if os.environ.get("BIG_READER") else "") + os.environ.get("EV_TAG", "")
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); ap.add_argument("--space", action="store_true"); ap.add_argument("--space-sup", action="store_true"); ap.add_argument("--entities", action="store_true"); ap.add_argument("--reward", action="store_true"); ap.add_argument("--hindsight", action="store_true"); a = ap.parse_args()
+    global ROLES, SEM, SPACE, SPACE_SUP, ENTITIES, REWARD, HINDSIGHT; ENTITIES = a.entities; REWARD = a.reward; HINDSIGHT = a.hindsight; ROLES = a.roles; SEM = a.sem; SPACE_SUP = a.space_sup; SPACE = a.space or a.space_sup
+    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + ("spacesup_" if a.space_sup else "space_" if a.space else "") + ("entities_" if a.entities else "") + ("reward_" if a.reward else "") + ("hindsight_" if a.hindsight else "") + ("bigreader_" if os.environ.get("BIG_READER") else "") + os.environ.get("EV_TAG", "")
 
     def run(M, C, tok, seed, res):
         torch = M.torch; torch.set_num_threads(int(os.environ.get("THREADS", 2)))
@@ -254,6 +262,13 @@ def main():
                     else: tot = tot - torch.logsumexp(scs[k][i, sp], 0); n += 1                     # many supports: any of them
             return tot / max(n, 1)
 
+        def hind_loss(scs, items):                                                            # hindsight: some recall step should land on a sentence that mentions the answer
+            tot, n = 0.0, 0
+            for i, it in enumerate(items):
+                aw = set(it["cands"][it["y"]]); Hs = [j for j, sn in enumerate(it["sents"]) if aw & set(sn)]
+                if Hs: tot = tot - torch.stack([torch.logsumexp(scs[k][i, Hs], 0) for k in range(HOPS)]).max(); n += 1
+            return tot / max(n, 1)
+
         def accuracy(items, hops=None):
             net.eval(); hit = []
             with torch.no_grad():
@@ -286,6 +301,10 @@ def main():
                     tr = tasks[T[int(rng.integers(len(T)))]]["train"]; items = [tr[i] for i in rng.choice(len(tr), BS, replace=False)]
                 lg, scs = net(*batch(items)); loss = torch.nn.functional.cross_entropy(lg, torch.tensor([i["y"] for i in items]))
                 if a.sup: loss = loss + SUP_W * sup_loss(scs, items)
+                if HINDSIGHT: loss = loss + hind_loss(scs, items)
+                if REWARD:
+                    rwd = (lg.argmax(1) == torch.tensor([i["y"] for i in items])).float(); rl = net.rl; rpe = rwd - rl["value"].detach()   # better or worse than expected
+                    loss = loss - (rpe * rl["pol"]).mean() + ((rl["value"] - rwd) ** 2).mean() - 0.01 * rl["ent"].mean()
                 if SPACE_SUP:
                     ix = [i for i, it in enumerate(items) if it.get("ans") and all(w in MOVES for w in it["ans"])]
                     if ix: loss = loss + ((net.space["delta"][ix] - torch.tensor([np.sum([MOVES[w] for w in items[i]["ans"]], 0) for i in ix], dtype=torch.float32)) ** 2).sum(-1).mean()
@@ -310,7 +329,7 @@ def main():
                     for sn, g, d in zip(it["sents"], net.space["gate"][0].tolist(), net.space["d"][0].tolist()): print(f"    gate {g:.2f} d ({d[0]:+.2f}, {d[1]:+.2f})  {' '.join(sn)}")
             raise SystemExit
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={}, step_hits={},
-                   config=dict(reader=os.path.basename(os.environ.get("BIG_READER", "") or os.environ.get("STORY_READER", "")) or "stage 73", sup=a.sup, roles=ROLES, sem=SEM, space=SPACE, space_sup=SPACE_SUP, entities=ENTITIES, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
+                   config=dict(reader=os.path.basename(os.environ.get("BIG_READER", "") or os.environ.get("STORY_READER", "")) or "stage 73", sup=a.sup, roles=ROLES, sem=SEM, space=SPACE, space_sup=SPACE_SUP, entities=ENTITIES, reward=REWARD, hindsight=HINDSIGHT, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
         for t in T:
             hops = []; acc = accuracy(tasks[t]["test"][:NT], hops); out["tasks"][tasks[t]["name"]] = round(acc, 4)
             if hops: out["step_hits"][tasks[t]["name"]] = [round(float(np.mean([h[j] for h in hops if len(h) > j])), 3) for j in range(max(map(len, hops)))]   # does recall step j land on supporting sentence j?
