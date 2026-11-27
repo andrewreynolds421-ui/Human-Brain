@@ -593,4 +593,9 @@ Stage 93 result (27 Nov): 10x training (QUESTIONS=1600000) roles: 13,14,12,12 pa
 nets) - story state adds ~0.2. Stage 94 interim (resumed at ~half of 40M words; relaunch bigreader_gru1024x2_s*,
 bigreader_attn384x6_s* with a new batch label if they stop again): all three readers raised on connected text now
 predict better in context than alone (about -4.7 vs -4.95 logp per word); gru1024x2 passages 41-43 % in context.
+Stage 94 result (27 Nov): readers from scratch on connected text all gain from context (control 256: -4.82 in context
+vs -5.04 alone; large 1024x2: -4.57; attention 384x6: -4.53). Passage test in context: control 36.8, large 41.7,
+attention 32.0 (lessons of 192 tokens, passages ~400: untrained positions - retrain with longer lessons to test).
+Weights: vega-runs runs/bigreader_*/ (.pt half precision; load with .float()). bigreader_gru1024x2_s1 relaunched for
+its full test. Next: adapter so hippo_events can sit on a big_reader model; grade test locally; 10x passage data.
 

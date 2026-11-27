@@ -1,0 +1,106 @@
+{
+ "attn384x6": {
+  "networks_finished": 2,
+  "parameters": 18990416,
+  "books": 159,
+  "train_words": 4614242,
+  "hours": [
+   7.1,
+   8.6
+  ],
+  "logp_alone": [
+   -4.8393,
+   -4.8091
+  ],
+  "logp_in_context": [
+   -4.541,
+   -4.5278
+  ],
+  "passages_alone": [
+   40.5,
+   39.6
+  ],
+  "passages_in_context": [
+   32.0,
+   32.1
+  ],
+  "in_context_by_band": {
+   "1": 40.2,
+   "2": 33.8,
+   "3": 30.7,
+   "4": 36.0,
+   "5": 26.3,
+   "6": 29.2,
+   "7+": 28.0
+  },
+  "most_frequent": 26.8
+ },
+ "gru1024x2": {
+  "networks_finished": 1,
+  "parameters": 21377664,
+  "books": 159,
+  "train_words": 4614242,
+  "hours": [
+   6.7,
+   8.8
+  ],
+  "logp_alone": [
+   -4.8837
+  ],
+  "logp_in_context": [
+   -4.5694
+  ],
+  "passages_alone": [
+   39.0
+  ],
+  "passages_in_context": [
+   41.7
+  ],
+  "in_context_by_band": {
+   "1": 47.1,
+   "2": 46.3,
+   "3": 40.0,
+   "4": 45.3,
+   "5": 36.0,
+   "6": 41.0,
+   "7+": 36.3
+  },
+  "most_frequent": 26.8
+ },
+ "gru256x1": {
+  "networks_finished": 2,
+  "parameters": 7618272,
+  "books": 159,
+  "train_words": 4614242,
+  "hours": [
+   0.9,
+   0.6
+  ],
+  "logp_alone": [
+   -5.0245,
+   -5.0645
+  ],
+  "logp_in_context": [
+   -4.8111,
+   -4.8238
+  ],
+  "passages_alone": [
+   35.4,
+   35.9
+  ],
+  "passages_in_context": [
+   37.0,
+   36.6
+  ],
+  "in_context_by_band": {
+   "1": 41.2,
+   "2": 40.4,
+   "3": 37.8,
+   "4": 39.7,
+   "5": 30.7,
+   "6": 35.5,
+   "7+": 32.3
+  },
+  "most_frequent": 26.8
+ }
+}

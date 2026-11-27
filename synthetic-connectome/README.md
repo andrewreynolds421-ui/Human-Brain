@@ -4658,15 +4658,47 @@ Four networks each, GitHub runners.
 | roles, 3x | 13, 12, 13, 12 | 10.4 % | 58.8 | 22.3 | 71.3 | 84.8 |
 | roles + story state, 3x | 13, 11, 13, 12 | 10.2 % | 57.3 | 22.8 | 72.8 | 86.2 |
 | **roles, 10x** | **13, 14, 12, 12** | **8.7 %** | 62.0 | 32.5 | 73.6 | 91.1 |
-| roles + story state, 10x (3 networks) | 13, 12, 12 | 8.5 % | 62.2 | 34.3 | 78.2 | 91.3 |
+| roles + story state, 10x | 13, 12, 12, 13 | 8.8 % | 62.2 | 34.3 | 78.2 | 91.3 |
 | published MemN2N (answer only) | 14 | 7.5 % | | | | |
 
 - **More training helps steadily:** 14.0 % (1x) -> 10.4 % (3x) -> 8.7 % (10x), with one network at 14 tasks; path
   finding 16 -> 22 -> 33 %, counting 83 -> 85 -> 91 %. Not yet flat.
-- **The running story state adds little** (0.2 points at either length; three facts +5 at 10x). It does not give
+- **The running story state adds nothing reliable** (10.2 vs 10.4 % at 3x; 8.8 vs 8.7 % at 10x). It does not give
   left / right or paths, which the Entity Network solves - but that model trains 200 passes per task, 50 times more
   than here, and its cells are tied to the words for the things in the story; ours are free.
 - Left / right stays near chance at every length.
+
+## Stage 94: bigger reading networks, raised on connected text
+
+**Question.** Stage 91: VEGA's reading network (one 256-unit recurrent layer, raised on single sentences) cannot use
+the story so far. Is that its upbringing, its size, or its kind?
+
+**Set-up** (`scripts/big_reader.py`). Three readers learn from scratch, the same way: the training-split books on the
+runners (159 books), read in running order - a lesson is 32 runs of 192 consecutive tokens, sentences separated by an
+end mark - 40 million words each (about 6 passes), two networks each. **control**: recurrent, 256 units, 1 layer (the
+old reader's size); **large**: recurrent, 1,024 units, 2 layers; **attention**: a causal transformer, 384 wide, 6
+layers. Tested on held-out ends of the books and on Stage 86's passage test (test books never read).
+
+| reader alone (finished networks) | Stage 73 reader | control 256 | large 1,024 x 2 | attention 384 x 6 |
+|---|---|---|---|---|
+| held-out sentence, log-prob. per word: alone | -4.90 | -5.04 | -4.88 | -4.82 |
+| ... after the sentences before it | -6.26 | -4.82 | **-4.57** | **-4.53** |
+| passage test: sentence 21 alone | 35.4 % | 35.7 % | 39.0 % | 40.1 % |
+| passage test: after reading the passage | 31.0 % | 36.8 % | **41.7 %** | 32.0 % * |
+| hours on a 4-core runner | - | 0.6-0.9 | 6.7-8.8 | 7.1-8.6 |
+
+(most-frequent-word baseline 26.8 %; large: 1 of 2 networks finished - the other stopped at its last step and scores
+44.5 % on a 60-item interim test; * see below)
+
+- **Upbringing was the main fault.** Every reader raised on connected text predicts a sentence better after the
+  story so far than alone (by 0.2-0.3 per word) - even the control at the old size. The old reader was 1.4 worse.
+- **Size helps on top:** the large reader reads the passage test at 41.7 % by itself - what the old reader and the
+  hippocampus reached together (41.4 %, Stage 90) - and is 0.25 per word better in context than the control.
+- **The attention reader predicts words best but fails the passage test in context (32 %).** Probable cause, not yet
+  tested: its lessons were 192 tokens long and a passage is about 400 - it has never used positions that far along.
+  The recurrent readers have no such limit. Not a verdict on attention.
+- Still far from adults (82 % on the published test). Next: the large reader under the hippocampus (it needs an
+  adapter - different sizes and sentence marks), the grade test on it, and ten times more passage training.
 
 ## Where the model stands against children learning English
 

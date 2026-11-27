@@ -981,3 +981,13 @@ Stage 93: 12 networks; one 10x run with the story state still running when writt
 (bigger readers): the two larger readers reached about half their 40-million-word budget in the first 265 minutes
 (slower than estimated from the local timing) and were resumed from checkpoints; interim figures are not in the README.
 
+## 70. Follow-up (27 November): Stage 94 — bigger readers
+
+Six runs on GitHub runners; the two larger kinds needed one resume each (checkpoints are half precision without
+optimiser state, so the optimiser restarts with a short warm-up - stated). One large network stopped at its final
+step and was relaunched for its full test; the README gives the finished network and marks the interim one. The new
+readers use the 159 books on the runners and a new vocabulary; the Stage 73 reader read more and other text, so the
+first column is context, not a control - the control is the 256-unit reader trained identically. The attention
+reader's context failure is attributed to lesson length without a test (marked "probable"). Grade test and BLiMP not
+yet run on the new readers. Summary results/big_reader/stage94_summary.json.
+

@@ -1,0 +1,207 @@
+{
+ "seed": 1,
+ "kind": "gru",
+ "width": 1024,
+ "layers": 2,
+ "parameters": 21377664,
+ "books": 159,
+ "train_words": 4614242,
+ "vocabulary": 21198,
+ "words_budget": 40000000,
+ "finished": false,
+ "words_read": 39936000,
+ "training": [
+  {
+   "step": 250,
+   "words": 1536000,
+   "minutes": 20.2,
+   "loss": 5.375
+  },
+  {
+   "step": 500,
+   "words": 3072000,
+   "minutes": 40.0,
+   "loss": 4.986
+  },
+  {
+   "step": 750,
+   "words": 4608000,
+   "minutes": 59.9,
+   "loss": 4.753
+  },
+  {
+   "step": 1000,
+   "words": 6144000,
+   "minutes": 79.6,
+   "loss": 4.573
+  },
+  {
+   "step": 1250,
+   "words": 7680000,
+   "minutes": 99.2,
+   "loss": 4.466
+  },
+  {
+   "step": 1500,
+   "words": 9216000,
+   "minutes": 118.8,
+   "loss": 4.432
+  },
+  {
+   "step": 1750,
+   "words": 10752000,
+   "minutes": 138.6,
+   "loss": 4.454
+  },
+  {
+   "step": 2000,
+   "words": 12288000,
+   "minutes": 158.7,
+   "loss": 4.446
+  },
+  {
+   "step": 2250,
+   "words": 13824000,
+   "minutes": 178.6,
+   "loss": 4.384
+  },
+  {
+   "step": 2500,
+   "words": 15360000,
+   "minutes": 198.3,
+   "loss": 4.237
+  },
+  {
+   "step": 2750,
+   "words": 16896000,
+   "minutes": 218.1,
+   "loss": 4.318
+  },
+  {
+   "step": 3000,
+   "words": 18432000,
+   "minutes": 237.8,
+   "loss": 4.151
+  },
+  {
+   "step": 3250,
+   "words": 19968000,
+   "minutes": 257.5,
+   "loss": 4.12
+  },
+  {
+   "step": 3500,
+   "words": 21504000,
+   "minutes": 278.2,
+   "loss": 4.245
+  },
+  {
+   "step": 3750,
+   "words": 23040000,
+   "minutes": 298.9,
+   "loss": 3.945
+  },
+  {
+   "step": 4000,
+   "words": 24576000,
+   "minutes": 319.6,
+   "loss": 3.915
+  },
+  {
+   "step": 4250,
+   "words": 26112000,
+   "minutes": 340.5,
+   "loss": 4.06
+  },
+  {
+   "step": 4500,
+   "words": 27648000,
+   "minutes": 361.4,
+   "loss": 4.107
+  },
+  {
+   "step": 4750,
+   "words": 29184000,
+   "minutes": 382.4,
+   "loss": 3.953
+  },
+  {
+   "step": 5000,
+   "words": 30720000,
+   "minutes": 403.5,
+   "loss": 3.9
+  },
+  {
+   "step": 5250,
+   "words": 32256000,
+   "minutes": 424.5,
+   "loss": 3.812
+  },
+  {
+   "step": 5500,
+   "words": 33792000,
+   "minutes": 445.5,
+   "loss": 3.838
+  },
+  {
+   "step": 5750,
+   "words": 35328000,
+   "minutes": 466.6,
+   "loss": 3.823
+  },
+  {
+   "step": 6000,
+   "words": 36864000,
+   "minutes": 487.7,
+   "loss": 3.914
+  },
+  {
+   "step": 6250,
+   "words": 38400000,
+   "minutes": 508.8,
+   "loss": 3.883
+  },
+  {
+   "step": 6500,
+   "words": 39936000,
+   "minutes": 529.9,
+   "loss": 3.935
+  }
+ ],
+ "heldout_logp_per_word": {
+  "alone": -4.8631,
+  "in_context": -4.6545
+ },
+ "passages": {
+  "alone": {
+   "1": 0.4667,
+   "2": 0.45,
+   "3": 0.45,
+   "4": 0.4,
+   "5": 0.3333,
+   "6": 0.4167,
+   "7+": 0.4
+  },
+  "in_context": {
+   "1": 0.55,
+   "2": 0.45,
+   "3": 0.5167,
+   "4": 0.4,
+   "5": 0.3167,
+   "6": 0.4667,
+   "7+": 0.4167
+  },
+  "most_frequent": {
+   "1": 0.2333,
+   "2": 0.3333,
+   "3": 0.2833,
+   "4": 0.2667,
+   "5": 0.3,
+   "6": 0.3833,
+   "7+": 0.1833
+  },
+  "alone_mean": 0.4167,
+  "in_context_mean": 0.4453,
+  "most_frequent_mean": 0.2833
+ }
+}
