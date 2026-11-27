@@ -1,0 +1,35 @@
+built {'page_nouns_det': 0.9675, 'page_nouns_refl_number': 1.0, 'page_nouns_refl_gender': 1.0, 'page_nouns_refl_across': 0.97, 'page_nouns_npi': 1.0, 'page_nouns_npi_scope': 0.99, 'page_nouns_gap_wh': 1.0, 'page_nouns_gap_that': 1.0, 'page_nouns_aux_agree_relative': 0.99, 'page_nouns_verb_agree_relative': 0.6475, 'page_nouns_who_gap': 0.055, 'page_nouns_name_reflexive': 0.865, 'page_nouns_question_ever': 0.07, 'held_out_nouns_det': 0.9625, 'held_out_nouns_refl_number': 0.9625, 'held_out_nouns_refl_gender': 1.0, 'held_out_nouns_refl_across': 0.9475, 'held_out_nouns_npi': 1.0, 'held_out_nouns_npi_scope': 0.1925, 'held_out_nouns_gap_wh': 0.96, 'held_out_nouns_gap_that': 0.9525, 'held_out_nouns_aux_agree_relative': 0.8275, 'held_out_nouns_verb_agree_relative': 0.72, 'held_out_nouns_who_gap': 0.3775, 'held_out_nouns_name_reflexive': 0.865, 'held_out_nouns_question_ever': 0.07}
+/home/claude/synthetic-connectome/scripts/hippo_events.py:273: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /__w/pytorch/pytorch/torch/csrc/utils/tensor_new.cpp:249.)
+  if ix: loss = loss + ((net.space["delta"][ix] - torch.tensor([np.sum([MOVES[w] for w in items[i]["ans"]], 0) for i in ix], dtype=torch.float32)) ** 2).sum(-1).mean()
+{'questions': 16000, 'minutes': 3.3, 'loss': 0.536}
+{'questions': 32000, 'minutes': 6.6, 'loss': 0.497}
+{'questions': 48000, 'minutes': 9.9, 'loss': 0.027}
+{'questions': 64000, 'minutes': 13.4, 'loss': 0.025}
+{'questions': 80000, 'minutes': 16.8, 'loss': 0.089}
+{'questions': 96000, 'minutes': 20.1, 'loss': 1.588}
+{'questions': 112000, 'minutes': 23.4, 'loss': 1.515}
+{'questions': 128000, 'minutes': 26.7, 'loss': 0.201}
+{'questions': 144000, 'minutes': 30.0, 'loss': 1.064}
+{'questions': 160000, 'minutes': 33.4, 'loss': 0.498}
+qa1_single-supporting-fact 0.988 [0.995]
+qa2_two-supporting-facts 0.891 [0.952, 0.87]
+qa3_three-supporting-facts 0.488 [0.951, 0.677, 0.419]
+qa4_two-arg-relations 0.769 [0.752]
+qa5_three-arg-relations 0.988 [0.987]
+qa6_yes-no-questions 0.991 [0.991]
+qa7_counting 0.838 [0.984, 0.88, 0.987]
+qa8_lists-sets 0.871 [0.997, 0.963, 0.879]
+qa9_simple-negation 0.989 [0.995]
+qa10_indefinite-knowledge 0.922 [0.974]
+qa11_basic-coreference 0.917 [0.965, 0.896]
+qa12_conjunction 0.993 [0.993]
+qa13_compound-coreference 0.94 [0.971, 0.921]
+qa14_time-reasoning 0.915 [0.968, 0.89]
+qa15_basic-deduction 1.0 [1.0, 1.0]
+qa16_basic-induction 0.965 [1.0, 0.941, 0.932]
+qa17_positional-reasoning 0.506 [0.9, 0.888]
+qa18_size-reasoning 0.915 [0.617, 0.687]
+qa19_path-finding 0.181 [0.631, 0.625]
+qa20_agents-motivations 1.0 [1.0]
+{'passages': {'1': 0.2874, '2': 0.332, '3': 0.3133, '4': 0.2533, '5': 0.31, '6': 0.2933, '7+': 0.3}, 'passages_reader': {'1': 0.4176, '2': 0.4016, '3': 0.37, '4': 0.3733, '5': 0.26, '6': 0.35, '7+': 0.2933}, 'passages_both': {'1': 0.4751, '2': 0.459, '3': 0.4, '4': 0.4033, '5': 0.3333, '6': 0.3833, '7+': 0.34}, 'passages_most_frequent': {'1': 0.1762, '2': 0.2869, '3': 0.2967, '4': 0.2833, '5': 0.2367, '6': 0.3233, '7+': 0.2733}}
+{"seed": 3, "questions": 160000, "tasks": {"qa1_single-supporting-fact": 0.988, "qa2_two-supporting-facts": 0.891, "qa3_three-supporting-facts": 0.488, "qa4_two-arg-relations": 0.769, "qa5_three-arg-relations": 0.988, "qa6_yes-no-questions": 0.991, "qa7_counting": 0.838, "qa8_lists-sets": 0.871, "qa9_simple-negation": 0.989, "qa10_indefinite-knowledge": 0.922, "qa11_basic-coreference": 0.917, "qa12_conjunction": 0.993, "qa13_compound-coreference": 0.94, "qa14_time-reasoning": 0.915, "qa15_basic-deduction": 1.0, "qa16_basic-induction": 0.965, "qa17_positional-reasoning": 0.506, "qa18_size-reasoning": 0.915, "qa19_path-finding": 0.181, "qa20_agents-motivations": 1.0}, "step_hits": {"qa1_single-supporting-fact": [0.995], "qa2_two-supporting-facts": [0.952, 0.87], "qa3_three-supporting-facts": [0.951, 0.677, 0.419], "qa4_two-arg-relations": [0.752], "qa5_three-arg-relations": [0.987], "qa6_yes-no-questions": [0.991], "qa7_counting": [0.984, 0.88, 0.987], "qa8_lists-sets": [0.997, 0.963, 0.879], "qa9_simple-negation": [0.995], "qa10_indefinite-knowledge": [0.974], "qa11_basic-coreference": [0.965, 0.896], "qa12_conjunction": [0.993], "qa13_compound-coreference": [0.971, 0.921], "qa14_time-reasoning": [0.968, 0.89], "qa15_basic-deduction": [1.0, 1.0], "qa16_basic-induction": [1.0, 0.941, 0.932], "qa17_positional-reasoning": [0.9, 0.888], "qa18_size-reasoning": [0.617, 0.687], "qa19_path-finding": [0.631, 0.625], "qa20_agents-motivations": [1.0]}, "config": {"reader": "stage 73", "sup": 1, "roles": true, "sem": false, "space": true, "space_sup": true, "passages": true, "one_answer_list": 60, "hops": 3, "tag": "events_sup1_roles_spacesup_", "n_params": 1568341}, "passed_95": 8, "mean_error": 14.66, "world": {"same": 0.972, "held_names": 0.92, "held_objects_places": 0.923, "long": 0.928}, "passages": {"1": 0.2874, "2": 0.332, "3": 0.3133, "4": 0.2533, "5": 0.31, "6": 0.2933, "7+": 0.3}, "passages_reader": {"1": 0.4176, "2": 0.4016, "3": 0.37, "4": 0.3733, "5": 0.26, "6": 0.35, "7+": 0.2933}, "passages_both": {"1": 0.4751, "2": 0.459, "3": 0.4, "4": 0.4033, "5": 0.3333, "6": 0.3833, "7+": 0.34}, "passages_most_frequent": {"1": 0.1762, "2": 0.2869, "3": 0.2967, "4": 0.2833, "5": 0.2367, "6": 0.3233, "7+": 0.2733}}
