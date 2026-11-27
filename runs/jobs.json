@@ -1,146 +1,182 @@
 [
  {
-  "name": "events_sup1_roles_bigreader_gru1024_s0",
+  "name": "events_sup0_roles_long_s0",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
-  "seed": 0,
-  "questions": 160000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_",
-  "batch": "95-2026-11-27"
- },
- {
-  "name": "events_sup1_roles_bigreader_gru1024_long_s0",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
+  "flags": "--sup 0 --roles",
   "seed": 0,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_gru256_long_s0",
+  "name": "events_sup0_roles_hindsight_long_s0",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
+  "flags": "--sup 0 --roles --hindsight",
   "seed": 0,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru256x1_s0/bigreader_gru256x1_s0.pt EV_TAG=gru256_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_attn384_long_s0",
+  "name": "events_sup0_roles_reward_long_s0",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
+  "flags": "--sup 0 --roles --reward",
   "seed": 0,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_attn384x6_s0/bigreader_attn384x6_s0.pt EV_TAG=attn384_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_gru1024_s1",
+  "name": "events_sup0_roles_reward_hindsight_long_s0",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
-  "seed": 1,
-  "questions": 160000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_",
-  "batch": "95-2026-11-27"
- },
- {
-  "name": "events_sup1_roles_bigreader_gru1024_long_s1",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
-  "seed": 1,
+  "flags": "--sup 0 --roles --reward --hindsight",
+  "seed": 0,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_gru256_long_s1",
+  "name": "events_sup1_roles_reward_long_s0",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
-  "seed": 1,
+  "flags": "--sup 1 --roles --reward",
+  "seed": 0,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru256x1_s0/bigreader_gru256x1_s0.pt EV_TAG=gru256_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_attn384_long_s1",
+  "name": "events_sup0_roles_long_s1",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
+  "flags": "--sup 0 --roles",
   "seed": 1,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_attn384x6_s0/bigreader_attn384x6_s0.pt EV_TAG=attn384_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_gru1024_s2",
+  "name": "events_sup0_roles_hindsight_long_s1",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
+  "flags": "--sup 0 --roles --hindsight",
+  "seed": 1,
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
+ },
+ {
+  "name": "events_sup0_roles_reward_long_s1",
+  "script": "hippo_events.py",
+  "flags": "--sup 0 --roles --reward",
+  "seed": 1,
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
+ },
+ {
+  "name": "events_sup0_roles_reward_hindsight_long_s1",
+  "script": "hippo_events.py",
+  "flags": "--sup 0 --roles --reward --hindsight",
+  "seed": 1,
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
+ },
+ {
+  "name": "events_sup1_roles_reward_long_s1",
+  "script": "hippo_events.py",
+  "flags": "--sup 1 --roles --reward",
+  "seed": 1,
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
+ },
+ {
+  "name": "events_sup0_roles_long_s2",
+  "script": "hippo_events.py",
+  "flags": "--sup 0 --roles",
   "seed": 2,
-  "questions": 160000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_",
-  "batch": "95-2026-11-27"
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_gru1024_long_s2",
+  "name": "events_sup0_roles_hindsight_long_s2",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
+  "flags": "--sup 0 --roles --hindsight",
   "seed": 2,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_gru256_long_s2",
+  "name": "events_sup0_roles_reward_long_s2",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
+  "flags": "--sup 0 --roles --reward",
   "seed": 2,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru256x1_s0/bigreader_gru256x1_s0.pt EV_TAG=gru256_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_attn384_long_s2",
+  "name": "events_sup0_roles_reward_hindsight_long_s2",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
+  "flags": "--sup 0 --roles --reward --hindsight",
   "seed": 2,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_attn384x6_s0/bigreader_attn384x6_s0.pt EV_TAG=attn384_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_gru1024_s3",
+  "name": "events_sup1_roles_reward_long_s2",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
-  "seed": 3,
-  "questions": 160000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_",
-  "batch": "95-2026-11-27"
+  "flags": "--sup 1 --roles --reward",
+  "seed": 2,
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_gru1024_long_s3",
+  "name": "events_sup0_roles_long_s3",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
+  "flags": "--sup 0 --roles",
   "seed": 3,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru1024x2_s0/bigreader_gru1024x2_s0.pt EV_TAG=gru1024_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_gru256_long_s3",
+  "name": "events_sup0_roles_hindsight_long_s3",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
+  "flags": "--sup 0 --roles --hindsight",
   "seed": 3,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_gru256x1_s0/bigreader_gru256x1_s0.pt EV_TAG=gru256_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_bigreader_attn384_long_s3",
+  "name": "events_sup0_roles_reward_long_s3",
   "script": "hippo_events.py",
-  "flags": "--sup 1 --roles",
+  "flags": "--sup 0 --roles --reward",
   "seed": 3,
   "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz BIG_READER=$GITHUB_WORKSPACE/runs/bigreader_attn384x6_s0/bigreader_attn384x6_s0.pt EV_TAG=attn384_long_",
-  "batch": "95-2026-11-27"
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
+ },
+ {
+  "name": "events_sup0_roles_reward_hindsight_long_s3",
+  "script": "hippo_events.py",
+  "flags": "--sup 0 --roles --reward --hindsight",
+  "seed": 3,
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
+ },
+ {
+  "name": "events_sup1_roles_reward_long_s3",
+  "script": "hippo_events.py",
+  "flags": "--sup 1 --roles --reward",
+  "seed": 3,
+  "questions": 480000,
+  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
+  "batch": "96-2026-11-27"
  }
 ]
