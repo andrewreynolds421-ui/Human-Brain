@@ -109,7 +109,7 @@ def main():
                 if a.mode == "story" and step % 2 == 0: items = [dict(words=run_of(train, rng, tgt // BS)) for _ in range(BS)]
                 else: items = [dict(words=s) for s in single(rng, tgt)]
                 words += sum(len(i["words"]) for i in items); M.step(items)
-                if (step + 1) % 500 == 0: print(dict(step=step + 1, minutes=round((time.time() - t0) / 60, 1), words=words), flush=True)
+                if (step + 1) % int(os.environ.get("LOG_EVERY", 500)) == 0: print(dict(step=step + 1, minutes=round((time.time() - t0) / 60, 1), words=words), flush=True)
             out["words_read"] = words; torch.save({k: v for k, v in M.m.state_dict().items()}, path)
         out["after"] = measure(); print("after", out["after"], flush=True)
         json.dump(out, open(os.path.join(OUT, f"{tag}s{a.seed}.json"), "w"), indent=1)

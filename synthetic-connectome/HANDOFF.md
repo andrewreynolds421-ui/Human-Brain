@@ -566,6 +566,11 @@ Stage 90 (26 Nov; `hippo_events.py --roles --sem`, `semantic_cortex.py` -> data/
 (2 nets) vs Stage 89 long 10.8 %. Open: left/right (needs spatial composition), three facts (third step 70 %), paths,
 counting 83 %; real-book comprehension (41.7 % with reader; adults 82 %). Ideas: a spatial map (entorhinal grid-like
 coordinates) for 17/19; retrain the reading network with a meaning objective instead of adding vectors beside it.
+Stage 91 (26 Nov; `scripts/story_reader.py --mode story|single [--then-events "..."]`, env STEPS; hippo_events reads
+STORY_READER=<reader .pt>): the reader had never read two sentences in a row - context HURT it (-6.26 vs -4.90 logp
+per word). Story training removes the harm (-4.92 vs -4.79) but context still does not help; passages memory+reader
+41.4 -> 43.8 % but the single-sentence control gets 43.5 %. Negative for "meaning from connected text" at this
+reader size (GRU 256). Next: spatial map for bAbI 17 / 19 (user's order).
 
 Stage 81 follow-up 7 (26 Nov): full bAbI (120 k questions, 20 tasks jointly, MAX_SENT=30 to fit 8 GB cloud machines;
 `hippo_wired_babi.py` with BIG_LOOP + SCORE_BOTH; old = Stage 79 network, same settings incl. clipping). Old: 6/2/1/6

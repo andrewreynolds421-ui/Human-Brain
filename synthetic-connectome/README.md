@@ -4573,6 +4573,43 @@ Stage 89's taught model, one answer list, four networks each, GitHub runners.
   are not free. Passed counts are steadier (9-10 in 7 of 8 networks).
 - Best to date: bAbI 10.8 % / 10-11 tasks (Stage 89 long); world stories 98 % and giving 99 % (with roles).
 
+## Stage 91: the reading network learns to read stories, not sentences
+
+**Question.** Every lesson of VEGA's reading network was one sentence; since Stage 74 it is handed whole stories.
+Does training it on connected text give it meaning beyond the sentence - and does the hippocampus built on it then
+understand real books better?
+
+**Set-up** (`scripts/story_reader.py`). The Stage 73 reading networks keep learning at a quarter of their old step
+size on the training-split books of the graded catalogue that are on the runners (159 books; last 5 % of each held
+out; test-split books never read), 6,000 lessons, ~13 million words. **story**: half the lessons are runs of
+consecutive sentences (40-240 words) read as one sequence, half single sentences. **single** (control): the same
+lessons and words, single sentences only. Then Stage 90's hippocampus (roles + meaning, steps taught) is trained on
+the new reading network. Four networks each, GitHub runners.
+
+| reading network alone (4 networks) | before | after: story | after: single (control) |
+|---|---|---|---|
+| held-out sentence, log-probability per word: read alone | -4.90 | -4.79 | -4.73 |
+| ... read after the sentences before it | **-6.26** | **-4.92** | -7.16 |
+| passage test: sentence 21 alone | 35.4 % | 37.6 % | 37.9 % |
+| passage test: after reading the 20 sentences before it | 31.0 % | 37.3 % | 31.7 % |
+
+| hippocampus on it (4 networks) | Stage 73 reader | story reader | single-sentence control |
+|---|---|---|---|
+| bAbI: passed / mean error | 9, 9, 9, 10 / 14.7 % | 9, 10, 10, 9 / 14.8 % | 10, 7, 8, 10 / 16.1 % |
+| passages: memory | 34.2 % | 34.5 % | 34.0 % |
+| passages: memory + reader | 41.4 % | **43.8 %** | 43.5 % |
+
+- **Found:** before this stage the story so far *hurt* the reading network - a sentence was predicted far worse after
+  the sentences before it (-6.26 vs -4.90 per word; passage test 31 % vs 35 %). It had never seen a second sentence.
+- **Story reading removed the harm, and no more.** After it, a sentence is predicted as well in context as alone
+  (-4.92 vs -4.79), not better, in all four networks; the passage test in context equals alone (37.3 vs 37.6 %).
+  The network learned to disregard the story, not to use it. Its one 256-unit state has no room for a story.
+- **The gain there is comes from more reading, not from stories:** memory + reader 41.4 -> 43.8 % (story) and 43.5 %
+  (control) - the control gains the same. The hippocampus's own memory of the passage did not move (34.5 %).
+- So "retrain the reading network on meaning" in this form does not give comprehension of real books. What carries
+  a story has to be the memory system (which finds the right sentences when taught - Stage 89 - but has nothing to
+  teach it on real books), or a reading network with far more capacity. Adults: 82 %.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

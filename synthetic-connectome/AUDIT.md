@@ -960,3 +960,12 @@ float16). Sixteen networks on GitHub runners; the 3x-longer combined model had 2
 up (marked). Stage 88 (plural keys, old design) still running; superseded by Stage 89. Summary
 results/events/stage90_summary.json.
 
+## 67. Follow-up (26 November): Stage 91 — reading connected text
+
+Eight runs on GitHub runners (first launch failed in all 8: the graded-book catalogue was not copied to the runner;
+workflow fixed). The runners hold 159 of the 251 training-split books (the school readers' folder is not in the
+bundle) - stated. Control with equal lessons and words. Prediction (in-context reading would beat reading alone and
+lift the passage test) refuted; reported as such. The grade test proper (Stage 66) was not rerun on the new reading
+networks; the single-sentence passage score (35.4 -> 37.6 %) is the only check that sentence reading did not suffer.
+Summary results/story_reader/stage91_summary.json; reader weights /home/claude/models/story_reader/ and vega-runs.
+
