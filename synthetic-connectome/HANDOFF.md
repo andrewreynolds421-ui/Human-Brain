@@ -567,3 +567,8 @@ Stage 90 (26 Nov; `hippo_events.py --roles --sem`, `semantic_cortex.py` -> data/
 counting 83 %; real-book comprehension (41.7 % with reader; adults 82 %). Ideas: a spatial map (entorhinal grid-like
 coordinates) for 17/19; retrain the reading network with a meaning objective instead of adding vectors beside it.
 
+Stage 81 follow-up 7 (26 Nov): full bAbI (120 k questions, 20 tasks jointly, MAX_SENT=30 to fit 8 GB cloud machines;
+`hippo_wired_babi.py` with BIG_LOOP + SCORE_BOTH; old = Stage 79 network, same settings incl. clipping). Old: 6/2/1/6
+passed, error 25.5-38.8 %. Wired: 0/0/0 (seeds 1-3; seed 0 pending), error 44-49.5 %; qa1 ~50 % for every wired seed
+(the storage-habit stall), world stories inside the run 55-65 %. Models on branches stage81b-babi-{old,wired}-s<seed>.
+Conclusion: on bAbI the data-wired hippocampus is clearly worse; fixing what gets stored must come first.
