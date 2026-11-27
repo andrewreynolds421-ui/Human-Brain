@@ -1,0 +1,171 @@
+{
+ "config": {
+  "seed": 0,
+  "cond": "shuffled",
+  "epochs": 30,
+  "train_photos": 6000,
+  "words": 776,
+  "minutes": 19.2
+ },
+ "picture_choice_taught_words": {
+  "accuracy": 0.25025,
+  "chance": 0.25,
+  "words": 300
+ },
+ "picture_choice_untaught_words": {
+  "accuracy": 0.23125,
+  "chance": 0.25,
+  "words": 17,
+  "per_word": {
+   "after": 0.14,
+   "arms": 0.23,
+   "bench": 0.24,
+   "each": 0.14,
+   "face": 0.32,
+   "fence": 0.11,
+   "mountain": 0.26,
+   "pants": 0.27,
+   "picture": 0.37,
+   "pink": 0.22,
+   "racing": 0.15,
+   "shorts": 0.35,
+   "smiles": 0.06,
+   "snowy": 0.42,
+   "stairs": 0.14,
+   "swings": 0.18,
+   "uniforms": 0.28
+  }
+ },
+ "caption_to_photo_of_10": {
+  "accuracy": 0.11,
+  "chance": 0.1
+ },
+ "photo_to_caption_of_10": {
+  "accuracy": 0.093,
+  "chance": 0.1
+ },
+ "best_words": [
+  [
+   "lake",
+   0.63
+  ],
+  [
+   "them",
+   0.6
+  ],
+  [
+   "dog",
+   0.6
+  ],
+  [
+   "adults",
+   0.56
+  ],
+  [
+   "tall",
+   0.5
+  ],
+  [
+   "open",
+   0.5
+  ],
+  [
+   "striped",
+   0.47
+  ],
+  [
+   "slides",
+   0.47
+  ],
+  [
+   "carrying",
+   0.47
+  ],
+  [
+   "fire",
+   0.44
+  ],
+  [
+   "shore",
+   0.4
+  ],
+  [
+   "hanging",
+   0.4
+  ],
+  [
+   "golden",
+   0.4
+  ],
+  [
+   "away",
+   0.4
+  ],
+  [
+   "walks",
+   0.38
+  ]
+ ],
+ "worst_words": [
+  [
+   "helmet",
+   0.07
+  ],
+  [
+   "children",
+   0.07
+  ],
+  [
+   "baby",
+   0.07
+  ],
+  [
+   "glasses",
+   0.06
+  ],
+  [
+   "forest",
+   0.06
+  ],
+  [
+   "yard",
+   0.05
+  ],
+  [
+   "shaking",
+   0.0
+  ],
+  [
+   "night",
+   0.0
+  ],
+  [
+   "lying",
+   0.0
+  ],
+  [
+   "hill",
+   0.0
+  ],
+  [
+   "hands",
+   0.0
+  ],
+  [
+   "cap",
+   0.0
+  ],
+  [
+   "beach",
+   0.0
+  ],
+  [
+   "bat",
+   0.0
+  ],
+  [
+   "around",
+   0.0
+  ]
+ ]
+}
