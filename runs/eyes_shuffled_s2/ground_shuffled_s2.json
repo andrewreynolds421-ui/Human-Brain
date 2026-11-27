@@ -1,0 +1,171 @@
+{
+ "config": {
+  "seed": 2,
+  "cond": "shuffled",
+  "epochs": 30,
+  "train_photos": 6000,
+  "words": 776,
+  "minutes": 10.9
+ },
+ "picture_choice_taught_words": {
+  "accuracy": 0.254,
+  "chance": 0.25,
+  "words": 300
+ },
+ "picture_choice_untaught_words": {
+  "accuracy": 0.2495,
+  "chance": 0.25,
+  "words": 17,
+  "per_word": {
+   "after": 0.35,
+   "arms": 0.06,
+   "bench": 0.17,
+   "each": 0.47,
+   "face": 0.43,
+   "fence": 0.13,
+   "mountain": 0.3,
+   "pants": 0.18,
+   "picture": 0.49,
+   "pink": 0.12,
+   "racing": 0.11,
+   "shorts": 0.28,
+   "smiles": 0.27,
+   "snowy": 0.1,
+   "stairs": 0.19,
+   "swings": 0.32,
+   "uniforms": 0.21
+  }
+ },
+ "caption_to_photo_of_10": {
+  "accuracy": 0.10866666666666666,
+  "chance": 0.1
+ },
+ "photo_to_caption_of_10": {
+  "accuracy": 0.11,
+  "chance": 0.1
+ },
+ "best_words": [
+  [
+   "ready",
+   0.74
+  ],
+  [
+   "tall",
+   0.65
+  ],
+  [
+   "dog",
+   0.6
+  ],
+  [
+   "another",
+   0.58
+  ],
+  [
+   "legs",
+   0.57
+  ],
+  [
+   "trail",
+   0.56
+  ],
+  [
+   "shirt",
+   0.53
+  ],
+  [
+   "striped",
+   0.47
+  ],
+  [
+   "mountains",
+   0.47
+  ],
+  [
+   "fountain",
+   0.47
+  ],
+  [
+   "city",
+   0.45
+  ],
+  [
+   "stand",
+   0.45
+  ],
+  [
+   "golden",
+   0.45
+  ],
+  [
+   "little",
+   0.44
+  ],
+  [
+   "four",
+   0.44
+  ]
+ ],
+ "worst_words": [
+  [
+   "play",
+   0.07
+  ],
+  [
+   "lying",
+   0.07
+  ],
+  [
+   "forest",
+   0.06
+  ],
+  [
+   "bicycle",
+   0.06
+  ],
+  [
+   "mask",
+   0.05
+  ],
+  [
+   "dock",
+   0.05
+  ],
+  [
+   "cliff",
+   0.04
+  ],
+  [
+   "together",
+   0.0
+  ],
+  [
+   "thrown",
+   0.0
+  ],
+  [
+   "outfit",
+   0.0
+  ],
+  [
+   "hair",
+   0.0
+  ],
+  [
+   "fishing",
+   0.0
+  ],
+  [
+   "ball",
+   0.0
+  ],
+  [
+   "area",
+   0.0
+  ],
+  [
+   "all",
+   0.0
+  ]
+ ]
+}
