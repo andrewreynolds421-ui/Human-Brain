@@ -1,0 +1,28 @@
+built {'page_nouns_det': 0.975, 'page_nouns_refl_number': 0.9975, 'page_nouns_refl_gender': 1.0, 'page_nouns_refl_across': 0.985, 'page_nouns_npi': 1.0, 'page_nouns_npi_scope': 0.055, 'page_nouns_gap_wh': 0.99, 'page_nouns_gap_that': 1.0, 'page_nouns_aux_agree_relative': 0.9575, 'page_nouns_verb_agree_relative': 0.7075, 'page_nouns_who_gap': 0.735, 'page_nouns_name_reflexive': 0.9625, 'page_nouns_question_ever': 0.0325, 'held_out_nouns_det': 0.8825, 'held_out_nouns_refl_number': 0.98, 'held_out_nouns_refl_gender': 1.0, 'held_out_nouns_refl_across': 0.8725, 'held_out_nouns_npi': 1.0, 'held_out_nouns_npi_scope': 0.31, 'held_out_nouns_gap_wh': 0.9525, 'held_out_nouns_gap_that': 0.98, 'held_out_nouns_aux_agree_relative': 0.825, 'held_out_nouns_verb_agree_relative': 0.7025, 'held_out_nouns_who_gap': 0.535, 'held_out_nouns_name_reflexive': 0.9625, 'held_out_nouns_question_ever': 0.0325}
+reading network: bigreader_gru1024x2_s0.pt width 1024
+{'questions': 16000, 'minutes': 11.9, 'loss': 1.882}
+{'questions': 32000, 'minutes': 24.2, 'loss': 0.068}
+{'questions': 48000, 'minutes': 36.6, 'loss': 0.814}
+{'questions': 64000, 'minutes': 48.6, 'loss': 0.005}
+{'questions': 80000, 'minutes': 61.1, 'loss': 0.056}
+{'questions': 96000, 'minutes': 73.6, 'loss': 2.219}
+{'questions': 112000, 'minutes': 85.7, 'loss': 0.329}
+{'questions': 128000, 'minutes': 98.4, 'loss': 0.732}
+{'questions': 144000, 'minutes': 110.9, 'loss': 0.297}
+{'questions': 160000, 'minutes': 123.1, 'loss': 3.773}
+{'questions': 176000, 'minutes': 136.0, 'loss': 1.865}
+{'questions': 192000, 'minutes': 148.5, 'loss': 0.019}
+{'questions': 208000, 'minutes': 161.6, 'loss': 2.961}
+{'questions': 224000, 'minutes': 174.6, 'loss': 2.301}
+{'questions': 240000, 'minutes': 187.3, 'loss': 1.75}
+{'questions': 256000, 'minutes': 199.4, 'loss': 0.223}
+{'questions': 272000, 'minutes': 211.8, 'loss': 0.678}
+{'questions': 288000, 'minutes': 224.5, 'loss': 0.849}
+{'questions': 304000, 'minutes': 237.1, 'loss': 0.981}
+{'questions': 320000, 'minutes': 249.4, 'loss': 1.595}
+{'questions': 336000, 'minutes': 261.7, 'loss': 0.001}
+{'questions': 352000, 'minutes': 274.2, 'loss': 0.817}
+{'questions': 368000, 'minutes': 286.9, 'loss': 3.612}
+{'questions': 384000, 'minutes': 299.3, 'loss': 2.323}
+{'questions': 400000, 'minutes': 311.9, 'loss': 1.776}
+{'questions': 416000, 'minutes': 324.0, 'loss': 1.979}
