@@ -4682,17 +4682,19 @@ layers. Tested on held-out ends of the books and on Stage 86's passage test (tes
 | reader alone (finished networks) | Stage 73 reader | control 256 | large 1,024 x 2 | attention 384 x 6 |
 |---|---|---|---|---|
 | held-out sentence, log-prob. per word: alone | -4.90 | -5.04 | -4.88 | -4.82 |
-| ... after the sentences before it | -6.26 | -4.82 | **-4.57** | **-4.53** |
-| passage test: sentence 21 alone | 35.4 % | 35.7 % | 39.0 % | 40.1 % |
-| passage test: after reading the passage | 31.0 % | 36.8 % | **41.7 %** | 32.0 % * |
+| ... after the sentences before it | -6.26 | -4.82 | **-4.58** | **-4.53** |
+| passage test: sentence 21 alone | 35.4 % | 35.7 % | 39.4 % | 40.1 % |
+| passage test: after reading the passage | 31.0 % | 36.8 % | **42.1 %** | 32.0 % * |
+| grade test (1 sentence, 4 choices; first network), mean of 7 bands | 76.4 % | 73.6 % | 75.8 % | 77.0 % |
 | hours on a 4-core runner | - | 0.6-0.9 | 6.7-8.8 | 7.1-8.6 |
 
-(most-frequent-word baseline 26.8 %; large: 1 of 2 networks finished - the other stopped at its last step and scores
-44.5 % on a 60-item interim test; * see below)
+(most-frequent-word baseline 26.8 %; two networks each; * see below)
 
 - **Upbringing was the main fault.** Every reader raised on connected text predicts a sentence better after the
   story so far than alone (by 0.2-0.3 per word) - even the control at the old size. The old reader was 1.4 worse.
-- **Size helps on top:** the large reader reads the passage test at 41.7 % by itself - what the old reader and the
+- **Sentence reading is kept:** on the grade test the new readers match the old one (75.8-77.0 % vs 76.4 %; the
+  attention reader passes grades 1-4, the large one 1-3 with grade 4 at 74 %) on a third of the text.
+- **Size helps on top:** the large reader reads the passage test at 42.1 % by itself - what the old reader and the
   hippocampus reached together (41.4 %, Stage 90) - and is 0.25 per word better in context than the control.
 - **The attention reader predicts words best but fails the passage test in context (32 %).** Probable cause, not yet
   tested: its lessons were 192 tokens long and a passage is about 400 - it has never used positions that far along.

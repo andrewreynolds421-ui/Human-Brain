@@ -598,4 +598,9 @@ vs -5.04 alone; large 1024x2: -4.57; attention 384x6: -4.53). Passage test in co
 attention 32.0 (lessons of 192 tokens, passages ~400: untrained positions - retrain with longer lessons to test).
 Weights: vega-runs runs/bigreader_*/ (.pt half precision; load with .float()). bigreader_gru1024x2_s1 relaunched for
 its full test. Next: adapter so hippo_events can sit on a big_reader model; grade test locally; 10x passage data.
+Stage 95 (27 Nov, running): `scripts/reader_adapter.py` puts a big_reader model under hippo_events
+(BIG_READER=<.pt>; READER_BOOKS=bundle locally so the vocabulary matches the runners' 159 books); runs
+events_sup1_roles_bigreader_{gru1024,gru256,attn384}_[long_]s0-3 on vega-runs. Grade test on new readers
+(`python scripts/reader_adapter.py <.pt>...`, results/big_reader/grade_test.json): large 75.8, attention 77.0,
+control 73.6, old 76.4 (mean of bands). Both large readers finished: passages in context 41.7 / 42.4.
 
