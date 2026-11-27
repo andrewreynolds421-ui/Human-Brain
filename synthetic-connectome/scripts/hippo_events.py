@@ -38,6 +38,7 @@ DATA = os.environ.get("EV_DATA", "/home/claude/models/events")
 HOPS, N_DG, ACTIVE, D_KEY, BS, MAX_SENT = 3, 512, 0.05, 64, 16, 50
 QUESTIONS = int(os.environ.get("QUESTIONS", 160_000))
 SUP_W = 1.0                                                              # weight of the step teaching (ASSUMED)
+SPACE = False        # Stage 92: a spatial map - things are placed in 2-D so that the stated relations agree (path integration)
 ROLES = False        # Stage 90b: role-aware recall - read one word of the recalled event by its role in the sentence
 SEM = False          # Stage 90a: word meaning from the semantic cortex (scripts/semantic_cortex.py) joined to every word
 D_SEM = 128
@@ -109,8 +110,14 @@ def build(M, seed):
             s.cue_q = nn.Linear(P, E); s.qs = nn.Linear(P, D); s.tw = nn.Linear(P, 3)              # cue word, gist cue, time (recency / before / after)
             s.beta = nn.Parameter(torch.tensor(10.0)); s.temp = nn.Parameter(torch.tensor(5.0))
             s.reent = nn.Sequential(nn.Linear(E + P, 256), nn.Tanh(), nn.Linear(256, E))           # big loop (Stage 84); starts as a copy
-            s.mix = nn.Linear(H, NR * HOPS + 1); s.dec = nn.Sequential(nn.Linear(P + H + NR * HOPS * E + HOPS + 1, 256), nn.Tanh(), nn.Linear(256, E))
+            s.mix = nn.Linear(H, NR * HOPS + 1); s.dec = nn.Sequential(nn.Linear(P + H + NR * HOPS * E + HOPS + 1 + (64 if SPACE else 0), 256), nn.Tanh(), nn.Linear(256, E))
             if ROLES: s.hproj = nn.Linear(H, D); s.rq = nn.Linear(P + E, D)                          # a word's role (from its context) / the role asked for
+            if SPACE:                                                                              # entorhinal-like map (MODEL)
+                s.sp_h = nn.Linear(H, D); s.sp_u = nn.Parameter(torch.randn(2, D) * 0.1)             # which two things a sentence relates (by role)
+                s.sp_d = nn.Linear(H, 2); s.sp_g = nn.Linear(H, 1)                                   # the displacement it states; whether it is spatial at all
+                s.sp_q = nn.Linear(H, 2 * E); s.sp_out = nn.Sequential(nn.Linear(10, 64), nn.Tanh())  # the two things asked about; what is read off the map
+                with torch.no_grad(): s.sp_g.bias.fill_(-2.0)                                        # sentences are not spatial until learned otherwise
+                s.register_buffer("dirs", torch.tensor([[1.0, 0.0], [-1.0, 0.0], [0.0, 1.0], [0.0, -1.0]]))
             s.recw = nn.Linear(H, HOPS + 1)                                                        # recognition gains; start at zero
             with torch.no_grad():
                 s.reent[2].weight.zero_(); s.reent[2].bias.zero_(); s.recw.weight.zero_(); s.recw.bias.zero_(); s.tw.weight.zero_(); s.tw.bias.zero_()
@@ -149,9 +156,22 @@ def build(M, seed):
                 st = s.pfc(torch.cat([r, cue] + extra + [(a[..., None] * ssum).sum(1)], -1), st)
                 found += extra
                 found.append(r + s.reent(torch.cat([r, st], -1))); rs.append(r); scs.append(torch.log_softmax(sc, -1)); atts.append(a)
+            spf = []
+            if SPACE:
+                wr = torch.softmax(torch.einsum("btd,rd->brt", s.sp_h(hs), s.sp_u)[:, :, None, :] + torch.log(Mh + 1e-9)[:, None], -1)   # (B, 2, S, T)
+                kc = s.code(torch.einsum("brst,bte->brse", wr, es)); d = s.sp_d(send); g = torch.sigmoid(s.sp_g(send)) * smask[..., None]
+                Pm = torch.zeros(B, N_DG, 2)                                                         # the map: a position for every dentate code
+                for _ in range(8):                                                                   # settle: every relation pulls its two things into place
+                    err = g * (torch.einsum("bsn,bnk->bsk", kc[:, 0], Pm) - torch.einsum("bsn,bnk->bsk", kc[:, 1], Pm) - d)
+                    Pm = (Pm - 0.3 * torch.einsum("bsn,bsk->bnk", kc[:, 0], err) + 0.3 * torch.einsum("bsn,bsk->bnk", kc[:, 1], err)).clamp(-8, 8)
+                allp = torch.cat([torch.einsum("bsn,bnk->bsk", kc[:, 0], Pm), torch.einsum("bsn,bnk->bsk", kc[:, 1], Pm)], 1); allg = torch.cat([g, g], 1)[..., 0]
+                aq = torch.softmax((qe[:, None] * s.sp_q(q).view(B, 2, Ed)[:, :, None]).sum(-1) / Ed ** 0.5 + lm[:, None], -1)
+                pq = torch.einsum("brn,bnk->brk", s.code(torch.einsum("brl,ble->bre", aq, qe)), Pm)  # where the two things asked about are
+                occ = [torch.tanh((torch.exp(-((pq[:, r, None, None, :] + s.dirs[None, :, None, :] - allp[:, None]) ** 2).sum(-1) / 0.25) * allg[:, None]).sum(-1)) for r in (0, 1)]   # is something one step away, in each direction?
+                spf = [s.sp_out(torch.cat([pq[:, 1] - pq[:, 0]] + occ, -1))]; s.space = dict(delta=pq[:, 1] - pq[:, 0], gate=g[..., 0], d=d)
             w = torch.softmax(s.mix(q), -1)
             outs = rs + rr
-            z = sum(w[:, k:k + 1] * outs[k] for k in range(len(outs))) + w[:, len(outs):] * s.dec(torch.cat([st, q] + outs + counts + [rs[0].norm(dim=-1, keepdim=True)], -1))
+            z = sum(w[:, k:k + 1] * outs[k] for k in range(len(outs))) + w[:, len(outs):] * s.dec(torch.cat([st, q] + outs + counts + [rs[0].norm(dim=-1, keepdim=True)] + spf, -1))
             lg = s.temp * torch.einsum("be,bce->bc", z / (z.norm(dim=-1, keepdim=True) + 1e-6), ce / (ce.norm(dim=-1, keepdim=True) + 1e-6))
             wmc = torch.sigmoid(s.beta * torch.einsum("btn,bcn->bct", keys, s.code(ce)) - 5) * kstr[:, None]     # recognition: each candidate as a cue
             g = s.recw(q); lg = lg + g[:, :1] * wmc.sum(-1)
@@ -161,9 +181,9 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); a = ap.parse_args()
-    global ROLES, SEM; ROLES = a.roles; SEM = a.sem
-    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + os.environ.get("EV_TAG", "")
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); ap.add_argument("--space", action="store_true"); a = ap.parse_args()
+    global ROLES, SEM, SPACE; ROLES = a.roles; SEM = a.sem; SPACE = a.space
+    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + ("space_" if a.space else "") + os.environ.get("EV_TAG", "")
 
     def run(M, C, tok, seed, res):
         torch = M.torch; torch.set_num_threads(int(os.environ.get("THREADS", 2)))
@@ -253,7 +273,7 @@ def main():
             if os.path.exists(ck): os.remove(ck)
         else: net.load_state_dict(torch.load(path))
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={}, step_hits={},
-                   config=dict(reader=os.path.basename(os.environ.get("STORY_READER", "")) or "stage 73", sup=a.sup, roles=ROLES, sem=SEM, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
+                   config=dict(reader=os.path.basename(os.environ.get("STORY_READER", "")) or "stage 73", sup=a.sup, roles=ROLES, sem=SEM, space=SPACE, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
         for t in T:
             hops = []; acc = accuracy(tasks[t]["test"][:NT], hops); out["tasks"][tasks[t]["name"]] = round(acc, 4)
             if hops: out["step_hits"][tasks[t]["name"]] = [round(float(np.mean([h[j] for h in hops if len(h) > j])), 3) for j in range(max(map(len, hops)))]   # does recall step j land on supporting sentence j?
