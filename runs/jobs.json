@@ -1,38 +1,11 @@
 [
  {
-  "name": "bigreader_gru1024x2_s0",
-  "script": "big_reader.py",
-  "flags": "--kind gru --width 1024 --layers 2",
-  "seed": 0,
-  "questions": 0,
-  "env": "PASSAGES=data/passages.json.gz WORDS=40000000 TIME_LIMIT=265",
-  "batch": "94-resume-1"
- },
- {
-  "name": "bigreader_attn384x6_s0",
-  "script": "big_reader.py",
-  "flags": "--kind attn --width 384 --layers 6",
-  "seed": 0,
-  "questions": 0,
-  "env": "PASSAGES=data/passages.json.gz WORDS=40000000 TIME_LIMIT=265",
-  "batch": "94-resume-1"
- },
- {
   "name": "bigreader_gru1024x2_s1",
   "script": "big_reader.py",
   "flags": "--kind gru --width 1024 --layers 2",
   "seed": 1,
   "questions": 0,
   "env": "PASSAGES=data/passages.json.gz WORDS=40000000 TIME_LIMIT=265",
-  "batch": "94-resume-1"
- },
- {
-  "name": "bigreader_attn384x6_s1",
-  "script": "big_reader.py",
-  "flags": "--kind attn --width 384 --layers 6",
-  "seed": 1,
-  "questions": 0,
-  "env": "PASSAGES=data/passages.json.gz WORDS=40000000 TIME_LIMIT=265",
-  "batch": "94-resume-1"
+  "batch": "94-resume-2"
  }
 ]
