@@ -1,0 +1,135 @@
+{
+ "seed": 1,
+ "kind": "attn",
+ "width": 384,
+ "layers": 6,
+ "parameters": 18990416,
+ "books": 159,
+ "train_words": 4614242,
+ "vocabulary": 21198,
+ "words_budget": 40000000,
+ "finished": false,
+ "words_read": 21504000,
+ "training": [
+  {
+   "step": 250,
+   "words": 1536000,
+   "minutes": 18.9,
+   "loss": 5.75
+  },
+  {
+   "step": 500,
+   "words": 3072000,
+   "minutes": 37.3,
+   "loss": 5.499
+  },
+  {
+   "step": 750,
+   "words": 4608000,
+   "minutes": 55.6,
+   "loss": 5.199
+  },
+  {
+   "step": 1000,
+   "words": 6144000,
+   "minutes": 73.9,
+   "loss": 5.021
+  },
+  {
+   "step": 1250,
+   "words": 7680000,
+   "minutes": 92.2,
+   "loss": 4.915
+  },
+  {
+   "step": 1500,
+   "words": 9216000,
+   "minutes": 110.4,
+   "loss": 4.833
+  },
+  {
+   "step": 1750,
+   "words": 10752000,
+   "minutes": 128.7,
+   "loss": 4.825
+  },
+  {
+   "step": 2000,
+   "words": 12288000,
+   "minutes": 146.9,
+   "loss": 4.886
+  },
+  {
+   "step": 2250,
+   "words": 13824000,
+   "minutes": 165.1,
+   "loss": 4.769
+  },
+  {
+   "step": 2500,
+   "words": 15360000,
+   "minutes": 183.3,
+   "loss": 4.661
+  },
+  {
+   "step": 2750,
+   "words": 16896000,
+   "minutes": 201.9,
+   "loss": 4.725
+  },
+  {
+   "step": 3000,
+   "words": 18432000,
+   "minutes": 220.4,
+   "loss": 4.581
+  },
+  {
+   "step": 3250,
+   "words": 19968000,
+   "minutes": 238.8,
+   "loss": 4.496
+  },
+  {
+   "step": 3500,
+   "words": 21504000,
+   "minutes": 256.9,
+   "loss": 4.666
+  }
+ ],
+ "heldout_logp_per_word": {
+  "alone": -4.8918,
+  "in_context": -4.6896
+ },
+ "passages": {
+  "alone": {
+   "1": 0.55,
+   "2": 0.4,
+   "3": 0.3333,
+   "4": 0.4,
+   "5": 0.3167,
+   "6": 0.3667,
+   "7+": 0.3667
+  },
+  "in_context": {
+   "1": 0.45,
+   "2": 0.2833,
+   "3": 0.2667,
+   "4": 0.4,
+   "5": 0.3333,
+   "6": 0.2833,
+   "7+": 0.3167
+  },
+  "most_frequent": {
+   "1": 0.2333,
+   "2": 0.3333,
+   "3": 0.2833,
+   "4": 0.2667,
+   "5": 0.3,
+   "6": 0.3833,
+   "7+": 0.1833
+  },
+  "alone_mean": 0.3905,
+  "in_context_mean": 0.3333,
+  "most_frequent_mean": 0.2833
+ }
+}
