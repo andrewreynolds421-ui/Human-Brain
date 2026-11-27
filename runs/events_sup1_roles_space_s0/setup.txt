@@ -1,0 +1,16 @@
++ git fetch -q --depth 1 origin vega-bundle
++ mkdir -p /tmp/b
++ tar x -C /tmp/b
++ git archive FETCH_HEAD
++ cd /tmp/b
++ sha256sum -c vega_hippo_bundle.tar.gz.sha256 --ignore-missing
+vega_hippo_bundle.tar.gz.part00: OK
+vega_hippo_bundle.tar.gz.part01: OK
+vega_hippo_bundle.tar.gz.part02: OK
+vega_hippo_bundle.tar.gz.part03: OK
++ cat vega_hippo_bundle.tar.gz.part00 vega_hippo_bundle.tar.gz.part01 vega_hippo_bundle.tar.gz.part02 vega_hippo_bundle.tar.gz.part03
++ sudo mkdir -p /home/claude
++ sudo chown runner /home/claude
++ tar xzf b.tgz -C /
++ rm b.tgz
++ cp -r /home/runner/work/Human-Brain/Human-Brain/synthetic-connectome/scripts /home/runner/work/Human-Brain/Human-Brain/synthetic-connectome/synth /home/claude/synthetic-connectome/
