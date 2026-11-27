@@ -589,4 +589,8 @@ WORDS=40M, TIME_LIMIT=265 min then clean stop with .ckpt - relaunch the same job
 continue; runs bigreader_*). After Stage 94: put the best reader under the hippocampus (needs an adapter: M.batch /
 M.m / M.m.e / logp, hidden size from the model) and rerun the grade test locally. Research notes behind this plan:
 EntNet (Henaff 2017), AS Reader / BookTest (Kadlec 2016, Bajgar 2016), TEM (Whittington 2020), BabyLM findings.
+Stage 93 result (27 Nov): 10x training (QUESTIONS=1600000) roles: 13,14,12,12 passed, 8.7 %; + --entities 8.5 % (3
+nets) - story state adds ~0.2. Stage 94 interim (resumed at ~half of 40M words; relaunch bigreader_gru1024x2_s*,
+bigreader_attn384x6_s* with a new batch label if they stop again): all three readers raised on connected text now
+predict better in context than alone (about -4.7 vs -4.95 logp per word); gru1024x2 passages 41-43 % in context.
 

@@ -975,3 +975,9 @@ Twenty networks launched (12 + 8); written up with the taught long runs and two 
 running (table marks counts). Negative result, with the probe that shows why. The "taught" signal uses training
 answers only. Summary results/events/stage92_summary.json.
 
+## 69. Follow-up (27 November): Stage 93, and Stage 94 in progress
+
+Stage 93: 12 networks; one 10x run with the story state still running when written up (table marks 3). Stage 94
+(bigger readers): the two larger readers reached about half their 40-million-word budget in the first 265 minutes
+(slower than estimated from the local timing) and were resumed from checkpoints; interim figures are not in the README.
+

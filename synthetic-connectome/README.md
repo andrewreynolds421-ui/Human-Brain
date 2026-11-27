@@ -4642,6 +4642,32 @@ roles; controls without the map at both training lengths. Four networks each (lo
 - Not yet tried: teaching each sentence's displacement directly (bAbI's sentences name it), a map trained first on
   its own, or reading the direction word rather than the sentence-end state.
 
+## Stage 93: a running picture of the story, and ten times more training
+
+**Question.** The research review (Entity Networks, Henaff et al. 2017; situation models, Zwaan & Radvansky 1998):
+readers keep a running state of who and what is where, updated sentence by sentence - and the published models train
+for hundreds of passes where VEGA's hippocampus saw each task once or twice. Does either close the gap?
+
+**Set-up** (`hippo_events.py --entities`): 20 memory cells; at each sentence every cell decides how much it is
+concerned and updates itself (the Entity Network's rule); the question reads the cells. On Stage 90's roles model,
+steps taught, one answer list. Training lengths: 480,000 questions (3x) and 1,600,000 (10x; ~4 passes per task).
+Four networks each, GitHub runners.
+
+| 4 networks | passed (of 20) | mean error | left / right | paths | three facts | counting |
+|---|---|---|---|---|---|---|
+| roles, 3x | 13, 12, 13, 12 | 10.4 % | 58.8 | 22.3 | 71.3 | 84.8 |
+| roles + story state, 3x | 13, 11, 13, 12 | 10.2 % | 57.3 | 22.8 | 72.8 | 86.2 |
+| **roles, 10x** | **13, 14, 12, 12** | **8.7 %** | 62.0 | 32.5 | 73.6 | 91.1 |
+| roles + story state, 10x (3 networks) | 13, 12, 12 | 8.5 % | 62.2 | 34.3 | 78.2 | 91.3 |
+| published MemN2N (answer only) | 14 | 7.5 % | | | | |
+
+- **More training helps steadily:** 14.0 % (1x) -> 10.4 % (3x) -> 8.7 % (10x), with one network at 14 tasks; path
+  finding 16 -> 22 -> 33 %, counting 83 -> 85 -> 91 %. Not yet flat.
+- **The running story state adds little** (0.2 points at either length; three facts +5 at 10x). It does not give
+  left / right or paths, which the Entity Network solves - but that model trains 200 passes per task, 50 times more
+  than here, and its cells are tied to the words for the things in the story; ours are free.
+- Left / right stays near chance at every length.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on

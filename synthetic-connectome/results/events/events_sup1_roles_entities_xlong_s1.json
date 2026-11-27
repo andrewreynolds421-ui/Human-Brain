@@ -1,0 +1,664 @@
+{
+ "seed": 1,
+ "questions": 1600000,
+ "training": [
+  {
+   "questions": 16000,
+   "minutes": 2.5,
+   "loss": 0.614
+  },
+  {
+   "questions": 32000,
+   "minutes": 5.1,
+   "loss": 0.173
+  },
+  {
+   "questions": 48000,
+   "minutes": 7.7,
+   "loss": 0.16
+  },
+  {
+   "questions": 64000,
+   "minutes": 10.2,
+   "loss": 1.328
+  },
+  {
+   "questions": 80000,
+   "minutes": 12.6,
+   "loss": 0.276
+  },
+  {
+   "questions": 96000,
+   "minutes": 15.3,
+   "loss": 0.19
+  },
+  {
+   "questions": 112000,
+   "minutes": 17.9,
+   "loss": 0.684
+  },
+  {
+   "questions": 128000,
+   "minutes": 20.4,
+   "loss": 1.354
+  },
+  {
+   "questions": 144000,
+   "minutes": 23.0,
+   "loss": 0.029
+  },
+  {
+   "questions": 160000,
+   "minutes": 25.5,
+   "loss": 0.014
+  },
+  {
+   "questions": 176000,
+   "minutes": 28.0,
+   "loss": 2.977
+  },
+  {
+   "questions": 192000,
+   "minutes": 30.5,
+   "loss": 0.281
+  },
+  {
+   "questions": 208000,
+   "minutes": 33.0,
+   "loss": 2.295
+  },
+  {
+   "questions": 224000,
+   "minutes": 35.6,
+   "loss": 0.05
+  },
+  {
+   "questions": 240000,
+   "minutes": 38.1,
+   "loss": 0.978
+  },
+  {
+   "questions": 256000,
+   "minutes": 40.6,
+   "loss": 0.025
+  },
+  {
+   "questions": 272000,
+   "minutes": 43.2,
+   "loss": 0.018
+  },
+  {
+   "questions": 288000,
+   "minutes": 45.7,
+   "loss": 0.553
+  },
+  {
+   "questions": 304000,
+   "minutes": 48.2,
+   "loss": 0.01
+  },
+  {
+   "questions": 320000,
+   "minutes": 50.7,
+   "loss": 0.016
+  },
+  {
+   "questions": 336000,
+   "minutes": 53.2,
+   "loss": 0.099
+  },
+  {
+   "questions": 352000,
+   "minutes": 55.9,
+   "loss": 0.029
+  },
+  {
+   "questions": 368000,
+   "minutes": 58.4,
+   "loss": 0.058
+  },
+  {
+   "questions": 384000,
+   "minutes": 60.9,
+   "loss": 0.093
+  },
+  {
+   "questions": 400000,
+   "minutes": 63.4,
+   "loss": 1.174
+  },
+  {
+   "questions": 416000,
+   "minutes": 65.9,
+   "loss": 0.02
+  },
+  {
+   "questions": 432000,
+   "minutes": 68.3,
+   "loss": 1.067
+  },
+  {
+   "questions": 448000,
+   "minutes": 70.8,
+   "loss": 0.14
+  },
+  {
+   "questions": 464000,
+   "minutes": 73.3,
+   "loss": 0.742
+  },
+  {
+   "questions": 480000,
+   "minutes": 76.0,
+   "loss": 0.489
+  },
+  {
+   "questions": 496000,
+   "minutes": 78.5,
+   "loss": 0.205
+  },
+  {
+   "questions": 512000,
+   "minutes": 81.0,
+   "loss": 1.144
+  },
+  {
+   "questions": 528000,
+   "minutes": 83.5,
+   "loss": 0.737
+  },
+  {
+   "questions": 544000,
+   "minutes": 86.1,
+   "loss": 0.512
+  },
+  {
+   "questions": 560000,
+   "minutes": 88.5,
+   "loss": 0.002
+  },
+  {
+   "questions": 576000,
+   "minutes": 91.0,
+   "loss": 0.932
+  },
+  {
+   "questions": 592000,
+   "minutes": 93.6,
+   "loss": 0.01
+  },
+  {
+   "questions": 608000,
+   "minutes": 96.2,
+   "loss": 0.147
+  },
+  {
+   "questions": 624000,
+   "minutes": 98.7,
+   "loss": 0.008
+  },
+  {
+   "questions": 640000,
+   "minutes": 101.2,
+   "loss": 0.004
+  },
+  {
+   "questions": 656000,
+   "minutes": 103.8,
+   "loss": 0.215
+  },
+  {
+   "questions": 672000,
+   "minutes": 106.3,
+   "loss": 0.322
+  },
+  {
+   "questions": 688000,
+   "minutes": 108.9,
+   "loss": 0.401
+  },
+  {
+   "questions": 704000,
+   "minutes": 111.6,
+   "loss": 0.313
+  },
+  {
+   "questions": 720000,
+   "minutes": 114.2,
+   "loss": 0.947
+  },
+  {
+   "questions": 736000,
+   "minutes": 116.8,
+   "loss": 0.13
+  },
+  {
+   "questions": 752000,
+   "minutes": 119.3,
+   "loss": 0.015
+  },
+  {
+   "questions": 768000,
+   "minutes": 121.9,
+   "loss": 0.001
+  },
+  {
+   "questions": 784000,
+   "minutes": 124.5,
+   "loss": 0.242
+  },
+  {
+   "questions": 800000,
+   "minutes": 127.0,
+   "loss": 0.334
+  },
+  {
+   "questions": 816000,
+   "minutes": 129.6,
+   "loss": 0.003
+  },
+  {
+   "questions": 832000,
+   "minutes": 132.1,
+   "loss": 0.637
+  },
+  {
+   "questions": 848000,
+   "minutes": 134.6,
+   "loss": 0.005
+  },
+  {
+   "questions": 864000,
+   "minutes": 137.2,
+   "loss": 0.078
+  },
+  {
+   "questions": 880000,
+   "minutes": 139.9,
+   "loss": 0.014
+  },
+  {
+   "questions": 896000,
+   "minutes": 142.5,
+   "loss": 0.346
+  },
+  {
+   "questions": 912000,
+   "minutes": 145.0,
+   "loss": 0.0
+  },
+  {
+   "questions": 928000,
+   "minutes": 147.6,
+   "loss": 0.615
+  },
+  {
+   "questions": 944000,
+   "minutes": 150.3,
+   "loss": 0.827
+  },
+  {
+   "questions": 960000,
+   "minutes": 152.8,
+   "loss": 0.123
+  },
+  {
+   "questions": 976000,
+   "minutes": 155.4,
+   "loss": 0.004
+  },
+  {
+   "questions": 992000,
+   "minutes": 157.8,
+   "loss": 0.003
+  },
+  {
+   "questions": 1008000,
+   "minutes": 160.4,
+   "loss": 0.035
+  },
+  {
+   "questions": 1024000,
+   "minutes": 162.9,
+   "loss": 0.595
+  },
+  {
+   "questions": 1040000,
+   "minutes": 165.4,
+   "loss": 2.313
+  },
+  {
+   "questions": 1056000,
+   "minutes": 168.0,
+   "loss": 0.002
+  },
+  {
+   "questions": 1072000,
+   "minutes": 170.4,
+   "loss": 0.004
+  },
+  {
+   "questions": 1088000,
+   "minutes": 172.9,
+   "loss": 0.015
+  },
+  {
+   "questions": 1104000,
+   "minutes": 175.5,
+   "loss": 0.152
+  },
+  {
+   "questions": 1120000,
+   "minutes": 178.0,
+   "loss": 2.808
+  },
+  {
+   "questions": 1136000,
+   "minutes": 180.6,
+   "loss": 0.164
+  },
+  {
+   "questions": 1152000,
+   "minutes": 183.1,
+   "loss": 0.603
+  },
+  {
+   "questions": 1168000,
+   "minutes": 185.7,
+   "loss": 0.462
+  },
+  {
+   "questions": 1184000,
+   "minutes": 188.2,
+   "loss": 0.033
+  },
+  {
+   "questions": 1200000,
+   "minutes": 190.7,
+   "loss": 0.197
+  },
+  {
+   "questions": 1216000,
+   "minutes": 193.3,
+   "loss": 0.032
+  },
+  {
+   "questions": 1232000,
+   "minutes": 195.9,
+   "loss": 0.269
+  },
+  {
+   "questions": 1248000,
+   "minutes": 198.5,
+   "loss": 0.022
+  },
+  {
+   "questions": 1264000,
+   "minutes": 201.1,
+   "loss": 0.568
+  },
+  {
+   "questions": 1280000,
+   "minutes": 203.6,
+   "loss": 1.621
+  },
+  {
+   "questions": 1296000,
+   "minutes": 206.3,
+   "loss": 0.298
+  },
+  {
+   "questions": 1312000,
+   "minutes": 208.8,
+   "loss": 0.008
+  },
+  {
+   "questions": 1328000,
+   "minutes": 211.3,
+   "loss": 2.878
+  },
+  {
+   "questions": 1344000,
+   "minutes": 213.8,
+   "loss": 0.69
+  },
+  {
+   "questions": 1360000,
+   "minutes": 216.2,
+   "loss": 0.192
+  },
+  {
+   "questions": 1376000,
+   "minutes": 218.9,
+   "loss": 0.692
+  },
+  {
+   "questions": 1392000,
+   "minutes": 221.5,
+   "loss": 0.269
+  },
+  {
+   "questions": 1408000,
+   "minutes": 224.1,
+   "loss": 0.002
+  },
+  {
+   "questions": 1424000,
+   "minutes": 226.6,
+   "loss": 0.566
+  },
+  {
+   "questions": 1440000,
+   "minutes": 229.1,
+   "loss": 1.425
+  },
+  {
+   "questions": 1456000,
+   "minutes": 231.6,
+   "loss": 0.002
+  },
+  {
+   "questions": 1472000,
+   "minutes": 234.2,
+   "loss": 0.056
+  },
+  {
+   "questions": 1488000,
+   "minutes": 236.7,
+   "loss": 0.676
+  },
+  {
+   "questions": 1504000,
+   "minutes": 239.3,
+   "loss": 0.0
+  },
+  {
+   "questions": 1520000,
+   "minutes": 242.0,
+   "loss": 0.158
+  },
+  {
+   "questions": 1536000,
+   "minutes": 244.6,
+   "loss": 0.047
+  },
+  {
+   "questions": 1552000,
+   "minutes": 247.1,
+   "loss": 0.222
+  },
+  {
+   "questions": 1568000,
+   "minutes": 249.6,
+   "loss": 0.27
+  },
+  {
+   "questions": 1584000,
+   "minutes": 252.1,
+   "loss": 0.001
+  },
+  {
+   "questions": 1600000,
+   "minutes": 254.6,
+   "loss": 0.419
+  }
+ ],
+ "tasks": {
+  "qa1_single-supporting-fact": 1.0,
+  "qa2_two-supporting-facts": 0.897,
+  "qa3_three-supporting-facts": 0.803,
+  "qa4_two-arg-relations": 0.981,
+  "qa5_three-arg-relations": 0.991,
+  "qa6_yes-no-questions": 0.996,
+  "qa7_counting": 0.904,
+  "qa8_lists-sets": 0.931,
+  "qa9_simple-negation": 0.992,
+  "qa10_indefinite-knowledge": 0.992,
+  "qa11_basic-coreference": 0.991,
+  "qa12_conjunction": 0.999,
+  "qa13_compound-coreference": 0.994,
+  "qa14_time-reasoning": 0.943,
+  "qa15_basic-deduction": 1.0,
+  "qa16_basic-induction": 0.993,
+  "qa17_positional-reasoning": 0.614,
+  "qa18_size-reasoning": 0.923,
+  "qa19_path-finding": 0.375,
+  "qa20_agents-motivations": 1.0
+ },
+ "step_hits": {
+  "qa1_single-supporting-fact": [
+   0.999
+  ],
+  "qa2_two-supporting-facts": [
+   0.973,
+   0.905
+  ],
+  "qa3_three-supporting-facts": [
+   0.987,
+   0.897,
+   0.759
+  ],
+  "qa4_two-arg-relations": [
+   0.991
+  ],
+  "qa5_three-arg-relations": [
+   0.986
+  ],
+  "qa6_yes-no-questions": [
+   0.992
+  ],
+  "qa7_counting": [
+   0.979,
+   0.912,
+   0.98
+  ],
+  "qa8_lists-sets": [
+   0.991,
+   0.945,
+   0.879
+  ],
+  "qa9_simple-negation": [
+   0.996
+  ],
+  "qa10_indefinite-knowledge": [
+   0.996
+  ],
+  "qa11_basic-coreference": [
+   0.991,
+   0.985
+  ],
+  "qa12_conjunction": [
+   0.997
+  ],
+  "qa13_compound-coreference": [
+   0.997,
+   0.993
+  ],
+  "qa14_time-reasoning": [
+   0.954,
+   0.926
+  ],
+  "qa15_basic-deduction": [
+   1.0,
+   1.0
+  ],
+  "qa16_basic-induction": [
+   1.0,
+   0.984,
+   0.984
+  ],
+  "qa17_positional-reasoning": [
+   1.0,
+   1.0
+  ],
+  "qa18_size-reasoning": [
+   0.585,
+   0.804
+  ],
+  "qa19_path-finding": [
+   0.655,
+   0.929
+  ],
+  "qa20_agents-motivations": [
+   1.0
+  ]
+ },
+ "config": {
+  "reader": "stage 73",
+  "sup": 1,
+  "roles": true,
+  "sem": false,
+  "space": false,
+  "space_sup": false,
+  "entities": true,
+  "passages": true,
+  "one_answer_list": 60,
+  "hops": 3,
+  "tag": "events_sup1_roles_entities_xlong_",
+  "n_params": 1659541
+ },
+ "passed_95": 12,
+ "mean_error": 8.4,
+ "world": {
+  "same": 0.989,
+  "held_names": 0.894,
+  "held_objects_places": 0.949,
+  "long": 0.96
+ },
+ "passages": {
+  "1": 0.295,
+  "2": 0.2992,
+  "3": 0.2933,
+  "4": 0.32,
+  "5": 0.2433,
+  "6": 0.2933,
+  "7+": 0.2467
+ },
+ "passages_reader": {
+  "1": 0.4176,
+  "2": 0.4221,
+  "3": 0.3533,
+  "4": 0.3933,
+  "5": 0.2733,
+  "6": 0.33,
+  "7+": 0.2933
+ },
+ "passages_both": {
+  "1": 0.4598,
+  "2": 0.4221,
+  "3": 0.3867,
+  "4": 0.4533,
+  "5": 0.36,
+  "6": 0.3667,
+  "7+": 0.3267
+ },
+ "passages_most_frequent": {
+  "1": 0.1762,
+  "2": 0.2869,
+  "3": 0.2967,
+  "4": 0.2833,
+  "5": 0.2367,
+  "6": 0.3233,
+  "7+": 0.2733
+ }
+}
