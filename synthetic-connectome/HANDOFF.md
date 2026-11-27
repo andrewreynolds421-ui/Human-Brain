@@ -577,3 +577,4 @@ Stage 81 follow-up 7 (26 Nov): full bAbI (120 k questions, 20 tasks jointly, MAX
 passed, error 25.5-38.8 %. Wired: 0/0/0 (seeds 1-3; seed 0 pending), error 44-49.5 %; qa1 ~50 % for every wired seed
 (the storage-habit stall), world stories inside the run 55-65 %. Models on branches stage81b-babi-{old,wired}-s<seed>.
 Conclusion: on bAbI the data-wired hippocampus is clearly worse; fixing what gets stored must come first.
+Stage 81 follow-up 7b: bAbI wired seed 0 also 0/20 (44.3 % error) - all 4 wired seeds 0/20.
