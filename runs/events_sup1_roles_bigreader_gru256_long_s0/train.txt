@@ -1,0 +1,54 @@
+built {'page_nouns_det': 0.975, 'page_nouns_refl_number': 0.9975, 'page_nouns_refl_gender': 1.0, 'page_nouns_refl_across': 0.985, 'page_nouns_npi': 1.0, 'page_nouns_npi_scope': 0.055, 'page_nouns_gap_wh': 0.99, 'page_nouns_gap_that': 1.0, 'page_nouns_aux_agree_relative': 0.9575, 'page_nouns_verb_agree_relative': 0.7075, 'page_nouns_who_gap': 0.735, 'page_nouns_name_reflexive': 0.9625, 'page_nouns_question_ever': 0.0325, 'held_out_nouns_det': 0.8825, 'held_out_nouns_refl_number': 0.98, 'held_out_nouns_refl_gender': 1.0, 'held_out_nouns_refl_across': 0.8725, 'held_out_nouns_npi': 1.0, 'held_out_nouns_npi_scope': 0.31, 'held_out_nouns_gap_wh': 0.9525, 'held_out_nouns_gap_that': 0.98, 'held_out_nouns_aux_agree_relative': 0.825, 'held_out_nouns_verb_agree_relative': 0.7025, 'held_out_nouns_who_gap': 0.535, 'held_out_nouns_name_reflexive': 0.9625, 'held_out_nouns_question_ever': 0.0325}
+reading network: bigreader_gru256x1_s0.pt width 256
+{'questions': 16000, 'minutes': 1.9, 'loss': 2.109}
+{'questions': 32000, 'minutes': 3.8, 'loss': 0.625}
+{'questions': 48000, 'minutes': 5.7, 'loss': 0.968}
+{'questions': 64000, 'minutes': 7.6, 'loss': 0.012}
+{'questions': 80000, 'minutes': 9.5, 'loss': 0.567}
+{'questions': 96000, 'minutes': 11.5, 'loss': 2.304}
+{'questions': 112000, 'minutes': 13.4, 'loss': 0.035}
+{'questions': 128000, 'minutes': 15.3, 'loss': 1.042}
+{'questions': 144000, 'minutes': 17.3, 'loss': 0.177}
+{'questions': 160000, 'minutes': 19.2, 'loss': 3.358}
+{'questions': 176000, 'minutes': 21.2, 'loss': 2.242}
+{'questions': 192000, 'minutes': 23.1, 'loss': 0.003}
+{'questions': 208000, 'minutes': 25.1, 'loss': 1.297}
+{'questions': 224000, 'minutes': 27.1, 'loss': 1.954}
+{'questions': 240000, 'minutes': 29.0, 'loss': 1.353}
+{'questions': 256000, 'minutes': 30.9, 'loss': 0.523}
+{'questions': 272000, 'minutes': 32.8, 'loss': 0.803}
+{'questions': 288000, 'minutes': 34.8, 'loss': 0.871}
+{'questions': 304000, 'minutes': 36.7, 'loss': 1.17}
+{'questions': 320000, 'minutes': 38.6, 'loss': 1.716}
+{'questions': 336000, 'minutes': 40.5, 'loss': 0.002}
+{'questions': 352000, 'minutes': 42.5, 'loss': 0.044}
+{'questions': 368000, 'minutes': 44.4, 'loss': 3.891}
+{'questions': 384000, 'minutes': 46.4, 'loss': 1.745}
+{'questions': 400000, 'minutes': 48.3, 'loss': 1.198}
+{'questions': 416000, 'minutes': 50.2, 'loss': 2.157}
+{'questions': 432000, 'minutes': 52.2, 'loss': 0.494}
+{'questions': 448000, 'minutes': 54.1, 'loss': 0.002}
+{'questions': 464000, 'minutes': 56.0, 'loss': 0.135}
+{'questions': 480000, 'minutes': 58.0, 'loss': 0.35}
+qa1_single-supporting-fact 0.976 [0.991]
+qa2_two-supporting-facts 0.866 [0.954, 0.837]
+qa3_three-supporting-facts 0.377 [0.956, 0.692, 0.332]
+qa4_two-arg-relations 0.91 [0.959]
+qa5_three-arg-relations 0.975 [0.96]
+qa6_yes-no-questions 0.901 [0.974]
+qa7_counting 0.836 [0.967, 0.906, 1.0]
+qa8_lists-sets 0.819 [0.99, 0.954, 0.879]
+qa9_simple-negation 0.916 [0.984]
+qa10_indefinite-knowledge 0.8 [0.942]
+qa11_basic-coreference 0.976 [0.994, 0.973]
+qa12_conjunction 0.992 [0.999]
+qa13_compound-coreference 0.985 [0.996, 0.989]
+qa14_time-reasoning 0.756 [0.768, 0.715]
+qa15_basic-deduction 1.0 [1.0, 1.0]
+qa16_basic-induction 0.947 [1.0, 0.931, 0.938]
+qa17_positional-reasoning 0.515 [0.971, 0.954]
+qa18_size-reasoning 0.864 [0.567, 0.665]
+qa19_path-finding 0.145 [0.634, 0.511]
+qa20_agents-motivations 1.0 [1.0]
+{'passages': {'1': 0.2529, '2': 0.2869, '3': 0.2767, '4': 0.2433, '5': 0.2267, '6': 0.25, '7+': 0.25}, 'passages_reader': {'1': 0.3831, '2': 0.3852, '3': 0.3467, '4': 0.3933, '5': 0.3067, '6': 0.35, '7+': 0.3167}, 'passages_both': {'1': 0.4291, '2': 0.3975, '3': 0.3833, '4': 0.4367, '5': 0.3233, '6': 0.3567, '7+': 0.3567}, 'passages_most_frequent': {'1': 0.1762, '2': 0.2869, '3': 0.2967, '4': 0.2833, '5': 0.2367, '6': 0.3233, '7+': 0.2733}, 'passages_reader_context': {'1': 0.387, '2': 0.418, '3': 0.3867, '4': 0.4, '5': 0.3033, '6': 0.3667, '7+': 0.33}, 'passages_both_context': {'1': 0.4368, '2': 0.418, '3': 0.3833, '4': 0.4033, '5': 0.3, '6': 0.37, '7+': 0.3533}}
+{"seed": 0, "questions": 480000, "tasks": {"qa1_single-supporting-fact": 0.976, "qa2_two-supporting-facts": 0.866, "qa3_three-supporting-facts": 0.377, "qa4_two-arg-relations": 0.91, "qa5_three-arg-relations": 0.975, "qa6_yes-no-questions": 0.901, "qa7_counting": 0.836, "qa8_lists-sets": 0.819, "qa9_simple-negation": 0.916, "qa10_indefinite-knowledge": 0.8, "qa11_basic-coreference": 0.976, "qa12_conjunction": 0.992, "qa13_compound-coreference": 0.985, "qa14_time-reasoning": 0.756, "qa15_basic-deduction": 1.0, "qa16_basic-induction": 0.947, "qa17_positional-reasoning": 0.515, "qa18_size-reasoning": 0.864, "qa19_path-finding": 0.145, "qa20_agents-motivations": 1.0}, "step_hits": {"qa1_single-supporting-fact": [0.991], "qa2_two-supporting-facts": [0.954, 0.837], "qa3_three-supporting-facts": [0.956, 0.692, 0.332], "qa4_two-arg-relations": [0.959], "qa5_three-arg-relations": [0.96], "qa6_yes-no-questions": [0.974], "qa7_counting": [0.967, 0.906, 1.0], "qa8_lists-sets": [0.99, 0.954, 0.879], "qa9_simple-negation": [0.984], "qa10_indefinite-knowledge": [0.942], "qa11_basic-coreference": [0.994, 0.973], "qa12_conjunction": [0.999], "qa13_compound-coreference": [0.996, 0.989], "qa14_time-reasoning": [0.768, 0.715], "qa15_basic-deduction": [1.0, 1.0], "qa16_basic-induction": [1.0, 0.931, 0.938], "qa17_positional-reasoning": [0.971, 0.954], "qa18_size-reasoning": [0.567, 0.665], "qa19_path-finding": [0.634, 0.511], "qa20_agents-motivations": [1.0]}, "config": {"reader": "bigreader_gru256x1_s0.pt", "sup": 1, "roles": true, "sem": false, "space": false, "space_sup": false, "entities": false, "passages": true, "one_answer_list": 60, "hops": 3, "tag": "events_sup1_roles_bigreader_gru256_long_", "n_params": 2024530}, "passed_95": 7, "mean_error": 17.22, "world": {"same": 0.933, "held_names": 0.89, "held_objects_places": 0.862, "long": 0.893}, "passages": {"1": 0.2529, "2": 0.2869, "3": 0.2767, "4": 0.2433, "5": 0.2267, "6": 0.25, "7+": 0.25}, "passages_reader": {"1": 0.3831, "2": 0.3852, "3": 0.3467, "4": 0.3933, "5": 0.3067, "6": 0.35, "7+": 0.3167}, "passages_both": {"1": 0.4291, "2": 0.3975, "3": 0.3833, "4": 0.4367, "5": 0.3233, "6": 0.3567, "7+": 0.3567}, "passages_most_frequent": {"1": 0.1762, "2": 0.2869, "3": 0.2967, "4": 0.2833, "5": 0.2367, "6": 0.3233, "7+": 0.2733}, "passages_reader_context": {"1": 0.387, "2": 0.418, "3": 0.3867, "4": 0.4, "5": 0.3033, "6": 0.3667, "7+": 0.33}, "passages_both_context": {"1": 0.4368, "2": 0.418, "3": 0.3833, "4": 0.4033, "5": 0.3, "6": 0.37, "7+": 0.3533}}
