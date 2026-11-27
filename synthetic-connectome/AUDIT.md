@@ -969,3 +969,9 @@ lift the passage test) refuted; reported as such. The grade test proper (Stage 6
 networks; the single-sentence passage score (35.4 -> 37.6 %) is the only check that sentence reading did not suffer.
 Summary results/story_reader/stage91_summary.json; reader weights /home/claude/models/story_reader/ and vega-runs.
 
+## 68. Follow-up (26 November): Stage 92 — spatial map
+
+Twenty networks launched (12 + 8); written up with the taught long runs and two of the roles-long controls still
+running (table marks counts). Negative result, with the probe that shows why. The "taught" signal uses training
+answers only. Summary results/events/stage92_summary.json.
+

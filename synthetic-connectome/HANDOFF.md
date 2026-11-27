@@ -577,4 +577,9 @@ Stage 81 follow-up 7 (26 Nov): full bAbI (120 k questions, 20 tasks jointly, MAX
 passed, error 25.5-38.8 %. Wired: 0/0/0 (seeds 1-3; seed 0 pending), error 44-49.5 %; qa1 ~50 % for every wired seed
 (the storage-habit stall), world stories inside the run 55-65 %. Models on branches stage81b-babi-{old,wired}-s<seed>.
 Conclusion: on bAbI the data-wired hippocampus is clearly worse; fixing what gets stored must come first.
-Stage 81 follow-up 7b: bAbI wired seed 0 also 0/20 (44.3 % error) - all 4 wired seeds 0/20.
+Stage 92 (26 Nov; `hippo_events.py --space | --space-sup`, probe PROBE_SPACE=1): spatial map not learned - same gate
+and displacement for every sentence; taught from path answers it collapses to zero displacement. Tasks 17 / 19
+unchanged. Best model to date: `--sup 1 --roles`, QUESTIONS=480000: 13, 12 passed, 10.4 % (2 nets; runs
+events_sup1_roles_long_s*; rest and spacesup_long still running on vega-runs when written). Ideas: teach
+per-sentence displacement, pre-train the map alone, read the direction word.
+

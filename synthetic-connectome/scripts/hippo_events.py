@@ -38,6 +38,8 @@ DATA = os.environ.get("EV_DATA", "/home/claude/models/events")
 HOPS, N_DG, ACTIVE, D_KEY, BS, MAX_SENT = 3, 512, 0.05, 64, 16, 50
 QUESTIONS = int(os.environ.get("QUESTIONS", 160_000))
 SUP_W = 1.0                                                              # weight of the step teaching (ASSUMED)
+SPACE_SUP = False    # Stage 92b: the map is taught - for path questions the answer's moves give the displacement it should read (training answers only)
+MOVES = {"n": (0.0, 1.0), "s": (0.0, -1.0), "e": (1.0, 0.0), "w": (-1.0, 0.0)}
 SPACE = False        # Stage 92: a spatial map - things are placed in 2-D so that the stated relations agree (path integration)
 ROLES = False        # Stage 90b: role-aware recall - read one word of the recalled event by its role in the sentence
 SEM = False          # Stage 90a: word meaning from the semantic cortex (scripts/semantic_cortex.py) joined to every word
@@ -181,9 +183,9 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); ap.add_argument("--space", action="store_true"); a = ap.parse_args()
-    global ROLES, SEM, SPACE; ROLES = a.roles; SEM = a.sem; SPACE = a.space
-    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + ("space_" if a.space else "") + os.environ.get("EV_TAG", "")
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); ap.add_argument("--space", action="store_true"); ap.add_argument("--space-sup", action="store_true"); a = ap.parse_args()
+    global ROLES, SEM, SPACE, SPACE_SUP; ROLES = a.roles; SEM = a.sem; SPACE_SUP = a.space_sup; SPACE = a.space or a.space_sup
+    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + ("spacesup_" if a.space_sup else "space_" if a.space else "") + os.environ.get("EV_TAG", "")
 
     def run(M, C, tok, seed, res):
         torch = M.torch; torch.set_num_threads(int(os.environ.get("THREADS", 2)))
@@ -266,14 +268,31 @@ def main():
                     tr = tasks[T[int(rng.integers(len(T)))]]["train"]; items = [tr[i] for i in rng.choice(len(tr), BS, replace=False)]
                 lg, scs = net(*batch(items)); loss = torch.nn.functional.cross_entropy(lg, torch.tensor([i["y"] for i in items]))
                 if a.sup: loss = loss + SUP_W * sup_loss(scs, items)
+                if SPACE_SUP:
+                    ix = [i for i, it in enumerate(items) if it.get("ans") and all(w in MOVES for w in it["ans"])]
+                    if ix: loss = loss + ((net.space["delta"][ix] - torch.tensor([np.sum([MOVES[w] for w in items[i]["ans"]], 0) for i in ix], dtype=torch.float32)) ** 2).sum(-1).mean()
                 opt.zero_grad(); loss.backward(); torch.nn.utils.clip_grad_norm_(net.parameters(), 1.0); opt.step()
                 if (step + 1) % 1000 == 0 or step + 1 == QUESTIONS // BS:
                     log.append(dict(questions=(step + 1) * BS, minutes=round((used + time.time() - t0) / 60, 1), loss=round(float(loss.detach()), 3))); print(log[-1], flush=True)
             torch.save(net.state_dict(), path)
             if os.path.exists(ck): os.remove(ck)
         else: net.load_state_dict(torch.load(path))
+        if os.environ.get("PROBE_SPACE") and SPACE:                                          # what the map made of each sentence
+            net.eval()
+            err = []
+            for k in range(0, 400, 32):                                                       # does the map read the path's displacement?
+                its = tasks[19]["test"][k:k + 32]
+                with torch.no_grad(): net(*batch(its))
+                err += ((net.space["delta"] - torch.tensor([np.sum([MOVES[w] for w in it["ans"]], 0) for it in its], dtype=torch.float32)).abs() < 0.5).all(-1).tolist()
+            print("path questions where the map's displacement is within half a step of the true one:", round(float(np.mean(err)), 3))
+            for t in (17, 19, 1):
+                for it in tasks[t]["test"][:2]:
+                    with torch.no_grad(): lg, _ = net(*batch([it]))
+                    print(f"\n{tasks[t]['name']} Q: {' '.join(it['q'])} | answer {it['ans']} | said {it['cands'][int(lg.argmax())]} | delta {[round(x, 2) for x in net.space['delta'][0].tolist()]}")
+                    for sn, g, d in zip(it["sents"], net.space["gate"][0].tolist(), net.space["d"][0].tolist()): print(f"    gate {g:.2f} d ({d[0]:+.2f}, {d[1]:+.2f})  {' '.join(sn)}")
+            raise SystemExit
         out = dict(seed=a.seed, questions=QUESTIONS, training=log, tasks={}, step_hits={},
-                   config=dict(reader=os.path.basename(os.environ.get("STORY_READER", "")) or "stage 73", sup=a.sup, roles=ROLES, sem=SEM, space=SPACE, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
+                   config=dict(reader=os.path.basename(os.environ.get("STORY_READER", "")) or "stage 73", sup=a.sup, roles=ROLES, sem=SEM, space=SPACE, space_sup=SPACE_SUP, passages=bool(PASS), one_answer_list=len(allc), hops=HOPS, tag=tag, n_params=sum(p.numel() for p in net.parameters())))
         for t in T:
             hops = []; acc = accuracy(tasks[t]["test"][:NT], hops); out["tasks"][tasks[t]["name"]] = round(acc, 4)
             if hops: out["step_hits"][tasks[t]["name"]] = [round(float(np.mean([h[j] for h in hops if len(h) > j])), 3) for j in range(max(map(len, hops)))]   # does recall step j land on supporting sentence j?

@@ -1,0 +1,75 @@
+{
+ "roles": {
+  "networks": 4,
+  "passed": [
+   9,
+   7,
+   10,
+   9
+  ],
+  "mean_error": 14.02,
+  "left_right": 51.2,
+  "paths": 15.6,
+  "relations": 82.0,
+  "three_facts": 61.4,
+  "world": 97.6
+ },
+ "roles + map": {
+  "networks": 4,
+  "passed": [
+   9,
+   9,
+   9,
+   9
+  ],
+  "mean_error": 14.51,
+  "left_right": 52.0,
+  "paths": 15.0,
+  "relations": 81.9,
+  "three_facts": 52.9,
+  "world": 98.1
+ },
+ "roles + taught map": {
+  "networks": 4,
+  "passed": [
+   7,
+   9,
+   6,
+   8
+  ],
+  "mean_error": 14.96,
+  "left_right": 52.3,
+  "paths": 14.9,
+  "relations": 78.3,
+  "three_facts": 54.1,
+  "world": 96.8
+ },
+ "roles, long": {
+  "networks": 2,
+  "passed": [
+   13,
+   12
+  ],
+  "mean_error": 10.36,
+  "left_right": 60.0,
+  "paths": 23.0,
+  "relations": 92.1,
+  "three_facts": 70.8,
+  "world": 98.8
+ },
+ "roles + map, long": {
+  "networks": 4,
+  "passed": [
+   11,
+   11,
+   13,
+   10
+  ],
+  "mean_error": 10.62,
+  "left_right": 58.7,
+  "paths": 23.6,
+  "relations": 92.1,
+  "three_facts": 74.2,
+  "world": 98.2
+ }
+}

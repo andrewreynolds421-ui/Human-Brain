@@ -4610,6 +4610,38 @@ the new reading network. Four networks each, GitHub runners.
   a story has to be the memory system (which finds the right sentences when taught - Stage 89 - but has nothing to
   teach it on real books), or a reading network with far more capacity. Adults: 82 %.
 
+## Stage 92: a spatial map - not learned (negative, so far)
+
+**Question.** Left / right (task 17) and path finding (task 19) need facts combined in space. Give the hippocampus an
+entorhinal-like map: each spatial sentence states a displacement between two things; place everything in 2-D so
+that all stated displacements agree (settling, as path integration would), then read the answer off the map.
+
+**Set-up** (`hippo_events.py --space`). Per sentence: which two things (by role), a displacement, and a gate (is this
+sentence spatial?) - all learned; eight settling sweeps; read-out = displacement between the two things asked about,
+and whether something lies one step away in each direction. `--space-sup` (92b): for path questions the answer's
+moves ("s, e") give the displacement the map should have read - taught from training answers. With Stage 90's
+roles; controls without the map at both training lengths. Four networks each (longer runs: as many as finished).
+
+| | passed | bAbI error | left / right | paths |
+|---|---|---|---|---|
+| roles (Stage 90) | 9, 7, 10, 9 | 14.0 % | 51.2 | 15.6 |
+| + map | 9, 9, 9, 9 | 14.5 % | 52.0 | 15.0 |
+| + taught map | 7, 9, 6, 8 | 15.0 % | 52.3 | 14.9 |
+| roles, 3x longer (2 networks) | **13, 12** | **10.4 %** | 60.0 | 23.0 |
+| + map, 3x longer | 11, 11, 13, 10 | 10.6 % | 58.7 | 23.6 |
+
+- **The map does nothing**, taught or not. Looking inside (`PROBE_SPACE=1`): untaught, every sentence - spatial or
+  not - gets the same gate (0.12-0.20) and the same displacement whatever the word (north, south, east, west all
+  about (+1.3, +1.5)). Taught, the gates close (0.02) and the map reads zero displacement for every question: the
+  cheapest way to lower the teaching error was to answer "nowhere". 0 of 400 path questions within half a step.
+- Cause, as far as traced: the displacement is read from the reading network's state at the sentence end, and the
+  map gets its first useful signal only when roles, displacement and gate are all right at once - the learning
+  trap of Stages 79-88 again, and one teaching signal on the final read-out does not break it.
+- **By-product:** roles with 3x longer training is the best model so far: **13 and 12 tasks passed, 10.4 % error**
+  (2 networks finished), with world stories at 99 %.
+- Not yet tried: teaching each sentence's displacement directly (bAbI's sentences name it), a map trained first on
+  its own, or reading the direction word rather than the sentence-end state.
+
 ## Where the model stands against children learning English
 
 The model is compared with typical ages from child-language research. The tests differ: children are tested on
