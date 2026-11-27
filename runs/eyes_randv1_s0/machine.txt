@@ -1,0 +1,6 @@
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root       145G   66G   80G  46% /
+4
+               total        used        free      shared  buff/cache   available
+Mem:           15987        1415        5862          48        9103       14572
+Swap:           3071           0        3071

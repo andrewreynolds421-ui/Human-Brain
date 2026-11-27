@@ -1,0 +1,327 @@
+photos (8000, 192, 192, 3) {'train': 6000, 'dev': 1000, 'test': 1000}
+v1 0 err 640.295 of 681.421 active 0.479 0s
+v1 500 err 219.492 of 593.620 active 0.096 42s
+v1 1000 err 240.980 of 669.205 active 0.089 84s
+v1 1500 err 215.419 of 571.032 active 0.067 126s
+v1 2000 err 235.538 of 646.522 active 0.081 168s
+v1 2500 err 223.458 of 629.873 active 0.077 209s
+v1 3000 err 215.099 of 617.180 active 0.068 251s
+v1 3500 err 241.807 of 749.408 active 0.092 293s
+v1 4000 err 226.340 of 704.342 active 0.088 334s
+v1 4500 err 219.300 of 708.706 active 0.085 376s
+v1 5000 err 234.280 of 699.521 active 0.086 418s
+v1 5500 err 211.583 of 754.464 active 0.083 460s
+v1 6000 err 237.164 of 691.242 active 0.086 502s
+learned {'live': 83, 'median_selectivity': 0.6732520461082458, 'share_selective_over_0.3': 0.9036144614219666, 'median_f1f0': 1.7240562438964844, 'pref_hist_6': [19, 2, 21, 17, 3, 21], 'sf_hist': [0, 2, 18, 22, 41]}
+random {'live': 96, 'median_selectivity': 0.4870670735836029, 'share_selective_over_0.3': 0.7916666865348816, 'median_f1f0': 1.8483151197433472, 'pref_hist_6': [15, 12, 18, 11, 26, 14], 'sf_hist': [0, 2, 8, 29, 57]}
+words 776 held out [np.str_('above'), np.str_('after'), np.str_('arms'), np.str_('attached'), np.str_('bench'), np.str_('climb'), np.str_('each'), np.str_('face'), np.str_('fence'), np.str_('he'), np.str_('left'), np.str_('like'), np.str_('mountain'), np.str_('no'), np.str_('object'), np.str_('outdoors'), np.str_('pants'), np.str_('picture'), np.str_('pink'), np.str_('racing'), np.str_('sandy'), np.str_('shorts'), np.str_('smiles'), np.str_('snowy'), np.str_('stairs'), np.str_('sticking'), np.str_('swings'), np.str_('tank'), np.str_('trees'), np.str_('uniforms')]
+ep 0 step 20/2790 loss 4.139 11s
+ep 0 step 40/2790 loss 4.103 23s
+ep 0 step 60/2790 loss 4.064 34s
+ep 0 step 80/2790 loss 3.960 45s
+ep 1 step 100/2790 loss 4.013 56s
+ep 1 step 120/2790 loss 4.074 67s
+ep 1 step 140/2790 loss 3.811 78s
+ep 1 step 160/2790 loss 3.924 89s
+ep 1 step 180/2790 loss 3.972 100s
+ep 2 step 200/2790 loss 3.785 111s
+ep 2 step 220/2790 loss 3.788 122s
+ep 2 step 240/2790 loss 3.882 133s
+ep 2 step 260/2790 loss 3.691 144s
+ep 3 step 280/2790 loss 3.687 155s
+ep 3 step 300/2790 loss 3.773 166s
+ep 3 step 320/2790 loss 3.919 177s
+ep 3 step 340/2790 loss 3.746 188s
+ep 3 step 360/2790 loss 3.506 199s
+ep 4 step 380/2790 loss 3.818 210s
+ep 4 step 400/2790 loss 3.650 221s
+ep 4 step 420/2790 loss 3.622 232s
+ep 4 step 440/2790 loss 3.828 243s
+ep 4 step 460/2790 loss 3.574 254s
+ep 5 step 480/2790 loss 3.328 266s
+ep 5 step 500/2790 loss 3.487 276s
+ep 5 step 520/2790 loss 3.426 287s
+ep 5 step 540/2790 loss 3.363 298s
+ep 6 step 560/2790 loss 3.475 309s
+ep 6 step 580/2790 loss 3.467 321s
+ep 6 step 600/2790 loss 3.593 332s
+ep 6 step 620/2790 loss 3.632 343s
+ep 6 step 640/2790 loss 3.518 353s
+ep 7 step 660/2790 loss 3.361 364s
+ep 7 step 680/2790 loss 3.475 375s
+ep 7 step 700/2790 loss 3.408 387s
+ep 7 step 720/2790 loss 3.324 398s
+ep 7 step 740/2790 loss 3.504 408s
+ep 8 step 760/2790 loss 3.400 419s
+ep 8 step 780/2790 loss 3.336 430s
+ep 8 step 800/2790 loss 3.517 442s
+ep 8 step 820/2790 loss 3.177 452s
+ep 9 step 840/2790 loss 3.199 463s
+ep 9 step 860/2790 loss 3.223 474s
+ep 9 step 880/2790 loss 3.381 485s
+ep 9 step 900/2790 loss 3.460 496s
+ep 9 step 920/2790 loss 3.498 507s
+ep 10 step 940/2790 loss 3.306 518s
+ep 10 step 960/2790 loss 3.239 529s
+ep 10 step 980/2790 loss 3.182 540s
+ep 10 step 1000/2790 loss 3.377 551s
+ep 10 step 1020/2790 loss 3.437 563s
+ep 11 step 1040/2790 loss 3.106 574s
+ep 11 step 1060/2790 loss 3.038 584s
+ep 11 step 1080/2790 loss 2.979 595s
+ep 11 step 1100/2790 loss 3.114 606s
+ep 12 step 1120/2790 loss 3.139 618s
+ep 12 step 1140/2790 loss 3.217 629s
+ep 12 step 1160/2790 loss 2.821 640s
+ep 12 step 1180/2790 loss 3.071 650s
+ep 12 step 1200/2790 loss 3.088 661s
+ep 13 step 1220/2790 loss 3.079 672s
+ep 13 step 1240/2790 loss 3.073 684s
+ep 13 step 1260/2790 loss 3.253 695s
+ep 13 step 1280/2790 loss 2.867 705s
+ep 13 step 1300/2790 loss 2.824 716s
+ep 14 step 1320/2790 loss 2.955 727s
+ep 14 step 1340/2790 loss 2.888 739s
+ep 14 step 1360/2790 loss 2.750 750s
+ep 14 step 1380/2790 loss 2.753 761s
+ep 15 step 1400/2790 loss 2.667 771s
+ep 15 step 1420/2790 loss 2.598 782s
+ep 15 step 1440/2790 loss 2.763 793s
+ep 15 step 1460/2790 loss 2.885 805s
+ep 15 step 1480/2790 loss 2.801 816s
+ep 16 step 1500/2790 loss 2.790 827s
+ep 16 step 1520/2790 loss 2.559 837s
+ep 16 step 1540/2790 loss 2.675 848s
+ep 16 step 1560/2790 loss 2.436 860s
+ep 16 step 1580/2790 loss 2.676 871s
+ep 17 step 1600/2790 loss 2.582 882s
+ep 17 step 1620/2790 loss 2.725 892s
+ep 17 step 1640/2790 loss 2.527 903s
+ep 17 step 1660/2790 loss 2.694 914s
+ep 18 step 1680/2790 loss 2.552 926s
+ep 18 step 1700/2790 loss 2.381 937s
+ep 18 step 1720/2790 loss 2.479 948s
+ep 18 step 1740/2790 loss 2.601 958s
+ep 18 step 1760/2790 loss 2.454 969s
+ep 19 step 1780/2790 loss 2.276 981s
+ep 19 step 1800/2790 loss 2.388 992s
+ep 19 step 1820/2790 loss 2.440 1003s
+ep 19 step 1840/2790 loss 2.461 1014s
+ep 19 step 1860/2790 loss 2.354 1024s
+ep 20 step 1880/2790 loss 2.374 1035s
+ep 20 step 1900/2790 loss 2.275 1047s
+ep 20 step 1920/2790 loss 2.122 1058s
+ep 20 step 1940/2790 loss 2.324 1069s
+ep 21 step 1960/2790 loss 2.195 1080s
+ep 21 step 1980/2790 loss 2.302 1090s
+ep 21 step 2000/2790 loss 2.404 1102s
+ep 21 step 2020/2790 loss 2.310 1113s
+ep 21 step 2040/2790 loss 2.179 1124s
+ep 22 step 2060/2790 loss 2.402 1135s
+ep 22 step 2080/2790 loss 2.179 1146s
+ep 22 step 2100/2790 loss 2.034 1157s
+ep 22 step 2120/2790 loss 2.244 1168s
+ep 23 step 2140/2790 loss 2.507 1179s
+ep 23 step 2160/2790 loss 2.021 1190s
+ep 23 step 2180/2790 loss 2.185 1201s
+ep 23 step 2200/2790 loss 2.168 1212s
+ep 23 step 2220/2790 loss 1.967 1223s
+ep 24 step 2240/2790 loss 2.088 1234s
+ep 24 step 2260/2790 loss 2.156 1245s
+ep 24 step 2280/2790 loss 2.263 1256s
+ep 24 step 2300/2790 loss 1.897 1267s
+ep 24 step 2320/2790 loss 2.060 1278s
+ep 25 step 2340/2790 loss 1.620 1289s
+ep 25 step 2360/2790 loss 2.274 1300s
+ep 25 step 2380/2790 loss 1.922 1311s
+ep 25 step 2400/2790 loss 1.896 1322s
+ep 26 step 2420/2790 loss 1.899 1333s
+ep 26 step 2440/2790 loss 1.967 1344s
+ep 26 step 2460/2790 loss 1.731 1355s
+ep 26 step 2480/2790 loss 1.849 1366s
+ep 26 step 2500/2790 loss 2.210 1377s
+ep 27 step 2520/2790 loss 1.837 1388s
+ep 27 step 2540/2790 loss 2.063 1399s
+ep 27 step 2560/2790 loss 1.713 1410s
+ep 27 step 2580/2790 loss 2.087 1421s
+ep 27 step 2600/2790 loss 2.034 1432s
+ep 28 step 2620/2790 loss 1.707 1443s
+ep 28 step 2640/2790 loss 1.829 1454s
+ep 28 step 2660/2790 loss 1.991 1465s
+ep 28 step 2680/2790 loss 2.034 1476s
+ep 29 step 2700/2790 loss 1.953 1487s
+ep 29 step 2720/2790 loss 1.871 1498s
+ep 29 step 2740/2790 loss 1.994 1509s
+ep 29 step 2760/2790 loss 1.910 1520s
+ep 29 step 2780/2790 loss 1.938 1531s
+{
+ "config": {
+  "seed": 0,
+  "cond": "randv1",
+  "epochs": 30,
+  "train_photos": 6000,
+  "words": 776,
+  "minutes": 25.6
+ },
+ "picture_choice_taught_words": {
+  "accuracy": 0.4885,
+  "chance": 0.25,
+  "words": 300
+ },
+ "picture_choice_untaught_words": {
+  "accuracy": 0.40475,
+  "chance": 0.25,
+  "words": 17,
+  "per_word": {
+   "after": 0.34,
+   "arms": 0.43,
+   "bench": 0.42,
+   "each": 0.19,
+   "face": 0.41,
+   "fence": 0.4,
+   "mountain": 0.7,
+   "pants": 0.14,
+   "picture": 0.41,
+   "pink": 0.23,
+   "racing": 0.56,
+   "shorts": 0.26,
+   "smiles": 0.71,
+   "snowy": 0.75,
+   "stairs": 0.52,
+   "swings": 0.13,
+   "uniforms": 0.31
+  }
+ },
+ "caption_to_photo_of_10": {
+  "accuracy": 0.43333333333333335,
+  "chance": 0.1
+ },
+ "photo_to_caption_of_10": {
+  "accuracy": 0.44066666666666665,
+  "chance": 0.1
+ },
+ "best_words": [
+  [
+   "forest",
+   1.0
+  ],
+  [
+   "football",
+   0.94
+  ],
+  [
+   "bird",
+   0.89
+  ],
+  [
+   "beach",
+   0.89
+  ],
+  [
+   "hill",
+   0.88
+  ],
+  [
+   "mountains",
+   0.87
+  ],
+  [
+   "cliff",
+   0.84
+  ],
+  [
+   "trick",
+   0.82
+  ],
+  [
+   "group",
+   0.81
+  ],
+  [
+   "adults",
+   0.81
+  ],
+  [
+   "shore",
+   0.8
+  ],
+  [
+   "room",
+   0.8
+  ],
+  [
+   "catching",
+   0.79
+  ],
+  [
+   "team",
+   0.73
+  ],
+  [
+   "rider",
+   0.73
+  ]
+ ],
+ "worst_words": [
+  [
+   "steps",
+   0.22
+  ],
+  [
+   "another",
+   0.21
+  ],
+  [
+   "play",
+   0.2
+  ],
+  [
+   "looking",
+   0.19
+  ],
+  [
+   "ball",
+   0.19
+  ],
+  [
+   "area",
+   0.19
+  ],
+  [
+   "ready",
+   0.16
+  ],
+  [
+   "helmet",
+   0.13
+  ],
+  [
+   "around",
+   0.12
+  ],
+  [
+   "open",
+   0.11
+  ],
+  [
+   "legs",
+   0.1
+  ],
+  [
+   "lying",
+   0.07
+  ],
+  [
+   "fishing",
+   0.07
+  ],
+  [
+   "slides",
+   0.0
+  ],
+  [
+   "all",
+   0.0
+  ]
+ ]
+}
