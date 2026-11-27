@@ -4675,7 +4675,7 @@ the story so far. Is that its upbringing, its size, or its kind?
 
 **Set-up** (`scripts/big_reader.py`). Three readers learn from scratch, the same way: the training-split books on the
 runners (159 books), read in running order - a lesson is 32 runs of 192 consecutive tokens, sentences separated by an
-end mark - 40 million words each (about 6 passes), two networks each. **control**: recurrent, 256 units, 1 layer (the
+end mark - 40 million words each (about 9 passes over the 4.6 million words of these books), two networks each. **control**: recurrent, 256 units, 1 layer (the
 old reader's size); **large**: recurrent, 1,024 units, 2 layers; **attention**: a causal transformer, 384 wide, 6
 layers. Tested on held-out ends of the books and on Stage 86's passage test (test books never read).
 
