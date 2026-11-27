@@ -1,182 +1,146 @@
 [
  {
-  "name": "events_sup0_roles_long_s0",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles",
+  "name": "eyes_full_s0",
+  "script": "eyes.py",
+  "flags": "ground --cond full --epochs 30",
   "seed": 0,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
  },
  {
-  "name": "events_sup0_roles_hindsight_long_s0",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --hindsight",
+  "name": "eyes_full_s1",
+  "script": "eyes.py",
+  "flags": "ground --cond full --epochs 30",
+  "seed": 1,
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
+ },
+ {
+  "name": "eyes_full_s2",
+  "script": "eyes.py",
+  "flags": "ground --cond full --epochs 30",
+  "seed": 2,
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
+ },
+ {
+  "name": "eyes_full_s3",
+  "script": "eyes.py",
+  "flags": "ground --cond full --epochs 30",
+  "seed": 3,
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
+ },
+ {
+  "name": "eyes_pixels_s0",
+  "script": "eyes.py",
+  "flags": "ground --cond pixels --epochs 30",
   "seed": 0,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
  },
  {
-  "name": "events_sup0_roles_reward_long_s0",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --reward",
+  "name": "eyes_pixels_s1",
+  "script": "eyes.py",
+  "flags": "ground --cond pixels --epochs 30",
+  "seed": 1,
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
+ },
+ {
+  "name": "eyes_pixels_s2",
+  "script": "eyes.py",
+  "flags": "ground --cond pixels --epochs 30",
+  "seed": 2,
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
+ },
+ {
+  "name": "eyes_pixels_s3",
+  "script": "eyes.py",
+  "flags": "ground --cond pixels --epochs 30",
+  "seed": 3,
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
+ },
+ {
+  "name": "eyes_randv1_s0",
+  "script": "eyes.py",
+  "flags": "ground --cond randv1 --epochs 30",
   "seed": 0,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
  },
  {
-  "name": "events_sup0_roles_reward_hindsight_long_s0",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --reward --hindsight",
+  "name": "eyes_randv1_s1",
+  "script": "eyes.py",
+  "flags": "ground --cond randv1 --epochs 30",
+  "seed": 1,
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
+ },
+ {
+  "name": "eyes_randv1_s2",
+  "script": "eyes.py",
+  "flags": "ground --cond randv1 --epochs 30",
+  "seed": 2,
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
+ },
+ {
+  "name": "eyes_randv1_s3",
+  "script": "eyes.py",
+  "flags": "ground --cond randv1 --epochs 30",
+  "seed": 3,
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
+ },
+ {
+  "name": "eyes_shuffled_s0",
+  "script": "eyes.py",
+  "flags": "ground --cond shuffled --epochs 30",
   "seed": 0,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
  },
  {
-  "name": "events_sup1_roles_reward_long_s0",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --reward",
-  "seed": 0,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup0_roles_long_s1",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles",
+  "name": "eyes_shuffled_s1",
+  "script": "eyes.py",
+  "flags": "ground --cond shuffled --epochs 30",
   "seed": 1,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
  },
  {
-  "name": "events_sup0_roles_hindsight_long_s1",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --hindsight",
-  "seed": 1,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup0_roles_reward_long_s1",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --reward",
-  "seed": 1,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup0_roles_reward_hindsight_long_s1",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --reward --hindsight",
-  "seed": 1,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup1_roles_reward_long_s1",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --reward",
-  "seed": 1,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup0_roles_long_s2",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles",
+  "name": "eyes_shuffled_s2",
+  "script": "eyes.py",
+  "flags": "ground --cond shuffled --epochs 30",
   "seed": 2,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
  },
  {
-  "name": "events_sup0_roles_hindsight_long_s2",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --hindsight",
-  "seed": 2,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup0_roles_reward_long_s2",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --reward",
-  "seed": 2,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup0_roles_reward_hindsight_long_s2",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --reward --hindsight",
-  "seed": 2,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup1_roles_reward_long_s2",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --reward",
-  "seed": 2,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup0_roles_long_s3",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles",
+  "name": "eyes_shuffled_s3",
+  "script": "eyes.py",
+  "flags": "ground --cond shuffled --epochs 30",
   "seed": 3,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup0_roles_hindsight_long_s3",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --hindsight",
-  "seed": 3,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup0_roles_reward_long_s3",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --reward",
-  "seed": 3,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup0_roles_reward_hindsight_long_s3",
-  "script": "hippo_events.py",
-  "flags": "--sup 0 --roles --reward --hindsight",
-  "seed": 3,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
- },
- {
-  "name": "events_sup1_roles_reward_long_s3",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --reward",
-  "seed": 3,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=long_",
-  "batch": "96-2026-11-27"
+  "questions": 0,
+  "env": "FLICKR=/tmp/flickr EYES_OUT=/tmp/out EYES_RES=/tmp/out",
+  "batch": "97-2026-11-27"
  }
 ]

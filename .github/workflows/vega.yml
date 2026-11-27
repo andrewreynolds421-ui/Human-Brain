@@ -34,7 +34,7 @@ jobs:
         run: |
           mkdir -p /tmp/out; exec > >(tee -a /tmp/out/setup.txt) 2>&1
           pip install -q torch --index-url https://download.pytorch.org/whl/cpu
-          pip install -q numpy pandas scikit-learn spacy
+          pip install -q numpy pandas scikit-learn spacy pillow
           pip install -q https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl
       - name: unpack the VEGA bundle at /home/claude, then this branch's code over it
         run: |
