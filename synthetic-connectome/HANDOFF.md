@@ -609,3 +609,4 @@ argmax at test) and `--hindsight` (some recall step should land on a sentence co
 Runs events_{sup0_roles, sup0_roles_hindsight, sup0_roles_reward, sup0_roles_reward_hindsight, sup1_roles_reward}_long_s0-3
 (480k questions, old reader, one answer list). Reference: fully taught roles long 13,12,13,12 / 10.4 %.
 
+PLAN.md (27 Nov): research review of similar projects (Spaun, PBWM, CLS, TEM / clone graphs, EntNet, BabyLM, child-view learning, Monty, LeCun, connectome-constrained nets) and the proposed order of work - read it before choosing the next stage.
