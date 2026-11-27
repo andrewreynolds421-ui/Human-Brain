@@ -1,0 +1,16 @@
+/home/claude/synthetic-connectome/scripts/big_reader.py:77: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  s.tr = nn.TransformerEncoder(nn.TransformerEncoderLayer(width, 6, 4 * width, 0.1, batch_first=True, norm_first=True), layers); s.ln = nn.LayerNorm(width)
+{'kind': 'attn', 'width': 384, 'layers': 6, 'parameters': 18990416, 'books': 159, 'train_words': 4614242, 'vocabulary': 21198, 'words_budget': 40000000}
+{'step': 250, 'words': 1536000, 'minutes': 22.8, 'loss': 5.76}
+{'step': 500, 'words': 3072000, 'minutes': 45.3, 'loss': 5.472}
+{'step': 750, 'words': 4608000, 'minutes': 67.7, 'loss': 5.255}
+{'step': 1000, 'words': 6144000, 'minutes': 90.1, 'loss': 5.08}
+{'step': 1250, 'words': 7680000, 'minutes': 112.4, 'loss': 5.027}
+{'step': 1500, 'words': 9216000, 'minutes': 134.8, 'loss': 4.859}
+{'step': 1750, 'words': 10752000, 'minutes': 157.2, 'loss': 4.674}
+{'step': 2000, 'words': 12288000, 'minutes': 179.5, 'loss': 4.749}
+{'step': 2250, 'words': 13824000, 'minutes': 201.9, 'loss': 4.647}
+{'step': 2500, 'words': 15360000, 'minutes': 224.4, 'loss': 4.692}
+{'step': 2750, 'words': 16896000, 'minutes': 246.9, 'loss': 4.568}
+time limit: stopped at step 2953 of 6510
+{"seed": 0, "kind": "attn", "width": 384, "layers": 6, "parameters": 18990416, "books": 159, "train_words": 4614242, "vocabulary": 21198, "words_budget": 40000000, "finished": false, "words_read": 16896000, "heldout_logp_per_word": {"alone": -4.9925, "in_context": -4.7718}, "passages": {"alone": {"1": 0.55, "2": 0.3667, "3": 0.3333, "4": 0.4, "5": 0.25, "6": 0.3167, "7+": 0.3333}, "in_context": {"1": 0.4667, "2": 0.3, "3": 0.2667, "4": 0.3333, "5": 0.3, "6": 0.3, "7+": 0.2833}, "most_frequent": {"1": 0.2333, "2": 0.3333, "3": 0.2833, "4": 0.2667, "5": 0.3, "6": 0.3833, "7+": 0.1833}, "alone_mean": 0.3643, "in_context_mean": 0.3214, "most_frequent_mean": 0.2833}}
