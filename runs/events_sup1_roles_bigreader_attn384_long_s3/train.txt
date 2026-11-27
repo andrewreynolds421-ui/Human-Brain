@@ -1,0 +1,56 @@
+built {'page_nouns_det': 0.9675, 'page_nouns_refl_number': 1.0, 'page_nouns_refl_gender': 1.0, 'page_nouns_refl_across': 0.97, 'page_nouns_npi': 1.0, 'page_nouns_npi_scope': 0.99, 'page_nouns_gap_wh': 1.0, 'page_nouns_gap_that': 1.0, 'page_nouns_aux_agree_relative': 0.99, 'page_nouns_verb_agree_relative': 0.6475, 'page_nouns_who_gap': 0.055, 'page_nouns_name_reflexive': 0.865, 'page_nouns_question_ever': 0.07, 'held_out_nouns_det': 0.9625, 'held_out_nouns_refl_number': 0.9625, 'held_out_nouns_refl_gender': 1.0, 'held_out_nouns_refl_across': 0.9475, 'held_out_nouns_npi': 1.0, 'held_out_nouns_npi_scope': 0.1925, 'held_out_nouns_gap_wh': 0.96, 'held_out_nouns_gap_that': 0.9525, 'held_out_nouns_aux_agree_relative': 0.8275, 'held_out_nouns_verb_agree_relative': 0.72, 'held_out_nouns_who_gap': 0.3775, 'held_out_nouns_name_reflexive': 0.865, 'held_out_nouns_question_ever': 0.07}
+/home/claude/synthetic-connectome/scripts/big_reader.py:78: UserWarning: enable_nested_tensor is True, but self.use_nested_tensor is False because encoder_layer.norm_first was True
+  s.tr = nn.TransformerEncoder(nn.TransformerEncoderLayer(width, 6, 4 * width, 0.1, batch_first=True, norm_first=True), layers); s.ln = nn.LayerNorm(width)
+reading network: bigreader_attn384x6_s0.pt width 384
+{'questions': 16000, 'minutes': 9.0, 'loss': 0.335}
+{'questions': 32000, 'minutes': 18.5, 'loss': 2.192}
+{'questions': 48000, 'minutes': 27.8, 'loss': 0.007}
+{'questions': 64000, 'minutes': 37.7, 'loss': 0.203}
+{'questions': 80000, 'minutes': 47.2, 'loss': 0.495}
+{'questions': 96000, 'minutes': 56.6, 'loss': 2.275}
+{'questions': 112000, 'minutes': 65.7, 'loss': 2.622}
+{'questions': 128000, 'minutes': 75.2, 'loss': 0.896}
+{'questions': 144000, 'minutes': 84.5, 'loss': 0.018}
+{'questions': 160000, 'minutes': 93.9, 'loss': 1.493}
+{'questions': 176000, 'minutes': 103.2, 'loss': 0.03}
+{'questions': 192000, 'minutes': 112.7, 'loss': 0.737}
+{'questions': 208000, 'minutes': 121.7, 'loss': 0.57}
+{'questions': 224000, 'minutes': 130.8, 'loss': 1.942}
+{'questions': 240000, 'minutes': 140.0, 'loss': 2.019}
+{'questions': 256000, 'minutes': 149.0, 'loss': 0.183}
+{'questions': 272000, 'minutes': 157.8, 'loss': 0.535}
+{'questions': 288000, 'minutes': 167.2, 'loss': 0.002}
+{'questions': 304000, 'minutes': 176.6, 'loss': 0.011}
+{'questions': 320000, 'minutes': 186.2, 'loss': 1.749}
+{'questions': 336000, 'minutes': 195.1, 'loss': 0.307}
+{'questions': 352000, 'minutes': 204.5, 'loss': 0.002}
+{'questions': 368000, 'minutes': 214.1, 'loss': 0.755}
+{'questions': 384000, 'minutes': 223.3, 'loss': 4.04}
+{'questions': 400000, 'minutes': 232.5, 'loss': 1.066}
+{'questions': 416000, 'minutes': 241.9, 'loss': 2.009}
+{'questions': 432000, 'minutes': 250.8, 'loss': 1.689}
+{'questions': 448000, 'minutes': 260.3, 'loss': 1.411}
+{'questions': 464000, 'minutes': 269.6, 'loss': 1.696}
+{'questions': 480000, 'minutes': 278.7, 'loss': 2.177}
+qa1_single-supporting-fact 0.997 [0.995]
+qa2_two-supporting-facts 0.781 [0.87, 0.769]
+qa3_three-supporting-facts 0.521 [0.936, 0.65, 0.428]
+qa4_two-arg-relations 0.771 [0.789]
+qa5_three-arg-relations 0.705 [0.963]
+qa6_yes-no-questions 0.937 [0.975]
+qa7_counting 0.8 [0.965, 0.916, 0.974]
+qa8_lists-sets 0.862 [0.989, 0.952, 0.879]
+qa9_simple-negation 0.951 [0.968]
+qa10_indefinite-knowledge 0.87 [0.948]
+qa11_basic-coreference 0.991 [0.998, 0.99]
+qa12_conjunction 0.998 [0.998]
+qa13_compound-coreference 0.989 [0.997, 0.992]
+qa14_time-reasoning 0.755 [0.846, 0.716]
+qa15_basic-deduction 1.0 [1.0, 1.0]
+qa16_basic-induction 0.883 [1.0, 0.782, 0.837]
+qa17_positional-reasoning 0.521 [0.893, 0.87]
+qa18_size-reasoning 0.791 [0.426, 0.306]
+qa19_path-finding 0.115 [0.527, 0.301]
+qa20_agents-motivations 1.0 [1.0]
+{'passages': {'1': 0.2184, '2': 0.25, '3': 0.2567, '4': 0.2333, '5': 0.23, '6': 0.2033, '7+': 0.2433}, 'passages_reader': {'1': 0.4483, '2': 0.4221, '3': 0.3933, '4': 0.4467, '5': 0.37, '6': 0.4133, '7+': 0.3433}, 'passages_both': {'1': 0.4483, '2': 0.4754, '3': 0.4067, '4': 0.4667, '5': 0.38, '6': 0.3933, '7+': 0.3567}, 'passages_most_frequent': {'1': 0.1762, '2': 0.2869, '3': 0.2967, '4': 0.2833, '5': 0.2367, '6': 0.3233, '7+': 0.2733}, 'passages_reader_context': {'1': 0.3946, '2': 0.3443, '3': 0.3067, '4': 0.3567, '5': 0.2633, '6': 0.2867, '7+': 0.2867}, 'passages_both_context': {'1': 0.387, '2': 0.3607, '3': 0.3233, '4': 0.3833, '5': 0.28, '6': 0.3067, '7+': 0.2967}}
+{"seed": 3, "questions": 480000, "tasks": {"qa1_single-supporting-fact": 0.997, "qa2_two-supporting-facts": 0.781, "qa3_three-supporting-facts": 0.521, "qa4_two-arg-relations": 0.771, "qa5_three-arg-relations": 0.705, "qa6_yes-no-questions": 0.937, "qa7_counting": 0.8, "qa8_lists-sets": 0.862, "qa9_simple-negation": 0.951, "qa10_indefinite-knowledge": 0.87, "qa11_basic-coreference": 0.991, "qa12_conjunction": 0.998, "qa13_compound-coreference": 0.989, "qa14_time-reasoning": 0.755, "qa15_basic-deduction": 1.0, "qa16_basic-induction": 0.883, "qa17_positional-reasoning": 0.521, "qa18_size-reasoning": 0.791, "qa19_path-finding": 0.115, "qa20_agents-motivations": 1.0}, "step_hits": {"qa1_single-supporting-fact": [0.995], "qa2_two-supporting-facts": [0.87, 0.769], "qa3_three-supporting-facts": [0.936, 0.65, 0.428], "qa4_two-arg-relations": [0.789], "qa5_three-arg-relations": [0.963], "qa6_yes-no-questions": [0.975], "qa7_counting": [0.965, 0.916, 0.974], "qa8_lists-sets": [0.989, 0.952, 0.879], "qa9_simple-negation": [0.968], "qa10_indefinite-knowledge": [0.948], "qa11_basic-coreference": [0.998, 0.99], "qa12_conjunction": [0.998], "qa13_compound-coreference": [0.997, 0.992], "qa14_time-reasoning": [0.846, 0.716], "qa15_basic-deduction": [1.0, 1.0], "qa16_basic-induction": [1.0, 0.782, 0.837], "qa17_positional-reasoning": [0.893, 0.87], "qa18_size-reasoning": [0.426, 0.306], "qa19_path-finding": [0.527, 0.301], "qa20_agents-motivations": [1.0]}, "config": {"reader": "bigreader_attn384x6_s0.pt", "sup": 1, "roles": true, "sem": false, "space": false, "space_sup": false, "entities": false, "passages": true, "one_answer_list": 60, "hops": 3, "tag": "events_sup1_roles_bigreader_attn384_long_", "n_params": 2124370}, "passed_95": 7, "mean_error": 18.81, "world": {"same": 0.899, "held_names": 0.813, "held_objects_places": 0.67, "long": 0.816}, "passages": {"1": 0.2184, "2": 0.25, "3": 0.2567, "4": 0.2333, "5": 0.23, "6": 0.2033, "7+": 0.2433}, "passages_reader": {"1": 0.4483, "2": 0.4221, "3": 0.3933, "4": 0.4467, "5": 0.37, "6": 0.4133, "7+": 0.3433}, "passages_both": {"1": 0.4483, "2": 0.4754, "3": 0.4067, "4": 0.4667, "5": 0.38, "6": 0.3933, "7+": 0.3567}, "passages_most_frequent": {"1": 0.1762, "2": 0.2869, "3": 0.2967, "4": 0.2833, "5": 0.2367, "6": 0.3233, "7+": 0.2733}, "passages_reader_context": {"1": 0.3946, "2": 0.3443, "3": 0.3067, "4": 0.3567, "5": 0.2633, "6": 0.2867, "7+": 0.2867}, "passages_both_context": {"1": 0.387, "2": 0.3607, "3": 0.3233, "4": 0.3833, "5": 0.28, "6": 0.3067, "7+": 0.2967}}
