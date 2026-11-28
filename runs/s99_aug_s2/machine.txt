@@ -1,0 +1,6 @@
+Filesystem            Size  Used Avail Use% Mounted on
+/dev/mapper/cow-root  145G   61G   84G  42% /
+4
+               total        used        free      shared  buff/cache   available
+Mem:           15700        1622        6994          48        7468       14078
+Swap:              0           0           0
