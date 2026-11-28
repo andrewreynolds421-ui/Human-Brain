@@ -52,6 +52,15 @@ D_SEM = 128
 P_WORLD, P_PASS = 0.15, 0.25                                             # share of training batches (ASSUMED)
 
 
+# Stage 99 --aug: words that can be swapped for one another without changing what a story means
+AUG_PERSONS = "antoine bernhard bill brian daniel emily fred gertrude greg jason jeff jessica john julie julius lily mary sandra sumit winona yann".split()
+AUG_PLACES = "bathroom bedroom garden hallway kitchen office cinema park school".split()
+AUG_OBJECTS = "apple football milk".split()
+AUG_COLOURS = "gray green white yellow".split()
+AUG_SKIP = {20}
+PRIO_EVERY = int(os.environ.get("PRIO_EVERY", 4000))                                  # steps between re-weighting tasks by error (--prio)                                                                       # motives: hungry -> kitchen is world knowledge, not a name
+
+
 def load_task(path):
     items, sents, ids = [], [], []
     for line in open(path):
@@ -206,9 +215,13 @@ def build(M, seed):
 
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); ap.add_argument("--space", action="store_true"); ap.add_argument("--space-sup", action="store_true"); ap.add_argument("--entities", action="store_true"); ap.add_argument("--reward", action="store_true"); ap.add_argument("--hindsight", action="store_true"); a = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument("--seed", type=int, default=0); ap.add_argument("--sup", type=int, default=1); ap.add_argument("--roles", action="store_true"); ap.add_argument("--sem", action="store_true"); ap.add_argument("--space", action="store_true"); ap.add_argument("--space-sup", action="store_true"); ap.add_argument("--entities", action="store_true"); ap.add_argument("--reward", action="store_true"); ap.add_argument("--hindsight", action="store_true")
+    # Stage 99: how VEGA is taught (all off by default; earlier stages reproduce unchanged)
+    ap.add_argument("--wd", type=float, default=0.0); ap.add_argument("--sched", default=""); ap.add_argument("--drop", type=float, default=0.0)
+    ap.add_argument("--mix", action="store_true"); ap.add_argument("--prio", action="store_true"); ap.add_argument("--fade", type=float, default=0.0)
+    ap.add_argument("--aug", type=float, default=0.0); ap.add_argument("--val", action="store_true"); a = ap.parse_args()
     global ROLES, SEM, SPACE, SPACE_SUP, ENTITIES, REWARD, HINDSIGHT; ENTITIES = a.entities; REWARD = a.reward; HINDSIGHT = a.hindsight; ROLES = a.roles; SEM = a.sem; SPACE_SUP = a.space_sup; SPACE = a.space or a.space_sup
-    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + ("spacesup_" if a.space_sup else "space_" if a.space else "") + ("entities_" if a.entities else "") + ("reward_" if a.reward else "") + ("hindsight_" if a.hindsight else "") + ("bigreader_" if os.environ.get("BIG_READER") else "") + os.environ.get("EV_TAG", "")
+    os.makedirs(OUT, exist_ok=True); os.makedirs(DATA, exist_ok=True); tag = f"events_sup{a.sup}_" + ("roles_" if a.roles else "") + ("sem_" if a.sem else "") + ("spacesup_" if a.space_sup else "space_" if a.space else "") + ("entities_" if a.entities else "") + ("reward_" if a.reward else "") + ("hindsight_" if a.hindsight else "") + ("bigreader_" if os.environ.get("BIG_READER") else "") + ("val_" if a.val else "") + (f"wd{a.wd:g}_" if a.wd else "") + (f"{a.sched}_" if a.sched else "") + (f"drop{a.drop:g}_" if a.drop else "") + ("mix_" if a.mix else "") + ("prio_" if a.prio else "") + (f"fade{a.fade:g}_" if a.fade else "") + (f"aug{a.aug:g}_" if a.aug else "") + os.environ.get("EV_TAG", "")
 
     def run(M, C, tok, seed, res):
         torch = M.torch; torch.set_num_threads(int(os.environ.get("THREADS", 2)))
@@ -218,7 +231,9 @@ def main():
         if os.environ.get("STORY_READER"): M.m.load_state_dict(torch.load(os.environ["STORY_READER"]), strict=False); print("reading network:", os.environ["STORY_READER"], flush=True)   # Stage 91
         M.m.eval()
         for p in M.m.parameters(): p.requires_grad_(False)
-        net = build(M, a.seed); opt = torch.optim.Adam(net.parameters(), lr=5e-4); cache = {}
+        net = build(M, a.seed); cache = {}
+        LR0 = 5e-4
+        opt = torch.optim.AdamW(net.parameters(), lr=LR0, weight_decay=a.wd) if a.wd else torch.optim.Adam(net.parameters(), lr=LR0)
         if SEM:
             import semantic_cortex as SC
             SV = SC.load(); scale = float(M.m.e.base.weight.norm(dim=1).mean()); zero = np.zeros(D_SEM, np.float32)     # meaning vectors at the size of the reader's own
@@ -249,6 +264,8 @@ def main():
             hs = o[:, 1:T + 1]; es = e[:, 1:T + 1]
             if hs.shape[1] < T: hs = torch.nn.functional.pad(hs, (0, 0, 0, T - hs.shape[1])); es = torch.nn.functional.pad(es, (0, 0, 0, T - es.shape[1]))
             ce = torch.stack([torch.stack([emb(c) for c in it["cands"]]) for it in items])
+            if a.drop and net.training:                                                       # Stage 99: dropout (DMN+, robust DNC)
+                D = torch.nn.functional.dropout; hs, es, q, qe = D(hs, a.drop), D(es, a.drop), D(q, a.drop), D(qe, a.drop)
             return hs * mask[..., None], es * mask[..., None], mask, q, qe, qmask, sid, ends, smask, ce
 
         def sup_loss(scs, items):
@@ -282,6 +299,42 @@ def main():
 
         NT = int(os.environ.get("EV_NTEST", 0)) or None                                        # smoke tests: fewer test items
         tasks, allc = load_all(); T = sorted(tasks); rng = np.random.default_rng(890 + a.seed)
+        if a.val:                                                                             # Stage 99: last 10 % of each task's training stories held out
+            for t in T:
+                tr = tasks[t]["train"]; k = len(tr) // 10; tasks[t]["val"] = tr[-k:]; tasks[t]["train"] = tr[:-k]
+        ans_words = {w for c in allc for w in c}
+        CLASSES = [AUG_PERSONS, AUG_PLACES, AUG_OBJECTS, AUG_COLOURS]
+
+        def augment(it, t):                                                                  # Stage 99: the same story with its people, places, things renamed
+            if not a.aug or t in AUG_SKIP or rng.random() >= a.aug: return it
+            mp = {}
+            for cl in CLASSES:
+                for part in ([w for w in cl if w in ans_words], [w for w in cl if w not in ans_words]):   # answers stay answers
+                    if len(part) > 1: mp.update(zip(part, [part[i] for i in rng.permutation(len(part))]))
+            sub = lambda ws: [mp.get(w, w) for w in ws]
+            ans = tuple(sub(it["ans"]))
+            if ans not in allc: return it                                                    # a list answer in an order never seen: keep the original
+            new = dict(it, sents=[sub(sn) for sn in it["sents"]], q=sub(it["q"]), ans=ans, y=allc.index(ans))
+            if os.environ.get("AUG_SHOW") and rng.random() < 0.02: print("AUG", t, " | ".join(" ".join(x) for x in it["sents"][-3:]), "?", " ".join(it["q"]), it["ans"], "=>", " | ".join(" ".join(x) for x in new["sents"][-3:]), "?", " ".join(new["q"]), new["ans"], flush=True)
+            return new
+
+        tw = np.ones(len(T)) / len(T)                                                         # how often each task is practised (--prio changes this)
+
+        def task_items(n):
+            if a.mix:                                                                         # interleaved: every question from its own task
+                ts = rng.choice(len(T), n, p=tw); out = []
+                for k in ts:
+                    tr = tasks[T[k]]["train"]; out.append(augment(tr[int(rng.integers(len(tr)))], T[k]))
+                return out
+            k = int(rng.choice(len(T), p=tw)) if a.prio else int(rng.integers(len(T))); tr = tasks[T[k]]["train"]   # uniform draw kept bit-identical to earlier stages
+            return [augment(tr[i], T[k]) for i in rng.choice(len(tr), n, replace=False)]
+
+        def reprioritise():                                                                   # spaced repetition by error: practise what is still wrong
+            nonlocal tw
+            src = "val" if a.val else "train"
+            err = np.array([1 - accuracy(tasks[t][src][:64]) for t in T])
+            tw = 0.5 / len(T) + 0.5 * (err + 0.02) / (err + 0.02).sum()
+            return err
         PASS = None
         if os.environ.get("PASSAGES"):
             raw = json.load(gzip.open(os.environ["PASSAGES"], "rt")); PASS = {sp: {b: [passage_item(it) for it in raw[sp][b]] for b in raw[sp]} for sp in raw}
@@ -298,9 +351,15 @@ def main():
                 elif PASS and u < P_WORLD + P_PASS:
                     bd = list(PASS["train"])[int(rng.integers(len(PASS["train"])))]; tr = PASS["train"][bd]; items = [tr[i] for i in rng.choice(len(tr), BS, replace=False)]
                 else:
-                    tr = tasks[T[int(rng.integers(len(T)))]]["train"]; items = [tr[i] for i in rng.choice(len(tr), BS, replace=False)]
+                    items = task_items(BS)
+                nsteps = QUESTIONS // BS; frac = step / nsteps
+                if a.sched == "cos":                                                              # Stage 99: 2 % warm-up, then cosine down to 5 %
+                    lr = LR0 * (frac / 0.02 if frac < 0.02 else 0.05 + 0.95 * 0.5 * (1 + np.cos(np.pi * (frac - 0.02) / 0.98)))
+                    for g in opt.param_groups: g["lr"] = lr
+                if a.prio and step % PRIO_EVERY == 0 and step > 0: print("task weights", np.round(tw, 3).tolist(), "errors", np.round(reprioritise(), 2).tolist(), flush=True)
                 lg, scs = net(*batch(items)); loss = torch.nn.functional.cross_entropy(lg, torch.tensor([i["y"] for i in items]))
-                if a.sup: loss = loss + SUP_W * sup_loss(scs, items)
+                sw = SUP_W * (1 - (1 - a.fade) * min(1.0, frac / 0.8) if a.fade else 1.0)          # Stage 99: step teaching fades to --fade of its weight by 80 % of training
+                if a.sup: loss = loss + sw * sup_loss(scs, items)
                 if HINDSIGHT: loss = loss + hind_loss(scs, items)
                 if REWARD:
                     rwd = (lg.argmax(1) == torch.tensor([i["y"] for i in items])).float(); rl = net.rl; rpe = rwd - rl["value"].detach()   # better or worse than expected
@@ -335,6 +394,12 @@ def main():
             if hops: out["step_hits"][tasks[t]["name"]] = [round(float(np.mean([h[j] for h in hops if len(h) > j])), 3) for j in range(max(map(len, hops)))]   # does recall step j land on supporting sentence j?
             print(tasks[t]["name"], round(acc, 4), out["step_hits"].get(tasks[t]["name"]), flush=True)
         out["passed_95"] = int(sum(v >= 0.95 for v in out["tasks"].values())); out["mean_error"] = round(100 * (1 - np.mean(list(out["tasks"].values()))), 2)
+        out["recipe"] = dict(wd=a.wd, sched=a.sched, drop=a.drop, mix=a.mix, prio=a.prio, fade=a.fade, aug=a.aug, val=a.val)
+        if a.val:
+            out["val"] = {tasks[t]["name"]: round(accuracy(tasks[t]["val"][:NT]), 4) for t in T}
+            out["val_mean_error"] = round(100 * (1 - np.mean(list(out["val"].values()))), 2)
+        out["train_sample"] = {tasks[t]["name"]: round(accuracy(tasks[t]["train"][:300]), 4) for t in T}       # how well it knows what it practised
+        if a.prio: out["task_weights"] = {tasks[t]["name"]: round(float(w), 4) for t, w in zip(T, tw)}
         out["world"] = {k: round(accuracy([world_item(it) for it in v]), 4) for k, v in W.test_sets(seed=0).items() for v in [v[:NT]]}
         if PASS:
             out["passages"], out["passages_reader"], out["passages_both"], out["passages_most_frequent"] = {}, {}, {}, {}
