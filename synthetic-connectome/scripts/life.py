@@ -8,7 +8,7 @@ other) and, now and then, a lasting fact said once ("anna has a dog called rex",
 "mary now lives in the yard"). At the end of each day VEGA is questioned about today AND about the past.
 
 QUESTION KINDS (answer = one word; `supp` = the sentences that decide it, as (day, episode, sentence)):
-  today      where is the key now?                         the object's place at the end of today
+  now        where is the key now?                         the object's place at the end of today (decided today or earlier)
   long_ago   where was the key three days ago?             its place at the end of that day (1-29 days back)
   told_once  what is anna's dog called?                    a pet named once, any time before
   changed    where does mary live?                         the newest home; older homes are the trap
@@ -55,6 +55,9 @@ def live(seed=0, days=30, episodes=5, questions_per_day=12, facts_per_day=0.6):
     snapshot = {}                                                              # day -> {object: (place, src)}
     life, qs = [], []
 
+    intro = [[p, "was", "in", "the", where[p]] for p in PEOPLE] + [["the", o, "was", "in", "the", obj[o][0]] for o in OBJECTS]
+    life.append(dict(day=0, episode=-1, place=None, sents=intro))                 # the opening: where everyone and everything starts
+    for i, o in enumerate(OBJECTS): obj_src[o] = (0, -1, len(PEOPLE) + i)
     for d in range(days):
         for e in range(episodes):
             here = str(rng.choice(PLACES)); cast = list(rng.choice(PEOPLE, int(rng.integers(2, 4)), replace=False))
@@ -103,7 +106,7 @@ def live(seed=0, days=30, episodes=5, questions_per_day=12, facts_per_day=0.6):
             r = rng.random()
             if r < 0.25:
                 o = str(rng.choice(OBJECTS)); pl, src = snapshot[d][o]
-                add("today", ["where", "is", "the", o, "now"], pl, src)
+                add("now", ["where", "is", "the", o, "now"], pl, src)
             elif r < 0.55 and d > 0:
                 k = int(rng.integers(1, d + 1)); o = str(rng.choice(OBJECTS)); pl, src = snapshot[d - k][o]
                 if pl != snapshot[d][o][0]:                                     # only when the answer differs from today's
@@ -132,7 +135,7 @@ def stats(L):
     print("delay (days) quartiles:", np.percentile(dl, [25, 50, 75, 100]).tolist())
     for e in L["episodes"][:2]:
         print(f"day {e['day']} episode {e['episode']} ({e['place']}):", " | ".join(" ".join(s) for s in e["sents"]))
-    for kind in ("today", "long_ago", "told_once", "changed", "never"):
+    for kind in ("now", "long_ago", "told_once", "changed", "never"):
         it = next((x for x in L["questions"] if x["kind"] == kind and x["day"] > 10), None)
         if it: print(f"  [{kind}] day {it['day']}: {' '.join(it['q'])}? -> {it['ans'][0]}  (decided {it['delay']} days earlier by {it['supp']})")
 
