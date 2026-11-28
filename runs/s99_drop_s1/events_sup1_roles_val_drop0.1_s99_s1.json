@@ -1,0 +1,371 @@
+{
+ "seed": 1,
+ "questions": 480000,
+ "training": [
+  {
+   "questions": 16000,
+   "minutes": 2.4,
+   "loss": 0.869
+  },
+  {
+   "questions": 32000,
+   "minutes": 4.8,
+   "loss": 0.563
+  },
+  {
+   "questions": 48000,
+   "minutes": 7.2,
+   "loss": 0.21
+  },
+  {
+   "questions": 64000,
+   "minutes": 9.6,
+   "loss": 2.085
+  },
+  {
+   "questions": 80000,
+   "minutes": 11.8,
+   "loss": 0.328
+  },
+  {
+   "questions": 96000,
+   "minutes": 14.3,
+   "loss": 0.745
+  },
+  {
+   "questions": 112000,
+   "minutes": 16.6,
+   "loss": 0.852
+  },
+  {
+   "questions": 128000,
+   "minutes": 19.1,
+   "loss": 1.564
+  },
+  {
+   "questions": 144000,
+   "minutes": 21.5,
+   "loss": 0.071
+  },
+  {
+   "questions": 160000,
+   "minutes": 23.8,
+   "loss": 0.018
+  },
+  {
+   "questions": 176000,
+   "minutes": 26.1,
+   "loss": 3.05
+  },
+  {
+   "questions": 192000,
+   "minutes": 28.5,
+   "loss": 0.602
+  },
+  {
+   "questions": 208000,
+   "minutes": 30.8,
+   "loss": 1.984
+  },
+  {
+   "questions": 224000,
+   "minutes": 33.2,
+   "loss": 0.944
+  },
+  {
+   "questions": 240000,
+   "minutes": 35.5,
+   "loss": 1.733
+  },
+  {
+   "questions": 256000,
+   "minutes": 37.8,
+   "loss": 1.62
+  },
+  {
+   "questions": 272000,
+   "minutes": 40.2,
+   "loss": 0.172
+  },
+  {
+   "questions": 288000,
+   "minutes": 42.4,
+   "loss": 0.927
+  },
+  {
+   "questions": 304000,
+   "minutes": 44.8,
+   "loss": 0.008
+  },
+  {
+   "questions": 320000,
+   "minutes": 47.1,
+   "loss": 0.009
+  },
+  {
+   "questions": 336000,
+   "minutes": 49.5,
+   "loss": 0.375
+  },
+  {
+   "questions": 352000,
+   "minutes": 51.9,
+   "loss": 0.055
+  },
+  {
+   "questions": 368000,
+   "minutes": 54.2,
+   "loss": 1.044
+  },
+  {
+   "questions": 384000,
+   "minutes": 56.4,
+   "loss": 0.016
+  },
+  {
+   "questions": 400000,
+   "minutes": 58.6,
+   "loss": 3.178
+  },
+  {
+   "questions": 416000,
+   "minutes": 60.9,
+   "loss": 0.019
+  },
+  {
+   "questions": 432000,
+   "minutes": 63.1,
+   "loss": 1.507
+  },
+  {
+   "questions": 448000,
+   "minutes": 65.3,
+   "loss": 0.09
+  },
+  {
+   "questions": 464000,
+   "minutes": 67.6,
+   "loss": 0.116
+  },
+  {
+   "questions": 480000,
+   "minutes": 69.9,
+   "loss": 0.003
+  }
+ ],
+ "tasks": {
+  "qa1_single-supporting-fact": 1.0,
+  "qa2_two-supporting-facts": 0.895,
+  "qa3_three-supporting-facts": 0.683,
+  "qa4_two-arg-relations": 0.854,
+  "qa5_three-arg-relations": 0.989,
+  "qa6_yes-no-questions": 0.986,
+  "qa7_counting": 0.842,
+  "qa8_lists-sets": 0.908,
+  "qa9_simple-negation": 0.99,
+  "qa10_indefinite-knowledge": 0.96,
+  "qa11_basic-coreference": 0.997,
+  "qa12_conjunction": 1.0,
+  "qa13_compound-coreference": 0.999,
+  "qa14_time-reasoning": 0.958,
+  "qa15_basic-deduction": 1.0,
+  "qa16_basic-induction": 0.947,
+  "qa17_positional-reasoning": 0.52,
+  "qa18_size-reasoning": 0.891,
+  "qa19_path-finding": 0.192,
+  "qa20_agents-motivations": 1.0
+ },
+ "step_hits": {
+  "qa1_single-supporting-fact": [
+   0.999
+  ],
+  "qa2_two-supporting-facts": [
+   0.959,
+   0.846
+  ],
+  "qa3_three-supporting-facts": [
+   0.973,
+   0.935,
+   0.626
+  ],
+  "qa4_two-arg-relations": [
+   0.807
+  ],
+  "qa5_three-arg-relations": [
+   0.981
+  ],
+  "qa6_yes-no-questions": [
+   0.99
+  ],
+  "qa7_counting": [
+   0.958,
+   0.93,
+   0.98
+  ],
+  "qa8_lists-sets": [
+   0.984,
+   0.96,
+   0.871
+  ],
+  "qa9_simple-negation": [
+   0.992
+  ],
+  "qa10_indefinite-knowledge": [
+   0.977
+  ],
+  "qa11_basic-coreference": [
+   0.999,
+   0.989
+  ],
+  "qa12_conjunction": [
+   0.992
+  ],
+  "qa13_compound-coreference": [
+   1.0,
+   1.0
+  ],
+  "qa14_time-reasoning": [
+   0.979,
+   0.932
+  ],
+  "qa15_basic-deduction": [
+   1.0,
+   1.0
+  ],
+  "qa16_basic-induction": [
+   1.0,
+   0.943,
+   0.93
+  ],
+  "qa17_positional-reasoning": [
+   0.997,
+   0.978
+  ],
+  "qa18_size-reasoning": [
+   0.601,
+   0.697
+  ],
+  "qa19_path-finding": [
+   0.659,
+   0.858
+  ],
+  "qa20_agents-motivations": [
+   1.0
+  ]
+ },
+ "config": {
+  "reader": "stage 73",
+  "sup": 1,
+  "roles": true,
+  "sem": false,
+  "space": false,
+  "space_sup": false,
+  "entities": false,
+  "reward": false,
+  "hindsight": false,
+  "passages": true,
+  "one_answer_list": 60,
+  "hops": 3,
+  "tag": "events_sup1_roles_val_drop0.1_s99_",
+  "n_params": 1426770
+ },
+ "passed_95": 11,
+ "mean_error": 11.95,
+ "recipe": {
+  "wd": 0.0,
+  "sched": "",
+  "drop": 0.1,
+  "mix": false,
+  "prio": false,
+  "fade": 0.0,
+  "aug": 0.0,
+  "val": true
+ },
+ "val": {
+  "qa1_single-supporting-fact": 1.0,
+  "qa2_two-supporting-facts": 0.873,
+  "qa3_three-supporting-facts": 0.706,
+  "qa4_two-arg-relations": 0.864,
+  "qa5_three-arg-relations": 0.991,
+  "qa6_yes-no-questions": 0.987,
+  "qa7_counting": 0.841,
+  "qa8_lists-sets": 0.923,
+  "qa9_simple-negation": 0.987,
+  "qa10_indefinite-knowledge": 0.96,
+  "qa11_basic-coreference": 0.993,
+  "qa12_conjunction": 0.998,
+  "qa13_compound-coreference": 0.998,
+  "qa14_time-reasoning": 0.949,
+  "qa15_basic-deduction": 1.0,
+  "qa16_basic-induction": 0.957,
+  "qa17_positional-reasoning": 0.469,
+  "qa18_size-reasoning": 0.937,
+  "qa19_path-finding": 0.198,
+  "qa20_agents-motivations": 1.0
+ },
+ "val_mean_error": 11.84,
+ "train_sample": {
+  "qa1_single-supporting-fact": 1.0,
+  "qa2_two-supporting-facts": 0.92,
+  "qa3_three-supporting-facts": 0.77,
+  "qa4_two-arg-relations": 0.88,
+  "qa5_three-arg-relations": 0.9767,
+  "qa6_yes-no-questions": 0.9967,
+  "qa7_counting": 0.8767,
+  "qa8_lists-sets": 0.9067,
+  "qa9_simple-negation": 1.0,
+  "qa10_indefinite-knowledge": 0.98,
+  "qa11_basic-coreference": 0.9933,
+  "qa12_conjunction": 0.9967,
+  "qa13_compound-coreference": 1.0,
+  "qa14_time-reasoning": 0.9567,
+  "qa15_basic-deduction": 1.0,
+  "qa16_basic-induction": 0.9467,
+  "qa17_positional-reasoning": 0.47,
+  "qa18_size-reasoning": 0.9133,
+  "qa19_path-finding": 0.19,
+  "qa20_agents-motivations": 1.0
+ },
+ "world": {
+  "same": 0.986,
+  "held_names": 0.934,
+  "held_objects_places": 0.969,
+  "long": 0.947
+ },
+ "passages": {
+  "1": 0.3027,
+  "2": 0.377,
+  "3": 0.3533,
+  "4": 0.31,
+  "5": 0.2867,
+  "6": 0.31,
+  "7+": 0.2967
+ },
+ "passages_reader": {
+  "1": 0.4176,
+  "2": 0.4221,
+  "3": 0.3533,
+  "4": 0.3933,
+  "5": 0.2733,
+  "6": 0.33,
+  "7+": 0.2933
+ },
+ "passages_both": {
+  "1": 0.4674,
+  "2": 0.4508,
+  "3": 0.41,
+  "4": 0.4233,
+  "5": 0.34,
+  "6": 0.3633,
+  "7+": 0.3567
+ },
+ "passages_most_frequent": {
+  "1": 0.1762,
+  "2": 0.2869,
+  "3": 0.2967,
+  "4": 0.2833,
+  "5": 0.2367,
+  "6": 0.3233,
+  "7+": 0.2733
+ }
+}
