@@ -53,12 +53,13 @@ P_WORLD, P_PASS = 0.15, 0.25                                             # share
 
 
 # Stage 99 --aug: words that can be swapped for one another without changing what a story means
-AUG_PERSONS = "antoine bernhard bill brian daniel emily fred gertrude greg jason jeff jessica john julie julius lily mary sandra sumit winona yann".split()
+AUG_WOMEN = "emily gertrude jessica julie lily mary sandra winona".split()                 # renamed only within a gender, so "she" / "he" still fit
+AUG_MEN = "antoine bernhard bill brian daniel fred greg jason jeff john julius sumit yann".split()
 AUG_PLACES = "bathroom bedroom garden hallway kitchen office cinema park school".split()
 AUG_OBJECTS = "apple football milk".split()
 AUG_COLOURS = "gray green white yellow".split()
-AUG_SKIP = {20}
-PRIO_EVERY = int(os.environ.get("PRIO_EVERY", 4000))                                  # steps between re-weighting tasks by error (--prio)                                                                       # motives: hungry -> kitchen is world knowledge, not a name
+AUG_SKIP = {20}                                                                       # motives: hungry -> kitchen is world knowledge, not a name
+PRIO_EVERY = int(os.environ.get("PRIO_EVERY", 4000))                                  # steps between re-weighting tasks by error (--prio)
 
 
 def load_task(path):
@@ -233,7 +234,10 @@ def main():
         for p in M.m.parameters(): p.requires_grad_(False)
         net = build(M, a.seed); cache = {}
         LR0 = 5e-4
-        opt = torch.optim.AdamW(net.parameters(), lr=LR0, weight_decay=a.wd) if a.wd else torch.optim.Adam(net.parameters(), lr=LR0)
+        if a.wd:                                                                              # decay weight matrices only: biases and single-number settings (attention sharpness) are left alone
+            dec = [p for p in net.parameters() if p.requires_grad and p.dim() >= 2]; keep = [p for p in net.parameters() if p.requires_grad and p.dim() < 2]
+            opt = torch.optim.AdamW([dict(params=dec, weight_decay=a.wd), dict(params=keep, weight_decay=0.0)], lr=LR0)
+        else: opt = torch.optim.Adam(net.parameters(), lr=LR0)
         if SEM:
             import semantic_cortex as SC
             SV = SC.load(); scale = float(M.m.e.base.weight.norm(dim=1).mean()); zero = np.zeros(D_SEM, np.float32)     # meaning vectors at the size of the reader's own
@@ -303,7 +307,7 @@ def main():
             for t in T:
                 tr = tasks[t]["train"]; k = len(tr) // 10; tasks[t]["val"] = tr[-k:]; tasks[t]["train"] = tr[:-k]
         ans_words = {w for c in allc for w in c}
-        CLASSES = [AUG_PERSONS, AUG_PLACES, AUG_OBJECTS, AUG_COLOURS]
+        CLASSES = [AUG_WOMEN, AUG_MEN, AUG_PLACES, AUG_OBJECTS, AUG_COLOURS]
 
         def augment(it, t):                                                                  # Stage 99: the same story with its people, places, things renamed
             if not a.aug or t in AUG_SKIP or rng.random() >= a.aug: return it
