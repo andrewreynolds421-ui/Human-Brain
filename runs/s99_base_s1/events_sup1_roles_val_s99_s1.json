@@ -1,0 +1,371 @@
+{
+ "seed": 1,
+ "questions": 480000,
+ "training": [
+  {
+   "questions": 16000,
+   "minutes": 1.5,
+   "loss": 0.558
+  },
+  {
+   "questions": 32000,
+   "minutes": 3.1,
+   "loss": 0.564
+  },
+  {
+   "questions": 48000,
+   "minutes": 4.7,
+   "loss": 0.067
+  },
+  {
+   "questions": 64000,
+   "minutes": 6.3,
+   "loss": 0.812
+  },
+  {
+   "questions": 80000,
+   "minutes": 7.8,
+   "loss": 0.164
+  },
+  {
+   "questions": 96000,
+   "minutes": 9.4,
+   "loss": 0.17
+  },
+  {
+   "questions": 112000,
+   "minutes": 10.9,
+   "loss": 1.298
+  },
+  {
+   "questions": 128000,
+   "minutes": 12.5,
+   "loss": 0.409
+  },
+  {
+   "questions": 144000,
+   "minutes": 14.1,
+   "loss": 0.056
+  },
+  {
+   "questions": 160000,
+   "minutes": 15.6,
+   "loss": 0.015
+  },
+  {
+   "questions": 176000,
+   "minutes": 17.2,
+   "loss": 2.643
+  },
+  {
+   "questions": 192000,
+   "minutes": 18.7,
+   "loss": 0.02
+  },
+  {
+   "questions": 208000,
+   "minutes": 20.2,
+   "loss": 0.497
+  },
+  {
+   "questions": 224000,
+   "minutes": 21.8,
+   "loss": 0.022
+  },
+  {
+   "questions": 240000,
+   "minutes": 23.3,
+   "loss": 1.886
+  },
+  {
+   "questions": 256000,
+   "minutes": 24.9,
+   "loss": 1.394
+  },
+  {
+   "questions": 272000,
+   "minutes": 26.4,
+   "loss": 0.035
+  },
+  {
+   "questions": 288000,
+   "minutes": 27.9,
+   "loss": 0.908
+  },
+  {
+   "questions": 304000,
+   "minutes": 29.4,
+   "loss": 0.005
+  },
+  {
+   "questions": 320000,
+   "minutes": 31.0,
+   "loss": 0.007
+  },
+  {
+   "questions": 336000,
+   "minutes": 32.6,
+   "loss": 0.059
+  },
+  {
+   "questions": 352000,
+   "minutes": 34.2,
+   "loss": 0.01
+  },
+  {
+   "questions": 368000,
+   "minutes": 35.8,
+   "loss": 0.634
+  },
+  {
+   "questions": 384000,
+   "minutes": 37.3,
+   "loss": 0.02
+  },
+  {
+   "questions": 400000,
+   "minutes": 38.8,
+   "loss": 3.048
+  },
+  {
+   "questions": 416000,
+   "minutes": 40.4,
+   "loss": 0.01
+  },
+  {
+   "questions": 432000,
+   "minutes": 41.9,
+   "loss": 1.502
+  },
+  {
+   "questions": 448000,
+   "minutes": 43.4,
+   "loss": 0.023
+  },
+  {
+   "questions": 464000,
+   "minutes": 44.9,
+   "loss": 0.044
+  },
+  {
+   "questions": 480000,
+   "minutes": 46.4,
+   "loss": 0.004
+  }
+ ],
+ "tasks": {
+  "qa1_single-supporting-fact": 0.994,
+  "qa2_two-supporting-facts": 0.935,
+  "qa3_three-supporting-facts": 0.728,
+  "qa4_two-arg-relations": 0.858,
+  "qa5_three-arg-relations": 0.991,
+  "qa6_yes-no-questions": 0.991,
+  "qa7_counting": 0.821,
+  "qa8_lists-sets": 0.917,
+  "qa9_simple-negation": 0.99,
+  "qa10_indefinite-knowledge": 0.981,
+  "qa11_basic-coreference": 1.0,
+  "qa12_conjunction": 0.998,
+  "qa13_compound-coreference": 1.0,
+  "qa14_time-reasoning": 0.952,
+  "qa15_basic-deduction": 1.0,
+  "qa16_basic-induction": 0.981,
+  "qa17_positional-reasoning": 0.62,
+  "qa18_size-reasoning": 0.893,
+  "qa19_path-finding": 0.242,
+  "qa20_agents-motivations": 1.0
+ },
+ "step_hits": {
+  "qa1_single-supporting-fact": [
+   0.993
+  ],
+  "qa2_two-supporting-facts": [
+   0.985,
+   0.864
+  ],
+  "qa3_three-supporting-facts": [
+   0.97,
+   0.889,
+   0.652
+  ],
+  "qa4_two-arg-relations": [
+   0.838
+  ],
+  "qa5_three-arg-relations": [
+   0.986
+  ],
+  "qa6_yes-no-questions": [
+   0.991
+  ],
+  "qa7_counting": [
+   0.965,
+   0.89,
+   0.987
+  ],
+  "qa8_lists-sets": [
+   0.994,
+   0.958,
+   0.879
+  ],
+  "qa9_simple-negation": [
+   0.996
+  ],
+  "qa10_indefinite-knowledge": [
+   0.985
+  ],
+  "qa11_basic-coreference": [
+   1.0,
+   0.998
+  ],
+  "qa12_conjunction": [
+   1.0
+  ],
+  "qa13_compound-coreference": [
+   1.0,
+   1.0
+  ],
+  "qa14_time-reasoning": [
+   0.981,
+   0.939
+  ],
+  "qa15_basic-deduction": [
+   1.0,
+   1.0
+  ],
+  "qa16_basic-induction": [
+   1.0,
+   0.952,
+   0.956
+  ],
+  "qa17_positional-reasoning": [
+   0.996,
+   0.994
+  ],
+  "qa18_size-reasoning": [
+   0.634,
+   0.775
+  ],
+  "qa19_path-finding": [
+   0.514,
+   0.831
+  ],
+  "qa20_agents-motivations": [
+   1.0
+  ]
+ },
+ "config": {
+  "reader": "stage 73",
+  "sup": 1,
+  "roles": true,
+  "sem": false,
+  "space": false,
+  "space_sup": false,
+  "entities": false,
+  "reward": false,
+  "hindsight": false,
+  "passages": true,
+  "one_answer_list": 60,
+  "hops": 3,
+  "tag": "events_sup1_roles_val_s99_",
+  "n_params": 1426770
+ },
+ "passed_95": 12,
+ "mean_error": 10.54,
+ "recipe": {
+  "wd": 0.0,
+  "sched": "",
+  "drop": 0.0,
+  "mix": false,
+  "prio": false,
+  "fade": 0.0,
+  "aug": 0.0,
+  "val": true
+ },
+ "val": {
+  "qa1_single-supporting-fact": 0.994,
+  "qa2_two-supporting-facts": 0.921,
+  "qa3_three-supporting-facts": 0.728,
+  "qa4_two-arg-relations": 0.861,
+  "qa5_three-arg-relations": 0.994,
+  "qa6_yes-no-questions": 0.995,
+  "qa7_counting": 0.83,
+  "qa8_lists-sets": 0.935,
+  "qa9_simple-negation": 0.984,
+  "qa10_indefinite-knowledge": 0.982,
+  "qa11_basic-coreference": 0.996,
+  "qa12_conjunction": 0.998,
+  "qa13_compound-coreference": 0.999,
+  "qa14_time-reasoning": 0.943,
+  "qa15_basic-deduction": 1.0,
+  "qa16_basic-induction": 0.973,
+  "qa17_positional-reasoning": 0.598,
+  "qa18_size-reasoning": 0.934,
+  "qa19_path-finding": 0.258,
+  "qa20_agents-motivations": 1.0
+ },
+ "val_mean_error": 10.38,
+ "train_sample": {
+  "qa1_single-supporting-fact": 0.9967,
+  "qa2_two-supporting-facts": 0.9267,
+  "qa3_three-supporting-facts": 0.7567,
+  "qa4_two-arg-relations": 0.8733,
+  "qa5_three-arg-relations": 0.9867,
+  "qa6_yes-no-questions": 0.99,
+  "qa7_counting": 0.87,
+  "qa8_lists-sets": 0.9433,
+  "qa9_simple-negation": 0.9967,
+  "qa10_indefinite-knowledge": 0.9767,
+  "qa11_basic-coreference": 1.0,
+  "qa12_conjunction": 0.9967,
+  "qa13_compound-coreference": 1.0,
+  "qa14_time-reasoning": 0.9467,
+  "qa15_basic-deduction": 1.0,
+  "qa16_basic-induction": 0.9733,
+  "qa17_positional-reasoning": 0.5567,
+  "qa18_size-reasoning": 0.91,
+  "qa19_path-finding": 0.27,
+  "qa20_agents-motivations": 1.0
+ },
+ "world": {
+  "same": 0.986,
+  "held_names": 0.92,
+  "held_objects_places": 0.95,
+  "long": 0.951
+ },
+ "passages": {
+  "1": 0.3065,
+  "2": 0.3238,
+  "3": 0.29,
+  "4": 0.3367,
+  "5": 0.3,
+  "6": 0.29,
+  "7+": 0.2867
+ },
+ "passages_reader": {
+  "1": 0.4176,
+  "2": 0.4221,
+  "3": 0.3533,
+  "4": 0.3933,
+  "5": 0.2733,
+  "6": 0.33,
+  "7+": 0.2933
+ },
+ "passages_both": {
+  "1": 0.4789,
+  "2": 0.4836,
+  "3": 0.3833,
+  "4": 0.4167,
+  "5": 0.3167,
+  "6": 0.3467,
+  "7+": 0.3467
+ },
+ "passages_most_frequent": {
+  "1": 0.1762,
+  "2": 0.2869,
+  "3": 0.2967,
+  "4": 0.2833,
+  "5": 0.2367,
+  "6": 0.3233,
+  "7+": 0.2733
+ }
+}
