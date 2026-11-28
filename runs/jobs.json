@@ -1,99 +1,9 @@
 [
  {
-  "name": "s99b_keep_s0",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --val --sched cos --prio --mix",
-  "seed": 0,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=s99b_",
-  "batch": "99b-2026-11-28"
- },
- {
-  "name": "s99b_keep_s1",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --val --sched cos --prio --mix",
-  "seed": 1,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=s99b_",
-  "batch": "99b-2026-11-28"
- },
- {
-  "name": "s99b_keep_s2",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --val --sched cos --prio --mix",
-  "seed": 2,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=s99b_",
-  "batch": "99b-2026-11-28"
- },
- {
-  "name": "s99b_keep_s3",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --val --sched cos --prio --mix",
-  "seed": 3,
-  "questions": 480000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=s99b_",
-  "batch": "99b-2026-11-28"
- },
- {
-  "name": "s99b_keep10_s0",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --val --sched cos --prio --mix",
-  "seed": 0,
-  "questions": 1600000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=s99b_",
-  "batch": "99b-2026-11-28"
- },
- {
-  "name": "s99b_keep10_s1",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --val --sched cos --prio --mix",
-  "seed": 1,
-  "questions": 1600000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=s99b_",
-  "batch": "99b-2026-11-28"
- },
- {
-  "name": "s99b_keep10_s2",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --val --sched cos --prio --mix",
-  "seed": 2,
-  "questions": 1600000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=s99b_",
-  "batch": "99b-2026-11-28"
- },
- {
-  "name": "s99b_keep10_s3",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --val --sched cos --prio --mix",
-  "seed": 3,
-  "questions": 1600000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=s99b_",
-  "batch": "99b-2026-11-28"
- },
- {
-  "name": "s99b_all10_s0",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --val --sched cos --wd 0.05 --drop 0.1 --mix --prio --fade 0.25 --aug 0.5",
-  "seed": 0,
-  "questions": 1600000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=s99b_",
-  "batch": "99b-2026-11-28"
- },
- {
   "name": "s99b_all10_s1",
   "script": "hippo_events.py",
   "flags": "--sup 1 --roles --val --sched cos --wd 0.05 --drop 0.1 --mix --prio --fade 0.25 --aug 0.5",
   "seed": 1,
-  "questions": 1600000,
-  "env": "PASSAGES=data/passages.json.gz EV_TAG=s99b_",
-  "batch": "99b-2026-11-28"
- },
- {
-  "name": "s99b_all10_s2",
-  "script": "hippo_events.py",
-  "flags": "--sup 1 --roles --val --sched cos --wd 0.05 --drop 0.1 --mix --prio --fade 0.25 --aug 0.5",
-  "seed": 2,
   "questions": 1600000,
   "env": "PASSAGES=data/passages.json.gz EV_TAG=s99b_",
   "batch": "99b-2026-11-28"
